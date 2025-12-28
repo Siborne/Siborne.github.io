@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Scoop on Siborne</title>
+        <link>https://Siborne.github.io/tags/scoop/</link>
+        <description>Recent content in Scoop on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Siborne.github.io/tags/scoop/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Scoop</title>
+        <link>https://Siborne.github.io/p/scoop/</link>
+        <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.github.io/p/scoop/</guid>
+        <description>&lt;img src="https://Siborne.github.io/p/scoop/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Scoop" /&gt;&lt;h2 id=&#34;为什么使用-scoop&#34;&gt;为什么使用 Scoop
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;scoop.sh&#34; &gt;Scoop官网网址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在 Windows 下，搭建开发环境一直是一个复杂且困难的问题。由于没有一个统一的标准，导致各种开发环境的安装方式差异巨大，需要付出很多不必要的时间成本。而 Scoop 可以帮助你统一安装并管理常见的开发软件，省去了手动下载安装，配置环境变量等繁琐步骤。&lt;/p&gt;
+&lt;p&gt;例如安装 python 和 nodejs 只需要执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;scoop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;python&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;scoop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nodejs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;安装-scoop&#34;&gt;安装 Scoop
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;亲测+官方安装方法&lt;/p&gt;
+&lt;p&gt;微软商店安装最新版Powershell&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.github.io/p/scoop/assets/image-20251204204702-qhzlv3b.png&#34;
+	width=&#34;1920&#34;
+	height=&#34;1080&#34;
+	srcset=&#34;https://Siborne.github.io/p/scoop/assets/image-20251204204702-qhzlv3b_hu_5818130fdd011680.png 480w, https://Siborne.github.io/p/scoop/assets/image-20251204204702-qhzlv3b_hu_8523b4acd3edbb57.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;打开PowerShell，输入以下指令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Set-ExecutionPolicy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ExecutionPolicy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RemoteSigned&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Scope&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CurrentUser&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Uri&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;scoop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;sh&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Invoke-Expression&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;出现下图，即为安装成功&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.github.io/p/scoop/assets/image-20251204205229-f18qg4o.png&#34;
+	width=&#34;1241&#34;
+	height=&#34;1078&#34;
+	srcset=&#34;https://Siborne.github.io/p/scoop/assets/image-20251204205229-f18qg4o_hu_f49963283263e6eb.png 480w, https://Siborne.github.io/p/scoop/assets/image-20251204205229-f18qg4o_hu_e1fdc3aa93e6dd06.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;115&#34;
+		data-flex-basis=&#34;276px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Scoop 需要 &lt;a class=&#34;link&#34; href=&#34;https://aka.ms/wmf5download&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Windows PowerShell 5.1&lt;/a&gt; 或者 &lt;a class=&#34;link&#34; href=&#34;https://aka.ms/powershell&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PowerShell&lt;/a&gt; 作为运行环境，如果你使用的是 Windows 10 及以上版本，Windows PowerShell 是内置在系统中的。而 Windows 7 内置的 Windows PowerShell 版本过于陈旧，你需要手动安装新版本的 PowerShell。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由于发现很多同学在设置 Windows 用户时使用了中文用户名，导致了用户目录也变成了中文名。如果按照 Scoop 的默认方式将软件安装到用户目录下，可能会造成部分软件执行错误。所以这里推荐安装到自定义目录，如果需要其他安装方式请参考： &lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Install&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ScoopInstaller/Install&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 设置 PowerShell 执行策略&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Set-ExecutionPolicy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ExecutionPolicy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RemoteSigned&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Scope&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CurrentUser&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 下载安装脚本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;irm &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;scoop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;sh&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-outfile&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;install.ps1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 执行安装, --ScoopDir 参数指定 Scoop 安装路径&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;install&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;ps1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ScoopDir&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;C:\Scoop&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;使用-scoop&#34;&gt;使用 Scoop
+&lt;/h2&gt;&lt;p&gt;Scoop 的官方文档对于新手非常友好，相对于在此处赘述更推荐阅读 &lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Scoop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方文档&lt;/a&gt; 或 &lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Scoop/wiki/Quick-Start&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;快速入门&lt;/a&gt; 。&lt;/p&gt;
+&lt;h4 id=&#34;常用命令&#34;&gt;常用命令
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;命令&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop bucket list&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;查看当前scoop安装的所有仓库&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop search&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;用于搜索软件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop install&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;用于安装软件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop list&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;用于查看已安装的软件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop uninstall&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;用于卸载软件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop bucket&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;用于管理仓库&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop update&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;用于更新软件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop config proxy&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;为soop设置代理&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop reset&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;用于切换软件版本&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;qa&#34;&gt;Q&amp;amp;A
+&lt;/h2&gt;&lt;h3 id=&#34;scoop-能配置镜像源吗&#34;&gt;Scoop 能配置镜像源吗？
+&lt;/h3&gt;&lt;p&gt;Scoop 社区仅维护安装配置，所有的软件都是从该软件官方提供的下载链接进行下载，所以无法提供镜像源。如果因为你的网络环境导致多次下载失败，那么你需要一点点 &lt;a class=&#34;link&#34; href=&#34;https://csdiy.wiki/%E5%BF%85%E5%AD%A6%E5%B7%A5%E5%85%B7/%E7%BF%BB%E5%A2%99/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;魔法&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;为什么找不到-java8&#34;&gt;为什么找不到 Java8？
+&lt;/h3&gt;&lt;p&gt;原因同上，官方已不再提供 Java8 的下载链接，推荐使用 &lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Java/blob/master/bucket/ojdkbuild8.json&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ojdkbuild8&lt;/a&gt; 替代。&lt;/p&gt;
+&lt;h3 id=&#34;我需要安装-python2-该如何操作&#34;&gt;我需要安装 python2 该如何操作？
+&lt;/h3&gt;&lt;p&gt;对于已经过时弃用的软件，Scoop 社区会将其从 &lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Main&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ScoopInstaller/Main&lt;/a&gt; 中移除并将其添加到 &lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Versions&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ScoopInstaller/Versions&lt;/a&gt; 中。如果你需要这些软件的话需要手动添加 bucket：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;scoop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bucket&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;add&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;versions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;scoop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;python27&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;‍&lt;a class=&#34;link&#34; href=&#34;https://google.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;img src=&#34;https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Google&#34;
+	
+	
+&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
