@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="简述对Java中ThreadLocal的理解">
+<title>对ThreadLocal的理解</title>
+
+<link rel='canonical' href='https://Siborne.github.io/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/'>
+
+<link rel="stylesheet" href="/scss/style.min.833d6eed45de56f48306bf57268d5b8cdfc8a60e8e7bdc99810464fcd033f7c6.css"><meta property='og:title' content="对ThreadLocal的理解">
+<meta property='og:description' content="简述对Java中ThreadLocal的理解">
+<meta property='og:url' content='https://Siborne.github.io/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Java' /><meta property='article:published_time' content='2025-12-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-12-30T00:00:00&#43;00:00'/><meta property='og:image' content='https://Siborne.github.io/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.jpg' />
+<meta name="twitter:title" content="对ThreadLocal的理解">
+<meta name="twitter:description" content="简述对Java中ThreadLocal的理解"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.github.io/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.jpg' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_62df85dbc1f2fa7d.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Siborne</a></h1>
+            <h2 class="site-description">欢迎来到我的个人博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页 | Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E-about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于 | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档 | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E6%8A%80%E6%9C%AF%E9%93%BE%E6%8E%A5-links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>技术链接 | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#threadlocal介绍">ThreadLocal介绍</a></li>
+    <li><a href="#基本使用">基本使用</a></li>
+    <li><a href="#使用案例">使用案例</a></li>
+    <li><a href="#threadlocal类和synchronized关键字">ThreadLocal类和Synchronized关键字</a>
+      <ol>
+        <li><a href="#synchronized同步方式">Synchronized同步方式</a></li>
+        <li><a href="#threadlocal与synchronized的区别">ThreadLocal与Synchronized的区别</a></li>
+      </ol>
+    </li>
+    <li><a href="#运用场景">运用场景</a>
+      <ol>
+        <li><a href="#转账案例">转账案例</a></li>
+        <li><a href="#引入事务">引入事务</a></li>
+        <li><a href="#常规解决方法">常规解决方法</a></li>
+        <li><a href="#常规解决方法的弊端">常规解决方法的弊端</a></li>
+        <li><a href="#使用threadlocal解决">使用ThreadLocal解决</a></li>
+        <li><a href="#threadlocal实现的好处">ThreadLocal实现的好处</a></li>
+      </ol>
+    </li>
+    <li><a href="#threadlocal的内部结构">ThreadLocal的内部结构</a>
+      <ol>
+        <li><a href="#常见误解">常见误解</a></li>
+        <li><a href="#现在的设计">现在的设计</a></li>
+        <li><a href="#对比">对比</a></li>
+      </ol>
+    </li>
+    <li><a href="#threadlocal核心方法源码">ThreadLocal核心方法源码</a>
+      <ol>
+        <li><a href="#set方法">set方法</a></li>
+        <li><a href="#get方法">get方法</a></li>
+        <li><a href="#remove方法">remove方法</a></li>
+        <li><a href="#initialvalue方法">initialValue方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#threadlocalmap源码分析">ThreadLocalMap源码分析</a>
+      <ol>
+        <li><a href="#基本结构">基本结构</a>
+          <ol>
+            <li><a href="#成员变量">成员变量</a></li>
+          </ol>
+        </li>
+        <li><a href="#存储结构---entry">存储结构 - Entry</a></li>
+      </ol>
+    </li>
+    <li><a href="#弱引用和内存泄漏">弱引用和内存泄漏</a>
+      <ol>
+        <li><a href="#内存泄漏相关概念">内存泄漏相关概念</a></li>
+        <li><a href="#弱引用相关概念">弱引用相关概念</a></li>
+        <li><a href="#如果key使用强引用那么会出现内存泄漏">如果key使用强引用，那么会出现内存泄漏？</a></li>
+        <li><a href="#如果key使用弱引用那么会出现内存泄漏">如果key使用弱引用，那么会出现内存泄漏？</a></li>
+        <li><a href="#出现内存泄漏的真实原因">出现内存泄漏的真实原因</a></li>
+        <li><a href="#为什么要使用弱引用">为什么要使用弱引用？</a></li>
+      </ol>
+    </li>
+    <li><a href="#hash冲突的解决">Hash冲突的解决</a>
+      <ol>
+        <li><a href="#构造方法">构造方法</a></li>
+        <li><a href="#get方法-1">Get方法</a></li>
+        <li><a href="#线性探测法解决hash冲突">线性探测法解决Hash冲突</a></li>
+      </ol>
+    </li>
+    <li><a href="#threadlocal使用场景">ThreadLocal使用场景</a>
+      <ol>
+        <li><a href="#源码使用场景">源码使用场景</a></li>
+        <li><a href="#用户使用场景1">用户使用场景1</a></li>
+        <li><a href="#用户使用场景2">用户使用场景2</a></li>
+      </ol>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/">
+                <img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage_hu_6f151e357769b3c2.jpg"
+                        srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage_hu_6f151e357769b3c2.jpg 800w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage_hu_4c032ee719e06b69.jpg 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post 对ThreadLocal的理解" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #622a9dff; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/">对ThreadLocal的理解</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            简述对Java中ThreadLocal的理解
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2025-12-30T00:00:00Z'>2025-12-30</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 21 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="threadlocal介绍">ThreadLocal介绍
+</h2><p>从Java官方文档中的描述：ThreadLocal类用来提供线程内部的局部变量。这种变量在多线程环境下访问（通过get和set方法访问）时能保证各个线程的变量相对独立于其他线程内的变量。ThreadLocal实例通常来说都是private static类型的，用于关联线程和线程上下文。</p>
+<p>我们可以得知ThreadLocal的作用是：提供线程内的局部变量，不同的线程之间不会相互干扰，这种变量在线程的生命周期内起作用，减少同一个线程内多个函数或组件之间一些公共变量传递的复杂度。</p>
+<ul>
+<li>线程并发：在多线程并发的场景下</li>
+<li>传递数据：我们可以通过ThreadLocal在同一线程，不同组件之间传递公共变量（有点类似于Session？）</li>
+<li>线程隔离：每个线程的变量都是独立的，不会互相影响</li>
+</ul>
+<h2 id="基本使用">基本使用
+</h2><p>在介绍Thread使用之前，我们首先认识几个Thread的常见方法</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>方法声明</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ThreadLocal()</td>
+          <td>创建ThreadLocal对象</td>
+      </tr>
+      <tr>
+          <td>public void set(T value)</td>
+          <td>设置当前线程绑定的局部变量</td>
+      </tr>
+      <tr>
+          <td>public T get()</td>
+          <td>获取当前线程绑定的局部变量</td>
+      </tr>
+      <tr>
+          <td>public void remove()</td>
+          <td>移除当前线程绑定的局部变量</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="使用案例">使用案例
+</h2><p>我们来看下面这个案例，感受一下ThreadLocal线程隔离的特点</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 需求：线程隔离
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 在多线程并发的场景下，每个线程中的变量都是相互独立的
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 线程A：设置变量1，获取变量2
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 线程B：设置变量2，获取变量2
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author: Siborne
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create: 2025-12-30-17:03
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyDemo01</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 变量</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getContent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setContent</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyDemo01</span><span class="w"> </span><span class="n">myDemo01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyDemo01</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">myDemo01</span><span class="p">.</span><span class="na">setContent</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;的数据&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;-----------------------------------------&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;\t  &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">myDemo01</span><span class="p">.</span><span class="na">getContent</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">i</span><span class="p">)).</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行后的效果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">3	  4的数据
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">2	  4的数据
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">1	  4的数据
+</span></span><span class="line"><span class="cl">4	  4的数据
+</span></span><span class="line"><span class="cl">0	  4的数据
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从上面我们可以看到，出现了线程不隔离的问题，也就是线程1取出了线程4的内，那么如何解决呢？</p>
+<p>这个时候就可以用到ThreadLocal了，我们通过 set 将变量绑定到当前线程中，然后 get 获取当前线程绑定的变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 需求：线程隔离
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 在多线程并发的场景下，每个线程中的变量都是相互独立的
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 线程A：设置变量1，获取变量2
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 线程B：设置变量2，获取变量2
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author: Siborne
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create: 2025-12-30-17:03
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyDemo01</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 变量</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getContent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setContent</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyDemo01</span><span class="w"> </span><span class="n">myDemo01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyDemo01</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">threadLocal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">threadLocal</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;的数据&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;-----------------------------------------&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;\t  &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">threadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">i</span><span class="p">)).</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们引入ThreadLocal后，查看运行结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">4	  4的数据
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">3	  3的数据
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">2	  2的数据
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">1	  1的数据
+</span></span><span class="line"><span class="cl">0	  0的数据
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们发现不会出现上面的情况了，也就是当前线程只能获取线程线程存储的对象</p>
+<h2 id="threadlocal类和synchronized关键字">ThreadLocal类和Synchronized关键字
+</h2><h3 id="synchronized同步方式">Synchronized同步方式
+</h3><p>对于上述的例子，我们完全可以通过加锁的方式来实现这个功能，我们来看一下用Synchronized代码块实现的效果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyDemo03</span><span class="w"> </span><span class="n">myDemo01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyDemo03</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">MyDemo03</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">myDemo01</span><span class="p">.</span><span class="na">setContent</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;的数据&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;-----------------------------------------&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;\t  &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">myDemo01</span><span class="p">.</span><span class="na">getContent</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">i</span><span class="p">)).</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果如下所示，我们发现我们可以看到同样实现了功能，但是并发性降低了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">0	  0的数据
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">4	  4的数据
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">3	  3的数据
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">2	  2的数据
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">1	  1的数据
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="threadlocal与synchronized的区别">ThreadLocal与Synchronized的区别
+</h3><p>虽然ThreadLocal模式与Synchronized关键字都用于处理多线程并发访问变量的问题，不过两者处理问题的角度和思路不同。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Synchronized</th>
+          <th>ThreadLocal</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>原理</td>
+          <td>同步机制采用以时间换空间的方式，只提供了一份变量，让不同的线程排队访问</td>
+          <td>ThreadLocal采用以空间换时间的概念，为每个线程都提供一份变量副本，从而实现同时访问而互不干扰</td>
+      </tr>
+      <tr>
+          <td>侧重点</td>
+          <td>多个线程之间访问资源的同步</td>
+          <td>多线程中让每个线程之间的数据相互隔离</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>总结：在刚刚的案例中，虽然使用ThreadLocal和Synchronized都能解决问题，但是使用ThreadLocal更为合适，因为这样可以使程序拥有更高的并发性。</p>
+<h2 id="运用场景">运用场景
+</h2><p>通过以上的介绍，我们已经基本了解ThreadLocal的特点，但是它具体是运用在什么场景中的呢？接下来让我们看一个案例：事务操作</p>
+<h3 id="转账案例">转账案例
+</h3><p>这里们先构建一个简单的转账场景：有一个数据表account，里面有两个用户 jack 和 Rose，用户Jack给用户Rose转账。案例的实现主要是用mysql数据库，JDBC和C3P0框架，以下是详细代码</p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153.png"
+	width="1154"
+	height="424"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_6da148d510b974c9.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_4a6face6da4e5a04.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710204941153"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="272"
+		data-flex-basis="653px"
+	
+></p>
+<h3 id="引入事务">引入事务
+</h3><p>案例中转账涉及两个DML操作：一个转出，一个转入。这些操作是需要具备原子性的，不可分割。不然有可能出现数据修改异常情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AccountService</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">outUser</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">isUser</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">money</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">AccountDao</span><span class="w"> </span><span class="n">ad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AccountDao</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 转出</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ad</span><span class="p">.</span><span class="na">out</span><span class="p">(</span><span class="n">outUser</span><span class="p">,</span><span class="w"> </span><span class="n">money</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 模拟转账过程中的异常</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1</span><span class="o">/</span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 转入</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ad</span><span class="p">.</span><span class="na">in</span><span class="p">(</span><span class="n">inUser</span><span class="p">,</span><span class="w"> </span><span class="n">money</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以这里就需要操作事务，来保证转入和转出具备原子性，要么成功，要么失败。</p>
+<p>JDBC中关于事务操作的API</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Connection接口的方法</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>void setAutoCommit(false)</td>
+          <td>禁用事务自动提交（改为手动提交）</td>
+      </tr>
+      <tr>
+          <td>void commit()</td>
+          <td>提交事务</td>
+      </tr>
+      <tr>
+          <td>void rollbakc()</td>
+          <td>回滚事务</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>开启事务的注意点</p>
+<p>为了保证所有操作在一个事务中，案例中使用的连接必须是同一个；service层开启事务的connection需要跟dao层访问数据库的connection保持一致</p>
+<p>线程并发情况下，每个线程只能操作各自的connection，也就是线程隔离</p>
+<h3 id="常规解决方法">常规解决方法
+</h3><p>基于上面给出的前提，大家通常想到的解决方法</p>
+<ul>
+<li>从service层将connection对象向dao层传递</li>
+<li>加锁</li>
+</ul>
+<h3 id="常规解决方法的弊端">常规解决方法的弊端
+</h3><ul>
+<li>提高代码的耦合度（因为我们需要从service 层 传入 connection参数）</li>
+<li>降低程序的性能（加了同步代码块，失去了并发性）</li>
+</ul>
+<p>这个时候就可以通过ThreadLocal和当前线程进行绑定，来降低代码之间的耦合</p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494.png"
+	width="1364"
+	height="515"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_84670a5e7f2d0c8.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_d502ecbc53dccae5.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710212423494"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="264"
+		data-flex-basis="635px"
+	
+></p>
+<h3 id="使用threadlocal解决">使用ThreadLocal解决
+</h3><p>针对上面出现的情况，我们需要对原来的JDBC连接池对象进行更改</p>
+<ul>
+<li>将原来从连接池中获取对象，改成直接获取当前线程绑定的连接对象</li>
+<li>如果连接对象是空的
+<ul>
+<li>再去连接池中获取连接</li>
+<li>将此连接对象跟当前线程进行绑定</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Connection</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="nf">getConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Connection</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tl</span><span class="p">.</span><span class="na">get</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">conn</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ds</span><span class="p">.</span><span class="na">getConnection</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">tl</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="threadlocal实现的好处">ThreadLocal实现的好处
+</h3><p>从上述的案例中我们可以看到，在一些特定场景下，ThreadLocal方案有两个突出的优势：</p>
+<ul>
+<li>传递数据：保存每个线程绑定的数据，在需要的地方可以直接获取，避免参数直接传递带来的代码耦合问题</li>
+<li>线程隔离：各线程之间的数据相互隔离却又具备并发性，避免同步方式带来的性能损失</li>
+</ul>
+<h2 id="threadlocal的内部结构">ThreadLocal的内部结构
+</h2><p>通过以上的学习，我们对ThreadLocal的作用有了一定的认识。现在我们一起来看一下ThreadLocal的内部结构，探究它能够实现线程数据隔离的原理。</p>
+<h3 id="常见误解">常见误解
+</h3><p>如果我们不去看源代码的话，可能会猜测 ThreadLocal 是这样子设计的：每个ThreadLocal都创建一个Map，然后用线程作为Map的key，要存储的局部变量作为Map的value，这样就能达到各个线程的局部变量隔离的效果。这是最简单的设计方法，JDK最早期的ThreadLocal确实是这样设计的，但现在早已不是了。</p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638.png"
+	width="821"
+	height="371"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_ad718fe2fcbb711d.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_c41f57ef3ba1d643.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710214857638"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="221"
+		data-flex-basis="531px"
+	
+></p>
+<h3 id="现在的设计">现在的设计
+</h3><p>但是，JDK后面优化了设计方案，在JDK8中 ThreadLocal的设计是：每个Thread维护一个ThreadLocalMap，这个Map的key是ThreadLocal实例本身，value 才是真正要存储的值object。具体的过程是这样的：</p>
+<ul>
+<li>每个Thread线程内部都有一个Map（ThreadLocalMap）</li>
+<li>Map里面存储ThreadLocal对象（key）和线程的变量副本（value）</li>
+<li>Thread内部的Map是由ThreadLocal维护的，由ThreadLocal负责向map获取和设置线程的变量值。</li>
+<li>对于不同的线程，每次获取副本值时，别的线程并不能获取到当前线程的副本值，形成了副本的隔离，互不干扰。</li>
+</ul>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748.png"
+	width="932"
+	height="355"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_91b80341ed4c06e5.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_e2b882980d755233.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710215038748"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="262"
+		data-flex-basis="630px"
+	
+></p>
+<h3 id="对比">对比
+</h3><p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743.png"
+	width="924"
+	height="726"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_e09220964b2c3542.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_ecabfd46752b5af9.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710215128743"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="127"
+		data-flex-basis="305px"
+	
+></p>
+<p>从上面变成JDK8的设计有什么好处？</p>
+<ul>
+<li>每个Map存储的Entry数量变少，因为原来的Entry数量是由Thread决定，而现在是由ThreadLocal决定的
+<ul>
+<li>真实开发中，Thread的数量远远大于ThreadLocal的数量</li>
+</ul>
+</li>
+<li>当Thread销毁的时候，ThreadLocalMap也会随之销毁，因为ThreadLocal是存放在Thread中的，随着Thread销毁而消失，能降低开销。</li>
+</ul>
+<h2 id="threadlocal核心方法源码">ThreadLocal核心方法源码
+</h2><p>基于ThreadLocal的内部结构，我们继续分析它的核心方法源码，更深入的了解其操作原理。
+除了构造方法之外，ThreadLocal对外暴露的方法有以下4个</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>方法声明</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>protected T initialValue()</td>
+          <td>返回当前线程局部变量的初始值</td>
+      </tr>
+      <tr>
+          <td>public void set(T value)</td>
+          <td>返回当前线程绑定的局部变量</td>
+      </tr>
+      <tr>
+          <td>public T get()</td>
+          <td>获取当前线程绑定的局部变量</td>
+      </tr>
+      <tr>
+          <td>public void remove()</td>
+          <td>移除当前线程绑定的局部变量</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>以下是这4个方法的详细源码分析（为了保证思路清晰，ThreadLocalMap部分暂时不展开，下一个知识点详解）</p>
+<h3 id="set方法">set方法
+</h3><p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026.png"
+	width="911"
+	height="590"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026_hu_231081a87fff4e88.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026_hu_a5ca1b8b857b8deb.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710215706026"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="154"
+		data-flex-basis="370px"
+	
+></p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494.png"
+	width="838"
+	height="550"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494_hu_7e331f986d604d7f.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494_hu_21e24853cab3ac8b.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710215827494"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="152"
+		data-flex-basis="365px"
+	
+></p>
+<p>代码流程</p>
+<ul>
+<li>首先获取当前线程，并根据当前线程获取一个Map</li>
+<li>如果获取的Map不为空，则将参数设置到Map中（当前ThreadLocal的引用作为key）</li>
+<li>如果Map为空，则给该线程创建Map，并设置初始化值</li>
+</ul>
+<h3 id="get方法">get方法
+</h3><p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887.png"
+	width="867"
+	height="799"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887_hu_c7bd97ff39b3f897.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887_hu_fc7e3b890aa83f03.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710220037887"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="108"
+		data-flex-basis="260px"
+	
+></p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472.png"
+	width="910"
+	height="734"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472_hu_9e1559517242241b.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472_hu_41782bd8b1a221d8.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710220201472"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="297px"
+	
+></p>
+<p>代码执行流程</p>
+<ul>
+<li>首先获取当前线程，根据当前线程获取一个Map</li>
+<li>如果获取的Map不为空，则在Map中以ThreadLocal的引用作为key来在Map中获取对应的Entrye，否则转到第四步</li>
+<li>如果e不为null，则返回e.value，否则转到第四步</li>
+<li>Map为空或者e为空，则通过initialValue函数获取初始值value，然后用ThreadLocal的引用和value作为firstKey和firstValue创建一个新的Map</li>
+</ul>
+<p>总结：先获取当前线程的ThreadLocal变量，如果存在则返回值，不存在则创建并返回初始值</p>
+<h3 id="remove方法">remove方法
+</h3><p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229.png"
+	width="745"
+	height="340"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229_hu_996f562cdcbf97d5.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229_hu_95ac7a5cc63b0881.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710220519229"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="219"
+		data-flex-basis="525px"
+	
+></p>
+<p>代码执行流程</p>
+<ul>
+<li>首先获取当前线程，并根据当前线程获取一个Map</li>
+<li>如果获取的Map不为空，则移除当前ThreadLocal对象对应的Entry</li>
+</ul>
+<h3 id="initialvalue方法">initialValue方法
+</h3><p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455.png"
+	width="739"
+	height="489"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455_hu_650603342b60aa07.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455_hu_53e8db49149c2e9d.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710220639455"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="151"
+		data-flex-basis="362px"
+	
+></p>
+<p>此方法的作用是返回该线程局部变量的初始值。</p>
+<ul>
+<li>这个方法是一个延迟调用方法，从上面的代码我们得知，在set方法还未调用而先调用了get方法时才执行，并且仅执行1次。</li>
+<li>这个方法缺省实现直接返回一个null。</li>
+<li>如果想要一个除null之外的初始值，可以重写此方法。（备注：该方法是一个protected的方法，显然是为了让子类覆盖而设计的）</li>
+</ul>
+<h2 id="threadlocalmap源码分析">ThreadLocalMap源码分析
+</h2><p>在分析ThreadLocal方法的时候，我们了解到ThreadLocal的操作实际上是围绕ThreadLocalMap展开的。
+ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨论。</p>
+<h3 id="基本结构">基本结构
+</h3><p>ThreadLocalMap是ThreadLocal的内部类，没有实现Map接口，用独立的方式实现了Map的功能，其内部的Entry也是独立实现。</p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315.png"
+	width="757"
+	height="422"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315_hu_8959e017ee459be.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315_hu_6d6122b6ddbe64ae.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710220856315"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="430px"
+	
+></p>
+<h4 id="成员变量">成员变量
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">* 初始容量 - 必须是2的整次幂
+</span></span></span><span class="line"><span class="cl"><span class="cm">**/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">INITIAL_CAPACITY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">16</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">*存放数据的table ，Entry类的定义在下面分析，同样，数组的长度必须是2的整次幂
+</span></span></span><span class="line"><span class="cl"><span class="cm">**/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="n">Entry</span><span class="o">[]</span><span class="w"> </span><span class="n">table</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">*数组里面entrys的个数，可以用于判断table当前使用量是否超过阈值
+</span></span></span><span class="line"><span class="cl"><span class="cm">**/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">*进行扩容的阈值，表使用量大于它的时候进行扩容
+</span></span></span><span class="line"><span class="cl"><span class="cm">**/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">threshold</span><span class="p">;</span><span class="w"> </span><span class="c1">// Default to 0</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>跟HashMap类似，INITIAL_CAPACITY代表这个Map的初始容量；table是一个Entry类型的数组，用于存储数据；size代表表中的存储数目；threshold代表需要扩容时对应的size的阈值。</p>
+<h3 id="存储结构---entry">存储结构 - Entry
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">*Entry继承WeakRefefence，并且用ThreadLocal作为key.
+</span></span></span><span class="line"><span class="cl"><span class="cm">如果key为nu11（entry.get（）==nu11），意味着key不再被引用，
+</span></span></span><span class="line"><span class="cl"><span class="cm">*因此这时候entry也可以从table中清除。
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Entry</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">weakReference</span><span class="o">&lt;</span><span class="n">ThreadLocal</span><span class="o">&lt;?&gt;&gt;</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">object</span><span class="w"> </span><span class="n">value</span><span class="err">；</span><span class="n">Entry</span><span class="err">（</span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="err">？</span><span class="o">&gt;</span><span class="n">k</span><span class="err">，</span><span class="n">object</span><span class="w"> </span><span class="n">v</span><span class="err">）</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">super</span><span class="p">(</span><span class="n">k</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在ThreadLocalMap中，也是用Entry来保存K-V结构数据的。不过Entry中的key只能是ThreadLocal对象，这点在构造方法中已经限定死了。</p>
+<p>另外，Entry继承WeakReference，也就是key（ThreadLocal）是弱引用，其目的是将ThreadLocal对象的生命周期和线程生命周期解绑。</p>
+<h2 id="弱引用和内存泄漏">弱引用和内存泄漏
+</h2><p>有些程序员在使用ThreadLocal的过程中会发现有内存泄漏的情况发生，就猜测这个内存泄漏跟Entry中使用了弱引用的key有关系。这个理解其实是不对的。</p>
+<p>我们先来回顾这个问题中涉及的几个名词概念，再来分析问题。</p>
+<h3 id="内存泄漏相关概念">内存泄漏相关概念
+</h3><p>Memory overflow：内存溢出，没有足够的内存提供申请者使用。</p>
+<p>Memory leak：内存泄漏是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统溃等严重后果。I内存泄漏的堆积终将导致内存溢出。</p>
+<h3 id="弱引用相关概念">弱引用相关概念
+</h3><p>Java中的引用有4种类型：强、软、弱、虚。当前这个问题主要涉及到强引用和弱引用：</p>
+<p>强引用（&ldquo;Strong&quot;Reference），就是我们最常见的普通对象引用，只要还有强引用指向一个对象，就能表明对象还“活着”，垃圾回收器就不会回收这种对象。</p>
+<p>弱引用（WeakReference），垃圾回收器一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。</p>
+<h3 id="如果key使用强引用那么会出现内存泄漏">如果key使用强引用，那么会出现内存泄漏？
+</h3><p>假设ThreadLocalMap中的key使用了强引用，那么会出现内存泄漏吗？</p>
+<p>此时ThreadLocal的内存图（实线表示强引用）如下：</p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109.png"
+	width="883"
+	height="473"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109_hu_bb92f38ce79647b6.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109_hu_bace06a265205062.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710222559109"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="186"
+		data-flex-basis="448px"
+	
+></p>
+<ul>
+<li>假设在业务代码中使用完ThreadLocal，threadLocal Ref被回收了</li>
+<li>但是因为threadLocalMap的Entry强引用了threadLocal，造成threadLocal无法被回收。</li>
+<li>在没有手动删除这个Entry以及CurrentThread依然运行的前提下，始终有强引用链 threadRef-&gt;currentThread-&gt;threadLocalMap-&gt;entry，Entry就不会被回收（Entry中包括了ThreadLocal实例和value），导致Entry内存泄漏。</li>
+</ul>
+<p>也就是说，ThreadLocalMap中的key使用了强引用，是无法完全避免内存泄漏的。</p>
+<h3 id="如果key使用弱引用那么会出现内存泄漏">如果key使用弱引用，那么会出现内存泄漏？
+</h3><p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567.png"
+	width="851"
+	height="491"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567_hu_d0e6b325d17fee09.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567_hu_eec71cb1b78926b1.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710222847567"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="415px"
+	
+></p>
+<ul>
+<li>同样假设在业务代码中使用完ThreadLocal，threadLocal Ref被回收了。</li>
+<li>由于ThreadLocalMap只持有ThreadLocal的弱引用，没有任何强引用指向threadlocal实例，所以threadloca就可以顺利被gc回收，此时Entry中的key=null。</li>
+<li>但是在没有手动删除这个Entry以及CurrentThread依然运行的前提下，也存在有强引用链 threadRef-&gt;currentThread-&gt;threadLocalMap-&gt;entry-&gt; value，value不会被回收，而这块value永远不会被访问到了，导致value内存泄漏。</li>
+</ul>
+<p>也就是说，ThreadLocalMap中的key使用了弱引用，也有可能内存泄漏。</p>
+<h3 id="出现内存泄漏的真实原因">出现内存泄漏的真实原因
+</h3><p>比较以上两种情况，我们就会发现，内存泄漏的发生跟ThreadLocalMap中的key是否使用弱引用是没有关系的。那么内存泄漏的的真正原因是什么呢？</p>
+<p>细心的同学会发现，在以上两种内存泄漏的情况中，都有两个前提：</p>
+<ul>
+<li>没有手动删除这个Entry</li>
+<li>CurrentThread依然运行</li>
+</ul>
+<p>第一点很好理解，只要在使用完ThreadLocal，调用其remove方法删除对应的Entry，就能避免内存泄漏。</p>
+<p>第二点稍微复杂一点，由于ThreadLocalMap是Thread的一个属性，被当前线程所引用，所以它的生命周期跟Thread一样长。那么在使用完ThreadLocal的使用，如果当前Thread也随之执行结束，ThreadLocalMap自然也会被gc回收，从根源上避免了内存泄漏。</p>
+<p>综上，ThreadLocal内存泄漏的根源是：由于ThreadLocalMap的生命周期跟Thread-样长，如果没有手动删除对应key就会导致内存泄漏。</p>
+<h3 id="为什么要使用弱引用">为什么要使用弱引用？
+</h3><p>根据刚才的分析，我们知道了：无论ThreadLocalMap中的key使用哪种类型引用都无法完全避免内存泄漏，跟使用弱引用没有关系。</p>
+<p>要避免内存泄漏有两种方式：</p>
+<ul>
+<li>使用完ThreadLocal，调用其remove方法删除对应的Entry</li>
+<li>使用完ThreadLocal，当前Thread也随之运行结束</li>
+</ul>
+<p>相对第一种方式，第二种方式显然更不好控制，特别是使用线程池的时候，线程结束是不会销毁的，而是接着放入了线程池中。</p>
+<p>也就是说，只要记得在使用完ThreadLocal及时的调用remove，无论key是强引用还是弱引用都不会有问题。
+那么为什么key要用弱引用呢？</p>
+<p>事实上，在ThreadLocalMap中的 set / getEntry方法中，会对key为null（也即是ThreadLocal为null）进行判断，如果为null的话，那么是会对value置为nul的。</p>
+<p>这就意味着使用完ThreadLocal，CurrentThread依然运行的前提下，就算忘记调用remove方法，弱引用比强引用可以多一层保障：弱引用的ThreadLocal会被回收，对应的value在下一次ThreadLocalMap调用set，get，remove中的任一方法的时候会被清除，从而避免内存泄漏。</p>
+<h2 id="hash冲突的解决">Hash冲突的解决
+</h2><p>hash冲突的解决是Map中的一个重要内容。我们以hash冲突的解决为线索，来研究一下ThreadLocalMap的核心源码。</p>
+<p>首先从ThreadLocal的set方法入手</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set</span><span class="err">（</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="err">）</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Threadt</span><span class="o">=</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ThreadLoca1</span><span class="p">.</span><span class="na">ThreadLocalMap</span><span class="w"> </span><span class="n">map</span><span class="o">=</span><span class="n">getMap</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="err">（</span><span class="n">mapl</span><span class="w"> </span><span class="err">@</span><span class="o">=</span><span class="w"> </span><span class="n">nu11</span><span class="err">）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">//调用了ThreadLocalMap的set方法I </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="k">this</span><span class="err">，</span><span class="n">value</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">else</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">createMap</span><span class="err">（</span><span class="n">t</span><span class="err">，</span><span class="n">value</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">ThreadLocal</span><span class="p">.</span><span class="na">ThreadLocalMap</span><span class="w"> </span><span class="n">getMap</span><span class="err">（</span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="err">）</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="na">threadLocals</span><span class="err">；</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="n">createMap</span><span class="err">（</span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="err">，</span><span class="n">T</span><span class="w"> </span><span class="n">firstValue</span><span class="err">）</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">//调用了ThreadLocalMap的构造方法</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">t</span><span class="p">.</span><span class="na">threadlocals</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="p">.</span><span class="na">ThreadtocalMap</span><span class="p">(</span><span class="k">this</span><span class="err">，</span><span class="n">firstValue</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个方法我们刚才分析过，其作用是设置当前线程绑定的局部变量</p>
+<ul>
+<li>首先获取当前线程，并根据当前线程获取一个Map</li>
+<li>如果获取的Map不为空，则将参数设置到Map中（当前ThreadLocal的引用作为key)（这里调用了ThreadLocalMap的set方法）</li>
+<li>如果Map为空，则给该线程创建Map，并设置初始值（这里调用了ThreadLocalMap的构造方法）</li>
+</ul>
+<p>这段代码有两个地方分别涉及到ThreadLocalMap的两个方法，我们接着分析这两个方法</p>
+<h3 id="构造方法">构造方法
+</h3><p>ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue)</p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132.png"
+	width="878"
+	height="431"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132_hu_bdd0df64049786ab.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132_hu_57c3075c999ff04.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710224030132"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="203"
+		data-flex-basis="488px"
+	
+></p>
+<p>构造函数首先创建一个长度为16的Entry数组，然后计算出firstKey对应的索引，然后存储到table中，并设置size和threshold。</p>
+<p>重点分析：int i = firstKey.threadLocalHashCode &amp; ( INITIAL_CAPACITY - 1)</p>
+<p><strong>关于：threadLocalHashCode</strong></p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493.png"
+	width="908"
+	height="269"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493_hu_43cbce75d5bd379d.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493_hu_7d2f0ea684b4669f.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710224257493"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="337"
+		data-flex-basis="810px"
+	
+></p>
+<p>这里定义了一个Atomiclnteger类型，每次获取当前值并加上HASHINCREMENT，HASH_INCREMENT =
+0x61c88647，这个值跟斐波那契数列（黄金分割数）有关，其主要目的就是为了让哈希码能均匀的分布在2的n次方的数组里，也就是EntryI table中，这样做可以尽量避免hash冲突。</p>
+<p><strong>关于&amp;（INITIAL_CAPACITY-1）</strong></p>
+<p>计算hash的时候里面采用了hashCode&amp;（size-1）的算法，这相当于取模运算hashCode%size的一个更高效的实现。正是因为这种算法，我们要求size必须是2的整次幂，这也能保证保证在索引不越界的前提下，使得hash发生冲突的次数减小。</p>
+<h3 id="get方法-1">Get方法
+</h3><p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317.png"
+	width="955"
+	height="800"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317_hu_8d6bf81959c9543.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317_hu_137a7bf4e0f2a09.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710224609317"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="119"
+		data-flex-basis="286px"
+	
+></p>
+<p><img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127.png"
+	width="924"
+	height="584"
+	srcset="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127_hu_2b49e1f2febc0e5b.png 480w, /p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127_hu_79b203b34f50c655.png 1024w"
+	loading="lazy"
+	
+		alt="image-20200710224724127"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="158"
+		data-flex-basis="379px"
+	
+></p>
+<p>代码执行流程</p>
+<ul>
+<li>首先还是根据key计算出索引i，然后查找位置上的Entry，</li>
+<li>若是Entry已经存在并且key等于传入的key，那么这时候直接给这个Entry赋新的value值，</li>
+<li>若是Entry存在，但是key为null，则调用replaceStaleEntry来更换这个key为空的Entry，</li>
+<li>不断循环检测，直到遇到为null的地方，这时候要是还没在循环过程中return，那么就在这个null的位置新建一个Entry，并且插入，同时size增加1。</li>
+</ul>
+<p>最后调用cleanSomeSlots，清理key为null的Entry，最后返回是否清理了Entry，接下来再判断sz是否&gt;=
+thresgold达到了rehash的条件，达到的话就会调用rehash函数执行一次全表的扫描清理。</p>
+<h3 id="线性探测法解决hash冲突">线性探测法解决Hash冲突
+</h3><p>该方法一次探测下一个地址，直到有空的地址后插入，若整个空间都找不到空余的地址，则产生溢出。</p>
+<p>举个例子，假设当前table长度为16，也就是说如果计算出来key的hash值为14，如果table[14]上已经有值，并且其key与当前key不一致，那么就发生了hash冲突，这个时候将1401得到15，取table[15]进行判断，这个时候如果还是冲突会回到0，取table[0]，以此类推，直到可以插入。</p>
+<p>按照上面的描述，可以把Entry table看成一个环形数组。</p>
+<h2 id="threadlocal使用场景">ThreadLocal使用场景
+</h2><h3 id="源码使用场景">源码使用场景
+</h3><p>ThreadLocal的作用主要是做数据隔离，填充的数据只属于当前线程，变量的数据对别的线程而言是相对隔离的，在多线程环境下，如何防止自己的变量被其它线程篡改。</p>
+<p>例如，用于 Spring实现事务隔离级别的源码</p>
+<p>Spring采用Threadlocal的方式，来保证单个线程中的数据库操作使用的是同一个数据库连接，同时，采用这种方式可以使业务层使用事务时不需要感知并管理connection对象，通过传播级别，巧妙地管理多个事务配置之间的切换，挂起和恢复。</p>
+<p>Spring框架里面就是用的ThreadLocal来实现这种隔离，主要是在<code>TransactionSynchronizationManager</code>这个类里面，代码如下所示:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Log</span><span class="w"> </span><span class="n">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LogFactory</span><span class="p">.</span><span class="na">getLog</span><span class="p">(</span><span class="n">TransactionSynchronizationManager</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">resources</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">new</span><span class="w"> </span><span class="n">NamedThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&#34;Transactional resources&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">TransactionSynchronization</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">synchronizations</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">new</span><span class="w"> </span><span class="n">NamedThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&#34;Transaction synchronizations&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentTransactionName</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">new</span><span class="w"> </span><span class="n">NamedThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&#34;Current transaction name&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Spring的事务主要是ThreadLocal和AOP去做实现的，我这里提一下，大家知道每个线程自己的链接是靠ThreadLocal保存的就好了</p>
+<h3 id="用户使用场景1">用户使用场景1
+</h3><p>除了源码里面使用到ThreadLocal的场景，你自己有使用他的场景么？</p>
+<p>之前我们上线后发现部分用户的日期居然不对了，排查下来是SimpleDataFormat的锅，当时我们使用SimpleDataFormat的parse()方法，内部有一个Calendar对象，调用SimpleDataFormat的parse()方法会先调用Calendar.clear（），然后调用Calendar.add()，如果一个线程先调用了add()然后另一个线程又调用了clear()，这时候parse()方法解析的时间就不对了。</p>
+<p>其实要解决这个问题很简单，让每个线程都new 一个自己的 SimpleDataFormat就好了，但是1000个线程难道new1000个SimpleDataFormat？</p>
+<p>所以当时我们使用了线程池加上ThreadLocal包装SimpleDataFormat，再调用initialValue让每个线程有一个SimpleDataFormat的副本，从而解决了线程安全的问题，也提高了性能。</p>
+<h3 id="用户使用场景2">用户使用场景2
+</h3><p>我在项目中存在一个线程经常遇到横跨若干方法调用，需要传递的对象，也就是上下文（Context），它是一种状态，经常就是是用户身份、任务信息等，就会存在过渡传参的问题。</p>
+<p>使用到类似责任链模式，给每个方法增加一个context参数非常麻烦，而且有些时候，如果调用链有无法修改源码的第三方库，对象参数就传不进去了，所以我使用到了ThreadLocal去做了一下改造，这样只需要在调用前在ThreadLocal中设置参数，其他地方get一下就好了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">before</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">getInfo</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">checkInfo</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">setSomeThing</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	  </span><span class="n">threadLocalUser</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	  </span><span class="c1">// 他们内部  User u = threadLocalUser.get(); 就好了</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">getInfo</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">checkInfo</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">setSomeThing</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">threadLocalUser</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>我看了一下很多场景的cookie，session等数据隔离都是通过ThreadLocal去做实现的</p>
+<p>在Android中，Looper类就是利用了ThreadLocal的特性，保证每个线程只存在一个Looper对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Looper</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sThreadLocal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Looper</span><span class="o">&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">prepare</span><span class="p">(</span><span class="kt">boolean</span><span class="w"> </span><span class="n">quitAllowed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sThreadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&#34;Only one Looper may be created per thread&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sThreadLocal</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Looper</span><span class="p">(</span><span class="n">quitAllowed</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考
+</h2><p><a class="link" href="https://blog.csdn.net/qq_35190492/article/details/107599875"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/qq_35190492/article/details/107599875</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">Java</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            个人网站，仅供学习 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
