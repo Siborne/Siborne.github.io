@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="操作系统相关知识，进程与线程比较">
+<title>计算机中传统进程和线程的比较</title>
+
+<link rel='canonical' href='https://Siborne.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/'>
+
+<link rel="stylesheet" href="/scss/style.min.833d6eed45de56f48306bf57268d5b8cdfc8a60e8e7bdc99810464fcd033f7c6.css"><meta property='og:title' content="计算机中传统进程和线程的比较">
+<meta property='og:description' content="操作系统相关知识，进程与线程比较">
+<meta property='og:url' content='https://Siborne.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Operating System' /><meta property='article:published_time' content='2026-01-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-01-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://Siborne.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/bannerImage.png' />
+<meta name="twitter:title" content="计算机中传统进程和线程的比较">
+<meta name="twitter:description" content="操作系统相关知识，进程与线程比较"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/bannerImage.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_62df85dbc1f2fa7d.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Siborne</a></h1>
+            <h2 class="site-description">Welcome to my blog.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页 | Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E-about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于 | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档 | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E6%8A%80%E6%9C%AF%E9%93%BE%E6%8E%A5-links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>技术链接 | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#一基本定义">一、基本定义</a></li>
+    <li><a href="#二调度机制">二、调度机制</a></li>
+    <li><a href="#三并发与通信">三、并发与通信</a></li>
+    <li><a href="#四资源拥有情况">四、资源拥有情况</a></li>
+    <li><a href="#五系统开销对比">五、系统开销对比</a></li>
+    <li><a href="#六总结">六、总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/">
+                <img src="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/bannerImage_hu_a0453c1b1018d60.png"
+                        srcset="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/bannerImage_hu_a0453c1b1018d60.png 800w, /p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/bannerImage_hu_f9d87782276babc6.png 1600w"
+                        width="800" 
+                        height="552" 
+                        loading="lazy"
+                        alt="Featured image of post 计算机中传统进程和线程的比较" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/operating-system/" style="background-color: #cec024ff; color: #fff;">
+                Operating System
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/">计算机中传统进程和线程的比较</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            操作系统相关知识，进程与线程比较
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-01-06T00:00:00Z'>2026-01-06</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="计算机中传统进程和线程的比较">计算机中传统进程和线程的比较
+</h1><h2 id="一基本定义">一、基本定义
+</h2><ul>
+<li>
+<p><strong>进程（Process）</strong></p>
+<ul>
+<li>是操作系统进行<strong>资源分配</strong>和<strong>调度</strong>的基本单位。</li>
+<li>是程序的一次​<strong>动态执行过程</strong>。</li>
+<li>拥有​<strong>独立的虚拟内存空间</strong>（包括代码段、数据段、堆、栈）、文件描述符、信号处理器等资源。</li>
+<li><strong>进程间相互隔离</strong>：一个进程崩溃通常不会直接影响其他进程（可通过 IPC 协作）。</li>
+</ul>
+</li>
+<li>
+<p><strong>线程（Thread）</strong></p>
+<ul>
+<li>是​<strong>进程内的一个执行流</strong>，是 CPU 调度的基本单位。</li>
+<li>同一进程内的所有线程​<strong>共享该进程的内存空间和系统资源</strong>（如全局变量、打开的文件等）。</li>
+<li>每个线程<strong>独立拥有</strong>自己的栈、寄存器、程序计数器等私有数据，用于保存执行状态。</li>
+<li>又称​<strong>轻型进程</strong>​（Light-Weight Process, LWP）；相应地，传统进程称为​<strong>重型进程</strong>（Heavy-Weight Process, HWP）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二调度机制">二、调度机制
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>项目</th>
+          <th>进程</th>
+          <th>线程</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>调度单位</td>
+          <td>操作系统以进程为<strong>资源分配单位</strong></td>
+          <td>操作系统以线程为<strong>CPU调度单位</strong></td>
+      </tr>
+      <tr>
+          <td>上下文切换</td>
+          <td>需完整切换：虚拟内存、寄存器、文件描述符等 → <strong>开销大</strong></td>
+          <td>仅切换线程私有数据（栈、寄存器、PC） → <strong>开销小</strong></td>
+      </tr>
+      <tr>
+          <td>调度方式</td>
+          <td>内核调度，时间片轮转、抢占式执行</td>
+          <td>同样由内核调度（或部分用户态实现）</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="三并发与通信">三、并发与通信
+</h2><ul>
+<li>
+<p><strong>进程并发</strong></p>
+<ul>
+<li>通过​<strong>进程间通信</strong>（IPC）协作（如管道、消息队列、共享内存等）。</li>
+<li>上下文切换开销大 → ​<strong>并发效率较低</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>线程并发</strong></p>
+<ul>
+<li>可直接通过<strong>共享内存</strong>通信（因共享同一地址空间）。</li>
+<li>上下文切换轻量 → ​<strong>并发效率高</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四资源拥有情况">四、资源拥有情况
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>资源类型</th>
+          <th>进程</th>
+          <th>线程</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>虚拟内存空间</td>
+          <td>独立</td>
+          <td>共享所属进程的内存</td>
+      </tr>
+      <tr>
+          <td>文件描述符/句柄</td>
+          <td>独立</td>
+          <td>共享</td>
+      </tr>
+      <tr>
+          <td>信号处理器</td>
+          <td>独立</td>
+          <td>共享（但可设置线程特定行为）</td>
+      </tr>
+      <tr>
+          <td>栈、寄存器、PC</td>
+          <td>（每个进程至少一个主线程有）</td>
+          <td>每个线程独立拥有</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="五系统开销对比">五、系统开销对比
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>进程</th>
+          <th>线程</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>创建/销毁</td>
+          <td>需分配/回收 MB 级内存，初始化大量资源 → ​<strong>开销大</strong>（涉及系统调用）</td>
+          <td>仅需分配 KB 级栈空间和少量元数据 → ​<strong>开销小</strong>（可在用户态实现）</td>
+      </tr>
+      <tr>
+          <td>切换成本</td>
+          <td>高（完整上下文切换）</td>
+          <td>低（仅切换私有寄存器和栈）</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="六总结">六、总结
+</h2><p>进程（Process）是OS中进行资源分配和调度的基本单位，是程序的一次动态执行过程。每个进程都拥有独立的虚拟内存空间（代码段、数据段、堆、栈）、文件描述符、信号处理器等资源。同时，进程间相互隔离，一个进程崩溃不会直接影响其他进程（通过进程间通信IPC协作）。并且，进程的创建和销毁由操作系统内核管理，开销较大。</p>
+<p>线程是（Thread）属于进程内的一个执行流，是CPU调度的基本单位。同一个进程内的所有线程共享此进程的内存空间的系统资源（如全局变量），每一个线程都独立拥有栈、寄存器、程序计数器等私有数据，用于保存执行状态。并且，现成的创建和销毁都由进程管理，在系统开销方面远小于进程。</p>
+<p>因为线程拥有传统进程的所具有的很多特征，因此又称为轻型进程（light-weight process，LWP）或进程元；相应地把传统进程称谓重型进程（heavy-weight process，HWP），它相当于只有一个线程的任务。</p>
+<p>在调度方面，进程和线程均由操作系统内核调度，通过时间片轮转抢占执行。他们之间的不同之处在于，操作系统以进程为资源分配单位，进程切换需完整上下文切换（虚拟内存、寄存器、文件描述符等），而线程则是CPU调度的基本单位，切换仅需切换现成的私有数据（栈、寄存器、程序计数器）</p>
+<p>从并发的角度来说，二者均用于多任务并发执行，提升资源利用率。不同的是，进程之间的并发需要通过进程间通信（IPC），上下文切换开销大，并发效率较低，而线程可以共享同一个进程的内存空间，可以通过共享内存直接通信，上下文切换轻量，并发效率高。</p>
+<p>在拥有资源的角度上看，进程拥有独立的虚拟内存空间、文件句柄、信号处理器等资源；线程则共享所属进程的虚拟内存和系统资源、仅仅独立拥有栈、寄存器等线程私有数据。</p>
+<p>在系统开销方面，线程的创建和销毁都需要分配和回收内存并且初始化资源（MB级），系统开销大（涉及了系统调用）；而线程的创建和销毁仅需分配栈和少量元数据（KB级），系统开销小（可以在用户态实现）。</p>
+<p>‍</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/operating-system/">Operating System</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.dad68e8a06f4d4d0ddf9ec0eab418f5d_hu_f87ce1ee8e7c9f13.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post LRU 缓存算法的实现"
+                        
+                        data-hash="md5-2taOigb01NDd&#43;ewOq0GPXQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LRU 缓存算法的实现</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            个人网站，仅供学习 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
