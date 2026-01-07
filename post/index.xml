@@ -7,7 +7,66 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Tue, 06 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://Siborne.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://Siborne.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【金山办公】数据分析岗(一面)</title>
+        <link>https://Siborne.github.io/p/interview-experience/</link>
+        <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.github.io/p/interview-experience/</guid>
+        <description>&lt;img src="https://Siborne.github.io/p/interview-experience/bannerImage.jpg" alt="Featured image of post 【金山办公】数据分析岗(一面)" /&gt;&lt;blockquote&gt;
+&lt;p&gt;时间：2026年1月7日
+地点：线上面试&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;自我介绍&#34;&gt;自我介绍
+&lt;/h2&gt;&lt;p&gt;请做一个简要的自我介绍。&lt;/p&gt;
+&lt;h2 id=&#34;拷打部分&#34;&gt;拷打部分
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;看到你简历中提到了两个项目，请谈谈你更熟悉哪一个？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;说一下你这个项目的整体架构和设计思路？&lt;/li&gt;
+&lt;li&gt;说一说这个项目有哪些技术或业务上的亮点？&lt;/li&gt;
+&lt;li&gt;项目中是如何集成 Spring AI 的？&lt;/li&gt;
+&lt;li&gt;Ollama怎么对接，对接了哪个模型?&lt;/li&gt;
+&lt;li&gt;怎么定义角色模型，做了哪些应用，如何调用?&lt;/li&gt;
+&lt;li&gt;使用AI的时候有使用流式对话吗?前后端怎么写的？&lt;/li&gt;
+&lt;li&gt;看到了你项目中使用到了阿里云OSS，能说说你是怎么存储图片的吗？并说说其他存储方式的优劣。&lt;/li&gt;
+&lt;li&gt;有没有使用过阿里云的CDN或者其他CDN之类的服务？&lt;/li&gt;
+&lt;li&gt;有没有部署过项目？怎么部署项目？如果没有，让你来部署，请问前后端要分别怎么部署？&lt;/li&gt;
+&lt;li&gt;说一下有哪些常见的设计模式，每个设计模式的优劣，使用场景，你项目中使用到了哪些设计模式？&lt;/li&gt;
+&lt;li&gt;说一下什么是MVC？什么是DDD？&lt;/li&gt;
+&lt;li&gt;说一下什么是Spring security？怎么实现RBAC？&lt;/li&gt;
+&lt;li&gt;怎么实现的Oauth2.0认证？认证流程是？&lt;/li&gt;
+&lt;li&gt;Redis怎么缓存数据？&lt;/li&gt;
+&lt;li&gt;看到你项目使用了JWT，是怎么结合Redis实现续签的？&lt;/li&gt;
+&lt;li&gt;看到你说有社区功能，你是怎么设计社区这个帖子功能的？&lt;/li&gt;
+&lt;li&gt;帖子消息回复是怎么通知的？如果让你来设计，你会怎么设计？&lt;/li&gt;
+&lt;li&gt;看到你项目是使用了knife4j，是Swagger的增强版，说说他和Swagger有什么区别，为什么要使用它？&lt;/li&gt;
+&lt;li&gt;说一下你在什么场景下使用了Apache POI？他和EasyExcel有什么区别？&lt;/li&gt;
+&lt;li&gt;是否了解kafka之类的消息队列？&lt;/li&gt;
+&lt;li&gt;说一下什么是RPC框架技术？怎么运用RPC框架技术？&lt;/li&gt;
+&lt;li&gt;什么是Http和Https？&lt;/li&gt;
+&lt;li&gt;用了Spring哪个版本？有什么新特性？&lt;/li&gt;
+&lt;li&gt;说一下用了哪些前端框架，Vue的3.x版本？（具体到小版本号）&lt;/li&gt;
+&lt;li&gt;说一下前端是怎么使用Echarts的？&lt;/li&gt;
+&lt;li&gt;说一下什么是路由守卫，路由守卫有哪些功能？&lt;/li&gt;
+&lt;li&gt;说一下项目的表结构设计？&lt;/li&gt;
+&lt;li&gt;说一下有哪些索引，项目的索引怎么建的&lt;/li&gt;
+&lt;li&gt;Mysql的有哪些窗口函数？&lt;/li&gt;
+&lt;li&gt;排名函数如何使用？可以大概说说嘛&lt;/li&gt;
+&lt;li&gt;三种join的区别（左查询、右查询、内查询）&lt;/li&gt;
+&lt;li&gt;你这个项目是用到了Java几？能讲一下这个Java版本中Jvm的GC机制吗？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;面试准备与复盘要点&#34;&gt;面试准备与复盘要点
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;深入剖析项目技术点&lt;/strong&gt;：针对项目中使用的每一项关键技术，预判可能被问到的问题，并准备好清晰、具体的回答。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提前进入线上面试&lt;/strong&gt;：建议至少提前 5–10 分钟进入会议链接，确保网络、音视频设备正常，营造专业可靠的第一印象。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;面试前做好资料准备&lt;/strong&gt;：打开个人简历、项目文档及相关代码片段，便于快速查阅和精准回应提问。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;及时复盘与沉淀&lt;/strong&gt;：面试结束后，第一时间记录被问到的问题，分类整理并归纳答案，持续优化表达与知识体系。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>LRU 缓存算法的实现</title>
         <link>https://Siborne.github.io/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
         <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
