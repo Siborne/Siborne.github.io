@@ -7,7 +7,379 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://Siborne.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 18 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://Siborne.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>CMU CS15-213（CS:APP）00：原初起点</title>
+        <link>https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/</link>
+        <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/</guid>
+        <description>&lt;img src="https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/bannerImage.jpg" alt="Featured image of post CMU CS15-213（CS:APP）00：原初起点" /&gt;&lt;h1 id=&#34;cmu-15-213-csapp-课程简介与实验环境搭建指南&#34;&gt;CMU 15-213: CSAPP 课程简介与实验环境搭建指南
+&lt;/h1&gt;&lt;h2 id=&#34;课程简介&#34;&gt;课程简介
+&lt;/h2&gt;&lt;p&gt;CMU 的 15-213（CSAPP）是计算机科学领域公认的“镇系神课”，以其内容广博、项目难度极高而闻名。课程全面覆盖汇编语言、计算机体系结构、操作系统、程序的编译与链接、并发编程以及网络基础等核心主题，是一门兼具深度与广度的系统级入门课程。对于自学者而言，完成这门课程需要极强的毅力和扎实的编程基础。&lt;/p&gt;
+&lt;p&gt;该课程配套教材《Computer Systems: A Programmer&amp;rsquo;s Perspective》（简称 CSAPP）由 CMU 计算机系前系主任 Randal E. Bryant 教授与 David R. O&amp;rsquo;Hallaron 合著，被全球众多高校采用。这本书也是许多学习者第一本逐页精读的计算机系统教材——虽艰深，但收获巨大。&lt;/p&gt;
+&lt;p&gt;北京大学已引进该课程并开设《计算机系统导论》（Introduction to Computer Systems），但 CSAPP 的全部课程资料、实验代码和讲义均可在其&lt;a class=&#34;link&#34; href=&#34;http://csapp.cs.cmu.edu/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方网站&lt;/a&gt;免费获取。&lt;/p&gt;
+&lt;p&gt;由于课程影响力极大，网上流传着大量实验（Project）的参考答案。然而，若你希望真正提升系统编程能力，强烈建议独立完成所有实验，避免直接参考第三方代码。坚持学完并动手实践，你对计算机系统的理解将实现质的飞跃。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;摘自：&lt;a class=&#34;link&#34; href=&#34;https://csdiy.wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/CSAPP/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 自学指南 - CMU 15-213: CSAPP&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;实验环境搭建教程&#34;&gt;实验环境搭建教程
+&lt;/h2&gt;&lt;p&gt;为顺利开展 CSAPP 的各项实验（如 Data Lab、Bomb Lab、Malloc Lab 等），推荐在虚拟机中搭建一个干净、可控的 Linux 开发环境。以下是详细步骤：&lt;/p&gt;
+&lt;h3 id=&#34;第一步工具准备&#34;&gt;第一步：工具准备
+&lt;/h3&gt;&lt;p&gt;在开始之前，请下载以下两个文件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;VMware Workstation Pro（个人免费版）&lt;/strong&gt;&lt;br&gt;
+前往 Broadcom 官网下载适用于你操作系统的版本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ubuntu 24.04 LTS 桌面版 ISO 镜像&lt;/strong&gt;&lt;br&gt;
+文件名通常为 &lt;code&gt;ubuntu-24.04.3-desktop-amd64.iso&lt;/code&gt;。&lt;br&gt;
+推荐从 &lt;a class=&#34;link&#34; href=&#34;https://mirrors.ustc.edu.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;中国科学技术大学开源软件镜像站&lt;/a&gt; 或 &lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;清华大学开源镜像站&lt;/a&gt; 下载，速度更快。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;为什么选择-ubuntu-桌面版&#34;&gt;为什么选择 Ubuntu 桌面版？
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;自带图形界面（GUI）&lt;/strong&gt;：对刚从 Windows 或 macOS 迁移过来的学习者更友好，可同时使用终端、浏览器、文件管理器和文本编辑器，便于查阅文档、观看教学视频或搜索错误信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区支持完善&lt;/strong&gt;：绝大多数 CSAPP 实验教程（包括 Bilibili 上“九曲阑干”等知名 UP 主的视频）均基于带 GUI 的 Ubuntu 演示。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;支持“最小安装”&lt;/strong&gt;：虽然完整镜像约 6GB，但在安装过程中可勾选 &lt;strong&gt;“Minimal installation”&lt;/strong&gt;，仅保留浏览器和基础终端，兼顾轻量与便利。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;其他版本为什么不推荐&#34;&gt;其他版本为什么不推荐？
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;live-server-amd64.iso&lt;/code&gt;：服务器版，无图形界面，纯命令行操作，对新手不友好。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.torrent&lt;/code&gt; / &lt;code&gt;.zsync&lt;/code&gt;：仅为下载种子或校验文件，非系统镜像。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;netboot.tar.gz&lt;/code&gt;：用于网络引导安装，流程复杂，不适合虚拟机初学者。&lt;/li&gt;
+&lt;li&gt;WSL 相关文件：专为 Windows Subsystem for Linux 设计，无法在 VMware 中使用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;第二步创建虚拟机&#34;&gt;第二步：创建虚拟机
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;打开 VMware，点击 &lt;strong&gt;“创建新的虚拟机”&lt;/strong&gt;，选择 &lt;strong&gt;“典型（推荐）”&lt;/strong&gt;。
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image1.png&#34;
+	width=&#34;1484&#34;
+	height=&#34;944&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image1_hu_638bef92ee705bfa.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image1_hu_49faef4f187327ee.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;创建新的虚拟机&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;157&#34;
+		data-flex-basis=&#34;377px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在安装源选项中，选择 &lt;strong&gt;“稍后安装操作系统”&lt;/strong&gt;（便于手动调整硬件配置，避免简易安装带来的权限或路径问题）。
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image2.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image2_hu_d4aac66a1979201b.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image2_hu_66fd21c4096703ca.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;稍后安装操作系统&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户机操作系统选择：&lt;strong&gt;Linux → Ubuntu 64 位&lt;/strong&gt;。
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image3.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image3_hu_134d5b758ce9009d.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image3_hu_6ba6e295a7612046.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Linux → Ubuntu 64 位&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image4.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image4_hu_137f66ecd0eb2329.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image4_hu_45143fcdfd567f2d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;虚拟机名字设置与存放位置&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置关键硬件参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;内存&lt;/strong&gt;：建议分配 &lt;strong&gt;4GB 或以上&lt;/strong&gt;（若主机内存为 16GB）。
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5_hu_5e0e278794b31f84.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5_hu_5a9c4421302524d4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;内存设置&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;处理器&lt;/strong&gt;：设置为 &lt;strong&gt;2 或 4 核&lt;/strong&gt;，并确保启用 &lt;strong&gt;虚拟化引擎（Intel VT-x / AMD-V）&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;硬盘&lt;/strong&gt;：至少 &lt;strong&gt;40GB&lt;/strong&gt;，选择 &lt;strong&gt;“将虚拟磁盘存储为单个文件”&lt;/strong&gt; 以提升 I/O 性能。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;网络适配器&lt;/strong&gt;：使用 &lt;strong&gt;NAT 模式&lt;/strong&gt;，使虚拟机可通过主机访问互联网。
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6.png&#34;
+	width=&#34;1557&#34;
+	height=&#34;936&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6_hu_31cd209450ea402d.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6_hu_56b6979f80cfa382.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;其他配置&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;166&#34;
+		data-flex-basis=&#34;399px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;第三步安装-ubuntu&#34;&gt;第三步：安装 Ubuntu
+&lt;/h3&gt;&lt;p&gt;启动虚拟机，开始安装流程：
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image7.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image7_hu_25c978237cea2d85.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image7_hu_625671f1b49e4e29.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;启动虚拟机&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image8.png&#34;
+	width=&#34;722&#34;
+	height=&#34;442&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image8_hu_3f59b9015dd55036.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image8_hu_44ac25bbad39a1f7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;安装虚拟机&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;163&#34;
+		data-flex-basis=&#34;392px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;语言&lt;/strong&gt;：建议选择 &lt;strong&gt;English&lt;/strong&gt;，提前适应 CSAPP 的技术语境。
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image9.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image9_hu_b0b277eb65f60bf0.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image9_hu_b4a5f8549d90eeaa.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;语言选择&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;安装类型&lt;/strong&gt;：勾选 &lt;strong&gt;“Minimal installation”&lt;/strong&gt;（最小安装），避免安装不必要的办公套件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;磁盘分区&lt;/strong&gt;：选择 &lt;strong&gt;“Erase disk and install Ubuntu”&lt;/strong&gt;（擦除磁盘并安装）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;设置用户&lt;/strong&gt;：填写用户名与密码，为了方便，可以直接填写 &lt;strong&gt;“123456”&lt;/strong&gt; 为密码
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image10.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image10_hu_fbe947d0d2277d10.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image10_hu_350f62f2e798a122.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;设置用户&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：若无特别提及，一直按Next（下一步）即可。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;安装完成后重启，即可进入 Ubuntu 桌面环境。
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image11.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image11_hu_97041ce2966fe3c.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image11_hu_2619241ddbe81e19.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;安装完成&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此过程可能会比较久，请耐心等待。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;第四步配置-csapp-实验开发环境&#34;&gt;第四步：配置 CSAPP 实验开发环境
+&lt;/h3&gt;&lt;p&gt;即使看到桌面，仍需通过终端安装必要的开发工具链。按下 &lt;code&gt;Ctrl + Alt + T&lt;/code&gt; 打开终端，依次执行以下命令：&lt;/p&gt;
+&lt;h4 id=&#34;1-更新系统软件源&#34;&gt;1. 更新系统软件源
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt upgrade -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;2-安装编译与调试工具&#34;&gt;2. 安装编译与调试工具
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install build-essential gdb gcc-multilib g++-multilib -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;第五步启用-ssh-服务便于远程交互&#34;&gt;第五步：启用 SSH 服务（便于远程交互）
+&lt;/h3&gt;&lt;p&gt;为方便后续通过主机终端（如 Windows Terminal、iTerm2 或 VS Code Remote）连接虚拟机，建议启用 SSH 服务。&lt;/p&gt;
+&lt;h4 id=&#34;1-安装-openssh-服务端&#34;&gt;1. 安装 OpenSSH 服务端
+&lt;/h4&gt;&lt;p&gt;Ubuntu 桌面版默认仅包含 SSH 客户端，需手动安装服务端：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install openssh-server -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image12.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;1504&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image12_hu_f50ade4f58368aff.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image12_hu_256fabfb6f990e36.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;安装SSH服务端&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;85&#34;
+		data-flex-basis=&#34;204px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;验证 SSH 服务是否正常运行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl status ssh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;若输出中包含绿色的 active (running)，说明服务已成功启动。
+&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image13.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image13_hu_ea3db04896ff51e2.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image13_hu_b18fcac60f9d760e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;验证SSH&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2-获取虚拟机-ip-地址&#34;&gt;2. 获取虚拟机 IP 地址
+&lt;/h4&gt;&lt;p&gt;在终端执行以下命令查看网络接口信息：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ip addr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image14.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;800&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image14_hu_fe593c80f8593c47.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image14_hu_b54dc67899a2f950.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;查看IP地址&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;找到名为 ens33（或 eth0）的网络接口，其对应的 inet 字段（如 192.168.x.x）即为虚拟机的局域网 IP 地址。后续可通过该地址从主机 SSH 登录虚拟机，例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh username@192.168.x.x
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image15.png&#34;
+	width=&#34;1241&#34;
+	height=&#34;1070&#34;
+	srcset=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image15_hu_fb809fbb026c988c.png 480w, https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image15_hu_3f2527fee494b6f1.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;SSH远程连接&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;115&#34;
+		data-flex-basis=&#34;278px&#34;
+	
+&gt;
+至此，你的 CSAPP 实验环境已完全就绪。接下来可从 &lt;a class=&#34;link&#34; href=&#34;http://csapp.cs.cmu.edu/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CSAPP 官网&lt;/a&gt; 下载各实验代码框架，正式开启系统编程之旅。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>【金山办公】数据分析岗(一面)</title>
         <link>https://Siborne.github.io/p/interview-experience/</link>
         <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
