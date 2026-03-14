@@ -1615,7 +1615,7 @@
         <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/</guid>
-        <description>&lt;img src="https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/bannerImage.jpg" alt="Featured image of post CMU CS15-213（CS:APP）00：原初起点" /&gt;&lt;h1 id=&#34;cmu-15-213-csapp-课程简介与实验环境搭建指南&#34;&gt;CMU 15-213: CSAPP 课程简介与实验环境搭建指南
+        <description>&lt;img src="https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/bannerImage.png" alt="Featured image of post CMU CS15-213（CS:APP）00：原初起点" /&gt;&lt;h1 id=&#34;cmu-15-213-csapp-课程简介与实验环境搭建指南&#34;&gt;CMU 15-213: CSAPP 课程简介与实验环境搭建指南
 &lt;/h1&gt;&lt;h2 id=&#34;课程简介&#34;&gt;课程简介
 &lt;/h2&gt;&lt;p&gt;CMU 的 15-213（CSAPP）是计算机科学领域公认的“镇系神课”，以其内容广博、项目难度极高而闻名。课程全面覆盖汇编语言、计算机体系结构、操作系统、程序的编译与链接、并发编程以及网络基础等核心主题，是一门兼具深度与广度的系统级入门课程。对于自学者而言，完成这门课程需要极强的毅力和扎实的编程基础。&lt;/p&gt;
 &lt;p&gt;该课程配套教材《Computer Systems: A Programmer&amp;rsquo;s Perspective》（简称 CSAPP）由 CMU 计算机系前系主任 Randal E. Bryant 教授与 David R. O&amp;rsquo;Hallaron 合著，被全球众多高校采用。这本书也是许多学习者第一本逐页精读的计算机系统教材——虽艰深，但收获巨大。&lt;/p&gt;
@@ -1632,17 +1632,13 @@
 &lt;h3 id=&#34;第一步工具准备&#34;&gt;第一步：工具准备
 &lt;/h3&gt;&lt;p&gt;在开始之前，请下载以下两个文件：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;VMware Workstation Pro（个人免费版）&lt;/strong&gt;&lt;br&gt;
-前往 Broadcom 官网下载适用于你操作系统的版本。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Ubuntu 24.04 LTS 桌面版 ISO 镜像&lt;/strong&gt;&lt;br&gt;
-文件名通常为 &lt;code&gt;ubuntu-24.04.3-desktop-amd64.iso&lt;/code&gt;。&lt;br&gt;
+&lt;li&gt;&lt;strong&gt;VMware Workstation Pro（个人免费版）&lt;/strong&gt;
+前往 Broadcom 官网下载适用于你操作系统的版本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ubuntu 24.04 LTS 桌面版 ISO 镜像&lt;/strong&gt;
+文件名通常为 &lt;code&gt;ubuntu-24.04.3-desktop-amd64.iso&lt;/code&gt;。
 推荐从 &lt;a class=&#34;link&#34; href=&#34;https://mirrors.ustc.edu.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;中国科学技术大学开源软件镜像站&lt;/a&gt; 或 &lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;清华大学开源镜像站&lt;/a&gt; 下载，速度更快。&lt;/p&gt;
-&lt;/li&gt;
+    &gt;清华大学开源镜像站&lt;/a&gt; 下载，速度更快。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;为什么选择-ubuntu-桌面版&#34;&gt;为什么选择 Ubuntu 桌面版？
 &lt;/h4&gt;&lt;ul&gt;
@@ -1728,8 +1724,7 @@
 &lt;li&gt;
 &lt;p&gt;配置关键硬件参数：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;内存&lt;/strong&gt;：建议分配 &lt;strong&gt;4GB 或以上&lt;/strong&gt;（若主机内存为 16GB）。
+&lt;li&gt;&lt;strong&gt;内存&lt;/strong&gt;：建议分配 &lt;strong&gt;4GB 或以上&lt;/strong&gt;（若主机内存为 16GB）。
 &lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5.png&#34;
 	width=&#34;1280&#34;
 	height=&#34;800&#34;
@@ -1743,16 +1738,10 @@
 		data-flex-grow=&#34;160&#34;
 		data-flex-basis=&#34;384px&#34;
 	
-&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;处理器&lt;/strong&gt;：设置为 &lt;strong&gt;2 或 4 核&lt;/strong&gt;，并确保启用 &lt;strong&gt;虚拟化引擎（Intel VT-x / AMD-V）&lt;/strong&gt;。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;硬盘&lt;/strong&gt;：至少 &lt;strong&gt;40GB&lt;/strong&gt;，选择 &lt;strong&gt;“将虚拟磁盘存储为单个文件”&lt;/strong&gt; 以提升 I/O 性能。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;网络适配器&lt;/strong&gt;：使用 &lt;strong&gt;NAT 模式&lt;/strong&gt;，使虚拟机可通过主机访问互联网。
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;处理器&lt;/strong&gt;：设置为 &lt;strong&gt;2 或 4 核&lt;/strong&gt;，并确保启用 &lt;strong&gt;虚拟化引擎（Intel VT-x / AMD-V）&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;硬盘&lt;/strong&gt;：至少 &lt;strong&gt;40GB&lt;/strong&gt;，选择 &lt;strong&gt;“将虚拟磁盘存储为单个文件”&lt;/strong&gt; 以提升 I/O 性能。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;网络适配器&lt;/strong&gt;：使用 &lt;strong&gt;NAT 模式&lt;/strong&gt;，使虚拟机可通过主机访问互联网。
 &lt;img src=&#34;https://Siborne.github.io/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6.png&#34;
 	width=&#34;1557&#34;
 	height=&#34;936&#34;
@@ -1766,8 +1755,7 @@
 		data-flex-grow=&#34;166&#34;
 		data-flex-basis=&#34;399px&#34;
 	
-&gt;&lt;/p&gt;
-&lt;/li&gt;
+&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;

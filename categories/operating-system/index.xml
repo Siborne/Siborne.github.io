@@ -13,14 +13,14 @@
         <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.github.io/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
-        <description>&lt;img src="https://Siborne.github.io/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.jpg" alt="Featured image of post LRU 缓存算法的实现" /&gt;&lt;h1 id=&#34;lru-缓存算法实现笔记java&#34;&gt;LRU 缓存算法实现笔记（Java）
+        <description>&lt;img src="https://Siborne.github.io/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.png" alt="Featured image of post LRU 缓存算法的实现" /&gt;&lt;h1 id=&#34;lru-缓存算法实现笔记java&#34;&gt;LRU 缓存算法实现笔记（Java）
 &lt;/h1&gt;&lt;h3 id=&#34;一什么是-lru&#34;&gt;一、什么是 LRU？
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;LRU（Least Recently Used）&lt;/strong&gt;  是一种常用的缓存淘汰策略。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;核心思想：​&lt;strong&gt;当缓存满时，优先淘汰最久未使用的数据&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;核心思想：&lt;strong&gt;当缓存满时，优先淘汰最久未使用的数据&lt;/strong&gt;。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;要求支持：&lt;/p&gt;
@@ -31,7 +31,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;时间复杂度要求：&lt;code&gt;get&lt;/code&gt;​ 和 &lt;code&gt;put&lt;/code&gt;​ 均为 ​&lt;strong&gt;O(1)&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;时间复杂度要求：&lt;code&gt;get&lt;/code&gt; 和 &lt;code&gt;put&lt;/code&gt; 均为 &lt;strong&gt;O(1)&lt;/strong&gt; 。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;二数据结构选择&#34;&gt;二、数据结构选择
@@ -76,7 +76,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;存储键值对 + 前后指针。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;必须保存&lt;/strong&gt; &lt;strong&gt;​&lt;code&gt;key&lt;/code&gt;​&lt;/strong&gt;​：删除头节点时，需要知道其 &lt;code&gt;key&lt;/code&gt;​ 以从 &lt;code&gt;HashMap&lt;/code&gt; 中移除。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;必须保存&lt;/strong&gt; &lt;strong&gt;&lt;code&gt;key&lt;/code&gt;&lt;/strong&gt;：删除头节点时，需要知道其 &lt;code&gt;key&lt;/code&gt; 以从 &lt;code&gt;HashMap&lt;/code&gt; 中移除。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;2-内部类-doublelist双向链表封装&#34;&gt;2. 内部类 &lt;code&gt;DoubleList&lt;/code&gt;（双向链表封装）
 &lt;/h4&gt;&lt;p&gt;提供三个核心操作：&lt;/p&gt;
@@ -90,7 +90,7 @@
   &lt;tbody&gt;
       &lt;tr&gt;
           &lt;td&gt;&lt;code&gt;addNode(node)&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;将新节点加到​&lt;strong&gt;尾部&lt;/strong&gt;（表示最新使用）&lt;/td&gt;
+          &lt;td&gt;将新节点加到&lt;strong&gt;尾部&lt;/strong&gt;（表示最新使用）&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&lt;code&gt;moveNodeToTail(node)&lt;/code&gt;&lt;/td&gt;
@@ -98,15 +98,15 @@
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&lt;code&gt;removeHead()&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;移除​&lt;strong&gt;头部节点&lt;/strong&gt;（最久未使用），返回该节点&lt;/td&gt;
+          &lt;td&gt;移除&lt;strong&gt;头部节点&lt;/strong&gt;（最久未使用），返回该节点&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;blockquote&gt;
 &lt;p&gt;注意边界情况：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;moveNodeToTail&lt;/code&gt;​ 中先判断 &lt;code&gt;if (node == tail) return;&lt;/code&gt; 避免空指针。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;removeHead&lt;/code&gt;​ 处理单节点情况（head == tail）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;moveNodeToTail&lt;/code&gt; 中先判断 &lt;code&gt;if (node == tail) return;&lt;/code&gt; 避免空指针。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;removeHead&lt;/code&gt; 处理单节点情况（head == tail）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;3-主类-lrucache&#34;&gt;3. 主类 &lt;code&gt;LRUCache&lt;/code&gt;
@@ -123,7 +123,7 @@
 &lt;p&gt;&lt;strong&gt;构造函数&lt;/strong&gt;：初始化 map、list 和 capacity。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;​&lt;code&gt;get(key)&lt;/code&gt;​&lt;/strong&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;get(key)&lt;/code&gt;&lt;/strong&gt; ：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -144,7 +144,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;​&lt;code&gt;put(key, value)&lt;/code&gt;​&lt;/strong&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;put(key, value)&lt;/code&gt;&lt;/strong&gt; ：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -173,15 +173,15 @@
 &lt;h3 id=&#34;四关键细节--易错点&#34;&gt;四、关键细节 &amp;amp; 易错点
 &lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;必须保存&lt;/strong&gt; &lt;strong&gt;​&lt;code&gt;key&lt;/code&gt;​&lt;/strong&gt;​ &lt;strong&gt;在节点中&lt;/strong&gt;&lt;br&gt;
+&lt;p&gt;&lt;strong&gt;必须保存&lt;/strong&gt; &lt;strong&gt;&lt;code&gt;key&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;在节点中&lt;/strong&gt;
 → 否则无法在淘汰时从 &lt;code&gt;HashMap&lt;/code&gt; 中删除对应项。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;​&lt;code&gt;moveNodeToTail&lt;/code&gt;​&lt;/strong&gt;​ &lt;strong&gt;必须处理&lt;/strong&gt; &lt;strong&gt;​&lt;code&gt;node == tail&lt;/code&gt;​&lt;/strong&gt;​ &lt;strong&gt;的情况&lt;/strong&gt;&lt;br&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;moveNodeToTail&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;必须处理&lt;/strong&gt; &lt;strong&gt;&lt;code&gt;node == tail&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;的情况&lt;/strong&gt;
 → 否则在单节点或尾节点被访问时会出错（如空指针）。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;删除头节点后，要同步清理&lt;/strong&gt; &lt;strong&gt;​&lt;code&gt;HashMap&lt;/code&gt;​&lt;/strong&gt;&lt;br&gt;
+&lt;p&gt;&lt;strong&gt;删除头节点后，要同步清理&lt;/strong&gt; &lt;strong&gt;&lt;code&gt;HashMap&lt;/code&gt;&lt;/strong&gt;
 → 保持 map 和 list 状态一致。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -234,11 +234,11 @@
 &lt;/div&gt;&lt;hr&gt;
 &lt;h3 id=&#34;七面试高频问题&#34;&gt;七、面试高频问题
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;Q: 为什么不用单向链表？&lt;br&gt;
+&lt;li&gt;Q: 为什么不用单向链表？
 A: 无法 O(1) 删除中间节点（不知道前驱）。&lt;/li&gt;
-&lt;li&gt;Q: 为什么 HashMap 不直接存 value，而要存 node？&lt;br&gt;
+&lt;li&gt;Q: 为什么 HashMap 不直接存 value，而要存 node？
 A: 需要通过 node 在链表中定位并移动/删除。&lt;/li&gt;
-&lt;li&gt;Q: 能否用 Java 自带的 &lt;code&gt;LinkedHashMap&lt;/code&gt;​ 实现？&lt;br&gt;
+&lt;li&gt;Q: 能否用 Java 自带的 &lt;code&gt;LinkedHashMap&lt;/code&gt; 实现？
 A: 可以！重写 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面试通常要求手写。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;八代码实现&#34;&gt;八、代码实现

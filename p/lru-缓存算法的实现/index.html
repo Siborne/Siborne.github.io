@@ -10,10 +10,10 @@
 <meta property='og:description' content="操作系统，面试笔试常考，基于Java实现的 LRU 缓存算法">
 <meta property='og:url' content='https://Siborne.github.io/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/'>
 <meta property='og:site_name' content='Siborne'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Operating System' /><meta property='article:tag' content='Data Structure And Algorithm' /><meta property='article:tag' content='Java' /><meta property='article:published_time' content='2026-01-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-01-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://Siborne.github.io/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Operating System' /><meta property='article:tag' content='Data Structure And Algorithm' /><meta property='article:tag' content='Java' /><meta property='article:published_time' content='2026-01-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-01-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://Siborne.github.io/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.png' />
 <meta name="twitter:title" content="LRU 缓存算法的实现">
 <meta name="twitter:description" content="操作系统，面试笔试常考，基于Java实现的 LRU 缓存算法"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://Siborne.github.io/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.jpg' />
+    <meta name="twitter:image" content='https://Siborne.github.io/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.png' />
     </head>
     <body class="
     article-page
@@ -354,10 +354,10 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/">
-                <img src="/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage_hu_fb560fa4334c2bd1.jpg"
-                        srcset="/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage_hu_fb560fa4334c2bd1.jpg 800w, /p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage_hu_da056ccd766d1401.jpg 1600w"
+                <img src="/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage_hu_a3ea4066b9120b30.png"
+                        srcset="/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage_hu_a3ea4066b9120b30.png 800w, /p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage_hu_857125f0eb74fad8.png 1600w"
                         width="800" 
-                        height="500" 
+                        height="371" 
                         loading="lazy"
                         alt="Featured image of post LRU 缓存算法的实现" />
                 
@@ -435,7 +435,7 @@
 <p><strong>LRU（Least Recently Used）</strong>  是一种常用的缓存淘汰策略。</p>
 </li>
 <li>
-<p>核心思想：​<strong>当缓存满时，优先淘汰最久未使用的数据</strong>。</p>
+<p>核心思想：<strong>当缓存满时，优先淘汰最久未使用的数据</strong>。</p>
 </li>
 <li>
 <p>要求支持：</p>
@@ -446,7 +446,7 @@
 </li>
 </ul>
 <blockquote>
-<p>时间复杂度要求：<code>get</code>​ 和 <code>put</code>​ 均为 ​<strong>O(1)</strong> 。</p>
+<p>时间复杂度要求：<code>get</code> 和 <code>put</code> 均为 <strong>O(1)</strong> 。</p>
 </blockquote>
 <hr>
 <h3 id="二数据结构选择">二、数据结构选择
@@ -491,7 +491,7 @@
 </div>
 </div><ul>
 <li>存储键值对 + 前后指针。</li>
-<li><strong>必须保存</strong> <strong>​<code>key</code>​</strong>​：删除头节点时，需要知道其 <code>key</code>​ 以从 <code>HashMap</code> 中移除。</li>
+<li><strong>必须保存</strong> <strong><code>key</code></strong>：删除头节点时，需要知道其 <code>key</code> 以从 <code>HashMap</code> 中移除。</li>
 </ul>
 <h4 id="2-内部类-doublelist双向链表封装">2. 内部类 <code>DoubleList</code>（双向链表封装）
 </h4><p>提供三个核心操作：</p>
@@ -505,7 +505,7 @@
   <tbody>
       <tr>
           <td><code>addNode(node)</code></td>
-          <td>将新节点加到​<strong>尾部</strong>（表示最新使用）</td>
+          <td>将新节点加到<strong>尾部</strong>（表示最新使用）</td>
       </tr>
       <tr>
           <td><code>moveNodeToTail(node)</code></td>
@@ -513,15 +513,15 @@
       </tr>
       <tr>
           <td><code>removeHead()</code></td>
-          <td>移除​<strong>头部节点</strong>（最久未使用），返回该节点</td>
+          <td>移除<strong>头部节点</strong>（最久未使用），返回该节点</td>
       </tr>
   </tbody>
 </table></div>
 <blockquote>
 <p>注意边界情况：</p>
 <ul>
-<li><code>moveNodeToTail</code>​ 中先判断 <code>if (node == tail) return;</code> 避免空指针。</li>
-<li><code>removeHead</code>​ 处理单节点情况（head == tail）。</li>
+<li><code>moveNodeToTail</code> 中先判断 <code>if (node == tail) return;</code> 避免空指针。</li>
+<li><code>removeHead</code> 处理单节点情况（head == tail）。</li>
 </ul>
 </blockquote>
 <h4 id="3-主类-lrucache">3. 主类 <code>LRUCache</code>
@@ -538,7 +538,7 @@
 <p><strong>构造函数</strong>：初始化 map、list 和 capacity。</p>
 </li>
 <li>
-<p><strong>​<code>get(key)</code>​</strong> ：</p>
+<p><strong><code>get(key)</code></strong> ：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -559,7 +559,7 @@
 </div>
 </div></li>
 <li>
-<p><strong>​<code>put(key, value)</code>​</strong> ：</p>
+<p><strong><code>put(key, value)</code></strong> ：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -588,15 +588,15 @@
 <h3 id="四关键细节--易错点">四、关键细节 &amp; 易错点
 </h3><ol>
 <li>
-<p><strong>必须保存</strong> <strong>​<code>key</code>​</strong>​ <strong>在节点中</strong><br>
+<p><strong>必须保存</strong> <strong><code>key</code></strong> <strong>在节点中</strong>
 → 否则无法在淘汰时从 <code>HashMap</code> 中删除对应项。</p>
 </li>
 <li>
-<p><strong>​<code>moveNodeToTail</code>​</strong>​ <strong>必须处理</strong> <strong>​<code>node == tail</code>​</strong>​ <strong>的情况</strong><br>
+<p><strong><code>moveNodeToTail</code></strong> <strong>必须处理</strong> <strong><code>node == tail</code></strong> <strong>的情况</strong>
 → 否则在单节点或尾节点被访问时会出错（如空指针）。</p>
 </li>
 <li>
-<p><strong>删除头节点后，要同步清理</strong> <strong>​<code>HashMap</code>​</strong><br>
+<p><strong>删除头节点后，要同步清理</strong> <strong><code>HashMap</code></strong>
 → 保持 map 和 list 状态一致。</p>
 </li>
 <li>
@@ -649,11 +649,11 @@
 </div><hr>
 <h3 id="七面试高频问题">七、面试高频问题
 </h3><ul>
-<li>Q: 为什么不用单向链表？<br>
+<li>Q: 为什么不用单向链表？
 A: 无法 O(1) 删除中间节点（不知道前驱）。</li>
-<li>Q: 为什么 HashMap 不直接存 value，而要存 node？<br>
+<li>Q: 为什么 HashMap 不直接存 value，而要存 node？
 A: 需要通过 node 在链表中定位并移动/删除。</li>
-<li>Q: 能否用 Java 自带的 <code>LinkedHashMap</code>​ 实现？<br>
+<li>Q: 能否用 Java 自带的 <code>LinkedHashMap</code> 实现？
 A: 可以！重写 <code>removeEldestEntry</code> 即可，但面试通常要求手写。</li>
 </ul>
 <h3 id="八代码实现">八、代码实现
@@ -950,17 +950,41 @@ A: 可以！重写 <code>removeEldestEntry</code> 即可，但面试通常要求
             
                 
 <article class="has-image">
+    <a href="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage.1557c6be2dda6bb74eb03b4d0eaf23ec_hu_a0985566a2b88eb3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了"
+                        
+                        data-hash="md5-FVfGvi3aa7dOsDtNDq8j7A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/">
         
         
             <div class="article-image">
-                <img src="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/bannerImage.ba997b8ef71d4eba2af249395390d500_hu_4100198ed3e0ffa9.png" 
+                <img src="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/bannerImage.61940b3fde0990504b23c5d9309a5433_hu_fad5335f22333860.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
                         alt="Featured image of post 计算机中传统进程和线程的比较"
                         
-                        data-hash="md5-upl7jvcdTroq8kk5U5DVAA==">
+                        data-hash="md5-YZQLP94JkFBLI8XZMJpUMw==">
                 
             </div>
         
@@ -978,13 +1002,13 @@ A: 可以！重写 <code>removeEldestEntry</code> 即可，但面试通常要求
         
         
             <div class="article-image">
-                <img src="/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.91fe78faa8964987558ba02565cc53c2_hu_6342595b5196df0c.png" 
+                <img src="/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.54074f014a63b85f280277238cbd8e80_hu_ac97836973c31531.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
                         alt="Featured image of post Java &#43; MySQL &#43; Redis 生成用户主键的 6 种方案"
                         
-                        data-hash="md5-kf54&#43;qiWSYdVi6AlZcxTwg==">
+                        data-hash="md5-VAdPAUpjuF8oAncjjL2OgA==">
                 
             </div>
         
@@ -1002,13 +1026,13 @@ A: 可以！重写 <code>removeEldestEntry</code> 即可，但面试通常要求
         
         
             <div class="article-image">
-                <img src="/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/bannerImage.2858f7f3cbf02d616c8c405b469a7063_hu_f41bd3262a210a90.png" 
+                <img src="/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/bannerImage.14078955d0308bd7c8ae4d32af16584a_hu_70ee50d98229c494.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
                         alt="Featured image of post JWT简单解析"
                         
-                        data-hash="md5-KFj388vwLWFsjEBbRppwYw==">
+                        data-hash="md5-FAeJVdAwi9fIrk0yrxZYSg==">
                 
             </div>
         
@@ -1026,13 +1050,13 @@ A: 可以！重写 <code>removeEldestEntry</code> 即可，但面试通常要求
         
         
             <div class="article-image">
-                <img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.05699a38ddccd12ce2244fe9d34c9c1f_hu_e9215183109967c0.jpg" 
+                <img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.a8020477e9a0baea0d4a7e92f55dd1b6_hu_cfb96ec03030dc04.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
                         alt="Featured image of post 对ThreadLocal的理解"
                         
-                        data-hash="md5-BWmaON3M0SziJE/p00ycHw==">
+                        data-hash="md5-qAIEd&#43;mguuoNSn6S9V3Rtg==">
                 
             </div>
         
