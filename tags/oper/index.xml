@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Oper on Siborne</title>
+        <link>http://localhost:1313/tags/oper/</link>
+        <description>Recent content in Oper on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Mon, 05 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/oper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>计算机中传统进程和线程的比较</title>
+        <link>http://localhost:1313/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/</link>
+        <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/</guid>
+        <description>&lt;img src="http://localhost:1313/bannerImage.png" alt="Featured image of post 计算机中传统进程和线程的比较" /&gt;&lt;h1 id=&#34;计算机中传统进程和线程的比较&#34;&gt;计算机中传统进程和线程的比较
+&lt;/h1&gt;&lt;h2 id=&#34;一基本定义&#34;&gt;一、基本定义
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;进程（Process）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;是操作系统进行&lt;strong&gt;资源分配&lt;/strong&gt;和&lt;strong&gt;调度&lt;/strong&gt;的基本单位。&lt;/li&gt;
+&lt;li&gt;是程序的一次​&lt;strong&gt;动态执行过程&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;拥有​&lt;strong&gt;独立的虚拟内存空间&lt;/strong&gt;（包括代码段、数据段、堆、栈）、文件描述符、信号处理器等资源。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;进程间相互隔离&lt;/strong&gt;：一个进程崩溃通常不会直接影响其他进程（可通过 IPC 协作）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;线程（Thread）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;是​&lt;strong&gt;进程内的一个执行流&lt;/strong&gt;，是 CPU 调度的基本单位。&lt;/li&gt;
+&lt;li&gt;同一进程内的所有线程​&lt;strong&gt;共享该进程的内存空间和系统资源&lt;/strong&gt;（如全局变量、打开的文件等）。&lt;/li&gt;
+&lt;li&gt;每个线程&lt;strong&gt;独立拥有&lt;/strong&gt;自己的栈、寄存器、程序计数器等私有数据，用于保存执行状态。&lt;/li&gt;
+&lt;li&gt;又称​&lt;strong&gt;轻型进程&lt;/strong&gt;​（Light-Weight Process, LWP）；相应地，传统进程称为​&lt;strong&gt;重型进程&lt;/strong&gt;（Heavy-Weight Process, HWP）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二调度机制&#34;&gt;二、调度机制
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;项目&lt;/th&gt;
+          &lt;th&gt;进程&lt;/th&gt;
+          &lt;th&gt;线程&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;调度单位&lt;/td&gt;
+          &lt;td&gt;操作系统以进程为&lt;strong&gt;资源分配单位&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;操作系统以线程为&lt;strong&gt;CPU调度单位&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;上下文切换&lt;/td&gt;
+          &lt;td&gt;需完整切换：虚拟内存、寄存器、文件描述符等 → &lt;strong&gt;开销大&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;仅切换线程私有数据（栈、寄存器、PC） → &lt;strong&gt;开销小&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;调度方式&lt;/td&gt;
+          &lt;td&gt;内核调度，时间片轮转、抢占式执行&lt;/td&gt;
+          &lt;td&gt;同样由内核调度（或部分用户态实现）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三并发与通信&#34;&gt;三、并发与通信
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;进程并发&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过​&lt;strong&gt;进程间通信&lt;/strong&gt;（IPC）协作（如管道、消息队列、共享内存等）。&lt;/li&gt;
+&lt;li&gt;上下文切换开销大 → ​&lt;strong&gt;并发效率较低&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;线程并发&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可直接通过&lt;strong&gt;共享内存&lt;/strong&gt;通信（因共享同一地址空间）。&lt;/li&gt;
+&lt;li&gt;上下文切换轻量 → ​&lt;strong&gt;并发效率高&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四资源拥有情况&#34;&gt;四、资源拥有情况
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;资源类型&lt;/th&gt;
+          &lt;th&gt;进程&lt;/th&gt;
+          &lt;th&gt;线程&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;虚拟内存空间&lt;/td&gt;
+          &lt;td&gt;✅ 独立&lt;/td&gt;
+          &lt;td&gt;❌ 共享所属进程的内存&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;文件描述符/句柄&lt;/td&gt;
+          &lt;td&gt;✅ 独立&lt;/td&gt;
+          &lt;td&gt;❌ 共享&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;信号处理器&lt;/td&gt;
+          &lt;td&gt;✅ 独立&lt;/td&gt;
+          &lt;td&gt;❌ 共享（但可设置线程特定行为）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;栈、寄存器、PC&lt;/td&gt;
+          &lt;td&gt;✅（每个进程至少一个主线程有）&lt;/td&gt;
+          &lt;td&gt;✅ 每个线程独立拥有&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五系统开销对比&#34;&gt;五、系统开销对比
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;操作&lt;/th&gt;
+          &lt;th&gt;进程&lt;/th&gt;
+          &lt;th&gt;线程&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;创建/销毁&lt;/td&gt;
+          &lt;td&gt;需分配/回收 MB 级内存，初始化大量资源 → ​&lt;strong&gt;开销大&lt;/strong&gt;（涉及系统调用）&lt;/td&gt;
+          &lt;td&gt;仅需分配 KB 级栈空间和少量元数据 → ​&lt;strong&gt;开销小&lt;/strong&gt;（可在用户态实现）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;切换成本&lt;/td&gt;
+          &lt;td&gt;高（完整上下文切换）&lt;/td&gt;
+          &lt;td&gt;低（仅切换私有寄存器和栈）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六总结&#34;&gt;六、总结
+&lt;/h2&gt;&lt;p&gt;进程（Process）是OS中进行资源分配和调度的基本单位，是程序的一次动态执行过程。每个进程都拥有独立的虚拟内存空间（代码段、数据段、堆、栈）、文件描述符、信号处理器等资源。同时，进程间相互隔离，一个进程崩溃不会直接影响其他进程（通过进程间通信IPC协作）。并且，进程的创建和销毁由操作系统内核管理，开销较大。&lt;/p&gt;
+&lt;p&gt;线程是（Thread）属于进程内的一个执行流，是CPU调度的基本单位。同一个进程内的所有线程共享此进程的内存空间的系统资源（如全局变量），每一个线程都独立拥有栈、寄存器、程序计数器等私有数据，用于保存执行状态。并且，现成的创建和销毁都由进程管理，在系统开销方面远小于进程。&lt;/p&gt;
+&lt;p&gt;因为线程拥有传统进程的所具有的很多特征，因此又称为轻型进程（light-weight process，LWP）或进程元；相应地把传统进程称谓重型进程（heavy-weight process，HWP），它相当于只有一个线程的任务。&lt;/p&gt;
+&lt;p&gt;在调度方面，进程和线程均由操作系统内核调度，通过时间片轮转抢占执行。他们之间的不同之处在于，操作系统以进程为资源分配单位，进程切换需完整上下文切换（虚拟内存、寄存器、文件描述符等），而线程则是CPU调度的基本单位，切换仅需切换现成的私有数据（栈、寄存器、程序计数器）&lt;/p&gt;
+&lt;p&gt;从并发的角度来说，二者均用于多任务并发执行，提升资源利用率。不同的是，进程之间的并发需要通过进程间通信（IPC），上下文切换开销大，并发效率较低，而线程可以共享同一个进程的内存空间，可以通过共享内存直接通信，上下文切换轻量，并发效率高。&lt;/p&gt;
+&lt;p&gt;在拥有资源的角度上看，进程拥有独立的虚拟内存空间、文件句柄、信号处理器等资源；线程则共享所属进程的虚拟内存和系统资源、仅仅独立拥有栈、寄存器等线程私有数据。&lt;/p&gt;
+&lt;p&gt;在系统开销方面，线程的创建和销毁都需要分配和回收内存并且初始化资源（MB级），系统开销大（涉及了系统调用）；而线程的创建和销毁仅需分配栈和少量元数据（KB级），系统开销小（可以在用户态实现）。&lt;/p&gt;
+&lt;p&gt;‍&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
