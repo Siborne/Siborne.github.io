@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Java on Siborne</title>
-        <link>http://localhost:1313/tags/java/</link>
+        <link>https://Siborne.top/tags/java/</link>
         <description>Recent content in Java on Siborne</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-CN</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Wed, 01 Apr 2026 00:29:12 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/java/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 01 Apr 2026 00:29:12 +0800</lastBuildDate><atom:link href="https://Siborne.top/tags/java/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了</title>
-        <link>http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/</link>
+        <link>https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/</link>
         <pubDate>Sat, 14 Mar 2026 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/</guid>
-        <description>&lt;img src="http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage.png" alt="Featured image of post 从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了" /&gt;&lt;h1 id=&#34;从-mvc-到-ddd不仅仅是包名变了而是对象活了&#34;&gt;从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了
+        <guid>https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/</guid>
+        <description>&lt;img src="https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage.png" alt="Featured image of post 从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了" /&gt;&lt;h1 id=&#34;从-mvc-到-ddd不仅仅是包名变了而是对象活了&#34;&gt;从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了
 &lt;/h1&gt;&lt;h3 id=&#34;引言&#34;&gt;引言
 &lt;/h3&gt;&lt;p&gt;在学习 DDD（领域驱动设计）时，很多人会被复杂的概念劝退。但回归本质，我们可以将 DDD 理解为 &lt;strong&gt;MVC 的“超进化增强版”&lt;/strong&gt;。它在 MVC 的基础上，通过更清晰的职责划分和逻辑解耦，解决了系统在业务复杂后的“臃肿”痛点。&lt;/p&gt;
 &lt;h3 id=&#34;一-核心心法从找说明书到问当事人&#34;&gt;一、 核心心法：从“找说明书”到“问当事人”
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178.png&#34;
 	width=&#34;2816&#34;
 	height=&#34;1536&#34;
-	srcset=&#34;http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_c31cbdbbe82ef9d0.png 480w, http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_8e42d5d83cedc346.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_c31cbdbbe82ef9d0.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_8e42d5d83cedc346.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -50,10 +50,10 @@
 &lt;p&gt;&lt;strong&gt;要点：&lt;/strong&gt; DDD 的好处是逻辑高度内聚。一旦业务逻辑有变化，你只需要修改对应的领域模型对象，而不是去翻几千行的 Service。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;二-架构连连看ddd-与-mvc-的映射关系&#34;&gt;二、 架构连连看：DDD 与 MVC 的映射关系
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734.png&#34;
 	width=&#34;2816&#34;
 	height=&#34;1536&#34;
-	srcset=&#34;http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_3e27a03a3dc76dc6.png 480w, http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_9af9db3ed1912419.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_3e27a03a3dc76dc6.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_9af9db3ed1912419.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -114,10 +114,10 @@
 &lt;li&gt;&lt;strong&gt;收益：&lt;/strong&gt; 就算数据库从 MySQL 换成 MongoDB，你的核心业务逻辑（Domain 层）一个字都不用改。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;四-模型的三大成员战术建模&#34;&gt;四、 模型的三大成员（战术建模）
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292.png&#34;
 	width=&#34;2816&#34;
 	height=&#34;1536&#34;
-	srcset=&#34;http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_8c3f5c6fa3c0ebda.png 480w, http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_1abf29be7841aec0.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_8c3f5c6fa3c0ebda.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_1abf29be7841aec0.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -226,10 +226,10 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;五-模型转换每一层都有自己的脸&#34;&gt;五、 模型转换：每一层都有自己的“脸”
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115.png&#34;
 	width=&#34;2816&#34;
 	height=&#34;1536&#34;
-	srcset=&#34;http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_3a6f248a9a08ff2d.png 480w, http://localhost:1313/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_9532cd5c6ba76ad0.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_3a6f248a9a08ff2d.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_9532cd5c6ba76ad0.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -541,11 +541,11 @@
         </item>
         <item>
         <title>LRU 缓存算法的实现</title>
-        <link>http://localhost:1313/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+        <link>https://Siborne.top/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
         <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
-        <description>&lt;img src="http://localhost:1313/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.png" alt="Featured image of post LRU 缓存算法的实现" /&gt;&lt;h1 id=&#34;lru-缓存算法实现笔记java&#34;&gt;LRU 缓存算法实现笔记（Java）
+        <guid>https://Siborne.top/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
+        <description>&lt;img src="https://Siborne.top/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.png" alt="Featured image of post LRU 缓存算法的实现" /&gt;&lt;h1 id=&#34;lru-缓存算法实现笔记java&#34;&gt;LRU 缓存算法实现笔记（Java）
 &lt;/h1&gt;&lt;h3 id=&#34;一什么是-lru&#34;&gt;一、什么是 LRU？
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -1005,11 +1005,11 @@ A: 可以！重写 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面试
         </item>
         <item>
         <title>Java &#43; MySQL &#43; Redis 生成用户主键的 6 种方案</title>
-        <link>http://localhost:1313/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/</link>
+        <link>https://Siborne.top/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/</link>
         <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/</guid>
-        <description>&lt;img src="http://localhost:1313/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.png" alt="Featured image of post Java &#43; MySQL &#43; Redis 生成用户主键的 6 种方案" /&gt;&lt;h1 id=&#34;java--mysql-生成用户主键的-6-种方案从自增到-redis一篇讲透&#34;&gt;Java + MySQL 生成用户主键的 6 种方案：从自增到 Redis，一篇讲透！
+        <guid>https://Siborne.top/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/</guid>
+        <description>&lt;img src="https://Siborne.top/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.png" alt="Featured image of post Java &#43; MySQL &#43; Redis 生成用户主键的 6 种方案" /&gt;&lt;h1 id=&#34;java--mysql-生成用户主键的-6-种方案从自增到-redis一篇讲透&#34;&gt;Java + MySQL 生成用户主键的 6 种方案：从自增到 Redis，一篇讲透！
 &lt;/h1&gt;&lt;p&gt;在开发 Java 应用搭配 MySQL 数据库时，如何为用户、订单等实体生成&lt;strong&gt;全局唯一、高性能、不重复的主键 ID&lt;/strong&gt;，是一个绕不开的问题。&lt;br&gt;
 除了最熟悉的 &lt;code&gt;AUTO_INCREMENT&lt;/code&gt; 和 &lt;code&gt;UUID&lt;/code&gt;，其实还有更优雅的方案——比如借助 &lt;strong&gt;Redis&lt;/strong&gt; 或 &lt;strong&gt;雪花算法（Snowflake）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;本文用大白话为你梳理 &lt;strong&gt;6 种主流 ID 生成方案&lt;/strong&gt;，包括：&lt;/p&gt;
@@ -1428,11 +1428,11 @@ A: 可以！重写 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面试
         </item>
         <item>
         <title>JWT简单解析</title>
-        <link>http://localhost:1313/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/</link>
+        <link>https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/</link>
         <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/</guid>
-        <description>&lt;img src="http://localhost:1313/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/bannerImage.png" alt="Featured image of post JWT简单解析" /&gt;&lt;h3 id=&#34;用户登录验证流程基于-jwt&#34;&gt;用户登录验证流程（基于 JWT）
+        <guid>https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/</guid>
+        <description>&lt;img src="https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/bannerImage.png" alt="Featured image of post JWT简单解析" /&gt;&lt;h3 id=&#34;用户登录验证流程基于-jwt&#34;&gt;用户登录验证流程（基于 JWT）
 &lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;用户输入用户名和密码&lt;/strong&gt;，并通过 HTTPS 请求发送至服务器。&lt;/p&gt;
@@ -1549,10 +1549,10 @@ A: 可以！重写 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面试
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1.png&#34;
 	width=&#34;554&#34;
 	height=&#34;401&#34;
-	srcset=&#34;http://localhost:1313/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1_hu_f500152678508be8.png 480w, http://localhost:1313/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1_hu_21a39f4e946dd95a.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1_hu_f500152678508be8.png 480w, https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1_hu_21a39f4e946dd95a.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Jwt的生成与验证&#34;
@@ -1704,11 +1704,11 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
         </item>
         <item>
         <title>对ThreadLocal的理解</title>
-        <link>http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/</link>
+        <link>https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/</link>
         <pubDate>Tue, 30 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
-        <description>&lt;img src="http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.png" alt="Featured image of post 对ThreadLocal的理解" /&gt;&lt;h2 id=&#34;threadlocal介绍&#34;&gt;ThreadLocal介绍
+        <guid>https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
+        <description>&lt;img src="https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.png" alt="Featured image of post 对ThreadLocal的理解" /&gt;&lt;h2 id=&#34;threadlocal介绍&#34;&gt;ThreadLocal介绍
 &lt;/h2&gt;&lt;p&gt;从Java官方文档中的描述：ThreadLocal类用来提供线程内部的局部变量。这种变量在多线程环境下访问（通过get和set方法访问）时能保证各个线程的变量相对独立于其他线程内的变量。ThreadLocal实例通常来说都是private static类型的，用于关联线程和线程上下文。&lt;/p&gt;
 &lt;p&gt;我们可以得知ThreadLocal的作用是：提供线程内的局部变量，不同的线程之间不会相互干扰，这种变量在线程的生命周期内起作用，减少同一个线程内多个函数或组件之间一些公共变量传递的复杂度。&lt;/p&gt;
 &lt;ul&gt;
@@ -2029,10 +2029,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;/h2&gt;&lt;p&gt;通过以上的介绍，我们已经基本了解ThreadLocal的特点，但是它具体是运用在什么场景中的呢？接下来让我们看一个案例：事务操作&lt;/p&gt;
 &lt;h3 id=&#34;转账案例&#34;&gt;转账案例
 &lt;/h3&gt;&lt;p&gt;这里们先构建一个简单的转账场景：有一个数据表account，里面有两个用户 jack 和 Rose，用户Jack给用户Rose转账。案例的实现主要是用mysql数据库，JDBC和C3P0框架，以下是详细代码&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153.png&#34;
 	width=&#34;1154&#34;
 	height=&#34;424&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_6da148d510b974c9.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_4a6face6da4e5a04.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_6da148d510b974c9.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_4a6face6da4e5a04.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;account表和转账SQL语句&#34;
@@ -2124,10 +2124,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;li&gt;降低程序的性能（加了同步代码块，失去了并发性）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;这个时候就可以通过ThreadLocal和当前线程进行绑定，来降低代码之间的耦合&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494.png&#34;
 	width=&#34;1364&#34;
 	height=&#34;515&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_84670a5e7f2d0c8.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_d502ecbc53dccae5.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_84670a5e7f2d0c8.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_d502ecbc53dccae5.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;线程执行图&#34;
@@ -2183,10 +2183,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;/h2&gt;&lt;p&gt;通过以上的学习，我们对ThreadLocal的作用有了一定的认识。现在我们一起来看一下ThreadLocal的内部结构，探究它能够实现线程数据隔离的原理。&lt;/p&gt;
 &lt;h3 id=&#34;常见误解&#34;&gt;常见误解
 &lt;/h3&gt;&lt;p&gt;如果我们不去看源代码的话，可能会猜测 ThreadLocal 是这样子设计的：每个ThreadLocal都创建一个Map，然后用线程作为Map的key，要存储的局部变量作为Map的value，这样就能达到各个线程的局部变量隔离的效果。这是最简单的设计方法，JDK最早期的ThreadLocal确实是这样设计的，但现在早已不是了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638.png&#34;
 	width=&#34;821&#34;
 	height=&#34;371&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_ad718fe2fcbb711d.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_c41f57ef3ba1d643.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_ad718fe2fcbb711d.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_c41f57ef3ba1d643.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal误解——早期实现&#34;
@@ -2205,10 +2205,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;li&gt;Thread内部的Map是由ThreadLocal维护的，由ThreadLocal负责向map获取和设置线程的变量值。&lt;/li&gt;
 &lt;li&gt;对于不同的线程，每次获取副本值时，别的线程并不能获取到当前线程的副本值，形成了副本的隔离，互不干扰。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748.png&#34;
 	width=&#34;932&#34;
 	height=&#34;355&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_91b80341ed4c06e5.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_e2b882980d755233.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_91b80341ed4c06e5.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_e2b882980d755233.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal——JDK8的实现&#34;
@@ -2220,10 +2220,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;对比&#34;&gt;对比
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743.png&#34;
 	width=&#34;924&#34;
 	height=&#34;726&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_e09220964b2c3542.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_ecabfd46752b5af9.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_e09220964b2c3542.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_ecabfd46752b5af9.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;早期与JDK8以后的对比&#34;
@@ -2274,10 +2274,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;/table&gt;
 &lt;p&gt;以下是这4个方法的详细源码分析（为了保证思路清晰，ThreadLocalMap部分暂时不展开，下一个知识点详解）&lt;/p&gt;
 &lt;h3 id=&#34;set方法&#34;&gt;set方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026.png&#34;
 	width=&#34;911&#34;
 	height=&#34;590&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026_hu_231081a87fff4e88.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026_hu_a5ca1b8b857b8deb.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026_hu_231081a87fff4e88.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026_hu_a5ca1b8b857b8deb.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;set方法内部实现1&#34;
@@ -2288,10 +2288,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 		data-flex-basis=&#34;370px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494.png&#34;
 	width=&#34;838&#34;
 	height=&#34;550&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494_hu_7e331f986d604d7f.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494_hu_21e24853cab3ac8b.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494_hu_7e331f986d604d7f.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494_hu_21e24853cab3ac8b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;set方法内部实现2&#34;
@@ -2309,10 +2309,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;li&gt;如果Map为空，则给该线程创建Map，并设置初始化值&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;get方法&#34;&gt;get方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887.png&#34;
 	width=&#34;867&#34;
 	height=&#34;799&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887_hu_c7bd97ff39b3f897.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887_hu_fc7e3b890aa83f03.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887_hu_c7bd97ff39b3f897.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887_hu_fc7e3b890aa83f03.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;get方法内部实现1&#34;
@@ -2323,10 +2323,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 		data-flex-basis=&#34;260px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472.png&#34;
 	width=&#34;910&#34;
 	height=&#34;734&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472_hu_9e1559517242241b.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472_hu_41782bd8b1a221d8.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472_hu_9e1559517242241b.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472_hu_41782bd8b1a221d8.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;get方法内部实现2&#34;
@@ -2346,10 +2346,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;/ul&gt;
 &lt;p&gt;总结：先获取当前线程的ThreadLocal变量，如果存在则返回值，不存在则创建并返回初始值&lt;/p&gt;
 &lt;h3 id=&#34;remove方法&#34;&gt;remove方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229.png&#34;
 	width=&#34;745&#34;
 	height=&#34;340&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229_hu_996f562cdcbf97d5.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229_hu_95ac7a5cc63b0881.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229_hu_996f562cdcbf97d5.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229_hu_95ac7a5cc63b0881.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;remove方法内部实现&#34;
@@ -2366,10 +2366,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;li&gt;如果获取的Map不为空，则移除当前ThreadLocal对象对应的Entry&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;initialvalue方法&#34;&gt;initialValue方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455.png&#34;
 	width=&#34;739&#34;
 	height=&#34;489&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455_hu_650603342b60aa07.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455_hu_53e8db49149c2e9d.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455_hu_650603342b60aa07.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455_hu_53e8db49149c2e9d.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;initialValue方法内部实现&#34;
@@ -2391,10 +2391,10 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨论。&lt;/p&gt;
 &lt;h3 id=&#34;基本结构&#34;&gt;基本结构
 &lt;/h3&gt;&lt;p&gt;ThreadLocalMap是ThreadLocal的内部类，没有实现Map接口，用独立的方式实现了Map的功能，其内部的Entry也是独立实现。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315.png&#34;
 	width=&#34;757&#34;
 	height=&#34;422&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315_hu_8959e017ee459be.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315_hu_6d6122b6ddbe64ae.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315_hu_8959e017ee459be.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315_hu_6d6122b6ddbe64ae.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocalMap&#34;
@@ -2495,10 +2495,10 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 &lt;h3 id=&#34;如果key使用强引用那么会出现内存泄漏&#34;&gt;如果key使用强引用，那么会出现内存泄漏？
 &lt;/h3&gt;&lt;p&gt;假设ThreadLocalMap中的key使用了强引用，那么会出现内存泄漏吗？&lt;/p&gt;
 &lt;p&gt;此时ThreadLocal的内存图（实线表示强引用）如下：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109.png&#34;
 	width=&#34;883&#34;
 	height=&#34;473&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109_hu_bb92f38ce79647b6.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109_hu_bace06a265205062.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109_hu_bb92f38ce79647b6.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109_hu_bace06a265205062.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal的内存图1&#34;
@@ -2516,10 +2516,10 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 &lt;/ul&gt;
 &lt;p&gt;也就是说，ThreadLocalMap中的key使用了强引用，是无法完全避免内存泄漏的。&lt;/p&gt;
 &lt;h3 id=&#34;如果key使用弱引用那么会出现内存泄漏&#34;&gt;如果key使用弱引用，那么会出现内存泄漏？
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567.png&#34;
 	width=&#34;851&#34;
 	height=&#34;491&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567_hu_d0e6b325d17fee09.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567_hu_eec71cb1b78926b1.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567_hu_d0e6b325d17fee09.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567_hu_eec71cb1b78926b1.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal的内存图2&#34;
@@ -2610,10 +2610,10 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 &lt;p&gt;这段代码有两个地方分别涉及到ThreadLocalMap的两个方法，我们接着分析这两个方法&lt;/p&gt;
 &lt;h3 id=&#34;构造方法&#34;&gt;构造方法
 &lt;/h3&gt;&lt;p&gt;ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132.png&#34;
 	width=&#34;878&#34;
 	height=&#34;431&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132_hu_bdd0df64049786ab.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132_hu_57c3075c999ff04.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132_hu_bdd0df64049786ab.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132_hu_57c3075c999ff04.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocalMap的构造方法&#34;
@@ -2627,10 +2627,10 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 &lt;p&gt;构造函数首先创建一个长度为16的Entry数组，然后计算出firstKey对应的索引，然后存储到table中，并设置size和threshold。&lt;/p&gt;
 &lt;p&gt;重点分析：int i = firstKey.threadLocalHashCode &amp;amp; ( INITIAL_CAPACITY - 1)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;关于：threadLocalHashCode&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493.png&#34;
 	width=&#34;908&#34;
 	height=&#34;269&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493_hu_43cbce75d5bd379d.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493_hu_7d2f0ea684b4669f.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493_hu_43cbce75d5bd379d.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493_hu_7d2f0ea684b4669f.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;threadLocalHashCode&#34;
@@ -2646,10 +2646,10 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 &lt;p&gt;&lt;strong&gt;关于&amp;amp;（INITIAL_CAPACITY-1）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;计算hash的时候里面采用了hashCode&amp;amp;（size-1）的算法，这相当于取模运算hashCode%size的一个更高效的实现。正是因为这种算法，我们要求size必须是2的整次幂，这也能保证保证在索引不越界的前提下，使得hash发生冲突的次数减小。&lt;/p&gt;
 &lt;h3 id=&#34;get方法-1&#34;&gt;Get方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317.png&#34;
 	width=&#34;955&#34;
 	height=&#34;800&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317_hu_8d6bf81959c9543.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317_hu_137a7bf4e0f2a09.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317_hu_8d6bf81959c9543.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317_hu_137a7bf4e0f2a09.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Get方法1&#34;
@@ -2660,10 +2660,10 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 		data-flex-basis=&#34;286px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127.png&#34;
 	width=&#34;924&#34;
 	height=&#34;584&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127_hu_2b49e1f2febc0e5b.png 480w, http://localhost:1313/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127_hu_79b203b34f50c655.png 1024w&#34;
+	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127_hu_2b49e1f2febc0e5b.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127_hu_79b203b34f50c655.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Get方法2&#34;
