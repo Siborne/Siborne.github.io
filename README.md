@@ -1,7 +1,7 @@
 # Siborne Blog
 
 <p align="center">
-  <strong>默认（中文）</strong> | <a href="./docs/i18n/README.zh-CN.md">中文</a> | <a href="./docs/i18n/README.en.md">English</a>
+  <strong>默认</strong> | <a href="./docs/i18n/README.zh-CN.md">中文</a> | <a href="./docs/i18n/README.en.md">English</a>
 </p>
 
 <p align="center">
@@ -48,12 +48,13 @@
 
 ## 技术矩阵
 
-| Layer | Selection |
-| --- | --- |
-| 生成器 | Hugo |
-| 部署平台 | GitHub Pages |
-| 域名 | siborne.top |
-| 搜索 | 本地索引 JSON |
+
+| Layer    | Selection     |
+| -------- | ------------- |
+| 生成器   | Hugo          |
+| 部署平台 | GitHub Pages  |
+| 域名     | siborne.top   |
+| 搜索     | 本地索引 JSON |
 
 ## 项目结构
 

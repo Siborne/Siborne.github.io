@@ -1,7 +1,7 @@
 # Siborne Blog
 
 <p align="center">
-  <a href="../../README.md">Default (Chinese)</a> | <a href="./README.zh-CN.md">中文</a> | <strong>English</strong>
+  <a href="../../README.md">Default </a> | <a href="./README.zh-CN.md">中文</a> | <strong>English</strong>
 </p>
 
 <p align="center">
@@ -43,12 +43,13 @@
 
 ## Stack Matrix
 
-| Layer | Selection |
-| --- | --- |
-| Generator | Hugo |
-| Deployment | GitHub Pages |
-| Domain | siborne.top |
-| Search | Local index JSON |
+
+| Layer      | Selection        |
+| ---------- | ---------------- |
+| Generator  | Hugo             |
+| Deployment | GitHub Pages     |
+| Domain     | siborne.top      |
+| Search     | Local index JSON |
 
 ## Project Structure
 

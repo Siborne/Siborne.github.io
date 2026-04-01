@@ -1,7 +1,7 @@
 # Siborne Blog
 
 <p align="center">
-  <a href="../../README.md">默认（中文）</a> | <strong>中文</strong> | <a href="./README.en.md">English</a>
+  <a href="../../README.md">默认 </a> | <strong>中文</strong> | <a href="./README.en.md">English</a>
 </p>
 
 <p align="center">
@@ -43,12 +43,13 @@
 
 ## 技术矩阵
 
-| 层级 | 选型 |
-| --- | --- |
-| 生成器 | Hugo |
-| 部署平台 | GitHub Pages |
-| 域名 | siborne.top |
-| 搜索 | 本地索引 JSON |
+
+| 层级     | 选型          |
+| -------- | ------------- |
+| 生成器   | Hugo          |
+| 部署平台 | GitHub Pages  |
+| 域名     | siborne.top   |
+| 搜索     | 本地索引 JSON |
 
 ## 项目结构
 
