@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="OpenCode 是开源版 Claude Code，免费无限制，支持 Session 并行、Timeline 回退、Ultra Work 多智能体协作。本文涵盖安装、配置、插件生态及实战记录。">
+<title>OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法</title>
+
+<link rel='canonical' href='https://Siborne.top/p/opencode-complete-guide/'>
+
+<link rel="stylesheet" href="/scss/style.min.266c2d3f4822631b105b97664a103c3737ee3a439c2ce01b7142501e9591e1df.css"><meta property='og:title' content="OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法">
+<meta property='og:description' content="OpenCode 是开源版 Claude Code，免费无限制，支持 Session 并行、Timeline 回退、Ultra Work 多智能体协作。本文涵盖安装、配置、插件生态及实战记录。">
+<meta property='og:url' content='https://Siborne.top/p/opencode-complete-guide/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI编程' /><meta property='article:tag' content='OpenCode' /><meta property='article:tag' content='ClaudeCode' /><meta property='article:tag' content='工具教程' /><meta property='article:tag' content='OhMyOpenAgent' /><meta property='article:tag' content='GitHub-Copilot' /><meta property='article:published_time' content='2026-05-07T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-08T00:09:57&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/opencode-complete-guide/bannerImage.png' />
+<meta name="twitter:title" content="OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法">
+<meta name="twitter:description" content="OpenCode 是开源版 Claude Code，免费无限制，支持 Session 并行、Timeline 回退、Ultra Work 多智能体协作。本文涵盖安装、配置、插件生态及实战记录。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.top/p/opencode-complete-guide/bannerImage.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; Enthusiast
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent Architect &amp; Full-Stack Dev
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 Curious Student · Future Builder
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    Building intelligent agents &#43; scalable apps. Blending creativity with AI efficiency. 🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页 | Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E-about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于 | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档 | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E6%8A%80%E6%9C%AF%E9%93%BE%E6%8E%A5-links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>技术链接 | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" selected>简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#核心要点概括">核心要点概括</a></li>
+    <li><a href="#一什么是-opencode">一、什么是 OpenCode？</a>
+      <ol>
+        <li><a href="#为什么选择-opencode">为什么选择 OpenCode？</a></li>
+      </ol>
+    </li>
+    <li><a href="#二四种安装形态">二、四种安装形态</a>
+      <ol>
+        <li><a href="#1-命令行版主力推荐">1. 命令行版（主力推荐）</a></li>
+        <li><a href="#2-桌面客户端beta">2. 桌面客户端（Beta）</a></li>
+        <li><a href="#3-vs-code-插件版">3. VS Code 插件版</a></li>
+        <li><a href="#4-云端运行环境github-actions">4. 云端运行环境（GitHub Actions）</a></li>
+      </ol>
+    </li>
+    <li><a href="#三免费模型配置">三、免费模型配置</a>
+      <ol>
+        <li><a href="#接入顶级模型">接入顶级模型</a>
+          <ol>
+            <li><a href="#方式一antigravity-插件免费接入-gemini--claude">方式一：Antigravity 插件（免费接入 Gemini + Claude）</a></li>
+            <li><a href="#方式二gpt-codexopenai-官方合作">方式二：GPT Codex（OpenAI 官方合作）</a></li>
+            <li><a href="#方式三openrouter万能接入">方式三：OpenRouter（万能接入）</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#四核心功能亮点">四、核心功能亮点</a>
+      <ol>
+        <li><a href="#1-反问式需求澄清">1. 反问式需求澄清</a></li>
+        <li><a href="#2-命令行代码比对界面">2. 命令行代码比对界面</a></li>
+        <li><a href="#3-session-并行处理-">3. Session 并行处理 ⭐</a></li>
+        <li><a href="#4-timeline-检查点回退">4. Timeline 检查点回退</a></li>
+        <li><a href="#5-share-分享">5. Share 分享</a></li>
+      </ol>
+    </li>
+    <li><a href="#五skills-技能迁移">五、Skills 技能迁移</a></li>
+    <li><a href="#六mcp-配置">六、MCP 配置</a>
+      <ol>
+        <li><a href="#本地-mcplocal">本地 MCP（Local）</a></li>
+        <li><a href="#远程-mcpremote">远程 MCP（Remote）</a></li>
+      </ol>
+    </li>
+    <li><a href="#七oh-my-open-code-omo-超强插件-">七、Oh My Open Code (OMO) 超强插件 ⭐</a>
+      <ol>
+        <li><a href="#七大编程智能体">七大编程智能体</a></li>
+        <li><a href="#三大-mcp-server">三大 MCP Server</a></li>
+        <li><a href="#集成工具">集成工具</a></li>
+        <li><a href="#安装与使用">安装与使用</a></li>
+        <li><a href="#两种核心用法">两种核心用法</a></li>
+        <li><a href="#ralph-loop-循环模式">Ralph Loop 循环模式</a></li>
+      </ol>
+    </li>
+    <li><a href="#八其他实用功能">八、其他实用功能</a>
+      <ol>
+        <li><a href="#init--项目知识初始化">/init — 项目知识初始化</a></li>
+        <li><a href="#compact--上下文压缩">/compact — 上下文压缩</a></li>
+        <li><a href="#自定义命令">自定义命令</a></li>
+        <li><a href="#自定义智能体">自定义智能体</a></li>
+      </ol>
+    </li>
+    <li><a href="#九总结与推荐">九、总结与推荐</a>
+      <ol>
+        <li><a href="#适用场景">适用场景</a></li>
+        <li><a href="#推荐配置路线">推荐配置路线</a></li>
+      </ol>
+    </li>
+    <li><a href="#十实战记录安装-oh-my-openagent原-omo">十、实战记录：安装 Oh My OpenAgent（原 OMO）</a>
+      <ol>
+        <li><a href="#环境检查">环境检查</a></li>
+        <li><a href="#安装过程">安装过程</a></li>
+        <li><a href="#安装后的配置文件">安装后的配置文件</a></li>
+        <li><a href="#认证配置">认证配置</a></li>
+        <li><a href="#如何重新配置-agent-模型">如何重新配置 Agent 模型？</a></li>
+        <li><a href="#追加配置补上-opencode-zen-作为备选">追加配置：补上 OpenCode Zen 作为备选</a></li>
+        <li><a href="#使用提示">使用提示</a></li>
+        <li><a href="#踩坑记录">踩坑记录</a></li>
+      </ol>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/opencode-complete-guide/">
+                <img src="/p/opencode-complete-guide/bannerImage_hu_7cf5f418510974c9.png"
+                        srcset="/p/opencode-complete-guide/bannerImage_hu_7cf5f418510974c9.png 800w, /p/opencode-complete-guide/bannerImage_hu_61c19f78b3993d17.png 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/opencode-complete-guide/">OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-07T00:00:00Z'>2026-05-07</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 08, 2026 00:09 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                4603字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        OpenCode 是开源版 Claude Code，免费无限制，支持 Session 并行、Timeline 回退、Ultra Work 多智能体协作。本文涵盖安装、配置、插件生态及实战记录。
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-tools/" style="background-color: #2a9d8f; color: #fff;">
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/en/p/opencode-complete-guide/" class="link">English</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="核心要点概括">核心要点概括
+</h2><ul>
+<li><strong>OpenCode 定位</strong>：开源版 Claude Code，具备几乎 Claude Code 的全部功能，中国用户友好，不限速不封号。</li>
+<li><strong>免费模型</strong>：开箱即用 GLM-4.7、MiniMax-2.1 等免费模型，零配置即可上手 AI 编程。</li>
+<li><strong>顶级模型接入</strong>：通过 Antigravity 插件免费接入 Gemini 3 Pro、Claude 4.5 Opus；通过 <code>/connect</code> 接入 GPT Codex。</li>
+<li><strong>杀手级功能</strong>：Session 并行、Timeline 回退、Share 分享、Ultra Work 多智能体协作。</li>
+<li><strong>插件生态</strong>：Oh My Open Code (OMO) 集成七大编程智能体 + 三大 MCP Server + 多种工具，实现 AI 编程团队协同。</li>
+</ul>
+<h2 id="一什么是-opencode">一、什么是 OpenCode？
+</h2><p><strong>OpenCode</strong> 是近期热度最高的 AI 编程工具，本质上是一个<strong>开源版的 Claude Code</strong>。它几乎复刻了 Claude Code 的所有核心功能，同时解决了 Claude Code 在中国用户中常见的限速、封号等痛点。</p>
+<h3 id="为什么选择-opencode">为什么选择 OpenCode？
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>对比维度</th>
+          <th>Claude Code</th>
+          <th>OpenCode</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>开源</td>
+          <td>❌ 闭源</td>
+          <td>✅ 开源</td>
+      </tr>
+      <tr>
+          <td>免费模型</td>
+          <td>❌ 需付费 API</td>
+          <td>✅ 内置免费模型</td>
+      </tr>
+      <tr>
+          <td>中国用户友好</td>
+          <td>⚠️ 限速/封号风险</td>
+          <td>✅ 无限制</td>
+      </tr>
+      <tr>
+          <td>Skills/MCP</td>
+          <td>✅ 支持</td>
+          <td>✅ 完全兼容</td>
+      </tr>
+      <tr>
+          <td>Session 并行</td>
+          <td>❌</td>
+          <td>✅ 核心亮点</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="二四种安装形态">二、四种安装形态
+</h2><p>OpenCode 提供四种运行方式，满足不同场景需求：</p>
+<h3 id="1-命令行版主力推荐">1. 命令行版（主力推荐）
+</h3><p>最稳定、功能最全的使用方式。通过 npm 安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm i -g opencode-ai
+</span></span><span class="line"><span class="cl">opencode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>前置条件</strong>：需要安装 Node.js（前往 <a class="link" href="https://nodejs.org"  target="_blank" rel="noopener"
+    >nodejs.org</a> 下载对应系统版本）。</p>
+<p>安装完成后终端输入 <code>opencode</code> 即可启动。</p>
+<h3 id="2-桌面客户端beta">2. 桌面客户端（Beta）
+</h3><ul>
+<li>从官网下载客户端，一路下一步安装</li>
+<li>选择项目文件夹即可使用</li>
+<li>⚠️ <strong>注意</strong>：目前处于 Beta 测试阶段，bug 较多，暂不推荐作为主力工具</li>
+</ul>
+<h3 id="3-vs-code-插件版">3. VS Code 插件版
+</h3><p>前提：已安装命令行版 OpenCode。</p>
+<ol>
+<li>在 VS Code 扩展商店搜索 <strong>OpenCode</strong> 并安装</li>
+<li>快捷键 <code>Ctrl + Shift + P</code> → 输入 <code>open opencode</code> 回车</li>
+<li>插件会自动关联左侧窗口打开的代码文件</li>
+<li>选中代码后按 <code>Ctrl + Alt + K</code> 可快速粘贴到 OpenCode 聊天窗口</li>
+</ol>
+<blockquote>
+<p>插件版的核心价值在于<strong>与 IDE 的无缝集成</strong>，让 AI 直接感知你的代码上下文。</p>
+</blockquote>
+<h3 id="4-云端运行环境github-actions">4. 云端运行环境（GitHub Actions）
+</h3><p>在 GitHub 仓库的 Issue 中输入 <code>/opencode</code> 即可触发云端 AI 工作流：</p>
+<ol>
+<li>将项目上传到 GitHub 公开仓库</li>
+<li>在仓库中配置 API Key（Settings → Secrets and Variables → Actions）</li>
+<li>在 Issue 评论中输入 <code>/opencode</code> + 需求描述</li>
+<li>GitHub Actions 自动运行 OpenCode 工作流</li>
+<li>完成后自动创建 Pull Request</li>
+</ol>
+<blockquote>
+<p>非常适合开源项目的自动化 Issue 修复。</p>
+</blockquote>
+<h2 id="三免费模型配置">三、免费模型配置
+</h2><p>OpenCode 最大的优势是<strong>开箱即用的免费模型</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看所有可用模型（带 free 标记的即可免费使用）</span>
+</span></span><span class="line"><span class="cl">/models
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>推荐免费模型：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>模型</th>
+          <th>特点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>GLM-4.7</strong></td>
+          <td>编程能力强，零配置</td>
+      </tr>
+      <tr>
+          <td><strong>MiniMax-2.1</strong></td>
+          <td>编程能力出色，响应快</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>新手用这两个免费模型练习 AI 编程绰绰有余。</p>
+</blockquote>
+<h3 id="接入顶级模型">接入顶级模型
+</h3><h4 id="方式一antigravity-插件免费接入-gemini--claude">方式一：Antigravity 插件（免费接入 Gemini + Claude）
+</h4><p>Antigravity 是 Google 推出的 AI 编程 IDE，它慷慨地免费提供了 <strong>Gemini 3 Pro</strong> 和 <strong>Claude 4.5 Opus</strong>。</p>
+<p>安装步骤：</p>
+<ol>
+<li>在 OpenCode 中粘贴安装提示词（从 Antigravity GitHub 首页复制）</li>
+<li>等待 AI 自动完成安装</li>
+<li>打开新终端执行登录命令，选择 Google → Antigravity 登录</li>
+<li>登录 Google 账户，粘贴生成的 URL</li>
+<li>重启 OpenCode，<code>/models</code> 即可看到 Gemini 3 Pro 和 Claude 4.5 Opus</li>
+</ol>
+<h4 id="方式二gpt-codexopenai-官方合作">方式二：GPT Codex（OpenAI 官方合作）
+</h4><p>OpenAI 与 OpenCode 官宣合作，可直接接入 ChatGPT Codex：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/connect
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择 OpenAI → GPT Pro → 浏览器登录</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>前提：需要有 <strong>ChatGPT Plus</strong> 或以上订阅。</p>
+<h4 id="方式三openrouter万能接入">方式三：OpenRouter（万能接入）
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/connect
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择 OpenRouter → 填写 API Key</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过 OpenRouter 可以接入市面上几乎<strong>所有大模型</strong>，国内用户也能方便获取额度。OpenCode 支持 <strong>75 种 AI 接入方式</strong>，几乎囊括所有模型供应商。</p>
+<h2 id="四核心功能亮点">四、核心功能亮点
+</h2><h3 id="1-反问式需求澄清">1. 反问式需求澄清
+</h3><p>在动手编码之前，OpenCode 会<strong>反向询问</strong>你一系列问题：</p>
+<ul>
+<li>只需要代码样例，还是完整可运行的程序？</li>
+<li>哪些功能是必须实现的？</li>
+<li>调用哪个模型？</li>
+<li>环境变量如何保存？</li>
+</ul>
+<p>这种&quot;先问清楚再动手&quot;的机制，大幅减少了返工。</p>
+<h3 id="2-命令行代码比对界面">2. 命令行代码比对界面
+</h3><p>OpenCode 的命令行 diff 展示被认为是<strong>所有命令行编程工具中做得最好的</strong>，代码变更一目了然。</p>
+<h3 id="3-session-并行处理-">3. Session 并行处理 ⭐
+</h3><p>这是 OpenCode 最具特色的功能——<strong>多 Session 并行运行</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 发起第一个任务（如：增加计时器）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 任务执行中，创建新 session</span>
+</span></span><span class="line"><span class="cl">/new
+</span></span><span class="line"><span class="cl"><span class="c1"># 发起第二个任务（如：画笔调色）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有 session 状态</span>
+</span></span><span class="line"><span class="cl">/sessions
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 session 间切换</span>
+</span></span><span class="line"><span class="cl">/session &lt;id&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>打转符号表示 Session 正在<strong>后台运行</strong>。两个需求可以完全并行开发，互不干扰。</p>
+<h3 id="4-timeline-检查点回退">4. Timeline 检查点回退
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/timeline
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看当前 Session 的完整对话记录。选择任意历史节点，使用 <strong>Revert</strong> 功能将代码和聊天内容同时回退到该时间点，然后重新修改。</p>
+<blockquote>
+<p>相当于编程过程中的&quot;时光机&quot;，可以大胆尝试不同方案。</p>
+</blockquote>
+<h3 id="5-share-分享">5. Share 分享
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/share      <span class="c1"># 将对话记录分享为网页</span>
+</span></span><span class="line"><span class="cl">/unshare    <span class="c1"># 取消分享</span>
+</span></span><span class="line"><span class="cl">/export     <span class="c1"># 导出对话记录为文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分享后生成一个网页链接，展示了完整的对话记录和代码修改过程，方便与他人协作或展示。</p>
+<h2 id="五skills-技能迁移">五、Skills 技能迁移
+</h2><p>OpenCode <strong>完全兼容</strong> Claude Code 的 Skills 目录结构，迁移成本极低：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Claude Code 的 Skills 目录结构</span>
+</span></span><span class="line"><span class="cl">.claude/skills/&lt;skill-name&gt;/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 迁移到 OpenCode</span>
+</span></span><span class="line"><span class="cl">.opencode/skills/&lt;skill-name&gt;/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>操作步骤</strong>：</p>
+<ol>
+<li>在项目根目录新建 <code>.opencode</code> 文件夹</li>
+<li>在 <code>.opencode</code> 下新建 <code>skills</code> 文件夹</li>
+<li>将原 <code>.claude/skills/</code> 下的技能文件夹直接复制过来</li>
+<li>重启 OpenCode，AI 即可识别并调用这些 Skills</li>
+</ol>
+<p>每个 Skill 就是一个<strong>带目录的说明书</strong>，告诉 AI 如何完成特定领域的任务。</p>
+<h2 id="六mcp-配置">六、MCP 配置
+</h2><p>OpenCode 支持两种 MCP（Model Context Protocol）模式：</p>
+<h3 id="本地-mcplocal">本地 MCP（Local）
+</h3><p>通过本地命令执行，以 Shed-CN 为例：</p>
+<p>在 <code>~/.config/opencode/opencode.json</code> 中配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;mcpServers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;shed-cn&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;local&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;npx&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;shed-cn&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;enabled&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="远程-mcpremote">远程 MCP（Remote）
+</h3><p>通过 URL 远程调用，以 Context7 为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;mcpServers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;context7&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;remote&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://context7-mcp-server-url&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Authorization&#34;</span><span class="p">:</span> <span class="s2">&#34;Bearer &lt;your-api-key&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;enabled&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置完成后重启 OpenCode，输入 <code>/mcp</code> 即可查看已配置的 MCP Server。</p>
+<h2 id="七oh-my-open-code-omo-超强插件-">七、Oh My Open Code (OMO) 超强插件 ⭐
+</h2><p>OMO 是 OpenCode 上最火的编程插件，本质上是 <strong>工具 + MCP + 编程 Agent 的组合捆绑包</strong>。</p>
+<h3 id="七大编程智能体">七大编程智能体
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>智能体</th>
+          <th>角色</th>
+          <th>推荐模型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>西西弗斯 (Sisyphus)</strong></td>
+          <td>主智能体，规划与调度</td>
+          <td>Claude 4.5 Opus / GPT 5.2</td>
+      </tr>
+      <tr>
+          <td><strong>先知 (Prophet)</strong></td>
+          <td>架构设计、代码评审</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td><strong>图书管理员 (Librarian)</strong></td>
+          <td>查阅文献、文档检索</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td><strong>探索者 (Explorer)</strong></td>
+          <td>网络搜索</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td><strong>前端工程师</strong></td>
+          <td>前端开发</td>
+          <td>Gemini 3 Pro</td>
+      </tr>
+      <tr>
+          <td><strong>文档编写者</strong></td>
+          <td>文档生成</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td><strong>多模态</strong></td>
+          <td>图片/PDF 理解</td>
+          <td>—</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>每个智能体都分配了最适合其工作的大模型，据作者称耗费了 <strong>24,000 美元的 Token</strong> 才找到最佳组合。</p>
+<h3 id="三大-mcp-server">三大 MCP Server
+</h3><ul>
+<li><strong>Web Search</strong>：网络搜索</li>
+<li><strong>Context7</strong>：获取最新技术文档</li>
+<li><strong>Grep App</strong>：GitHub 仓库快速代码搜索</li>
+</ul>
+<h3 id="集成工具">集成工具
+</h3><ul>
+<li><strong>LSP 高级版</strong>：通过编程语言的语法和语义帮助 AI 快速定位代码</li>
+<li><strong>AST 工具</strong>：通过代码语法树进行关联搜索</li>
+<li><strong>LOC 工具</strong>：借助多模态视觉能力理解图片、PDF</li>
+<li><strong>Delegate Task / Background Task</strong>：Agent 任务分配和后台调度</li>
+</ul>
+<h3 id="安装与使用">安装与使用
+</h3><ol>
+<li>从 <a class="link" href="https://github.com/code-yeongyu/oh-my-openagent"  target="_blank" rel="noopener"
+    >OMO GitHub</a>首页复制 <code>install</code> 开头的提示词</li>
+<li>粘贴到 OpenCode 中，回答配置问题（订阅情况等）</li>
+<li>自动完成安装</li>
+</ol>
+<p>配置文件位置：<code>C:\Users\&lt;用户名&gt;\.config\opencode\oh-my-opencode.json</code></p>
+<h3 id="两种核心用法">两种核心用法
+</h3><p><strong>① @ 指定智能体</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@前端工程师 帮我优化这个页面的响应式布局
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>② Ultra Work 模式</strong>（魔法词 <code>ULW</code>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ULW 帮我创建一个宠物商店应用
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Ultra Work 模式下，西西弗斯作为主智能体会：</p>
+<ul>
+<li>将任务拆解成 Todo List</li>
+<li>同时开启多个后台任务并行执行</li>
+<li>居中调度各个智能体协同工作</li>
+<li>最终交付完整项目</li>
+</ul>
+<h3 id="ralph-loop-循环模式">Ralph Loop 循环模式
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/ralph-loop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>强制 AI 长时间循环工作，适合极难任务。例如：</p>
+<blockquote>
+<p>&ldquo;使用 Spring Boot 4 最新标准重构整个项目，直到所有测试用例通过&rdquo;</p>
+</blockquote>
+<p>可以连续运行数小时直到任务完成。</p>
+<h2 id="八其他实用功能">八、其他实用功能
+</h2><h3 id="init--项目知识初始化">/init — 项目知识初始化
+</h3><p>让 AI 通读整个项目文件夹，生成 <code>agents.md</code> 文件作为系统提示词，帮助 AI 快速了解项目。</p>
+<h3 id="compact--上下文压缩">/compact — 上下文压缩
+</h3><p>将之前的对话提炼为简洁摘要，释放模型上下文窗口，避免 Token 超限。</p>
+<h3 id="自定义命令">自定义命令
+</h3><p>在 <code>~/.config/opencode/commands/</code> 下创建 <code>.md</code> 文件定义自定义命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># 运行测试
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">模式：build
+</span></span><span class="line"><span class="cl">命令：npm test
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">描述：运行项目的全部测试用例
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用：<code>/运行测试</code> 即可触发。</p>
+<h3 id="自定义智能体">自定义智能体
+</h3><p>在 <code>~/.config/opencode/agents/</code> 下创建 <code>.md</code> 文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># Code Review Agent
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">类型：subagent
+</span></span><span class="line"><span class="cl">模型：claude-4.5-opus
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">描述：专门负责代码审查，检查代码质量、安全漏洞和最佳实践。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>Primary Agent</strong>：按 Tab 键切换，在对话中直接使用</li>
+<li><strong>Sub Agent</strong>：由主智能体在后台自动调度</li>
+</ul>
+<h2 id="九总结与推荐">九、总结与推荐
+</h2><h3 id="适用场景">适用场景
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>推荐度</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>新手入门 AI 编程</td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>免费模型零成本上手</td>
+      </tr>
+      <tr>
+          <td>日常开发辅助</td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>Session 并行 + Timeline 回退</td>
+      </tr>
+      <tr>
+          <td>复杂项目开发</td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>OMO 插件多智能体协作</td>
+      </tr>
+      <tr>
+          <td>开源项目维护</td>
+          <td>⭐⭐⭐⭐</td>
+          <td>GitHub Actions 云端自动化</td>
+      </tr>
+      <tr>
+          <td>练习 Skills/MCP</td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>完全兼容 Claude Code 生态</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="推荐配置路线">推荐配置路线
+</h3><ol>
+<li><strong>入门</strong> → 命令行安装 + 内置免费模型</li>
+<li><strong>进阶</strong> → 配置 Antigravity 接入 Gemini/Claude</li>
+<li><strong>高效</strong> → 配置 Skills + MCP</li>
+<li><strong>极限</strong> → 安装 OMO 插件，开启 Ultra Work 模式</li>
+</ol>
+<blockquote>
+<p>OpenCode 打破了 AI 编程工具的高门槛，让每个人都能以零成本开始探索 AI 辅助编程的无限可能。特别对于中国用户，不再需要担心限速和封号，可以&quot;随便造、随便玩&quot;。</p>
+</blockquote>
+<h2 id="十实战记录安装-oh-my-openagent原-omo">十、实战记录：安装 Oh My OpenAgent（原 OMO）
+</h2><blockquote>
+<p>以下是笔者亲测安装 <strong>Oh My OpenAgent</strong>（原 Oh My Open Code）的完整对话记录，环境为 Windows + PowerShell。</p>
+</blockquote>
+<h3 id="环境检查">环境检查
+</h3><p>首先确认 OpenCode 已安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">opencode</span> <span class="p">-</span><span class="n">-version</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 输出: 1.14.39</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装过程">安装过程
+</h3><p>在 OpenCode 对话中直接告诉 AI：</p>
+<blockquote>
+<p>&ldquo;Install and configure oh-my-openagent by following the instructions here:
+<a class="link" href="https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md%22"  target="_blank" rel="noopener"
+    >https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md"</a></p>
+</blockquote>
+<p>AI 会先询问你拥有的模型订阅情况：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>订阅</th>
+          <th>我的情况</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Claude Pro/Max</td>
+          <td>❌ 无</td>
+      </tr>
+      <tr>
+          <td>OpenAI / ChatGPT Plus</td>
+          <td>❌ 无</td>
+      </tr>
+      <tr>
+          <td>Gemini</td>
+          <td>❌ 无</td>
+      </tr>
+      <tr>
+          <td>GitHub Copilot</td>
+          <td>✅ 学生认证版</td>
+      </tr>
+      <tr>
+          <td>OpenCode Zen</td>
+          <td>✅ 免费可用</td>
+      </tr>
+      <tr>
+          <td>Z.ai Coding Plan</td>
+          <td>❌ 无</td>
+      </tr>
+      <tr>
+          <td>OpenCode Go</td>
+          <td>❌ 无</td>
+      </tr>
+      <tr>
+          <td>Kimi for Coding</td>
+          <td>❌ 无</td>
+      </tr>
+      <tr>
+          <td>Vercel AI Gateway</td>
+          <td>❌ 无</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>注意</strong>：AI 会提示 &ldquo;Without a Claude subscription, the Sisyphus agent might not work ideally&rdquo;，但 GitHub Copilot 会作为<strong>后备模型</strong>自动接管。</p>
+</blockquote>
+<p>确认订阅后，AI 自动执行安装命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">bunx</span> <span class="nb">oh-my</span><span class="n">-openagent</span> <span class="n">install</span> <span class="p">-</span><span class="n">-no-tui</span> <span class="p">\</span>
+</span></span><span class="line"><span class="cl">  <span class="p">-</span><span class="n">-claude</span><span class="p">=</span><span class="n">no</span> <span class="p">-</span><span class="n">-openai</span><span class="p">=</span><span class="n">no</span> <span class="p">-</span><span class="n">-gemini</span><span class="p">=</span><span class="n">no</span> <span class="p">\</span>
+</span></span><span class="line"><span class="cl">  <span class="p">-</span><span class="n">-copilot</span><span class="p">=</span><span class="n">yes</span> <span class="p">-</span><span class="n">-opencode-zen</span><span class="p">=</span><span class="n">yes</span> <span class="p">\</span>
+</span></span><span class="line"><span class="cl">  <span class="p">-</span><span class="n">-zai-coding-plan</span><span class="p">=</span><span class="n">no</span> <span class="p">-</span><span class="n">-opencode-go</span><span class="p">=</span><span class="n">no</span> <span class="p">\</span>
+</span></span><span class="line"><span class="cl">  <span class="p">-</span><span class="n">-kimi-for-coding</span><span class="p">=</span><span class="n">no</span> <span class="p">-</span><span class="n">-vercel-ai-gateway</span><span class="p">=</span><span class="n">no</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装成功的输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[1/4] Checking OpenCode installation...
+</span></span><span class="line"><span class="cl">[OK] OpenCode 1.14.39 detected
+</span></span><span class="line"><span class="cl">[2/4] Adding oh-my-openagent plugin...
+</span></span><span class="line"><span class="cl">[OK] Plugin added -&gt; C:\Users\&lt;用户名&gt;\.config\opencode\opencode.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装后的配置文件">安装后的配置文件
+</h3><p><strong>主配置文件</strong> <code>~/.config/opencode/opencode.json</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;plugin&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;oh-my-openagent@latest&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Agent 模型配置</strong> <code>~/.config/opencode/oh-my-openagent.json</code>：</p>
+<p>AI 自动根据 GitHub Copilot 订阅分配了模型：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Agent</th>
+          <th>分配的模型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Sisyphus（主智能体）</td>
+          <td><code>github-copilot/claude-opus-4.7</code></td>
+      </tr>
+      <tr>
+          <td>Oracle（先知）</td>
+          <td><code>github-copilot/gpt-5.5</code> (medium)</td>
+      </tr>
+      <tr>
+          <td>其余 Agent</td>
+          <td>自动选择 Copilot 可用模型</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="认证配置">认证配置
+</h3><p>安装完成后需要手动认证 GitHub Copilot：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">opencode</span> <span class="n">auth</span> <span class="n">login</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>交互步骤：</p>
+<ol>
+<li>上下键选择 <strong>GitHub Copilot</strong></li>
+<li>按回车确认</li>
+<li>浏览器自动打开，登录 GitHub 学生账号</li>
+<li>授权完成，终端显示认证成功</li>
+</ol>
+<h3 id="如何重新配置-agent-模型">如何重新配置 Agent 模型？
+</h3><p>有两种方式：</p>
+<p><strong>方式一：直接告诉 AI</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;把 Sisyphus 的模型改成 claude-sonnet-4.6&#34;
+</span></span><span class="line"><span class="cl">&#34;Oracle 用 gpt-5.5，Prometheus 用 gemini-3.1-pro&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>方式二：手动编辑配置文件</strong></p>
+<p>直接修改 <code>~/.config/opencode/oh-my-openagent.json</code> 中对应 agent 的 <code>model</code> 字段。</p>
+<h3 id="追加配置补上-opencode-zen-作为备选">追加配置：补上 OpenCode Zen 作为备选
+</h3><p>安装时遗漏了免费的 OpenCode Zen（<code>--opencode-zen=no</code>），后续在 OpenCode 新对话中直接让 AI 帮忙修正：</p>
+<blockquote>
+<p>&ldquo;其实我还有你免费的OpenCode Zen，但是我已经登录github copliot了，你帮我修改一下&rdquo;</p>
+</blockquote>
+<p>AI 的第一次尝试把 OpenCode Zen 设成了<strong>主力</strong>（<code>opencode/claude-opus-4-7</code>），GitHub Copilot 变成了备选。实际需求是反过来的：</p>
+<blockquote>
+<p>&ldquo;不是，是 GitHub Copilot 作为主力，OpenCode Zen 自带的免费模型作为备选&rdquo;</p>
+</blockquote>
+<p>AI 修正后，最终配置策略：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">主力模型: github-copilot/*     （已付费，优先使用）
+</span></span><span class="line"><span class="cl">备选模型: opencode/*           （免费额度，Copilot 不可用时自动切换）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>关键配置片段</strong>（以 Sisyphus 为例）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;sisyphus&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;github-copilot/claude-opus-4-7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;fallback_models&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;opencode/claude-opus-4-7&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;opencode/gpt-5.5&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>💡 <strong>经验</strong>：描述配置需求时，主次关系要说清楚——&ldquo;XX 作为主力，YY 作为备选&rdquo;，避免 AI 搞反。</p>
+</blockquote>
+<h3 id="使用提示">使用提示
+</h3><p>安装完成后，在终端输入 <code>opencode</code> 即可开始：</p>
+<ul>
+<li>在 prompt 中包含 <strong><code>ultrawork</code></strong> 或 <strong><code>ulw</code></strong> 触发自动并行处理</li>
+<li>按 <strong><code>Tab</code></strong> 进入 Prometheus（规划器）模式</li>
+<li>运行 <strong><code>/start-work</code></strong> 执行完整编排</li>
+</ul>
+<h3 id="踩坑记录">踩坑记录
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>问题</th>
+          <th>解决</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>doctor</code> 命令超时（30s）</td>
+          <td>部分检查可能挂起，加<code>--verbose</code> 排查，或跳过不影响使用</td>
+      </tr>
+      <tr>
+          <td>PowerShell 下<code>if</code> 语法报错</td>
+          <td>OpenCode 的 bash 命令在 PowerShell 下需转换语法</td>
+      </tr>
+      <tr>
+          <td>Sisyphus 非 Claude 模型性能下降</td>
+          <td>这是已知限制，有 Claude 订阅体验最佳</td>
+      </tr>
+      <tr>
+          <td>AI 把主力/备选模型搞反</td>
+          <td>描述需求时说清主次：&ldquo;XX 作为主力，YY 作为备选&rdquo;，不要只说&quot;帮我加上 YY&rdquo;</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="参考来源">参考来源
+</h2><ul>
+<li>视频教程：<a class="link" href="https://www.bilibili.com/video/BV1BVrXBUEbR/"  target="_blank" rel="noopener"
+    >OpenCode 详细攻略 - 技术爬爬虾</a></li>
+<li>Oh My OpenAgent 安装指南：<a class="link" href="https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md"  target="_blank" rel="noopener"
+    >GitHub</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 May 08, 2026 00:09 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/opencode-parallel-workflow-tips/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-parallel-workflow-tips/bannerImage.052d81651aef7951346921d53d1ad5c4_hu_4549084811f34791.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 新手进阶：并行调度与使用技巧全攻略"
+                        data-key="opencode-parallel-workflow-tips" 
+                        data-hash="md5-BS2BZRrveVE0aSHVPRrVxA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 新手进阶：并行调度与使用技巧全攻略</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/claude-code-deepseek-setup/">
+        
+        
+            <div class="article-image">
+                <img src="/p/claude-code-deepseek-setup/bannerImage.893eeb27eb74b1d32493c69de860e065_hu_3892b4af2012730d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 5分钟安装 Claude Code 并接入 DeepSeek"
+                        data-key="claude-code-deepseek-setup" 
+                        data-hash="md5-iT7rJ&#43;t0sdMkk8ad6GDgZQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">5分钟安装 Claude Code 并接入 DeepSeek</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/scoop/">
+        
+        
+            <div class="article-image">
+                <img src="/p/scoop/bannerImage.51bac46210d74eba3c67533f21792b1e_hu_6d0835db5c904ffd.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Scoop"
+                        
+                        data-hash="md5-UbrEYhDXTro8Z1M/IXkrHg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Scoop</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/computer-tools/">
+        
+        
+            <div class="article-image">
+                <img src="/p/computer-tools/bannerImage.8faf44e9da002bfa6806ad46d976010a_hu_8d0b92c2f364a09c.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Markdown"
+                        data-key="Computer Tools" 
+                        data-hash="md5-j69E6doAK/poBq1G2XYBCg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Markdown</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.5e6aeaaebb97d6a9e08e7d3b4bbe4dc3ce7ea0b2c7d2eed416957bcf6cbbd170.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<script defer src="https://cn.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 170px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.16) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.16) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(245, 245, 250, 0) 0%, rgba(245, 245, 250, 0.72) 100%);
+}
+
+html.at-page-bottom body::after {
+  opacity: 1;
+}
+
+html[data-scheme="dark"] body::after {
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.12) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.1) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(8, 12, 20, 0) 0%, rgba(8, 12, 20, 0.68) 100%);
+}
+</style>
+
+    </body>
+</html>

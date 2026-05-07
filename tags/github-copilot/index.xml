@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>GitHub-Copilot on Siborne</title>
+        <link>https://Siborne.top/tags/github-copilot/</link>
+        <description>Recent content in GitHub-Copilot on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 00:09:57 +0800</lastBuildDate><atom:link href="https://Siborne.top/tags/github-copilot/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法</title>
+        <link>https://Siborne.top/p/opencode-complete-guide/</link>
+        <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/p/opencode-complete-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/opencode-complete-guide/bannerImage.png" alt="Featured image of post OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法" /&gt;&lt;h2 id=&#34;核心要点概括&#34;&gt;核心要点概括
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenCode 定位&lt;/strong&gt;：开源版 Claude Code，具备几乎 Claude Code 的全部功能，中国用户友好，不限速不封号。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;免费模型&lt;/strong&gt;：开箱即用 GLM-4.7、MiniMax-2.1 等免费模型，零配置即可上手 AI 编程。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;顶级模型接入&lt;/strong&gt;：通过 Antigravity 插件免费接入 Gemini 3 Pro、Claude 4.5 Opus；通过 &lt;code&gt;/connect&lt;/code&gt; 接入 GPT Codex。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;杀手级功能&lt;/strong&gt;：Session 并行、Timeline 回退、Share 分享、Ultra Work 多智能体协作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;插件生态&lt;/strong&gt;：Oh My Open Code (OMO) 集成七大编程智能体 + 三大 MCP Server + 多种工具，实现 AI 编程团队协同。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;一什么是-opencode&#34;&gt;一、什么是 OpenCode？
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;OpenCode&lt;/strong&gt; 是近期热度最高的 AI 编程工具，本质上是一个&lt;strong&gt;开源版的 Claude Code&lt;/strong&gt;。它几乎复刻了 Claude Code 的所有核心功能，同时解决了 Claude Code 在中国用户中常见的限速、封号等痛点。&lt;/p&gt;
+&lt;h3 id=&#34;为什么选择-opencode&#34;&gt;为什么选择 OpenCode？
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;对比维度&lt;/th&gt;
+          &lt;th&gt;Claude Code&lt;/th&gt;
+          &lt;th&gt;OpenCode&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;开源&lt;/td&gt;
+          &lt;td&gt;❌ 闭源&lt;/td&gt;
+          &lt;td&gt;✅ 开源&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;免费模型&lt;/td&gt;
+          &lt;td&gt;❌ 需付费 API&lt;/td&gt;
+          &lt;td&gt;✅ 内置免费模型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中国用户友好&lt;/td&gt;
+          &lt;td&gt;⚠️ 限速/封号风险&lt;/td&gt;
+          &lt;td&gt;✅ 无限制&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Skills/MCP&lt;/td&gt;
+          &lt;td&gt;✅ 支持&lt;/td&gt;
+          &lt;td&gt;✅ 完全兼容&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Session 并行&lt;/td&gt;
+          &lt;td&gt;❌&lt;/td&gt;
+          &lt;td&gt;✅ 核心亮点&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;二四种安装形态&#34;&gt;二、四种安装形态
+&lt;/h2&gt;&lt;p&gt;OpenCode 提供四种运行方式，满足不同场景需求：&lt;/p&gt;
+&lt;h3 id=&#34;1-命令行版主力推荐&#34;&gt;1. 命令行版（主力推荐）
+&lt;/h3&gt;&lt;p&gt;最稳定、功能最全的使用方式。通过 npm 安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm i -g opencode-ai
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;opencode
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;前置条件&lt;/strong&gt;：需要安装 Node.js（前往 &lt;a class=&#34;link&#34; href=&#34;https://nodejs.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;nodejs.org&lt;/a&gt; 下载对应系统版本）。&lt;/p&gt;
+&lt;p&gt;安装完成后终端输入 &lt;code&gt;opencode&lt;/code&gt; 即可启动。&lt;/p&gt;
+&lt;h3 id=&#34;2-桌面客户端beta&#34;&gt;2. 桌面客户端（Beta）
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;从官网下载客户端，一路下一步安装&lt;/li&gt;
+&lt;li&gt;选择项目文件夹即可使用&lt;/li&gt;
+&lt;li&gt;⚠️ &lt;strong&gt;注意&lt;/strong&gt;：目前处于 Beta 测试阶段，bug 较多，暂不推荐作为主力工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-vs-code-插件版&#34;&gt;3. VS Code 插件版
+&lt;/h3&gt;&lt;p&gt;前提：已安装命令行版 OpenCode。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 VS Code 扩展商店搜索 &lt;strong&gt;OpenCode&lt;/strong&gt; 并安装&lt;/li&gt;
+&lt;li&gt;快捷键 &lt;code&gt;Ctrl + Shift + P&lt;/code&gt; → 输入 &lt;code&gt;open opencode&lt;/code&gt; 回车&lt;/li&gt;
+&lt;li&gt;插件会自动关联左侧窗口打开的代码文件&lt;/li&gt;
+&lt;li&gt;选中代码后按 &lt;code&gt;Ctrl + Alt + K&lt;/code&gt; 可快速粘贴到 OpenCode 聊天窗口&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;插件版的核心价值在于&lt;strong&gt;与 IDE 的无缝集成&lt;/strong&gt;，让 AI 直接感知你的代码上下文。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;4-云端运行环境github-actions&#34;&gt;4. 云端运行环境（GitHub Actions）
+&lt;/h3&gt;&lt;p&gt;在 GitHub 仓库的 Issue 中输入 &lt;code&gt;/opencode&lt;/code&gt; 即可触发云端 AI 工作流：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将项目上传到 GitHub 公开仓库&lt;/li&gt;
+&lt;li&gt;在仓库中配置 API Key（Settings → Secrets and Variables → Actions）&lt;/li&gt;
+&lt;li&gt;在 Issue 评论中输入 &lt;code&gt;/opencode&lt;/code&gt; + 需求描述&lt;/li&gt;
+&lt;li&gt;GitHub Actions 自动运行 OpenCode 工作流&lt;/li&gt;
+&lt;li&gt;完成后自动创建 Pull Request&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;非常适合开源项目的自动化 Issue 修复。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;三免费模型配置&#34;&gt;三、免费模型配置
+&lt;/h2&gt;&lt;p&gt;OpenCode 最大的优势是&lt;strong&gt;开箱即用的免费模型&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看所有可用模型（带 free 标记的即可免费使用）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/models
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;推荐免费模型：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;模型&lt;/th&gt;
+          &lt;th&gt;特点&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;GLM-4.7&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;编程能力强，零配置&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;MiniMax-2.1&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;编程能力出色，响应快&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;新手用这两个免费模型练习 AI 编程绰绰有余。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;接入顶级模型&#34;&gt;接入顶级模型
+&lt;/h3&gt;&lt;h4 id=&#34;方式一antigravity-插件免费接入-gemini--claude&#34;&gt;方式一：Antigravity 插件（免费接入 Gemini + Claude）
+&lt;/h4&gt;&lt;p&gt;Antigravity 是 Google 推出的 AI 编程 IDE，它慷慨地免费提供了 &lt;strong&gt;Gemini 3 Pro&lt;/strong&gt; 和 &lt;strong&gt;Claude 4.5 Opus&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;安装步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 OpenCode 中粘贴安装提示词（从 Antigravity GitHub 首页复制）&lt;/li&gt;
+&lt;li&gt;等待 AI 自动完成安装&lt;/li&gt;
+&lt;li&gt;打开新终端执行登录命令，选择 Google → Antigravity 登录&lt;/li&gt;
+&lt;li&gt;登录 Google 账户，粘贴生成的 URL&lt;/li&gt;
+&lt;li&gt;重启 OpenCode，&lt;code&gt;/models&lt;/code&gt; 即可看到 Gemini 3 Pro 和 Claude 4.5 Opus&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;方式二gpt-codexopenai-官方合作&#34;&gt;方式二：GPT Codex（OpenAI 官方合作）
+&lt;/h4&gt;&lt;p&gt;OpenAI 与 OpenCode 官宣合作，可直接接入 ChatGPT Codex：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/connect
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择 OpenAI → GPT Pro → 浏览器登录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;前提：需要有 &lt;strong&gt;ChatGPT Plus&lt;/strong&gt; 或以上订阅。&lt;/p&gt;
+&lt;h4 id=&#34;方式三openrouter万能接入&#34;&gt;方式三：OpenRouter（万能接入）
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/connect
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择 OpenRouter → 填写 API Key&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;通过 OpenRouter 可以接入市面上几乎&lt;strong&gt;所有大模型&lt;/strong&gt;，国内用户也能方便获取额度。OpenCode 支持 &lt;strong&gt;75 种 AI 接入方式&lt;/strong&gt;，几乎囊括所有模型供应商。&lt;/p&gt;
+&lt;h2 id=&#34;四核心功能亮点&#34;&gt;四、核心功能亮点
+&lt;/h2&gt;&lt;h3 id=&#34;1-反问式需求澄清&#34;&gt;1. 反问式需求澄清
+&lt;/h3&gt;&lt;p&gt;在动手编码之前，OpenCode 会&lt;strong&gt;反向询问&lt;/strong&gt;你一系列问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只需要代码样例，还是完整可运行的程序？&lt;/li&gt;
+&lt;li&gt;哪些功能是必须实现的？&lt;/li&gt;
+&lt;li&gt;调用哪个模型？&lt;/li&gt;
+&lt;li&gt;环境变量如何保存？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种&amp;quot;先问清楚再动手&amp;quot;的机制，大幅减少了返工。&lt;/p&gt;
+&lt;h3 id=&#34;2-命令行代码比对界面&#34;&gt;2. 命令行代码比对界面
+&lt;/h3&gt;&lt;p&gt;OpenCode 的命令行 diff 展示被认为是&lt;strong&gt;所有命令行编程工具中做得最好的&lt;/strong&gt;，代码变更一目了然。&lt;/p&gt;
+&lt;h3 id=&#34;3-session-并行处理-&#34;&gt;3. Session 并行处理 ⭐
+&lt;/h3&gt;&lt;p&gt;这是 OpenCode 最具特色的功能——&lt;strong&gt;多 Session 并行运行&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 发起第一个任务（如：增加计时器）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 任务执行中，创建新 session&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/new
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 发起第二个任务（如：画笔调色）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看所有 session 状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/sessions
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 在 session 间切换&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/session &amp;lt;id&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;打转符号表示 Session 正在&lt;strong&gt;后台运行&lt;/strong&gt;。两个需求可以完全并行开发，互不干扰。&lt;/p&gt;
+&lt;h3 id=&#34;4-timeline-检查点回退&#34;&gt;4. Timeline 检查点回退
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/timeline
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查看当前 Session 的完整对话记录。选择任意历史节点，使用 &lt;strong&gt;Revert&lt;/strong&gt; 功能将代码和聊天内容同时回退到该时间点，然后重新修改。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;相当于编程过程中的&amp;quot;时光机&amp;quot;，可以大胆尝试不同方案。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;5-share-分享&#34;&gt;5. Share 分享
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/share      &lt;span class=&#34;c1&#34;&gt;# 将对话记录分享为网页&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/unshare    &lt;span class=&#34;c1&#34;&gt;# 取消分享&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/export     &lt;span class=&#34;c1&#34;&gt;# 导出对话记录为文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;分享后生成一个网页链接，展示了完整的对话记录和代码修改过程，方便与他人协作或展示。&lt;/p&gt;
+&lt;h2 id=&#34;五skills-技能迁移&#34;&gt;五、Skills 技能迁移
+&lt;/h2&gt;&lt;p&gt;OpenCode &lt;strong&gt;完全兼容&lt;/strong&gt; Claude Code 的 Skills 目录结构，迁移成本极低：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Claude Code 的 Skills 目录结构&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.claude/skills/&amp;lt;skill-name&amp;gt;/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 迁移到 OpenCode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.opencode/skills/&amp;lt;skill-name&amp;gt;/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;操作步骤&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在项目根目录新建 &lt;code&gt;.opencode&lt;/code&gt; 文件夹&lt;/li&gt;
+&lt;li&gt;在 &lt;code&gt;.opencode&lt;/code&gt; 下新建 &lt;code&gt;skills&lt;/code&gt; 文件夹&lt;/li&gt;
+&lt;li&gt;将原 &lt;code&gt;.claude/skills/&lt;/code&gt; 下的技能文件夹直接复制过来&lt;/li&gt;
+&lt;li&gt;重启 OpenCode，AI 即可识别并调用这些 Skills&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;每个 Skill 就是一个&lt;strong&gt;带目录的说明书&lt;/strong&gt;，告诉 AI 如何完成特定领域的任务。&lt;/p&gt;
+&lt;h2 id=&#34;六mcp-配置&#34;&gt;六、MCP 配置
+&lt;/h2&gt;&lt;p&gt;OpenCode 支持两种 MCP（Model Context Protocol）模式：&lt;/p&gt;
+&lt;h3 id=&#34;本地-mcplocal&#34;&gt;本地 MCP（Local）
+&lt;/h3&gt;&lt;p&gt;通过本地命令执行，以 Shed-CN 为例：&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;~/.config/opencode/opencode.json&lt;/code&gt; 中配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;mcpServers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;shed-cn&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;local&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;npx&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;args&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;shed-cn&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;enabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;远程-mcpremote&#34;&gt;远程 MCP（Remote）
+&lt;/h3&gt;&lt;p&gt;通过 URL 远程调用，以 Context7 为例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;mcpServers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;context7&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;remote&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://context7-mcp-server-url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;headers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;#34;Authorization&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Bearer &amp;lt;your-api-key&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;enabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;配置完成后重启 OpenCode，输入 &lt;code&gt;/mcp&lt;/code&gt; 即可查看已配置的 MCP Server。&lt;/p&gt;
+&lt;h2 id=&#34;七oh-my-open-code-omo-超强插件-&#34;&gt;七、Oh My Open Code (OMO) 超强插件 ⭐
+&lt;/h2&gt;&lt;p&gt;OMO 是 OpenCode 上最火的编程插件，本质上是 &lt;strong&gt;工具 + MCP + 编程 Agent 的组合捆绑包&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;七大编程智能体&#34;&gt;七大编程智能体
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;智能体&lt;/th&gt;
+          &lt;th&gt;角色&lt;/th&gt;
+          &lt;th&gt;推荐模型&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;西西弗斯 (Sisyphus)&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;主智能体，规划与调度&lt;/td&gt;
+          &lt;td&gt;Claude 4.5 Opus / GPT 5.2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;先知 (Prophet)&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;架构设计、代码评审&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;图书管理员 (Librarian)&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;查阅文献、文档检索&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;探索者 (Explorer)&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;网络搜索&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;前端工程师&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;前端开发&lt;/td&gt;
+          &lt;td&gt;Gemini 3 Pro&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;文档编写者&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;文档生成&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;多模态&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;图片/PDF 理解&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;每个智能体都分配了最适合其工作的大模型，据作者称耗费了 &lt;strong&gt;24,000 美元的 Token&lt;/strong&gt; 才找到最佳组合。&lt;/p&gt;
+&lt;h3 id=&#34;三大-mcp-server&#34;&gt;三大 MCP Server
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Web Search&lt;/strong&gt;：网络搜索&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context7&lt;/strong&gt;：获取最新技术文档&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grep App&lt;/strong&gt;：GitHub 仓库快速代码搜索&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;集成工具&#34;&gt;集成工具
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LSP 高级版&lt;/strong&gt;：通过编程语言的语法和语义帮助 AI 快速定位代码&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AST 工具&lt;/strong&gt;：通过代码语法树进行关联搜索&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LOC 工具&lt;/strong&gt;：借助多模态视觉能力理解图片、PDF&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delegate Task / Background Task&lt;/strong&gt;：Agent 任务分配和后台调度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安装与使用&#34;&gt;安装与使用
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;从 &lt;a class=&#34;link&#34; href=&#34;https://github.com/code-yeongyu/oh-my-openagent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OMO GitHub&lt;/a&gt;首页复制 &lt;code&gt;install&lt;/code&gt; 开头的提示词&lt;/li&gt;
+&lt;li&gt;粘贴到 OpenCode 中，回答配置问题（订阅情况等）&lt;/li&gt;
+&lt;li&gt;自动完成安装&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;配置文件位置：&lt;code&gt;C:\Users\&amp;lt;用户名&amp;gt;\.config\opencode\oh-my-opencode.json&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;两种核心用法&#34;&gt;两种核心用法
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;① @ 指定智能体&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@前端工程师 帮我优化这个页面的响应式布局
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;② Ultra Work 模式&lt;/strong&gt;（魔法词 &lt;code&gt;ULW&lt;/code&gt;）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ULW 帮我创建一个宠物商店应用
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Ultra Work 模式下，西西弗斯作为主智能体会：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将任务拆解成 Todo List&lt;/li&gt;
+&lt;li&gt;同时开启多个后台任务并行执行&lt;/li&gt;
+&lt;li&gt;居中调度各个智能体协同工作&lt;/li&gt;
+&lt;li&gt;最终交付完整项目&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ralph-loop-循环模式&#34;&gt;Ralph Loop 循环模式
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/ralph-loop
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;强制 AI 长时间循环工作，适合极难任务。例如：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;使用 Spring Boot 4 最新标准重构整个项目，直到所有测试用例通过&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;可以连续运行数小时直到任务完成。&lt;/p&gt;
+&lt;h2 id=&#34;八其他实用功能&#34;&gt;八、其他实用功能
+&lt;/h2&gt;&lt;h3 id=&#34;init--项目知识初始化&#34;&gt;/init — 项目知识初始化
+&lt;/h3&gt;&lt;p&gt;让 AI 通读整个项目文件夹，生成 &lt;code&gt;agents.md&lt;/code&gt; 文件作为系统提示词，帮助 AI 快速了解项目。&lt;/p&gt;
+&lt;h3 id=&#34;compact--上下文压缩&#34;&gt;/compact — 上下文压缩
+&lt;/h3&gt;&lt;p&gt;将之前的对话提炼为简洁摘要，释放模型上下文窗口，避免 Token 超限。&lt;/p&gt;
+&lt;h3 id=&#34;自定义命令&#34;&gt;自定义命令
+&lt;/h3&gt;&lt;p&gt;在 &lt;code&gt;~/.config/opencode/commands/&lt;/code&gt; 下创建 &lt;code&gt;.md&lt;/code&gt; 文件定义自定义命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# 运行测试
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;模式：build
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;命令：npm test
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;描述：运行项目的全部测试用例
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用：&lt;code&gt;/运行测试&lt;/code&gt; 即可触发。&lt;/p&gt;
+&lt;h3 id=&#34;自定义智能体&#34;&gt;自定义智能体
+&lt;/h3&gt;&lt;p&gt;在 &lt;code&gt;~/.config/opencode/agents/&lt;/code&gt; 下创建 &lt;code&gt;.md&lt;/code&gt; 文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# Code Review Agent
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;类型：subagent
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;模型：claude-4.5-opus
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;描述：专门负责代码审查，检查代码质量、安全漏洞和最佳实践。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Primary Agent&lt;/strong&gt;：按 Tab 键切换，在对话中直接使用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sub Agent&lt;/strong&gt;：由主智能体在后台自动调度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;九总结与推荐&#34;&gt;九、总结与推荐
+&lt;/h2&gt;&lt;h3 id=&#34;适用场景&#34;&gt;适用场景
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;场景&lt;/th&gt;
+          &lt;th&gt;推荐度&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;新手入门 AI 编程&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;免费模型零成本上手&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;日常开发辅助&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;Session 并行 + Timeline 回退&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;复杂项目开发&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;OMO 插件多智能体协作&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;开源项目维护&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;GitHub Actions 云端自动化&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;练习 Skills/MCP&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;完全兼容 Claude Code 生态&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;推荐配置路线&#34;&gt;推荐配置路线
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;入门&lt;/strong&gt; → 命令行安装 + 内置免费模型&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;进阶&lt;/strong&gt; → 配置 Antigravity 接入 Gemini/Claude&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高效&lt;/strong&gt; → 配置 Skills + MCP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;极限&lt;/strong&gt; → 安装 OMO 插件，开启 Ultra Work 模式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;OpenCode 打破了 AI 编程工具的高门槛，让每个人都能以零成本开始探索 AI 辅助编程的无限可能。特别对于中国用户，不再需要担心限速和封号，可以&amp;quot;随便造、随便玩&amp;quot;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;十实战记录安装-oh-my-openagent原-omo&#34;&gt;十、实战记录：安装 Oh My OpenAgent（原 OMO）
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;以下是笔者亲测安装 &lt;strong&gt;Oh My OpenAgent&lt;/strong&gt;（原 Oh My Open Code）的完整对话记录，环境为 Windows + PowerShell。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;环境检查&#34;&gt;环境检查
+&lt;/h3&gt;&lt;p&gt;首先确认 OpenCode 已安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;opencode&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 输出: 1.14.39&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;安装过程&#34;&gt;安装过程
+&lt;/h3&gt;&lt;p&gt;在 OpenCode 对话中直接告诉 AI：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Install and configure oh-my-openagent by following the instructions here:
+&lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md%22&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md&#34;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 会先询问你拥有的模型订阅情况：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;订阅&lt;/th&gt;
+          &lt;th&gt;我的情况&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Claude Pro/Max&lt;/td&gt;
+          &lt;td&gt;❌ 无&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;OpenAI / ChatGPT Plus&lt;/td&gt;
+          &lt;td&gt;❌ 无&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Gemini&lt;/td&gt;
+          &lt;td&gt;❌ 无&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GitHub Copilot&lt;/td&gt;
+          &lt;td&gt;✅ 学生认证版&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;OpenCode Zen&lt;/td&gt;
+          &lt;td&gt;✅ 免费可用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Z.ai Coding Plan&lt;/td&gt;
+          &lt;td&gt;❌ 无&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;OpenCode Go&lt;/td&gt;
+          &lt;td&gt;❌ 无&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Kimi for Coding&lt;/td&gt;
+          &lt;td&gt;❌ 无&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Vercel AI Gateway&lt;/td&gt;
+          &lt;td&gt;❌ 无&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;注意&lt;/strong&gt;：AI 会提示 &amp;ldquo;Without a Claude subscription, the Sisyphus agent might not work ideally&amp;rdquo;，但 GitHub Copilot 会作为&lt;strong&gt;后备模型&lt;/strong&gt;自动接管。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;确认订阅后，AI 自动执行安装命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;bunx&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;oh-my&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-openagent&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-no-tui&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-claude&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-openai&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-gemini&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-copilot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-opencode-zen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-zai-coding-plan&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-opencode-go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-kimi-for-coding&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-vercel-ai-gateway&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;安装成功的输出：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[1/4] Checking OpenCode installation...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[OK] OpenCode 1.14.39 detected
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[2/4] Adding oh-my-openagent plugin...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[OK] Plugin added -&amp;gt; C:\Users\&amp;lt;用户名&amp;gt;\.config\opencode\opencode.json
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;安装后的配置文件&#34;&gt;安装后的配置文件
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;主配置文件&lt;/strong&gt; &lt;code&gt;~/.config/opencode/opencode.json&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;plugin&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;oh-my-openagent@latest&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Agent 模型配置&lt;/strong&gt; &lt;code&gt;~/.config/opencode/oh-my-openagent.json&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;AI 自动根据 GitHub Copilot 订阅分配了模型：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Agent&lt;/th&gt;
+          &lt;th&gt;分配的模型&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Sisyphus（主智能体）&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;github-copilot/claude-opus-4.7&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Oracle（先知）&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;github-copilot/gpt-5.5&lt;/code&gt; (medium)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;其余 Agent&lt;/td&gt;
+          &lt;td&gt;自动选择 Copilot 可用模型&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;认证配置&#34;&gt;认证配置
+&lt;/h3&gt;&lt;p&gt;安装完成后需要手动认证 GitHub Copilot：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;opencode&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;auth&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;login&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;交互步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;上下键选择 &lt;strong&gt;GitHub Copilot&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;按回车确认&lt;/li&gt;
+&lt;li&gt;浏览器自动打开，登录 GitHub 学生账号&lt;/li&gt;
+&lt;li&gt;授权完成，终端显示认证成功&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;如何重新配置-agent-模型&#34;&gt;如何重新配置 Agent 模型？
+&lt;/h3&gt;&lt;p&gt;有两种方式：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方式一：直接告诉 AI&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;把 Sisyphus 的模型改成 claude-sonnet-4.6&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;Oracle 用 gpt-5.5，Prometheus 用 gemini-3.1-pro&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;方式二：手动编辑配置文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;直接修改 &lt;code&gt;~/.config/opencode/oh-my-openagent.json&lt;/code&gt; 中对应 agent 的 &lt;code&gt;model&lt;/code&gt; 字段。&lt;/p&gt;
+&lt;h3 id=&#34;追加配置补上-opencode-zen-作为备选&#34;&gt;追加配置：补上 OpenCode Zen 作为备选
+&lt;/h3&gt;&lt;p&gt;安装时遗漏了免费的 OpenCode Zen（&lt;code&gt;--opencode-zen=no&lt;/code&gt;），后续在 OpenCode 新对话中直接让 AI 帮忙修正：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;其实我还有你免费的OpenCode Zen，但是我已经登录github copliot了，你帮我修改一下&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 的第一次尝试把 OpenCode Zen 设成了&lt;strong&gt;主力&lt;/strong&gt;（&lt;code&gt;opencode/claude-opus-4-7&lt;/code&gt;），GitHub Copilot 变成了备选。实际需求是反过来的：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;不是，是 GitHub Copilot 作为主力，OpenCode Zen 自带的免费模型作为备选&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 修正后，最终配置策略：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;主力模型: github-copilot/*     （已付费，优先使用）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;备选模型: opencode/*           （免费额度，Copilot 不可用时自动切换）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;关键配置片段&lt;/strong&gt;（以 Sisyphus 为例）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;sisyphus&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;model&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;github-copilot/claude-opus-4-7&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;fallback_models&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;&amp;#34;model&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;opencode/claude-opus-4-7&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;&amp;#34;model&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;opencode/gpt-5.5&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;经验&lt;/strong&gt;：描述配置需求时，主次关系要说清楚——&amp;ldquo;XX 作为主力，YY 作为备选&amp;rdquo;，避免 AI 搞反。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;使用提示&#34;&gt;使用提示
+&lt;/h3&gt;&lt;p&gt;安装完成后，在终端输入 &lt;code&gt;opencode&lt;/code&gt; 即可开始：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在 prompt 中包含 &lt;strong&gt;&lt;code&gt;ultrawork&lt;/code&gt;&lt;/strong&gt; 或 &lt;strong&gt;&lt;code&gt;ulw&lt;/code&gt;&lt;/strong&gt; 触发自动并行处理&lt;/li&gt;
+&lt;li&gt;按 &lt;strong&gt;&lt;code&gt;Tab&lt;/code&gt;&lt;/strong&gt; 进入 Prometheus（规划器）模式&lt;/li&gt;
+&lt;li&gt;运行 &lt;strong&gt;&lt;code&gt;/start-work&lt;/code&gt;&lt;/strong&gt; 执行完整编排&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;踩坑记录&#34;&gt;踩坑记录
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;问题&lt;/th&gt;
+          &lt;th&gt;解决&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;doctor&lt;/code&gt; 命令超时（30s）&lt;/td&gt;
+          &lt;td&gt;部分检查可能挂起，加&lt;code&gt;--verbose&lt;/code&gt; 排查，或跳过不影响使用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;PowerShell 下&lt;code&gt;if&lt;/code&gt; 语法报错&lt;/td&gt;
+          &lt;td&gt;OpenCode 的 bash 命令在 PowerShell 下需转换语法&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Sisyphus 非 Claude 模型性能下降&lt;/td&gt;
+          &lt;td&gt;这是已知限制，有 Claude 订阅体验最佳&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AI 把主力/备选模型搞反&lt;/td&gt;
+          &lt;td&gt;描述需求时说清主次：&amp;ldquo;XX 作为主力，YY 作为备选&amp;rdquo;，不要只说&amp;quot;帮我加上 YY&amp;rdquo;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;参考来源&#34;&gt;参考来源
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;视频教程：&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1BVrXBUEbR/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OpenCode 详细攻略 - 技术爬爬虾&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Oh My OpenAgent 安装指南：&lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

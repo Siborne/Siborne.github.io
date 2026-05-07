@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Master OpenCode's killer features: Session parallel processing, Ultra Work multi-agent collaboration, Timeline rollback, and Ralph Loop — doubling your AI coding efficiency.">
+<title>OpenCode Advanced Tips: Parallel Scheduling and Workflow Mastery</title>
+
+<link rel='canonical' href='https://Siborne.top/en/p/opencode-parallel-workflow-tips/'>
+
+<link rel="stylesheet" href="/scss/style.min.266c2d3f4822631b105b97664a103c3737ee3a439c2ce01b7142501e9591e1df.css"><meta property='og:title' content="OpenCode Advanced Tips: Parallel Scheduling and Workflow Mastery">
+<meta property='og:description' content="Master OpenCode's killer features: Session parallel processing, Ultra Work multi-agent collaboration, Timeline rollback, and Ralph Loop — doubling your AI coding efficiency.">
+<meta property='og:url' content='https://Siborne.top/en/p/opencode-parallel-workflow-tips/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI编程' /><meta property='article:tag' content='OpenCode' /><meta property='article:tag' content='使用技巧' /><meta property='article:tag' content='新手教程' /><meta property='article:published_time' content='2026-05-07T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-08T00:09:57&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/opencode-parallel-workflow-tips/bannerImage.png' />
+<meta name="twitter:title" content="OpenCode Advanced Tips: Parallel Scheduling and Workflow Mastery">
+<meta name="twitter:description" content="Master OpenCode's killer features: Session parallel processing, Ultra Work multi-agent collaboration, Timeline rollback, and Ralph Loop — doubling your AI coding efficiency."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.top/p/opencode-parallel-workflow-tips/bannerImage.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; Enthusiast
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent Architect &amp; Full-Stack Dev
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 Curious Student · Future Builder
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    Building intelligent agents &#43; scalable apps. Blending creativity with AI efficiency. 🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" selected>English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#key-highlights">Key Highlights</a></li>
+    <li><a href="#1-session-parallel-let-ai-do-multiple-things-at-once">1. Session Parallel: Let AI Do Multiple Things at Once</a>
+      <ol>
+        <li><a href="#basic-operations">Basic Operations</a></li>
+        <li><a href="#real-world-scenario">Real-World Scenario</a></li>
+        <li><a href="#important-notes">Important Notes</a></li>
+      </ol>
+    </li>
+    <li><a href="#2-ultra-work-summon-an-ai-coding-team-with-one-word">2. Ultra Work: Summon an AI Coding Team with One Word</a>
+      <ol>
+        <li><a href="#how-to-trigger">How to Trigger</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#when-to-use-it">When to Use It?</a></li>
+        <li><a href="#real-results">Real Results</a></li>
+      </ol>
+    </li>
+    <li><a href="#3--mention-agents-let-specialists-do-specialist-work">3. @-mention Agents: Let Specialists Do Specialist Work</a>
+      <ol>
+        <li><a href="#agent-capability-table">Agent Capability Table</a></li>
+        <li><a href="#usage-examples">Usage Examples</a></li>
+        <li><a href="#switching-the-main-agent">Switching the Main Agent</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-timeline-time-machine-experiment-fearlessly-roll-back-anytime">4. Timeline Time Machine: Experiment Fearlessly, Roll Back Anytime</a>
+      <ol>
+        <li><a href="#basic-usage">Basic Usage</a></li>
+        <li><a href="#real-world-scenario-1">Real-World Scenario</a></li>
+        <li><a href="#pro-tips">Pro Tips</a></li>
+      </ol>
+    </li>
+    <li><a href="#5-ralph-loop-make-the-ai-push-through-to-the-end">5. Ralph Loop: Make the AI Push Through to the End</a>
+      <ol>
+        <li><a href="#use-cases">Use Cases</a></li>
+        <li><a href="#compared-to-ultra-work">Compared to Ultra Work</a></li>
+      </ol>
+    </li>
+    <li><a href="#6-daily-efficiency-tips">6. Daily Efficiency Tips</a>
+      <ol>
+        <li><a href="#1-use-compact-to-save-context">1. Use <code>/compact</code> to Save Context</a></li>
+        <li><a href="#2-use-init-to-help-ai-quickly-get-up-to-speed-on-a-new-project">2. Use <code>/init</code> to Help AI Quickly Get Up to Speed on a New Project</a></li>
+        <li><a href="#3-share-your-coding-process">3. Share Your Coding Process</a></li>
+        <li><a href="#4-view-available-models">4. View Available Models</a></li>
+        <li><a href="#5-quick-code-paste-vs-code-extension">5. Quick Code Paste (VS Code Extension)</a></li>
+      </ol>
+    </li>
+    <li><a href="#7-recommended-beginner-workflow">7. Recommended Beginner Workflow</a>
+      <ol>
+        <li><a href="#in-one-sentence">In One Sentence</a></li>
+      </ol>
+    </li>
+    <li><a href="#8-a-real-world-case">8. A Real-World Case</a></li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/en/p/opencode-parallel-workflow-tips/">
+                <img src="/p/opencode-parallel-workflow-tips/bannerImage_hu_29eeb452e2472ec8.png"
+                        srcset="/p/opencode-parallel-workflow-tips/bannerImage_hu_29eeb452e2472ec8.png 800w, /p/opencode-parallel-workflow-tips/bannerImage_hu_a6869ccc67cfc5ce.png 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode Advanced Tips: Parallel Scheduling and Workflow Mastery" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/opencode-parallel-workflow-tips/">OpenCode Advanced Tips: Parallel Scheduling and Workflow Mastery</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-07T00:00:00Z'>2026-05-07</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 08, 2026 00:09 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                1742字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        Master OpenCode&#39;s killer features: Session parallel processing, Ultra Work multi-agent collaboration, Timeline rollback, and Ralph Loop — doubling your AI coding efficiency.
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/en/categories/computer-tools/" >
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/opencode-parallel-workflow-tips/" class="link">简体中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="key-highlights">Key Highlights
+</h2><ul>
+<li><strong>Session Parallel</strong>: OpenCode&rsquo;s killer feature — run multiple tasks simultaneously without interference, doubling efficiency.</li>
+<li><strong>Ultra Work Mode</strong>: Type <code>ULW</code> and the main agent automatically breaks down tasks and dispatches multiple sub-agents to work in parallel.</li>
+<li><strong>@-mention Agents</strong>: Assign the frontend specialist to frontend work and the architect to code reviews — the right person for the right job.</li>
+<li><strong>Timeline Time Machine</strong>: Roll back to any historical checkpoint at any time, making bold experimentation cost-free.</li>
+<li><strong>Ralph Loop</strong>: Let the AI work in a continuous loop for hours to tackle extremely difficult tasks.</li>
+</ul>
+<h2 id="1-session-parallel-let-ai-do-multiple-things-at-once">1. Session Parallel: Let AI Do Multiple Things at Once
+</h2><p>This is OpenCode&rsquo;s <strong>biggest differentiating advantage</strong> over other AI programming tools. Traditional tools are serial — you must finish one task before starting the next. OpenCode can run multiple Sessions simultaneously without interference.</p>
+<h3 id="basic-operations">Basic Operations
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Currently running Task A, want to start Task B at the same time</span>
+</span></span><span class="line"><span class="cl">/new                          <span class="c1"># Create a new Session</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enter Task B&#39;s requirements in the new Session</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Both Sessions run in the background simultaneously</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check the status of all Sessions</span>
+</span></span><span class="line"><span class="cl">/sessions                     <span class="c1"># Spinning symbol = currently running</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Switch to a specific Session</span>
+</span></span><span class="line"><span class="cl">/session &lt;id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Go back to the previous Session</span>
+</span></span><span class="line"><span class="cl">/session prev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="real-world-scenario">Real-World Scenario
+</h3><p>Suppose you&rsquo;re building a &ldquo;Draw and Guess&rdquo; mini-game with two independent requirements:</p>
+<blockquote>
+<p><strong>Requirement A</strong>: Add a timer — start counting on first stroke, game over if exceeding 20 seconds
+<strong>Requirement B</strong>: Allow the brush color to be adjustable</p>
+</blockquote>
+<p><strong>Traditional approach</strong>: Finish A first, then start B → Requirement B sits idle for 5–10 minutes.</p>
+<p><strong>OpenCode approach</strong>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. Enter Requirement A, AI starts working
+</span></span><span class="line"><span class="cl">2. Type /new to create a new Session
+</span></span><span class="line"><span class="cl">3. Enter Requirement B, AI starts working
+</span></span><span class="line"><span class="cl">4. Type /sessions to check progress — both are running ↓
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Session 1  ◐  Adding timer logic...
+</span></span><span class="line"><span class="cl">Session 2  ◐  Adding color picker...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Both requirements are developed entirely in parallel, compressing total time from 15 minutes to 8 minutes.</p>
+<h3 id="important-notes">Important Notes
+</h3><ul>
+<li>Sessions are <strong>fully isolated</strong> from each other; modifying the same file may cause conflicts, so assign them to different modules</li>
+<li>Background Sessions won&rsquo;t automatically notify you when done — you need to manually check with <code>/sessions</code></li>
+<li>You can always <code>/new</code> a third, fourth session&hellip; there&rsquo;s no limit</li>
+</ul>
+<h2 id="2-ultra-work-summon-an-ai-coding-team-with-one-word">2. Ultra Work: Summon an AI Coding Team with One Word
+</h2><p>If Session Parallel is &ldquo;manual transmission&rdquo;, Ultra Work is &ldquo;full self-driving&rdquo;. Type a magic word and the AI automatically breaks down tasks, assigns them to the most suitable agents, and executes them in parallel.</p>
+<h3 id="how-to-trigger">How to Trigger
+</h3><p>Include any of the following keywords in your prompt:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ULW
+</span></span><span class="line"><span class="cl">ultrawork
+</span></span><span class="line"><span class="cl">Ultra Work
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="how-it-works">How It Works
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Your Request: Build me a pet store website
+</span></span><span class="line"><span class="cl">        │
+</span></span><span class="line"><span class="cl">        ▼
+</span></span><span class="line"><span class="cl">  ┌─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">  │  Sisyphus (Main Agent)           │
+</span></span><span class="line"><span class="cl">  │  1. Break down tasks → Todo List │
+</span></span><span class="line"><span class="cl">  │  2. Assign sub-tasks             │
+</span></span><span class="line"><span class="cl">  └──────┬──────────┬───────────────┘
+</span></span><span class="line"><span class="cl">         │          │
+</span></span><span class="line"><span class="cl">    ┌────▼─────┐ ┌──▼──────┐ ┌──────▼──────────┐
+</span></span><span class="line"><span class="cl">    │ Prophet   │ │ Frontend │ │ Documentation    │
+</span></span><span class="line"><span class="cl">    │ Architecture│ │ UI Dev   │ │ Writer (README)  │
+</span></span><span class="line"><span class="cl">    └──────────┘ └─────────┘ └─────────────────┘
+</span></span><span class="line"><span class="cl">         │          │            │
+</span></span><span class="line"><span class="cl">         └──────────┴────────────┘
+</span></span><span class="line"><span class="cl">                    │
+</span></span><span class="line"><span class="cl">                    ▼
+</span></span><span class="line"><span class="cl">          Complete Project Delivery
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="when-to-use-it">When to Use It?
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Scenario</th>
+          <th>Suitable</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Creating a complete project from scratch</td>
+          <td>✅ Excellent</td>
+          <td>Auto-splits frontend, backend, and docs</td>
+      </tr>
+      <tr>
+          <td>Multi-module parallel development</td>
+          <td>✅ Excellent</td>
+          <td>Clear division of work among agents</td>
+      </tr>
+      <tr>
+          <td>Small single-file edits</td>
+          <td>❌ Not recommended</td>
+          <td>Using a sledgehammer to crack a nut — slower</td>
+      </tr>
+      <tr>
+          <td>Simple bug fixes</td>
+          <td>❌ Not recommended</td>
+          <td>A normal conversation is faster</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>💡 <strong>Tip</strong>: The higher the complexity, the greater Ultra Work&rsquo;s value. For simple tasks, the scheduling overhead actually makes it slower.</p>
+</blockquote>
+<h3 id="real-results">Real Results
+</h3><p>A pet store website was created using Ultra Work mode:</p>
+<ul>
+<li>Todo List automatically generated</li>
+<li>3 background tasks started simultaneously</li>
+<li>Emoji used as decoration in the absence of any image assets</li>
+<li>Clean interface, smooth interactions, and complete animations</li>
+</ul>
+<h2 id="3--mention-agents-let-specialists-do-specialist-work">3. @-mention Agents: Let Specialists Do Specialist Work
+</h2><p>After installing Oh My OpenAgent (OMO), you have an AI coding team. Use <code>@</code> to call on a specific agent by name.</p>
+<h3 id="agent-capability-table">Agent Capability Table
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Agent</th>
+          <th>Specialty</th>
+          <th>Best Model</th>
+          <th>Example Usage</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Sisyphus</strong></td>
+          <td>Planning &amp; task scheduling</td>
+          <td>Claude Opus</td>
+          <td>Complex multi-step tasks</td>
+      </tr>
+      <tr>
+          <td><strong>Prophet</strong></td>
+          <td>Architecture design &amp; code review</td>
+          <td>GPT 5.5</td>
+          <td>Project structure design</td>
+      </tr>
+      <tr>
+          <td><strong>Frontend Engineer</strong></td>
+          <td>UI development &amp; page layout</td>
+          <td>Gemini 3 Pro</td>
+          <td>Responsive layout optimization</td>
+      </tr>
+      <tr>
+          <td><strong>Explorer</strong></td>
+          <td>Web search &amp; research</td>
+          <td>MiniMax</td>
+          <td>Look up latest API docs</td>
+      </tr>
+      <tr>
+          <td><strong>Librarian</strong></td>
+          <td>Literature review &amp; doc retrieval</td>
+          <td>—</td>
+          <td>Navigate open-source codebases</td>
+      </tr>
+      <tr>
+          <td><strong>Documentation Writer</strong></td>
+          <td>README &amp; comment generation</td>
+          <td>—</td>
+          <td>Generate project documentation</td>
+      </tr>
+      <tr>
+          <td><strong>Multimodal</strong></td>
+          <td>Image/PDF understanding</td>
+          <td>—</td>
+          <td>Write code from design mockups</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="usage-examples">Usage Examples
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@Frontend Engineer Convert this login page to a responsive layout — make it look good on mobile too
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@Prophet Review the code in the src/service/ directory and identify potential performance issues
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@Explorer Look up the latest usage patterns for React 19 Server Components
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@Documentation Writer Generate a complete API documentation for the entire project
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="switching-the-main-agent">Switching the Main Agent
+</h3><p>Press <strong>Tab</strong> to switch the main agent for the current conversation, useful when working with a specific role for extended periods.</p>
+<h2 id="4-timeline-time-machine-experiment-fearlessly-roll-back-anytime">4. Timeline Time Machine: Experiment Fearlessly, Roll Back Anytime
+</h2><p>What&rsquo;s the scariest thing in programming? Changing a ton of code only to realize you went in the wrong direction — and now you can&rsquo;t go back. Timeline is your undo button.</p>
+<h3 id="basic-usage">Basic Usage
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/timeline
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This lists <strong>every conversation step</strong> in the current Session. Select any checkpoint:</p>
+<ul>
+<li><strong>Revert</strong>: Both code and chat content roll back to that checkpoint — as if nothing happened</li>
+<li><strong>View</strong>: See what changes the AI made at that point</li>
+</ul>
+<h3 id="real-world-scenario-1">Real-World Scenario
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. You asked the AI to refactor a module → the result is unsatisfactory
+</span></span><span class="line"><span class="cl">2. /timeline → select the checkpoint before the refactor → Revert
+</span></span><span class="line"><span class="cl">3. Code returns to pre-refactor state, try a different approach
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="pro-tips">Pro Tips
+</h3><ul>
+<li>After completing a milestone, mentally note that checkpoint (which conversation number)</li>
+<li>Boldly try radical approaches — you can always one-click roll back</li>
+<li>Compare two solutions: Revert to Solution A → review → Revert to Solution B → compare</li>
+</ul>
+<blockquote>
+<p>🕐 This is the programming equivalent of &ldquo;save/load game&rdquo;, allowing you to fearlessly explore any possibility.</p>
+</blockquote>
+<h2 id="5-ralph-loop-make-the-ai-push-through-to-the-end">5. Ralph Loop: Make the AI Push Through to the End
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/ralph-loop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This mode makes the AI <strong>continuously loop</strong> until the task is truly complete. Perfect for tough nuts that require repeated iteration.</p>
+<h3 id="use-cases">Use Cases
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;Refactor the entire project using the latest Spring Boot 4 standards until all test cases pass&#34;
+</span></span><span class="line"><span class="cl">&#34;Check every file under src/ for coding standard violations and fix each one&#34;
+</span></span><span class="line"><span class="cl">&#34;Add comprehensive unit tests to the project until coverage reaches 90%&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="compared-to-ultra-work">Compared to Ultra Work
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Ultra Work</th>
+          <th>Ralph Loop</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Mechanism</td>
+          <td>Parallel decomposition, multi-agent</td>
+          <td>Serial loop, continuous iteration</td>
+      </tr>
+      <tr>
+          <td>Best for</td>
+          <td>Building from scratch, multi-module</td>
+          <td>Refactoring, fixing, compliance tasks</td>
+      </tr>
+      <tr>
+          <td>Duration</td>
+          <td>Minutes to tens of minutes</td>
+          <td>Potentially hours</td>
+      </tr>
+      <tr>
+          <td>Endpoint</td>
+          <td>Task decomposition complete</td>
+          <td>Termination condition met</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>⚠️ Ralph Loop may run for a very long time — keep an eye on your API credit consumption.</p>
+</blockquote>
+<h2 id="6-daily-efficiency-tips">6. Daily Efficiency Tips
+</h2><h3 id="1-use-compact-to-save-context">1. Use <code>/compact</code> to Save Context
+</h3><p>When you&rsquo;ve been chatting with the AI for many rounds and the context window is nearly full:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/compact
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The AI condenses previous conversations into a summary, freeing up space to continue working. No need to start a new conversation and lose context.</p>
+<h3 id="2-use-init-to-help-ai-quickly-get-up-to-speed-on-a-new-project">2. Use <code>/init</code> to Help AI Quickly Get Up to Speed on a New Project
+</h3><p>When entering a new project, let the AI read through the code first:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/init
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The AI scans the entire project and generates <code>agents.md</code> as a system prompt. All subsequent conversations will be based on this understanding, greatly improving efficiency.</p>
+<h3 id="3-share-your-coding-process">3. Share Your Coding Process
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/share      <span class="c1"># Generate a shareable link showing the full conversation and code changes</span>
+</span></span><span class="line"><span class="cl">/unshare    <span class="c1"># Revoke sharing — the link becomes invalid</span>
+</span></span><span class="line"><span class="cl">/export     <span class="c1"># Export the conversation log as a file</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Use cases:</p>
+<ul>
+<li>Show colleagues how you used AI to solve a problem</li>
+<li>Document pitfalls encountered for team reference</li>
+<li>Source material for blog posts</li>
+</ul>
+<h3 id="4-view-available-models">4. View Available Models
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/models
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Models with the <code>free</code> tag are free to use. GLM-4.7 and MiniMax-2.1 have decent coding ability suitable for lightweight tasks.</p>
+<h3 id="5-quick-code-paste-vs-code-extension">5. Quick Code Paste (VS Code Extension)
+</h3><p>In VS Code, select a code snippet → <code>Ctrl + Alt + K</code> → directly paste it into the OpenCode chat window.</p>
+<blockquote>
+<p>Eliminates the context-switching cost of copy-paste and keeps you in flow.</p>
+</blockquote>
+<h2 id="7-recommended-beginner-workflow">7. Recommended Beginner Workflow
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│              New Requirement Received         │
+</span></span><span class="line"><span class="cl">└──────────────────┬──────────────────────────┘
+</span></span><span class="line"><span class="cl">                   │
+</span></span><span class="line"><span class="cl">                   ▼
+</span></span><span class="line"><span class="cl">          ┌────────────────┐
+</span></span><span class="line"><span class="cl">          │ Simple?         │
+</span></span><span class="line"><span class="cl">          └───┬────────┬───┘
+</span></span><span class="line"><span class="cl">              │ Yes     │ No (complex/multi-module)
+</span></span><span class="line"><span class="cl">              ▼         ▼
+</span></span><span class="line"><span class="cl">    ┌──────────────┐  ┌─────────────────┐
+</span></span><span class="line"><span class="cl">    │ Handle with    │  │ Type ULW to      │
+</span></span><span class="line"><span class="cl">    │ normal chat   │  │ trigger Ultra     │
+</span></span><span class="line"><span class="cl">    │               │  │ Work mode        │
+</span></span><span class="line"><span class="cl">    └──────────────┘  └────────┬────────┘
+</span></span><span class="line"><span class="cl">                               │
+</span></span><span class="line"><span class="cl">                    ┌──────────▼──────────┐
+</span></span><span class="line"><span class="cl">                    │ Multiple independent │
+</span></span><span class="line"><span class="cl">                    │ sub-tasks?           │
+</span></span><span class="line"><span class="cl">                    └───┬──────────┬──────┘
+</span></span><span class="line"><span class="cl">                        │ Yes       │ No
+</span></span><span class="line"><span class="cl">                        ▼           ▼
+</span></span><span class="line"><span class="cl">               ┌─────────────┐ ┌──────────────┐
+</span></span><span class="line"><span class="cl">               │ /new multiple │ │ Wait for      │
+</span></span><span class="line"><span class="cl">               │ Sessions in   │ │ Ultra Work    │
+</span></span><span class="line"><span class="cl">               │ parallel      │ │ to complete   │
+</span></span><span class="line"><span class="cl">               └──────┬──────┘ └──────────────┘
+</span></span><span class="line"><span class="cl">                      │
+</span></span><span class="line"><span class="cl">                      ▼
+</span></span><span class="line"><span class="cl">               ┌─────────────┐
+</span></span><span class="line"><span class="cl">               │ /sessions to  │
+</span></span><span class="line"><span class="cl">               │ check all     │
+</span></span><span class="line"><span class="cl">               │ progress      │
+</span></span><span class="line"><span class="cl">               └──────┬──────┘
+</span></span><span class="line"><span class="cl">                      │
+</span></span><span class="line"><span class="cl">                      ▼
+</span></span><span class="line"><span class="cl">               ┌─────────────┐
+</span></span><span class="line"><span class="cl">               │ Wrong direction?│
+</span></span><span class="line"><span class="cl">               └───┬─────────┘
+</span></span><span class="line"><span class="cl">                   │
+</span></span><span class="line"><span class="cl">                   ▼
+</span></span><span class="line"><span class="cl">               ┌─────────────┐
+</span></span><span class="line"><span class="cl">               │ /timeline →  │
+</span></span><span class="line"><span class="cl">               │ Revert        │
+</span></span><span class="line"><span class="cl">               └─────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="in-one-sentence">In One Sentence
+</h3><blockquote>
+<p><strong>Small tasks — chat directly. Big tasks — call ULW. Parallel — use Sessions. Wrong turn — Timeline Revert. Tough nuts — Ralph Loop.</strong></p>
+</blockquote>
+<h2 id="8-a-real-world-case">8. A Real-World Case
+</h2><p>After installing Oh My OpenAgent, I wanted to adjust the agent model configuration — make GitHub Copilot the primary and the free OpenCode Zen the fallback.</p>
+<p>I directly said in the OpenCode conversation:</p>
+<blockquote>
+<p>&ldquo;其实我还有你免费的OpenCode Zen，但是我已经登录 GitHub Copilot 了，你帮我修改一下&rdquo;</p>
+</blockquote>
+<p>The AI set OpenCode Zen as the primary on the first try — because I didn&rsquo;t specify the priority. After correcting it:</p>
+<blockquote>
+<p>&ldquo;不是，是 GitHub Copilot 作为主力，OpenCode Zen 自带的免费模型作为备选&rdquo;</p>
+</blockquote>
+<p>The AI immediately corrected it and updated <code>oh-my-openagent.json</code>, setting all agents to use <code>github-copilot/*</code> as primary and <code>opencode/*</code> as fallback.</p>
+<blockquote>
+<p>💡 <strong>Lesson</strong>: When describing requirements to the AI, <strong>always clearly state the priority hierarchy</strong>.</p>
+</blockquote>
+<h2 id="references">References
+</h2><ul>
+<li>Hands-on record: <a class="link" href="../opencode-complete-guide/" >OpenCode Complete Guide: The Open-Source Claude Code — Installation, Configuration &amp; Advanced Usage</a></li>
+<li>Oh My OpenAgent: <a class="link" href="https://github.com/code-yeongyu/oh-my-openagent"  target="_blank" rel="noopener"
+    >GitHub</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on May 08, 2026 00:09 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/en/p/opencode-complete-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-complete-guide/bannerImage.430dc322b9886fa8cc959ee1ab477e13_hu_1d30bf55534d1276.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode Complete Guide: Installation, Configuration, and Advanced Usage"
+                        data-key="opencode-complete-guide" 
+                        data-hash="md5-Qw3DIrmIb6jMlZ7hq0d&#43;Ew==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode Complete Guide: Installation, Configuration, and Advanced Usage</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/claude-code-deepseek-setup/">
+        
+        
+            <div class="article-image">
+                <img src="/p/claude-code-deepseek-setup/bannerImage.893eeb27eb74b1d32493c69de860e065_hu_3892b4af2012730d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 5-Minute Claude Code Setup with DeepSeek"
+                        data-key="claude-code-deepseek-setup" 
+                        data-hash="md5-iT7rJ&#43;t0sdMkk8ad6GDgZQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">5-Minute Claude Code Setup with DeepSeek</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/scoop/">
+        
+        
+            <div class="article-image">
+                <img src="/p/scoop/bannerImage.51bac46210d74eba3c67533f21792b1e_hu_6d0835db5c904ffd.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Scoop"
+                        
+                        data-hash="md5-UbrEYhDXTro8Z1M/IXkrHg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Scoop</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/computer-tools/">
+        
+        
+            <div class="article-image">
+                <img src="/p/computer-tools/bannerImage.8faf44e9da002bfa6806ad46d976010a_hu_8d0b92c2f364a09c.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Markdown"
+                        data-key="Computer Tools" 
+                        data-hash="md5-j69E6doAK/poBq1G2XYBCg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Markdown</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.5e6aeaaebb97d6a9e08e7d3b4bbe4dc3ce7ea0b2c7d2eed416957bcf6cbbd170.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<script defer src="https://cn.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 170px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.16) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.16) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(245, 245, 250, 0) 0%, rgba(245, 245, 250, 0.72) 100%);
+}
+
+html.at-page-bottom body::after {
+  opacity: 1;
+}
+
+html[data-scheme="dark"] body::after {
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.12) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.1) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(8, 12, 20, 0) 0%, rgba(8, 12, 20, 0.68) 100%);
+}
+</style>
+
+    </body>
+</html>

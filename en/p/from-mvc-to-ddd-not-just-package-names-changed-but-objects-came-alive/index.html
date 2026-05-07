@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="When learning DDD (Domain-Driven Design), many people are put off by complex concepts. But returning to the essence, we can understand DDD as a 'super-evolved enhanced version' of MVC. Building on MVC, it solves the pain point of system bloat as business complexity grows through clearer separation of responsibilities and logical decoupling.">
+<title>From MVC to DDD: Not Just Package Names Changed, but &#39;Objects&#39; Came Alive</title>
+
+<link rel='canonical' href='https://Siborne.top/en/p/from-mvc-to-ddd-not-just-package-names-changed-but-objects-came-alive/'>
+
+<link rel="stylesheet" href="/scss/style.min.266c2d3f4822631b105b97664a103c3737ee3a439c2ce01b7142501e9591e1df.css"><meta property='og:title' content="From MVC to DDD: Not Just Package Names Changed, but 'Objects' Came Alive">
+<meta property='og:description' content="When learning DDD (Domain-Driven Design), many people are put off by complex concepts. But returning to the essence, we can understand DDD as a 'super-evolved enhanced version' of MVC. Building on MVC, it solves the pain point of system bloat as business complexity grows through clearer separation of responsibilities and logical decoupling.">
+<meta property='og:url' content='https://Siborne.top/en/p/from-mvc-to-ddd-not-just-package-names-changed-but-objects-came-alive/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Java' /><meta property='article:published_time' content='2026-03-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-08T00:09:57&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage.png' />
+<meta name="twitter:title" content="From MVC to DDD: Not Just Package Names Changed, but 'Objects' Came Alive">
+<meta name="twitter:description" content="When learning DDD (Domain-Driven Design), many people are put off by complex concepts. But returning to the essence, we can understand DDD as a 'super-evolved enhanced version' of MVC. Building on MVC, it solves the pain point of system bloat as business complexity grows through clearer separation of responsibilities and logical decoupling."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; Enthusiast
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent Architect &amp; Full-Stack Dev
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 Curious Student · Future Builder
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    Building intelligent agents &#43; scalable apps. Blending creativity with AI efficiency. 🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" selected>English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#1-core-mindset-from-looking-at-the-manual-to-asking-the-person-directly">1. Core Mindset: From &ldquo;Looking at the Manual&rdquo; to &ldquo;Asking the Person Directly&rdquo;</a></li>
+        <li><a href="#2-architectural-mapping-how-ddd-maps-to-mvc">2. Architectural Mapping: How DDD Maps to MVC</a></li>
+        <li><a href="#3-why-does-ddd-have-more-packages-the-truth-about-decoupling">3. Why Does DDD Have More Packages? (The Truth About Decoupling)</a>
+          <ol>
+            <li><a href="#1-business-logic-decoupled-from-process-orchestration-application-vs-domain">1. Business Logic Decoupled from Process Orchestration (Application vs Domain)</a></li>
+            <li><a href="#2-business-logic-decoupled-from-storage-technology-domain-vs-infrastructure">2. Business Logic Decoupled from Storage Technology (Domain vs Infrastructure)</a></li>
+          </ol>
+        </li>
+        <li><a href="#4-the-three-members-of-the-model-tactical-modeling">4. The Three Members of the Model (Tactical Modeling)</a>
+          <ol>
+            <li><a href="#1-entity-entity--has-a-unique-identity">1. Entity (Entity) — Has a Unique Identity</a></li>
+            <li><a href="#2-value-object-vo--attributes-only-no-id">2. Value Object (VO) — Attributes Only, No ID</a></li>
+            <li><a href="#3-aggregate-root-ar--the-organizational-manager">3. Aggregate Root (AR) — The Organizational Manager</a></li>
+            <li><a href="#4-summary-and-comparison">4. Summary and Comparison</a></li>
+          </ol>
+        </li>
+        <li><a href="#5-model-transformation-each-layer-has-its-own-face">5. Model Transformation: Each Layer Has Its Own &ldquo;Face&rdquo;</a></li>
+        <li><a href="#6-ddd-in-practice-creating-and-canceling-an-order">6. DDD in Practice: Creating and Canceling an Order</a>
+          <ol>
+            <li><a href="#1-domain-layer--the-soul-of-business-logic">1. Domain Layer — <strong>The Soul of Business Logic</strong></a></li>
+            <li><a href="#2-application-layer--the-process-commander">2. Application Layer — <strong>The Process Commander</strong></a></li>
+            <li><a href="#3-infrastructure-layer--the-technical-worker">3. Infrastructure Layer — <strong>The Technical Worker</strong></a></li>
+            <li><a href="#4-interfaces-layer--the-gatekeeper">4. Interfaces Layer — <strong>The Gatekeeper</strong></a></li>
+          </ol>
+        </li>
+        <li><a href="#7-summary-what-exactly-does-ddd-enhance">7. Summary: What Exactly Does DDD Enhance?</a></li>
+        <li><a href="#8-conclusion">8. Conclusion</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/en/p/from-mvc-to-ddd-not-just-package-names-changed-but-objects-came-alive/">
+                <img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage_hu_56a19ec5da05d35f.png"
+                        srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage_hu_56a19ec5da05d35f.png 800w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage_hu_ae88ae381fe6a264.png 1600w"
+                        width="800" 
+                        height="371" 
+                        loading="lazy"
+                        alt="Featured image of post From MVC to DDD: Not Just Package Names Changed, but &#39;Objects&#39; Came Alive" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/from-mvc-to-ddd-not-just-package-names-changed-but-objects-came-alive/">From MVC to DDD: Not Just Package Names Changed, but &#39;Objects&#39; Came Alive</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-03-14T00:00:00Z'>2026-03-14</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 08, 2026 00:09 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                2007字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        When learning DDD (Domain-Driven Design), many people are put off by complex concepts. But returning to the essence, we can understand DDD as a &#39;super-evolved enhanced version&#39; of MVC. Building on MVC, it solves the pain point of system bloat as business complexity grows through clearer separation of responsibilities and logical decoupling.
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/en/categories/java/" >
+                Java
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/" class="link">简体中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="from-mvc-to-ddd-its-not-just-package-names-that-change--the-objects-come-alive">From MVC to DDD: It&rsquo;s Not Just Package Names That Change — The &ldquo;Objects&rdquo; Come Alive
+</h1><h3 id="introduction">Introduction
+</h3><p>When learning DDD (Domain-Driven Design), many people are put off by complex concepts. But returning to the essence, we can understand DDD as <strong>a &ldquo;super-evolved enhanced version&rdquo; of MVC</strong>. Building on MVC, it solves the pain point of system &ldquo;bloat&rdquo; as business complexity grows through clearer separation of responsibilities and logical decoupling.</p>
+<h3 id="1-core-mindset-from-looking-at-the-manual-to-asking-the-person-directly">1. Core Mindset: From &ldquo;Looking at the Manual&rdquo; to &ldquo;Asking the Person Directly&rdquo;
+</h3><p><img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178.png"
+	width="2816"
+	height="1536"
+	srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_c31cbdbbe82ef9d0.png 480w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_8e42d5d83cedc346.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<p>In traditional <strong>MVC (Anemic Domain Model)</strong>, entity classes (Entity/PO) are merely data carriers, like a <strong>blank sheet of paper</strong>. All business logic is piled up in the <code>Service</code> layer.</p>
+<ul>
+<li><strong>Pain Point:</strong> The Service layer grows larger and larger, logic becomes scattered, and maintaining it feels like trying to find the end of a tangled thread.</li>
+</ul>
+<p>In <strong>DDD (Rich Domain Model)</strong>, <strong>data and business logic are written together</strong>.</p>
+<ul>
+<li>
+<p><strong>The Shift:</strong> Entity classes become living, principled &ldquo;business experts.&rdquo;</p>
+</li>
+<li>
+<p><strong>Example:</strong> Consider the &ldquo;order cancellation&rdquo; logic.</p>
+<ul>
+<li><strong>MVC:</strong> <code>OrderService</code> fetches Order data, checks the status, modifies the status, saves to disk.</li>
+<li><strong>DDD:</strong> The <code>Order</code> entity has an internal <code>cancel()</code> method — it decides for itself whether it can be cancelled.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Key Point:</strong> The benefit of DDD is high logical cohesion. When business logic changes, you only need to modify the corresponding domain model object, rather than digging through thousands of lines of Service code.</p>
+</blockquote>
+<h3 id="2-architectural-mapping-how-ddd-maps-to-mvc">2. Architectural Mapping: How DDD Maps to MVC
+</h3><p><img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734.png"
+	width="2816"
+	height="1536"
+	srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_3e27a03a3dc76dc6.png 480w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_9af9db3ed1912419.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<p>We can simply understand the DDD workflow as:</p>
+<p><strong>Controller $\rightarrow$ Application Service $\rightarrow$ Domain Model $\rightarrow$ Repository (Impl $\rightarrow$ Mapper)</strong></p>
+<p>For easier understanding, here is a comparison table:</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Layer</strong></th>
+          <th><strong>DDD Naming</strong></th>
+          <th><strong>MVC Counterpart</strong></th>
+          <th><strong>Enhanced Responsibility</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Interface Layer</strong></td>
+          <td>Interfaces</td>
+          <td>Controller</td>
+          <td>Only handles protocol conversion (REST/JSON), does no business logic.</td>
+      </tr>
+      <tr>
+          <td><strong>Application Layer</strong></td>
+          <td>Application</td>
+          <td>Service (light)</td>
+          <td><strong>Commander:</strong> No <code>if-else</code> logic — only orchestrates domain objects.</td>
+      </tr>
+      <tr>
+          <td><strong>Domain Layer</strong></td>
+          <td><strong>Domain</strong></td>
+          <td><strong>Entity (heavy)</strong></td>
+          <td><strong>Core:</strong> Contains business rules — data and logic coexist.</td>
+      </tr>
+      <tr>
+          <td><strong>Infrastructure Layer</strong></td>
+          <td>Infrastructure</td>
+          <td>DAO / Mapper</td>
+          <td><strong>Plug-in style:</strong> Hides database details. Repository is the interface, Mapper is the implementation.</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="3-why-does-ddd-have-more-packages-the-truth-about-decoupling">3. Why Does DDD Have More Packages? (The Truth About Decoupling)
+</h3><p>You will notice DDD introduces <code>ApplicationService</code>, <code>Domain Model</code>, <code>Repository</code>, etc. This may seem cumbersome, but it actually achieves <strong>two levels of core decoupling</strong>:</p>
+<h4 id="1-business-logic-decoupled-from-process-orchestration-application-vs-domain">1. Business Logic Decoupled from Process Orchestration (Application vs Domain)
+</h4><ul>
+<li>The <strong>Application layer</strong> only cares about &ldquo;what to do first, what to do next.&rdquo;</li>
+<li>The <strong>Domain layer</strong> only cares about &ldquo;what is the business rule.&rdquo;</li>
+<li><strong>Benefit:</strong> Business logic can be <strong>unit tested</strong> in isolation, without needing a running database — extremely fast.</li>
+</ul>
+<h4 id="2-business-logic-decoupled-from-storage-technology-domain-vs-infrastructure">2. Business Logic Decoupled from Storage Technology (Domain vs Infrastructure)
+</h4><ul>
+<li>Domain models only recognize the <code>Repository</code> interface and don&rsquo;t care whether the underlying technology is MyBatis, JPA, or Redis.</li>
+<li><strong>Benefit:</strong> Even if you switch your database from MySQL to MongoDB, your core business logic (the Domain layer) does not need a single character changed.</li>
+</ul>
+<h3 id="4-the-three-members-of-the-model-tactical-modeling">4. The Three Members of the Model (Tactical Modeling)
+</h3><p><img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292.png"
+	width="2816"
+	height="1536"
+	srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_8c3f5c6fa3c0ebda.png 480w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_1abf29be7841aec0.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<p>Within the DDD domain layer, not all classes are the same. To organize business logic more scientifically, we typically divide models into the following three types:</p>
+<h4 id="1-entity-entity--has-a-unique-identity">1. Entity (Entity) — Has a Unique Identity
+</h4><p>The core characteristic of an entity is its <strong>identity</strong>. Even if all its attributes change, it remains the same object.</p>
+<ul>
+<li><strong>Definition:</strong> An object with a unique identifier (ID). Even if two orders have the exact same products and prices, as long as their IDs are different, they are two different things.</li>
+<li><strong>Characteristics:</strong> Has a lifecycle (creation, modification, state transitions, archival).</li>
+<li><strong>Examples:</strong> <code>Order</code>, <code>User</code>.</li>
+</ul>
+<blockquote>
+<p><strong>Scenario:</strong> When an order is created, its status is &ldquo;pending payment&rdquo; and the shipping address is &ldquo;Shanghai&rdquo;; after payment, the status becomes &ldquo;paid&rdquo; and the address changes to &ldquo;Beijing.&rdquo;</p>
+<p><strong>Core Idea:</strong> Although the status and address have changed, since its <strong>OrderNo (or ID)</strong> hasn&rsquo;t changed, we still consider it the same order.</p>
+</blockquote>
+<p><strong>Code Characteristic:</strong> Internally it must have a <code>private Long id;</code> or <code>private String orderNo;</code>, and logical comparisons use this ID for <code>equals()</code>.</p>
+<h4 id="2-value-object-vo--attributes-only-no-id">2. Value Object (VO) — Attributes Only, No ID
+</h4><p>A value object is like &ldquo;descriptive text.&rdquo; If all attributes of two value objects are the same, they are the same thing.</p>
+<ul>
+<li><strong>Definition:</strong> No ID, defined purely by its attributes. If two objects have exactly the same attribute values, they are interchangeable.</li>
+<li><strong>Characteristics:</strong> <strong>Immutability.</strong> If you want to change an address, you don&rsquo;t modify the original address object&rsquo;s properties — you directly replace it with a new address object.</li>
+<li><strong>Examples:</strong> <code>Address</code> (province/city/district/street combination), <code>Money</code> (currency + amount).</li>
+</ul>
+<blockquote>
+<p><strong>Scenario:</strong> An order has a shipping address: <code>{Province: &quot;Guangdong&quot;, City: &quot;Shenzhen&quot;, Street: &quot;Nanshan District&quot;}</code>.</p>
+<p><strong>Core Idea:</strong> We don&rsquo;t care about this address object&rsquo;s &ldquo;identity card&rdquo; — we only care about where it&rsquo;s addressed to. If two orders are both shipped to this place, then these two address objects are logically <strong>equivalent</strong>.</p>
+<p><strong>Code Characteristics:</strong></p>
+<ol>
+<li><strong>No ID.</strong></li>
+<li><strong>Immutability:</strong> If you want to change the address, you don&rsquo;t call <code>address.setStreet(&quot;Futian District&quot;)</code> — instead, you directly give the Order a new Address object: <code>order.changeAddress(new Address(&quot;Guangdong&quot;, &quot;Shenzhen&quot;, &quot;Futian District&quot;))</code>.</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>Code Tip:</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// This approach drastically reduces bugs caused by &#34;modifications from elsewhere&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeAddress</span><span class="p">(</span><span class="n">Address</span><span class="w"> </span><span class="n">newAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newAddress</span><span class="p">;</span><span class="w"> </span><span class="c1">// whole-object replacement</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-aggregate-root-ar--the-organizational-manager">3. Aggregate Root (AR) — The Organizational Manager
+</h4><ul>
+<li><strong>Definition:</strong> The &ldquo;big boss&rdquo; of a group of associated objects. External code can only access its internal members through the aggregate root.</li>
+<li><strong>Responsibility:</strong> Maintains business integrity (invariants).</li>
+<li><strong>Example:</strong> In order business, <code>Order</code> is the aggregate root, and <code>OrderItem</code> is one of its internal members.</li>
+</ul>
+<blockquote>
+<p><strong>Scenario:</strong> An order contains 3 products (order items).</p>
+<p><strong>Core Idea:</strong></p>
+<ol>
+<li>External Service code cannot bypass <code>Order</code> to directly modify the price of an <code>OrderItem</code>.</li>
+<li>It must call <code>order.adjustItemPrice(itemId, newPrice)</code>. It is the <code>Order</code> — the &ldquo;big boss&rdquo; — that decides whether this operation is valid (e.g., if the order has already shipped, the boss will refuse to modify the price).</li>
+</ol>
+<p><strong>Lifecycle:</strong>
+The aggregate root is responsible for the lifecycle of its internal members. If the <code>Order</code> is deleted from the database, its internal <code>OrderItem</code> objects must disappear along with it.</p>
+<p><strong>Prohibition:</strong>
+You absolutely must not directly call <code>OrderItemMapper</code> in the Controller to modify a product&rsquo;s price — you must go through <code>Order.updateItemPrice()</code>.</p>
+</blockquote>
+<h4 id="4-summary-and-comparison">4. Summary and Comparison
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Model Type</strong></th>
+          <th><strong>Has Unique ID</strong></th>
+          <th><strong>When All Attributes Match</strong></th>
+          <th><strong>Modification Method</strong></th>
+          <th><strong>Examples</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Entity</strong></td>
+          <td>Yes</td>
+          <td>Still two independent objects</td>
+          <td>Modify attributes via methods</td>
+          <td>User, Product</td>
+      </tr>
+      <tr>
+          <td><strong>Value Object (VO)</strong></td>
+          <td>No</td>
+          <td>Considered the same object</td>
+          <td>Whole-object replacement (immutable)</td>
+          <td>Money, Address</td>
+      </tr>
+      <tr>
+          <td><strong>Aggregate Root (AR)</strong></td>
+          <td>Yes</td>
+          <td>(Same as Entity)</td>
+          <td>Coordinates all internal members</td>
+          <td>Order, Forum Topic</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="5-model-transformation-each-layer-has-its-own-face">5. Model Transformation: Each Layer Has Its Own &ldquo;Face&rdquo;
+</h3><p><img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115.png"
+	width="2816"
+	height="1536"
+	srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_3a6f248a9a08ff2d.png 480w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_9532cd5c6ba76ad0.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<p>To achieve &ldquo;decoupling,&rdquo; each layer actually uses different models. Although this adds verbosity, it effectively prevents database logic from polluting business logic:</p>
+<ol>
+<li><strong>DTO (Data Transfer Object):</strong> Used in the interface layer. Shaped like a form; fields may be sparse.</li>
+<li><strong>Domain Entity:</strong> Used in the domain layer. This is the &ldquo;living object&rdquo; you write, carrying business logic.</li>
+<li><strong>PO (Persistent Object):</strong> Used in the infrastructure layer. Looks exactly like the database table.</li>
+</ol>
+<h3 id="6-ddd-in-practice-creating-and-canceling-an-order">6. DDD in Practice: Creating and Canceling an Order
+</h3><h4 id="1-domain-layer--the-soul-of-business-logic">1. Domain Layer — <strong>The Soul of Business Logic</strong>
+</h4><p>This is where &ldquo;data and business live together.&rdquo; It depends on no framework — it only cares about business rules.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// Entity class: Order.java</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Order</span><span class="w"> </span><span class="p">{</span><span class="c1">// &lt;--- This is an [Aggregate Root]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">;</span><span class="c1">// &lt;--- Aggregate root is also an Entity, has unique ID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">OrderItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">items</span><span class="p">;</span><span class="c1">// &lt;--- Order items are [Entities], but managed by the aggregate root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">OrderStatus</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w"> </span><span class="c1">// CREATED, PAID, CANCELLED, SHIPPED</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"> </span><span class="c1">// &lt;--- Shipping address is a [Value Object], no ID, whole-object replacement</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">totalPrice</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Aggregate root method: ensures business integrity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeAddress</span><span class="p">(</span><span class="n">Address</span><span class="w"> </span><span class="n">newAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">OrderStatus</span><span class="p">.</span><span class="na">SHIPPED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BusinessException</span><span class="p">(</span><span class="s">&#34;Cannot change address after shipment&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newAddress</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// --- Business logic: construction constraints for creating an order ---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Order</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">OrderItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">items</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">items</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BusinessException</span><span class="p">(</span><span class="s">&#34;Order must contain at least one product&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">items</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderStatus</span><span class="p">.</span><span class="na">CREATED</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">totalPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calculateTotal</span><span class="p">();</span><span class="w"> </span><span class="c1">// Internal logic, auto-calculates total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// --- Business logic: cancel an order ---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">cancel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">OrderStatus</span><span class="p">.</span><span class="na">SHIPPED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BusinessException</span><span class="p">(</span><span class="s">&#34;A shipped order cannot be cancelled&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderStatus</span><span class="p">.</span><span class="na">CANCELLED</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">calculateTotal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">map</span><span class="p">(</span><span class="n">OrderItem</span><span class="p">::</span><span class="n">getPrice</span><span class="p">).</span><span class="na">reduce</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">ZERO</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">::</span><span class="n">add</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Getters omitted...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Repository interface: OrderRepository.java (only defines business behaviors)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">OrderRepository</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Order</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-application-layer--the-process-commander">2. Application Layer — <strong>The Process Commander</strong>
+</h4><p>Does not write <code>if-else</code> logic — only orchestrates: fetch objects from repository $\rightarrow$ issue commands $\rightarrow$ save objects.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderApplicationService</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Autowired</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">OrderRepository</span><span class="w"> </span><span class="n">orderRepository</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Order creation flow</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Transactional</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">createOrder</span><span class="p">(</span><span class="n">OrderCreateDTO</span><span class="w"> </span><span class="n">dto</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Call domain model for creation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Order</span><span class="p">(</span><span class="n">dto</span><span class="p">.</span><span class="na">getItems</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Call repository for persistence</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">orderRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">order</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Order cancellation flow</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Transactional</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">cancelOrder</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 1. Find the &#34;living&#34; object through the repository</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orderRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 2. Issue the command to the object: cancel yourself</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">order</span><span class="p">.</span><span class="na">cancel</span><span class="p">();</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 3. Save the modified state</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">orderRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">order</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-infrastructure-layer--the-technical-worker">3. Infrastructure Layer — <strong>The Technical Worker</strong>
+</h4><p>This layer handles database interaction. The <strong>Mapper</strong> you mentioned is invoked at this layer.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Repository</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderRepositoryImpl</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">OrderRepository</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Autowired</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">OrderMapper</span><span class="w"> </span><span class="n">orderMapper</span><span class="p">;</span><span class="w"> </span><span class="c1">// MyBatis Mapper</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 1. Conversion: transform domain object Order into database table object OrderPO</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">OrderPO</span><span class="w"> </span><span class="n">po</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convertToPO</span><span class="p">(</span><span class="n">order</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 2. Persist: call the Mapper to execute SQL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">po</span><span class="p">.</span><span class="na">getId</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">orderMapper</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">po</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">orderMapper</span><span class="p">.</span><span class="na">updateStatus</span><span class="p">(</span><span class="n">po</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">OrderPO</span><span class="w"> </span><span class="n">po</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orderMapper</span><span class="p">.</span><span class="na">selectById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 3. Restoration: convert database record back into a domain object with business capabilities</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">convertToEntity</span><span class="p">(</span><span class="n">po</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-interfaces-layer--the-gatekeeper">4. Interfaces Layer — <strong>The Gatekeeper</strong>
+</h4><p>Only responsible for receiving requests, validating parameter formats, and forwarding.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@RestController</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&#34;/api/orders&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderController</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Autowired</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">OrderApplicationService</span><span class="w"> </span><span class="n">orderAppService</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&#34;/create&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Response</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">OrderCreateDTO</span><span class="w"> </span><span class="n">dto</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">orderAppService</span><span class="p">.</span><span class="na">createOrder</span><span class="p">(</span><span class="n">dto</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Response</span><span class="p">.</span><span class="na">ok</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&#34;/{id}/cancel&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Response</span><span class="w"> </span><span class="nf">cancel</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">orderAppService</span><span class="p">.</span><span class="na">cancelOrder</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Response</span><span class="p">.</span><span class="na">ok</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><strong>Where is the logic?</strong></li>
+</ol>
+<blockquote>
+<ul>
+<li>The logic for <strong>&ldquo;can it be cancelled?&rdquo;</strong> is in the <code>Order</code> class (domain layer).</li>
+<li>The steps of <strong>&ldquo;fetch first, then modify, then save&rdquo;</strong> are in <code>OrderApplicationService</code> (application layer).</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li><strong>Where is the decoupling?</strong></li>
+</ol>
+<blockquote>
+<ul>
+<li><code>ApplicationService</code> has no idea whether the database is MySQL or a text file, because it only calls <code>orderRepository.save()</code>.</li>
+<li>The actual SQL statements are completely physically isolated in the <code>Mapper</code> within the <code>Infrastructure</code> layer.</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><strong>Why write it this way?</strong></li>
+</ol>
+<blockquote>
+<ul>
+<li>If the &ldquo;order cancellation&rdquo; rule changes in the future (e.g., orders that have been unpaid for more than 30 minutes cannot be cancelled), you <strong>only need to modify the <code>Order</code> entity class in one place</strong> — the other three layers&rsquo; code doesn&rsquo;t need to be touched at all. This is the power of DDD in handling complex business scenarios.</li>
+</ul>
+</blockquote>
+<h3 id="7-summary-what-exactly-does-ddd-enhance">7. Summary: What Exactly Does DDD Enhance?
+</h3><ol>
+<li><strong>High Cohesion:</strong> Whoever owns the data is responsible for it — business logic no longer &ldquo;miscarries&rdquo; across various Service classes.</li>
+<li><strong>Maintainability:</strong> The code structure mirrors the business blueprint — a glance at the domain objects reveals the business rules.</li>
+<li><strong>Plug-in Architecture:</strong> Databases and external services become &ldquo;plugins,&rdquo; making the system more robust.</li>
+</ol>
+<h3 id="8-conclusion">8. Conclusion
+</h3><p>DDD is not about overthrowing MVC. Rather, when business complexity reaches a certain threshold, it provides developers with a &ldquo;scalpel&rdquo; that allows us to elegantly dissect intertwined logic.</p>
+<p><strong>In one sentence:</strong> MVC helps us put code in the right places, while DDD brings the objects to life.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on May 08, 2026 00:09 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/en/p/lru-cache-algorithm-implementation-in-java/">
+        
+        
+            <div class="article-image">
+                <img src="/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.f0e326574cdcea40078081e6d757389b_hu_764ad83851422e00.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post LRU Cache Algorithm Implementation in Java"
+                        
+                        data-hash="md5-8OMmV0zc6kAHgIHm11c4mw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LRU Cache Algorithm Implementation in Java</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/6-primary-key-generation-strategies-with-java--mysql--redis/">
+        
+        
+            <div class="article-image">
+                <img src="/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.54074f014a63b85f280277238cbd8e80_hu_ac97836973c31531.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 6 Primary Key Generation Strategies with Java &#43; MySQL &#43; Redis"
+                        
+                        data-hash="md5-VAdPAUpjuF8oAncjjL2OgA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">6 Primary Key Generation Strategies with Java &#43; MySQL &#43; Redis</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/jwt-explained-principles-implementation-and-best-practices/">
+        
+        
+            <div class="article-image">
+                <img src="/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/bannerImage.14078955d0308bd7c8ae4d32af16584a_hu_70ee50d98229c494.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post JWT Explained: Principles, Implementation, and Best Practices"
+                        
+                        data-hash="md5-FAeJVdAwi9fIrk0yrxZYSg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JWT Explained: Principles, Implementation, and Best Practices</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/understanding-threadlocal-in-java/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.a8020477e9a0baea0d4a7e92f55dd1b6_hu_cfb96ec03030dc04.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Understanding ThreadLocal in Java"
+                        
+                        data-hash="md5-qAIEd&#43;mguuoNSn6S9V3Rtg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Understanding ThreadLocal in Java</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.5e6aeaaebb97d6a9e08e7d3b4bbe4dc3ce7ea0b2c7d2eed416957bcf6cbbd170.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<script defer src="https://cn.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 170px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.16) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.16) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(245, 245, 250, 0) 0%, rgba(245, 245, 250, 0.72) 100%);
+}
+
+html.at-page-bottom body::after {
+  opacity: 1;
+}
+
+html[data-scheme="dark"] body::after {
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.12) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.1) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(8, 12, 20, 0) 0%, rgba(8, 12, 20, 0.68) 100%);
+}
+</style>
+
+    </body>
+</html>

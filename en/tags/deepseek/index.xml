@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>DeepSeek on Siborne</title>
+        <link>https://Siborne.top/en/tags/deepseek/</link>
+        <description>Recent content in DeepSeek on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 00:09:57 +0800</lastBuildDate><atom:link href="https://Siborne.top/en/tags/deepseek/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>5-Minute Claude Code Setup with DeepSeek</title>
+        <link>https://Siborne.top/en/p/claude-code-deepseek-setup/</link>
+        <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/en/p/claude-code-deepseek-setup/</guid>
+        <description>&lt;img src="https://Siborne.top/p/claude-code-deepseek-setup/bannerImage.png" alt="Featured image of post 5-Minute Claude Code Setup with DeepSeek" /&gt;&lt;h2 id=&#34;overview&#34;&gt;Overview
+&lt;/h2&gt;&lt;p&gt;Claude Code is a command-line AI coding assistant launched by Anthropic, with built-in Skills plugins. Through different combinations, it can accomplish many things that AI alone cannot. Connecting it to the domestic large model DeepSeek V4 can dramatically reduce usage costs.&lt;/p&gt;
+&lt;p&gt;Core use cases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Build a personal knowledge base and automate the organization of study notes&lt;/li&gt;
+&lt;li&gt;Collect industry information on a schedule and compile it into drafts&lt;/li&gt;
+&lt;li&gt;Automatically publish to major social media platforms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-install-the-runtime-environment&#34;&gt;Step 1: Install the Runtime Environment
+&lt;/h2&gt;&lt;h3 id=&#34;11-install-nodejs&#34;&gt;1.1 Install Node.js
+&lt;/h3&gt;&lt;p&gt;Go to the &lt;a class=&#34;link&#34; href=&#34;https://nodejs.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Node.js official website&lt;/a&gt; to download the Windows installer (.msi), double-click it, and follow the prompts.&lt;/p&gt;
+&lt;p&gt;Verify the installation:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;node -v
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm -v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;12-configure-npm-domestic-mirror&#34;&gt;1.2 Configure npm Domestic Mirror
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm config &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; registry https://registry.npmmirror.com/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;13-install-git&#34;&gt;1.3 Install Git
+&lt;/h3&gt;&lt;p&gt;Go to the &lt;a class=&#34;link&#34; href=&#34;https://git-scm.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Git official website&lt;/a&gt; to download the appropriate installer and follow the prompts.&lt;/p&gt;
+&lt;p&gt;Verify the installation:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git -v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;14-install-cc-switch&#34;&gt;1.4 Install CC-Switch
+&lt;/h3&gt;&lt;p&gt;CC-Switch is used to connect third-party models to Claude Code.&lt;/p&gt;
+&lt;p&gt;Go to the &lt;a class=&#34;link&#34; href=&#34;https://github.com/farion1231/cc-switch/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub Release page&lt;/a&gt; to download the appropriate version (e.g., Windows MSI), double-click to install, and follow the prompts.&lt;/p&gt;
+&lt;h2 id=&#34;step-2-install-claude-code&#34;&gt;Step 2: Install Claude Code
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install -g @anthropic-ai/claude-code
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Verify:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;claude --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;skip-login-use-third-party-api&#34;&gt;Skip Login (Use Third-Party API)
+&lt;/h3&gt;&lt;p&gt;Start Claude Code once, then close it. Find the &lt;code&gt;.claude.json&lt;/code&gt; file in your user directory and add the following configuration (&lt;strong&gt;note: add an English comma after the previous field&lt;/strong&gt;):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;hasCompletedOnboarding&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Run &lt;code&gt;claude&lt;/code&gt; again, and select to trust the current folder.&lt;/p&gt;
+&lt;h2 id=&#34;step-3-connect-to-deepseek&#34;&gt;Step 3: Connect to DeepSeek
+&lt;/h2&gt;&lt;h3 id=&#34;31-get-an-api-key&#34;&gt;3.1 Get an API Key
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Open the &lt;a class=&#34;link&#34; href=&#34;https://platform.deepseek.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DeepSeek Open Platform&lt;/a&gt;, register and log in&lt;/li&gt;
+&lt;li&gt;Ensure your account has a balance&lt;/li&gt;
+&lt;li&gt;On the right side, API Keys → Create API Key → Copy and save it (you won&amp;rsquo;t be able to view it again after closing)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do not share your key with others, as it will consume your balance.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;32-configure-cc-switch&#34;&gt;3.2 Configure CC-Switch
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Open CC-Switch, click the &lt;strong&gt;+&lt;/strong&gt; button in the top-right corner&lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;DeepSeek&lt;/strong&gt; as the model preset&lt;/li&gt;
+&lt;li&gt;Fill in your API Key&lt;/li&gt;
+&lt;li&gt;Change all model names to: &lt;code&gt;deepseek-v4-pro[1m]&lt;/code&gt; (1M context; Claude Code defaults to using 128K)&lt;/li&gt;
+&lt;li&gt;Click Add&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;33-verify-the-model&#34;&gt;3.3 Verify the Model
+&lt;/h3&gt;&lt;p&gt;In the Claude Code dialog:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/model
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can view the currently available models, or directly ask &amp;ldquo;What model are you currently using?&amp;rdquo; to confirm the connection was successful.&lt;/p&gt;
+&lt;h2 id=&#34;step-4-hands-on-example&#34;&gt;Step 4: Hands-On Example
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Create a new folder on your desktop&lt;/li&gt;
+&lt;li&gt;Type &lt;code&gt;CMD&lt;/code&gt; in the address bar and press Enter&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;claude&lt;/code&gt; to start, and select to trust the current folder&lt;/li&gt;
+&lt;li&gt;Enter your requirement: &amp;ldquo;Use HTML + JS + CSS to build a Todo app&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;During execution, tool permissions will be requested — select Yes&lt;/li&gt;
+&lt;li&gt;Once done, ask it to open the page preview for you&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;quick-command-reference&#34;&gt;Quick Command Reference
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Action&lt;/th&gt;
+          &lt;th&gt;Command&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Check Node version&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;node -v&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Check npm version&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;npm -v&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;npm domestic mirror&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;npm config set registry https://registry.npmmirror.com/&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Check Git version&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;git -v&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Install Claude Code&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;npm install -g @anthropic-ai/claude-code&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Check Claude Code version&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;claude --version&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Start Claude Code&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;claude&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Switch model&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;/model&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

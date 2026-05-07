@@ -6,11 +6,11 @@
 
 <link rel='canonical' href='https://Siborne.top/tags/markdown/'>
 
-<link rel="stylesheet" href="/scss/style.min.8ef649c448cbc79f0aded74412ceaec47dca4dedd5ad56c6c4078f2ee610ca3b.css"><meta property='og:title' content="Tag: Markdown - Siborne">
+<link rel="stylesheet" href="/scss/style.min.266c2d3f4822631b105b97664a103c3737ee3a439c2ce01b7142501e9591e1df.css"><meta property='og:title' content="Tag: Markdown - Siborne">
 <meta property='og:description' content="">
 <meta property='og:url' content='https://Siborne.top/tags/markdown/'>
 <meta property='og:site_name' content='Siborne'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-04-01T00:29:12&#43;08:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-05-08T00:09:57&#43;08:00 '/>
 <meta name="twitter:title" content="Tag: Markdown - Siborne">
 <meta name="twitter:description" content=""><link rel="alternate" type="application/rss&#43;xml" href="https://Siborne.top/tags/markdown/index.xml"><div class="loading">
   
@@ -334,6 +334,29 @@
         
         <li class="menu-bottom-section">
             <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" selected>简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
 
                 
                     <li id="dark-mode-toggle">
@@ -353,7 +376,7 @@
 
 
 
-                        <span>暗色模式 | Dark Mode</span>
+                        <span>暗色模式</span>
                     </li>
                 
             </ol>
@@ -405,7 +428,7 @@
                     <a href="/archives/#2026">
                         
                             <span class="year">2026</span>
-                            <span class="count">8</span>
+                            <span class="count">11</span>
                         
                     </a> 
                 </div>
@@ -440,16 +463,16 @@
 
     <div class="tagCloud-tags">
         
+            <a href="/categories/computer-tools/" class="font_size_5">
+                Computer Tools
+            </a>
+        
             <a href="/categories/java/" class="font_size_5">
                 Java
             </a>
         
             <a href="/categories/cmu-cs15213-csapp/" class="font_size_2">
                 CMU CS15213:CSAPP
-            </a>
-        
-            <a href="/categories/computer-tools/" class="font_size_2">
-                Computer Tools
             </a>
         
             <a href="/categories/operating-system/" class="font_size_2">
@@ -543,7 +566,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.5e6aeaaebb97d6a9e08e7d3b4bbe4dc3ce7ea0b2c7d2eed416957bcf6cbbd170.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -561,12 +584,81 @@
 <script defer src="https://cn.vercount.one/js"></script>
 <script src=https://Siborne.top/background/particles.min.js></script>
 
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
 <script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
 function showHideView() {
-  
   let viewCounts = document.querySelectorAll("#viewCount");
   if (viewCounts) {
-    
     let article = document.querySelector(".article-page");
     if (!article) {
       viewCounts.forEach((ele) => {
@@ -576,60 +668,16 @@ function showHideView() {
   }
 }
 
-showHideView();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function initScrollTop() {
-    let rightSideBar = document.querySelector(".right-sidebar");
-    if (!rightSideBar) {
-        return;
-    }
     
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
     let btn = document.createElement("div");
     btn.id = "backTopBtn";
-    btn.onclick = backToTop
-    rightSideBar.appendChild(btn)
-    
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
     window.onscroll = function() {
-        
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             btn.style.display = "block";
         } else {
@@ -638,15 +686,8 @@ function initScrollTop() {
     };
 }
 
-
-
-function backToTop(){
-    window.scrollTo({ top: 0, behavior: "smooth" })
-}
-
-initScrollTop();
-
 function initBottomVisualEffect() {
+  
   const root = document.documentElement;
   const threshold = 140;
 
@@ -654,15 +695,11 @@ function initBottomVisualEffect() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const pageHeight = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.offsetHeight,
-      document.body.clientHeight,
-      document.documentElement.clientHeight
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
     );
     const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
-
     if (distanceToBottom <= threshold) {
       root.classList.add('at-page-bottom');
     } else {
@@ -675,52 +712,79 @@ function initBottomVisualEffect() {
   window.addEventListener('resize', updateBottomState);
 }
 
-initBottomVisualEffect();
-
 function initCodeMoreBox() {
   let codeBlocks = document.querySelectorAll(".highlight");
-  if (!codeBlocks || codeBlocks.length === 0) {
-    return;
-  }
+  if (!codeBlocks || codeBlocks.length === 0) return;
   codeBlocks.forEach(codeBlock => {
     
-    if (codeBlock.scrollHeight <= codeBlock.clientHeight) {
-      return;
-    }
-    
-    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
     let codeMoreBox = document.createElement('div');
     codeMoreBox.classList.add('code-more-box');
-    
     let codeMoreBtn = document.createElement('span');
     codeMoreBtn.classList.add('code-more-btn');
     codeMoreBtn.addEventListener('click', () => {
       codeBlock.classList.add('code-show');
       codeMoreBox.style.display = 'none';
-      
       window.dispatchEvent(new Event('resize'))
-    })
-    
+    });
     let img = document.createElement('img');
     img.classList.add('code-more-img');
-    img.src = "https://Siborne.top/icons/codeMore.png"
-    
+    img.src = "https://Siborne.top/icons/codeMore.png";
     codeMoreBtn.appendChild(img);
     codeMoreBox.appendChild(codeMoreBtn);
-    codeBlock.appendChild(codeMoreBox)
-  })
+    codeBlock.appendChild(codeMoreBox);
+  });
 }
 
-window.addEventListener('load', () => {
-  requestAnimationFrame(initCodeMoreBox);
-});
 
-  particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
   console.log('particles.js loaded - callback');
 });
 </script>
 
-<style>
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
  
 @font-face {
   font-family: '思源宋体';
@@ -734,14 +798,9 @@ window.addEventListener('load', () => {
 }
 
 :root {
-   
   --base-font-family: '思源宋体', sans-serif;
-
-   
   --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
 }
-
- 
 
 #backTopBtn {
   display: none;
@@ -761,45 +820,52 @@ window.addEventListener('load', () => {
 }
 
 .highlight {
-     
   position: relative;
-    max-height: 400px;
-    overflow: hidden;
+  max-height: 400px;
+  overflow: hidden;
 }
 
 .code-show {
-    max-height: none !important;
+  max-height: none !important;
 }
 
 .code-more-box {
-    width: 100%;
-    padding-top: 78px;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
 }
 
 .code-more-btn {
-    display: block;
-    margin: auto;
-    width: 44px;
-    height: 22px;
-    background: #f0f0f5;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    padding-top: 6px;
-    cursor: pointer;
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
 }
 
 .code-more-img {
-    cursor: pointer !important;
-    display: block;
-    margin: auto;
-    width: 22px;
-    height: 16px;
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
 }
 
 #particles-js {
@@ -873,9 +939,6 @@ html[data-scheme="dark"] body::after {
     radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.1) 0%, rgba(255, 95, 191, 0) 72%),
     linear-gradient(180deg, rgba(8, 12, 20, 0) 0%, rgba(8, 12, 20, 0.68) 100%);
 }
-
- 
-  
 </style>
 
     </body>
