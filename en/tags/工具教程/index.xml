@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Fri, 08 May 2026 00:09:57 +0800</lastBuildDate><atom:link href="https://Siborne.top/en/tags/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 08 May 2026 01:07:24 +0800</lastBuildDate><atom:link href="https://Siborne.top/en/tags/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>OpenCode Complete Guide: Installation, Configuration, and Advanced Usage</title>
         <link>https://Siborne.top/en/p/opencode-complete-guide/</link>
         <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
@@ -807,6 +807,113 @@
 &lt;li&gt;Oh My OpenAgent Installation Guide: &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>Troubleshooting Git Clone Failures for Large Repos: The SSH Solution</title>
+        <link>https://Siborne.top/en/p/git-ssh-large-repo/</link>
+        <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/en/p/git-ssh-large-repo/</guid>
+        <description>&lt;img src="https://Siborne.top/p/git-ssh-large-repo/bannerImage.png" alt="Featured image of post Troubleshooting Git Clone Failures for Large Repos: The SSH Solution" /&gt;&lt;h2 id=&#34;1-problem-background&#34;&gt;1. Problem Background
+&lt;/h2&gt;&lt;p&gt;While attempting to clone the large open-source project &lt;code&gt;taichi-project/anyagent&lt;/code&gt;, the terminal repeatedly reported network-layer disconnection errors that caused the clone to fail.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Initial error&lt;/strong&gt;: A basic &lt;code&gt;git clone&lt;/code&gt; would pull data halfway before abruptly failing:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;error: RPC failed; curl 92 HTTP/2 stream 7 was not closed cleanly: CANCEL (err 8)&lt;/code&gt;
+&lt;code&gt;fatal: early EOF&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Root cause&lt;/strong&gt;: This is a classic Git &lt;strong&gt;network transport interruption&lt;/strong&gt; scenario. Due to the repository&amp;rsquo;s large size (or extensive commit history), the HTTP/2 data stream was forcibly terminated midway through the proxy environment (v2rayN).&lt;/p&gt;
+&lt;h2 id=&#34;2-solutions-attempted&#34;&gt;2. Solutions Attempted
+&lt;/h2&gt;&lt;h3 id=&#34;21-shallow-clone-failed&#34;&gt;2.1 Shallow Clone (Failed)
+&lt;/h3&gt;&lt;p&gt;Running &lt;code&gt;git clone --depth 1 https://...&lt;/code&gt; to reduce download volume.&lt;/p&gt;
+&lt;p&gt;While the object count decreased, the connection still broke midway, with the error evolving to:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 0&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Analysis&lt;/strong&gt;: This proves it&amp;rsquo;s not just a file-size issue — the underlying HTTPS connection is being physically severed mid-transfer by the firewall or the proxy software&amp;rsquo;s SSL mechanism.&lt;/p&gt;
+&lt;h3 id=&#34;22-proxy-configuration-tuning-partially-effective&#34;&gt;2.2 Proxy Configuration Tuning (Partially effective)
+&lt;/h3&gt;&lt;p&gt;Inspected the local v2rayN proxy configuration and found the mixed port was &lt;code&gt;10808&lt;/code&gt;. Attempted injecting temporary environment variables via &lt;code&gt;$env:HTTP_PROXY&lt;/code&gt; in PowerShell, and considered enabling Tun mode to take over system-wide traffic.&lt;/p&gt;
+&lt;p&gt;While this approach addresses the root connectivity issue, HTTP proxies remain unreliable for sustained high-volume data streams, and proxy rules frequently conflict with system-level network configurations.&lt;/p&gt;
+&lt;h2 id=&#34;3-protocol-deep-dive-https-vs-ssh&#34;&gt;3. Protocol Deep Dive: HTTP(S) vs. SSH
+&lt;/h2&gt;&lt;h3 id=&#34;httphttps-protocol&#34;&gt;HTTP/HTTPS Protocol
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mechanism&lt;/strong&gt;: Relies on standard web ports (80/443); data transfer is governed by local proxy rules (PAC, system proxy, or CLI environment variables).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upside&lt;/strong&gt;: Extremely low barrier to entry — anyone with a URL can clone a public repository.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Downside&lt;/strong&gt;: Highly sensitive to network conditions. When routed through complex proxy nodes, it is vulnerable to MITM certificate substitution (triggering SSL parsing errors) or buffer overflow on high-volume streams, causing connection resets.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ssh-protocol&#34;&gt;SSH Protocol
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mechanism&lt;/strong&gt;: Operates on an independent TCP port 22 using asymmetric encryption (public/private key pairs). Once the local private key is paired with the public key on GitHub&amp;rsquo;s servers, an end-to-end encrypted tunnel is established.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upside&lt;/strong&gt;: Extremely stable and secure. It bypasses most HTTP-oriented application-layer proxies and censorship, making it immune to &lt;code&gt;curl&lt;/code&gt;-related network interruptions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Downside&lt;/strong&gt;: Higher setup cost — requires generating a key pair and registering it with the platform; tightly bound to the physical machine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4-why-http-fails-and-ssh-succeeds&#34;&gt;4. Why HTTP Fails and SSH Succeeds
+&lt;/h2&gt;&lt;p&gt;The root cause boils down to &lt;strong&gt;how proxy software handles different protocol data streams&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;HTTPS gets &amp;ldquo;clipped&amp;rdquo; by the proxy&lt;/strong&gt;: When cloning over HTTPS, traffic is forcibly routed to the proxy software&amp;rsquo;s port &lt;code&gt;10808&lt;/code&gt;. When processing sustained, large Git object streams, the proxy node may trigger a timeout-based drop, or a momentary certificate verification gap between local OpenSSL and the proxy server may cause a forced &lt;code&gt;SYSCALL&lt;/code&gt; interrupt.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SSH&amp;rsquo;s &amp;ldquo;fast-pass&amp;rdquo; lane&lt;/strong&gt;: After switching to SSH, the terminal bypasses the system HTTP proxy routes entirely and handshakes directly with the remote via port 22. Backed by cryptographic key authentication, this low-level encrypted tunnel is robust enough to slip past the web-layer proxy rules, guaranteeing complete delivery of large data volumes.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;5-the-final-solution-full-ssh-setup-guide&#34;&gt;5. The Final Solution: Full SSH Setup Guide
+&lt;/h2&gt;&lt;p&gt;Steps for Windows PowerShell.&lt;/p&gt;
+&lt;h3 id=&#34;51-generate-an-ssh-key-pair&#34;&gt;5.1 Generate an SSH Key Pair
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;ssh-keygen&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ed25519&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-C&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;your-email@example.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Press Enter to accept the default save path (&lt;code&gt;~/.ssh/id_ed25519&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;When prompted for a passphrase, &lt;strong&gt;press Enter twice to leave it blank&lt;/strong&gt; — this avoids extra password prompts when pulling code later.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;52-copy-the-public-key&#34;&gt;5.2 Copy the Public Key
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Get-Content&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;~/.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ssh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id_ed25519&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;pub&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Set-Clipboard&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;If you used the default RSA encryption instead of ed25519, the file is &lt;code&gt;~/.ssh/id_rsa.pub&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;53-add-the-public-key-to-github&#34;&gt;5.3 Add the Public Key to GitHub
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Log in to GitHub, click your avatar → &lt;strong&gt;Settings&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;SSH and GPG keys&lt;/strong&gt; from the left sidebar&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;New SSH key&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Title: anything descriptive, e.g. &amp;ldquo;My Windows PC&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Key type: keep the default &amp;ldquo;Authentication Key&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Key: paste the public key content (starts with &lt;code&gt;ssh-ed25519&lt;/code&gt; or &lt;code&gt;ssh-rsa&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Add SSH key&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;54-test-the-connection&#34;&gt;5.4 Test the Connection
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ssh&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;git&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;com&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;On first connection, you&amp;rsquo;ll see &lt;code&gt;Are you sure you want to continue connecting?&lt;/code&gt; — &lt;strong&gt;type &lt;code&gt;yes&lt;/code&gt; manually&lt;/strong&gt;. Upon success, you&amp;rsquo;ll see something like &lt;code&gt;Hi your_username! You&#39;ve successfully authenticated...&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;55-re-clone&#34;&gt;5.5 Re-clone
+&lt;/h3&gt;&lt;p&gt;Now clone using the SSH address:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;git&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clone&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;git&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;taichi-project&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;anyagent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;git&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;56-pros-cons-and-best-practices&#34;&gt;5.6 Pros, Cons, and Best Practices
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;: A one-time investment for long-term stability and security. Once configured, you have a fully encrypted, password-free direct channel to GitHub, completely immune to proxy port conflicts, SSL certificate hijacking, and the frequent connection-reset errors that plague large file transfers over HTTP/HTTPS.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;: Higher setup barrier. For newcomers, understanding public-key cryptography and navigating the generate-copy-register workflow in the terminal is error-prone (e.g., missing characters when copying, forgetting to type &lt;code&gt;yes&lt;/code&gt;). It&amp;rsquo;s also machine-bound — you&amp;rsquo;ll need to reconfigure after replacing a computer or reinstalling the OS.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Best practice&lt;/strong&gt;: Make SSH your default protocol for daily Git interactions. Use SSH for all long-lived repositories or those you frequently push/pull. Reserve HTTPS (with browser or terminal proxy) for one-off, temporary clones where stability is not critical.&lt;/p&gt;
 </description>
         </item>
         

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>SSH on Siborne</title>
+        <link>https://Siborne.top/tags/ssh/</link>
+        <description>Recent content in SSH on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 01:07:24 +0800</lastBuildDate><atom:link href="https://Siborne.top/tags/ssh/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>技术踩坑记录：Git 大仓库克隆网络中断与 SSH 破局方案</title>
+        <link>https://Siborne.top/p/git-ssh-large-repo/</link>
+        <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/p/git-ssh-large-repo/</guid>
+        <description>&lt;img src="https://Siborne.top/p/git-ssh-large-repo/bannerImage.png" alt="Featured image of post 技术踩坑记录：Git 大仓库克隆网络中断与 SSH 破局方案" /&gt;&lt;h2 id=&#34;1-问题背景&#34;&gt;1. 问题背景
+&lt;/h2&gt;&lt;p&gt;在尝试克隆大型开源项目 &lt;code&gt;taichi-project/anyagent&lt;/code&gt; 时，终端频繁出现由于网络层断开导致克隆失败的报错。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;初始报错迹象&lt;/strong&gt;：执行基础 &lt;code&gt;git clone&lt;/code&gt; 时，数据拉取到一半突然中断：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;error: RPC failed; curl 92 HTTP/2 stream 7 was not closed cleanly: CANCEL (err 8)&lt;/code&gt;
+&lt;code&gt;fatal: early EOF&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;问题实质&lt;/strong&gt;：这是典型的 Git &lt;strong&gt;网络传输中断&lt;/strong&gt;现象。目标仓库体积较大（或包含较多历史记录），通过当前网络代理环境（v2rayN）拉取时，HTTP/2 数据流被意外强行掐断。&lt;/p&gt;
+&lt;h2 id=&#34;2-尝试过的解决方案&#34;&gt;2. 尝试过的解决方案
+&lt;/h2&gt;&lt;h3 id=&#34;21-浅克隆浅克隆失败&#34;&gt;2.1 浅克隆（浅克隆（失败）
+&lt;/h3&gt;&lt;p&gt;执行 &lt;code&gt;git clone --depth 1 https://...&lt;/code&gt; 试图减少下载体积。&lt;/p&gt;
+&lt;p&gt;结果：对象数确实减少了，但依然在中途断开，报错演变为：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 0&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;分析&lt;/strong&gt;：这说明不仅仅是文件大小问题，底层 HTTPS 连接在数据传输中途被防火墙或代理软件的 SSL 机制物理切断了。&lt;/p&gt;
+&lt;h3 id=&#34;22-配置本地代理环境部分有效&#34;&gt;2.2 配置本地代理环境（部分有效）
+&lt;/h3&gt;&lt;p&gt;查阅本地 v2rayN 代理配置，发现混合端口为 &lt;code&gt;10808&lt;/code&gt;。尝试在 PowerShell 中注入临时环境变量 &lt;code&gt;$env:HTTP_PROXY&lt;/code&gt;，或考虑开启 Tun 模式接管全局流量。&lt;/p&gt;
+&lt;p&gt;此方案虽然触及了网络连通性的根本，但 HTTP 代理在面对极大数据流的持续传输时依然不稳定，且代理规则容易与系统级网络配置发生冲突。&lt;/p&gt;
+&lt;h2 id=&#34;3-原理剖析https-与-ssh-的差异&#34;&gt;3. 原理剖析：HTTP(S) 与 SSH 的差异
+&lt;/h2&gt;&lt;h3 id=&#34;httphttps-协议&#34;&gt;HTTP/HTTPS 协议
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;运作机制&lt;/strong&gt;：依赖标准 Web 端口（80/443），数据传输受制于本机网络代理规则（PAC、系统代理或命令行环境变量）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优点&lt;/strong&gt;：门槛极低，任何人拿到 URL 就能直接下载公开仓库。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缺点&lt;/strong&gt;：对网络环境极为敏感。经过复杂代理节点时，极易受到中间人证书替换（引发 SSL 解析错误）或大流量缓存溢出的影响，导致连接重置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ssh-协议&#34;&gt;SSH 协议
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;运作机制&lt;/strong&gt;：运行在独立的 TCP 22 端口，采用非对称加密（公钥+私钥）机制。本机私钥与 GitHub 服务器上的公钥配对成功后，建立端到端加密隧道。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优点&lt;/strong&gt;：极其稳定且安全，直接穿透或绕过绝大多数针对 HTTP 的应用层代理和审查机制，免疫 &lt;code&gt;curl&lt;/code&gt; 相关的网络阻断。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缺点&lt;/strong&gt;：配置门槛较高，需事先生成密钥对并在平台完成身份绑定，且与物理设备强绑定。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4-为什么-http-失败而-ssh-成功&#34;&gt;4. 为什么 HTTP 失败，而 SSH 成功？
+&lt;/h2&gt;&lt;p&gt;结合本次排错过程，根本原因在于&lt;strong&gt;代理软件对不同协议数据流的处理机制差异&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;HTTPS 被代理&amp;quot;夹断&amp;quot;&lt;/strong&gt;：使用 HTTPS 克隆时，流量被强制引导至代理软件的 &lt;code&gt;10808&lt;/code&gt; 端口。代理节点在处理持续不断的大型 Git 对象流时，可能触发了超时丢弃机制，或本地 OpenSSL 与代理服务器之间的证书验证出现瞬间断层，导致系统强制 &lt;code&gt;SYSCALL&lt;/code&gt; 中断。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SSH 的&amp;quot;免检通行&amp;quot;&lt;/strong&gt;：切换到 SSH 协议后，终端不再使用系统 HTTP 代理路由，而是直接通过 22 端口向远端发起握手。密钥的硬性背书使这条加密隧道足够底层且坚固，不再受上层 Web 代理规则干扰，从而保障大数据量的完整传输。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;5-最终方案ssh-完整配置步骤&#34;&gt;5. 最终方案：SSH 完整配置步骤
+&lt;/h2&gt;&lt;p&gt;适用于 Windows PowerShell。&lt;/p&gt;
+&lt;h3 id=&#34;51-生成本机-ssh-密钥&#34;&gt;5.1 生成本机 SSH 密钥
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;ssh-keygen&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ed25519&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-C&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;你的邮箱@example.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;按回车接受默认保存路径（&lt;code&gt;~/.ssh/id_ed25519&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;提示输入密码时，&lt;strong&gt;直接按两次回车留空&lt;/strong&gt;，后续拉取代码无需额外输密码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;52-复制公钥内容&#34;&gt;5.2 复制公钥内容
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Get-Content&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;~/.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ssh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id_ed25519&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;pub&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Set-Clipboard&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;如果使用默认 RSA 加密而非 ed25519，则文件是 &lt;code&gt;~/.ssh/id_rsa.pub&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;53-绑定公钥到-github&#34;&gt;5.3 绑定公钥到 GitHub
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;浏览器登录 GitHub，点击右上角头像 → &lt;strong&gt;Settings&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;左侧菜单选择 &lt;strong&gt;SSH and GPG keys&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;New SSH key&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Title：随便填写，例如 &amp;ldquo;My Windows PC&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Key type：保持默认 &amp;ldquo;Authentication Key&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Key：粘贴刚才复制的公钥内容（以 &lt;code&gt;ssh-ed25519&lt;/code&gt; 或 &lt;code&gt;ssh-rsa&lt;/code&gt; 开头）&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;Add SSH key&lt;/strong&gt; 保存&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;54-测试连接&#34;&gt;5.4 测试连接
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ssh&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;git&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;com&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;第一次连接时，会提示 &lt;code&gt;Are you sure you want to continue connecting?&lt;/code&gt;，&lt;strong&gt;务必手动输入 &lt;code&gt;yes&lt;/code&gt;&lt;/strong&gt;。成功后显示类似 &lt;code&gt;Hi your_username! You&#39;ve successfully authenticated...&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;55-重新克隆&#34;&gt;5.5 重新克隆
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;git&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clone&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;git&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;taichi-project&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;anyagent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;git&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;56-优缺点与最佳实践&#34;&gt;5.6 优缺点与最佳实践
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：一劳永逸的安全与稳定。配置完成后，你和 GitHub 之间建立了一条完全加密且免密的直连通道，彻底免疫 HTTP/HTTPS 协议下的代理端口冲突、SSL 证书劫持、以及大文件传输时频繁出现的连接重置错误。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;：前置门槛较高。对于新手而言，理解公私钥非对称加密并在命令行中完成生成、复制、绑定这套流程容易出错（例如少复制字符、忘记输入 &lt;code&gt;yes&lt;/code&gt;）。并且与设备强绑定，换电脑或重装系统后需要重新配置。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最佳实践&lt;/strong&gt;：在日常开发中，强烈建议将 SSH 作为 Git 交互的默认协议。对自己长期维护或频繁 &lt;code&gt;push/pull&lt;/code&gt; 的仓库，一律使用 SSH 直连；仅在需要临时下载一次性代码、对稳定性要求不高时，才使用 HTTPS 配合浏览器或终端代理。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
