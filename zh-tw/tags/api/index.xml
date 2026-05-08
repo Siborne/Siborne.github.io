@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>API on Siborne</title>
+        <link>https://Siborne.top/zh-tw/tags/api/</link>
+        <description>Recent content in API on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/zh-tw/tags/api/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Codex 接入 DeepSeek V4：用中轉腳本破解 API 格式不相容</title>
+        <link>https://Siborne.top/zh-tw/p/codex-deepseek-v4-proxy/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/zh-tw/p/codex-deepseek-v4-proxy/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-deepseek-v4-proxy/bannerImage.png" alt="Featured image of post Codex 接入 DeepSeek V4：用中轉腳本破解 API 格式不相容" /&gt;&lt;blockquote&gt;
+&lt;p&gt;🚀 &lt;strong&gt;中轉腳本已開源&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt; —— 一鍵將任意第三方 API 轉為 Codex 相容格式，不止 DeepSeek。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;問題從何而來&#34;&gt;問題從何而來？
+&lt;/h2&gt;&lt;p&gt;最近 DeepSeek V4 系列模型打折，價效比極高，不少開發者想在 Codex 裡切過去用。但實際操作時，很多人發現一個讓人頭疼的問題：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Codex 的 API 請求格式和 DeepSeek 官方接口對不上。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;具體來說，Codex 內部發出的請求路徑是固定格式的，而你如果直接在配置裡把請求地址改成 DeepSeek 官方的 &lt;code&gt;https://api.deepseek.com&lt;/code&gt;，Codex 會直接報錯——不管你怎麼改 model 名稱、怎麼調整參數，都無濟於事。&lt;/p&gt;
+&lt;h2 id=&#34;為什麼中轉站能用&#34;&gt;為什麼中轉站能用？
+&lt;/h2&gt;&lt;p&gt;這其實提示了解決方向。市面上一些 API 中轉站之所以能無縫接入 Codex，本質上就是做了一層&lt;strong&gt;協議適配&lt;/strong&gt;——把 Codex 發出的請求攔截下來，按目標 API 的要求重新組裝，再轉發出去；拿到回應後，再還原成 Codex 能理解的格式傳回去。&lt;/p&gt;
+&lt;p&gt;既然如此，我們完全可以用同樣的思路，自己搭一個&lt;strong&gt;本機中轉腳本&lt;/strong&gt;，把 DeepSeek 的 API 對接上。&lt;/p&gt;
+&lt;h2 id=&#34;整體架構&#34;&gt;整體架構
+&lt;/h2&gt;&lt;p&gt;整個方案的鏈路是這樣的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Codex 客戶端
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CC Switch（模型配置層）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;本機中轉腳本（協議轉換層）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DeepSeek 官方 API
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;三個關鍵組件各司其職：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;組件&lt;/th&gt;
+          &lt;th&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;開源模型切換工具，負責在 Codex 中注入自定義模型配置&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;中轉腳本&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;本機執行的代理服務，負責請求格式的雙向轉換&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;DeepSeek API&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;最終回應用戶請求的模型服務&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;實操步驟&#34;&gt;實操步驟
+&lt;/h2&gt;&lt;h3 id=&#34;第一步準備工具&#34;&gt;第一步：準備工具
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;：開源工具，微軟商店或 GitHub 都能下載&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex&lt;/strong&gt;：你已經在用的 IDE&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中轉腳本&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt;，一鍵將第三方 API 轉為 Codex 相容格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;第二步配置-cc-switch&#34;&gt;第二步：配置 CC Switch
+&lt;/h3&gt;&lt;p&gt;開啟 CC Switch，找到 Codex / OpenAI Codex 的配置項，點擊加號新建一個自定義配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;請求地址&lt;/strong&gt;：填本機中轉腳本的地址，例如 &lt;code&gt;http://localhost:&amp;lt;連接埠&amp;gt;/v1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型名稱&lt;/strong&gt;：填你想用的 DeepSeek 模型，比如 &lt;code&gt;deepseek-v4-pro&lt;/code&gt; 或 &lt;code&gt;deepseek-v4-fast&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API Key&lt;/strong&gt;：填固定佔位符即可（中轉腳本裡已內建你的真實 API Key）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;關鍵點&lt;/strong&gt;：這裡的請求地址&lt;strong&gt;不能&lt;/strong&gt;填 DeepSeek 官方地址。因為 Codex 發出的請求路徑格式是固定的，直接對接官方 API 會因格式不匹配而報錯。必須讓請求先經過中轉腳本。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;儲存配置。&lt;/p&gt;
+&lt;h3 id=&#34;第三步啟動中轉腳本&#34;&gt;第三步：啟動中轉腳本
+&lt;/h3&gt;&lt;p&gt;執行腳本，它會先做鏈路驗證，確認你的 API Key 有效、網路通暢。驗證通過後，腳本會在本機啟動一個代理服務，開始監聽 Codex 發來的請求。&lt;/p&gt;
+&lt;h3 id=&#34;第四步在-codex-中切換模型&#34;&gt;第四步：在 Codex 中切換模型
+&lt;/h3&gt;&lt;p&gt;開啟 Codex，在模型選擇列表中找到 CC Switch 注入的自定義配置（名稱就是你在第二步設定的），選中它。&lt;/p&gt;
+&lt;p&gt;然後隨便發一句話測試——如果一切正常，DeepSeek V4 的回覆就會出現在你面前。&lt;/p&gt;
+&lt;h2 id=&#34;中轉腳本做了什麼&#34;&gt;中轉腳本做了什麼？
+&lt;/h2&gt;&lt;p&gt;核心邏輯其實很簡單：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;接收&lt;/strong&gt; Codex 按固定格式發來的請求&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;解析&lt;/strong&gt;出其中的 messages、model、parameters 等有效欄位&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重組&lt;/strong&gt;成 DeepSeek 官方 API 要求的請求體格式&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;轉發&lt;/strong&gt;到 DeepSeek 伺服器，帶上你的真實 API Key&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;還原&lt;/strong&gt;回應為 Codex 能解析的格式，返回給客戶端&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本質上就是一個&lt;strong&gt;協定轉換層&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;為什麼不能直接改-codex-的請求路徑&#34;&gt;為什麼不能直接改 Codex 的請求路徑？
+&lt;/h2&gt;&lt;p&gt;很多人的第一反應是：&amp;ldquo;那我直接找到 Codex 裡定義請求路徑的地方，改成 DeepSeek 的格式不就行了？&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;確實不行。影片作者也提到試了很多次——改 chat、改 v1、改各種路徑，Codex 全都會報錯。因為 Codex 的請求格式是寫死在內部邏輯裡的，擅自修改會破壞整個通訊流程。與其和 Codex 的內部機制較勁，不如在外面加一層適配來得乾淨俐落。&lt;/p&gt;
+&lt;h2 id=&#34;總結&#34;&gt;總結
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;方案對比&lt;/th&gt;
+          &lt;th&gt;直接改地址&lt;/th&gt;
+          &lt;th&gt;中轉腳本&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;能否跑通&lt;/td&gt;
+          &lt;td&gt;❌ 報錯&lt;/td&gt;
+          &lt;td&gt;✅ 正常&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;實現成本&lt;/td&gt;
+          &lt;td&gt;低（改一行配置）&lt;/td&gt;
+          &lt;td&gt;中（多跑一個腳本）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;可維護性&lt;/td&gt;
+          &lt;td&gt;差（Codex 一更新可能就廢）&lt;/td&gt;
+          &lt;td&gt;好（解耦，不依賴 Codex 內部實現）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;擴充性&lt;/td&gt;
+          &lt;td&gt;無&lt;/td&gt;
+          &lt;td&gt;高（稍改腳本就能接入更多模型）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;這個方案的思路其實很通用——&lt;strong&gt;不只是在 Codex 上用 DeepSeek，任何有類似格式不相容問題的場景，都可以透過本機中轉層來解決&lt;/strong&gt;。CC Switch 負責注入配置，中轉腳本負責協定轉換，兩者配合就能把各種第三方模型接入 Codex。&lt;/p&gt;
+&lt;p&gt;中轉腳本已開源在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt;，歡迎 Star 和 PR，一起完善更多模型的適配。&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;參考來源&lt;/strong&gt;：B 站影片 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1euRbB3E33/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;codex接入國產大模型教程&lt;/a&gt; by 王了小王（2026-05-06）&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

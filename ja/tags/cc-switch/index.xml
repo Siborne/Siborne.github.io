@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>CC-Switch on Siborne</title>
+        <link>https://Siborne.top/ja/tags/cc-switch/</link>
+        <description>Recent content in CC-Switch on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ja</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/ja/tags/cc-switch/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決</title>
+        <link>https://Siborne.top/ja/p/codex-deepseek-v4-proxy/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/codex-deepseek-v4-proxy/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-deepseek-v4-proxy/bannerImage.png" alt="Featured image of post Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決" /&gt;&lt;blockquote&gt;
+&lt;p&gt;🚀 &lt;strong&gt;中継スクリプトはオープンソース化&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt; —— 任意のサードパーティ API を Codex 互換形式にワンクリック変換。DeepSeek だけでなく、幅広く対応。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;問題の所在&#34;&gt;問題の所在
+&lt;/h2&gt;&lt;p&gt;最近、DeepSeek V4 シリーズモデルが割引され、非常にコストパフォーマンスが高くなっています。多くの開発者が Codex 内で使用しようとしています。しかし実際に操作すると、厄介な問題に直面します：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Codex の API リクエスト形式と DeepSeek 公式インターフェースが一致しない。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;具体的には、Codex が内部的に送信するリクエストパスは固定形式であり、設定でリクエスト先を DeepSeek 公式の &lt;code&gt;https://api.deepseek.com&lt;/code&gt; に直接変更しても、Codex はエラーを返します——モデル名をどう変更しても、パラメータをどう調整しても、全く効果がありません。&lt;/p&gt;
+&lt;h2 id=&#34;なぜ中継サービスは使えるのか&#34;&gt;なぜ中継サービスは使えるのか？
+&lt;/h2&gt;&lt;p&gt;これは解決の方向性を示唆しています。市場に出回っている一部の API 中継サービスが Codex にシームレスに接続できる理由は、本質的に&lt;strong&gt;プロトコル適応&lt;/strong&gt;の層を設けているからです——Codex からのリクエストをインターセプトし、ターゲット API の要求に合わせて再構成し、転送します。レスポンスを受け取った後は、Codex が理解できる形式に復元してクライアントに返します。&lt;/p&gt;
+&lt;p&gt;であれば、まったく同じ考え方で、自分自身で&lt;strong&gt;ローカル中継スクリプト&lt;/strong&gt;を構築し、DeepSeek の API を接続することができます。&lt;/p&gt;
+&lt;h2 id=&#34;全体アーキテクチャ&#34;&gt;全体アーキテクチャ
+&lt;/h2&gt;&lt;p&gt;ソリューション全体のリンクは次のとおりです：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Codex クライアント
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CC Switch（モデル設定層）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ローカル中継スクリプト（プロトコル変換層）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DeepSeek 公式 API
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;3つのキーコンポーネントがそれぞれの役割を果たします：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;コンポーネント&lt;/th&gt;
+          &lt;th&gt;役割&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;オープンソースのモデル切替ツール、Codex にカスタムモデル設定を注入&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;中継スクリプト&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ローカルで動作するプロキシサービス、リクエスト形式の双方向変換を担当&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;DeepSeek API&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;最終的にユーザーリクエストに応答するモデルサービス&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;実践手順&#34;&gt;実践手順
+&lt;/h2&gt;&lt;h3 id=&#34;ステップ1ツールの準備&#34;&gt;ステップ1：ツールの準備
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;：オープンソースツール、Microsoft Store または GitHub からダウンロード可能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex&lt;/strong&gt;：すでに使用している IDE&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中継スクリプト&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt;、サードパーティ API を Codex 互換形式にワンクリック変換&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ステップ2cc-switch-の設定&#34;&gt;ステップ2：CC Switch の設定
+&lt;/h3&gt;&lt;p&gt;CC Switch を開き、Codex / OpenAI Codex の設定項目を見つけ、プラスアイコンをクリックしてカスタム設定を新規作成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;リクエスト先&lt;/strong&gt;：ローカル中継スクリプトのアドレスを入力（例：&lt;code&gt;http://localhost:&amp;lt;ポート&amp;gt;/v1&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;モデル名&lt;/strong&gt;：使用したい DeepSeek モデルを入力（例：&lt;code&gt;deepseek-v4-pro&lt;/code&gt; または &lt;code&gt;deepseek-v4-fast&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API Key&lt;/strong&gt;：固定のプレースホルダーを入力（実際の API Key は中継スクリプトに埋め込み済み）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;重要なポイント&lt;/strong&gt;：ここでのリクエスト先に DeepSeek 公式アドレスを入力してはいけません。Codex が送信するリクエストパス形式は固定であるため、公式 API に直接接続すると形式の不一致でエラーが発生します。リクエストは必ず中継スクリプトを経由させる必要があります。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;設定を保存します。&lt;/p&gt;
+&lt;h3 id=&#34;ステップ3中継スクリプトの起動&#34;&gt;ステップ3：中継スクリプトの起動
+&lt;/h3&gt;&lt;p&gt;スクリプトを実行すると、まずリンク検証が行われ、API Key の有効性とネットワークの疎通が確認されます。検証が通ると、スクリプトはローカルでプロキシサービスを起動し、Codex からのリクエストの待受を開始します。&lt;/p&gt;
+&lt;h3 id=&#34;ステップ4codex-でモデルを切り替え&#34;&gt;ステップ4：Codex でモデルを切り替え
+&lt;/h3&gt;&lt;p&gt;Codex を開き、モデル選択リストから CC Switch が注入したカスタム設定（ステップ2で設定した名前で表示されます）を見つけ、選択します。&lt;/p&gt;
+&lt;p&gt;そして適当なメッセージを送信してテスト——すべてが正常であれば、DeepSeek V4 の返信が表示されます。&lt;/p&gt;
+&lt;h2 id=&#34;中継スクリプトは何をしているのか&#34;&gt;中継スクリプトは何をしているのか？
+&lt;/h2&gt;&lt;p&gt;核心的なロジックは非常にシンプルです：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;受信&lt;/strong&gt;：Codex から固定形式で送信されたリクエストを受信&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;解析&lt;/strong&gt;：messages、model、parameters などの有効なフィールドを抽出&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;再構成&lt;/strong&gt;：DeepSeek 公式 API が要求するリクエストボディ形式に組み立て直し&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;転送&lt;/strong&gt;：実際の API Key を付与して DeepSeek サーバーに転送&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;復元&lt;/strong&gt;：レスポンスを Codex が解析できる形式に復元し、クライアントに返却&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本質的には&lt;strong&gt;プロトコル変換層&lt;/strong&gt;です。&lt;/p&gt;
+&lt;h2 id=&#34;なぜ-codex-のリクエストパスを直接変更できないのか&#34;&gt;なぜ Codex のリクエストパスを直接変更できないのか？
+&lt;/h2&gt;&lt;p&gt;多くの人の第一反応は：「Codex 内でリクエストパスを定義している場所を直接見つけて、DeepSeek の形式に変更すればいいのでは？」というものです。&lt;/p&gt;
+&lt;p&gt;実際にはできません。動画の作者も何度も試したと述べています——chat を変更したり、v1 を変更したり、さまざまなパスを変更したりしましたが、Codex はすべてエラーを返しました。Codex のリクエスト形式は内部ロジックにハードコードされており、無断で変更すると通信フロー全体が破壊されます。Codex の内部メカニズムと格闘するよりも、外部に適応層を追加する方がはるかにクリーンです。&lt;/p&gt;
+&lt;h2 id=&#34;まとめ&#34;&gt;まとめ
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;手法の比較&lt;/th&gt;
+          &lt;th&gt;アドレス直接変更&lt;/th&gt;
+          &lt;th&gt;中継スクリプト&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;動作するか&lt;/td&gt;
+          &lt;td&gt;❌ エラー&lt;/td&gt;
+          &lt;td&gt;✅ 正常&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;実装コスト&lt;/td&gt;
+          &lt;td&gt;低（設定1行変更）&lt;/td&gt;
+          &lt;td&gt;中（スクリプト1つ追加実行）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;保守性&lt;/td&gt;
+          &lt;td&gt;悪い（Codex のアップデートで壊れる可能性）&lt;/td&gt;
+          &lt;td&gt;良い（疎結合、Codex 内部実装に非依存）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;拡張性&lt;/td&gt;
+          &lt;td&gt;なし&lt;/td&gt;
+          &lt;td&gt;高い（スクリプトを少し修正するだけでより多くのモデルに対応可能）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;このソリューションの考え方は非常に汎用的です——&lt;strong&gt;Codex で DeepSeek を使用する場合だけでなく、同様の形式不一致問題があるあらゆるシナリオで、ローカル中継層によって解決できます&lt;/strong&gt;。CC Switch が設定注入を担当し、中継スクリプトがプロトコル変換を担当します。この2つの組み合わせで、さまざまなサードパーティモデルを Codex に接続できます。&lt;/p&gt;
+&lt;p&gt;中継スクリプトは &lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt; でオープンソース化されています。Star や PR を歓迎します。より多くのモデルの適応を一緒に充実させましょう。&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;参考ソース&lt;/strong&gt;：Bilibili 動画 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1euRbB3E33/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;codex接入国产大模型教程&lt;/a&gt; by 王了小王（2026-05-06）&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,1317 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>AI程式設計 on Siborne</title>
+        <link>https://Siborne.top/zh-tw/tags/ai%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/</link>
+        <description>Recent content in AI程式設計 on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/zh-tw/tags/ai%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>OpenCode 全深度指南：開源版 Claude Code 的安裝、配置與高階玩法</title>
+        <link>https://Siborne.top/zh-tw/p/opencode-complete-guide/</link>
+        <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/zh-tw/p/opencode-complete-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/opencode-complete-guide/bannerImage.png" alt="Featured image of post OpenCode 全深度指南：開源版 Claude Code 的安裝、配置與高階玩法" /&gt;&lt;h2 id=&#34;核心要點概括&#34;&gt;核心要點概括
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenCode 定位&lt;/strong&gt;：開源版 Claude Code，具備幾乎 Claude Code 的全部功能，中國使用者友好，不限速不封號。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;免費模型&lt;/strong&gt;：開箱即用 GLM-4.7、MiniMax-2.1 等免費模型，零配置即可上手 AI 程式設計。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;頂級模型接入&lt;/strong&gt;：通過 Antigravity 外掛免費接入 Gemini 3 Pro、Claude 4.5 Opus；通過 &lt;code&gt;/connect&lt;/code&gt; 接入 GPT Codex。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;殺手級功能&lt;/strong&gt;：Session 並行、Timeline 回退、Share 分享、Ultra Work 多智慧體協作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;外掛生態&lt;/strong&gt;：Oh My Open Code（OMO）整合七大程式設計智慧體 + 三大 MCP Server + 多種工具，實現 AI 程式設計團隊協同。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;一什麼是-opencode&#34;&gt;一、什麼是 OpenCode？
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;OpenCode&lt;/strong&gt; 是近期熱度最高的 AI 程式設計工具，本質上是一個&lt;strong&gt;開源版的 Claude Code&lt;/strong&gt;。它幾乎復刻了 Claude Code 的所有核心功能，同時解決了 Claude Code 在中國使用者中常見的限速、封號等痛點。&lt;/p&gt;
+&lt;h3 id=&#34;為什麼選擇-opencode&#34;&gt;為什麼選擇 OpenCode？
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;對比維度&lt;/th&gt;
+          &lt;th&gt;Claude Code&lt;/th&gt;
+          &lt;th&gt;OpenCode&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;開源&lt;/td&gt;
+          &lt;td&gt;❌ 閉源&lt;/td&gt;
+          &lt;td&gt;✅ 開源&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;免費模型&lt;/td&gt;
+          &lt;td&gt;❌ 需付費 API&lt;/td&gt;
+          &lt;td&gt;✅ 內建免費模型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中國使用者友好&lt;/td&gt;
+          &lt;td&gt;⚠️ 限速/封號風險&lt;/td&gt;
+          &lt;td&gt;✅ 無限制&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Skills/MCP&lt;/td&gt;
+          &lt;td&gt;✅ 支援&lt;/td&gt;
+          &lt;td&gt;✅ 完全相容&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Session 並行&lt;/td&gt;
+          &lt;td&gt;❌&lt;/td&gt;
+          &lt;td&gt;✅ 核心亮點&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;二四種安裝形態&#34;&gt;二、四種安裝形態
+&lt;/h2&gt;&lt;p&gt;OpenCode 提供四種執行方式，滿足不同場景需求：&lt;/p&gt;
+&lt;h3 id=&#34;1-命令列版主力推薦&#34;&gt;1. 命令列版（主力推薦）
+&lt;/h3&gt;&lt;p&gt;最穩定、功能最全的使用方式。通過 npm 安裝：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm i -g opencode-ai
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;opencode
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;前置條件&lt;/strong&gt;：需要安裝 Node.js（前往 &lt;a class=&#34;link&#34; href=&#34;https://nodejs.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;nodejs.org&lt;/a&gt; 下載對應系統版本）。&lt;/p&gt;
+&lt;p&gt;安裝完成後終端輸入 &lt;code&gt;opencode&lt;/code&gt; 即可啟動。&lt;/p&gt;
+&lt;h3 id=&#34;2-桌面客戶端beta&#34;&gt;2. 桌面客戶端（Beta）
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;從官網下載客戶端，一路下一步安裝&lt;/li&gt;
+&lt;li&gt;選擇專案資料夾即可使用&lt;/li&gt;
+&lt;li&gt;⚠️ &lt;strong&gt;注意&lt;/strong&gt;：目前處於 Beta 測試階段，bug 較多，暫不推薦作為主力工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-vs-code-外掛版&#34;&gt;3. VS Code 外掛版
+&lt;/h3&gt;&lt;p&gt;前提：已安裝命令列版 OpenCode。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 VS Code 擴充套件商店搜尋 &lt;strong&gt;OpenCode&lt;/strong&gt; 並安裝&lt;/li&gt;
+&lt;li&gt;快捷鍵 &lt;code&gt;Ctrl + Shift + P&lt;/code&gt; → 輸入 &lt;code&gt;open opencode&lt;/code&gt; 回車&lt;/li&gt;
+&lt;li&gt;外掛會自動關聯左側視窗開啟的程式碼檔案&lt;/li&gt;
+&lt;li&gt;選中程式碼後按 &lt;code&gt;Ctrl + Alt + K&lt;/code&gt; 可快速貼上到 OpenCode 聊天視窗&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;外掛版的核心價值在於&lt;strong&gt;與 IDE 的無縫整合&lt;/strong&gt;，讓 AI 直接感知你的程式碼上下文。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;4-雲端執行環境github-actions&#34;&gt;4. 雲端執行環境（GitHub Actions）
+&lt;/h3&gt;&lt;p&gt;在 GitHub 倉庫的 Issue 中輸入 &lt;code&gt;/opencode&lt;/code&gt; 即可觸發雲端 AI 工作流：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;將專案上傳到 GitHub 公開倉庫&lt;/li&gt;
+&lt;li&gt;在倉庫中配置 API Key（Settings → Secrets and Variables → Actions）&lt;/li&gt;
+&lt;li&gt;在 Issue 評論中輸入 &lt;code&gt;/opencode&lt;/code&gt; + 需求描述&lt;/li&gt;
+&lt;li&gt;GitHub Actions 自動執行 OpenCode 工作流&lt;/li&gt;
+&lt;li&gt;完成後自動建立 Pull Request&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;非常適合開源專案的自動化 Issue 修復。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;三免費模型配置&#34;&gt;三、免費模型配置
+&lt;/h2&gt;&lt;p&gt;OpenCode 最大的優勢是&lt;strong&gt;開箱即用的免費模型&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 檢視所有可用模型（帶 free 標記的即可免費使用）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/models
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;推薦免費模型：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;模型&lt;/th&gt;
+          &lt;th&gt;特點&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;GLM-4.7&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;程式設計能力強，零配置&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;MiniMax-2.1&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;程式設計能力出色，響應快&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;新手用這兩個免費模型練習 AI 程式設計綽綽有餘。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;接入頂級模型&#34;&gt;接入頂級模型
+&lt;/h3&gt;&lt;h4 id=&#34;方式一antigravity-外掛免費接入-gemini--claude&#34;&gt;方式一：Antigravity 外掛（免費接入 Gemini + Claude）
+&lt;/h4&gt;&lt;p&gt;Antigravity 是 Google 推出的 AI 程式設計 IDE，它慷慨地免費提供了 &lt;strong&gt;Gemini 3 Pro&lt;/strong&gt; 和 &lt;strong&gt;Claude 4.5 Opus&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;安裝步驟：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 OpenCode 中貼上安裝提示詞（從 Antigravity GitHub 首頁複製）&lt;/li&gt;
+&lt;li&gt;等待 AI 自動完成安裝&lt;/li&gt;
+&lt;li&gt;開啟新終端執行登入命令，選擇 Google → Antigravity 登入&lt;/li&gt;
+&lt;li&gt;登入 Google 賬戶，貼上生成的 URL&lt;/li&gt;
+&lt;li&gt;重啟 OpenCode，&lt;code&gt;/models&lt;/code&gt; 即可看到 Gemini 3 Pro 和 Claude 4.5 Opus&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;方式二gpt-codexopenai-官方合作&#34;&gt;方式二：GPT Codex（OpenAI 官方合作）
+&lt;/h4&gt;&lt;p&gt;OpenAI 與 OpenCode 官宣合作，可直接接入 ChatGPT Codex：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/connect
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 選擇 OpenAI → GPT Pro → 瀏覽器登入&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;前提：需要有 &lt;strong&gt;ChatGPT Plus&lt;/strong&gt; 或以上訂閱。&lt;/p&gt;
+&lt;h4 id=&#34;方式三openrouter萬能接入&#34;&gt;方式三：OpenRouter（萬能接入）
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/connect
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 選擇 OpenRouter → 填寫 API Key&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;通過 OpenRouter 可以接入市面上幾乎&lt;strong&gt;所有大模型&lt;/strong&gt;，國內使用者也能方便獲取額度。OpenCode 支援 &lt;strong&gt;75 種 AI 接入方式&lt;/strong&gt;，幾乎囊括所有模型供應商。&lt;/p&gt;
+&lt;h2 id=&#34;四核心功能亮點&#34;&gt;四、核心功能亮點
+&lt;/h2&gt;&lt;h3 id=&#34;1-反問式需求澄清&#34;&gt;1. 反問式需求澄清
+&lt;/h3&gt;&lt;p&gt;在動手編碼之前，OpenCode 會&lt;strong&gt;反向詢問&lt;/strong&gt;你一系列問題：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只需要程式碼樣例，還是完整可執行的程式？&lt;/li&gt;
+&lt;li&gt;哪些功能是必須實現的？&lt;/li&gt;
+&lt;li&gt;呼叫哪個模型？&lt;/li&gt;
+&lt;li&gt;環境變數如何儲存？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;這種&amp;quot;先問清楚再動手&amp;quot;的機制，大幅減少了返工。&lt;/p&gt;
+&lt;h3 id=&#34;2-命令列程式碼比對介面&#34;&gt;2. 命令列程式碼比對介面
+&lt;/h3&gt;&lt;p&gt;OpenCode 的命令列 diff 展示被認為是&lt;strong&gt;所有命令列程式設計工具中做得最好的&lt;/strong&gt;，程式碼變更一目瞭然。&lt;/p&gt;
+&lt;h3 id=&#34;3-session-並行處理-&#34;&gt;3. Session 並行處理 ⭐
+&lt;/h3&gt;&lt;p&gt;這是 OpenCode 最具特色的功能——&lt;strong&gt;多 Session 並行執行&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 發起第一個任務（如：增加計時器）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 任務執行中，建立新 session&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/new
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 發起第二個任務（如：畫筆調色）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 檢視所有 session 狀態&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/sessions
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 在 session 間切換&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/session &amp;lt;id&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;打轉符號表示 Session 正在&lt;strong&gt;後臺執行&lt;/strong&gt;。兩個需求可以完全並行開發，互不干擾。&lt;/p&gt;
+&lt;h3 id=&#34;4-timeline-檢查點回退&#34;&gt;4. Timeline 檢查點回退
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/timeline
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;檢視當前 Session 的完整對話記錄。選擇任意歷史節點，使用 &lt;strong&gt;Revert&lt;/strong&gt; 功能將程式碼和聊天內容同時回退到該時間點，然後重新修改。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;相當於程式設計過程中的&amp;quot;時光機&amp;quot;，可以大膽嘗試不同方案。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;5-share-分享&#34;&gt;5. Share 分享
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/share      &lt;span class=&#34;c1&#34;&gt;# 將對話記錄分享為網頁&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/unshare    &lt;span class=&#34;c1&#34;&gt;# 取消分享&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/export     &lt;span class=&#34;c1&#34;&gt;# 匯出對話記錄為檔案&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;分享後生成一個網頁連結，展示了完整的對話記錄和程式碼修改過程，方便與他人協作或展示。&lt;/p&gt;
+&lt;h2 id=&#34;五skills-技能遷移&#34;&gt;五、Skills 技能遷移
+&lt;/h2&gt;&lt;p&gt;OpenCode &lt;strong&gt;完全相容&lt;/strong&gt; Claude Code 的 Skills 目錄結構，遷移成本極低：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Claude Code 的 Skills 目錄結構&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.claude/skills/&amp;lt;skill-name&amp;gt;/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 遷移到 OpenCode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.opencode/skills/&amp;lt;skill-name&amp;gt;/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;操作步驟&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在專案根目錄新建 &lt;code&gt;.opencode&lt;/code&gt; 資料夾&lt;/li&gt;
+&lt;li&gt;在 &lt;code&gt;.opencode&lt;/code&gt; 下新建 &lt;code&gt;skills&lt;/code&gt; 資料夾&lt;/li&gt;
+&lt;li&gt;將原 &lt;code&gt;.claude/skills/&lt;/code&gt; 下的技能資料夾直接複製過來&lt;/li&gt;
+&lt;li&gt;重啟 OpenCode，AI 即可識別並呼叫這些 Skills&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;每個 Skill 就是一個&lt;strong&gt;帶目錄的說明書&lt;/strong&gt;，告訴 AI 如何完成特定領域的任務。&lt;/p&gt;
+&lt;h2 id=&#34;六mcp-配置&#34;&gt;六、MCP 配置
+&lt;/h2&gt;&lt;p&gt;OpenCode 支援兩種 MCP（Model Context Protocol）模式：&lt;/p&gt;
+&lt;h3 id=&#34;本地-mcplocal&#34;&gt;本地 MCP（Local）
+&lt;/h3&gt;&lt;p&gt;通過本地命令執行，以 Shed-CN 為例：&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;~/.config/opencode/opencode.json&lt;/code&gt; 中配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;mcpServers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;shed-cn&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;local&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;npx&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;args&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;shed-cn&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;enabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;遠端-mcpremote&#34;&gt;遠端 MCP（Remote）
+&lt;/h3&gt;&lt;p&gt;通過 URL 遠端呼叫，以 Context7 為例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;mcpServers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;context7&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;remote&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://context7-mcp-server-url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;headers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;#34;Authorization&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Bearer &amp;lt;your-api-key&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;enabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;配置完成後重啟 OpenCode，輸入 &lt;code&gt;/mcp&lt;/code&gt; 即可檢視已配置的 MCP Server。&lt;/p&gt;
+&lt;h2 id=&#34;七oh-my-open-codeomo超強外掛-&#34;&gt;七、Oh My Open Code（OMO）超強外掛 ⭐
+&lt;/h2&gt;&lt;p&gt;OMO 是 OpenCode 上最火的程式設計外掛，本質上是 &lt;strong&gt;工具 + MCP + 程式設計 Agent 的組合捆綁包&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;七大程式設計智慧體&#34;&gt;七大程式設計智慧體
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;智慧體&lt;/th&gt;
+          &lt;th&gt;角色&lt;/th&gt;
+          &lt;th&gt;推薦模型&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;西西弗斯（Sisyphus）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;主智慧體，規劃與排程&lt;/td&gt;
+          &lt;td&gt;Claude 4.5 Opus / GPT 5.2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;先知（Prophet）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;架構設計、程式碼評審&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;圖書管理員（Librarian）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;查閱文獻、文件檢索&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;探索者（Explorer）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;網路搜尋&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;前端工程師&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;前端開發&lt;/td&gt;
+          &lt;td&gt;Gemini 3 Pro&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;文件編寫者&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;文件生成&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;多模態&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;圖片/PDF 理解&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;每個智慧體都分配了最適合其工作的大模型，據作者稱耗費了 &lt;strong&gt;24,000 美元的 Token&lt;/strong&gt; 才找到最佳組合。&lt;/p&gt;
+&lt;h3 id=&#34;三大-mcp-server&#34;&gt;三大 MCP Server
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Web Search&lt;/strong&gt;：網路搜尋&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context7&lt;/strong&gt;：獲取最新技術文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grep App&lt;/strong&gt;：GitHub 倉庫快速程式碼搜尋&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;整合工具&#34;&gt;整合工具
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LSP 高階版&lt;/strong&gt;：通過程式語言的語法和語義幫助 AI 快速定位程式碼&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AST 工具&lt;/strong&gt;：透過程式碼語法樹進行關聯搜尋&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LOC 工具&lt;/strong&gt;：藉助多模態視覺能力理解圖片、PDF&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delegate Task / Background Task&lt;/strong&gt;：Agent 任務分配和後臺排程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安裝與使用&#34;&gt;安裝與使用
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;從 &lt;a class=&#34;link&#34; href=&#34;https://github.com/code-yeongyu/oh-my-openagent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OMO GitHub&lt;/a&gt;首頁複製 &lt;code&gt;install&lt;/code&gt; 開頭的提示詞&lt;/li&gt;
+&lt;li&gt;貼上到 OpenCode 中，回答配置問題（訂閱情況等）&lt;/li&gt;
+&lt;li&gt;自動完成安裝&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;配置檔案位置：&lt;code&gt;C:\Users\&amp;lt;使用者名稱&amp;gt;\.config\opencode\oh-my-opencode.json&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;兩種核心用法&#34;&gt;兩種核心用法
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;① @ 指定智慧體&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@前端工程師 幫我最佳化這個頁面的響應式佈局
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;② Ultra Work 模式&lt;/strong&gt;（魔法詞 &lt;code&gt;ULW&lt;/code&gt;）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ULW 幫我建立一個寵物商店應用
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Ultra Work 模式下，西西弗斯作為主智慧體會：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;將任務拆解成 Todo List&lt;/li&gt;
+&lt;li&gt;同時開啟多個後臺任務並行執行&lt;/li&gt;
+&lt;li&gt;居中排程各個智慧體協同工作&lt;/li&gt;
+&lt;li&gt;最終交付完整專案&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ralph-loop-迴圈模式&#34;&gt;Ralph Loop 迴圈模式
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/ralph-loop
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;強制 AI 長時間迴圈工作，適合極難任務。例如：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;使用 Spring Boot 4 最新標準重構整個專案，直到所有測試用例通過&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;可以連續執行數小時直到任務完成。&lt;/p&gt;
+&lt;h2 id=&#34;八其他實用功能&#34;&gt;八、其他實用功能
+&lt;/h2&gt;&lt;h3 id=&#34;init--專案知識初始化&#34;&gt;/init — 專案知識初始化
+&lt;/h3&gt;&lt;p&gt;讓 AI 通讀整個專案資料夾，生成 &lt;code&gt;agents.md&lt;/code&gt; 檔案作為系統提示詞，幫助 AI 快速了解專案。&lt;/p&gt;
+&lt;h3 id=&#34;compact--上下文壓縮&#34;&gt;/compact — 上下文壓縮
+&lt;/h3&gt;&lt;p&gt;將之前的對話提煉為簡潔摘要，釋放模型上下文視窗，避免 Token 超限。&lt;/p&gt;
+&lt;h3 id=&#34;自定義命令&#34;&gt;自定義命令
+&lt;/h3&gt;&lt;p&gt;在 &lt;code&gt;~/.config/opencode/commands/&lt;/code&gt; 下建立 &lt;code&gt;.md&lt;/code&gt; 檔案定義自定義命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# 執行測試
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;模式：build
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;命令：npm test
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;描述：執行專案的全部測試用例
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用：&lt;code&gt;/執行測試&lt;/code&gt; 即可觸發。&lt;/p&gt;
+&lt;h3 id=&#34;自定義智慧體&#34;&gt;自定義智慧體
+&lt;/h3&gt;&lt;p&gt;在 &lt;code&gt;~/.config/opencode/agents/&lt;/code&gt; 下建立 &lt;code&gt;.md&lt;/code&gt; 檔案：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# Code Review Agent
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;型別：subagent
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;模型：claude-4.5-opus
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;描述：專門負責程式碼審查，檢查程式碼質量、安全漏洞和最佳實踐。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Primary Agent&lt;/strong&gt;：按 Tab 鍵切換，在對話中直接使用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sub Agent&lt;/strong&gt;：由主智慧體在後臺自動排程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;九總結與推薦&#34;&gt;九、總結與推薦
+&lt;/h2&gt;&lt;h3 id=&#34;適用場景&#34;&gt;適用場景
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;場景&lt;/th&gt;
+          &lt;th&gt;推薦度&lt;/th&gt;
+          &lt;th&gt;說明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;新手入門 AI 程式設計&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;免費模型零成本上手&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;日常開發輔助&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;Session 並行 + Timeline 回退&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;複雜專案開發&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;OMO 外掛多智慧體協作&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;開源專案維護&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;GitHub Actions 雲端自動化&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;練習 Skills/MCP&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;完全相容 Claude Code 生態&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;推薦配置路線&#34;&gt;推薦配置路線
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;入門&lt;/strong&gt; → 命令列安裝 + 內建免費模型&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;進階&lt;/strong&gt; → 配置 Antigravity 接入 Gemini/Claude&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高效&lt;/strong&gt; → 配置 Skills + MCP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;極限&lt;/strong&gt; → 安裝 OMO 外掛，開啟 Ultra Work 模式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;OpenCode 打破了 AI 程式設計工具的高門檻，讓每個人都能以零成本開始探索 AI 輔助程式設計的無限可能。特別對於中國使用者，不再需要擔心限速和封號，可以&amp;quot;隨便造、隨便玩&amp;quot;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;十實戰記錄安裝-oh-my-openagent原-omo&#34;&gt;十、實戰記錄：安裝 Oh My OpenAgent（原 OMO）
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;以下是筆者親測安裝 &lt;strong&gt;Oh My OpenAgent&lt;/strong&gt;（原 Oh My Open Code）的完整對話記錄，環境為 Windows + PowerShell。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;環境檢查&#34;&gt;環境檢查
+&lt;/h3&gt;&lt;p&gt;首先確認 OpenCode 已安裝：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;opencode&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 輸出: 1.14.39&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;安裝過程&#34;&gt;安裝過程
+&lt;/h3&gt;&lt;p&gt;在 OpenCode 對話中直接告訴 AI：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Install and configure oh-my-openagent by following the instructions here:
+&lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md%22&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md&#34;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 會先詢問你擁有的模型訂閱情況：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;訂閱&lt;/th&gt;
+          &lt;th&gt;我的情況&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Claude Pro/Max&lt;/td&gt;
+          &lt;td&gt;❌ 無&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;OpenAI / ChatGPT Plus&lt;/td&gt;
+          &lt;td&gt;❌ 無&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Gemini&lt;/td&gt;
+          &lt;td&gt;❌ 無&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GitHub Copilot&lt;/td&gt;
+          &lt;td&gt;✅ 學生認證版&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;OpenCode Zen&lt;/td&gt;
+          &lt;td&gt;✅ 免費可用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Z.ai Coding Plan&lt;/td&gt;
+          &lt;td&gt;❌ 無&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;OpenCode Go&lt;/td&gt;
+          &lt;td&gt;❌ 無&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Kimi for Coding&lt;/td&gt;
+          &lt;td&gt;❌ 無&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Vercel AI Gateway&lt;/td&gt;
+          &lt;td&gt;❌ 無&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;注意&lt;/strong&gt;：AI 會提示 &amp;ldquo;Without a Claude subscription, the Sisyphus agent might not work ideally&amp;rdquo;，但 GitHub Copilot 會作為&lt;strong&gt;後備模型&lt;/strong&gt;自動接管。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;確認訂閱後，AI 自動執行安裝命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;bunx&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;oh-my&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-openagent&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-no-tui&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-claude&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-openai&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-gemini&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-copilot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-opencode-zen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-zai-coding-plan&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-opencode-go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-kimi-for-coding&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-vercel-ai-gateway&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;安裝成功的輸出：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[1/4] Checking OpenCode installation...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[OK] OpenCode 1.14.39 detected
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[2/4] Adding oh-my-openagent plugin...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[OK] Plugin added -&amp;gt; C:\Users\&amp;lt;用戶名&amp;gt;\.config\opencode\opencode.json
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;安裝後的配置檔案&#34;&gt;安裝後的配置檔案
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;主配置檔案&lt;/strong&gt; &lt;code&gt;~/.config/opencode/opencode.json&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;plugin&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;oh-my-openagent@latest&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Agent 模型配置&lt;/strong&gt; &lt;code&gt;~/.config/opencode/oh-my-openagent.json&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;AI 自動根據 GitHub Copilot 訂閱分配了模型：&lt;/p&gt;
+&lt;h3 id=&#34;認證配置&#34;&gt;認證配置
+&lt;/h3&gt;&lt;p&gt;安裝完成後需要手動認證 GitHub Copilot：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;opencode&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;auth&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;login&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;互動步驟：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;上下鍵選擇 &lt;strong&gt;GitHub Copilot&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;按回車確認&lt;/li&gt;
+&lt;li&gt;瀏覽器自動開啟，登入 GitHub 學生賬號&lt;/li&gt;
+&lt;li&gt;授權完成，終端顯示認證成功&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;追加配置補上-opencode-zen-作為備選&#34;&gt;追加配置：補上 OpenCode Zen 作為備選
+&lt;/h3&gt;&lt;p&gt;安裝時遺漏了免費的 OpenCode Zen（&lt;code&gt;--opencode-zen=no&lt;/code&gt;），後續在 OpenCode 新對話中直接讓 AI 幫忙修正：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;其實我還有你免費的OpenCode Zen，但是我已經登入github copliot了，你幫我修改一下&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 的第一次嘗試把 OpenCode Zen 設成了&lt;strong&gt;主力&lt;/strong&gt;（&lt;code&gt;opencode/claude-opus-4-7&lt;/code&gt;），GitHub Copilot 變成了備選。實際需求是反過來的：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;不是，是 GitHub Copilot 作為主力，OpenCode Zen 自帶的免費模型作為備選&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 修正後，最終配置策略：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;主力模型: github-copilot/*     （已付費，優先使用）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;備選模型: opencode/*           （免費額度，Copilot 不可用時自動切換）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;關鍵配置片段&lt;/strong&gt;（以 Sisyphus 為例）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;sisyphus&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;model&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;github-copilot/claude-opus-4-7&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;fallback_models&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;&amp;#34;model&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;opencode/claude-opus-4-7&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;&amp;#34;model&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;opencode/gpt-5.5&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;經驗&lt;/strong&gt;：描述配置需求時，主次關係要說清楚——&amp;ldquo;XX 作為主力，YY 作為備選&amp;rdquo;，避免 AI 搞反。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;使用提示&#34;&gt;使用提示
+&lt;/h3&gt;&lt;p&gt;安裝完成後，在終端輸入 &lt;code&gt;opencode&lt;/code&gt; 即可開始：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在 prompt 中包含 &lt;strong&gt;&lt;code&gt;ultrawork&lt;/code&gt;&lt;/strong&gt; 或 &lt;strong&gt;&lt;code&gt;ulw&lt;/code&gt;&lt;/strong&gt; 觸發自動並行處理&lt;/li&gt;
+&lt;li&gt;按 &lt;strong&gt;&lt;code&gt;Tab&lt;/code&gt;&lt;/strong&gt; 進入 Prometheus（規劃器）模式&lt;/li&gt;
+&lt;li&gt;執行 &lt;strong&gt;&lt;code&gt;/start-work&lt;/code&gt;&lt;/strong&gt; 執行完整編排&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;踩坑記錄&#34;&gt;踩坑記錄
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;問題&lt;/th&gt;
+          &lt;th&gt;解決&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;doctor&lt;/code&gt; 命令超時（30s）&lt;/td&gt;
+          &lt;td&gt;部分檢查可能掛起，加&lt;code&gt;--verbose&lt;/code&gt; 排查，或跳過不影響使用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;PowerShell 下&lt;code&gt;if&lt;/code&gt; 語法報錯&lt;/td&gt;
+          &lt;td&gt;OpenCode 的 bash 命令在 PowerShell 下需轉換語法&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Sisyphus 非 Claude 模型效能下降&lt;/td&gt;
+          &lt;td&gt;這是已知限制，有 Claude 訂閱體驗最佳&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AI 把主力/備選模型搞反&lt;/td&gt;
+          &lt;td&gt;描述需求時說清主次：&amp;ldquo;XX 作為主力，YY 作為備選&amp;rdquo;，不要只說&amp;quot;幫我加上 YY&amp;rdquo;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;參考來源&#34;&gt;參考來源
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;影片教學：&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1BVrXBUEbR/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OpenCode 詳細攻略 - 技術爬爬蝦&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Oh My OpenAgent 安裝指南：&lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>OpenCode 新手進階：並行排程與使用技巧全攻略</title>
+        <link>https://Siborne.top/zh-tw/p/opencode-parallel-workflow-tips/</link>
+        <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/zh-tw/p/opencode-parallel-workflow-tips/</guid>
+        <description>&lt;img src="https://Siborne.top/p/opencode-parallel-workflow-tips/bannerImage.png" alt="Featured image of post OpenCode 新手進階：並行排程與使用技巧全攻略" /&gt;&lt;h2 id=&#34;核心要點概括&#34;&gt;核心要點概括
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Session 並行&lt;/strong&gt;：OpenCode 殺手級功能，多個任務同時跑，互不干擾，效率翻倍。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ultra Work 模式&lt;/strong&gt;：輸入 &lt;code&gt;ULW&lt;/code&gt;，主智慧體自動拆解任務、排程多個子智慧體並行幹活。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;@ 指定智慧體&lt;/strong&gt;：讓擅長前端的幹前端，擅長架構的做評審，人盡其才。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Timeline 時光機&lt;/strong&gt;：隨時回退到任意歷史節點，大膽試錯零成本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ralph Loop&lt;/strong&gt;：讓 AI 迴圈工作數小時，攻堅極難任務。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;一session-並行讓-ai-同時幹多件事&#34;&gt;一、Session 並行：讓 AI 同時幹多件事
+&lt;/h2&gt;&lt;p&gt;這是 OpenCode 相比其他 AI 程式設計工具&lt;strong&gt;最大的差異化優勢&lt;/strong&gt;。傳統工具只能序列——一個任務跑完才能開始下一個。OpenCode 可以同時開啟多個 Session，互不干擾。&lt;/p&gt;
+&lt;h3 id=&#34;基礎操作&#34;&gt;基礎操作
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 當前正在執行任務 A，想同時啟動任務 B&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/new                          &lt;span class=&#34;c1&#34;&gt;# 建立新 Session&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 在新 Session 中輸入任務 B 的需求&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 兩個 Session 同時在後臺執行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 檢視所有 Session 的狀態&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/sessions                     &lt;span class=&#34;c1&#34;&gt;# 打轉符號 = 正在執行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 切換到指定 Session&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/session &amp;lt;id&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 回到上一個 Session&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/session prev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;實戰場景&#34;&gt;實戰場景
+&lt;/h3&gt;&lt;p&gt;假設你在開發一個「你畫我猜」小遊戲，有兩個獨立需求：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;需求 A&lt;/strong&gt;：增加一個計時器，首次落筆開始計時，超過 20 秒遊戲失敗
+&lt;strong&gt;需求 B&lt;/strong&gt;：畫筆可以調節顏色&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;傳統做法&lt;/strong&gt;：先做完 A，再做 B → 需求 B 白白等待 5-10 分鐘。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OpenCode 做法&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1. 輸入需求 A，AI 開始工作
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2. 輸入 /new，建立新 Session
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3. 輸入需求 B，AI 開始工作
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4. 輸入 /sessions 檢視進度，兩個都在跑 ↓
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Session 1  ◐  正在新增計時器邏輯...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Session 2  ◐  正在新增顏色選擇器...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;兩個需求完全並行開發，總耗時從 15 分鐘壓縮到 8 分鐘。&lt;/p&gt;
+&lt;h3 id=&#34;注意事項&#34;&gt;注意事項
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Session 之間&lt;strong&gt;完全隔離&lt;/strong&gt;，修改同一檔案可能衝突，建議分配給不同模組&lt;/li&gt;
+&lt;li&gt;後臺 Session 不會自動通知完成，需要手動 &lt;code&gt;/sessions&lt;/code&gt; 檢視&lt;/li&gt;
+&lt;li&gt;可以隨時 &lt;code&gt;/new&lt;/code&gt; 開第三個、第四個……沒有數量限制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;二ultra-work一鍵召喚-ai-程式設計團隊&#34;&gt;二、Ultra Work：一鍵召喚 AI 程式設計團隊
+&lt;/h2&gt;&lt;p&gt;如果說 Session 並行是「手動擋」，那 Ultra Work 就是「全自動駕駛」。輸入一個魔法詞，AI 自動把任務拆開、分配給最合適的智慧體、並行執行。&lt;/p&gt;
+&lt;h3 id=&#34;觸發方式&#34;&gt;觸發方式
+&lt;/h3&gt;&lt;p&gt;在 prompt 中包含以下任一關鍵詞：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ULW
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ultrawork
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ultra Work
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;工作原理&#34;&gt;工作原理
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;你的需求：幫我做一個寵物商店網站
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ┌─────────────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  │  西西弗斯（主智慧體）         │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  │  1. 拆解任務 → Todo List     │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  │  2. 分配子任務              │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  └──────┬──────────┬───────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         │          │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ┌────▼───┐ ┌───▼────┐ ┌────────▼────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │ 先知    │ │ 前端    │ │ 文件編寫者   │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │ 架構設計 │ │ UI 開發 │ │ README 文件  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └────────┘ └────────┘ └─────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         │          │            │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         └──────────┴────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              完整專案交付
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;什麼時候用&#34;&gt;什麼時候用？
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;場景&lt;/th&gt;
+          &lt;th&gt;適用&lt;/th&gt;
+          &lt;th&gt;說明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;從零建立完整專案&lt;/td&gt;
+          &lt;td&gt;✅ 極佳&lt;/td&gt;
+          &lt;td&gt;自動拆分前端、後端、文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;多模組並行開發&lt;/td&gt;
+          &lt;td&gt;✅ 極佳&lt;/td&gt;
+          &lt;td&gt;各智慧體分工明確&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;單檔案小修改&lt;/td&gt;
+          &lt;td&gt;❌ 不推薦&lt;/td&gt;
+          &lt;td&gt;殺雞用牛刀，反而更慢&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;簡單 bug 修復&lt;/td&gt;
+          &lt;td&gt;❌ 不推薦&lt;/td&gt;
+          &lt;td&gt;普通對話更快&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;經驗&lt;/strong&gt;：複雜度越高，Ultra Work 的價值越大。簡單任務反而會因為排程開銷變慢。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;實際效果&#34;&gt;實際效果
+&lt;/h3&gt;&lt;p&gt;用 Ultra Work 模式建立了一個寵物商店網站：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自動拆分 Todo List&lt;/li&gt;
+&lt;li&gt;同時開啟 3 個後臺任務並行執行&lt;/li&gt;
+&lt;li&gt;在沒有任何圖片素材的情況下，用 emoji 作為裝飾&lt;/li&gt;
+&lt;li&gt;介面清新、互動流暢、動畫完整&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;三-指定智慧體讓專業的人幹專業的事&#34;&gt;三、@ 指定智慧體：讓專業的人幹專業的事
+&lt;/h2&gt;&lt;p&gt;安裝了 Oh My OpenAgent（OMO）後，你擁有一個 AI 程式設計團隊。透過 &lt;code&gt;@&lt;/code&gt; 可以點名讓特定智慧體幹活。&lt;/p&gt;
+&lt;h3 id=&#34;智慧體能力表&#34;&gt;智慧體能力表
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;智慧體&lt;/th&gt;
+          &lt;th&gt;擅長領域&lt;/th&gt;
+          &lt;th&gt;最適模型&lt;/th&gt;
+          &lt;th&gt;示例用法&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;西西弗斯&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;統籌規劃、任務排程&lt;/td&gt;
+          &lt;td&gt;Claude Opus&lt;/td&gt;
+          &lt;td&gt;複雜多步驟任務&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;先知&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;架構設計、程式碼評審&lt;/td&gt;
+          &lt;td&gt;GPT 5.5&lt;/td&gt;
+          &lt;td&gt;專案結構設計&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;前端工程師&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;UI 開發、頁面佈局&lt;/td&gt;
+          &lt;td&gt;Gemini 3 Pro&lt;/td&gt;
+          &lt;td&gt;響應式佈局最佳化&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;探索者&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;網路搜尋、查資料&lt;/td&gt;
+          &lt;td&gt;MiniMax&lt;/td&gt;
+          &lt;td&gt;查最新 API 文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;圖書管理員&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;文獻查閱、文件檢索&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;梳理開源專案原始碼&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;文件編寫者&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;README、註釋生成&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;生成專案文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;多模態&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;圖片/PDF 理解&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;根據設計稿寫程式碼&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;使用示例&#34;&gt;使用示例
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@前端工程師 幫我把這個登入頁改成響應式佈局，移動端也要好看
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@先知 審查一下 src/service/ 目錄下的程式碼，找出潛在的效能問題
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@探索者 查一下 React 19 的 Server Components 最新用法
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@文件編寫者 給整個專案生成一份 API 文件
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;切換主智慧體&#34;&gt;切換主智慧體
+&lt;/h3&gt;&lt;p&gt;按 &lt;strong&gt;Tab&lt;/strong&gt; 鍵可以切換當前對話的主智慧體，適合長時間使用某個特定角色。&lt;/p&gt;
+&lt;h2 id=&#34;四timeline-時光機隨意試錯隨時回退&#34;&gt;四、Timeline 時光機：隨意試錯，隨時回退
+&lt;/h2&gt;&lt;p&gt;程式設計中最怕什麼？改了一大堆程式碼，發現方向錯了，又回不去。Timeline 就是你的後悔藥。&lt;/p&gt;
+&lt;h3 id=&#34;基本用法&#34;&gt;基本用法
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/timeline
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;會列出當前 Session 的&lt;strong&gt;每一步對話記錄&lt;/strong&gt;，選擇任意節點：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Revert&lt;/strong&gt;：程式碼和聊天內容同時回退到該節點，就像什麼都沒發生過&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;View&lt;/strong&gt;：檢視當時 AI 做了什麼修改&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;實戰場景-1&#34;&gt;實戰場景
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1. 你讓 AI 重構了某個模組 → 效果不理想
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2. /timeline → 選擇重構前的節點 → Revert
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3. 程式碼回到重構前，換個思路重新來
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;技巧&#34;&gt;技巧
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;完成一個階段性任務後，在心裡記下那個節點（第幾次對話）&lt;/li&gt;
+&lt;li&gt;大膽嘗試激進方案——反正可以一鍵回退&lt;/li&gt;
+&lt;li&gt;對比兩個方案：Revert 到 A 方案 → 看看效果 → Revert 到 B 方案 → 對比&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;🕐 這就是程式設計版的「存檔/讀檔」，讓你敢於探索任何可能性。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;五ralph-loop讓-ai-死磕到底&#34;&gt;五、Ralph Loop：讓 AI 死磕到底
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/ralph-loop
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這個模式會讓 AI &lt;strong&gt;持續迴圈工作&lt;/strong&gt;，直到任務真正完成。適合那些需要反覆迭代的硬骨頭。&lt;/p&gt;
+&lt;h3 id=&#34;適用場景&#34;&gt;適用場景
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;使用 Spring Boot 4 最新標準重構整個專案，直到所有測試用例透過&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;逐個檢查 src/ 下所有檔案的程式碼規範，修復每一個違規項&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;為專案新增完整的單元測試，直到覆蓋率達到 90%&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;和-ultra-work-的區別&#34;&gt;和 Ultra Work 的區別
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;Ultra Work&lt;/th&gt;
+          &lt;th&gt;Ralph Loop&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;工作機制&lt;/td&gt;
+          &lt;td&gt;並行拆分、多智慧體協作&lt;/td&gt;
+          &lt;td&gt;序列迴圈、持續迭代&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;適合&lt;/td&gt;
+          &lt;td&gt;從零構建、多模組專案&lt;/td&gt;
+          &lt;td&gt;重構、修復、達標類任務&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;耗時&lt;/td&gt;
+          &lt;td&gt;幾分鐘到十幾分鍾&lt;/td&gt;
+          &lt;td&gt;可能數小時&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;終點&lt;/td&gt;
+          &lt;td&gt;任務拆解完成&lt;/td&gt;
+          &lt;td&gt;滿足終止條件&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Ralph Loop 可能執行很久，注意 API 額度消耗。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;六日常提速小技巧&#34;&gt;六、日常提速小技巧
+&lt;/h2&gt;&lt;h3 id=&#34;1-善用-compact-節省上下文&#34;&gt;1. 善用 &lt;code&gt;/compact&lt;/code&gt; 節省上下文
+&lt;/h3&gt;&lt;p&gt;當你和 AI 聊了很多輪，上下文視窗快滿時：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/compact
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;AI 會把之前的對話提煉成一個摘要，釋放空間繼續工作。不需要開新對話丟失上下文。&lt;/p&gt;
+&lt;h3 id=&#34;2-用-init-讓-ai-快速上手新專案&#34;&gt;2. 用 &lt;code&gt;/init&lt;/code&gt; 讓 AI 快速上手新專案
+&lt;/h3&gt;&lt;p&gt;進入一個新專案時，先讓 AI 通讀程式碼：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/init
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;AI 會掃描整個專案，生成 &lt;code&gt;agents.md&lt;/code&gt; 作為系統提示詞。之後任何對話都會基於這個理解，效率大幅提升。&lt;/p&gt;
+&lt;h3 id=&#34;3-share-分享你的程式設計過程&#34;&gt;3. Share 分享你的程式設計過程
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/share      &lt;span class=&#34;c1&#34;&gt;# 生成分享連結，展示完整對話和程式碼修改&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/unshare    &lt;span class=&#34;c1&#34;&gt;# 取消分享，連結失效&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/export     &lt;span class=&#34;c1&#34;&gt;# 匯出對話記錄為檔案&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;適合場景：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;給同事展示你是如何用 AI 解決某個問題的&lt;/li&gt;
+&lt;li&gt;記錄踩坑過程，供團隊參考&lt;/li&gt;
+&lt;li&gt;寫部落格時的素材&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-檢視可用模型&#34;&gt;4. 檢視可用模型
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/models
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;帶 &lt;code&gt;free&lt;/code&gt; 標記的是免費模型。GLM-4.7 和 MiniMax-2.1 程式設計能力不錯，適合輕量任務。&lt;/p&gt;
+&lt;h3 id=&#34;5-快捷貼上程式碼vs-code-外掛&#34;&gt;5. 快捷貼上程式碼（VS Code 外掛）
+&lt;/h3&gt;&lt;p&gt;在 VS Code 中選中程式碼片段 → &lt;code&gt;Ctrl + Alt + K&lt;/code&gt; → 直接貼上到 OpenCode 對話方塊。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;省去複製貼上的切換成本，保持心流。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;七新手推薦工作流&#34;&gt;七、新手推薦工作流
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;┌─────────────────────────────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│                 拿到新需求                    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└──────────────────┬──────────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          ┌────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          │ 簡單？          │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          └───┬────────┬───┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ 是      │ 否（複雜/多模組）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ▼         ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ┌─────────────┐  ┌─────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │ 普通對話搞定  │  │ 輸入 ULW 觸發    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │             │  │ Ultra Work 模式  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └─────────────┘  └────────┬────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                              │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   ┌──────────▼──────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   │ 多個獨立子任務？       │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   └───┬──────────┬──────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                       │ 是        │ 否
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                       ▼           ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ┌─────────────┐ ┌──────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ /new 開多個   │ │ 等 Ultra Work │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ Session 並行  │ │ 自動完成       │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              └──────┬──────┘ └──────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ┌─────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ /sessions    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ 檢視所有進度  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              └──────┬──────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ┌─────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ 某個方向錯了？ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              └───┬─────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ┌─────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ /timeline →  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ Revert 回退   │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              └─────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;一句話總結&#34;&gt;一句話總結
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;小活直接聊，大活喊 ULW，並行用 Session，錯了就 Timeline 回退，死磕開 Ralph Loop。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;八一個真實案例&#34;&gt;八、一個真實案例
+&lt;/h2&gt;&lt;p&gt;在 Oh My OpenAgent 安裝完成後，想調整 Agent 模型配置——讓 GitHub Copilot 作為主力，免費的 OpenCode Zen 作為備選。&lt;/p&gt;
+&lt;p&gt;直接在 OpenCode 對話中說：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;其實我還有你免費的OpenCode Zen，但是我已經登入 GitHub Copilot 了，你幫我修改一下&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 第一次把 OpenCode Zen 設成了主力——因為沒說清楚主次關係。糾正後：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;不是，是 GitHub Copilot 作為主力，OpenCode Zen 自帶的免費模型作為備選&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI 立即修正，更新了 &lt;code&gt;oh-my-openagent.json&lt;/code&gt;，所有 Agent 都用 &lt;code&gt;github-copilot/*&lt;/code&gt; 為主、&lt;code&gt;opencode/*&lt;/code&gt; 為 fallback。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;教訓&lt;/strong&gt;：跟 AI 描述需求時，&lt;strong&gt;主次關係一定要說清楚&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;參考來源&#34;&gt;參考來源
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;實戰記錄：&lt;a class=&#34;link&#34; href=&#34;../opencode-complete-guide/&#34; &gt;OpenCode 全深度指南：開源版 Claude Code 的安裝、配置與高階玩法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Oh My OpenAgent：&lt;a class=&#34;link&#34; href=&#34;https://github.com/code-yeongyu/oh-my-openagent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="全面拆解 Codex APP 全部功能：沙箱权限、多项目并行、GPT Image 画图、计划模式、Git Worktree、云端运行、Skills/MCP、定时自动化与 Computer Use。">
+<title>Codex APP 保姆级全攻略：从安装到自动化，一期精通</title>
+
+<link rel='canonical' href='https://Siborne.top/p/codex-app-complete-guide/'>
+
+<link rel="stylesheet" href="/scss/style.min.266c2d3f4822631b105b97664a103c3737ee3a439c2ce01b7142501e9591e1df.css"><meta property='og:title' content="Codex APP 保姆级全攻略：从安装到自动化，一期精通">
+<meta property='og:description' content="全面拆解 Codex APP 全部功能：沙箱权限、多项目并行、GPT Image 画图、计划模式、Git Worktree、云端运行、Skills/MCP、定时自动化与 Computer Use。">
+<meta property='og:url' content='https://Siborne.top/p/codex-app-complete-guide/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI' /><meta property='article:tag' content='Codex' /><meta property='article:tag' content='教程' /><meta property='article:tag' content='Skills' /><meta property='article:tag' content='MCP' /><meta property='article:tag' content='自动化' /><meta property='article:published_time' content='2026-05-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-08T23:07:31&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/codex-app-complete-guide/bannerImage.png' />
+<meta name="twitter:title" content="Codex APP 保姆级全攻略：从安装到自动化，一期精通">
+<meta name="twitter:description" content="全面拆解 Codex APP 全部功能：沙箱权限、多项目并行、GPT Image 画图、计划模式、Git Worktree、云端运行、Skills/MCP、定时自动化与 Computer Use。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.top/p/codex-app-complete-guide/bannerImage.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; Enthusiast
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent Architect &amp; Full-Stack Dev
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 Curious Student · Future Builder
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    Building intelligent agents &#43; scalable apps. Blending creativity with AI efficiency. 🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页 | Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于 | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档 | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>技术链接 | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" selected>简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" >繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" >日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#核心要点概括">核心要点概括</a></li>
+    <li><a href="#为什么选-codex-app">为什么选 Codex APP？</a></li>
+    <li><a href="#一安装与初始化">一、安装与初始化</a>
+      <ol>
+        <li><a href="#准备工作">准备工作</a></li>
+        <li><a href="#安装步骤">安装步骤</a></li>
+      </ol>
+    </li>
+    <li><a href="#二基础使用">二、基础使用</a>
+      <ol>
+        <li><a href="#三栏布局">三栏布局</a></li>
+        <li><a href="#项目管理">项目管理</a></li>
+        <li><a href="#并行任务">并行任务</a></li>
+        <li><a href="#对话管理">对话管理</a></li>
+        <li><a href="#权限系统沙箱机制">权限系统：沙箱机制</a></li>
+        <li><a href="#上下文管理">上下文管理</a></li>
+        <li><a href="#模型选择">模型选择</a></li>
+        <li><a href="#额度查看">额度查看</a></li>
+      </ol>
+    </li>
+    <li><a href="#三画图">三、画图</a>
+      <ol>
+        <li><a href="#steer引导功能">Steer（引导）功能</a></li>
+      </ol>
+    </li>
+    <li><a href="#四计划模式">四、计划模式</a>
+      <ol>
+        <li><a href="#内置浏览器--批注">内置浏览器 + 批注</a></li>
+      </ol>
+    </li>
+    <li><a href="#五代码管理">五、代码管理</a>
+      <ol>
+        <li><a href="#git-初始化">Git 初始化</a></li>
+        <li><a href="#配合-vs-code">配合 VS Code</a></li>
+        <li><a href="#github-同步">GitHub 同步</a></li>
+        <li><a href="#进阶技巧一对话分叉--git-回滚">进阶技巧一：对话分叉 + Git 回滚</a></li>
+        <li><a href="#进阶技巧二git-worktree">进阶技巧二：Git Worktree</a></li>
+      </ol>
+    </li>
+    <li><a href="#六云端运行">六、云端运行</a></li>
+    <li><a href="#七记忆系统">七、记忆系统</a>
+      <ol>
+        <li><a href="#方式一项目级-agentsmd">方式一：项目级 AGENTS.md</a></li>
+        <li><a href="#方式二全局-agentsmd">方式二：全局 AGENTS.md</a></li>
+        <li><a href="#实验性功能启用记忆">实验性功能：启用记忆</a></li>
+      </ol>
+    </li>
+    <li><a href="#八插件与自动化">八、插件与自动化</a>
+      <ol>
+        <li><a href="#插件市场">插件市场</a></li>
+        <li><a href="#示例github--gmail-联动">示例：GitHub + Gmail 联动</a></li>
+        <li><a href="#定时自动化">定时自动化</a></li>
+        <li><a href="#更多自动化玩法">更多自动化玩法</a></li>
+      </ol>
+    </li>
+    <li><a href="#九skills">九、Skills</a>
+      <ol>
+        <li><a href="#三种安装方式">三种安装方式</a>
+          <ol>
+            <li><a href="#1-官方-skills">1. 官方 Skills</a></li>
+            <li><a href="#2-第三方-skills">2. 第三方 Skills</a></li>
+            <li><a href="#3-自建-skills">3. 自建 Skills</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#十mcp">十、MCP</a>
+      <ol>
+        <li><a href="#入口">入口</a></li>
+        <li><a href="#示例supabase-mcp">示例：Supabase MCP</a></li>
+      </ol>
+    </li>
+    <li><a href="#十一电脑自动化computer-use">十一、电脑自动化（Computer Use）</a>
+      <ol>
+        <li><a href="#特点">特点</a></li>
+      </ol>
+    </li>
+    <li><a href="#十二总结codex-app-能力全景">十二、总结：Codex APP 能力全景</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/codex-app-complete-guide/">
+                <img src="/p/codex-app-complete-guide/bannerImage_hu_725bdc77d41b1507.png"
+                        srcset="/p/codex-app-complete-guide/bannerImage_hu_725bdc77d41b1507.png 800w, /p/codex-app-complete-guide/bannerImage_hu_722ede233ee46bf6.png 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post Codex APP 保姆级全攻略：从安装到自动化，一期精通" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/codex-app-complete-guide/">Codex APP 保姆级全攻略：从安装到自动化，一期精通</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-08T00:00:00Z'>2026-05-08</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 08, 2026 23:07 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                4030字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        全面拆解 Codex APP 全部功能：沙箱权限、多项目并行、GPT Image 画图、计划模式、Git Worktree、云端运行、Skills/MCP、定时自动化与 Computer Use。
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/categories/ai/" style="background-color: #6c5ce7; color: #fff;">
+                AI
+            </a>
+        
+            <a href="/categories/computer-tools/" style="background-color: #2a9d8f; color: #fff;">
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/en/p/codex-app-complete-guide/" class="link">English</a>
+                
+                    <a href="https://Siborne.top/zh-tw/p/codex-app-complete-guide/" class="link">繁體中文</a>
+                
+                    <a href="https://Siborne.top/ja/p/codex-app-complete-guide/" class="link">日本語</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="核心要点概括">核心要点概括
+</h2><ul>
+<li><strong>Codex APP</strong> 是目前最强的 Codex 产品形态，免费额度高、功能全、不封号不限速</li>
+<li><strong>沙箱机制</strong>：OS 级安全隔离，默认禁止访问沙箱外文件和联网，三档权限可选</li>
+<li><strong>多项目并行</strong>：多项目、多对话同时跑，物理隔离互不干扰</li>
+<li><strong>计划模式</strong>：先对齐再执行，避免 AI 理解偏差导致大量返工</li>
+<li><strong>Git Worktree</strong>：分支级并行开发，不同文件夹真正隔离</li>
+<li><strong>Skills/MCP</strong>：可复用专业能力包 + 标准化外部工具接入</li>
+<li><strong>定时自动化</strong>：插件 + 定时任务 + MEMORY 经验积累，越用越稳</li>
+</ul>
+<h2 id="为什么选-codex-app">为什么选 Codex APP？
+</h2><p>Codex 有四大产品形态，而 <strong>Codex APP</strong> 是目前最强的一个。相比 Claude Code：</p>
+<ul>
+<li><strong>额度更高</strong>，免费账户也能用</li>
+<li><strong>功能更全</strong>，内置浏览器、画图、插件市场、定时任务</li>
+<li><strong>不会限速、封号、降智</strong></li>
+<li><strong>上手更快</strong>，安装即用</li>
+</ul>
+<p>本文按 12 个章节，逐一拆解 Codex APP 的全部功能。</p>
+<hr>
+<h2 id="一安装与初始化">一、安装与初始化
+</h2><h3 id="准备工作">准备工作
+</h3><p>安装 Codex APP 前需要先装好三件套：</p>
+<ul>
+<li><strong>Git</strong></li>
+<li><strong>Node.js</strong></li>
+<li><strong>VS Code</strong></li>
+</ul>
+<h3 id="安装步骤">安装步骤
+</h3><ol>
+<li>前往 <a class="link" href="https://openai.com/zh-Hans-CN/codex/"  target="_blank" rel="noopener"
+    >Codex 官网</a> 下载安装包（支持 Windows / Mac）</li>
+<li>一路下一步完成安装</li>
+<li>启动后选择 <strong>ChatGPT 账户</strong>登录（免费账户即可）</li>
+<li>首次进入选择你希望 Codex 处理的工作类型，Codex 会根据选择预装对应插件和 Skills</li>
+<li>选择主要使用场景：编程 / 日常工作</li>
+<li>点击初始化沙盒</li>
+</ol>
+<blockquote>
+<p><strong>Mac vs Windows</strong>：功能基本一致，唯一差异是 <strong>Computer Use</strong>（自动操作电脑）目前仅 Mac 支持。</p>
+</blockquote>
+<hr>
+<h2 id="二基础使用">二、基础使用
+</h2><h3 id="三栏布局">三栏布局
+</h3><p>Codex APP 采用经典三栏布局：</p>
+<ul>
+<li><strong>左侧</strong>：任务列表（项目 + 对话）</li>
+<li><strong>中间</strong>：对话窗口</li>
+<li><strong>右侧</strong>：多功能区域（浏览器、终端、文件树等）</li>
+</ul>
+<h3 id="项目管理">项目管理
+</h3><p>通过「添加新项目 → 使用现有文件夹」把本地文件夹注册为 Codex 项目。每个项目独立管理对话，互不干扰。</p>
+<h3 id="并行任务">并行任务
+</h3><p>Codex 支持<strong>多项目、多对话并行执行</strong>。任务列表中用图标标识状态：</p>
+<ul>
+<li>🔵 蓝色小点 → 已完成</li>
+<li>🟢 绿色标签 → 等待批准</li>
+<li>🔄 转圈图标 → 正在执行</li>
+</ul>
+<h3 id="对话管理">对话管理
+</h3><ul>
+<li><strong>新对话</strong>：<code>Ctrl + N</code>（Win）/ <code>Cmd + N</code>（Mac）</li>
+<li><strong>搜索历史</strong>：<code>Ctrl + G</code> / <code>Cmd + G</code>（仅搜索标题，不搜索内容）</li>
+<li><strong>归档/还原</strong>：点击归档按钮移除对话，在「设置 → 已归档对话」中可还原</li>
+<li><strong>标题自动生成</strong>：每个对话标题由 AI 根据内容自动摘要，也可双击重命名</li>
+</ul>
+<h3 id="权限系统沙箱机制">权限系统：沙箱机制
+</h3><p>Codex 的权限系统全部围绕**沙箱（Sandbox）**展开，这是 Harness Engineering 概念的典型工程实现——用操作系统级别的机制，把 AI 的能力约束在可控范围内。</p>
+<p><strong>默认限制：</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>限制</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>沙箱内文件</td>
+          <td>默认<strong>直接读写</strong>，不需要逐文件审批</td>
+      </tr>
+      <tr>
+          <td>沙箱外文件</td>
+          <td><strong>禁止访问</strong></td>
+      </tr>
+      <tr>
+          <td>联网</td>
+          <td><strong>默认禁止</strong></td>
+      </tr>
+  </tbody>
+</table></div>
+<p>这两条硬性限制不是靠模型自觉，而是通过操作系统底层机制实现的（Mac 用 Seatbelt/Sandbox，Windows 有对应机制）。</p>
+<p><strong>三个权限档位：</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>档位</th>
+          <th>说明</th>
+          <th>推荐</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>人工审批</td>
+          <td>每次提权都需要手动确认</td>
+          <td>最安全但繁琐</td>
+      </tr>
+      <tr>
+          <td><strong>自动审查</strong></td>
+          <td>小模型自动审查低风险操作，高风险才人工确认</td>
+          <td>✅ <strong>推荐</strong></td>
+      </tr>
+      <tr>
+          <td>完全访问</td>
+          <td>无视沙箱限制，可执行一切操作</td>
+          <td>⚠️ 慎用</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>当 Codex 需要访问沙箱外文件或联网时，会发起「提权（Escalate）」申请。</p>
+</blockquote>
+<h3 id="上下文管理">上下文管理
+</h3><ul>
+<li>右上角圆圈显示当前上下文使用量</li>
+<li>超出限制时 Codex <strong>自动压缩</strong>历史对话</li>
+<li>也可以输入 <code>/compact</code> 手动触发压缩</li>
+<li><strong>经验法则</strong>：清空 &gt; 压缩。完成一个任务后开新对话，让 AI 注意力集中</li>
+</ul>
+<h3 id="模型选择">模型选择
+</h3><ul>
+<li>根据任务复杂度选择思考强度</li>
+<li>一般用最新模型（如 ChatGPT 5.5）</li>
+<li><strong>快速模式</strong>：提速 50%，但消耗 2 倍额度</li>
+</ul>
+<h3 id="额度查看">额度查看
+</h3><p>「设置 → 剩余额度」中可以看到两个限额：</p>
+<ul>
+<li>5 小时限额</li>
+<li>周限额</li>
+</ul>
+<p>任一到达上限即暂停使用，到重置时间后自动恢复。</p>
+<hr>
+<h2 id="三画图">三、画图
+</h2><p>Codex 内置 <strong>GPT Image</strong>（当前最强 AI 生图模型），可以直接在对话中生成图片。</p>
+<p><strong>典型用法：</strong></p>
+<ul>
+<li>生成网页配图、轮播图</li>
+<li>根据截图标注位置生成风格化地图</li>
+<li>保持多张图片的风格一致性</li>
+</ul>
+<h3 id="steer引导功能">Steer（引导）功能
+</h3><p>当 AI 执行方向跑偏时，不要让它继续错下去。点击对话中的<strong>引导按钮</strong>（或按 <code>Ctrl + Enter</code>），中途接管方向盘，纠正 AI 的执行方向。</p>
+<blockquote>
+<p>设置中可选择新指令是「排队」还是「直接引导」，推荐默认排队 + 需要时手动点引导按钮。</p>
+</blockquote>
+<hr>
+<h2 id="四计划模式">四、计划模式
+</h2><p>对于<strong>所有复杂任务</strong>，建议先开启计划模式（Plan Mode），确保和 AI 对齐颗粒度。</p>
+<p><strong>工作流程：</strong></p>
+<ol>
+<li>在对话窗口点击加号 → 开启「计划模式」</li>
+<li>输入需求，Codex 会先用<strong>问题卡片</strong>跟你沟通细节</li>
+<li>Codex 输出完整工作计划</li>
+<li>你审阅确认后，点击「实施此计划」</li>
+<li>Codex 执行并自动在右侧打开内置浏览器验证</li>
+</ol>
+<p><strong>计划模式的价值</strong>：避免 AI 理解偏差导致大量返工，尤其适合架构迁移、大功能开发等任务。</p>
+<h3 id="内置浏览器--批注">内置浏览器 + 批注
+</h3><ul>
+<li>右侧多功能区可打开内置浏览器预览项目</li>
+<li>点击「批注」按钮，选中页面元素添加评论，AI 会据此修改</li>
+<li>修改过程实时可见</li>
+</ul>
+<hr>
+<h2 id="五代码管理">五、代码管理
+</h2><p>Codex APP 不是传统 IDE，不提供完整代码编辑功能。推荐配合 VS Code 使用。</p>
+<h3 id="git-初始化">Git 初始化
+</h3><p>让 Codex 把项目初始化成 Git 仓库：</p>
+<ul>
+<li>自动创建 <code>.gitignore</code>，排除不需要的文件</li>
+<li>初始化完成后右上角出现 Git 相关按钮</li>
+</ul>
+<h3 id="配合-vs-code">配合 VS Code
+</h3><p>点击右上角 <strong>VS Code 按钮</strong>一键打开项目，也可以在设置中指定默认 IDE。</p>
+<h3 id="github-同步">GitHub 同步
+</h3><p>让 Codex 帮你在 GitHub 创建仓库并推送代码，所有 Git/GitHub 操作都可以用对话完成。</p>
+<h3 id="进阶技巧一对话分叉--git-回滚">进阶技巧一：对话分叉 + Git 回滚
+</h3><p>当你后悔某次改动，想「当作无事发生」：</p>
+<ol>
+<li><strong>对话分叉（Fork）</strong>：在对话中找到改动前的位置，点击分叉按钮 → 派生到本地，得到一个不含改动的对话副本</li>
+<li><strong>代码回滚</strong>：在 VS Code 的 Source Control 中复制目标 commit hash，让 Codex 把代码回退到该状态</li>
+</ol>
+<blockquote>
+<p>分叉只回滚对话历史，代码需要单独通过 Git 回滚。两者配合实现<strong>对话 + 代码</strong>的完全回滚。</p>
+</blockquote>
+<h3 id="进阶技巧二git-worktree">进阶技巧二：Git Worktree
+</h3><p>Worktree 本质是用 Git 创建新分支，并把分支代码复制到独立文件夹，实现<strong>多分支并行开发</strong>。</p>
+<p><strong>使用场景：</strong></p>
+<ol>
+<li>右键项目 → 创建永久工作树（如 <code>customer-rating</code>、<code>store-info</code>）</li>
+<li>在不同工作树中并行开发不同功能，互不干扰</li>
+<li>开发完成后，分别合并回主干</li>
+<li>移除临时工作树</li>
+</ol>
+<blockquote>
+<p>Worktree 的核心价值：不同分支位于<strong>不同文件夹</strong>，真正做到物理隔离的并行开发。</p>
+</blockquote>
+<hr>
+<h2 id="六云端运行">六、云端运行
+</h2><p>当手头没有电脑，或想让任务在后台云端运行时：</p>
+<p><strong>前提条件</strong>：代码已同步到 GitHub。</p>
+<p><strong>操作流程：</strong></p>
+<ol>
+<li>推送本地代码到 GitHub</li>
+<li>运行模式选择「关联 Codex Web」</li>
+<li>点击「前往 Cloud」，输入仓库名和需求</li>
+<li>Codex 初始化云端环境 → 下载代码 → AI 分析 → 完成修改</li>
+<li>点击「创建拉取请求」→ 代码以 PR 形式提交到 GitHub</li>
+<li>审核通过后在 GitHub 上 Merge</li>
+<li>回到本地 <code>Sync Changes</code> 同步最新代码</li>
+</ol>
+<blockquote>
+<p><strong>最佳场景</strong>：出门在外，用手机审批，让 Codex 云端完成任务。</p>
+</blockquote>
+<hr>
+<h2 id="七记忆系统">七、记忆系统
+</h2><p>每次新对话，AI 对项目的记忆都是空白的。复杂项目需要记忆系统来避免重复交代。</p>
+<h3 id="方式一项目级-agentsmd">方式一：项目级 AGENTS.md
+</h3><p>在项目根目录创建 <code>AGENTS.md</code> 文件，每次对话自动作为上下文注入。</p>
+<p>可以手写，也可以让 Codex 通读项目后自动生成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">让 Codex 通读当前文件夹，把学到的项目知识保存到 AGENTS.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方式二全局-agentsmd">方式二：全局 AGENTS.md
+</h3><p>「设置 → 个性化 → 自定义指令」中编辑，对所有项目生效。</p>
+<p>文件位置：<code>C:\Users\&lt;用户名&gt;\.codex\AGENTS.md</code></p>
+<p><strong>实用示例</strong>——防止误删文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">禁止使用脚本批量删除文件或目录，只能使用 Remove-Item 一个一个删除。
+</span></span><span class="line"><span class="cl">如果必须批量删除，应停止操作，让用户手动处理。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="实验性功能启用记忆">实验性功能：启用记忆
+</h3><p>设置中的「启用记忆」可以从聊天中自动提取记忆并带入新对话，目前仍是实验性功能。</p>
+<hr>
+<h2 id="八插件与自动化">八、插件与自动化
+</h2><h3 id="插件市场">插件市场
+</h3><p>左侧边栏 → 插件，分为两类：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>插件</strong></td>
+          <td>第三方服务的能力注入（GitHub、Gmail、Netlify 等）</td>
+      </tr>
+      <tr>
+          <td><strong>技能（Skills）</strong></td>
+          <td>带目录的专业能力说明书</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="示例github--gmail-联动">示例：GitHub + Gmail 联动
+</h3><ol>
+<li>安装 GitHub 插件和 Gmail 插件</li>
+<li>授权登录</li>
+<li>输入：<code>/github 查看我 star 数前十的开源项目</code> + <code>/gmail 发邮件给我自己做摘要</code></li>
+</ol>
+<h3 id="定时自动化">定时自动化
+</h3><p>把上述流程做成定时任务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">把上述工作做成自动化，每周五下午四点发邮件给我
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建后可在「自动化」面板中：</p>
+<ul>
+<li>编辑执行频率（每周/每天/每小时）</li>
+<li>切换模型（简单任务用迷你模型即可）</li>
+<li>点击「立即运行」测试</li>
+</ul>
+<blockquote>
+<p>执行过程中积累的经验会写入 <code>MEMORY.md</code>，帮助下一次执行更稳定。</p>
+</blockquote>
+<h3 id="更多自动化玩法">更多自动化玩法
+</h3><p>配合浏览器自动化或 Computer Use：</p>
+<ul>
+<li>每天汇总 Teams 聊天记录发工作日报</li>
+<li>定时打开网站签到</li>
+<li>定期抓取数据生成报告</li>
+</ul>
+<hr>
+<h2 id="九skills">九、Skills
+</h2><p>Skills 是给 AI Agent 的<strong>专业技能包</strong>，本质上是带目录的说明书。把工作流、专业能力、规范封装成 Skill，让 Agent 执行特定任务时更稳定高效。</p>
+<h3 id="三种安装方式">三种安装方式
+</h3><h4 id="1-官方-skills">1. 官方 Skills
+</h4><p>插件市场中直接安装。例如 <strong>Remotion</strong>：让 AI 用编程方式创建动画视频。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/remotion 帮我生成一个 3D 圆锥摆的视频动画，需要有受力分析，角速度随时间缓慢增大
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-第三方-skills">2. 第三方 Skills
+</h4><p>从 GitHub 下载后放入项目目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">项目文件夹/
+</span></span><span class="line"><span class="cl">  └── .codex/
+</span></span><span class="line"><span class="cl">      └── skills/
+</span></span><span class="line"><span class="cl">          └── 下载的 skill 文件
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在 Codex 中添加该项目，用斜杠唤起 Skill。</p>
+<h4 id="3-自建-skills">3. 自建 Skills
+</h4><p>使用内置的 <strong>Skill Creator</strong> 技能来创建：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/skill-creator 创建一个 skill：
+</span></span><span class="line"><span class="cl">当我提供视频和字幕文件时——
+</span></span><span class="line"><span class="cl">第一步：读取字幕，转换成 Markdown 笔记，自动添加标点、划分段落，
+</span></span><span class="line"><span class="cl">       对于涉及代码讲解/UI 交互的内容，在句末添加截图占位标记
+</span></span><span class="line"><span class="cl">第二步：调用 ffmpeg 在截图标记位置截图，用本地图片替换占位符
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>编写长 prompt 技巧</strong>：换行用 <code>Shift + Enter</code>，不要直接回车（会发送）。</p>
+<p>创建完成后，后续所有类似任务只需一个斜杠命令。</p>
+<hr>
+<h2 id="十mcp">十、MCP
+</h2><p>MCP（Model Context Protocol）是大模型的<strong>标准化工具箱</strong>，让 AI 能与外部服务交互。</p>
+<h3 id="入口">入口
+</h3><p>「设置 → MCP 服务器 → 添加服务器」</p>
+<h3 id="示例supabase-mcp">示例：Supabase MCP
+</h3><p>Supabase 是开源免费的 PostgreSQL 云数据库。</p>
+<ol>
+<li>在 Supabase 创建项目 → Connect → MCP 客户端 → 选择 Codex → 复制 URL</li>
+<li>Codex 中添加 MCP 服务器，传输方式选「流式 HTTP」，填入 URL</li>
+<li>终端运行 <code>codex mcp login supabase</code> 完成授权</li>
+<li><strong>重启 Codex</strong></li>
+</ol>
+<p>之后就可以用对话操作数据库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">使用 Supabase MCP 创建一个预约业务表，
+</span></span><span class="line"><span class="cl">用户的表单数据从后端用 connection pool 方式写入
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="十一电脑自动化computer-use">十一、电脑自动化（Computer Use）
+</h2><blockquote>
+<p>⚠️ 目前仅 Mac 支持</p>
+</blockquote>
+<p>安装 Computer Use 插件后，Codex 可以直接操作你的电脑：</p>
+<ul>
+<li>打开聊天软件找到老板发消息</li>
+<li>打开浏览器查看 GitHub 看板，汇总项目进度</li>
+<li>生成英文简报发送给老板</li>
+</ul>
+<h3 id="特点">特点
+</h3><ul>
+<li>使用<strong>虚拟鼠标</strong>后台运行，不占用当前窗口</li>
+<li>可以编制成<strong>定时自动化任务</strong>（如每天下午五点自动发简报）</li>
+<li>Mac 上建议开启「运行时防止系统休眠」</li>
+</ul>
+<hr>
+<h2 id="十二总结codex-app-能力全景">十二、总结：Codex APP 能力全景
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>能力</th>
+          <th>说明</th>
+          <th>亮点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>沙箱权限</td>
+          <td>OS 级安全隔离 + 自动审查</td>
+          <td>安全与便利兼顾</td>
+      </tr>
+      <tr>
+          <td>多项目并行</td>
+          <td>多项目、多对话同时跑</td>
+          <td>物理隔离，互不干扰</td>
+      </tr>
+      <tr>
+          <td>画图</td>
+          <td>GPT Image 内置</td>
+          <td>风格一致，直接嵌入项目</td>
+      </tr>
+      <tr>
+          <td>计划模式</td>
+          <td>先对齐再执行</td>
+          <td>避免返工</td>
+      </tr>
+      <tr>
+          <td>Git Worktree</td>
+          <td>分支级并行开发</td>
+          <td>不同文件夹，真正隔离</td>
+      </tr>
+      <tr>
+          <td>云端运行</td>
+          <td>GitHub 联动云端执行</td>
+          <td>手机审批，随时干活</td>
+      </tr>
+      <tr>
+          <td>记忆系统</td>
+          <td>AGENTS.md 项目级 + 全局</td>
+          <td>告别重复交代</td>
+      </tr>
+      <tr>
+          <td>定时自动化</td>
+          <td>插件 + 定时任务 + MEMORY</td>
+          <td>积累经验，越用越稳</td>
+      </tr>
+      <tr>
+          <td>Skills</td>
+          <td>可复用专业能力包</td>
+          <td>官方/第三方/自建</td>
+      </tr>
+      <tr>
+          <td>MCP</td>
+          <td>标准化外部工具接入</td>
+          <td>Supabase、Netlify 等</td>
+      </tr>
+      <tr>
+          <td>Computer Use</td>
+          <td>自动操作电脑</td>
+          <td>Mac 专属，后台运行</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<blockquote>
+<p><strong>参考来源</strong>：B 站视频 <a class="link" href="https://www.bilibili.com/video/BV1Kk9kBAEJv/"  target="_blank" rel="noopener"
+    >Codex (APP) 保姆级全攻略</a> by 技术爬爬虾（2026-04-28）</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 May 08, 2026 23:07 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/codex-deepseek-v4-proxy/">
+        
+        
+            <div class="article-image">
+                <img src="/p/codex-deepseek-v4-proxy/bannerImage.dde3a847822c933bba6a28d3918f36c0_hu_c5885f228c0804b1.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Codex 接入 DeepSeek V4：用中转脚本破解 API 格式不兼容"
+                        data-key="codex-deepseek-v4-proxy" 
+                        data-hash="md5-3eOoR4Iskzu6aijTkY82wA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex 接入 DeepSeek V4：用中转脚本破解 API 格式不兼容</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/opencode-complete-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-complete-guide/bannerImage.430dc322b9886fa8cc959ee1ab477e13_hu_1d30bf55534d1276.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法"
+                        data-key="opencode-complete-guide" 
+                        data-hash="md5-Qw3DIrmIb6jMlZ7hq0d&#43;Ew==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/opencode-parallel-workflow-tips/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-parallel-workflow-tips/bannerImage.052d81651aef7951346921d53d1ad5c4_hu_4549084811f34791.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 新手进阶：并行调度与使用技巧全攻略"
+                        data-key="opencode-parallel-workflow-tips" 
+                        data-hash="md5-BS2BZRrveVE0aSHVPRrVxA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 新手进阶：并行调度与使用技巧全攻略</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/claude-code-deepseek-setup/">
+        
+        
+            <div class="article-image">
+                <img src="/p/claude-code-deepseek-setup/bannerImage.893eeb27eb74b1d32493c69de860e065_hu_3892b4af2012730d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 5分钟安装 Claude Code 并接入 DeepSeek"
+                        data-key="claude-code-deepseek-setup" 
+                        data-hash="md5-iT7rJ&#43;t0sdMkk8ad6GDgZQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">5分钟安装 Claude Code 并接入 DeepSeek</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/git-ssh-large-repo/">
+        
+        
+            <div class="article-image">
+                <img src="/p/git-ssh-large-repo/bannerImage.bad96621d05306c2405fa84ab5fa9341_hu_71b1a55a0f0d4c94.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 技术踩坑记录：Git 大仓库克隆网络中断与 SSH 破局方案"
+                        data-key="git-ssh-large-repo" 
+                        data-hash="md5-utlmIdBTBsJAX6hKtfqTQQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">技术踩坑记录：Git 大仓库克隆网络中断与 SSH 破局方案</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.5e6aeaaebb97d6a9e08e7d3b4bbe4dc3ce7ea0b2c7d2eed416957bcf6cbbd170.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<script defer src="https://cn.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 170px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.16) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.16) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(245, 245, 250, 0) 0%, rgba(245, 245, 250, 0.72) 100%);
+}
+
+html.at-page-bottom body::after {
+  opacity: 1;
+}
+
+html[data-scheme="dark"] body::after {
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.12) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.1) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(8, 12, 20, 0) 0%, rgba(8, 12, 20, 0.68) 100%);
+}
+</style>
+
+    </body>
+</html>

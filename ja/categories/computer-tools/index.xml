@@ -1,0 +1,2553 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Computer Tools on Siborne</title>
+        <link>https://Siborne.top/ja/categories/computer-tools/</link>
+        <description>Recent content in Computer Tools on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ja</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/ja/categories/computer-tools/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Codex APP 完全ガイド：インストールから自動化まで徹底解説</title>
+        <link>https://Siborne.top/ja/p/codex-app-complete-guide/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/codex-app-complete-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-app-complete-guide/bannerImage.png" alt="Featured image of post Codex APP 完全ガイド：インストールから自動化まで徹底解説" /&gt;&lt;h2 id=&#34;核心ポイント&#34;&gt;核心ポイント
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Codex APP&lt;/strong&gt; は現在最も強力な Codex 製品形態で、無料枠が大きく、機能が充実し、アカウント停止やレート制限なし&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;サンドボックス機構&lt;/strong&gt;：OS レベルのセキュリティ分離、デフォルトでサンドボックス外ファイルとネットワークアクセスを禁止、3段階の権限設定&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;マルチプロジェクト並行&lt;/strong&gt;：複数プロジェクト・複数会話を同時実行、物理的に隔離されて干渉しない&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;プランモード&lt;/strong&gt;：まず認識を合わせてから実行、AI の誤解による手戻りを防止&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Git Worktree&lt;/strong&gt;：ブランチレベルの並行開発、異なるフォルダで真の隔離を実現&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills/MCP&lt;/strong&gt;：再利用可能な専門能力パック + 標準化された外部ツール連携&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;スケジュール自動化&lt;/strong&gt;：プラグイン + 定期タスク + MEMORY 経験蓄積で、使うほど安定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;なぜ-codex-app-を選ぶのか&#34;&gt;なぜ Codex APP を選ぶのか？
+&lt;/h2&gt;&lt;p&gt;Codex には4つの製品形態がありますが、&lt;strong&gt;Codex APP&lt;/strong&gt; は現在最も強力です。Claude Code と比較して：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;より大きな利用枠&lt;/strong&gt;、無料アカウントでも使用可能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;より豊富な機能&lt;/strong&gt;、内蔵ブラウザ、画像生成、プラグインマーケットプレイス、定期タスク&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;レート制限、アカウント停止、性能低下なし&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;より速いオンボーディング&lt;/strong&gt;、インストール後すぐに使用可能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本記事では12のセクションに分けて、Codex APP の全機能を詳しく解説します。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一インストールと初期設定&#34;&gt;一、インストールと初期設定
+&lt;/h2&gt;&lt;h3 id=&#34;準備&#34;&gt;準備
+&lt;/h3&gt;&lt;p&gt;Codex APP をインストールする前に、以下の3つをインストールしてください：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node.js&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VS Code&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;インストール手順&#34;&gt;インストール手順
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://openai.com/zh-Hans-CN/codex/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex 公式サイト&lt;/a&gt; からインストーラーをダウンロード（Windows / Mac 対応）&lt;/li&gt;
+&lt;li&gt;インストーラーの指示に従って進める&lt;/li&gt;
+&lt;li&gt;起動後、&lt;strong&gt;ChatGPT アカウント&lt;/strong&gt;でログイン（無料アカウントで可）&lt;/li&gt;
+&lt;li&gt;初回起動時に Codex に処理させたい作業タイプを選択すると、対応するプラグインと Skills が事前インストールされる&lt;/li&gt;
+&lt;li&gt;主な使用シーンを選択：プログラミング / 日常業務&lt;/li&gt;
+&lt;li&gt;サンドボックスを初期化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Mac vs Windows&lt;/strong&gt;：機能はほぼ同じ。唯一の違いは &lt;strong&gt;Computer Use&lt;/strong&gt;（コンピュータ自動操作）が現在 Mac のみ対応であること。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二基本操作&#34;&gt;二、基本操作
+&lt;/h2&gt;&lt;h3 id=&#34;3カラムレイアウト&#34;&gt;3カラムレイアウト
+&lt;/h3&gt;&lt;p&gt;Codex APP はクラシックな3カラムレイアウトを採用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;左側&lt;/strong&gt;：タスクリスト（プロジェクト + 会話）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中央&lt;/strong&gt;：チャットウィンドウ&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;右側&lt;/strong&gt;：多機能エリア（ブラウザ、ターミナル、ファイルツリーなど）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;プロジェクト管理&#34;&gt;プロジェクト管理
+&lt;/h3&gt;&lt;p&gt;「プロジェクトを追加 → 既存のフォルダを使用」でローカルフォルダを Codex プロジェクトとして登録。各プロジェクトは独立して会話を管理し、互いに干渉しない。&lt;/p&gt;
+&lt;h3 id=&#34;並行タスク&#34;&gt;並行タスク
+&lt;/h3&gt;&lt;p&gt;Codex は&lt;strong&gt;マルチプロジェクト・マルチ会話の並行実行&lt;/strong&gt;をサポート。タスクリストのアイコンで状態を表示：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔵 青い点 → 完了&lt;/li&gt;
+&lt;li&gt;🟢 緑のラベル → 承認待ち&lt;/li&gt;
+&lt;li&gt;🔄 回転アイコン → 実行中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;会話管理&#34;&gt;会話管理
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;新規会話&lt;/strong&gt;：&lt;code&gt;Ctrl + N&lt;/code&gt;（Win）/ &lt;code&gt;Cmd + N&lt;/code&gt;（Mac）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;履歴検索&lt;/strong&gt;：&lt;code&gt;Ctrl + G&lt;/code&gt; / &lt;code&gt;Cmd + G&lt;/code&gt;（タイトルのみ検索、内容は検索しない）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;アーカイブ/復元&lt;/strong&gt;：アーカイブボタンで会話を非表示、「設定 → アーカイブ済み会話」から復元可能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;タイトル自動生成&lt;/strong&gt;：各会話のタイトルは AI が内容に基づいて自動要約、ダブルクリックで名前変更も可能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;権限システムサンドボックス機構&#34;&gt;権限システム：サンドボックス機構
+&lt;/h3&gt;&lt;p&gt;Codex の権限システムはすべて**サンドボックス（Sandbox）**を中心に構築されています。これは Harness Engineering コンセプトの典型的な実装であり、OS レベルのメカニズムで AI の能力を制御可能な範囲に制約します。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;デフォルトの制限：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;制限&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;サンドボックス内ファイル&lt;/td&gt;
+          &lt;td&gt;デフォルトで&lt;strong&gt;直接読み書き&lt;/strong&gt;、ファイルごとの承認不要&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;サンドボックス外ファイル&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;アクセス禁止&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ネットワークアクセス&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;デフォルトで禁止&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;これらのハード制限はモデルの自律性ではなく、OS の低レベルメカニズムによって強制されます（Mac は Seatbelt/Sandbox、Windows は同等のメカニズム）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3段階の権限レベル：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;レベル&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+          &lt;th&gt;推奨&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;手動承認&lt;/td&gt;
+          &lt;td&gt;すべての権限昇格に手動確認が必要&lt;/td&gt;
+          &lt;td&gt;最も安全だが煩雑&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;自動審査&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;小規模モデルが低リスク操作を自動審査、高リスクのみ手動確認&lt;/td&gt;
+          &lt;td&gt;✅ &lt;strong&gt;推奨&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;フルアクセス&lt;/td&gt;
+          &lt;td&gt;サンドボックス制限をすべて解除&lt;/td&gt;
+          &lt;td&gt;⚠️ 注意して使用&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Codex がサンドボックス外のファイルやネットワークにアクセスする必要がある場合、「エスカレーション（Escalate）」申請を発行します。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;コンテキスト管理&#34;&gt;コンテキスト管理
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;右上の円が現在のコンテキスト使用量を表示&lt;/li&gt;
+&lt;li&gt;制限を超えると Codex が&lt;strong&gt;自動圧縮&lt;/strong&gt;で履歴を圧縮&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/compact&lt;/code&gt; で手動圧縮も可能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;経験則&lt;/strong&gt;：クリア &amp;gt; 圧縮。タスク完了後に新規会話を開始し、AI の集中力を維持する。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;モデル選択&#34;&gt;モデル選択
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;タスクの複雑さに応じて思考強度を選択&lt;/li&gt;
+&lt;li&gt;通常は最新モデル（ChatGPT 5.5 など）を使用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高速モード&lt;/strong&gt;：50% 高速化、ただし2倍の利用枠を消費&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;利用枠の確認&#34;&gt;利用枠の確認
+&lt;/h3&gt;&lt;p&gt;「設定 → 残りの利用枠」で2つの制限を確認可能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5時間制限&lt;/li&gt;
+&lt;li&gt;週間制限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;いずれかが上限に達すると使用が一時停止され、リセット時間後に自動復旧します。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三画像生成&#34;&gt;三、画像生成
+&lt;/h2&gt;&lt;p&gt;Codex は &lt;strong&gt;GPT Image&lt;/strong&gt;（現在最も強力な AI 画像生成モデル）を内蔵しており、会話内で直接画像を生成できます。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主な用途：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web ページの画像、カルーセル画像の生成&lt;/li&gt;
+&lt;li&gt;スクリーンショットの注釈に基づくスタイライズドマップの生成&lt;/li&gt;
+&lt;li&gt;複数画像のスタイル一貫性の維持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;steerステアリング機能&#34;&gt;Steer（ステアリング）機能
+&lt;/h3&gt;&lt;p&gt;AI の実行方向が逸れた場合、そのまま続行させないでください。会話内の&lt;strong&gt;ステアリングボタン&lt;/strong&gt;をクリック（または &lt;code&gt;Ctrl + Enter&lt;/code&gt; を押下）して、途中でハンドルを握り、AI の実行方向を修正します。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;設定で新規指示を「キューイング」か「直接ステアリング」か選択可能。デフォルトはキューイング + 必要時に手動ステアリングを推奨。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四プランモード&#34;&gt;四、プランモード
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;すべての複雑なタスク&lt;/strong&gt;では、まずプランモード（Plan Mode）を有効にして、AI との粒度の一致を確保することを推奨します。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ワークフロー：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;チャットウィンドウのプラスアイコンをクリック → 「プランモード」を有効化&lt;/li&gt;
+&lt;li&gt;要件を入力すると、Codex はまず&lt;strong&gt;質問カード&lt;/strong&gt;で詳細を確認&lt;/li&gt;
+&lt;li&gt;Codex が完全な作業計画を出力&lt;/li&gt;
+&lt;li&gt;レビューして確認後、「この計画を実行」をクリック&lt;/li&gt;
+&lt;li&gt;Codex が実行し、右側の内蔵ブラウザを自動的に開いて検証&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;プランモードの価値&lt;/strong&gt;：AI の誤解による大量の手戻りを防ぎ、アーキテクチャ移行や大規模機能開発などのタスクに特に適しています。&lt;/p&gt;
+&lt;h3 id=&#34;内蔵ブラウザ--注釈&#34;&gt;内蔵ブラウザ + 注釈
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;右側の多機能エリアで内蔵ブラウザを開きプロジェクトをプレビュー可能&lt;/li&gt;
+&lt;li&gt;「注釈」ボタンをクリックし、ページ要素を選択してコメントを追加すると、AI がそれに基づいて修正&lt;/li&gt;
+&lt;li&gt;修正プロセスはリアルタイムで確認可能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五コード管理&#34;&gt;五、コード管理
+&lt;/h2&gt;&lt;p&gt;Codex APP は従来の IDE ではなく、完全なコード編集機能を提供しません。VS Code との併用を推奨します。&lt;/p&gt;
+&lt;h3 id=&#34;git-初期化&#34;&gt;Git 初期化
+&lt;/h3&gt;&lt;p&gt;Codex にプロジェクトを Git リポジトリとして初期化させる：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.gitignore&lt;/code&gt; を自動作成し、不要なファイルを除外&lt;/li&gt;
+&lt;li&gt;初期化完了後、右上に Git 関連ボタンが表示される&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;vs-code-連携&#34;&gt;VS Code 連携
+&lt;/h3&gt;&lt;p&gt;右上の &lt;strong&gt;VS Code ボタン&lt;/strong&gt;をクリックしてプロジェクトをワンクリックで開くか、設定でデフォルト IDE を指定可能。&lt;/p&gt;
+&lt;h3 id=&#34;github-同期&#34;&gt;GitHub 同期
+&lt;/h3&gt;&lt;p&gt;Codex に GitHub でリポジトリを作成しコードをプッシュさせることができ、すべての Git/GitHub 操作は会話で完結します。&lt;/p&gt;
+&lt;h3 id=&#34;上級テクニック1会話フォーク--git-ロールバック&#34;&gt;上級テクニック1：会話フォーク + Git ロールバック
+&lt;/h3&gt;&lt;p&gt;変更を後悔し「なかったこと」にしたい場合：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;会話フォーク（Fork）&lt;/strong&gt;：会話内で変更前の位置を見つけ、フォークボタンをクリック → ローカルに派生し、変更を含まない会話コピーを取得&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;コードロールバック&lt;/strong&gt;：VS Code の Source Control で対象のコミットハッシュをコピーし、Codex にコードをその状態に戻させる&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;フォークは会話履歴のみをロールバックします。コードは別途 Git でロールバックが必要です。両者を組み合わせることで&lt;strong&gt;会話 + コード&lt;/strong&gt;の完全なロールバックを実現します。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;上級テクニック2git-worktree&#34;&gt;上級テクニック2：Git Worktree
+&lt;/h3&gt;&lt;p&gt;Worktree は Git で新しいブランチを作成し、ブランチのコードを独立したフォルダにコピーすることで、&lt;strong&gt;マルチブランチ並行開発&lt;/strong&gt;を実現します。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用シーン：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;プロジェクトを右クリック → 永続ワークツリーを作成（例：&lt;code&gt;customer-rating&lt;/code&gt;、&lt;code&gt;store-info&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;異なるワークツリーで異なる機能を並行開発、互いに干渉しない&lt;/li&gt;
+&lt;li&gt;開発完了後、それぞれをメインにマージ&lt;/li&gt;
+&lt;li&gt;一時ワークツリーを削除&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Worktree の核心的価値：異なるブランチが&lt;strong&gt;異なるフォルダ&lt;/strong&gt;に配置され、真の物理的隔離による並行開発を実現。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六クラウド実行&#34;&gt;六、クラウド実行
+&lt;/h2&gt;&lt;p&gt;手元に PC がない場合や、タスクをバックグラウンドのクラウドで実行したい場合：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;：コードが GitHub に同期されていること。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;操作フロー：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;ローカルコードを GitHub にプッシュ&lt;/li&gt;
+&lt;li&gt;実行モードで「Codex Web に連携」を選択&lt;/li&gt;
+&lt;li&gt;「Cloud に移動」をクリックし、リポジトリ名と要件を入力&lt;/li&gt;
+&lt;li&gt;Codex がクラウド環境を初期化 → コードをダウンロード → AI が分析 → 修正を完了&lt;/li&gt;
+&lt;li&gt;「プルリクエストを作成」をクリック → コードが PR として GitHub に提出&lt;/li&gt;
+&lt;li&gt;レビュー後、GitHub 上で Merge&lt;/li&gt;
+&lt;li&gt;ローカルに戻り &lt;code&gt;Sync Changes&lt;/code&gt; で最新コードを同期&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;最適なシーン&lt;/strong&gt;：外出先でスマートフォンから承認し、Codex にクラウドでタスクを完了させる。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;七メモリシステム&#34;&gt;七、メモリシステム
+&lt;/h2&gt;&lt;p&gt;新しい会話のたびに、AI のプロジェクトに対する記憶は空白です。複雑なプロジェクトでは、繰り返しの説明を避けるためにメモリシステムが必要です。&lt;/p&gt;
+&lt;h3 id=&#34;方法1プロジェクトレベルの-agentsmd&#34;&gt;方法1：プロジェクトレベルの AGENTS.md
+&lt;/h3&gt;&lt;p&gt;プロジェクトのルートディレクトリに &lt;code&gt;AGENTS.md&lt;/code&gt; ファイルを作成すると、毎回の会話で自動的にコンテキストとして注入されます。&lt;/p&gt;
+&lt;p&gt;手書きも可能ですが、Codex にプロジェクトを読み込ませて自動生成させることもできます：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Codex に現在のフォルダをすべて読み込ませ、学習したプロジェクト知識を AGENTS.md に保存させる
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;方法2グローバル-agentsmd&#34;&gt;方法2：グローバル AGENTS.md
+&lt;/h3&gt;&lt;p&gt;「設定 → パーソナライズ → カスタム指示」で編集し、すべてのプロジェクトに適用されます。&lt;/p&gt;
+&lt;p&gt;ファイルの場所：&lt;code&gt;C:\Users\&amp;lt;ユーザー名&amp;gt;\.codex\AGENTS.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;実用例&lt;/strong&gt;——ファイルの誤削除防止：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;スクリプトによるファイルやディレクトリの一括削除を禁止します。Remove-Item で1つずつ削除のみ可能です。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;一括削除が必須の場合は、操作を停止し、ユーザーに手動処理させてください。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;実験的機能メモリ有効化&#34;&gt;実験的機能：メモリ有効化
+&lt;/h3&gt;&lt;p&gt;設定の「メモリを有効化」は、チャットから自動的にメモリを抽出し新しい会話に持ち越すことができます。現在も実験的機能です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;八プラグインと自動化&#34;&gt;八、プラグインと自動化
+&lt;/h2&gt;&lt;h3 id=&#34;プラグインマーケットプレイス&#34;&gt;プラグインマーケットプレイス
+&lt;/h3&gt;&lt;p&gt;左サイドバー → プラグイン、以下の2種類に分類：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;タイプ&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;プラグイン&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;サードパーティサービスの能力注入（GitHub、Gmail、Netlify など）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;スキル（Skills）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ディレクトリ構造を持つ専門能力マニュアル&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;例github--gmail-連携&#34;&gt;例：GitHub + Gmail 連携
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;GitHub プラグインと Gmail プラグインをインストール&lt;/li&gt;
+&lt;li&gt;認証ログイン&lt;/li&gt;
+&lt;li&gt;入力：&lt;code&gt;/github スター数トップ10のオープンソースプロジェクトを表示&lt;/code&gt; + &lt;code&gt;/gmail 自分にサマリーをメール送信&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;スケジュール自動化&#34;&gt;スケジュール自動化
+&lt;/h3&gt;&lt;p&gt;上記のフローを定期タスク化：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;上記の作業を自動化し、毎週金曜日午後4時にメールを送信する
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;作成後、「自動化」パネルで：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;実行頻度の編集（毎週/毎日/毎時間）&lt;/li&gt;
+&lt;li&gt;モデルの切り替え（簡単なタスクはミニモデルで十分）&lt;/li&gt;
+&lt;li&gt;「今すぐ実行」をクリックしてテスト&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;実行中に蓄積された経験は &lt;code&gt;MEMORY.md&lt;/code&gt; に書き込まれ、次回の実行をより安定させます。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;その他の自動化アイデア&#34;&gt;その他の自動化アイデア
+&lt;/h3&gt;&lt;p&gt;ブラウザ自動化や Computer Use と組み合わせて：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;毎日 Teams のチャット履歴をまとめて日報を送信&lt;/li&gt;
+&lt;li&gt;定期的にウェブサイトを開いてチェックイン&lt;/li&gt;
+&lt;li&gt;定期的にデータを取得してレポートを生成&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;九skills&#34;&gt;九、Skills
+&lt;/h2&gt;&lt;p&gt;Skills は AI Agent のための&lt;strong&gt;専門スキルパック&lt;/strong&gt;であり、本質的にはディレクトリ構造を持つマニュアルです。ワークフロー、専門能力、規範を Skill にカプセル化することで、Agent が特定のタスクをより安定して効率的に実行できるようになります。&lt;/p&gt;
+&lt;h3 id=&#34;3つのインストール方法&#34;&gt;3つのインストール方法
+&lt;/h3&gt;&lt;h4 id=&#34;1-公式-skills&#34;&gt;1. 公式 Skills
+&lt;/h4&gt;&lt;p&gt;プラグインマーケットプレイスから直接インストール。例：&lt;strong&gt;Remotion&lt;/strong&gt;——AI がプログラミングでアニメーションビデオを作成。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/remotion 3D 円錐振り子のビデオアニメーションを生成して、
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;力の解析を含め、角速度が時間とともに徐々に増加するもの
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;2-サードパーティ-skills&#34;&gt;2. サードパーティ Skills
+&lt;/h4&gt;&lt;p&gt;GitHub からダウンロードしてプロジェクトディレクトリに配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;プロジェクトフォルダ/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  └── .codex/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      └── skills/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          └── ダウンロードした skill ファイル
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;その後、Codex にそのプロジェクトを追加し、スラッシュで Skill を呼び出します。&lt;/p&gt;
+&lt;h4 id=&#34;3-自作-skills&#34;&gt;3. 自作 Skills
+&lt;/h4&gt;&lt;p&gt;内蔵の &lt;strong&gt;Skill Creator&lt;/strong&gt; を使用して作成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/skill-creator スキルを作成：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;動画と字幕ファイルを提供する場合——
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ステップ1：字幕を読み取り、Markdown ノートに変換し、自動で句読点を追加・段落を分割、
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       コード解説/UI インタラクションに関する内容には、文末にスクリーンショットのプレースホルダーマークを追加
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ステップ2：ffmpeg を呼び出してマーク位置でスクリーンショットを撮影し、ローカル画像でプレースホルダーを置換
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;長文プロンプトのコツ&lt;/strong&gt;：改行は &lt;code&gt;Shift + Enter&lt;/code&gt; を使用し、直接 Enter を押さないこと（送信されてしまいます）。&lt;/p&gt;
+&lt;p&gt;作成完了後、以降の同様のタスクはすべて1つのスラッシュコマンドで完結します。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;十mcp&#34;&gt;十、MCP
+&lt;/h2&gt;&lt;p&gt;MCP（Model Context Protocol）は大規模モデルの&lt;strong&gt;標準化されたツールボックス&lt;/strong&gt;であり、AI が外部サービスと対話できるようにします。&lt;/p&gt;
+&lt;h3 id=&#34;エントリーポイント&#34;&gt;エントリーポイント
+&lt;/h3&gt;&lt;p&gt;「設定 → MCP サーバー → サーバーを追加」&lt;/p&gt;
+&lt;h3 id=&#34;例supabase-mcp&#34;&gt;例：Supabase MCP
+&lt;/h3&gt;&lt;p&gt;Supabase はオープンソースで無料の PostgreSQL クラウドデータベースです。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Supabase でプロジェクトを作成 → Connect → MCP クライアント → Codex を選択 → URL をコピー&lt;/li&gt;
+&lt;li&gt;Codex で MCP サーバーを追加、転送タイプは「ストリーミング HTTP」を選択、URL を貼り付け&lt;/li&gt;
+&lt;li&gt;ターミナルで &lt;code&gt;codex mcp login supabase&lt;/code&gt; を実行して認証&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex を再起動&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;その後、会話でデータベースを操作できます：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Supabase MCP を使用して予約業務テーブルを作成し、
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ユーザーのフォームデータはバックエンドから connection pool 方式で書き込む
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;十一コンピュータ自動化computer-use&#34;&gt;十一、コンピュータ自動化（Computer Use）
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ 現在 Mac のみ対応&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Computer Use プラグインをインストールすると、Codex が直接あなたのコンピュータを操作できます：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;チャットアプリを開いて上司にメッセージを送信&lt;/li&gt;
+&lt;li&gt;ブラウザを開いて GitHub かんばんボードを確認し、プロジェクトの進捗をまとめる&lt;/li&gt;
+&lt;li&gt;英語のブリーフを生成して上司に送信&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;特徴&#34;&gt;特徴
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;仮想マウス&lt;/strong&gt;でバックグラウンド実行、現在のウィンドウを占有しない&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;スケジュール自動化タスク&lt;/strong&gt;として編成可能（例：毎日午後5時に自動でブリーフを送信）&lt;/li&gt;
+&lt;li&gt;Mac では「実行中のシステムスリープを防止」を有効にすることを推奨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;十二まとめcodex-app-能力マップ&#34;&gt;十二、まとめ：Codex APP 能力マップ
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;能力&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+          &lt;th&gt;ハイライト&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;サンドボックス権限&lt;/td&gt;
+          &lt;td&gt;OS レベルのセキュリティ分離 + 自動審査&lt;/td&gt;
+          &lt;td&gt;安全性と利便性の両立&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;マルチプロジェクト並行&lt;/td&gt;
+          &lt;td&gt;複数プロジェクト・複数会話を同時実行&lt;/td&gt;
+          &lt;td&gt;物理的隔離で干渉なし&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;画像生成&lt;/td&gt;
+          &lt;td&gt;GPT Image 内蔵&lt;/td&gt;
+          &lt;td&gt;スタイル一貫性、プロジェクトに直接埋め込み&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;プランモード&lt;/td&gt;
+          &lt;td&gt;まず認識合わせ、その後実行&lt;/td&gt;
+          &lt;td&gt;手戻り防止&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Git Worktree&lt;/td&gt;
+          &lt;td&gt;ブランチレベルの並行開発&lt;/td&gt;
+          &lt;td&gt;異なるフォルダで真の隔離&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;クラウド実行&lt;/td&gt;
+          &lt;td&gt;GitHub 連携クラウド実行&lt;/td&gt;
+          &lt;td&gt;スマートフォン承認でいつでも作業&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;メモリシステム&lt;/td&gt;
+          &lt;td&gt;AGENTS.md プロジェクトレベル + グローバル&lt;/td&gt;
+          &lt;td&gt;繰り返しの説明不要&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;スケジュール自動化&lt;/td&gt;
+          &lt;td&gt;プラグイン + 定期タスク + MEMORY&lt;/td&gt;
+          &lt;td&gt;経験蓄積でより安定&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Skills&lt;/td&gt;
+          &lt;td&gt;再利用可能な専門能力パック&lt;/td&gt;
+          &lt;td&gt;公式/サードパーティ/自作&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;MCP&lt;/td&gt;
+          &lt;td&gt;標準化された外部ツール連携&lt;/td&gt;
+          &lt;td&gt;Supabase、Netlify など&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Computer Use&lt;/td&gt;
+          &lt;td&gt;コンピュータ自動操作&lt;/td&gt;
+          &lt;td&gt;Mac 専用、バックグラウンド実行&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;参考ソース&lt;/strong&gt;：Bilibili 動画 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1Kk9kBAEJv/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex (APP) 完全ガイド&lt;/a&gt; by 技術爬爬蝦（2026-04-28）&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決</title>
+        <link>https://Siborne.top/ja/p/codex-deepseek-v4-proxy/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/codex-deepseek-v4-proxy/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-deepseek-v4-proxy/bannerImage.png" alt="Featured image of post Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決" /&gt;&lt;blockquote&gt;
+&lt;p&gt;🚀 &lt;strong&gt;中継スクリプトはオープンソース化&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt; —— 任意のサードパーティ API を Codex 互換形式にワンクリック変換。DeepSeek だけでなく、幅広く対応。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;問題の所在&#34;&gt;問題の所在
+&lt;/h2&gt;&lt;p&gt;最近、DeepSeek V4 シリーズモデルが割引され、非常にコストパフォーマンスが高くなっています。多くの開発者が Codex 内で使用しようとしています。しかし実際に操作すると、厄介な問題に直面します：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Codex の API リクエスト形式と DeepSeek 公式インターフェースが一致しない。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;具体的には、Codex が内部的に送信するリクエストパスは固定形式であり、設定でリクエスト先を DeepSeek 公式の &lt;code&gt;https://api.deepseek.com&lt;/code&gt; に直接変更しても、Codex はエラーを返します——モデル名をどう変更しても、パラメータをどう調整しても、全く効果がありません。&lt;/p&gt;
+&lt;h2 id=&#34;なぜ中継サービスは使えるのか&#34;&gt;なぜ中継サービスは使えるのか？
+&lt;/h2&gt;&lt;p&gt;これは解決の方向性を示唆しています。市場に出回っている一部の API 中継サービスが Codex にシームレスに接続できる理由は、本質的に&lt;strong&gt;プロトコル適応&lt;/strong&gt;の層を設けているからです——Codex からのリクエストをインターセプトし、ターゲット API の要求に合わせて再構成し、転送します。レスポンスを受け取った後は、Codex が理解できる形式に復元してクライアントに返します。&lt;/p&gt;
+&lt;p&gt;であれば、まったく同じ考え方で、自分自身で&lt;strong&gt;ローカル中継スクリプト&lt;/strong&gt;を構築し、DeepSeek の API を接続することができます。&lt;/p&gt;
+&lt;h2 id=&#34;全体アーキテクチャ&#34;&gt;全体アーキテクチャ
+&lt;/h2&gt;&lt;p&gt;ソリューション全体のリンクは次のとおりです：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Codex クライアント
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CC Switch（モデル設定層）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ローカル中継スクリプト（プロトコル変換層）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DeepSeek 公式 API
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;3つのキーコンポーネントがそれぞれの役割を果たします：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;コンポーネント&lt;/th&gt;
+          &lt;th&gt;役割&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;オープンソースのモデル切替ツール、Codex にカスタムモデル設定を注入&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;中継スクリプト&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ローカルで動作するプロキシサービス、リクエスト形式の双方向変換を担当&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;DeepSeek API&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;最終的にユーザーリクエストに応答するモデルサービス&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;実践手順&#34;&gt;実践手順
+&lt;/h2&gt;&lt;h3 id=&#34;ステップ1ツールの準備&#34;&gt;ステップ1：ツールの準備
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;：オープンソースツール、Microsoft Store または GitHub からダウンロード可能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex&lt;/strong&gt;：すでに使用している IDE&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中継スクリプト&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt;、サードパーティ API を Codex 互換形式にワンクリック変換&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ステップ2cc-switch-の設定&#34;&gt;ステップ2：CC Switch の設定
+&lt;/h3&gt;&lt;p&gt;CC Switch を開き、Codex / OpenAI Codex の設定項目を見つけ、プラスアイコンをクリックしてカスタム設定を新規作成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;リクエスト先&lt;/strong&gt;：ローカル中継スクリプトのアドレスを入力（例：&lt;code&gt;http://localhost:&amp;lt;ポート&amp;gt;/v1&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;モデル名&lt;/strong&gt;：使用したい DeepSeek モデルを入力（例：&lt;code&gt;deepseek-v4-pro&lt;/code&gt; または &lt;code&gt;deepseek-v4-fast&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API Key&lt;/strong&gt;：固定のプレースホルダーを入力（実際の API Key は中継スクリプトに埋め込み済み）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;重要なポイント&lt;/strong&gt;：ここでのリクエスト先に DeepSeek 公式アドレスを入力してはいけません。Codex が送信するリクエストパス形式は固定であるため、公式 API に直接接続すると形式の不一致でエラーが発生します。リクエストは必ず中継スクリプトを経由させる必要があります。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;設定を保存します。&lt;/p&gt;
+&lt;h3 id=&#34;ステップ3中継スクリプトの起動&#34;&gt;ステップ3：中継スクリプトの起動
+&lt;/h3&gt;&lt;p&gt;スクリプトを実行すると、まずリンク検証が行われ、API Key の有効性とネットワークの疎通が確認されます。検証が通ると、スクリプトはローカルでプロキシサービスを起動し、Codex からのリクエストの待受を開始します。&lt;/p&gt;
+&lt;h3 id=&#34;ステップ4codex-でモデルを切り替え&#34;&gt;ステップ4：Codex でモデルを切り替え
+&lt;/h3&gt;&lt;p&gt;Codex を開き、モデル選択リストから CC Switch が注入したカスタム設定（ステップ2で設定した名前で表示されます）を見つけ、選択します。&lt;/p&gt;
+&lt;p&gt;そして適当なメッセージを送信してテスト——すべてが正常であれば、DeepSeek V4 の返信が表示されます。&lt;/p&gt;
+&lt;h2 id=&#34;中継スクリプトは何をしているのか&#34;&gt;中継スクリプトは何をしているのか？
+&lt;/h2&gt;&lt;p&gt;核心的なロジックは非常にシンプルです：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;受信&lt;/strong&gt;：Codex から固定形式で送信されたリクエストを受信&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;解析&lt;/strong&gt;：messages、model、parameters などの有効なフィールドを抽出&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;再構成&lt;/strong&gt;：DeepSeek 公式 API が要求するリクエストボディ形式に組み立て直し&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;転送&lt;/strong&gt;：実際の API Key を付与して DeepSeek サーバーに転送&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;復元&lt;/strong&gt;：レスポンスを Codex が解析できる形式に復元し、クライアントに返却&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本質的には&lt;strong&gt;プロトコル変換層&lt;/strong&gt;です。&lt;/p&gt;
+&lt;h2 id=&#34;なぜ-codex-のリクエストパスを直接変更できないのか&#34;&gt;なぜ Codex のリクエストパスを直接変更できないのか？
+&lt;/h2&gt;&lt;p&gt;多くの人の第一反応は：「Codex 内でリクエストパスを定義している場所を直接見つけて、DeepSeek の形式に変更すればいいのでは？」というものです。&lt;/p&gt;
+&lt;p&gt;実際にはできません。動画の作者も何度も試したと述べています——chat を変更したり、v1 を変更したり、さまざまなパスを変更したりしましたが、Codex はすべてエラーを返しました。Codex のリクエスト形式は内部ロジックにハードコードされており、無断で変更すると通信フロー全体が破壊されます。Codex の内部メカニズムと格闘するよりも、外部に適応層を追加する方がはるかにクリーンです。&lt;/p&gt;
+&lt;h2 id=&#34;まとめ&#34;&gt;まとめ
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;手法の比較&lt;/th&gt;
+          &lt;th&gt;アドレス直接変更&lt;/th&gt;
+          &lt;th&gt;中継スクリプト&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;動作するか&lt;/td&gt;
+          &lt;td&gt;❌ エラー&lt;/td&gt;
+          &lt;td&gt;✅ 正常&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;実装コスト&lt;/td&gt;
+          &lt;td&gt;低（設定1行変更）&lt;/td&gt;
+          &lt;td&gt;中（スクリプト1つ追加実行）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;保守性&lt;/td&gt;
+          &lt;td&gt;悪い（Codex のアップデートで壊れる可能性）&lt;/td&gt;
+          &lt;td&gt;良い（疎結合、Codex 内部実装に非依存）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;拡張性&lt;/td&gt;
+          &lt;td&gt;なし&lt;/td&gt;
+          &lt;td&gt;高い（スクリプトを少し修正するだけでより多くのモデルに対応可能）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;このソリューションの考え方は非常に汎用的です——&lt;strong&gt;Codex で DeepSeek を使用する場合だけでなく、同様の形式不一致問題があるあらゆるシナリオで、ローカル中継層によって解決できます&lt;/strong&gt;。CC Switch が設定注入を担当し、中継スクリプトがプロトコル変換を担当します。この2つの組み合わせで、さまざまなサードパーティモデルを Codex に接続できます。&lt;/p&gt;
+&lt;p&gt;中継スクリプトは &lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt; でオープンソース化されています。Star や PR を歓迎します。より多くのモデルの適応を一緒に充実させましょう。&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;参考ソース&lt;/strong&gt;：Bilibili 動画 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1euRbB3E33/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;codex接入国产大模型教程&lt;/a&gt; by 王了小王（2026-05-06）&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法</title>
+        <link>https://Siborne.top/ja/p/opencode-complete-guide/</link>
+        <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/opencode-complete-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/opencode-complete-guide/bannerImage.png" alt="Featured image of post OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法" /&gt;&lt;h2 id=&#34;核心ポイント概要&#34;&gt;核心ポイント概要
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenCode の位置付け&lt;/strong&gt;：オープンソース版 Claude Code。Claude Code のほぼ全機能を備え、中国ユーザーに優しく、レート制限やアカウント停止なし。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;無料モデル&lt;/strong&gt;：GLM-4.7、MiniMax-2.1 などの無料モデルをすぐに使用可能。ゼロ設定で AI プログラミングを開始。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;トップモデルへの接続&lt;/strong&gt;：Antigravity プラグインで Gemini 3 Pro、Claude 4.5 Opus に無料接続。&lt;code&gt;/connect&lt;/code&gt; で GPT Codex に接続。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;キラー機能&lt;/strong&gt;：Session 並行、Timeline ロールバック、Share 共有、Ultra Work マルチエージェント協調。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;プラグインエコシステム&lt;/strong&gt;：Oh My Open Code（OMO）が7大プログラミングエージェント + 3大 MCP Server + 多様なツールを統合し、AI プログラミングチームの協調を実現。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;一opencode-とは&#34;&gt;一、OpenCode とは？
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;OpenCode&lt;/strong&gt; は最近最も注目されている AI プログラミングツールで、本質的には&lt;strong&gt;オープンソース版 Claude Code&lt;/strong&gt;です。Claude Code のほぼすべてのコア機能を再現しながら、中国ユーザーが直面しがちなレート制限やアカウント停止などの問題を解決しています。&lt;/p&gt;
+&lt;h3 id=&#34;なぜ-opencode-を選ぶのか&#34;&gt;なぜ OpenCode を選ぶのか？
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;比較項目&lt;/th&gt;
+          &lt;th&gt;Claude Code&lt;/th&gt;
+          &lt;th&gt;OpenCode&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;オープンソース&lt;/td&gt;
+          &lt;td&gt;❌ クローズド&lt;/td&gt;
+          &lt;td&gt;✅ オープンソース&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;無料モデル&lt;/td&gt;
+          &lt;td&gt;❌ API 支払い必要&lt;/td&gt;
+          &lt;td&gt;✅ 無料モデル内蔵&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中国ユーザー対応&lt;/td&gt;
+          &lt;td&gt;⚠️ 制限・停止リスク&lt;/td&gt;
+          &lt;td&gt;✅ 制限なし&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Skills/MCP&lt;/td&gt;
+          &lt;td&gt;✅ 対応&lt;/td&gt;
+          &lt;td&gt;✅ 完全互換&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Session 並行&lt;/td&gt;
+          &lt;td&gt;❌&lt;/td&gt;
+          &lt;td&gt;✅ 核心的利点&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;二4つのインストール形態&#34;&gt;二、4つのインストール形態
+&lt;/h2&gt;&lt;p&gt;OpenCode は異なるシナリオのニーズに応える4つの実行方法を提供します：&lt;/p&gt;
+&lt;h3 id=&#34;1-コマンドライン版メイン推奨&#34;&gt;1. コマンドライン版（メイン推奨）
+&lt;/h3&gt;&lt;p&gt;最も安定して機能が充実した使用方法。npm でインストール：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm i -g opencode-ai
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;opencode
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;：Node.js のインストールが必要（&lt;a class=&#34;link&#34; href=&#34;https://nodejs.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;nodejs.org&lt;/a&gt; から対応OS版をダウンロード）。&lt;/p&gt;
+&lt;p&gt;インストール完了後、ターミナルで &lt;code&gt;opencode&lt;/code&gt; と入力すれば起動します。&lt;/p&gt;
+&lt;h3 id=&#34;2-デスクトップクライアントbeta&#34;&gt;2. デスクトップクライアント（Beta）
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;公式サイトからクライアントをダウンロードし、指示に従ってインストール&lt;/li&gt;
+&lt;li&gt;プロジェクトフォルダを選択すれば使用可能&lt;/li&gt;
+&lt;li&gt;⚠️ &lt;strong&gt;注意&lt;/strong&gt;：現在 Beta テスト段階で、バグが多め。メインツールとしてはまだ推奨しません。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-vs-code-プラグイン版&#34;&gt;3. VS Code プラグイン版
+&lt;/h3&gt;&lt;p&gt;前提：コマンドライン版 OpenCode がインストール済みであること。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;VS Code 拡張機能ストアで &lt;strong&gt;OpenCode&lt;/strong&gt; を検索してインストール&lt;/li&gt;
+&lt;li&gt;ショートカット &lt;code&gt;Ctrl + Shift + P&lt;/code&gt; → &lt;code&gt;open opencode&lt;/code&gt; と入力して Enter&lt;/li&gt;
+&lt;li&gt;プラグインが自動的に左側ウィンドウで開いているコードファイルと連携&lt;/li&gt;
+&lt;li&gt;コード選択後に &lt;code&gt;Ctrl + Alt + K&lt;/code&gt; で素早く OpenCode チャットウィンドウに貼り付け&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;プラグイン版の核心的価値は &lt;strong&gt;IDE とのシームレスな統合&lt;/strong&gt;にあり、AI がコードのコンテキストを直接認識できることです。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;4-クラウド実行環境github-actions&#34;&gt;4. クラウド実行環境（GitHub Actions）
+&lt;/h3&gt;&lt;p&gt;GitHub リポジトリの Issue で &lt;code&gt;/opencode&lt;/code&gt; と入力すると、クラウド AI ワークフローがトリガーされます：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;プロジェクトを GitHub 公開リポジトリにアップロード&lt;/li&gt;
+&lt;li&gt;リポジトリで API Key を設定（Settings → Secrets and Variables → Actions）&lt;/li&gt;
+&lt;li&gt;Issue コメントに &lt;code&gt;/opencode&lt;/code&gt; + 要件説明を入力&lt;/li&gt;
+&lt;li&gt;GitHub Actions が自動的に OpenCode ワークフローを実行&lt;/li&gt;
+&lt;li&gt;完了後、自動的に Pull Request を作成&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;オープンソースプロジェクトの自動化 Issue 修正に非常に適しています。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;三無料モデル設定&#34;&gt;三、無料モデル設定
+&lt;/h2&gt;&lt;p&gt;OpenCode 最大の利点は&lt;strong&gt;すぐに使える無料モデル&lt;/strong&gt;です：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 利用可能な全モデルを表示（free マーク付きは無料で使用可能）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/models
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;推奨無料モデル：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;モデル&lt;/th&gt;
+          &lt;th&gt;特徴&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;GLM-4.7&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;プログラミング能力高、ゼロ設定&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;MiniMax-2.1&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;優れたプログラミング能力、高速応答&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;初心者はこの2つの無料モデルで AI プログラミングの練習に十分です。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;トップモデルへの接続&#34;&gt;トップモデルへの接続
+&lt;/h3&gt;&lt;h4 id=&#34;方法1antigravity-プラグインgemini--claude-に無料接続&#34;&gt;方法1：Antigravity プラグイン（Gemini + Claude に無料接続）
+&lt;/h4&gt;&lt;p&gt;Antigravity は Google が提供する AI プログラミング IDE で、太っ腹にも &lt;strong&gt;Gemini 3 Pro&lt;/strong&gt; と &lt;strong&gt;Claude 4.5 Opus&lt;/strong&gt; を無料提供しています。&lt;/p&gt;
+&lt;p&gt;インストール手順：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;OpenCode にインストールプロンプトを貼り付け（Antigravity GitHub トップページからコピー）&lt;/li&gt;
+&lt;li&gt;AI が自動的にインストールを完了するのを待つ&lt;/li&gt;
+&lt;li&gt;新しいターミナルを開いてログインコマンドを実行、Google → Antigravity ログインを選択&lt;/li&gt;
+&lt;li&gt;Google アカウントでログインし、生成された URL を貼り付け&lt;/li&gt;
+&lt;li&gt;OpenCode を再起動、&lt;code&gt;/models&lt;/code&gt; で Gemini 3 Pro と Claude 4.5 Opus が表示されます&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;方法2gpt-codexopenai-公式提携&#34;&gt;方法2：GPT Codex（OpenAI 公式提携）
+&lt;/h4&gt;&lt;p&gt;OpenAI と OpenCode が公式提携を発表し、ChatGPT Codex に直接接続可能：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/connect
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# OpenAI → GPT Pro → ブラウザログイン を選択&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;前提：&lt;strong&gt;ChatGPT Plus&lt;/strong&gt; 以上のサブスクリプションが必要です。&lt;/p&gt;
+&lt;h4 id=&#34;方法3openrouter万能接続&#34;&gt;方法3：OpenRouter（万能接続）
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/connect
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# OpenRouter → API Key を入力 を選択&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;OpenRouter を通じて、市場に出回るほぼ&lt;strong&gt;すべての大規模モデル&lt;/strong&gt;に接続可能です。OpenCode は &lt;strong&gt;75種類の AI 接続方法&lt;/strong&gt;をサポートしており、ほぼすべてのモデルプロバイダーを網羅しています。&lt;/p&gt;
+&lt;h2 id=&#34;四コア機能のハイライト&#34;&gt;四、コア機能のハイライト
+&lt;/h2&gt;&lt;h3 id=&#34;1-逆質問による要件明確化&#34;&gt;1. 逆質問による要件明確化
+&lt;/h3&gt;&lt;p&gt;コーディングを始める前に、OpenCode は&lt;strong&gt;逆質問&lt;/strong&gt;で一連の質問を投げかけます：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;コードサンプルだけでよいか、完全に実行可能なプログラムが必要か？&lt;/li&gt;
+&lt;li&gt;どの機能が必須か？&lt;/li&gt;
+&lt;li&gt;どのモデルを呼び出すか？&lt;/li&gt;
+&lt;li&gt;環境変数はどのように保存するか？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;この「先に確認してから着手する」仕組みにより、手戻りが大幅に削減されます。&lt;/p&gt;
+&lt;h3 id=&#34;2-コマンドラインコード比較インターフェース&#34;&gt;2. コマンドラインコード比較インターフェース
+&lt;/h3&gt;&lt;p&gt;OpenCode のコマンドライン diff 表示は&lt;strong&gt;すべてのコマンドラインプログラミングツールの中で最も優れている&lt;/strong&gt;と評されており、コードの変更が一目瞭然です。&lt;/p&gt;
+&lt;h3 id=&#34;3-session-並行処理-&#34;&gt;3. Session 並行処理 ⭐
+&lt;/h3&gt;&lt;p&gt;これは OpenCode の最も特徴的な機能——&lt;strong&gt;マルチ Session 並行実行&lt;/strong&gt;です：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 1つ目のタスクを開始（例：タイマーの追加）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# タスク実行中に、新しい Session を作成&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/new
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 2つ目のタスクを開始（例：ブラシの色調整）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# すべての Session 状態を確認&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/sessions
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Session 間の切り替え&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/session &amp;lt;id&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;回転記号は Session が&lt;strong&gt;バックグラウンドで実行中&lt;/strong&gt;であることを示します。2つの要件を完全に並行開発でき、互いに干渉しません。&lt;/p&gt;
+&lt;h3 id=&#34;4-timeline-チェックポイントロールバック&#34;&gt;4. Timeline チェックポイントロールバック
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/timeline
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;現在の Session の完全な会話記録を表示します。任意の履歴ノードを選択し、&lt;strong&gt;Revert&lt;/strong&gt; 機能を使用してコードとチャット内容をその時点まで同時にロールバックし、修正し直せます。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;プログラミングプロセスにおける「タイムマシン」です。異なるアプローチを大胆に試せます。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;5-share-共有&#34;&gt;5. Share 共有
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/share      &lt;span class=&#34;c1&#34;&gt;# 会話記録をウェブページとして共有&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/unshare    &lt;span class=&#34;c1&#34;&gt;# 共有を解除&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/export     &lt;span class=&#34;c1&#34;&gt;# 会話記録をファイルにエクスポート&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;共有すると、完全な会話記録とコード修正プロセスを表示するウェブリンクが生成され、他者との協力やデモに便利です。&lt;/p&gt;
+&lt;h2 id=&#34;五skills-スキル移行&#34;&gt;五、Skills スキル移行
+&lt;/h2&gt;&lt;p&gt;OpenCode は Claude Code の Skills ディレクトリ構造に&lt;strong&gt;完全互換&lt;/strong&gt;で、移行コストは極めて低いです：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Claude Code の Skills ディレクトリ構造&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.claude/skills/&amp;lt;skill-name&amp;gt;/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# OpenCode に移行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.opencode/skills/&amp;lt;skill-name&amp;gt;/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;操作手順&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;プロジェクトのルートディレクトリに &lt;code&gt;.opencode&lt;/code&gt; フォルダを作成&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.opencode&lt;/code&gt; の下に &lt;code&gt;skills&lt;/code&gt; フォルダを作成&lt;/li&gt;
+&lt;li&gt;元の &lt;code&gt;.claude/skills/&lt;/code&gt; 以下のスキルフォルダをそのままコピー&lt;/li&gt;
+&lt;li&gt;OpenCode を再起動すれば、AI がこれらの Skills を認識して呼び出せるようになります&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;各 Skill は&lt;strong&gt;ディレクトリ付きの説明書&lt;/strong&gt;であり、特定分野のタスクを完了する方法を AI に伝えます。&lt;/p&gt;
+&lt;h2 id=&#34;六mcp-設定&#34;&gt;六、MCP 設定
+&lt;/h2&gt;&lt;p&gt;OpenCode は2種類の MCP（Model Context Protocol）モードをサポートしています：&lt;/p&gt;
+&lt;h3 id=&#34;ローカル-mcplocal&#34;&gt;ローカル MCP（Local）
+&lt;/h3&gt;&lt;p&gt;ローカルコマンドで実行。Shed-CN の例：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;~/.config/opencode/opencode.json&lt;/code&gt; に設定：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;mcpServers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;shed-cn&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;local&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;npx&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;args&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;shed-cn&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;enabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;リモート-mcpremote&#34;&gt;リモート MCP（Remote）
+&lt;/h3&gt;&lt;p&gt;URL 経由でリモート呼び出し。Context7 の例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;mcpServers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;context7&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;remote&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://context7-mcp-server-url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;headers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;#34;Authorization&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Bearer &amp;lt;your-api-key&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;enabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;設定完了後、OpenCode を再起動し、&lt;code&gt;/mcp&lt;/code&gt; と入力すれば設定済みの MCP Server を確認できます。&lt;/p&gt;
+&lt;h2 id=&#34;七oh-my-open-codeomo超強力プラグイン-&#34;&gt;七、Oh My Open Code（OMO）超強力プラグイン ⭐
+&lt;/h2&gt;&lt;p&gt;OMO は OpenCode で最も人気のあるプログラミングプラグインで、本質的には&lt;strong&gt;ツール + MCP + プログラミング Agent の組み合わせバンドル&lt;/strong&gt;です。&lt;/p&gt;
+&lt;h3 id=&#34;7大プログラミングエージェント&#34;&gt;7大プログラミングエージェント
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;エージェント&lt;/th&gt;
+          &lt;th&gt;役割&lt;/th&gt;
+          &lt;th&gt;推奨モデル&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;シーシュポス（Sisyphus）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;メインエージェント、計画と管理&lt;/td&gt;
+          &lt;td&gt;Claude 4.5 Opus / GPT 5.2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;預言者（Prophet）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;アーキテクチャ設計、コードレビュー&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;司書（Librarian）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;文献調査、ドキュメント検索&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;探索者（Explorer）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Web 検索&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;フロントエンドエンジニア&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;フロントエンド開発&lt;/td&gt;
+          &lt;td&gt;Gemini 3 Pro&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ドキュメント作成者&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ドキュメント生成&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;マルチモーダル&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;画像/PDF 理解&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;各エージェントにはその作業に最適な大規模モデルが割り当てられており、作者によると&lt;strong&gt;24,000ドルの Token&lt;/strong&gt; を費やして最適な組み合わせを見つけたとのことです。&lt;/p&gt;
+&lt;h3 id=&#34;3大-mcp-server&#34;&gt;3大 MCP Server
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Web Search&lt;/strong&gt;：Web 検索&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context7&lt;/strong&gt;：最新の技術ドキュメントを取得&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grep App&lt;/strong&gt;：GitHub リポジトリの高速コード検索&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;統合ツール&#34;&gt;統合ツール
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LSP 上級版&lt;/strong&gt;：プログラミング言語の構文と意味論を通じて AI がコードを素早く特定&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AST ツール&lt;/strong&gt;：コード構文木を通じた関連検索&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LOC ツール&lt;/strong&gt;：マルチモーダル視覚能力で画像・PDF を理解&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delegate Task / Background Task&lt;/strong&gt;：Agent タスク割り当てとバックグラウンド管理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;インストールと使用&#34;&gt;インストールと使用
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/code-yeongyu/oh-my-openagent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OMO GitHub&lt;/a&gt; トップページから &lt;code&gt;install&lt;/code&gt; で始まるプロンプトをコピー&lt;/li&gt;
+&lt;li&gt;OpenCode に貼り付け、設定質問（サブスクリプション状況など）に回答&lt;/li&gt;
+&lt;li&gt;自動的にインストール完了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;設定ファイルの場所：&lt;code&gt;C:\Users\&amp;lt;ユーザー名&amp;gt;\.config\opencode\oh-my-opencode.json&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2つの核心的使い方&#34;&gt;2つの核心的使い方
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;① @ でエージェント指定&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@フロントエンドエンジニア このページのレスポンシブレイアウトを最適化して
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;② Ultra Work モード&lt;/strong&gt;（魔法の言葉 &lt;code&gt;ULW&lt;/code&gt;）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ULW ペットショップアプリを作って
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Ultra Work モードでは、シーシュポスがメインエージェントとして：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;タスクを Todo List に分解&lt;/li&gt;
+&lt;li&gt;複数のバックグラウンドタスクを同時に並行実行&lt;/li&gt;
+&lt;li&gt;各エージェントを中央管理し協調作業&lt;/li&gt;
+&lt;li&gt;最終的に完全なプロジェクトを納品&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ralph-loop-ループモード&#34;&gt;Ralph Loop ループモード
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/ralph-loop
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;AI を長時間ループ作業させ、超難関タスクに適しています。例：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Spring Boot 4 の最新標準でプロジェクト全体をリファクタリングし、すべてのテストケースがパスするまで&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;タスクが完了するまで数時間連続実行できます。&lt;/p&gt;
+&lt;h2 id=&#34;八その他の便利機能&#34;&gt;八、その他の便利機能
+&lt;/h2&gt;&lt;h3 id=&#34;init--プロジェクト知識の初期化&#34;&gt;/init — プロジェクト知識の初期化
+&lt;/h3&gt;&lt;p&gt;AI にプロジェクトフォルダ全体を読み込ませ、&lt;code&gt;agents.md&lt;/code&gt; ファイルをシステムプロンプトとして生成し、AI がプロジェクトを素早く理解できるようにします。&lt;/p&gt;
+&lt;h3 id=&#34;compact--コンテキスト圧縮&#34;&gt;/compact — コンテキスト圧縮
+&lt;/h3&gt;&lt;p&gt;過去の会話を簡潔な要約に凝縮し、モデルのコンテキストウィンドウを解放し、Token 超過を防止します。&lt;/p&gt;
+&lt;h3 id=&#34;カスタムコマンド&#34;&gt;カスタムコマンド
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;~/.config/opencode/commands/&lt;/code&gt; の下に &lt;code&gt;.md&lt;/code&gt; ファイルを作成してカスタムコマンドを定義：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# テスト実行
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;モード：build
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;コマンド：npm test
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;説明：プロジェクトの全テストケースを実行
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用方法：&lt;code&gt;/テスト実行&lt;/code&gt; でトリガー。&lt;/p&gt;
+&lt;h3 id=&#34;カスタムエージェント&#34;&gt;カスタムエージェント
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;~/.config/opencode/agents/&lt;/code&gt; の下に &lt;code&gt;.md&lt;/code&gt; ファイルを作成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# Code Review Agent
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;タイプ：subagent
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;モデル：claude-4.5-opus
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;説明：コードレビューを専門とし、コード品質、セキュリティ脆弱性、ベストプラクティスをチェック。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Primary Agent&lt;/strong&gt;：Tab キーで切り替え、会話内で直接使用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sub Agent&lt;/strong&gt;：メインエージェントがバックグラウンドで自動的に管理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;九まとめと推奨&#34;&gt;九、まとめと推奨
+&lt;/h2&gt;&lt;h3 id=&#34;適用シナリオ&#34;&gt;適用シナリオ
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;シナリオ&lt;/th&gt;
+          &lt;th&gt;推奨度&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AI プログラミング初心者&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;無料モデルでゼロコストスタート&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;日常開発サポート&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;Session 並行 + Timeline ロールバック&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;複雑なプロジェクト開発&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;OMO プラグインマルチエージェント協調&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;オープンソースプロジェクト管理&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;GitHub Actions クラウド自動化&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Skills/MCP の練習&lt;/td&gt;
+          &lt;td&gt;⭐⭐⭐⭐⭐&lt;/td&gt;
+          &lt;td&gt;Claude Code エコシステムと完全互換&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;十実践記録oh-my-openagent旧-omoのインストール&#34;&gt;十、実践記録：Oh My OpenAgent（旧 OMO）のインストール
+&lt;/h2&gt;&lt;p&gt;以下は筆者が実際に &lt;strong&gt;Oh My OpenAgent&lt;/strong&gt;（旧 Oh My Open Code）をインストールした完全な会話記録です。環境は Windows + PowerShell。&lt;/p&gt;
+&lt;h3 id=&#34;環境チェック&#34;&gt;環境チェック
+&lt;/h3&gt;&lt;p&gt;まず OpenCode がインストールされていることを確認：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;opencode&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 出力: 1.14.39&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;詳細な設定手順とトラブルシューティングはソースコード内の設定ファイルを参照してください。&lt;/p&gt;
+&lt;h2 id=&#34;参考ソース&#34;&gt;参考ソース
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;動画チュートリアル：&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1BVrXBUEbR/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OpenCode 詳細攻略 - 技術爬爬蝦&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Oh My OpenAgent インストールガイド：&lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド</title>
+        <link>https://Siborne.top/ja/p/opencode-parallel-workflow-tips/</link>
+        <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/opencode-parallel-workflow-tips/</guid>
+        <description>&lt;img src="https://Siborne.top/p/opencode-parallel-workflow-tips/bannerImage.png" alt="Featured image of post OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド" /&gt;&lt;h2 id=&#34;核心ポイント概要&#34;&gt;核心ポイント概要
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Session 並行&lt;/strong&gt;：OpenCode のキラー機能。複数タスクを同時実行し、互いに干渉せず、効率倍増。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ultra Work モード&lt;/strong&gt;：&lt;code&gt;ULW&lt;/code&gt; と入力するだけで、メインエージェントが自動でタスクを分解し、複数のサブエージェントを並行稼働。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;@ でエージェント指定&lt;/strong&gt;：フロントエンドが得意なエージェントにフロントエンドを、アーキテクチャが得意なエージェントにレビューを任せ、適材適所。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Timeline タイムマシン&lt;/strong&gt;：任意の履歴ポイントにいつでもロールバック可能。大胆に試行錯誤してゼロコスト。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ralph Loop&lt;/strong&gt;：AI に数時間ループ作業させ、超難関タスクに挑む。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;一session-並行ai-に同時に複数の作業をさせる&#34;&gt;一、Session 並行：AI に同時に複数の作業をさせる
+&lt;/h2&gt;&lt;p&gt;これは OpenCode が他の AI プログラミングツールと比較して&lt;strong&gt;最大の差別化優位性&lt;/strong&gt;です。従来のツールは逐次処理のみ——1つのタスクが完了しないと次に進めません。OpenCode は複数の Session を同時に開き、互いに干渉しません。&lt;/p&gt;
+&lt;h3 id=&#34;基本操作&#34;&gt;基本操作
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 現在タスク A を実行中に、同時にタスク B を起動したい&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/new                          &lt;span class=&#34;c1&#34;&gt;# 新規 Session を作成&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 新しい Session でタスク B の要件を入力&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 2つの Session が同時にバックグラウンドで実行される&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# すべての Session の状態を確認&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/sessions                     &lt;span class=&#34;c1&#34;&gt;# 回転記号 = 実行中&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 指定した Session に切り替え&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/session &amp;lt;id&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 前の Session に戻る&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/session prev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;実践シナリオ&#34;&gt;実践シナリオ
+&lt;/h3&gt;&lt;p&gt;「お絵かき当て」ミニゲームを開発していると仮定し、2つの独立した要件があります：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;要件 A&lt;/strong&gt;：タイマーを追加。最初の描画でタイマー開始、20秒超過でゲーム失敗
+&lt;strong&gt;要件 B&lt;/strong&gt;：描画色を調整可能にする&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;従来の方法&lt;/strong&gt;：A を先に完了させ、その後 B → 要件 B は 5〜10 分無駄に待機。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OpenCode の方法&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1. 要件 A を入力、AI が作業開始
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2. /new と入力し、新規 Session を作成
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3. 要件 B を入力、AI が作業開始
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4. /sessions で進捗確認、両方とも実行中 ↓
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Session 1  ◐  タイマーロジックを追加中...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Session 2  ◐  カラーピッカーを追加中...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;2つの要件を完全に並行開発、合計所要時間を15分から8分に短縮。&lt;/p&gt;
+&lt;h3 id=&#34;注意事項&#34;&gt;注意事項
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Session 間は&lt;strong&gt;完全に隔離&lt;/strong&gt;されており、同一ファイルの変更は競合の可能性あり。異なるモジュールへの割り当てを推奨。&lt;/li&gt;
+&lt;li&gt;バックグラウンド Session は完了を自動通知しないため、手動で &lt;code&gt;/sessions&lt;/code&gt; 確認が必要。&lt;/li&gt;
+&lt;li&gt;いつでも &lt;code&gt;/new&lt;/code&gt; で3つ目、4つ目……を起動可能。数に制限なし。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;二ultra-workワンクリックで-ai-プログラミングチームを召喚&#34;&gt;二、Ultra Work：ワンクリックで AI プログラミングチームを召喚
+&lt;/h2&gt;&lt;p&gt;Session 並行が「マニュアル車」なら、Ultra Work は「完全自動運転」です。魔法の言葉を入力するだけで、AI が自動でタスクを分解し、最適なエージェントに割り当て、並行実行します。&lt;/p&gt;
+&lt;h3 id=&#34;トリガー方法&#34;&gt;トリガー方法
+&lt;/h3&gt;&lt;p&gt;プロンプトに以下のいずれかのキーワードを含めます：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ULW
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ultrawork
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ultra Work
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;動作原理&#34;&gt;動作原理
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;あなたの要件：ペットショップのウェブサイトを作って
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ┌─────────────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  │  シーシュポス（メインエージェント）  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  │  1. タスク分解 → Todo List     │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  │  2. サブタスクを割り当て        │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  └──────┬──────────┬───────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         │          │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ┌────▼───┐ ┌───▼────┐ ┌────────▼────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │ 預言者  │ │ フロント │ │ ドキュメント │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │ アーキ設計 │ │ UI 開発 │ │ README 作成  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └────────┘ └────────┘ └─────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         │          │            │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         └──────────┴────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              完全なプロジェクト納品
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;いつ使うべき&#34;&gt;いつ使うべき？
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;シナリオ&lt;/th&gt;
+          &lt;th&gt;適性&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ゼロからプロジェクト作成&lt;/td&gt;
+          &lt;td&gt;✅ 最適&lt;/td&gt;
+          &lt;td&gt;フロント・バック・ドキュメントを自動分割&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;マルチモジュール並行開発&lt;/td&gt;
+          &lt;td&gt;✅ 最適&lt;/td&gt;
+          &lt;td&gt;各エージェントの役割が明確&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;単一ファイルの小修正&lt;/td&gt;
+          &lt;td&gt;❌ 非推奨&lt;/td&gt;
+          &lt;td&gt;鶏を割くに牛刀を用いる、むしろ遅くなる&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;簡単なバグ修正&lt;/td&gt;
+          &lt;td&gt;❌ 非推奨&lt;/td&gt;
+          &lt;td&gt;通常の会話の方が速い&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;経験則&lt;/strong&gt;：複雑さが高いほど Ultra Work の価値は大きい。簡単なタスクはスケジューリングのオーバーヘッドでむしろ遅くなる。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;実際の効果&#34;&gt;実際の効果
+&lt;/h3&gt;&lt;p&gt;Ultra Work モードでペットショップサイトを作成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自動で Todo List を分解&lt;/li&gt;
+&lt;li&gt;3つのバックグラウンドタスクを同時に並行実行&lt;/li&gt;
+&lt;li&gt;画像素材が一切ない状態で、emoji を装飾として使用&lt;/li&gt;
+&lt;li&gt;インターフェースは爽やか、インタラクションはスムーズ、アニメーションは完全&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;三-でエージェント指定プロにプロの仕事を&#34;&gt;三、@ でエージェント指定：プロにプロの仕事を
+&lt;/h2&gt;&lt;p&gt;Oh My OpenAgent（OMO）をインストールすると、AI プログラミングチームが手に入ります。&lt;code&gt;@&lt;/code&gt; で特定のエージェントを指名して作業させることができます。&lt;/p&gt;
+&lt;h3 id=&#34;エージェント能力表&#34;&gt;エージェント能力表
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;エージェント&lt;/th&gt;
+          &lt;th&gt;得意分野&lt;/th&gt;
+          &lt;th&gt;最適モデル&lt;/th&gt;
+          &lt;th&gt;使用例&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;シーシュポス&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;統括計画、タスク管理&lt;/td&gt;
+          &lt;td&gt;Claude Opus&lt;/td&gt;
+          &lt;td&gt;複雑な多段階タスク&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;預言者&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;アーキテクチャ設計、コードレビュー&lt;/td&gt;
+          &lt;td&gt;GPT 5.5&lt;/td&gt;
+          &lt;td&gt;プロジェクト構造設計&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;フロントエンドエンジニア&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;UI 開発、ページレイアウト&lt;/td&gt;
+          &lt;td&gt;Gemini 3 Pro&lt;/td&gt;
+          &lt;td&gt;レスポンシブレイアウト最適化&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;探索者&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Web 検索、資料調査&lt;/td&gt;
+          &lt;td&gt;MiniMax&lt;/td&gt;
+          &lt;td&gt;最新 API ドキュメント検索&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;司書&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;文献調査、ドキュメント検索&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;オープンソースプロジェクトのソース解析&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ドキュメント作成者&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;README、コメント生成&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;プロジェクトドキュメント生成&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;マルチモーダル&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;画像/PDF 理解&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;デザイン稿からのコーディング&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;使用例&#34;&gt;使用例
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@フロントエンドエンジニア このログインページをレスポンシブレイアウトに変更して、モバイルでも見やすく
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@預言者 src/service/ ディレクトリのコードをレビューして、潜在的なパフォーマンス問題を見つけて
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@探索者 React 19 の Server Components の最新の使い方を調べて
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@ドキュメント作成者 プロジェクト全体の API ドキュメントを生成して
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;メインエージェントの切り替え&#34;&gt;メインエージェントの切り替え
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Tab&lt;/strong&gt; キーを押すと現在の会話のメインエージェントを切り替えられます。特定の役割を長時間使用する場合に便利です。&lt;/p&gt;
+&lt;h2 id=&#34;四timeline-タイムマシン自由に試行錯誤いつでもロールバック&#34;&gt;四、Timeline タイムマシン：自由に試行錯誤、いつでもロールバック
+&lt;/h2&gt;&lt;p&gt;プログラミングで一番怖いのは？大量のコードを変更した後、方向性が間違いだったと気づき、元に戻せないこと。Timeline はあなたの後悔を帳消しにする薬です。&lt;/p&gt;
+&lt;h3 id=&#34;基本的な使い方&#34;&gt;基本的な使い方
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/timeline
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;現在の Session の&lt;strong&gt;各ステップの会話記録&lt;/strong&gt;を表示し、任意のノードを選択：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Revert&lt;/strong&gt;：コードとチャット内容をそのノードまで同時にロールバック。何もなかったかのように。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;View&lt;/strong&gt;：その時 AI がどのような変更を行ったかを確認。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;実践シナリオ-1&#34;&gt;実践シナリオ
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1. AI にあるモジュールのリファクタリングを依頼 → 結果が理想的でない
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2. /timeline → リファクタリング前のノードを選択 → Revert
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3. コードがリファクタリング前に戻り、別のアプローチで再挑戦
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;コツ&#34;&gt;コツ
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;段階的なタスクが完了したら、そのノード（何回目の会話か）を心に留めておく&lt;/li&gt;
+&lt;li&gt;大胆にラジカルな案を試す——どうせワンクリックで戻せる&lt;/li&gt;
+&lt;li&gt;2つの案を比較：案 A に Revert → 効果を確認 → 案 B に Revert → 比較&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;🕐 これはプログラミング版の「セーブ/ロード」。あらゆる可能性を探求する勇気を与えてくれます。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;五ralph-loopai-に最後までやり抜かせる&#34;&gt;五、Ralph Loop：AI に最後までやり抜かせる
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/ralph-loop
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;このモードは AI を&lt;strong&gt;継続的にループ作業&lt;/strong&gt;させ、タスクが本当に完了するまで続けます。繰り返しのイテレーションが必要な難題に適しています。&lt;/p&gt;
+&lt;h3 id=&#34;適用シナリオ&#34;&gt;適用シナリオ
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;Spring Boot 4 の最新標準でプロジェクト全体をリファクタリングし、すべてのテストケースがパスするまで&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;src/ 以下のすべてのファイルのコード規約を1つずつチェックし、違反項目をすべて修正&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34;カバレッジが90%に達するまで、プロジェクトに完全なユニットテストを追加&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;ultra-work-との違い&#34;&gt;Ultra Work との違い
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;Ultra Work&lt;/th&gt;
+          &lt;th&gt;Ralph Loop&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;動作メカニズム&lt;/td&gt;
+          &lt;td&gt;並行分割、マルチエージェント連携&lt;/td&gt;
+          &lt;td&gt;逐次ループ、継続的イテレーション&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;適性&lt;/td&gt;
+          &lt;td&gt;ゼロからの構築、マルチモジュール&lt;/td&gt;
+          &lt;td&gt;リファクタリング、修正、目標達成型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;所要時間&lt;/td&gt;
+          &lt;td&gt;数分〜十数分&lt;/td&gt;
+          &lt;td&gt;数時間の可能性&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;終了点&lt;/td&gt;
+          &lt;td&gt;タスク分割の完了&lt;/td&gt;
+          &lt;td&gt;終了条件の満足&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Ralph Loop は長時間実行される可能性があるため、API 利用枠の消費に注意。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;六日常の効率化テクニック&#34;&gt;六、日常の効率化テクニック
+&lt;/h2&gt;&lt;h3 id=&#34;1-compact-を活用してコンテキストを節約&#34;&gt;1. &lt;code&gt;/compact&lt;/code&gt; を活用してコンテキストを節約
+&lt;/h3&gt;&lt;p&gt;AI と何度も会話してコンテキストウィンドウがほぼ満杯になったとき：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/compact
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;AI は過去の会話を要約に凝縮し、スペースを解放して作業を継続します。新しい会話を始めてコンテキストを失う必要はありません。&lt;/p&gt;
+&lt;h3 id=&#34;2-init-で-ai-を新規プロジェクトに素早く適応させる&#34;&gt;2. &lt;code&gt;/init&lt;/code&gt; で AI を新規プロジェクトに素早く適応させる
+&lt;/h3&gt;&lt;p&gt;新しいプロジェクトに入ったら、まず AI にコードを一通り読ませます：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/init
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;AI がプロジェクト全体をスキャンし、システムプロンプトとして &lt;code&gt;agents.md&lt;/code&gt; を生成します。以降のすべての会話はこの理解に基づき、効率が大幅に向上します。&lt;/p&gt;
+&lt;h3 id=&#34;3-share-でプログラミングの過程を共有&#34;&gt;3. Share でプログラミングの過程を共有
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/share      &lt;span class=&#34;c1&#34;&gt;# 共有リンクを生成。完全な会話とコード変更を表示&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/unshare    &lt;span class=&#34;c1&#34;&gt;# 共有を解除。リンクが無効に&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/export     &lt;span class=&#34;c1&#34;&gt;# 会話記録をファイルにエクスポート&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;適したシーン：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AI を使ってどのように問題を解決したかを同僚に見せる&lt;/li&gt;
+&lt;li&gt;トラブルシューティングの過程を記録し、チームの参考に&lt;/li&gt;
+&lt;li&gt;ブログ執筆の素材として&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-利用可能なモデルを確認&#34;&gt;4. 利用可能なモデルを確認
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/models
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;free&lt;/code&gt; マーク付きは無料モデル。GLM-4.7 と MiniMax-2.1 はプログラミング能力が高く、軽量タスクに適しています。&lt;/p&gt;
+&lt;h3 id=&#34;5-クイックコード貼り付けvs-code-プラグイン&#34;&gt;5. クイックコード貼り付け（VS Code プラグイン）
+&lt;/h3&gt;&lt;p&gt;VS Code でコードスニペットを選択 → &lt;code&gt;Ctrl + Alt + K&lt;/code&gt; → OpenCode のダイアログに直接貼り付け。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;コピー＆ペーストの切り替えコストを省き、フロー状態を維持。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;七初心者推奨ワークフロー&#34;&gt;七、初心者推奨ワークフロー
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;┌─────────────────────────────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│                 新しい要件を取得               │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└──────────────────┬──────────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          ┌────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          │ シンプル？       │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          └───┬────────┬───┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ はい    │ いいえ（複雑/マルチモジュール）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ▼         ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ┌─────────────┐  ┌─────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │ 通常の会話で  │  │ ULW を入力して    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │ 対応         │  │ Ultra Work 起動  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └─────────────┘  └────────┬────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                              │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   ┌──────────▼──────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   │ 複数の独立したサブタスク？ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                   └───┬──────────┬──────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                       │ はい      │ いいえ
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                       ▼           ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ┌─────────────┐ ┌──────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ /new で複数の  │ │ Ultra Work の  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ Session 並行   │ │ 自動完了を待つ  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              └──────┬──────┘ └──────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ┌─────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ /sessions    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ 全進捗を確認   │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              └──────┬──────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ┌─────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ 方向性が間違い？│
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              └───┬─────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              ┌─────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ /timeline →  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              │ Revert で戻す │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              └─────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;一言まとめ&#34;&gt;一言まとめ
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;小さな作業は直接会話、大きな作業は ULW、並行は Session、間違えたら Timeline でロールバック、粘り強くやるなら Ralph Loop。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;八実例&#34;&gt;八、実例
+&lt;/h2&gt;&lt;p&gt;Oh My OpenAgent のインストール完了後、Agent モデル設定を調整——GitHub Copilot をメインに、無料の OpenCode Zen をバックアップにしたい場合。&lt;/p&gt;
+&lt;p&gt;OpenCode の会話で直接こう言います：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;実はあなたの無料のOpenCode Zenもあるけど、もうGitHub Copilotにログインしてるから、修正してくれる？&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI は最初、OpenCode Zen をメインに設定しました——主従関係が明確でなかったためです。修正後：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;違う、GitHub Copilotをメインにして、OpenCode Zen付属の無料モデルをバックアップにして&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AI は即座に修正し、&lt;code&gt;oh-my-openagent.json&lt;/code&gt; を更新。すべての Agent が &lt;code&gt;github-copilot/*&lt;/code&gt; をメイン、&lt;code&gt;opencode/*&lt;/code&gt; をフォールバックとして設定されました。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;教訓&lt;/strong&gt;：AI に要件を伝えるときは、&lt;strong&gt;主従関係を必ず明確に&lt;/strong&gt;伝えること。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;参考ソース&#34;&gt;参考ソース
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;実践記録：&lt;a class=&#34;link&#34; href=&#34;../opencode-complete-guide/&#34; &gt;OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Oh My OpenAgent：&lt;a class=&#34;link&#34; href=&#34;https://github.com/code-yeongyu/oh-my-openagent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>5分で Claude Code をインストールして DeepSeek に接続する</title>
+        <link>https://Siborne.top/ja/p/claude-code-deepseek-setup/</link>
+        <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/claude-code-deepseek-setup/</guid>
+        <description>&lt;img src="https://Siborne.top/p/claude-code-deepseek-setup/bannerImage.png" alt="Featured image of post 5分で Claude Code をインストールして DeepSeek に接続する" /&gt;&lt;h2 id=&#34;概要&#34;&gt;概要
+&lt;/h2&gt;&lt;p&gt;Claude Code は Anthropic が提供する CLI AI プログラミングアシスタントで、複数の Skills プラグインを内蔵しており、さまざまな組み合わせによって AI 単体では実現できない多くのことを達成できます。国産大規模モデル DeepSeek V4 に接続することで、使用コストを大幅に削減できます。&lt;/p&gt;
+&lt;p&gt;主な用途：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;個人ナレッジベースの構築と学習ノートの自動整理&lt;/li&gt;
+&lt;li&gt;業界情報の定期収集とドキュメント化&lt;/li&gt;
+&lt;li&gt;各種 SNS プラットフォームへの自動投稿&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ステップ1実行環境のインストール&#34;&gt;ステップ1：実行環境のインストール
+&lt;/h2&gt;&lt;h3 id=&#34;11-nodejs-のインストール&#34;&gt;1.1 Node.js のインストール
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://nodejs.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Node.js 公式サイト&lt;/a&gt; から Windows インストーラ（.msi）をダウンロードし、ダブルクリックして「次へ」を進めます。&lt;/p&gt;
+&lt;p&gt;インストール確認：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;node -v
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm -v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;12-npm-の国内ミラー設定&#34;&gt;1.2 npm の国内ミラー設定
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm config &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; registry https://registry.npmmirror.com/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;13-git-のインストール&#34;&gt;1.3 Git のインストール
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://git-scm.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Git 公式サイト&lt;/a&gt; から対応バージョンのインストーラをダウンロードし、「次へ」を進めます。&lt;/p&gt;
+&lt;p&gt;インストール確認：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git -v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;14-cc-switch-のインストール&#34;&gt;1.4 CC-Switch のインストール
+&lt;/h3&gt;&lt;p&gt;CC-Switch はサードパーティモデルを Claude Code に接続するためのツールです。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/farion1231/cc-switch/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub Release ページ&lt;/a&gt;から対応バージョン（Windows MSI など）をダウンロードし、ダブルクリックしてインストールします。&lt;/p&gt;
+&lt;h2 id=&#34;ステップ2claude-code-のインストール&#34;&gt;ステップ2：Claude Code のインストール
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install -g @anthropic-ai/claude-code
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;確認：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;claude --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;ログインをスキップサードパーティ-api-を使用&#34;&gt;ログインをスキップ（サードパーティ API を使用）
+&lt;/h3&gt;&lt;p&gt;Claude Code を一度起動してから終了し、ユーザーディレクトリにある &lt;code&gt;.claude.json&lt;/code&gt; ファイルに以下の設定を追加します（&lt;strong&gt;前のフィールドの末尾に英語のカンマが必要です&lt;/strong&gt;）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;hasCompletedOnboarding&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;再度 &lt;code&gt;claude&lt;/code&gt; を実行して起動し、現在のフォルダを信頼することを選択します。&lt;/p&gt;
+&lt;h2 id=&#34;ステップ3deepseek-への接続&#34;&gt;ステップ3：DeepSeek への接続
+&lt;/h2&gt;&lt;h3 id=&#34;31-api-キーの取得&#34;&gt;3.1 API キーの取得
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://platform.deepseek.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DeepSeek 開放プラットフォーム&lt;/a&gt; を開き、登録・ログインします&lt;/li&gt;
+&lt;li&gt;アカウントに残高があることを確認します&lt;/li&gt;
+&lt;li&gt;右側の API Keys → API キーを作成 → コピーして保存（閉じると再表示できません）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;API キーは他人と共有しないでください。残高が消費されてしまいます。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;32-cc-switch-の設定&#34;&gt;3.2 CC-Switch の設定
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;CC-Switch を開き、右上の &lt;strong&gt;+&lt;/strong&gt; をクリックします&lt;/li&gt;
+&lt;li&gt;モデルプリセットで &lt;strong&gt;DeepSeek&lt;/strong&gt; を選択します&lt;/li&gt;
+&lt;li&gt;API キーを入力します&lt;/li&gt;
+&lt;li&gt;モデル名を &lt;code&gt;deepseek-v4-pro[1m]&lt;/code&gt; に統一します（コンテキスト 1M、Claude Code のデフォルトは 128K）&lt;/li&gt;
+&lt;li&gt;「追加」をクリックします&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;33-モデルの確認&#34;&gt;3.3 モデルの確認
+&lt;/h3&gt;&lt;p&gt;Claude Code のダイアログで：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/model
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;現在利用可能なモデルを確認できます。または「今どのモデルを使っていますか」と直接質問して接続成功を確認します。&lt;/p&gt;
+&lt;h2 id=&#34;ステップ4実践例&#34;&gt;ステップ4：実践例
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;デスクトップに新しいフォルダを作成します&lt;/li&gt;
+&lt;li&gt;アドレスバーに &lt;code&gt;CMD&lt;/code&gt; と入力して Enter を押します&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;claude&lt;/code&gt; を実行して起動し、現在のフォルダを信頼します&lt;/li&gt;
+&lt;li&gt;「HTML + JS + CSS で Todo アプリを作って」と要求を入力します&lt;/li&gt;
+&lt;li&gt;実行中にツール権限の確認が表示されたら Yes を選択します&lt;/li&gt;
+&lt;li&gt;完了したらページプレビューを開いてもらいます&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;関連コマンド早見表&#34;&gt;関連コマンド早見表
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;操作&lt;/th&gt;
+          &lt;th&gt;コマンド&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Node バージョン確認&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;node -v&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;npm バージョン確認&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;npm -v&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;npm 国内ミラー&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;npm config set registry https://registry.npmmirror.com/&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Git バージョン確認&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;git -v&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Claude Code のインストール&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;npm install -g @anthropic-ai/claude-code&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Claude Code バージョン確認&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;claude --version&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Claude Code の起動&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;claude&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;モデルの切り替え&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;/model&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        <item>
+        <title>技術トラブル記録：Git 大規模リポジトリのクローン時のネットワーク切断と SSH による解決策</title>
+        <link>https://Siborne.top/ja/p/git-ssh-large-repo/</link>
+        <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/git-ssh-large-repo/</guid>
+        <description>&lt;img src="https://Siborne.top/p/git-ssh-large-repo/bannerImage.png" alt="Featured image of post 技術トラブル記録：Git 大規模リポジトリのクローン時のネットワーク切断と SSH による解決策" /&gt;&lt;h2 id=&#34;1-問題の背景&#34;&gt;1. 問題の背景
+&lt;/h2&gt;&lt;p&gt;大規模オープンソースプロジェクト &lt;code&gt;taichi-project/anyagent&lt;/code&gt; のクローンを試みた際、ネットワーク層の切断によりクローンが頻繁に失敗するエラーが発生しました。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;初期のエラー兆候&lt;/strong&gt;：基本的な &lt;code&gt;git clone&lt;/code&gt; 実行時、データの取得中に突然中断：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;error: RPC failed; curl 92 HTTP/2 stream 7 was not closed cleanly: CANCEL (err 8)&lt;/code&gt;
+&lt;code&gt;fatal: early EOF&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;問題の本質&lt;/strong&gt;：これは典型的な Git の&lt;strong&gt;ネットワーク転送中断&lt;/strong&gt;現象です。対象リポジトリのサイズが大きい（または多くの履歴を含む）ため、現在のネットワークプロキシ環境（v2rayN）経由でプルする際に、HTTP/2 データストリームが予期せず強制的に切断されます。&lt;/p&gt;
+&lt;h2 id=&#34;2-試した解決策&#34;&gt;2. 試した解決策
+&lt;/h2&gt;&lt;h3 id=&#34;21-シャロークローン失敗&#34;&gt;2.1 シャロークローン（失敗）
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;git clone --depth 1 https://...&lt;/code&gt; を実行してダウンロードサイズの削減を試みました。&lt;/p&gt;
+&lt;p&gt;結果：オブジェクト数は確かに減少しましたが、それでも途中で切断され、エラーは次のように変化しました：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 0&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;分析&lt;/strong&gt;：これはファイルサイズだけの問題ではなく、基盤となる HTTPS 接続がデータ転送中にファイアウォールまたはプロキシソフトウェアの SSL メカニズムによって物理的に切断されていることを示しています。&lt;/p&gt;
+&lt;h3 id=&#34;22-ローカルプロキシ環境の設定一部有効&#34;&gt;2.2 ローカルプロキシ環境の設定（一部有効）
+&lt;/h3&gt;&lt;p&gt;ローカルの v2rayN プロキシ設定を確認したところ、混合ポートが &lt;code&gt;10808&lt;/code&gt; であることがわかりました。PowerShell で一時的な環境変数 &lt;code&gt;$env:HTTP_PROXY&lt;/code&gt; を注入するか、Tun モードを有効にしてグローバルトラフィックを引き継ぐことを検討しました。&lt;/p&gt;
+&lt;p&gt;この方法はネットワーク接続性の根本に触れていますが、HTTP プロキシは非常に大きなデータストリームの継続的な転送に直面すると依然として不安定であり、プロキシルールがシステムレベルのネットワーク設定と競合しやすくなります。&lt;/p&gt;
+&lt;h2 id=&#34;3-原理分析https-と-ssh-の違い&#34;&gt;3. 原理分析：HTTP(S) と SSH の違い
+&lt;/h2&gt;&lt;h3 id=&#34;httphttps-プロトコル&#34;&gt;HTTP/HTTPS プロトコル
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;動作メカニズム&lt;/strong&gt;：標準 Web ポート（80/443）に依存し、データ転送はローカルマシンのネットワークプロキシルール（PAC、システムプロキシ、またはコマンドライン環境変数）の制約を受けます。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;利点&lt;/strong&gt;：敷居が非常に低く、誰でも URL を取得すれば公開リポジトリを直接ダウンロードできます。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;欠点&lt;/strong&gt;：ネットワーク環境に非常に敏感です。複雑なプロキシノードを経由する際、中間者証明書の置き換え（SSL 解析エラーを引き起こす）や大規模トラフィックのキャッシュオーバーフローの影響を受けやすく、接続リセットが発生します。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ssh-プロトコル&#34;&gt;SSH プロトコル
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;動作メカニズム&lt;/strong&gt;：独立した TCP 22 ポート上で動作し、非対称暗号化（公開鍵+秘密鍵）メカニズムを採用しています。ローカルの秘密鍵と GitHub サーバー上の公開鍵が正常にペアリングされると、エンドツーエンドの暗号化トンネルが確立されます。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;利点&lt;/strong&gt;：非常に安定して安全で、HTTP を対象とするほとんどのアプリケーション層プロキシや検閲メカニズムを直接貫通または迂回し、&lt;code&gt;curl&lt;/code&gt; 関連のネットワーク遮断を免れます。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;欠点&lt;/strong&gt;：設定の敷居が高く、事前に鍵ペアを生成しプラットフォームで ID バインディングを完了する必要があり、物理デバイスと強く結びついています。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4-http-が失敗し-ssh-が成功する理由&#34;&gt;4. HTTP が失敗し SSH が成功する理由
+&lt;/h2&gt;&lt;p&gt;今回のトラブルシューティングプロセスを踏まえると、根本的な原因は&lt;strong&gt;プロキシソフトウェアのプロトコル別データストリーム処理メカニズムの違い&lt;/strong&gt;にあります：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;HTTPS がプロキシに「切断される」&lt;/strong&gt;：HTTPS を使用してクローンする場合、トラフィックはプロキシソフトウェアの &lt;code&gt;10808&lt;/code&gt; ポートに強制的に誘導されます。プロキシノードが継続的な大量の Git オブジェクトストリームを処理する際、タイムアウト破棄メカニズムがトリガーされたり、ローカル OpenSSL とプロキシサーバー間の証明書検証に瞬間的な断層が発生し、システムが強制的に &lt;code&gt;SYSCALL&lt;/code&gt; 中断を引き起こします。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SSH の「検査免除通行」&lt;/strong&gt;：SSH プロトコルに切り替えると、ターミナルはシステムの HTTP プロキシルーティングを使用せず、ポート 22 経由で直接リモートにハンドシェイクを開始します。鍵のハードウェア的裏付けにより、この暗号化トンネルは十分に低層で堅牢となり、上位の Web プロキシルールの干渉を受けず、大容量データの完全な転送を保証します。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;5-最終解決策ssh-完全設定手順&#34;&gt;5. 最終解決策：SSH 完全設定手順
+&lt;/h2&gt;&lt;p&gt;Windows PowerShell 向け。&lt;/p&gt;
+&lt;h3 id=&#34;51-ローカル-ssh-鍵の生成&#34;&gt;5.1 ローカル SSH 鍵の生成
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;ssh-keygen&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ed25519&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-C&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;your-email@example.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Enter を押してデフォルトの保存パス（&lt;code&gt;~/.ssh/id_ed25519&lt;/code&gt;）を受け入れます&lt;/li&gt;
+&lt;li&gt;パスワードの入力を求められたら、&lt;strong&gt;そのまま Enter を2回押して空白にします&lt;/strong&gt;。以降のコード取得で追加のパスワード入力は不要です。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;52-公開鍵の内容をコピー&#34;&gt;5.2 公開鍵の内容をコピー
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Get-Content&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;~/.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ssh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id_ed25519&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;pub&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Set-Clipboard&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;デフォルトの RSA 暗号化（ed25519 ではない）を使用する場合、ファイルは &lt;code&gt;~/.ssh/id_rsa.pub&lt;/code&gt; です。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;53-github-に公開鍵を登録&#34;&gt;5.3 GitHub に公開鍵を登録
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;ブラウザで GitHub にログインし、右上のアバター → &lt;strong&gt;Settings&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;左側メニューから &lt;strong&gt;SSH and GPG keys&lt;/strong&gt; を選択&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;New SSH key&lt;/strong&gt; をクリック&lt;/li&gt;
+&lt;li&gt;Title：任意、例 &amp;ldquo;My Windows PC&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Key type：デフォルトの &amp;ldquo;Authentication Key&amp;rdquo; のまま&lt;/li&gt;
+&lt;li&gt;Key：先ほどコピーした公開鍵の内容を貼り付け（&lt;code&gt;ssh-ed25519&lt;/code&gt; または &lt;code&gt;ssh-rsa&lt;/code&gt; で始まります）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add SSH key&lt;/strong&gt; をクリックして保存&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;54-接続テスト&#34;&gt;5.4 接続テスト
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ssh&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;git&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;com&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;初回接続時に &lt;code&gt;Are you sure you want to continue connecting?&lt;/code&gt; と表示されたら、&lt;strong&gt;必ず手動で &lt;code&gt;yes&lt;/code&gt; と入力&lt;/strong&gt;します。成功すると &lt;code&gt;Hi your_username! You&#39;ve successfully authenticated...&lt;/code&gt; のようなメッセージが表示されます。&lt;/p&gt;
+&lt;h3 id=&#34;55-再クローン&#34;&gt;5.5 再クローン
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;git&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clone&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;git&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;taichi-project&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;anyagent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;git&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;56-長所短所とベストプラクティス&#34;&gt;5.6 長所短所とベストプラクティス
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;長所&lt;/strong&gt;：永続的な安全性と安定性。設定完了後、あなたと GitHub の間に完全に暗号化されたパスワード不要の直接接続チャネルが確立され、HTTP/HTTPS プロトコル下でのプロキシポート競合、SSL 証明書ハイジャック、大規模ファイル転送時の頻繁な接続リセットエラーから完全に解放されます。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;短所&lt;/strong&gt;：初期設定の敷居が高いです。初心者にとって、公開鍵暗号方式の理解やコマンドラインでの生成・コピー・登録の一連の流れはエラーが発生しやすく（文字のコピー漏れ、&lt;code&gt;yes&lt;/code&gt; の入力忘れなど）。また、デバイスと強く結びついているため、PC の交換や OS 再インストール後に再設定が必要です。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ベストプラクティス&lt;/strong&gt;：日常の開発では、SSH を Git 操作のデフォルトプロトコルとして強く推奨します。長期メンテナンスや頻繁に &lt;code&gt;push/pull&lt;/code&gt; するリポジトリには一律 SSH 直接接続を使用し、一時的なコードのダウンロードや安定性要件が低い場合にのみ、ブラウザやターミナルプロキシと組み合わせて HTTPS を使用します。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Scoop</title>
+        <link>https://Siborne.top/ja/p/scoop/</link>
+        <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/scoop/</guid>
+        <description>&lt;img src="https://Siborne.top/p/scoop/bannerImage.png" alt="Featured image of post Scoop" /&gt;&lt;h2 id=&#34;scoop-を使う理由&#34;&gt;Scoop を使う理由
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;scoop.sh&#34; &gt;Scoop 公式サイト&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Windows 環境での開発環境構築は、統一された標準がないため、常に複雑で困難な問題です。さまざまな開発環境のインストール方法に大きな差があり、多くの無駄な時間コストがかかります。Scoop は、一般的な開発ソフトウェアのインストールと管理を一元化し、手動ダウンロードや環境変数の設定といった面倒な手順を省いてくれます。&lt;/p&gt;
+&lt;p&gt;例えば、Python と Node.js のインストールは次のコマンドを実行するだけです：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;scoop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;python&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;scoop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nodejs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;scoop-のインストール&#34;&gt;Scoop のインストール
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;動作確認済みの公式インストール方法&lt;/p&gt;
+&lt;p&gt;Microsoft Store から最新版の PowerShell をインストール&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/scoop/assets/image-20251204204702-qhzlv3b.png&#34;
+	width=&#34;1920&#34;
+	height=&#34;1080&#34;
+	srcset=&#34;https://Siborne.top/p/scoop/assets/image-20251204204702-qhzlv3b_hu_5818130fdd011680.png 480w, https://Siborne.top/p/scoop/assets/image-20251204204702-qhzlv3b_hu_8523b4acd3edbb57.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;PowerShell を起動し、以下のコマンドを入力&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Set-ExecutionPolicy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ExecutionPolicy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RemoteSigned&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Scope&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CurrentUser&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Uri&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;scoop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;sh&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Invoke-Expression&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;以下の画面が表示されればインストール成功です&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/scoop/assets/image-20251204205229-f18qg4o.png&#34;
+	width=&#34;1241&#34;
+	height=&#34;1078&#34;
+	srcset=&#34;https://Siborne.top/p/scoop/assets/image-20251204205229-f18qg4o_hu_f49963283263e6eb.png 480w, https://Siborne.top/p/scoop/assets/image-20251204205229-f18qg4o_hu_e1fdc3aa93e6dd06.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;115&#34;
+		data-flex-basis=&#34;276px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Scoop は &lt;a class=&#34;link&#34; href=&#34;https://aka.ms/wmf5download&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Windows PowerShell 5.1&lt;/a&gt; または &lt;a class=&#34;link&#34; href=&#34;https://aka.ms/powershell&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PowerShell&lt;/a&gt; を実行環境として必要とします。Windows 10 以降では Windows PowerShell がシステムに組み込まれています。Windows 7 の場合、組み込みの Windows PowerShell のバージョンが古すぎるため、新しいバージョンを手動でインストールする必要があります。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;多くのユーザーが Windows のユーザー名に中国語を使用しているため、ユーザーディレクトリも中国語名になってしまいます。Scoop のデフォルト設定でユーザーディレクトリにソフトウェアをインストールすると、一部のソフトウェアで実行エラーが発生する可能性があります。そのため、カスタムディレクトリへのインストールを推奨します。他のインストール方法については、&lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Install&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ScoopInstaller/Install&lt;/a&gt; を参照してください。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# PowerShell の実行ポリシーを設定&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Set-ExecutionPolicy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ExecutionPolicy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RemoteSigned&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Scope&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CurrentUser&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# インストールスクリプトをダウンロード&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;irm &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;scoop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;sh&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-outfile&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;install.ps1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# --ScoopDir パラメータで Scoop のインストールパスを指定して実行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;install&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;ps1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ScoopDir&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;C:\Scoop&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;scoop-の使い方&#34;&gt;Scoop の使い方
+&lt;/h2&gt;&lt;p&gt;Scoop の公式ドキュメントは初心者に非常に優しく、ここで詳細を述べるよりも &lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Scoop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;公式ドキュメント&lt;/a&gt; や &lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Scoop/wiki/Quick-Start&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;クイックスタート&lt;/a&gt; を読むことをお勧めします。&lt;/p&gt;
+&lt;h4 id=&#34;よく使うコマンド&#34;&gt;よく使うコマンド
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;コマンド&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;機能&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop bucket list&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;登録されている全リポジトリを表示&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop search&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;ソフトウェアを検索&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop install&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;ソフトウェアをインストール&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop list&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;インストール済みソフトウェアを表示&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop uninstall&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;ソフトウェアをアンインストール&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop bucket&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;リポジトリを管理&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop update&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;ソフトウェアを更新&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop config proxy&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Scoop のプロキシを設定&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;scoop reset&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;ソフトウェアのバージョンを切替&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;qa&#34;&gt;Q&amp;amp;A
+&lt;/h2&gt;&lt;h3 id=&#34;scoop-はミラーソースを設定できますか&#34;&gt;Scoop はミラーソースを設定できますか？
+&lt;/h3&gt;&lt;p&gt;Scoop コミュニティはインストール設定のみを管理しており、すべてのソフトウェアは公式のダウンロードリンクからダウンロードされます。そのため、ミラーソースは提供できません。ネットワーク環境によってダウンロードが繰り返し失敗する場合は、少しだけ &lt;a class=&#34;link&#34; href=&#34;https://csdiy.wiki/%E5%BF%85%E5%AD%B8%E5%B7%A5%E5%85%B7/%E7%BF%BB%E5%A2%99/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;魔法&lt;/a&gt; が必要です。&lt;/p&gt;
+&lt;h3 id=&#34;java8-が見つからないのはなぜですか&#34;&gt;Java8 が見つからないのはなぜですか？
+&lt;/h3&gt;&lt;p&gt;上記の理由により、公式は Java8 のダウンロードリンクを提供しなくなりました。&lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Java/blob/master/bucket/ojdkbuild8.json&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ojdkbuild8&lt;/a&gt; を代わりに使用することを推奨します。&lt;/p&gt;
+&lt;h3 id=&#34;python2-をインストールしたい場合はどうすればよいですか&#34;&gt;Python2 をインストールしたい場合はどうすればよいですか？
+&lt;/h3&gt;&lt;p&gt;廃止・非推奨となったソフトウェアについて、Scoop コミュニティは &lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Main&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ScoopInstaller/Main&lt;/a&gt; から削除し、&lt;a class=&#34;link&#34; href=&#34;https://github.com/ScoopInstaller/Versions&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ScoopInstaller/Versions&lt;/a&gt; に追加します。これらのソフトウェアが必要な場合は、手動で bucket を追加してください：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;scoop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bucket&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;add&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;versions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;scoop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;python27&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;‍&lt;a class=&#34;link&#34; href=&#34;https://google.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;img src=&#34;https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Google&#34;
+	
+	
+&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Markdown</title>
+        <link>https://Siborne.top/ja/p/computer-tools/</link>
+        <pubDate>Sat, 27 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/computer-tools/</guid>
+        <description>&lt;img src="https://Siborne.top/p/computer-tools/bannerImage.png" alt="Featured image of post Markdown" /&gt;&lt;h2 id=&#34;1-見出し構文&#34;&gt;1. 見出し構文
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# 見出しレベル1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## 見出しレベル2
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;### 見出しレベル3
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;同様に続きます。# の後にはスペースを入れることで、異なる Markdown プログラム間の互換性を確保します。&lt;/p&gt;
+&lt;h2 id=&#34;2-段落構文&#34;&gt;2. 段落構文
+&lt;/h2&gt;&lt;p&gt;段落を作成するには、空白行を使用して1行以上のテキストを区切ります。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;これは1つ目の段落です
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;これは2つ目の段落です
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;段落の前にスペースやタブ（TAB）を入れないでください。&lt;/p&gt;
+&lt;h2 id=&#34;3-改行構文&#34;&gt;3. 改行構文
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Enter キーを押せば改行できます
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;このように😀
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;4-強調構文&#34;&gt;4. 強調構文
+&lt;/h2&gt;&lt;p&gt;テキストを太字または斜体にすることで重要性を強調します。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;**これは太字構文です**
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;ge&#34;&gt;*これは斜体構文です*&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;ge&#34;&gt;**&lt;/span&gt;*これは太字と斜体を同時に適用します***
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gd&#34;&gt;~~これは取り消し線です~~&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;==これはハイライトです==
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;5-引用構文&#34;&gt;5. 引用構文
+&lt;/h2&gt;&lt;p&gt;ブロック引用を作成するには、段落の前に &amp;gt; 記号を追加します。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;これは単一行の引用です
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;これは単一行の引用です&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;1行目の引用
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;ge&#34;&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;ge&#34;&gt;&amp;gt; 2行目の引用
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;1行目の引用&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2行目の引用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;第1階層の外側&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;h3 id=&#34;-かなり良い効果です&#34;&gt;# かなり良い効果です！
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;これは番号なしリストの1行目です！&lt;/li&gt;
+&lt;li&gt;これは番号なしリストの2行目です！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;思い描いた通りの効果が得られます&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;6-リスト構文&#34;&gt;6. リスト構文
+&lt;/h2&gt;&lt;p&gt;複数の項目を順序付きまたは順序なしのリストに整理できます。&lt;/p&gt;
+&lt;p&gt;順序付きリストを作成するには、各リスト項目の前に数字とピリオドを追加します。数字は数学的な順序である必要はありませんが、リストは数字の 1 から始めるべきです。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;1.&lt;/span&gt; 1つ目のアイテム
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;2.&lt;/span&gt; 2つ目のアイテム
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;3.&lt;/span&gt; 3つ目のアイテム
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;4.&lt;/span&gt; LOLOLOLOL
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;1つ目のアイテム&lt;/li&gt;
+&lt;li&gt;2つ目のアイテム&lt;/li&gt;
+&lt;li&gt;3つ目のアイテム&lt;/li&gt;
+&lt;li&gt;LOLOLOLOL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;順序なしリストを作成するには、各リスト項目の前にダッシュ（-）、アスタリスク（*）、またはプラス記号（+）を追加します。1つ以上のリスト項目をインデントすることでネストされたリストを作成できます。記号の後にはスペースが必要です。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; 1つ目のアイテム
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; 2つ目のアイテム
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; 3つ目はなし
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; 上の行をもう一度見てください
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;1つ目のアイテム&lt;/li&gt;
+&lt;li&gt;2つ目のアイテム&lt;/li&gt;
+&lt;li&gt;3つ目はなし&lt;/li&gt;
+&lt;li&gt;上の行をもう一度見てください&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;番号なしリストでは4種類の記号をすべて使用できます
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ただし混在はできません。例：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; 1つ目のアイテム
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+ 2つ目のアイテム
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; 3つ目はなし
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;*&lt;/span&gt; 上の行をもう一度見てください
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;リストの連続性を保ちながら別の要素を追加するには、その要素を4つのスペースまたは1つのタブでインデントします。以下の例を参照してください：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;*&lt;/span&gt;   これは1つ目のリストアイテムです。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;*&lt;/span&gt;   これは2つ目のリストアイテムです。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;    &amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;2つ目のリストアイテムの下に別の段落を追加する必要があります。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;*&lt;/span&gt;   そしてこれが3つ目のリストアイテムです。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;7-コード構文&#34;&gt;7. コード構文
+&lt;/h2&gt;&lt;p&gt;単語やフレーズをコードとして表現するには、バッククォート（`）で囲みます。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;文中に &lt;span class=&#34;sb&#34;&gt;`コード`&lt;/span&gt; を混ぜる
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;文中に &lt;code&gt;コード&lt;/code&gt; を混ぜる&lt;/p&gt;
+&lt;p&gt;コードとして表現したい単語やフレーズに1つ以上のバッククォートが含まれている場合は、ダブルバッククォート（``）で囲みます。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;`&lt;span class=&#34;sb&#34;&gt;`Use `&lt;/span&gt;code&lt;span class=&#34;sb&#34;&gt;` in your Markdown file.`&lt;/span&gt;`
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Use &lt;code&gt;code&lt;/code&gt; in your Markdown file.&lt;/p&gt;
+&lt;h3 id=&#34;フェンス付きコードブロック&#34;&gt;フェンス付きコードブロック
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;‍``&lt;span class=&#34;sb&#34;&gt;`json
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sb&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sb&#34;&gt;  &amp;#34;firstName&amp;#34;: &amp;#34;John&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sb&#34;&gt;  &amp;#34;lastName&amp;#34;: &amp;#34;Smith&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sb&#34;&gt;  &amp;#34;age&amp;#34;: 25
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sb&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sb&#34;&gt;‍`&lt;/span&gt;``
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;8-区切り線構文&#34;&gt;8. 区切り線構文
+&lt;/h2&gt;&lt;p&gt;区切り線を作成するには、3つ以上のアスタリスク（***）、ダッシュ（&amp;mdash;）、またはアンダースコア（___）を単独の行で使用し、他のコンテンツを含めないでください。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;***
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gs&#34;&gt;_________&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;互換性のために、区切り線の前後に空白行を追加してください。&lt;/p&gt;
+&lt;h2 id=&#34;9-リンク構文&#34;&gt;9. リンク構文
+&lt;/h2&gt;&lt;p&gt;リンクテキストを角括弧内に、リンクアドレスを後続の丸括弧内に配置します。リンクタイトルはオプションです。&lt;/p&gt;
+&lt;p&gt;ハイパーリンクの Markdown 構文：&lt;a class=&#34;link&#34; href=&#34;%e3%83%8f%e3%82%a4%e3%83%91%e3%83%bc%e3%83%aa%e3%83%b3%e3%82%af%e3%82%a2%e3%83%89%e3%83%ac%e3%82%b9&#34;  title=&#34;ハイパーリンクタイトル&#34;
+    &gt;ハイパーリンク表示名&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[&lt;span class=&#34;nt&#34;&gt;わからないことは Baidu に聞こう&lt;/span&gt;](&lt;span class=&#34;na&#34;&gt;http://www.baidu.com&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;タイトル付きリンク構文&#34;&gt;タイトル付きリンク構文
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[&lt;span class=&#34;nt&#34;&gt;わからないことは Baidu に聞こう&lt;/span&gt;](&lt;span class=&#34;na&#34;&gt;http://www.baidu.com &amp;#34;これは Baidu だよ😙&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;url-とメールアドレス&#34;&gt;URL とメールアドレス
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;www.bilibili.com&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;892920290&lt;span class=&#34;ni&#34;&gt;@qq&lt;/span&gt;.com&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;書式付きリンク&#34;&gt;書式付きリンク
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;I love supporting the &lt;span class=&#34;ge&#34;&gt;**&lt;/span&gt;[&lt;span class=&#34;nt&#34;&gt;EFF&lt;/span&gt;](&lt;span class=&#34;na&#34;&gt;https://eff.org&lt;/span&gt;)**.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;This is the &lt;span class=&#34;ge&#34;&gt;*[Markdown Guide](https://www.markdownguide.org)*&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;See the section on [&lt;span class=&#34;nt&#34;&gt;`code`&lt;/span&gt;](&lt;span class=&#34;na&#34;&gt;#code&lt;/span&gt;).
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;脚注&#34;&gt;脚注
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[^footnote]: これは脚注です
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;10-画像構文&#34;&gt;10. 画像構文
+&lt;/h2&gt;&lt;p&gt;画像を追加するには、感嘆符（!）を使用し、角括弧内に代替テキストを、丸括弧内に画像リンクを配置します。リンクの後にオプションの画像タイトルテキストを追加できます。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;![&lt;span class=&#34;nt&#34;&gt;W!&lt;/span&gt;](&lt;span class=&#34;na&#34;&gt;https://wwhds-markdown-image.oss-cn-beijing.aliyuncs.com/Markdown%E4%BD%BF%E7%94%A8/w.jpg&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;リンク付き画像&#34;&gt;リンク付き画像
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[&lt;span class=&#34;nt&#34;&gt;![風景写真&lt;/span&gt;](&lt;span class=&#34;na&#34;&gt;https://wwhds-markdown-image.oss-cn-beijing.aliyuncs.com/Markdown%E4%BD%BF%E7%94%A8/small095125P47QH1707616285.jpg&lt;/span&gt;)](https://www.baidu.com)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;11-エスケープ文字構文&#34;&gt;11. エスケープ文字構文
+&lt;/h2&gt;&lt;p&gt;Markdown 文書の書式設定に使用される文字を表示するには、文字の前にバックスラッシュ \ を追加します。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;\* バックスラッシュがないと、これは番号なしリストの箇条書きになります。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;特殊文字の自動エスケープ&#34;&gt;特殊文字の自動エスケープ
+&lt;/h3&gt;&lt;p&gt;HTML ファイルでは、2つの文字に特別な処理が必要です： &amp;lt; と &amp;amp; 。&amp;lt; 記号は開始タグに、&amp;amp; 記号は HTML エンティティのマークに使用されます。単にこれらの記号を使用したい場合は、&amp;lt; や &amp;amp; のようなエンティティ形式を使用する必要があります。&lt;/p&gt;
+&lt;h2 id=&#34;12-html-タグの埋め込み&#34;&gt;12. HTML タグの埋め込み
+&lt;/h2&gt;&lt;p&gt;&lt;span&gt; や &lt;cite&gt; などの HTML のインライン要素は制限なく、Markdown の段落、リスト、見出し内で自由に使用できます。好みに応じて、Markdown 形式の代わりに HTML タグを使用してフォーマットすることもできます。要素の属性を変更する必要がある場合（テキストに色を指定したり画像の幅を変更したりする場合）、HTML タグを使用する方が便利です。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;**このテキストはこのように太字にできます**、&amp;lt;strong&amp;gt;このようにも太字にできます。&amp;lt;/strong&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;ブロック要素タグ&#34;&gt;ブロック要素タグ
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;タグの前の要素
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;div&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&amp;lt;span&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &amp;lt;strong&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            span タグ内の要素
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &amp;lt;/strong&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;lt;/span&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;タグの後の要素
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意：HTML ブロックレベル要素内では Markdown 構文を使用できません。例：&lt;p&gt;italic and &lt;strong&gt;bold&lt;/strong&gt;&lt;/p&gt; は機能しません。&lt;/p&gt;
+&lt;h2 id=&#34;ご覧いただきありがとうございます&#34;&gt;ご覧いただきありがとうございます&amp;hellip;
+&lt;/h2&gt;&lt;p&gt;チュートリアル参考：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/Wwhds/article/details/137641945&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Markdown 30分クイックスタート-CSDNブログ&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

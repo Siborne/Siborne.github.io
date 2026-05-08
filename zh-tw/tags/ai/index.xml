@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>AI on Siborne</title>
+        <link>https://Siborne.top/zh-tw/tags/ai/</link>
+        <description>Recent content in AI on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/zh-tw/tags/ai/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Codex APP 保姆級全攻略：從安裝到自動化，一期精通</title>
+        <link>https://Siborne.top/zh-tw/p/codex-app-complete-guide/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/zh-tw/p/codex-app-complete-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-app-complete-guide/bannerImage.png" alt="Featured image of post Codex APP 保姆級全攻略：從安裝到自動化，一期精通" /&gt;&lt;h2 id=&#34;核心要點概括&#34;&gt;核心要點概括
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Codex APP&lt;/strong&gt; 是目前最強的 Codex 產品型態，免費額度高、功能全、不封號不限速&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;沙箱機制&lt;/strong&gt;：OS 級安全隔離，預設禁止訪問沙箱外檔案和聯網，三檔權限可選&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多專案並行&lt;/strong&gt;：多專案、多對話同時跑，物理隔離互不干擾&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;計劃模式&lt;/strong&gt;：先對齊再執行，避免 AI 理解偏差導致大量返工&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Git Worktree&lt;/strong&gt;：分支級並行開發，不同資料夾真正隔離&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills/MCP&lt;/strong&gt;：可重複使用專業能力包 + 標準化外部工具接入&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;定時自動化&lt;/strong&gt;：外掛 + 定時任務 + MEMORY 經驗積累，越用越穩&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;為什麼選-codex-app&#34;&gt;為什麼選 Codex APP？
+&lt;/h2&gt;&lt;p&gt;Codex 有四大產品型態，而 &lt;strong&gt;Codex APP&lt;/strong&gt; 是目前最強的一個。相比 Claude Code：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;額度更高&lt;/strong&gt;，免費帳戶也能用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;功能更全&lt;/strong&gt;，內建瀏覽器、畫圖、外掛市集、定時任務&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不會限速、封號、降智&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上手更快&lt;/strong&gt;，安裝即用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本文按 12 個章節，逐一拆解 Codex APP 的全部功能。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一安裝與初始化&#34;&gt;一、安裝與初始化
+&lt;/h2&gt;&lt;h3 id=&#34;準備工作&#34;&gt;準備工作
+&lt;/h3&gt;&lt;p&gt;安裝 Codex APP 前需要先裝好三件套：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node.js&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VS Code&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安裝步驟&#34;&gt;安裝步驟
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;前往 &lt;a class=&#34;link&#34; href=&#34;https://openai.com/zh-Hans-CN/codex/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex 官網&lt;/a&gt; 下載安裝包（支援 Windows / Mac）&lt;/li&gt;
+&lt;li&gt;一路下一步完成安裝&lt;/li&gt;
+&lt;li&gt;啟動後選擇 &lt;strong&gt;ChatGPT 帳戶&lt;/strong&gt;登入（免費帳戶即可）&lt;/li&gt;
+&lt;li&gt;首次進入選擇你希望 Codex 處理的工作類型，Codex 會根據選擇預裝對應外掛和 Skills&lt;/li&gt;
+&lt;li&gt;選擇主要使用場景：程式設計 / 日常工作&lt;/li&gt;
+&lt;li&gt;點擊初始化沙箱&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Mac vs Windows&lt;/strong&gt;：功能基本一致，唯一差異是 &lt;strong&gt;Computer Use&lt;/strong&gt;（自動操作電腦）目前僅 Mac 支援。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二基礎使用&#34;&gt;二、基礎使用
+&lt;/h2&gt;&lt;h3 id=&#34;三欄佈局&#34;&gt;三欄佈局
+&lt;/h3&gt;&lt;p&gt;Codex APP 採用經典三欄佈局：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;左側&lt;/strong&gt;：任務列表（專案 + 對話）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中間&lt;/strong&gt;：對話視窗&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;右側&lt;/strong&gt;：多功能區域（瀏覽器、終端、檔案樹等）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;專案管理&#34;&gt;專案管理
+&lt;/h3&gt;&lt;p&gt;透過「新增專案 → 使用現有資料夾」把本機資料夾註冊為 Codex 專案。每個專案獨立管理對話，互不干擾。&lt;/p&gt;
+&lt;h3 id=&#34;並行任務&#34;&gt;並行任務
+&lt;/h3&gt;&lt;p&gt;Codex 支援&lt;strong&gt;多專案、多對話並行執行&lt;/strong&gt;。任務列表中用圖示標識狀態：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔵 藍色小點 → 已完成&lt;/li&gt;
+&lt;li&gt;🟢 綠色標籤 → 等待批准&lt;/li&gt;
+&lt;li&gt;🔄 轉圈圖示 → 正在執行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;對話管理&#34;&gt;對話管理
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;新對話&lt;/strong&gt;：&lt;code&gt;Ctrl + N&lt;/code&gt;（Win）/ &lt;code&gt;Cmd + N&lt;/code&gt;（Mac）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;搜尋歷史&lt;/strong&gt;：&lt;code&gt;Ctrl + G&lt;/code&gt; / &lt;code&gt;Cmd + G&lt;/code&gt;（僅搜尋標題，不搜尋內容）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;歸檔/還原&lt;/strong&gt;：點擊歸檔按鈕移除對話，在「設定 → 已歸檔對話」中可還原&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;標題自動生成&lt;/strong&gt;：每個對話標題由 AI 根據內容自動摘要，也可雙擊重新命名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;權限系統沙箱機制&#34;&gt;權限系統：沙箱機制
+&lt;/h3&gt;&lt;p&gt;Codex 的權限系統全部圍繞**沙箱（Sandbox）**展開，這是 Harness Engineering 概念的典型工程實現——用作業系統級別的機制，把 AI 的能力約束在可控範圍內。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;預設限制：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;限制&lt;/th&gt;
+          &lt;th&gt;說明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;沙箱內檔案&lt;/td&gt;
+          &lt;td&gt;預設&lt;strong&gt;直接讀寫&lt;/strong&gt;，不需要逐檔案審批&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;沙箱外檔案&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;禁止訪問&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;聯網&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;預設禁止&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;這兩條硬性限制不是靠模型自覺，而是透過作業系統底層機制實現的（Mac 用 Seatbelt/Sandbox，Windows 有對應機制）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;三個權限檔位：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;檔位&lt;/th&gt;
+          &lt;th&gt;說明&lt;/th&gt;
+          &lt;th&gt;推薦&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;人工審批&lt;/td&gt;
+          &lt;td&gt;每次提權都需要手動確認&lt;/td&gt;
+          &lt;td&gt;最安全但繁瑣&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;自動審查&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;小模型自動審查低風險操作，高風險才人工確認&lt;/td&gt;
+          &lt;td&gt;✅ &lt;strong&gt;推薦&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;完全訪問&lt;/td&gt;
+          &lt;td&gt;無視沙箱限制，可執行一切操作&lt;/td&gt;
+          &lt;td&gt;⚠️ 慎用&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;當 Codex 需要訪問沙箱外檔案或聯網時，會發起「提權（Escalate）」申請。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;上下文管理&#34;&gt;上下文管理
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;右上角圓圈顯示當前上下文使用量&lt;/li&gt;
+&lt;li&gt;超出限制時 Codex &lt;strong&gt;自動壓縮&lt;/strong&gt;歷史對話&lt;/li&gt;
+&lt;li&gt;也可以輸入 &lt;code&gt;/compact&lt;/code&gt; 手動觸發壓縮&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;經驗法則&lt;/strong&gt;：清空 &amp;gt; 壓縮。完成一個任務後開新對話，讓 AI 注意力集中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;模型選擇&#34;&gt;模型選擇
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;根據任務複雜度選擇思考強度&lt;/li&gt;
+&lt;li&gt;一般用最新模型（如 ChatGPT 5.5）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;快速模式&lt;/strong&gt;：提速 50%，但消耗 2 倍額度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;額度檢視&#34;&gt;額度檢視
+&lt;/h3&gt;&lt;p&gt;「設定 → 剩餘額度」中可以看到兩個限額：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5 小時限額&lt;/li&gt;
+&lt;li&gt;週限額&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;任一到達上限即暫停使用，到重置時間後自動恢復。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三畫圖&#34;&gt;三、畫圖
+&lt;/h2&gt;&lt;p&gt;Codex 內建 &lt;strong&gt;GPT Image&lt;/strong&gt;（當前最強 AI 生圖模型），可以直接在對話中生成圖片。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;典型用法：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生成網頁配圖、輪播圖&lt;/li&gt;
+&lt;li&gt;根據截圖標註位置生成風格化地圖&lt;/li&gt;
+&lt;li&gt;保持多張圖片的風格一致性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;steer引導功能&#34;&gt;Steer（引導）功能
+&lt;/h3&gt;&lt;p&gt;當 AI 執行方向跑偏時，不要讓它繼續錯下去。點擊對話中的&lt;strong&gt;引導按鈕&lt;/strong&gt;（或按 &lt;code&gt;Ctrl + Enter&lt;/code&gt;），中途接管方向盤，糾正 AI 的執行方向。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;設定中可選擇新指令是「排隊」還是「直接引導」，推薦預設排隊 + 需要時手動點引導按鈕。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四計劃模式&#34;&gt;四、計劃模式
+&lt;/h2&gt;&lt;p&gt;對於&lt;strong&gt;所有複雜任務&lt;/strong&gt;，建議先開啟計劃模式（Plan Mode），確保和 AI 對齊顆粒度。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;工作流程：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在對話視窗點擊加號 → 開啟「計劃模式」&lt;/li&gt;
+&lt;li&gt;輸入需求，Codex 會先用&lt;strong&gt;問題卡片&lt;/strong&gt;跟你溝通細節&lt;/li&gt;
+&lt;li&gt;Codex 輸出完整工作計劃&lt;/li&gt;
+&lt;li&gt;你審閱確認後，點擊「實施此計劃」&lt;/li&gt;
+&lt;li&gt;Codex 執行並自動在右側開啟內建瀏覽器驗證&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;計劃模式的價值&lt;/strong&gt;：避免 AI 理解偏差導致大量返工，尤其適合架構遷移、大功能開發等任務。&lt;/p&gt;
+&lt;h3 id=&#34;內建瀏覽器--批註&#34;&gt;內建瀏覽器 + 批註
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;右側多功能區可開啟內建瀏覽器預覽專案&lt;/li&gt;
+&lt;li&gt;點擊「批註」按鈕，選中頁面元素新增評論，AI 會據此修改&lt;/li&gt;
+&lt;li&gt;修改過程即時可見&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五程式碼管理&#34;&gt;五、程式碼管理
+&lt;/h2&gt;&lt;p&gt;Codex APP 不是傳統 IDE，不提供完整程式碼編輯功能。推薦配合 VS Code 使用。&lt;/p&gt;
+&lt;h3 id=&#34;git-初始化&#34;&gt;Git 初始化
+&lt;/h3&gt;&lt;p&gt;讓 Codex 把專案初始化成 Git 倉庫：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自動建立 &lt;code&gt;.gitignore&lt;/code&gt;，排除不需要的檔案&lt;/li&gt;
+&lt;li&gt;初始化完成後右上角出現 Git 相關按鈕&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;配合-vs-code&#34;&gt;配合 VS Code
+&lt;/h3&gt;&lt;p&gt;點擊右上角 &lt;strong&gt;VS Code 按鈕&lt;/strong&gt;一鍵開啟專案，也可以在設定中指定預設 IDE。&lt;/p&gt;
+&lt;h3 id=&#34;github-同步&#34;&gt;GitHub 同步
+&lt;/h3&gt;&lt;p&gt;讓 Codex 幫你在 GitHub 建立倉庫並推送程式碼，所有 Git/GitHub 操作都可以用對話完成。&lt;/p&gt;
+&lt;h3 id=&#34;進階技巧一對話分叉--git-回滾&#34;&gt;進階技巧一：對話分叉 + Git 回滾
+&lt;/h3&gt;&lt;p&gt;當你後悔某次改動，想「當作無事發生」：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;對話分叉（Fork）&lt;/strong&gt;：在對話中找到改動前的位置，點擊分叉按鈕 → 派生到本機，得到一個不含改動的對話副本&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;程式碼回滾&lt;/strong&gt;：在 VS Code 的 Source Control 中複製目標 commit hash，讓 Codex 把程式碼回退到該狀態&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;分叉只回滾對話歷史，程式碼需要單獨透過 Git 回滾。兩者配合實現&lt;strong&gt;對話 + 程式碼&lt;/strong&gt;的完全回滾。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;進階技巧二git-worktree&#34;&gt;進階技巧二：Git Worktree
+&lt;/h3&gt;&lt;p&gt;Worktree 本質是用 Git 建立新分支，並把分支程式碼複製到獨立資料夾，實現&lt;strong&gt;多分支並行開發&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用場景：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;右鍵專案 → 建立永久工作樹（如 &lt;code&gt;customer-rating&lt;/code&gt;、&lt;code&gt;store-info&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;在不同工作樹中並行開發不同功能，互不干擾&lt;/li&gt;
+&lt;li&gt;開發完成後，分別合併回主幹&lt;/li&gt;
+&lt;li&gt;移除臨時工作樹&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Worktree 的核心價值：不同分支位於&lt;strong&gt;不同資料夾&lt;/strong&gt;，真正做到物理隔離的並行開發。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六雲端執行&#34;&gt;六、雲端執行
+&lt;/h2&gt;&lt;p&gt;當手邊沒有電腦，或想讓任務在後臺雲端執行時：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;前提條件&lt;/strong&gt;：程式碼已同步到 GitHub。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;操作流程：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;推送本機程式碼到 GitHub&lt;/li&gt;
+&lt;li&gt;執行模式選擇「關聯 Codex Web」&lt;/li&gt;
+&lt;li&gt;點擊「前往 Cloud」，輸入倉庫名和需求&lt;/li&gt;
+&lt;li&gt;Codex 初始化雲端環境 → 下載程式碼 → AI 分析 → 完成修改&lt;/li&gt;
+&lt;li&gt;點擊「建立拉取請求」→ 程式碼以 PR 形式提交到 GitHub&lt;/li&gt;
+&lt;li&gt;稽核透過後在 GitHub 上 Merge&lt;/li&gt;
+&lt;li&gt;回到本機 &lt;code&gt;Sync Changes&lt;/code&gt; 同步最新程式碼&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;最佳場景&lt;/strong&gt;：出門在外，用手機審批，讓 Codex 雲端完成任務。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;七記憶系統&#34;&gt;七、記憶系統
+&lt;/h2&gt;&lt;p&gt;每次新對話，AI 對專案的記憶都是空白的。複雜專案需要記憶系統來避免重複交代。&lt;/p&gt;
+&lt;h3 id=&#34;方式一專案級-agentsmd&#34;&gt;方式一：專案級 AGENTS.md
+&lt;/h3&gt;&lt;p&gt;在專案根目錄建立 &lt;code&gt;AGENTS.md&lt;/code&gt; 檔案，每次對話自動作為上下文注入。&lt;/p&gt;
+&lt;p&gt;可以手寫，也可以讓 Codex 通讀專案後自動生成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;讓 Codex 通讀當前資料夾，把學到的專案知識儲存到 AGENTS.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;方式二全域-agentsmd&#34;&gt;方式二：全域 AGENTS.md
+&lt;/h3&gt;&lt;p&gt;「設定 → 個性化 → 自定義指令」中編輯，對所有專案生效。&lt;/p&gt;
+&lt;p&gt;檔案位置：&lt;code&gt;C:\Users\&amp;lt;使用者名稱&amp;gt;\.codex\AGENTS.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;實用示例&lt;/strong&gt;——防止誤刪檔案：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;禁止使用指令碼批次刪除檔案或目錄，只能使用 Remove-Item 一個一個刪除。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;如果必須批次刪除，應停止操作，讓使用者手動處理。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;實驗性功能啟用記憶&#34;&gt;實驗性功能：啟用記憶
+&lt;/h3&gt;&lt;p&gt;設定中的「啟用記憶」可以從聊天中自動提取記憶並帶入新對話，目前仍是實驗性功能。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;八外掛與自動化&#34;&gt;八、外掛與自動化
+&lt;/h2&gt;&lt;h3 id=&#34;外掛市集&#34;&gt;外掛市集
+&lt;/h3&gt;&lt;p&gt;左側邊欄 → 外掛，分為兩類：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;類型&lt;/th&gt;
+          &lt;th&gt;說明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;外掛&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;第三方服務的能力注入（GitHub、Gmail、Netlify 等）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;技能（Skills）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;帶目錄的專業能力說明書&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;示例github--gmail-聯動&#34;&gt;示例：GitHub + Gmail 聯動
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;安裝 GitHub 外掛和 Gmail 外掛&lt;/li&gt;
+&lt;li&gt;授權登入&lt;/li&gt;
+&lt;li&gt;輸入：&lt;code&gt;/github 檢視我 star 數前十的開源專案&lt;/code&gt; + &lt;code&gt;/gmail 發郵件給我自己做摘要&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;定時自動化&#34;&gt;定時自動化
+&lt;/h3&gt;&lt;p&gt;把上述流程做成定時任務：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;把上述工作做成自動化，每週五下午四點發郵件給我
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;建立後可在「自動化」面板中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;編輯執行頻率（每週/每天/每小時）&lt;/li&gt;
+&lt;li&gt;切換模型（簡單任務用迷你模型即可）&lt;/li&gt;
+&lt;li&gt;點擊「立即執行」測試&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;執行過程中積累的經驗會寫入 &lt;code&gt;MEMORY.md&lt;/code&gt;，幫助下一次執行更穩定。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;更多自動化玩法&#34;&gt;更多自動化玩法
+&lt;/h3&gt;&lt;p&gt;配合瀏覽器自動化或 Computer Use：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每天彙總 Teams 聊天記錄發工作日報&lt;/li&gt;
+&lt;li&gt;定時開啟網站簽到&lt;/li&gt;
+&lt;li&gt;定期抓取資料生成報告&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;九skills&#34;&gt;九、Skills
+&lt;/h2&gt;&lt;p&gt;Skills 是給 AI Agent 的&lt;strong&gt;專業技能包&lt;/strong&gt;，本質上是帶目錄的說明書。把工作流、專業能力、規範封裝成 Skill，讓 Agent 執行特定任務時更穩定高效。&lt;/p&gt;
+&lt;h3 id=&#34;三種安裝方式&#34;&gt;三種安裝方式
+&lt;/h3&gt;&lt;h4 id=&#34;1-官方-skills&#34;&gt;1. 官方 Skills
+&lt;/h4&gt;&lt;p&gt;外掛市集中直接安裝。例如 &lt;strong&gt;Remotion&lt;/strong&gt;：讓 AI 用程式設計方式建立動畫影片。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/remotion 幫我生成一個 3D 圓錐擺的影片動畫，需要有受力分析，角速度隨時間緩慢增大
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;2-第三方-skills&#34;&gt;2. 第三方 Skills
+&lt;/h4&gt;&lt;p&gt;從 GitHub 下載後放入專案目錄：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;專案資料夾/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  └── .codex/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      └── skills/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          └── 下載的 skill 檔案
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然後在 Codex 中新增該專案，用斜槓喚起 Skill。&lt;/p&gt;
+&lt;h4 id=&#34;3-自建-skills&#34;&gt;3. 自建 Skills
+&lt;/h4&gt;&lt;p&gt;使用內建的 &lt;strong&gt;Skill Creator&lt;/strong&gt; 技能來建立：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/skill-creator 建立一個 skill：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;當我提供影片和字幕檔案時——
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;第一步：讀取字幕，轉換成 Markdown 筆記，自動新增標點、劃分段落，
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       對於涉及程式碼講解/UI 互動的內容，在句末新增截圖佔位標記
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;第二步：呼叫 ffmpeg 在截圖標記位置截圖，用本機圖片替換佔位符
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;編寫長 prompt 技巧&lt;/strong&gt;：換行用 &lt;code&gt;Shift + Enter&lt;/code&gt;，不要直接回車（會傳送）。&lt;/p&gt;
+&lt;p&gt;建立完成後，後續所有類似任務只需一個斜槓命令。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;十mcp&#34;&gt;十、MCP
+&lt;/h2&gt;&lt;p&gt;MCP（Model Context Protocol）是大模型的&lt;strong&gt;標準化工具箱&lt;/strong&gt;，讓 AI 能與外部服務互動。&lt;/p&gt;
+&lt;h3 id=&#34;入口&#34;&gt;入口
+&lt;/h3&gt;&lt;p&gt;「設定 → MCP 伺服器 → 新增伺服器」&lt;/p&gt;
+&lt;h3 id=&#34;示例supabase-mcp&#34;&gt;示例：Supabase MCP
+&lt;/h3&gt;&lt;p&gt;Supabase 是開源免費的 PostgreSQL 雲資料庫。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 Supabase 建立專案 → Connect → MCP 客戶端 → 選擇 Codex → 複製 URL&lt;/li&gt;
+&lt;li&gt;Codex 中新增 MCP 伺服器，傳輸方式選「流式 HTTP」，填入 URL&lt;/li&gt;
+&lt;li&gt;終端執行 &lt;code&gt;codex mcp login supabase&lt;/code&gt; 完成授權&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重啟 Codex&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;之後就可以用對話操作資料庫：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;使用 Supabase MCP 建立一個預約業務表，
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;使用者的表單資料從後端用 connection pool 方式寫入
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;十一電腦自動化computer-use&#34;&gt;十一、電腦自動化（Computer Use）
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ 目前僅 Mac 支援&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;安裝 Computer Use 外掛後，Codex 可以直接操作你的電腦：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;開啟聊天軟體找到老闆發訊息&lt;/li&gt;
+&lt;li&gt;開啟瀏覽器檢視 GitHub 看板，彙總專案進度&lt;/li&gt;
+&lt;li&gt;生成英文簡報傳送給老闆&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;特點&#34;&gt;特點
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;使用&lt;strong&gt;虛擬滑鼠&lt;/strong&gt;後臺執行，不佔用當前視窗&lt;/li&gt;
+&lt;li&gt;可以編製成&lt;strong&gt;定時自動化任務&lt;/strong&gt;（如每天下午五點自動發簡報）&lt;/li&gt;
+&lt;li&gt;Mac 上建議開啟「執行時防止系統休眠」&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;十二總結codex-app-能力全景&#34;&gt;十二、總結：Codex APP 能力全景
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;能力&lt;/th&gt;
+          &lt;th&gt;說明&lt;/th&gt;
+          &lt;th&gt;亮點&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;沙箱權限&lt;/td&gt;
+          &lt;td&gt;OS 級安全隔離 + 自動審查&lt;/td&gt;
+          &lt;td&gt;安全與便利兼顧&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;多專案並行&lt;/td&gt;
+          &lt;td&gt;多專案、多對話同時跑&lt;/td&gt;
+          &lt;td&gt;物理隔離，互不干擾&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;畫圖&lt;/td&gt;
+          &lt;td&gt;GPT Image 內建&lt;/td&gt;
+          &lt;td&gt;風格一致，直接嵌入專案&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;計劃模式&lt;/td&gt;
+          &lt;td&gt;先對齊再執行&lt;/td&gt;
+          &lt;td&gt;避免返工&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Git Worktree&lt;/td&gt;
+          &lt;td&gt;分支級並行開發&lt;/td&gt;
+          &lt;td&gt;不同資料夾，真正隔離&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;雲端執行&lt;/td&gt;
+          &lt;td&gt;GitHub 聯動雲端執行&lt;/td&gt;
+          &lt;td&gt;手機審批，隨時幹活&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;記憶系統&lt;/td&gt;
+          &lt;td&gt;AGENTS.md 專案級 + 全域&lt;/td&gt;
+          &lt;td&gt;告別重複交代&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;定時自動化&lt;/td&gt;
+          &lt;td&gt;外掛 + 定時任務 + MEMORY&lt;/td&gt;
+          &lt;td&gt;積累經驗，越用越穩&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Skills&lt;/td&gt;
+          &lt;td&gt;可重複使用專業能力包&lt;/td&gt;
+          &lt;td&gt;官方/第三方/自建&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;MCP&lt;/td&gt;
+          &lt;td&gt;標準化外部工具接入&lt;/td&gt;
+          &lt;td&gt;Supabase、Netlify 等&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Computer Use&lt;/td&gt;
+          &lt;td&gt;自動操作電腦&lt;/td&gt;
+          &lt;td&gt;Mac 專屬，後臺執行&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;參考來源&lt;/strong&gt;：B 站影片 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1Kk9kBAEJv/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex (APP) 保姆級全攻略&lt;/a&gt; by 技術爬爬蝦（2026-04-28）&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>Codex 接入 DeepSeek V4：用中轉腳本破解 API 格式不相容</title>
+        <link>https://Siborne.top/zh-tw/p/codex-deepseek-v4-proxy/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/zh-tw/p/codex-deepseek-v4-proxy/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-deepseek-v4-proxy/bannerImage.png" alt="Featured image of post Codex 接入 DeepSeek V4：用中轉腳本破解 API 格式不相容" /&gt;&lt;blockquote&gt;
+&lt;p&gt;🚀 &lt;strong&gt;中轉腳本已開源&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt; —— 一鍵將任意第三方 API 轉為 Codex 相容格式，不止 DeepSeek。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;問題從何而來&#34;&gt;問題從何而來？
+&lt;/h2&gt;&lt;p&gt;最近 DeepSeek V4 系列模型打折，價效比極高，不少開發者想在 Codex 裡切過去用。但實際操作時，很多人發現一個讓人頭疼的問題：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Codex 的 API 請求格式和 DeepSeek 官方接口對不上。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;具體來說，Codex 內部發出的請求路徑是固定格式的，而你如果直接在配置裡把請求地址改成 DeepSeek 官方的 &lt;code&gt;https://api.deepseek.com&lt;/code&gt;，Codex 會直接報錯——不管你怎麼改 model 名稱、怎麼調整參數，都無濟於事。&lt;/p&gt;
+&lt;h2 id=&#34;為什麼中轉站能用&#34;&gt;為什麼中轉站能用？
+&lt;/h2&gt;&lt;p&gt;這其實提示了解決方向。市面上一些 API 中轉站之所以能無縫接入 Codex，本質上就是做了一層&lt;strong&gt;協議適配&lt;/strong&gt;——把 Codex 發出的請求攔截下來，按目標 API 的要求重新組裝，再轉發出去；拿到回應後，再還原成 Codex 能理解的格式傳回去。&lt;/p&gt;
+&lt;p&gt;既然如此，我們完全可以用同樣的思路，自己搭一個&lt;strong&gt;本機中轉腳本&lt;/strong&gt;，把 DeepSeek 的 API 對接上。&lt;/p&gt;
+&lt;h2 id=&#34;整體架構&#34;&gt;整體架構
+&lt;/h2&gt;&lt;p&gt;整個方案的鏈路是這樣的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Codex 客戶端
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CC Switch（模型配置層）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;本機中轉腳本（協議轉換層）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DeepSeek 官方 API
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;三個關鍵組件各司其職：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;組件&lt;/th&gt;
+          &lt;th&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;開源模型切換工具，負責在 Codex 中注入自定義模型配置&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;中轉腳本&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;本機執行的代理服務，負責請求格式的雙向轉換&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;DeepSeek API&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;最終回應用戶請求的模型服務&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;實操步驟&#34;&gt;實操步驟
+&lt;/h2&gt;&lt;h3 id=&#34;第一步準備工具&#34;&gt;第一步：準備工具
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;：開源工具，微軟商店或 GitHub 都能下載&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex&lt;/strong&gt;：你已經在用的 IDE&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中轉腳本&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt;，一鍵將第三方 API 轉為 Codex 相容格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;第二步配置-cc-switch&#34;&gt;第二步：配置 CC Switch
+&lt;/h3&gt;&lt;p&gt;開啟 CC Switch，找到 Codex / OpenAI Codex 的配置項，點擊加號新建一個自定義配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;請求地址&lt;/strong&gt;：填本機中轉腳本的地址，例如 &lt;code&gt;http://localhost:&amp;lt;連接埠&amp;gt;/v1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型名稱&lt;/strong&gt;：填你想用的 DeepSeek 模型，比如 &lt;code&gt;deepseek-v4-pro&lt;/code&gt; 或 &lt;code&gt;deepseek-v4-fast&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API Key&lt;/strong&gt;：填固定佔位符即可（中轉腳本裡已內建你的真實 API Key）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;關鍵點&lt;/strong&gt;：這裡的請求地址&lt;strong&gt;不能&lt;/strong&gt;填 DeepSeek 官方地址。因為 Codex 發出的請求路徑格式是固定的，直接對接官方 API 會因格式不匹配而報錯。必須讓請求先經過中轉腳本。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;儲存配置。&lt;/p&gt;
+&lt;h3 id=&#34;第三步啟動中轉腳本&#34;&gt;第三步：啟動中轉腳本
+&lt;/h3&gt;&lt;p&gt;執行腳本，它會先做鏈路驗證，確認你的 API Key 有效、網路通暢。驗證通過後，腳本會在本機啟動一個代理服務，開始監聽 Codex 發來的請求。&lt;/p&gt;
+&lt;h3 id=&#34;第四步在-codex-中切換模型&#34;&gt;第四步：在 Codex 中切換模型
+&lt;/h3&gt;&lt;p&gt;開啟 Codex，在模型選擇列表中找到 CC Switch 注入的自定義配置（名稱就是你在第二步設定的），選中它。&lt;/p&gt;
+&lt;p&gt;然後隨便發一句話測試——如果一切正常，DeepSeek V4 的回覆就會出現在你面前。&lt;/p&gt;
+&lt;h2 id=&#34;中轉腳本做了什麼&#34;&gt;中轉腳本做了什麼？
+&lt;/h2&gt;&lt;p&gt;核心邏輯其實很簡單：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;接收&lt;/strong&gt; Codex 按固定格式發來的請求&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;解析&lt;/strong&gt;出其中的 messages、model、parameters 等有效欄位&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重組&lt;/strong&gt;成 DeepSeek 官方 API 要求的請求體格式&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;轉發&lt;/strong&gt;到 DeepSeek 伺服器，帶上你的真實 API Key&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;還原&lt;/strong&gt;回應為 Codex 能解析的格式，返回給客戶端&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本質上就是一個&lt;strong&gt;協定轉換層&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;為什麼不能直接改-codex-的請求路徑&#34;&gt;為什麼不能直接改 Codex 的請求路徑？
+&lt;/h2&gt;&lt;p&gt;很多人的第一反應是：&amp;ldquo;那我直接找到 Codex 裡定義請求路徑的地方，改成 DeepSeek 的格式不就行了？&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;確實不行。影片作者也提到試了很多次——改 chat、改 v1、改各種路徑，Codex 全都會報錯。因為 Codex 的請求格式是寫死在內部邏輯裡的，擅自修改會破壞整個通訊流程。與其和 Codex 的內部機制較勁，不如在外面加一層適配來得乾淨俐落。&lt;/p&gt;
+&lt;h2 id=&#34;總結&#34;&gt;總結
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;方案對比&lt;/th&gt;
+          &lt;th&gt;直接改地址&lt;/th&gt;
+          &lt;th&gt;中轉腳本&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;能否跑通&lt;/td&gt;
+          &lt;td&gt;❌ 報錯&lt;/td&gt;
+          &lt;td&gt;✅ 正常&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;實現成本&lt;/td&gt;
+          &lt;td&gt;低（改一行配置）&lt;/td&gt;
+          &lt;td&gt;中（多跑一個腳本）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;可維護性&lt;/td&gt;
+          &lt;td&gt;差（Codex 一更新可能就廢）&lt;/td&gt;
+          &lt;td&gt;好（解耦，不依賴 Codex 內部實現）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;擴充性&lt;/td&gt;
+          &lt;td&gt;無&lt;/td&gt;
+          &lt;td&gt;高（稍改腳本就能接入更多模型）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;這個方案的思路其實很通用——&lt;strong&gt;不只是在 Codex 上用 DeepSeek，任何有類似格式不相容問題的場景，都可以透過本機中轉層來解決&lt;/strong&gt;。CC Switch 負責注入配置，中轉腳本負責協定轉換，兩者配合就能把各種第三方模型接入 Codex。&lt;/p&gt;
+&lt;p&gt;中轉腳本已開源在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt;，歡迎 Star 和 PR，一起完善更多模型的適配。&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;參考來源&lt;/strong&gt;：B 站影片 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1euRbB3E33/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;codex接入國產大模型教程&lt;/a&gt; by 王了小王（2026-05-06）&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

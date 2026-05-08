@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="OpenCode のキラー機能をマスター：Session 並行、Ultra Work マルチエージェント、Timeline ロールバック、Ralph Loop ループで AI プログラミング効率を倍増。">
+<title>OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド</title>
+
+<link rel='canonical' href='https://Siborne.top/ja/p/opencode-parallel-workflow-tips/'>
+
+<link rel="stylesheet" href="/scss/style.min.266c2d3f4822631b105b97664a103c3737ee3a439c2ce01b7142501e9591e1df.css"><meta property='og:title' content="OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド">
+<meta property='og:description' content="OpenCode のキラー機能をマスター：Session 並行、Ultra Work マルチエージェント、Timeline ロールバック、Ralph Loop ループで AI プログラミング効率を倍増。">
+<meta property='og:url' content='https://Siborne.top/ja/p/opencode-parallel-workflow-tips/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AIプログラミング' /><meta property='article:tag' content='OpenCode' /><meta property='article:tag' content='活用テクニック' /><meta property='article:tag' content='初心者チュートリアル' /><meta property='article:published_time' content='2026-05-07T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-08T23:07:31&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/opencode-parallel-workflow-tips/bannerImage.png' />
+<meta name="twitter:title" content="OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド">
+<meta name="twitter:description" content="OpenCode のキラー機能をマスター：Session 並行、Ultra Work マルチエージェント、Timeline ロールバック、Ralph Loop ループで AI プログラミング効率を倍増。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.top/p/opencode-parallel-workflow-tips/bannerImage.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="メニューを開く・閉じる">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/ja/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/ja">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; 愛好家
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent アーキテクト &amp; フルスタック開発者
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 好奇心旺盛な学生 · 未来のビルダー
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    インテリジェントエージェント＋スケーラブルアプリを構築。創造性とAI効率の融合。🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/ja/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>ホーム</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>プロフィール | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>アーカイブ | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>検索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>テックリンク | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" >繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" selected>日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>ダークモード</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目次</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#核心ポイント概要">核心ポイント概要</a></li>
+    <li><a href="#一session-並行ai-に同時に複数の作業をさせる">一、Session 並行：AI に同時に複数の作業をさせる</a>
+      <ol>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#実践シナリオ">実践シナリオ</a></li>
+        <li><a href="#注意事項">注意事項</a></li>
+      </ol>
+    </li>
+    <li><a href="#二ultra-workワンクリックで-ai-プログラミングチームを召喚">二、Ultra Work：ワンクリックで AI プログラミングチームを召喚</a>
+      <ol>
+        <li><a href="#トリガー方法">トリガー方法</a></li>
+        <li><a href="#動作原理">動作原理</a></li>
+        <li><a href="#いつ使うべき">いつ使うべき？</a></li>
+        <li><a href="#実際の効果">実際の効果</a></li>
+      </ol>
+    </li>
+    <li><a href="#三-でエージェント指定プロにプロの仕事を">三、@ でエージェント指定：プロにプロの仕事を</a>
+      <ol>
+        <li><a href="#エージェント能力表">エージェント能力表</a></li>
+        <li><a href="#使用例">使用例</a></li>
+        <li><a href="#メインエージェントの切り替え">メインエージェントの切り替え</a></li>
+      </ol>
+    </li>
+    <li><a href="#四timeline-タイムマシン自由に試行錯誤いつでもロールバック">四、Timeline タイムマシン：自由に試行錯誤、いつでもロールバック</a>
+      <ol>
+        <li><a href="#基本的な使い方">基本的な使い方</a></li>
+        <li><a href="#実践シナリオ-1">実践シナリオ</a></li>
+        <li><a href="#コツ">コツ</a></li>
+      </ol>
+    </li>
+    <li><a href="#五ralph-loopai-に最後までやり抜かせる">五、Ralph Loop：AI に最後までやり抜かせる</a>
+      <ol>
+        <li><a href="#適用シナリオ">適用シナリオ</a></li>
+        <li><a href="#ultra-work-との違い">Ultra Work との違い</a></li>
+      </ol>
+    </li>
+    <li><a href="#六日常の効率化テクニック">六、日常の効率化テクニック</a>
+      <ol>
+        <li><a href="#1-compact-を活用してコンテキストを節約">1. <code>/compact</code> を活用してコンテキストを節約</a></li>
+        <li><a href="#2-init-で-ai-を新規プロジェクトに素早く適応させる">2. <code>/init</code> で AI を新規プロジェクトに素早く適応させる</a></li>
+        <li><a href="#3-share-でプログラミングの過程を共有">3. Share でプログラミングの過程を共有</a></li>
+        <li><a href="#4-利用可能なモデルを確認">4. 利用可能なモデルを確認</a></li>
+        <li><a href="#5-クイックコード貼り付けvs-code-プラグイン">5. クイックコード貼り付け（VS Code プラグイン）</a></li>
+      </ol>
+    </li>
+    <li><a href="#七初心者推奨ワークフロー">七、初心者推奨ワークフロー</a>
+      <ol>
+        <li><a href="#一言まとめ">一言まとめ</a></li>
+      </ol>
+    </li>
+    <li><a href="#八実例">八、実例</a></li>
+    <li><a href="#参考ソース">参考ソース</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/ja/p/opencode-parallel-workflow-tips/">
+                <img src="/p/opencode-parallel-workflow-tips/bannerImage_hu_29eeb452e2472ec8.png"
+                        srcset="/p/opencode-parallel-workflow-tips/bannerImage_hu_29eeb452e2472ec8.png 800w, /p/opencode-parallel-workflow-tips/bannerImage_hu_a6869ccc67cfc5ce.png 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/ja/p/opencode-parallel-workflow-tips/">OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-07T00:00:00Z'>2026-05-07</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 08, 2026 23:07 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                4739字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        OpenCode のキラー機能をマスター：Session 並行、Ultra Work マルチエージェント、Timeline ロールバック、Ralph Loop ループで AI プログラミング効率を倍増。
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/ja/categories/ai/" >
+                AI
+            </a>
+        
+            <a href="/ja/categories/computer-tools/" >
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/opencode-parallel-workflow-tips/" class="link">简体中文</a>
+                
+                    <a href="https://Siborne.top/en/p/opencode-parallel-workflow-tips/" class="link">English</a>
+                
+                    <a href="https://Siborne.top/zh-tw/p/opencode-parallel-workflow-tips/" class="link">繁體中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="核心ポイント概要">核心ポイント概要
+</h2><ul>
+<li><strong>Session 並行</strong>：OpenCode のキラー機能。複数タスクを同時実行し、互いに干渉せず、効率倍増。</li>
+<li><strong>Ultra Work モード</strong>：<code>ULW</code> と入力するだけで、メインエージェントが自動でタスクを分解し、複数のサブエージェントを並行稼働。</li>
+<li><strong>@ でエージェント指定</strong>：フロントエンドが得意なエージェントにフロントエンドを、アーキテクチャが得意なエージェントにレビューを任せ、適材適所。</li>
+<li><strong>Timeline タイムマシン</strong>：任意の履歴ポイントにいつでもロールバック可能。大胆に試行錯誤してゼロコスト。</li>
+<li><strong>Ralph Loop</strong>：AI に数時間ループ作業させ、超難関タスクに挑む。</li>
+</ul>
+<h2 id="一session-並行ai-に同時に複数の作業をさせる">一、Session 並行：AI に同時に複数の作業をさせる
+</h2><p>これは OpenCode が他の AI プログラミングツールと比較して<strong>最大の差別化優位性</strong>です。従来のツールは逐次処理のみ——1つのタスクが完了しないと次に進めません。OpenCode は複数の Session を同時に開き、互いに干渉しません。</p>
+<h3 id="基本操作">基本操作
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 現在タスク A を実行中に、同時にタスク B を起動したい</span>
+</span></span><span class="line"><span class="cl">/new                          <span class="c1"># 新規 Session を作成</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 新しい Session でタスク B の要件を入力</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2つの Session が同時にバックグラウンドで実行される</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># すべての Session の状態を確認</span>
+</span></span><span class="line"><span class="cl">/sessions                     <span class="c1"># 回転記号 = 実行中</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定した Session に切り替え</span>
+</span></span><span class="line"><span class="cl">/session &lt;id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 前の Session に戻る</span>
+</span></span><span class="line"><span class="cl">/session prev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="実践シナリオ">実践シナリオ
+</h3><p>「お絵かき当て」ミニゲームを開発していると仮定し、2つの独立した要件があります：</p>
+<blockquote>
+<p><strong>要件 A</strong>：タイマーを追加。最初の描画でタイマー開始、20秒超過でゲーム失敗
+<strong>要件 B</strong>：描画色を調整可能にする</p>
+</blockquote>
+<p><strong>従来の方法</strong>：A を先に完了させ、その後 B → 要件 B は 5〜10 分無駄に待機。</p>
+<p><strong>OpenCode の方法</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 要件 A を入力、AI が作業開始
+</span></span><span class="line"><span class="cl">2. /new と入力し、新規 Session を作成
+</span></span><span class="line"><span class="cl">3. 要件 B を入力、AI が作業開始
+</span></span><span class="line"><span class="cl">4. /sessions で進捗確認、両方とも実行中 ↓
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Session 1  ◐  タイマーロジックを追加中...
+</span></span><span class="line"><span class="cl">Session 2  ◐  カラーピッカーを追加中...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2つの要件を完全に並行開発、合計所要時間を15分から8分に短縮。</p>
+<h3 id="注意事項">注意事項
+</h3><ul>
+<li>Session 間は<strong>完全に隔離</strong>されており、同一ファイルの変更は競合の可能性あり。異なるモジュールへの割り当てを推奨。</li>
+<li>バックグラウンド Session は完了を自動通知しないため、手動で <code>/sessions</code> 確認が必要。</li>
+<li>いつでも <code>/new</code> で3つ目、4つ目……を起動可能。数に制限なし。</li>
+</ul>
+<h2 id="二ultra-workワンクリックで-ai-プログラミングチームを召喚">二、Ultra Work：ワンクリックで AI プログラミングチームを召喚
+</h2><p>Session 並行が「マニュアル車」なら、Ultra Work は「完全自動運転」です。魔法の言葉を入力するだけで、AI が自動でタスクを分解し、最適なエージェントに割り当て、並行実行します。</p>
+<h3 id="トリガー方法">トリガー方法
+</h3><p>プロンプトに以下のいずれかのキーワードを含めます：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ULW
+</span></span><span class="line"><span class="cl">ultrawork
+</span></span><span class="line"><span class="cl">Ultra Work
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="動作原理">動作原理
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">あなたの要件：ペットショップのウェブサイトを作って
+</span></span><span class="line"><span class="cl">        │
+</span></span><span class="line"><span class="cl">        ▼
+</span></span><span class="line"><span class="cl">  ┌─────────────────────────────┐
+</span></span><span class="line"><span class="cl">  │  シーシュポス（メインエージェント）  │
+</span></span><span class="line"><span class="cl">  │  1. タスク分解 → Todo List     │
+</span></span><span class="line"><span class="cl">  │  2. サブタスクを割り当て        │
+</span></span><span class="line"><span class="cl">  └──────┬──────────┬───────────┘
+</span></span><span class="line"><span class="cl">         │          │
+</span></span><span class="line"><span class="cl">    ┌────▼───┐ ┌───▼────┐ ┌────────▼────┐
+</span></span><span class="line"><span class="cl">    │ 預言者  │ │ フロント │ │ ドキュメント │
+</span></span><span class="line"><span class="cl">    │ アーキ設計 │ │ UI 開発 │ │ README 作成  │
+</span></span><span class="line"><span class="cl">    └────────┘ └────────┘ └─────────────┘
+</span></span><span class="line"><span class="cl">         │          │            │
+</span></span><span class="line"><span class="cl">         └──────────┴────────────┘
+</span></span><span class="line"><span class="cl">                    │
+</span></span><span class="line"><span class="cl">                    ▼
+</span></span><span class="line"><span class="cl">              完全なプロジェクト納品
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="いつ使うべき">いつ使うべき？
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>シナリオ</th>
+          <th>適性</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ゼロからプロジェクト作成</td>
+          <td>✅ 最適</td>
+          <td>フロント・バック・ドキュメントを自動分割</td>
+      </tr>
+      <tr>
+          <td>マルチモジュール並行開発</td>
+          <td>✅ 最適</td>
+          <td>各エージェントの役割が明確</td>
+      </tr>
+      <tr>
+          <td>単一ファイルの小修正</td>
+          <td>❌ 非推奨</td>
+          <td>鶏を割くに牛刀を用いる、むしろ遅くなる</td>
+      </tr>
+      <tr>
+          <td>簡単なバグ修正</td>
+          <td>❌ 非推奨</td>
+          <td>通常の会話の方が速い</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>💡 <strong>経験則</strong>：複雑さが高いほど Ultra Work の価値は大きい。簡単なタスクはスケジューリングのオーバーヘッドでむしろ遅くなる。</p>
+</blockquote>
+<h3 id="実際の効果">実際の効果
+</h3><p>Ultra Work モードでペットショップサイトを作成：</p>
+<ul>
+<li>自動で Todo List を分解</li>
+<li>3つのバックグラウンドタスクを同時に並行実行</li>
+<li>画像素材が一切ない状態で、emoji を装飾として使用</li>
+<li>インターフェースは爽やか、インタラクションはスムーズ、アニメーションは完全</li>
+</ul>
+<h2 id="三-でエージェント指定プロにプロの仕事を">三、@ でエージェント指定：プロにプロの仕事を
+</h2><p>Oh My OpenAgent（OMO）をインストールすると、AI プログラミングチームが手に入ります。<code>@</code> で特定のエージェントを指名して作業させることができます。</p>
+<h3 id="エージェント能力表">エージェント能力表
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>エージェント</th>
+          <th>得意分野</th>
+          <th>最適モデル</th>
+          <th>使用例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>シーシュポス</strong></td>
+          <td>統括計画、タスク管理</td>
+          <td>Claude Opus</td>
+          <td>複雑な多段階タスク</td>
+      </tr>
+      <tr>
+          <td><strong>預言者</strong></td>
+          <td>アーキテクチャ設計、コードレビュー</td>
+          <td>GPT 5.5</td>
+          <td>プロジェクト構造設計</td>
+      </tr>
+      <tr>
+          <td><strong>フロントエンドエンジニア</strong></td>
+          <td>UI 開発、ページレイアウト</td>
+          <td>Gemini 3 Pro</td>
+          <td>レスポンシブレイアウト最適化</td>
+      </tr>
+      <tr>
+          <td><strong>探索者</strong></td>
+          <td>Web 検索、資料調査</td>
+          <td>MiniMax</td>
+          <td>最新 API ドキュメント検索</td>
+      </tr>
+      <tr>
+          <td><strong>司書</strong></td>
+          <td>文献調査、ドキュメント検索</td>
+          <td>—</td>
+          <td>オープンソースプロジェクトのソース解析</td>
+      </tr>
+      <tr>
+          <td><strong>ドキュメント作成者</strong></td>
+          <td>README、コメント生成</td>
+          <td>—</td>
+          <td>プロジェクトドキュメント生成</td>
+      </tr>
+      <tr>
+          <td><strong>マルチモーダル</strong></td>
+          <td>画像/PDF 理解</td>
+          <td>—</td>
+          <td>デザイン稿からのコーディング</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="使用例">使用例
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@フロントエンドエンジニア このログインページをレスポンシブレイアウトに変更して、モバイルでも見やすく
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@預言者 src/service/ ディレクトリのコードをレビューして、潜在的なパフォーマンス問題を見つけて
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@探索者 React 19 の Server Components の最新の使い方を調べて
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@ドキュメント作成者 プロジェクト全体の API ドキュメントを生成して
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="メインエージェントの切り替え">メインエージェントの切り替え
+</h3><p><strong>Tab</strong> キーを押すと現在の会話のメインエージェントを切り替えられます。特定の役割を長時間使用する場合に便利です。</p>
+<h2 id="四timeline-タイムマシン自由に試行錯誤いつでもロールバック">四、Timeline タイムマシン：自由に試行錯誤、いつでもロールバック
+</h2><p>プログラミングで一番怖いのは？大量のコードを変更した後、方向性が間違いだったと気づき、元に戻せないこと。Timeline はあなたの後悔を帳消しにする薬です。</p>
+<h3 id="基本的な使い方">基本的な使い方
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/timeline
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>現在の Session の<strong>各ステップの会話記録</strong>を表示し、任意のノードを選択：</p>
+<ul>
+<li><strong>Revert</strong>：コードとチャット内容をそのノードまで同時にロールバック。何もなかったかのように。</li>
+<li><strong>View</strong>：その時 AI がどのような変更を行ったかを確認。</li>
+</ul>
+<h3 id="実践シナリオ-1">実践シナリオ
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. AI にあるモジュールのリファクタリングを依頼 → 結果が理想的でない
+</span></span><span class="line"><span class="cl">2. /timeline → リファクタリング前のノードを選択 → Revert
+</span></span><span class="line"><span class="cl">3. コードがリファクタリング前に戻り、別のアプローチで再挑戦
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="コツ">コツ
+</h3><ul>
+<li>段階的なタスクが完了したら、そのノード（何回目の会話か）を心に留めておく</li>
+<li>大胆にラジカルな案を試す——どうせワンクリックで戻せる</li>
+<li>2つの案を比較：案 A に Revert → 効果を確認 → 案 B に Revert → 比較</li>
+</ul>
+<blockquote>
+<p>🕐 これはプログラミング版の「セーブ/ロード」。あらゆる可能性を探求する勇気を与えてくれます。</p>
+</blockquote>
+<h2 id="五ralph-loopai-に最後までやり抜かせる">五、Ralph Loop：AI に最後までやり抜かせる
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/ralph-loop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>このモードは AI を<strong>継続的にループ作業</strong>させ、タスクが本当に完了するまで続けます。繰り返しのイテレーションが必要な難題に適しています。</p>
+<h3 id="適用シナリオ">適用シナリオ
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;Spring Boot 4 の最新標準でプロジェクト全体をリファクタリングし、すべてのテストケースがパスするまで&#34;
+</span></span><span class="line"><span class="cl">&#34;src/ 以下のすべてのファイルのコード規約を1つずつチェックし、違反項目をすべて修正&#34;
+</span></span><span class="line"><span class="cl">&#34;カバレッジが90%に達するまで、プロジェクトに完全なユニットテストを追加&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ultra-work-との違い">Ultra Work との違い
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Ultra Work</th>
+          <th>Ralph Loop</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>動作メカニズム</td>
+          <td>並行分割、マルチエージェント連携</td>
+          <td>逐次ループ、継続的イテレーション</td>
+      </tr>
+      <tr>
+          <td>適性</td>
+          <td>ゼロからの構築、マルチモジュール</td>
+          <td>リファクタリング、修正、目標達成型</td>
+      </tr>
+      <tr>
+          <td>所要時間</td>
+          <td>数分〜十数分</td>
+          <td>数時間の可能性</td>
+      </tr>
+      <tr>
+          <td>終了点</td>
+          <td>タスク分割の完了</td>
+          <td>終了条件の満足</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>⚠️ Ralph Loop は長時間実行される可能性があるため、API 利用枠の消費に注意。</p>
+</blockquote>
+<h2 id="六日常の効率化テクニック">六、日常の効率化テクニック
+</h2><h3 id="1-compact-を活用してコンテキストを節約">1. <code>/compact</code> を活用してコンテキストを節約
+</h3><p>AI と何度も会話してコンテキストウィンドウがほぼ満杯になったとき：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/compact
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>AI は過去の会話を要約に凝縮し、スペースを解放して作業を継続します。新しい会話を始めてコンテキストを失う必要はありません。</p>
+<h3 id="2-init-で-ai-を新規プロジェクトに素早く適応させる">2. <code>/init</code> で AI を新規プロジェクトに素早く適応させる
+</h3><p>新しいプロジェクトに入ったら、まず AI にコードを一通り読ませます：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/init
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>AI がプロジェクト全体をスキャンし、システムプロンプトとして <code>agents.md</code> を生成します。以降のすべての会話はこの理解に基づき、効率が大幅に向上します。</p>
+<h3 id="3-share-でプログラミングの過程を共有">3. Share でプログラミングの過程を共有
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/share      <span class="c1"># 共有リンクを生成。完全な会話とコード変更を表示</span>
+</span></span><span class="line"><span class="cl">/unshare    <span class="c1"># 共有を解除。リンクが無効に</span>
+</span></span><span class="line"><span class="cl">/export     <span class="c1"># 会話記録をファイルにエクスポート</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>適したシーン：</p>
+<ul>
+<li>AI を使ってどのように問題を解決したかを同僚に見せる</li>
+<li>トラブルシューティングの過程を記録し、チームの参考に</li>
+<li>ブログ執筆の素材として</li>
+</ul>
+<h3 id="4-利用可能なモデルを確認">4. 利用可能なモデルを確認
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/models
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>free</code> マーク付きは無料モデル。GLM-4.7 と MiniMax-2.1 はプログラミング能力が高く、軽量タスクに適しています。</p>
+<h3 id="5-クイックコード貼り付けvs-code-プラグイン">5. クイックコード貼り付け（VS Code プラグイン）
+</h3><p>VS Code でコードスニペットを選択 → <code>Ctrl + Alt + K</code> → OpenCode のダイアログに直接貼り付け。</p>
+<blockquote>
+<p>コピー＆ペーストの切り替えコストを省き、フロー状態を維持。</p>
+</blockquote>
+<h2 id="七初心者推奨ワークフロー">七、初心者推奨ワークフロー
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│                 新しい要件を取得               │
+</span></span><span class="line"><span class="cl">└──────────────────┬──────────────────────────┘
+</span></span><span class="line"><span class="cl">                   │
+</span></span><span class="line"><span class="cl">                   ▼
+</span></span><span class="line"><span class="cl">          ┌────────────────┐
+</span></span><span class="line"><span class="cl">          │ シンプル？       │
+</span></span><span class="line"><span class="cl">          └───┬────────┬───┘
+</span></span><span class="line"><span class="cl">              │ はい    │ いいえ（複雑/マルチモジュール）
+</span></span><span class="line"><span class="cl">              ▼         ▼
+</span></span><span class="line"><span class="cl">    ┌─────────────┐  ┌─────────────────┐
+</span></span><span class="line"><span class="cl">    │ 通常の会話で  │  │ ULW を入力して    │
+</span></span><span class="line"><span class="cl">    │ 対応         │  │ Ultra Work 起動  │
+</span></span><span class="line"><span class="cl">    └─────────────┘  └────────┬────────┘
+</span></span><span class="line"><span class="cl">                              │
+</span></span><span class="line"><span class="cl">                   ┌──────────▼──────────┐
+</span></span><span class="line"><span class="cl">                   │ 複数の独立したサブタスク？ │
+</span></span><span class="line"><span class="cl">                   └───┬──────────┬──────┘
+</span></span><span class="line"><span class="cl">                       │ はい      │ いいえ
+</span></span><span class="line"><span class="cl">                       ▼           ▼
+</span></span><span class="line"><span class="cl">              ┌─────────────┐ ┌──────────────┐
+</span></span><span class="line"><span class="cl">              │ /new で複数の  │ │ Ultra Work の  │
+</span></span><span class="line"><span class="cl">              │ Session 並行   │ │ 自動完了を待つ  │
+</span></span><span class="line"><span class="cl">              └──────┬──────┘ └──────────────┘
+</span></span><span class="line"><span class="cl">                     │
+</span></span><span class="line"><span class="cl">                     ▼
+</span></span><span class="line"><span class="cl">              ┌─────────────┐
+</span></span><span class="line"><span class="cl">              │ /sessions    │
+</span></span><span class="line"><span class="cl">              │ 全進捗を確認   │
+</span></span><span class="line"><span class="cl">              └──────┬──────┘
+</span></span><span class="line"><span class="cl">                     │
+</span></span><span class="line"><span class="cl">                     ▼
+</span></span><span class="line"><span class="cl">              ┌─────────────┐
+</span></span><span class="line"><span class="cl">              │ 方向性が間違い？│
+</span></span><span class="line"><span class="cl">              └───┬─────────┘
+</span></span><span class="line"><span class="cl">                  │
+</span></span><span class="line"><span class="cl">                  ▼
+</span></span><span class="line"><span class="cl">              ┌─────────────┐
+</span></span><span class="line"><span class="cl">              │ /timeline →  │
+</span></span><span class="line"><span class="cl">              │ Revert で戻す │
+</span></span><span class="line"><span class="cl">              └─────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="一言まとめ">一言まとめ
+</h3><blockquote>
+<p><strong>小さな作業は直接会話、大きな作業は ULW、並行は Session、間違えたら Timeline でロールバック、粘り強くやるなら Ralph Loop。</strong></p>
+</blockquote>
+<h2 id="八実例">八、実例
+</h2><p>Oh My OpenAgent のインストール完了後、Agent モデル設定を調整——GitHub Copilot をメインに、無料の OpenCode Zen をバックアップにしたい場合。</p>
+<p>OpenCode の会話で直接こう言います：</p>
+<blockquote>
+<p>&ldquo;実はあなたの無料のOpenCode Zenもあるけど、もうGitHub Copilotにログインしてるから、修正してくれる？&rdquo;</p>
+</blockquote>
+<p>AI は最初、OpenCode Zen をメインに設定しました——主従関係が明確でなかったためです。修正後：</p>
+<blockquote>
+<p>&ldquo;違う、GitHub Copilotをメインにして、OpenCode Zen付属の無料モデルをバックアップにして&rdquo;</p>
+</blockquote>
+<p>AI は即座に修正し、<code>oh-my-openagent.json</code> を更新。すべての Agent が <code>github-copilot/*</code> をメイン、<code>opencode/*</code> をフォールバックとして設定されました。</p>
+<blockquote>
+<p>💡 <strong>教訓</strong>：AI に要件を伝えるときは、<strong>主従関係を必ず明確に</strong>伝えること。</p>
+</blockquote>
+<h2 id="参考ソース">参考ソース
+</h2><ul>
+<li>実践記録：<a class="link" href="../opencode-complete-guide/" >OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法</a></li>
+<li>Oh My OpenAgent：<a class="link" href="https://github.com/code-yeongyu/oh-my-openagent"  target="_blank" rel="noopener"
+    >GitHub</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最終更新  08, 2026 23:07 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">関連するコンテンツ</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/ja/p/opencode-complete-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-complete-guide/bannerImage.430dc322b9886fa8cc959ee1ab477e13_hu_1d30bf55534d1276.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法"
+                        data-key="opencode-complete-guide" 
+                        data-hash="md5-Qw3DIrmIb6jMlZ7hq0d&#43;Ew==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/codex-app-complete-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/codex-app-complete-guide/bannerImage.ef543fe1780e2b00988447209e377f4c_hu_9e22e6c2596537c4.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Codex APP 完全ガイド：インストールから自動化まで徹底解説"
+                        data-key="codex-app-complete-guide" 
+                        data-hash="md5-71Q/4XgOKwCYhEcgnjd/TA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex APP 完全ガイド：インストールから自動化まで徹底解説</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/codex-deepseek-v4-proxy/">
+        
+        
+            <div class="article-image">
+                <img src="/p/codex-deepseek-v4-proxy/bannerImage.dde3a847822c933bba6a28d3918f36c0_hu_c5885f228c0804b1.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決"
+                        data-key="codex-deepseek-v4-proxy" 
+                        data-hash="md5-3eOoR4Iskzu6aijTkY82wA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/claude-code-deepseek-setup/">
+        
+        
+            <div class="article-image">
+                <img src="/p/claude-code-deepseek-setup/bannerImage.893eeb27eb74b1d32493c69de860e065_hu_3892b4af2012730d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 5分で Claude Code をインストールして DeepSeek に接続する"
+                        data-key="claude-code-deepseek-setup" 
+                        data-hash="md5-iT7rJ&#43;t0sdMkk8ad6GDgZQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">5分で Claude Code をインストールして DeepSeek に接続する</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/git-ssh-large-repo/">
+        
+        
+            <div class="article-image">
+                <img src="/p/git-ssh-large-repo/bannerImage.bad96621d05306c2405fa84ab5fa9341_hu_71b1a55a0f0d4c94.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 技術トラブル記録：Git 大規模リポジトリのクローン時のネットワーク切断と SSH による解決策"
+                        data-key="git-ssh-large-repo" 
+                        data-hash="md5-utlmIdBTBsJAX6hKtfqTQQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">技術トラブル記録：Git 大規模リポジトリのクローン時のネットワーク切断と SSH による解決策</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> で構築されています。 <br />
+        テーマ <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> は <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> によって設計されています。
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.5e6aeaaebb97d6a9e08e7d3b4bbe4dc3ce7ea0b2c7d2eed416957bcf6cbbd170.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<script defer src="https://cn.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 170px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.16) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.16) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(245, 245, 250, 0) 0%, rgba(245, 245, 250, 0.72) 100%);
+}
+
+html.at-page-bottom body::after {
+  opacity: 1;
+}
+
+html[data-scheme="dark"] body::after {
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.12) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.1) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(8, 12, 20, 0) 0%, rgba(8, 12, 20, 0.68) 100%);
+}
+</style>
+
+    </body>
+</html>

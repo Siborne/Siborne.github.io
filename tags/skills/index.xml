@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Skills on Siborne</title>
+        <link>https://Siborne.top/tags/skills/</link>
+        <description>Recent content in Skills on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/tags/skills/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Codex APP 保姆级全攻略：从安装到自动化，一期精通</title>
+        <link>https://Siborne.top/p/codex-app-complete-guide/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/p/codex-app-complete-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-app-complete-guide/bannerImage.png" alt="Featured image of post Codex APP 保姆级全攻略：从安装到自动化，一期精通" /&gt;&lt;h2 id=&#34;核心要点概括&#34;&gt;核心要点概括
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Codex APP&lt;/strong&gt; 是目前最强的 Codex 产品形态，免费额度高、功能全、不封号不限速&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;沙箱机制&lt;/strong&gt;：OS 级安全隔离，默认禁止访问沙箱外文件和联网，三档权限可选&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多项目并行&lt;/strong&gt;：多项目、多对话同时跑，物理隔离互不干扰&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;计划模式&lt;/strong&gt;：先对齐再执行，避免 AI 理解偏差导致大量返工&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Git Worktree&lt;/strong&gt;：分支级并行开发，不同文件夹真正隔离&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills/MCP&lt;/strong&gt;：可复用专业能力包 + 标准化外部工具接入&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;定时自动化&lt;/strong&gt;：插件 + 定时任务 + MEMORY 经验积累，越用越稳&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;为什么选-codex-app&#34;&gt;为什么选 Codex APP？
+&lt;/h2&gt;&lt;p&gt;Codex 有四大产品形态，而 &lt;strong&gt;Codex APP&lt;/strong&gt; 是目前最强的一个。相比 Claude Code：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;额度更高&lt;/strong&gt;，免费账户也能用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;功能更全&lt;/strong&gt;，内置浏览器、画图、插件市场、定时任务&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不会限速、封号、降智&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上手更快&lt;/strong&gt;，安装即用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本文按 12 个章节，逐一拆解 Codex APP 的全部功能。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一安装与初始化&#34;&gt;一、安装与初始化
+&lt;/h2&gt;&lt;h3 id=&#34;准备工作&#34;&gt;准备工作
+&lt;/h3&gt;&lt;p&gt;安装 Codex APP 前需要先装好三件套：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node.js&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VS Code&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安装步骤&#34;&gt;安装步骤
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;前往 &lt;a class=&#34;link&#34; href=&#34;https://openai.com/zh-Hans-CN/codex/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex 官网&lt;/a&gt; 下载安装包（支持 Windows / Mac）&lt;/li&gt;
+&lt;li&gt;一路下一步完成安装&lt;/li&gt;
+&lt;li&gt;启动后选择 &lt;strong&gt;ChatGPT 账户&lt;/strong&gt;登录（免费账户即可）&lt;/li&gt;
+&lt;li&gt;首次进入选择你希望 Codex 处理的工作类型，Codex 会根据选择预装对应插件和 Skills&lt;/li&gt;
+&lt;li&gt;选择主要使用场景：编程 / 日常工作&lt;/li&gt;
+&lt;li&gt;点击初始化沙盒&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Mac vs Windows&lt;/strong&gt;：功能基本一致，唯一差异是 &lt;strong&gt;Computer Use&lt;/strong&gt;（自动操作电脑）目前仅 Mac 支持。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二基础使用&#34;&gt;二、基础使用
+&lt;/h2&gt;&lt;h3 id=&#34;三栏布局&#34;&gt;三栏布局
+&lt;/h3&gt;&lt;p&gt;Codex APP 采用经典三栏布局：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;左侧&lt;/strong&gt;：任务列表（项目 + 对话）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中间&lt;/strong&gt;：对话窗口&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;右侧&lt;/strong&gt;：多功能区域（浏览器、终端、文件树等）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;项目管理&#34;&gt;项目管理
+&lt;/h3&gt;&lt;p&gt;通过「添加新项目 → 使用现有文件夹」把本地文件夹注册为 Codex 项目。每个项目独立管理对话，互不干扰。&lt;/p&gt;
+&lt;h3 id=&#34;并行任务&#34;&gt;并行任务
+&lt;/h3&gt;&lt;p&gt;Codex 支持&lt;strong&gt;多项目、多对话并行执行&lt;/strong&gt;。任务列表中用图标标识状态：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔵 蓝色小点 → 已完成&lt;/li&gt;
+&lt;li&gt;🟢 绿色标签 → 等待批准&lt;/li&gt;
+&lt;li&gt;🔄 转圈图标 → 正在执行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;对话管理&#34;&gt;对话管理
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;新对话&lt;/strong&gt;：&lt;code&gt;Ctrl + N&lt;/code&gt;（Win）/ &lt;code&gt;Cmd + N&lt;/code&gt;（Mac）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;搜索历史&lt;/strong&gt;：&lt;code&gt;Ctrl + G&lt;/code&gt; / &lt;code&gt;Cmd + G&lt;/code&gt;（仅搜索标题，不搜索内容）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;归档/还原&lt;/strong&gt;：点击归档按钮移除对话，在「设置 → 已归档对话」中可还原&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;标题自动生成&lt;/strong&gt;：每个对话标题由 AI 根据内容自动摘要，也可双击重命名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;权限系统沙箱机制&#34;&gt;权限系统：沙箱机制
+&lt;/h3&gt;&lt;p&gt;Codex 的权限系统全部围绕**沙箱（Sandbox）**展开，这是 Harness Engineering 概念的典型工程实现——用操作系统级别的机制，把 AI 的能力约束在可控范围内。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;默认限制：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;限制&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;沙箱内文件&lt;/td&gt;
+          &lt;td&gt;默认&lt;strong&gt;直接读写&lt;/strong&gt;，不需要逐文件审批&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;沙箱外文件&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;禁止访问&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;联网&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;默认禁止&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;这两条硬性限制不是靠模型自觉，而是通过操作系统底层机制实现的（Mac 用 Seatbelt/Sandbox，Windows 有对应机制）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;三个权限档位：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;档位&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+          &lt;th&gt;推荐&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;人工审批&lt;/td&gt;
+          &lt;td&gt;每次提权都需要手动确认&lt;/td&gt;
+          &lt;td&gt;最安全但繁琐&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;自动审查&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;小模型自动审查低风险操作，高风险才人工确认&lt;/td&gt;
+          &lt;td&gt;✅ &lt;strong&gt;推荐&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;完全访问&lt;/td&gt;
+          &lt;td&gt;无视沙箱限制，可执行一切操作&lt;/td&gt;
+          &lt;td&gt;⚠️ 慎用&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当 Codex 需要访问沙箱外文件或联网时，会发起「提权（Escalate）」申请。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;上下文管理&#34;&gt;上下文管理
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;右上角圆圈显示当前上下文使用量&lt;/li&gt;
+&lt;li&gt;超出限制时 Codex &lt;strong&gt;自动压缩&lt;/strong&gt;历史对话&lt;/li&gt;
+&lt;li&gt;也可以输入 &lt;code&gt;/compact&lt;/code&gt; 手动触发压缩&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;经验法则&lt;/strong&gt;：清空 &amp;gt; 压缩。完成一个任务后开新对话，让 AI 注意力集中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;模型选择&#34;&gt;模型选择
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;根据任务复杂度选择思考强度&lt;/li&gt;
+&lt;li&gt;一般用最新模型（如 ChatGPT 5.5）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;快速模式&lt;/strong&gt;：提速 50%，但消耗 2 倍额度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;额度查看&#34;&gt;额度查看
+&lt;/h3&gt;&lt;p&gt;「设置 → 剩余额度」中可以看到两个限额：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5 小时限额&lt;/li&gt;
+&lt;li&gt;周限额&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;任一到达上限即暂停使用，到重置时间后自动恢复。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三画图&#34;&gt;三、画图
+&lt;/h2&gt;&lt;p&gt;Codex 内置 &lt;strong&gt;GPT Image&lt;/strong&gt;（当前最强 AI 生图模型），可以直接在对话中生成图片。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;典型用法：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生成网页配图、轮播图&lt;/li&gt;
+&lt;li&gt;根据截图标注位置生成风格化地图&lt;/li&gt;
+&lt;li&gt;保持多张图片的风格一致性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;steer引导功能&#34;&gt;Steer（引导）功能
+&lt;/h3&gt;&lt;p&gt;当 AI 执行方向跑偏时，不要让它继续错下去。点击对话中的&lt;strong&gt;引导按钮&lt;/strong&gt;（或按 &lt;code&gt;Ctrl + Enter&lt;/code&gt;），中途接管方向盘，纠正 AI 的执行方向。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设置中可选择新指令是「排队」还是「直接引导」，推荐默认排队 + 需要时手动点引导按钮。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四计划模式&#34;&gt;四、计划模式
+&lt;/h2&gt;&lt;p&gt;对于&lt;strong&gt;所有复杂任务&lt;/strong&gt;，建议先开启计划模式（Plan Mode），确保和 AI 对齐颗粒度。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;工作流程：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在对话窗口点击加号 → 开启「计划模式」&lt;/li&gt;
+&lt;li&gt;输入需求，Codex 会先用&lt;strong&gt;问题卡片&lt;/strong&gt;跟你沟通细节&lt;/li&gt;
+&lt;li&gt;Codex 输出完整工作计划&lt;/li&gt;
+&lt;li&gt;你审阅确认后，点击「实施此计划」&lt;/li&gt;
+&lt;li&gt;Codex 执行并自动在右侧打开内置浏览器验证&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;计划模式的价值&lt;/strong&gt;：避免 AI 理解偏差导致大量返工，尤其适合架构迁移、大功能开发等任务。&lt;/p&gt;
+&lt;h3 id=&#34;内置浏览器--批注&#34;&gt;内置浏览器 + 批注
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;右侧多功能区可打开内置浏览器预览项目&lt;/li&gt;
+&lt;li&gt;点击「批注」按钮，选中页面元素添加评论，AI 会据此修改&lt;/li&gt;
+&lt;li&gt;修改过程实时可见&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五代码管理&#34;&gt;五、代码管理
+&lt;/h2&gt;&lt;p&gt;Codex APP 不是传统 IDE，不提供完整代码编辑功能。推荐配合 VS Code 使用。&lt;/p&gt;
+&lt;h3 id=&#34;git-初始化&#34;&gt;Git 初始化
+&lt;/h3&gt;&lt;p&gt;让 Codex 把项目初始化成 Git 仓库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自动创建 &lt;code&gt;.gitignore&lt;/code&gt;，排除不需要的文件&lt;/li&gt;
+&lt;li&gt;初始化完成后右上角出现 Git 相关按钮&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;配合-vs-code&#34;&gt;配合 VS Code
+&lt;/h3&gt;&lt;p&gt;点击右上角 &lt;strong&gt;VS Code 按钮&lt;/strong&gt;一键打开项目，也可以在设置中指定默认 IDE。&lt;/p&gt;
+&lt;h3 id=&#34;github-同步&#34;&gt;GitHub 同步
+&lt;/h3&gt;&lt;p&gt;让 Codex 帮你在 GitHub 创建仓库并推送代码，所有 Git/GitHub 操作都可以用对话完成。&lt;/p&gt;
+&lt;h3 id=&#34;进阶技巧一对话分叉--git-回滚&#34;&gt;进阶技巧一：对话分叉 + Git 回滚
+&lt;/h3&gt;&lt;p&gt;当你后悔某次改动，想「当作无事发生」：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;对话分叉（Fork）&lt;/strong&gt;：在对话中找到改动前的位置，点击分叉按钮 → 派生到本地，得到一个不含改动的对话副本&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;代码回滚&lt;/strong&gt;：在 VS Code 的 Source Control 中复制目标 commit hash，让 Codex 把代码回退到该状态&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;分叉只回滚对话历史，代码需要单独通过 Git 回滚。两者配合实现&lt;strong&gt;对话 + 代码&lt;/strong&gt;的完全回滚。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;进阶技巧二git-worktree&#34;&gt;进阶技巧二：Git Worktree
+&lt;/h3&gt;&lt;p&gt;Worktree 本质是用 Git 创建新分支，并把分支代码复制到独立文件夹，实现&lt;strong&gt;多分支并行开发&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用场景：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;右键项目 → 创建永久工作树（如 &lt;code&gt;customer-rating&lt;/code&gt;、&lt;code&gt;store-info&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;在不同工作树中并行开发不同功能，互不干扰&lt;/li&gt;
+&lt;li&gt;开发完成后，分别合并回主干&lt;/li&gt;
+&lt;li&gt;移除临时工作树&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Worktree 的核心价值：不同分支位于&lt;strong&gt;不同文件夹&lt;/strong&gt;，真正做到物理隔离的并行开发。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六云端运行&#34;&gt;六、云端运行
+&lt;/h2&gt;&lt;p&gt;当手头没有电脑，或想让任务在后台云端运行时：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;：代码已同步到 GitHub。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;操作流程：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;推送本地代码到 GitHub&lt;/li&gt;
+&lt;li&gt;运行模式选择「关联 Codex Web」&lt;/li&gt;
+&lt;li&gt;点击「前往 Cloud」，输入仓库名和需求&lt;/li&gt;
+&lt;li&gt;Codex 初始化云端环境 → 下载代码 → AI 分析 → 完成修改&lt;/li&gt;
+&lt;li&gt;点击「创建拉取请求」→ 代码以 PR 形式提交到 GitHub&lt;/li&gt;
+&lt;li&gt;审核通过后在 GitHub 上 Merge&lt;/li&gt;
+&lt;li&gt;回到本地 &lt;code&gt;Sync Changes&lt;/code&gt; 同步最新代码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;最佳场景&lt;/strong&gt;：出门在外，用手机审批，让 Codex 云端完成任务。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;七记忆系统&#34;&gt;七、记忆系统
+&lt;/h2&gt;&lt;p&gt;每次新对话，AI 对项目的记忆都是空白的。复杂项目需要记忆系统来避免重复交代。&lt;/p&gt;
+&lt;h3 id=&#34;方式一项目级-agentsmd&#34;&gt;方式一：项目级 AGENTS.md
+&lt;/h3&gt;&lt;p&gt;在项目根目录创建 &lt;code&gt;AGENTS.md&lt;/code&gt; 文件，每次对话自动作为上下文注入。&lt;/p&gt;
+&lt;p&gt;可以手写，也可以让 Codex 通读项目后自动生成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;让 Codex 通读当前文件夹，把学到的项目知识保存到 AGENTS.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;方式二全局-agentsmd&#34;&gt;方式二：全局 AGENTS.md
+&lt;/h3&gt;&lt;p&gt;「设置 → 个性化 → 自定义指令」中编辑，对所有项目生效。&lt;/p&gt;
+&lt;p&gt;文件位置：&lt;code&gt;C:\Users\&amp;lt;用户名&amp;gt;\.codex\AGENTS.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实用示例&lt;/strong&gt;——防止误删文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;禁止使用脚本批量删除文件或目录，只能使用 Remove-Item 一个一个删除。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;如果必须批量删除，应停止操作，让用户手动处理。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;实验性功能启用记忆&#34;&gt;实验性功能：启用记忆
+&lt;/h3&gt;&lt;p&gt;设置中的「启用记忆」可以从聊天中自动提取记忆并带入新对话，目前仍是实验性功能。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;八插件与自动化&#34;&gt;八、插件与自动化
+&lt;/h2&gt;&lt;h3 id=&#34;插件市场&#34;&gt;插件市场
+&lt;/h3&gt;&lt;p&gt;左侧边栏 → 插件，分为两类：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;插件&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;第三方服务的能力注入（GitHub、Gmail、Netlify 等）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;技能（Skills）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;带目录的专业能力说明书&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;示例github--gmail-联动&#34;&gt;示例：GitHub + Gmail 联动
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;安装 GitHub 插件和 Gmail 插件&lt;/li&gt;
+&lt;li&gt;授权登录&lt;/li&gt;
+&lt;li&gt;输入：&lt;code&gt;/github 查看我 star 数前十的开源项目&lt;/code&gt; + &lt;code&gt;/gmail 发邮件给我自己做摘要&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;定时自动化&#34;&gt;定时自动化
+&lt;/h3&gt;&lt;p&gt;把上述流程做成定时任务：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;把上述工作做成自动化，每周五下午四点发邮件给我
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;创建后可在「自动化」面板中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;编辑执行频率（每周/每天/每小时）&lt;/li&gt;
+&lt;li&gt;切换模型（简单任务用迷你模型即可）&lt;/li&gt;
+&lt;li&gt;点击「立即运行」测试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;执行过程中积累的经验会写入 &lt;code&gt;MEMORY.md&lt;/code&gt;，帮助下一次执行更稳定。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;更多自动化玩法&#34;&gt;更多自动化玩法
+&lt;/h3&gt;&lt;p&gt;配合浏览器自动化或 Computer Use：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每天汇总 Teams 聊天记录发工作日报&lt;/li&gt;
+&lt;li&gt;定时打开网站签到&lt;/li&gt;
+&lt;li&gt;定期抓取数据生成报告&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;九skills&#34;&gt;九、Skills
+&lt;/h2&gt;&lt;p&gt;Skills 是给 AI Agent 的&lt;strong&gt;专业技能包&lt;/strong&gt;，本质上是带目录的说明书。把工作流、专业能力、规范封装成 Skill，让 Agent 执行特定任务时更稳定高效。&lt;/p&gt;
+&lt;h3 id=&#34;三种安装方式&#34;&gt;三种安装方式
+&lt;/h3&gt;&lt;h4 id=&#34;1-官方-skills&#34;&gt;1. 官方 Skills
+&lt;/h4&gt;&lt;p&gt;插件市场中直接安装。例如 &lt;strong&gt;Remotion&lt;/strong&gt;：让 AI 用编程方式创建动画视频。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/remotion 帮我生成一个 3D 圆锥摆的视频动画，需要有受力分析，角速度随时间缓慢增大
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;2-第三方-skills&#34;&gt;2. 第三方 Skills
+&lt;/h4&gt;&lt;p&gt;从 GitHub 下载后放入项目目录：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;项目文件夹/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  └── .codex/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      └── skills/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          └── 下载的 skill 文件
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后在 Codex 中添加该项目，用斜杠唤起 Skill。&lt;/p&gt;
+&lt;h4 id=&#34;3-自建-skills&#34;&gt;3. 自建 Skills
+&lt;/h4&gt;&lt;p&gt;使用内置的 &lt;strong&gt;Skill Creator&lt;/strong&gt; 技能来创建：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/skill-creator 创建一个 skill：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;当我提供视频和字幕文件时——
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;第一步：读取字幕，转换成 Markdown 笔记，自动添加标点、划分段落，
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       对于涉及代码讲解/UI 交互的内容，在句末添加截图占位标记
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;第二步：调用 ffmpeg 在截图标记位置截图，用本地图片替换占位符
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;编写长 prompt 技巧&lt;/strong&gt;：换行用 &lt;code&gt;Shift + Enter&lt;/code&gt;，不要直接回车（会发送）。&lt;/p&gt;
+&lt;p&gt;创建完成后，后续所有类似任务只需一个斜杠命令。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;十mcp&#34;&gt;十、MCP
+&lt;/h2&gt;&lt;p&gt;MCP（Model Context Protocol）是大模型的&lt;strong&gt;标准化工具箱&lt;/strong&gt;，让 AI 能与外部服务交互。&lt;/p&gt;
+&lt;h3 id=&#34;入口&#34;&gt;入口
+&lt;/h3&gt;&lt;p&gt;「设置 → MCP 服务器 → 添加服务器」&lt;/p&gt;
+&lt;h3 id=&#34;示例supabase-mcp&#34;&gt;示例：Supabase MCP
+&lt;/h3&gt;&lt;p&gt;Supabase 是开源免费的 PostgreSQL 云数据库。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 Supabase 创建项目 → Connect → MCP 客户端 → 选择 Codex → 复制 URL&lt;/li&gt;
+&lt;li&gt;Codex 中添加 MCP 服务器，传输方式选「流式 HTTP」，填入 URL&lt;/li&gt;
+&lt;li&gt;终端运行 &lt;code&gt;codex mcp login supabase&lt;/code&gt; 完成授权&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重启 Codex&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;之后就可以用对话操作数据库：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;使用 Supabase MCP 创建一个预约业务表，
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;用户的表单数据从后端用 connection pool 方式写入
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;十一电脑自动化computer-use&#34;&gt;十一、电脑自动化（Computer Use）
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ 目前仅 Mac 支持&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;安装 Computer Use 插件后，Codex 可以直接操作你的电脑：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;打开聊天软件找到老板发消息&lt;/li&gt;
+&lt;li&gt;打开浏览器查看 GitHub 看板，汇总项目进度&lt;/li&gt;
+&lt;li&gt;生成英文简报发送给老板&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;特点&#34;&gt;特点
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;使用&lt;strong&gt;虚拟鼠标&lt;/strong&gt;后台运行，不占用当前窗口&lt;/li&gt;
+&lt;li&gt;可以编制成&lt;strong&gt;定时自动化任务&lt;/strong&gt;（如每天下午五点自动发简报）&lt;/li&gt;
+&lt;li&gt;Mac 上建议开启「运行时防止系统休眠」&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;十二总结codex-app-能力全景&#34;&gt;十二、总结：Codex APP 能力全景
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;能力&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+          &lt;th&gt;亮点&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;沙箱权限&lt;/td&gt;
+          &lt;td&gt;OS 级安全隔离 + 自动审查&lt;/td&gt;
+          &lt;td&gt;安全与便利兼顾&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;多项目并行&lt;/td&gt;
+          &lt;td&gt;多项目、多对话同时跑&lt;/td&gt;
+          &lt;td&gt;物理隔离，互不干扰&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;画图&lt;/td&gt;
+          &lt;td&gt;GPT Image 内置&lt;/td&gt;
+          &lt;td&gt;风格一致，直接嵌入项目&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;计划模式&lt;/td&gt;
+          &lt;td&gt;先对齐再执行&lt;/td&gt;
+          &lt;td&gt;避免返工&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Git Worktree&lt;/td&gt;
+          &lt;td&gt;分支级并行开发&lt;/td&gt;
+          &lt;td&gt;不同文件夹，真正隔离&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;云端运行&lt;/td&gt;
+          &lt;td&gt;GitHub 联动云端执行&lt;/td&gt;
+          &lt;td&gt;手机审批，随时干活&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;记忆系统&lt;/td&gt;
+          &lt;td&gt;AGENTS.md 项目级 + 全局&lt;/td&gt;
+          &lt;td&gt;告别重复交代&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;定时自动化&lt;/td&gt;
+          &lt;td&gt;插件 + 定时任务 + MEMORY&lt;/td&gt;
+          &lt;td&gt;积累经验，越用越稳&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Skills&lt;/td&gt;
+          &lt;td&gt;可复用专业能力包&lt;/td&gt;
+          &lt;td&gt;官方/第三方/自建&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;MCP&lt;/td&gt;
+          &lt;td&gt;标准化外部工具接入&lt;/td&gt;
+          &lt;td&gt;Supabase、Netlify 等&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Computer Use&lt;/td&gt;
+          &lt;td&gt;自动操作电脑&lt;/td&gt;
+          &lt;td&gt;Mac 专属，后台运行&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;参考来源&lt;/strong&gt;：B 站视频 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1Kk9kBAEJv/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex (APP) 保姆级全攻略&lt;/a&gt; by 技术爬爬虾（2026-04-28）&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

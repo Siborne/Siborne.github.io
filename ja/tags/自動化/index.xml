@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>自動化 on Siborne</title>
+        <link>https://Siborne.top/ja/tags/%E8%87%AA%E5%8B%95%E5%8C%96/</link>
+        <description>Recent content in 自動化 on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ja</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/ja/tags/%E8%87%AA%E5%8B%95%E5%8C%96/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Codex APP 完全ガイド：インストールから自動化まで徹底解説</title>
+        <link>https://Siborne.top/ja/p/codex-app-complete-guide/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/codex-app-complete-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-app-complete-guide/bannerImage.png" alt="Featured image of post Codex APP 完全ガイド：インストールから自動化まで徹底解説" /&gt;&lt;h2 id=&#34;核心ポイント&#34;&gt;核心ポイント
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Codex APP&lt;/strong&gt; は現在最も強力な Codex 製品形態で、無料枠が大きく、機能が充実し、アカウント停止やレート制限なし&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;サンドボックス機構&lt;/strong&gt;：OS レベルのセキュリティ分離、デフォルトでサンドボックス外ファイルとネットワークアクセスを禁止、3段階の権限設定&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;マルチプロジェクト並行&lt;/strong&gt;：複数プロジェクト・複数会話を同時実行、物理的に隔離されて干渉しない&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;プランモード&lt;/strong&gt;：まず認識を合わせてから実行、AI の誤解による手戻りを防止&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Git Worktree&lt;/strong&gt;：ブランチレベルの並行開発、異なるフォルダで真の隔離を実現&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills/MCP&lt;/strong&gt;：再利用可能な専門能力パック + 標準化された外部ツール連携&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;スケジュール自動化&lt;/strong&gt;：プラグイン + 定期タスク + MEMORY 経験蓄積で、使うほど安定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;なぜ-codex-app-を選ぶのか&#34;&gt;なぜ Codex APP を選ぶのか？
+&lt;/h2&gt;&lt;p&gt;Codex には4つの製品形態がありますが、&lt;strong&gt;Codex APP&lt;/strong&gt; は現在最も強力です。Claude Code と比較して：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;より大きな利用枠&lt;/strong&gt;、無料アカウントでも使用可能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;より豊富な機能&lt;/strong&gt;、内蔵ブラウザ、画像生成、プラグインマーケットプレイス、定期タスク&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;レート制限、アカウント停止、性能低下なし&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;より速いオンボーディング&lt;/strong&gt;、インストール後すぐに使用可能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本記事では12のセクションに分けて、Codex APP の全機能を詳しく解説します。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一インストールと初期設定&#34;&gt;一、インストールと初期設定
+&lt;/h2&gt;&lt;h3 id=&#34;準備&#34;&gt;準備
+&lt;/h3&gt;&lt;p&gt;Codex APP をインストールする前に、以下の3つをインストールしてください：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node.js&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VS Code&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;インストール手順&#34;&gt;インストール手順
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://openai.com/zh-Hans-CN/codex/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex 公式サイト&lt;/a&gt; からインストーラーをダウンロード（Windows / Mac 対応）&lt;/li&gt;
+&lt;li&gt;インストーラーの指示に従って進める&lt;/li&gt;
+&lt;li&gt;起動後、&lt;strong&gt;ChatGPT アカウント&lt;/strong&gt;でログイン（無料アカウントで可）&lt;/li&gt;
+&lt;li&gt;初回起動時に Codex に処理させたい作業タイプを選択すると、対応するプラグインと Skills が事前インストールされる&lt;/li&gt;
+&lt;li&gt;主な使用シーンを選択：プログラミング / 日常業務&lt;/li&gt;
+&lt;li&gt;サンドボックスを初期化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Mac vs Windows&lt;/strong&gt;：機能はほぼ同じ。唯一の違いは &lt;strong&gt;Computer Use&lt;/strong&gt;（コンピュータ自動操作）が現在 Mac のみ対応であること。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二基本操作&#34;&gt;二、基本操作
+&lt;/h2&gt;&lt;h3 id=&#34;3カラムレイアウト&#34;&gt;3カラムレイアウト
+&lt;/h3&gt;&lt;p&gt;Codex APP はクラシックな3カラムレイアウトを採用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;左側&lt;/strong&gt;：タスクリスト（プロジェクト + 会話）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中央&lt;/strong&gt;：チャットウィンドウ&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;右側&lt;/strong&gt;：多機能エリア（ブラウザ、ターミナル、ファイルツリーなど）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;プロジェクト管理&#34;&gt;プロジェクト管理
+&lt;/h3&gt;&lt;p&gt;「プロジェクトを追加 → 既存のフォルダを使用」でローカルフォルダを Codex プロジェクトとして登録。各プロジェクトは独立して会話を管理し、互いに干渉しない。&lt;/p&gt;
+&lt;h3 id=&#34;並行タスク&#34;&gt;並行タスク
+&lt;/h3&gt;&lt;p&gt;Codex は&lt;strong&gt;マルチプロジェクト・マルチ会話の並行実行&lt;/strong&gt;をサポート。タスクリストのアイコンで状態を表示：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔵 青い点 → 完了&lt;/li&gt;
+&lt;li&gt;🟢 緑のラベル → 承認待ち&lt;/li&gt;
+&lt;li&gt;🔄 回転アイコン → 実行中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;会話管理&#34;&gt;会話管理
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;新規会話&lt;/strong&gt;：&lt;code&gt;Ctrl + N&lt;/code&gt;（Win）/ &lt;code&gt;Cmd + N&lt;/code&gt;（Mac）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;履歴検索&lt;/strong&gt;：&lt;code&gt;Ctrl + G&lt;/code&gt; / &lt;code&gt;Cmd + G&lt;/code&gt;（タイトルのみ検索、内容は検索しない）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;アーカイブ/復元&lt;/strong&gt;：アーカイブボタンで会話を非表示、「設定 → アーカイブ済み会話」から復元可能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;タイトル自動生成&lt;/strong&gt;：各会話のタイトルは AI が内容に基づいて自動要約、ダブルクリックで名前変更も可能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;権限システムサンドボックス機構&#34;&gt;権限システム：サンドボックス機構
+&lt;/h3&gt;&lt;p&gt;Codex の権限システムはすべて**サンドボックス（Sandbox）**を中心に構築されています。これは Harness Engineering コンセプトの典型的な実装であり、OS レベルのメカニズムで AI の能力を制御可能な範囲に制約します。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;デフォルトの制限：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;制限&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;サンドボックス内ファイル&lt;/td&gt;
+          &lt;td&gt;デフォルトで&lt;strong&gt;直接読み書き&lt;/strong&gt;、ファイルごとの承認不要&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;サンドボックス外ファイル&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;アクセス禁止&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ネットワークアクセス&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;デフォルトで禁止&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;これらのハード制限はモデルの自律性ではなく、OS の低レベルメカニズムによって強制されます（Mac は Seatbelt/Sandbox、Windows は同等のメカニズム）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3段階の権限レベル：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;レベル&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+          &lt;th&gt;推奨&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;手動承認&lt;/td&gt;
+          &lt;td&gt;すべての権限昇格に手動確認が必要&lt;/td&gt;
+          &lt;td&gt;最も安全だが煩雑&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;自動審査&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;小規模モデルが低リスク操作を自動審査、高リスクのみ手動確認&lt;/td&gt;
+          &lt;td&gt;✅ &lt;strong&gt;推奨&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;フルアクセス&lt;/td&gt;
+          &lt;td&gt;サンドボックス制限をすべて解除&lt;/td&gt;
+          &lt;td&gt;⚠️ 注意して使用&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Codex がサンドボックス外のファイルやネットワークにアクセスする必要がある場合、「エスカレーション（Escalate）」申請を発行します。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;コンテキスト管理&#34;&gt;コンテキスト管理
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;右上の円が現在のコンテキスト使用量を表示&lt;/li&gt;
+&lt;li&gt;制限を超えると Codex が&lt;strong&gt;自動圧縮&lt;/strong&gt;で履歴を圧縮&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/compact&lt;/code&gt; で手動圧縮も可能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;経験則&lt;/strong&gt;：クリア &amp;gt; 圧縮。タスク完了後に新規会話を開始し、AI の集中力を維持する。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;モデル選択&#34;&gt;モデル選択
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;タスクの複雑さに応じて思考強度を選択&lt;/li&gt;
+&lt;li&gt;通常は最新モデル（ChatGPT 5.5 など）を使用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高速モード&lt;/strong&gt;：50% 高速化、ただし2倍の利用枠を消費&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;利用枠の確認&#34;&gt;利用枠の確認
+&lt;/h3&gt;&lt;p&gt;「設定 → 残りの利用枠」で2つの制限を確認可能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5時間制限&lt;/li&gt;
+&lt;li&gt;週間制限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;いずれかが上限に達すると使用が一時停止され、リセット時間後に自動復旧します。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三画像生成&#34;&gt;三、画像生成
+&lt;/h2&gt;&lt;p&gt;Codex は &lt;strong&gt;GPT Image&lt;/strong&gt;（現在最も強力な AI 画像生成モデル）を内蔵しており、会話内で直接画像を生成できます。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主な用途：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web ページの画像、カルーセル画像の生成&lt;/li&gt;
+&lt;li&gt;スクリーンショットの注釈に基づくスタイライズドマップの生成&lt;/li&gt;
+&lt;li&gt;複数画像のスタイル一貫性の維持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;steerステアリング機能&#34;&gt;Steer（ステアリング）機能
+&lt;/h3&gt;&lt;p&gt;AI の実行方向が逸れた場合、そのまま続行させないでください。会話内の&lt;strong&gt;ステアリングボタン&lt;/strong&gt;をクリック（または &lt;code&gt;Ctrl + Enter&lt;/code&gt; を押下）して、途中でハンドルを握り、AI の実行方向を修正します。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;設定で新規指示を「キューイング」か「直接ステアリング」か選択可能。デフォルトはキューイング + 必要時に手動ステアリングを推奨。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四プランモード&#34;&gt;四、プランモード
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;すべての複雑なタスク&lt;/strong&gt;では、まずプランモード（Plan Mode）を有効にして、AI との粒度の一致を確保することを推奨します。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ワークフロー：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;チャットウィンドウのプラスアイコンをクリック → 「プランモード」を有効化&lt;/li&gt;
+&lt;li&gt;要件を入力すると、Codex はまず&lt;strong&gt;質問カード&lt;/strong&gt;で詳細を確認&lt;/li&gt;
+&lt;li&gt;Codex が完全な作業計画を出力&lt;/li&gt;
+&lt;li&gt;レビューして確認後、「この計画を実行」をクリック&lt;/li&gt;
+&lt;li&gt;Codex が実行し、右側の内蔵ブラウザを自動的に開いて検証&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;プランモードの価値&lt;/strong&gt;：AI の誤解による大量の手戻りを防ぎ、アーキテクチャ移行や大規模機能開発などのタスクに特に適しています。&lt;/p&gt;
+&lt;h3 id=&#34;内蔵ブラウザ--注釈&#34;&gt;内蔵ブラウザ + 注釈
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;右側の多機能エリアで内蔵ブラウザを開きプロジェクトをプレビュー可能&lt;/li&gt;
+&lt;li&gt;「注釈」ボタンをクリックし、ページ要素を選択してコメントを追加すると、AI がそれに基づいて修正&lt;/li&gt;
+&lt;li&gt;修正プロセスはリアルタイムで確認可能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五コード管理&#34;&gt;五、コード管理
+&lt;/h2&gt;&lt;p&gt;Codex APP は従来の IDE ではなく、完全なコード編集機能を提供しません。VS Code との併用を推奨します。&lt;/p&gt;
+&lt;h3 id=&#34;git-初期化&#34;&gt;Git 初期化
+&lt;/h3&gt;&lt;p&gt;Codex にプロジェクトを Git リポジトリとして初期化させる：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.gitignore&lt;/code&gt; を自動作成し、不要なファイルを除外&lt;/li&gt;
+&lt;li&gt;初期化完了後、右上に Git 関連ボタンが表示される&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;vs-code-連携&#34;&gt;VS Code 連携
+&lt;/h3&gt;&lt;p&gt;右上の &lt;strong&gt;VS Code ボタン&lt;/strong&gt;をクリックしてプロジェクトをワンクリックで開くか、設定でデフォルト IDE を指定可能。&lt;/p&gt;
+&lt;h3 id=&#34;github-同期&#34;&gt;GitHub 同期
+&lt;/h3&gt;&lt;p&gt;Codex に GitHub でリポジトリを作成しコードをプッシュさせることができ、すべての Git/GitHub 操作は会話で完結します。&lt;/p&gt;
+&lt;h3 id=&#34;上級テクニック1会話フォーク--git-ロールバック&#34;&gt;上級テクニック1：会話フォーク + Git ロールバック
+&lt;/h3&gt;&lt;p&gt;変更を後悔し「なかったこと」にしたい場合：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;会話フォーク（Fork）&lt;/strong&gt;：会話内で変更前の位置を見つけ、フォークボタンをクリック → ローカルに派生し、変更を含まない会話コピーを取得&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;コードロールバック&lt;/strong&gt;：VS Code の Source Control で対象のコミットハッシュをコピーし、Codex にコードをその状態に戻させる&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;フォークは会話履歴のみをロールバックします。コードは別途 Git でロールバックが必要です。両者を組み合わせることで&lt;strong&gt;会話 + コード&lt;/strong&gt;の完全なロールバックを実現します。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;上級テクニック2git-worktree&#34;&gt;上級テクニック2：Git Worktree
+&lt;/h3&gt;&lt;p&gt;Worktree は Git で新しいブランチを作成し、ブランチのコードを独立したフォルダにコピーすることで、&lt;strong&gt;マルチブランチ並行開発&lt;/strong&gt;を実現します。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用シーン：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;プロジェクトを右クリック → 永続ワークツリーを作成（例：&lt;code&gt;customer-rating&lt;/code&gt;、&lt;code&gt;store-info&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;異なるワークツリーで異なる機能を並行開発、互いに干渉しない&lt;/li&gt;
+&lt;li&gt;開発完了後、それぞれをメインにマージ&lt;/li&gt;
+&lt;li&gt;一時ワークツリーを削除&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Worktree の核心的価値：異なるブランチが&lt;strong&gt;異なるフォルダ&lt;/strong&gt;に配置され、真の物理的隔離による並行開発を実現。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六クラウド実行&#34;&gt;六、クラウド実行
+&lt;/h2&gt;&lt;p&gt;手元に PC がない場合や、タスクをバックグラウンドのクラウドで実行したい場合：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;：コードが GitHub に同期されていること。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;操作フロー：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;ローカルコードを GitHub にプッシュ&lt;/li&gt;
+&lt;li&gt;実行モードで「Codex Web に連携」を選択&lt;/li&gt;
+&lt;li&gt;「Cloud に移動」をクリックし、リポジトリ名と要件を入力&lt;/li&gt;
+&lt;li&gt;Codex がクラウド環境を初期化 → コードをダウンロード → AI が分析 → 修正を完了&lt;/li&gt;
+&lt;li&gt;「プルリクエストを作成」をクリック → コードが PR として GitHub に提出&lt;/li&gt;
+&lt;li&gt;レビュー後、GitHub 上で Merge&lt;/li&gt;
+&lt;li&gt;ローカルに戻り &lt;code&gt;Sync Changes&lt;/code&gt; で最新コードを同期&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;最適なシーン&lt;/strong&gt;：外出先でスマートフォンから承認し、Codex にクラウドでタスクを完了させる。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;七メモリシステム&#34;&gt;七、メモリシステム
+&lt;/h2&gt;&lt;p&gt;新しい会話のたびに、AI のプロジェクトに対する記憶は空白です。複雑なプロジェクトでは、繰り返しの説明を避けるためにメモリシステムが必要です。&lt;/p&gt;
+&lt;h3 id=&#34;方法1プロジェクトレベルの-agentsmd&#34;&gt;方法1：プロジェクトレベルの AGENTS.md
+&lt;/h3&gt;&lt;p&gt;プロジェクトのルートディレクトリに &lt;code&gt;AGENTS.md&lt;/code&gt; ファイルを作成すると、毎回の会話で自動的にコンテキストとして注入されます。&lt;/p&gt;
+&lt;p&gt;手書きも可能ですが、Codex にプロジェクトを読み込ませて自動生成させることもできます：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Codex に現在のフォルダをすべて読み込ませ、学習したプロジェクト知識を AGENTS.md に保存させる
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;方法2グローバル-agentsmd&#34;&gt;方法2：グローバル AGENTS.md
+&lt;/h3&gt;&lt;p&gt;「設定 → パーソナライズ → カスタム指示」で編集し、すべてのプロジェクトに適用されます。&lt;/p&gt;
+&lt;p&gt;ファイルの場所：&lt;code&gt;C:\Users\&amp;lt;ユーザー名&amp;gt;\.codex\AGENTS.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;実用例&lt;/strong&gt;——ファイルの誤削除防止：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;スクリプトによるファイルやディレクトリの一括削除を禁止します。Remove-Item で1つずつ削除のみ可能です。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;一括削除が必須の場合は、操作を停止し、ユーザーに手動処理させてください。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;実験的機能メモリ有効化&#34;&gt;実験的機能：メモリ有効化
+&lt;/h3&gt;&lt;p&gt;設定の「メモリを有効化」は、チャットから自動的にメモリを抽出し新しい会話に持ち越すことができます。現在も実験的機能です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;八プラグインと自動化&#34;&gt;八、プラグインと自動化
+&lt;/h2&gt;&lt;h3 id=&#34;プラグインマーケットプレイス&#34;&gt;プラグインマーケットプレイス
+&lt;/h3&gt;&lt;p&gt;左サイドバー → プラグイン、以下の2種類に分類：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;タイプ&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;プラグイン&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;サードパーティサービスの能力注入（GitHub、Gmail、Netlify など）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;スキル（Skills）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ディレクトリ構造を持つ専門能力マニュアル&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;例github--gmail-連携&#34;&gt;例：GitHub + Gmail 連携
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;GitHub プラグインと Gmail プラグインをインストール&lt;/li&gt;
+&lt;li&gt;認証ログイン&lt;/li&gt;
+&lt;li&gt;入力：&lt;code&gt;/github スター数トップ10のオープンソースプロジェクトを表示&lt;/code&gt; + &lt;code&gt;/gmail 自分にサマリーをメール送信&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;スケジュール自動化&#34;&gt;スケジュール自動化
+&lt;/h3&gt;&lt;p&gt;上記のフローを定期タスク化：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;上記の作業を自動化し、毎週金曜日午後4時にメールを送信する
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;作成後、「自動化」パネルで：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;実行頻度の編集（毎週/毎日/毎時間）&lt;/li&gt;
+&lt;li&gt;モデルの切り替え（簡単なタスクはミニモデルで十分）&lt;/li&gt;
+&lt;li&gt;「今すぐ実行」をクリックしてテスト&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;実行中に蓄積された経験は &lt;code&gt;MEMORY.md&lt;/code&gt; に書き込まれ、次回の実行をより安定させます。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;その他の自動化アイデア&#34;&gt;その他の自動化アイデア
+&lt;/h3&gt;&lt;p&gt;ブラウザ自動化や Computer Use と組み合わせて：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;毎日 Teams のチャット履歴をまとめて日報を送信&lt;/li&gt;
+&lt;li&gt;定期的にウェブサイトを開いてチェックイン&lt;/li&gt;
+&lt;li&gt;定期的にデータを取得してレポートを生成&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;九skills&#34;&gt;九、Skills
+&lt;/h2&gt;&lt;p&gt;Skills は AI Agent のための&lt;strong&gt;専門スキルパック&lt;/strong&gt;であり、本質的にはディレクトリ構造を持つマニュアルです。ワークフロー、専門能力、規範を Skill にカプセル化することで、Agent が特定のタスクをより安定して効率的に実行できるようになります。&lt;/p&gt;
+&lt;h3 id=&#34;3つのインストール方法&#34;&gt;3つのインストール方法
+&lt;/h3&gt;&lt;h4 id=&#34;1-公式-skills&#34;&gt;1. 公式 Skills
+&lt;/h4&gt;&lt;p&gt;プラグインマーケットプレイスから直接インストール。例：&lt;strong&gt;Remotion&lt;/strong&gt;——AI がプログラミングでアニメーションビデオを作成。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/remotion 3D 円錐振り子のビデオアニメーションを生成して、
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;力の解析を含め、角速度が時間とともに徐々に増加するもの
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;2-サードパーティ-skills&#34;&gt;2. サードパーティ Skills
+&lt;/h4&gt;&lt;p&gt;GitHub からダウンロードしてプロジェクトディレクトリに配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;プロジェクトフォルダ/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  └── .codex/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      └── skills/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          └── ダウンロードした skill ファイル
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;その後、Codex にそのプロジェクトを追加し、スラッシュで Skill を呼び出します。&lt;/p&gt;
+&lt;h4 id=&#34;3-自作-skills&#34;&gt;3. 自作 Skills
+&lt;/h4&gt;&lt;p&gt;内蔵の &lt;strong&gt;Skill Creator&lt;/strong&gt; を使用して作成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/skill-creator スキルを作成：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;動画と字幕ファイルを提供する場合——
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ステップ1：字幕を読み取り、Markdown ノートに変換し、自動で句読点を追加・段落を分割、
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       コード解説/UI インタラクションに関する内容には、文末にスクリーンショットのプレースホルダーマークを追加
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ステップ2：ffmpeg を呼び出してマーク位置でスクリーンショットを撮影し、ローカル画像でプレースホルダーを置換
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;長文プロンプトのコツ&lt;/strong&gt;：改行は &lt;code&gt;Shift + Enter&lt;/code&gt; を使用し、直接 Enter を押さないこと（送信されてしまいます）。&lt;/p&gt;
+&lt;p&gt;作成完了後、以降の同様のタスクはすべて1つのスラッシュコマンドで完結します。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;十mcp&#34;&gt;十、MCP
+&lt;/h2&gt;&lt;p&gt;MCP（Model Context Protocol）は大規模モデルの&lt;strong&gt;標準化されたツールボックス&lt;/strong&gt;であり、AI が外部サービスと対話できるようにします。&lt;/p&gt;
+&lt;h3 id=&#34;エントリーポイント&#34;&gt;エントリーポイント
+&lt;/h3&gt;&lt;p&gt;「設定 → MCP サーバー → サーバーを追加」&lt;/p&gt;
+&lt;h3 id=&#34;例supabase-mcp&#34;&gt;例：Supabase MCP
+&lt;/h3&gt;&lt;p&gt;Supabase はオープンソースで無料の PostgreSQL クラウドデータベースです。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Supabase でプロジェクトを作成 → Connect → MCP クライアント → Codex を選択 → URL をコピー&lt;/li&gt;
+&lt;li&gt;Codex で MCP サーバーを追加、転送タイプは「ストリーミング HTTP」を選択、URL を貼り付け&lt;/li&gt;
+&lt;li&gt;ターミナルで &lt;code&gt;codex mcp login supabase&lt;/code&gt; を実行して認証&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex を再起動&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;その後、会話でデータベースを操作できます：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Supabase MCP を使用して予約業務テーブルを作成し、
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ユーザーのフォームデータはバックエンドから connection pool 方式で書き込む
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;十一コンピュータ自動化computer-use&#34;&gt;十一、コンピュータ自動化（Computer Use）
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ 現在 Mac のみ対応&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Computer Use プラグインをインストールすると、Codex が直接あなたのコンピュータを操作できます：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;チャットアプリを開いて上司にメッセージを送信&lt;/li&gt;
+&lt;li&gt;ブラウザを開いて GitHub かんばんボードを確認し、プロジェクトの進捗をまとめる&lt;/li&gt;
+&lt;li&gt;英語のブリーフを生成して上司に送信&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;特徴&#34;&gt;特徴
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;仮想マウス&lt;/strong&gt;でバックグラウンド実行、現在のウィンドウを占有しない&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;スケジュール自動化タスク&lt;/strong&gt;として編成可能（例：毎日午後5時に自動でブリーフを送信）&lt;/li&gt;
+&lt;li&gt;Mac では「実行中のシステムスリープを防止」を有効にすることを推奨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;十二まとめcodex-app-能力マップ&#34;&gt;十二、まとめ：Codex APP 能力マップ
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;能力&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+          &lt;th&gt;ハイライト&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;サンドボックス権限&lt;/td&gt;
+          &lt;td&gt;OS レベルのセキュリティ分離 + 自動審査&lt;/td&gt;
+          &lt;td&gt;安全性と利便性の両立&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;マルチプロジェクト並行&lt;/td&gt;
+          &lt;td&gt;複数プロジェクト・複数会話を同時実行&lt;/td&gt;
+          &lt;td&gt;物理的隔離で干渉なし&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;画像生成&lt;/td&gt;
+          &lt;td&gt;GPT Image 内蔵&lt;/td&gt;
+          &lt;td&gt;スタイル一貫性、プロジェクトに直接埋め込み&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;プランモード&lt;/td&gt;
+          &lt;td&gt;まず認識合わせ、その後実行&lt;/td&gt;
+          &lt;td&gt;手戻り防止&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Git Worktree&lt;/td&gt;
+          &lt;td&gt;ブランチレベルの並行開発&lt;/td&gt;
+          &lt;td&gt;異なるフォルダで真の隔離&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;クラウド実行&lt;/td&gt;
+          &lt;td&gt;GitHub 連携クラウド実行&lt;/td&gt;
+          &lt;td&gt;スマートフォン承認でいつでも作業&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;メモリシステム&lt;/td&gt;
+          &lt;td&gt;AGENTS.md プロジェクトレベル + グローバル&lt;/td&gt;
+          &lt;td&gt;繰り返しの説明不要&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;スケジュール自動化&lt;/td&gt;
+          &lt;td&gt;プラグイン + 定期タスク + MEMORY&lt;/td&gt;
+          &lt;td&gt;経験蓄積でより安定&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Skills&lt;/td&gt;
+          &lt;td&gt;再利用可能な専門能力パック&lt;/td&gt;
+          &lt;td&gt;公式/サードパーティ/自作&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;MCP&lt;/td&gt;
+          &lt;td&gt;標準化された外部ツール連携&lt;/td&gt;
+          &lt;td&gt;Supabase、Netlify など&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Computer Use&lt;/td&gt;
+          &lt;td&gt;コンピュータ自動操作&lt;/td&gt;
+          &lt;td&gt;Mac 専用、バックグラウンド実行&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;参考ソース&lt;/strong&gt;：Bilibili 動画 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1Kk9kBAEJv/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex (APP) 完全ガイド&lt;/a&gt; by 技術爬爬蝦（2026-04-28）&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

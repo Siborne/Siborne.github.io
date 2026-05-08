@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Codex APP の全機能を徹底解説：サンドボックス権限、マルチプロジェクト並行、GPT Image 生成、プランモード、Git Worktree、クラウド実行、Skills/MCP、スケジュール自動化、Computer Use。">
+<title>Codex APP 完全ガイド：インストールから自動化まで徹底解説</title>
+
+<link rel='canonical' href='https://Siborne.top/ja/p/codex-app-complete-guide/'>
+
+<link rel="stylesheet" href="/scss/style.min.266c2d3f4822631b105b97664a103c3737ee3a439c2ce01b7142501e9591e1df.css"><meta property='og:title' content="Codex APP 完全ガイド：インストールから自動化まで徹底解説">
+<meta property='og:description' content="Codex APP の全機能を徹底解説：サンドボックス権限、マルチプロジェクト並行、GPT Image 生成、プランモード、Git Worktree、クラウド実行、Skills/MCP、スケジュール自動化、Computer Use。">
+<meta property='og:url' content='https://Siborne.top/ja/p/codex-app-complete-guide/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI' /><meta property='article:tag' content='Codex' /><meta property='article:tag' content='チュートリアル' /><meta property='article:tag' content='Skills' /><meta property='article:tag' content='MCP' /><meta property='article:tag' content='自動化' /><meta property='article:published_time' content='2026-05-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-08T23:07:31&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/codex-app-complete-guide/bannerImage.png' />
+<meta name="twitter:title" content="Codex APP 完全ガイド：インストールから自動化まで徹底解説">
+<meta name="twitter:description" content="Codex APP の全機能を徹底解説：サンドボックス権限、マルチプロジェクト並行、GPT Image 生成、プランモード、Git Worktree、クラウド実行、Skills/MCP、スケジュール自動化、Computer Use。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.top/p/codex-app-complete-guide/bannerImage.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="メニューを開く・閉じる">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/ja/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/ja">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; 愛好家
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent アーキテクト &amp; フルスタック開発者
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 好奇心旺盛な学生 · 未来のビルダー
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    インテリジェントエージェント＋スケーラブルアプリを構築。創造性とAI効率の融合。🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/ja/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>ホーム</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>プロフィール | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>アーカイブ | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>検索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>テックリンク | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" >繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" selected>日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>ダークモード</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目次</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#核心ポイント">核心ポイント</a></li>
+    <li><a href="#なぜ-codex-app-を選ぶのか">なぜ Codex APP を選ぶのか？</a></li>
+    <li><a href="#一インストールと初期設定">一、インストールと初期設定</a>
+      <ol>
+        <li><a href="#準備">準備</a></li>
+        <li><a href="#インストール手順">インストール手順</a></li>
+      </ol>
+    </li>
+    <li><a href="#二基本操作">二、基本操作</a>
+      <ol>
+        <li><a href="#3カラムレイアウト">3カラムレイアウト</a></li>
+        <li><a href="#プロジェクト管理">プロジェクト管理</a></li>
+        <li><a href="#並行タスク">並行タスク</a></li>
+        <li><a href="#会話管理">会話管理</a></li>
+        <li><a href="#権限システムサンドボックス機構">権限システム：サンドボックス機構</a></li>
+        <li><a href="#コンテキスト管理">コンテキスト管理</a></li>
+        <li><a href="#モデル選択">モデル選択</a></li>
+        <li><a href="#利用枠の確認">利用枠の確認</a></li>
+      </ol>
+    </li>
+    <li><a href="#三画像生成">三、画像生成</a>
+      <ol>
+        <li><a href="#steerステアリング機能">Steer（ステアリング）機能</a></li>
+      </ol>
+    </li>
+    <li><a href="#四プランモード">四、プランモード</a>
+      <ol>
+        <li><a href="#内蔵ブラウザ--注釈">内蔵ブラウザ + 注釈</a></li>
+      </ol>
+    </li>
+    <li><a href="#五コード管理">五、コード管理</a>
+      <ol>
+        <li><a href="#git-初期化">Git 初期化</a></li>
+        <li><a href="#vs-code-連携">VS Code 連携</a></li>
+        <li><a href="#github-同期">GitHub 同期</a></li>
+        <li><a href="#上級テクニック1会話フォーク--git-ロールバック">上級テクニック1：会話フォーク + Git ロールバック</a></li>
+        <li><a href="#上級テクニック2git-worktree">上級テクニック2：Git Worktree</a></li>
+      </ol>
+    </li>
+    <li><a href="#六クラウド実行">六、クラウド実行</a></li>
+    <li><a href="#七メモリシステム">七、メモリシステム</a>
+      <ol>
+        <li><a href="#方法1プロジェクトレベルの-agentsmd">方法1：プロジェクトレベルの AGENTS.md</a></li>
+        <li><a href="#方法2グローバル-agentsmd">方法2：グローバル AGENTS.md</a></li>
+        <li><a href="#実験的機能メモリ有効化">実験的機能：メモリ有効化</a></li>
+      </ol>
+    </li>
+    <li><a href="#八プラグインと自動化">八、プラグインと自動化</a>
+      <ol>
+        <li><a href="#プラグインマーケットプレイス">プラグインマーケットプレイス</a></li>
+        <li><a href="#例github--gmail-連携">例：GitHub + Gmail 連携</a></li>
+        <li><a href="#スケジュール自動化">スケジュール自動化</a></li>
+        <li><a href="#その他の自動化アイデア">その他の自動化アイデア</a></li>
+      </ol>
+    </li>
+    <li><a href="#九skills">九、Skills</a>
+      <ol>
+        <li><a href="#3つのインストール方法">3つのインストール方法</a>
+          <ol>
+            <li><a href="#1-公式-skills">1. 公式 Skills</a></li>
+            <li><a href="#2-サードパーティ-skills">2. サードパーティ Skills</a></li>
+            <li><a href="#3-自作-skills">3. 自作 Skills</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#十mcp">十、MCP</a>
+      <ol>
+        <li><a href="#エントリーポイント">エントリーポイント</a></li>
+        <li><a href="#例supabase-mcp">例：Supabase MCP</a></li>
+      </ol>
+    </li>
+    <li><a href="#十一コンピュータ自動化computer-use">十一、コンピュータ自動化（Computer Use）</a>
+      <ol>
+        <li><a href="#特徴">特徴</a></li>
+      </ol>
+    </li>
+    <li><a href="#十二まとめcodex-app-能力マップ">十二、まとめ：Codex APP 能力マップ</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/ja/p/codex-app-complete-guide/">
+                <img src="/p/codex-app-complete-guide/bannerImage_hu_725bdc77d41b1507.png"
+                        srcset="/p/codex-app-complete-guide/bannerImage_hu_725bdc77d41b1507.png 800w, /p/codex-app-complete-guide/bannerImage_hu_722ede233ee46bf6.png 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post Codex APP 完全ガイド：インストールから自動化まで徹底解説" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/ja/p/codex-app-complete-guide/">Codex APP 完全ガイド：インストールから自動化まで徹底解説</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-08T00:00:00Z'>2026-05-08</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 08, 2026 23:07 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                6129字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        Codex APP の全機能を徹底解説：サンドボックス権限、マルチプロジェクト並行、GPT Image 生成、プランモード、Git Worktree、クラウド実行、Skills/MCP、スケジュール自動化、Computer Use。
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/ja/categories/ai/" >
+                AI
+            </a>
+        
+            <a href="/ja/categories/computer-tools/" >
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/codex-app-complete-guide/" class="link">简体中文</a>
+                
+                    <a href="https://Siborne.top/en/p/codex-app-complete-guide/" class="link">English</a>
+                
+                    <a href="https://Siborne.top/zh-tw/p/codex-app-complete-guide/" class="link">繁體中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="核心ポイント">核心ポイント
+</h2><ul>
+<li><strong>Codex APP</strong> は現在最も強力な Codex 製品形態で、無料枠が大きく、機能が充実し、アカウント停止やレート制限なし</li>
+<li><strong>サンドボックス機構</strong>：OS レベルのセキュリティ分離、デフォルトでサンドボックス外ファイルとネットワークアクセスを禁止、3段階の権限設定</li>
+<li><strong>マルチプロジェクト並行</strong>：複数プロジェクト・複数会話を同時実行、物理的に隔離されて干渉しない</li>
+<li><strong>プランモード</strong>：まず認識を合わせてから実行、AI の誤解による手戻りを防止</li>
+<li><strong>Git Worktree</strong>：ブランチレベルの並行開発、異なるフォルダで真の隔離を実現</li>
+<li><strong>Skills/MCP</strong>：再利用可能な専門能力パック + 標準化された外部ツール連携</li>
+<li><strong>スケジュール自動化</strong>：プラグイン + 定期タスク + MEMORY 経験蓄積で、使うほど安定</li>
+</ul>
+<h2 id="なぜ-codex-app-を選ぶのか">なぜ Codex APP を選ぶのか？
+</h2><p>Codex には4つの製品形態がありますが、<strong>Codex APP</strong> は現在最も強力です。Claude Code と比較して：</p>
+<ul>
+<li><strong>より大きな利用枠</strong>、無料アカウントでも使用可能</li>
+<li><strong>より豊富な機能</strong>、内蔵ブラウザ、画像生成、プラグインマーケットプレイス、定期タスク</li>
+<li><strong>レート制限、アカウント停止、性能低下なし</strong></li>
+<li><strong>より速いオンボーディング</strong>、インストール後すぐに使用可能</li>
+</ul>
+<p>本記事では12のセクションに分けて、Codex APP の全機能を詳しく解説します。</p>
+<hr>
+<h2 id="一インストールと初期設定">一、インストールと初期設定
+</h2><h3 id="準備">準備
+</h3><p>Codex APP をインストールする前に、以下の3つをインストールしてください：</p>
+<ul>
+<li><strong>Git</strong></li>
+<li><strong>Node.js</strong></li>
+<li><strong>VS Code</strong></li>
+</ul>
+<h3 id="インストール手順">インストール手順
+</h3><ol>
+<li><a class="link" href="https://openai.com/zh-Hans-CN/codex/"  target="_blank" rel="noopener"
+    >Codex 公式サイト</a> からインストーラーをダウンロード（Windows / Mac 対応）</li>
+<li>インストーラーの指示に従って進める</li>
+<li>起動後、<strong>ChatGPT アカウント</strong>でログイン（無料アカウントで可）</li>
+<li>初回起動時に Codex に処理させたい作業タイプを選択すると、対応するプラグインと Skills が事前インストールされる</li>
+<li>主な使用シーンを選択：プログラミング / 日常業務</li>
+<li>サンドボックスを初期化</li>
+</ol>
+<blockquote>
+<p><strong>Mac vs Windows</strong>：機能はほぼ同じ。唯一の違いは <strong>Computer Use</strong>（コンピュータ自動操作）が現在 Mac のみ対応であること。</p>
+</blockquote>
+<hr>
+<h2 id="二基本操作">二、基本操作
+</h2><h3 id="3カラムレイアウト">3カラムレイアウト
+</h3><p>Codex APP はクラシックな3カラムレイアウトを採用：</p>
+<ul>
+<li><strong>左側</strong>：タスクリスト（プロジェクト + 会話）</li>
+<li><strong>中央</strong>：チャットウィンドウ</li>
+<li><strong>右側</strong>：多機能エリア（ブラウザ、ターミナル、ファイルツリーなど）</li>
+</ul>
+<h3 id="プロジェクト管理">プロジェクト管理
+</h3><p>「プロジェクトを追加 → 既存のフォルダを使用」でローカルフォルダを Codex プロジェクトとして登録。各プロジェクトは独立して会話を管理し、互いに干渉しない。</p>
+<h3 id="並行タスク">並行タスク
+</h3><p>Codex は<strong>マルチプロジェクト・マルチ会話の並行実行</strong>をサポート。タスクリストのアイコンで状態を表示：</p>
+<ul>
+<li>🔵 青い点 → 完了</li>
+<li>🟢 緑のラベル → 承認待ち</li>
+<li>🔄 回転アイコン → 実行中</li>
+</ul>
+<h3 id="会話管理">会話管理
+</h3><ul>
+<li><strong>新規会話</strong>：<code>Ctrl + N</code>（Win）/ <code>Cmd + N</code>（Mac）</li>
+<li><strong>履歴検索</strong>：<code>Ctrl + G</code> / <code>Cmd + G</code>（タイトルのみ検索、内容は検索しない）</li>
+<li><strong>アーカイブ/復元</strong>：アーカイブボタンで会話を非表示、「設定 → アーカイブ済み会話」から復元可能</li>
+<li><strong>タイトル自動生成</strong>：各会話のタイトルは AI が内容に基づいて自動要約、ダブルクリックで名前変更も可能</li>
+</ul>
+<h3 id="権限システムサンドボックス機構">権限システム：サンドボックス機構
+</h3><p>Codex の権限システムはすべて**サンドボックス（Sandbox）**を中心に構築されています。これは Harness Engineering コンセプトの典型的な実装であり、OS レベルのメカニズムで AI の能力を制御可能な範囲に制約します。</p>
+<p><strong>デフォルトの制限：</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>制限</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>サンドボックス内ファイル</td>
+          <td>デフォルトで<strong>直接読み書き</strong>、ファイルごとの承認不要</td>
+      </tr>
+      <tr>
+          <td>サンドボックス外ファイル</td>
+          <td><strong>アクセス禁止</strong></td>
+      </tr>
+      <tr>
+          <td>ネットワークアクセス</td>
+          <td><strong>デフォルトで禁止</strong></td>
+      </tr>
+  </tbody>
+</table></div>
+<p>これらのハード制限はモデルの自律性ではなく、OS の低レベルメカニズムによって強制されます（Mac は Seatbelt/Sandbox、Windows は同等のメカニズム）。</p>
+<p><strong>3段階の権限レベル：</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>レベル</th>
+          <th>説明</th>
+          <th>推奨</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>手動承認</td>
+          <td>すべての権限昇格に手動確認が必要</td>
+          <td>最も安全だが煩雑</td>
+      </tr>
+      <tr>
+          <td><strong>自動審査</strong></td>
+          <td>小規模モデルが低リスク操作を自動審査、高リスクのみ手動確認</td>
+          <td>✅ <strong>推奨</strong></td>
+      </tr>
+      <tr>
+          <td>フルアクセス</td>
+          <td>サンドボックス制限をすべて解除</td>
+          <td>⚠️ 注意して使用</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>Codex がサンドボックス外のファイルやネットワークにアクセスする必要がある場合、「エスカレーション（Escalate）」申請を発行します。</p>
+</blockquote>
+<h3 id="コンテキスト管理">コンテキスト管理
+</h3><ul>
+<li>右上の円が現在のコンテキスト使用量を表示</li>
+<li>制限を超えると Codex が<strong>自動圧縮</strong>で履歴を圧縮</li>
+<li><code>/compact</code> で手動圧縮も可能</li>
+<li><strong>経験則</strong>：クリア &gt; 圧縮。タスク完了後に新規会話を開始し、AI の集中力を維持する。</li>
+</ul>
+<h3 id="モデル選択">モデル選択
+</h3><ul>
+<li>タスクの複雑さに応じて思考強度を選択</li>
+<li>通常は最新モデル（ChatGPT 5.5 など）を使用</li>
+<li><strong>高速モード</strong>：50% 高速化、ただし2倍の利用枠を消費</li>
+</ul>
+<h3 id="利用枠の確認">利用枠の確認
+</h3><p>「設定 → 残りの利用枠」で2つの制限を確認可能：</p>
+<ul>
+<li>5時間制限</li>
+<li>週間制限</li>
+</ul>
+<p>いずれかが上限に達すると使用が一時停止され、リセット時間後に自動復旧します。</p>
+<hr>
+<h2 id="三画像生成">三、画像生成
+</h2><p>Codex は <strong>GPT Image</strong>（現在最も強力な AI 画像生成モデル）を内蔵しており、会話内で直接画像を生成できます。</p>
+<p><strong>主な用途：</strong></p>
+<ul>
+<li>Web ページの画像、カルーセル画像の生成</li>
+<li>スクリーンショットの注釈に基づくスタイライズドマップの生成</li>
+<li>複数画像のスタイル一貫性の維持</li>
+</ul>
+<h3 id="steerステアリング機能">Steer（ステアリング）機能
+</h3><p>AI の実行方向が逸れた場合、そのまま続行させないでください。会話内の<strong>ステアリングボタン</strong>をクリック（または <code>Ctrl + Enter</code> を押下）して、途中でハンドルを握り、AI の実行方向を修正します。</p>
+<blockquote>
+<p>設定で新規指示を「キューイング」か「直接ステアリング」か選択可能。デフォルトはキューイング + 必要時に手動ステアリングを推奨。</p>
+</blockquote>
+<hr>
+<h2 id="四プランモード">四、プランモード
+</h2><p><strong>すべての複雑なタスク</strong>では、まずプランモード（Plan Mode）を有効にして、AI との粒度の一致を確保することを推奨します。</p>
+<p><strong>ワークフロー：</strong></p>
+<ol>
+<li>チャットウィンドウのプラスアイコンをクリック → 「プランモード」を有効化</li>
+<li>要件を入力すると、Codex はまず<strong>質問カード</strong>で詳細を確認</li>
+<li>Codex が完全な作業計画を出力</li>
+<li>レビューして確認後、「この計画を実行」をクリック</li>
+<li>Codex が実行し、右側の内蔵ブラウザを自動的に開いて検証</li>
+</ol>
+<p><strong>プランモードの価値</strong>：AI の誤解による大量の手戻りを防ぎ、アーキテクチャ移行や大規模機能開発などのタスクに特に適しています。</p>
+<h3 id="内蔵ブラウザ--注釈">内蔵ブラウザ + 注釈
+</h3><ul>
+<li>右側の多機能エリアで内蔵ブラウザを開きプロジェクトをプレビュー可能</li>
+<li>「注釈」ボタンをクリックし、ページ要素を選択してコメントを追加すると、AI がそれに基づいて修正</li>
+<li>修正プロセスはリアルタイムで確認可能</li>
+</ul>
+<hr>
+<h2 id="五コード管理">五、コード管理
+</h2><p>Codex APP は従来の IDE ではなく、完全なコード編集機能を提供しません。VS Code との併用を推奨します。</p>
+<h3 id="git-初期化">Git 初期化
+</h3><p>Codex にプロジェクトを Git リポジトリとして初期化させる：</p>
+<ul>
+<li><code>.gitignore</code> を自動作成し、不要なファイルを除外</li>
+<li>初期化完了後、右上に Git 関連ボタンが表示される</li>
+</ul>
+<h3 id="vs-code-連携">VS Code 連携
+</h3><p>右上の <strong>VS Code ボタン</strong>をクリックしてプロジェクトをワンクリックで開くか、設定でデフォルト IDE を指定可能。</p>
+<h3 id="github-同期">GitHub 同期
+</h3><p>Codex に GitHub でリポジトリを作成しコードをプッシュさせることができ、すべての Git/GitHub 操作は会話で完結します。</p>
+<h3 id="上級テクニック1会話フォーク--git-ロールバック">上級テクニック1：会話フォーク + Git ロールバック
+</h3><p>変更を後悔し「なかったこと」にしたい場合：</p>
+<ol>
+<li><strong>会話フォーク（Fork）</strong>：会話内で変更前の位置を見つけ、フォークボタンをクリック → ローカルに派生し、変更を含まない会話コピーを取得</li>
+<li><strong>コードロールバック</strong>：VS Code の Source Control で対象のコミットハッシュをコピーし、Codex にコードをその状態に戻させる</li>
+</ol>
+<blockquote>
+<p>フォークは会話履歴のみをロールバックします。コードは別途 Git でロールバックが必要です。両者を組み合わせることで<strong>会話 + コード</strong>の完全なロールバックを実現します。</p>
+</blockquote>
+<h3 id="上級テクニック2git-worktree">上級テクニック2：Git Worktree
+</h3><p>Worktree は Git で新しいブランチを作成し、ブランチのコードを独立したフォルダにコピーすることで、<strong>マルチブランチ並行開発</strong>を実現します。</p>
+<p><strong>使用シーン：</strong></p>
+<ol>
+<li>プロジェクトを右クリック → 永続ワークツリーを作成（例：<code>customer-rating</code>、<code>store-info</code>）</li>
+<li>異なるワークツリーで異なる機能を並行開発、互いに干渉しない</li>
+<li>開発完了後、それぞれをメインにマージ</li>
+<li>一時ワークツリーを削除</li>
+</ol>
+<blockquote>
+<p>Worktree の核心的価値：異なるブランチが<strong>異なるフォルダ</strong>に配置され、真の物理的隔離による並行開発を実現。</p>
+</blockquote>
+<hr>
+<h2 id="六クラウド実行">六、クラウド実行
+</h2><p>手元に PC がない場合や、タスクをバックグラウンドのクラウドで実行したい場合：</p>
+<p><strong>前提条件</strong>：コードが GitHub に同期されていること。</p>
+<p><strong>操作フロー：</strong></p>
+<ol>
+<li>ローカルコードを GitHub にプッシュ</li>
+<li>実行モードで「Codex Web に連携」を選択</li>
+<li>「Cloud に移動」をクリックし、リポジトリ名と要件を入力</li>
+<li>Codex がクラウド環境を初期化 → コードをダウンロード → AI が分析 → 修正を完了</li>
+<li>「プルリクエストを作成」をクリック → コードが PR として GitHub に提出</li>
+<li>レビュー後、GitHub 上で Merge</li>
+<li>ローカルに戻り <code>Sync Changes</code> で最新コードを同期</li>
+</ol>
+<blockquote>
+<p><strong>最適なシーン</strong>：外出先でスマートフォンから承認し、Codex にクラウドでタスクを完了させる。</p>
+</blockquote>
+<hr>
+<h2 id="七メモリシステム">七、メモリシステム
+</h2><p>新しい会話のたびに、AI のプロジェクトに対する記憶は空白です。複雑なプロジェクトでは、繰り返しの説明を避けるためにメモリシステムが必要です。</p>
+<h3 id="方法1プロジェクトレベルの-agentsmd">方法1：プロジェクトレベルの AGENTS.md
+</h3><p>プロジェクトのルートディレクトリに <code>AGENTS.md</code> ファイルを作成すると、毎回の会話で自動的にコンテキストとして注入されます。</p>
+<p>手書きも可能ですが、Codex にプロジェクトを読み込ませて自動生成させることもできます：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Codex に現在のフォルダをすべて読み込ませ、学習したプロジェクト知識を AGENTS.md に保存させる
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方法2グローバル-agentsmd">方法2：グローバル AGENTS.md
+</h3><p>「設定 → パーソナライズ → カスタム指示」で編集し、すべてのプロジェクトに適用されます。</p>
+<p>ファイルの場所：<code>C:\Users\&lt;ユーザー名&gt;\.codex\AGENTS.md</code></p>
+<p><strong>実用例</strong>——ファイルの誤削除防止：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">スクリプトによるファイルやディレクトリの一括削除を禁止します。Remove-Item で1つずつ削除のみ可能です。
+</span></span><span class="line"><span class="cl">一括削除が必須の場合は、操作を停止し、ユーザーに手動処理させてください。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="実験的機能メモリ有効化">実験的機能：メモリ有効化
+</h3><p>設定の「メモリを有効化」は、チャットから自動的にメモリを抽出し新しい会話に持ち越すことができます。現在も実験的機能です。</p>
+<hr>
+<h2 id="八プラグインと自動化">八、プラグインと自動化
+</h2><h3 id="プラグインマーケットプレイス">プラグインマーケットプレイス
+</h3><p>左サイドバー → プラグイン、以下の2種類に分類：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>タイプ</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>プラグイン</strong></td>
+          <td>サードパーティサービスの能力注入（GitHub、Gmail、Netlify など）</td>
+      </tr>
+      <tr>
+          <td><strong>スキル（Skills）</strong></td>
+          <td>ディレクトリ構造を持つ専門能力マニュアル</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="例github--gmail-連携">例：GitHub + Gmail 連携
+</h3><ol>
+<li>GitHub プラグインと Gmail プラグインをインストール</li>
+<li>認証ログイン</li>
+<li>入力：<code>/github スター数トップ10のオープンソースプロジェクトを表示</code> + <code>/gmail 自分にサマリーをメール送信</code></li>
+</ol>
+<h3 id="スケジュール自動化">スケジュール自動化
+</h3><p>上記のフローを定期タスク化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">上記の作業を自動化し、毎週金曜日午後4時にメールを送信する
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>作成後、「自動化」パネルで：</p>
+<ul>
+<li>実行頻度の編集（毎週/毎日/毎時間）</li>
+<li>モデルの切り替え（簡単なタスクはミニモデルで十分）</li>
+<li>「今すぐ実行」をクリックしてテスト</li>
+</ul>
+<blockquote>
+<p>実行中に蓄積された経験は <code>MEMORY.md</code> に書き込まれ、次回の実行をより安定させます。</p>
+</blockquote>
+<h3 id="その他の自動化アイデア">その他の自動化アイデア
+</h3><p>ブラウザ自動化や Computer Use と組み合わせて：</p>
+<ul>
+<li>毎日 Teams のチャット履歴をまとめて日報を送信</li>
+<li>定期的にウェブサイトを開いてチェックイン</li>
+<li>定期的にデータを取得してレポートを生成</li>
+</ul>
+<hr>
+<h2 id="九skills">九、Skills
+</h2><p>Skills は AI Agent のための<strong>専門スキルパック</strong>であり、本質的にはディレクトリ構造を持つマニュアルです。ワークフロー、専門能力、規範を Skill にカプセル化することで、Agent が特定のタスクをより安定して効率的に実行できるようになります。</p>
+<h3 id="3つのインストール方法">3つのインストール方法
+</h3><h4 id="1-公式-skills">1. 公式 Skills
+</h4><p>プラグインマーケットプレイスから直接インストール。例：<strong>Remotion</strong>——AI がプログラミングでアニメーションビデオを作成。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/remotion 3D 円錐振り子のビデオアニメーションを生成して、
+</span></span><span class="line"><span class="cl">力の解析を含め、角速度が時間とともに徐々に増加するもの
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-サードパーティ-skills">2. サードパーティ Skills
+</h4><p>GitHub からダウンロードしてプロジェクトディレクトリに配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">プロジェクトフォルダ/
+</span></span><span class="line"><span class="cl">  └── .codex/
+</span></span><span class="line"><span class="cl">      └── skills/
+</span></span><span class="line"><span class="cl">          └── ダウンロードした skill ファイル
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>その後、Codex にそのプロジェクトを追加し、スラッシュで Skill を呼び出します。</p>
+<h4 id="3-自作-skills">3. 自作 Skills
+</h4><p>内蔵の <strong>Skill Creator</strong> を使用して作成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/skill-creator スキルを作成：
+</span></span><span class="line"><span class="cl">動画と字幕ファイルを提供する場合——
+</span></span><span class="line"><span class="cl">ステップ1：字幕を読み取り、Markdown ノートに変換し、自動で句読点を追加・段落を分割、
+</span></span><span class="line"><span class="cl">       コード解説/UI インタラクションに関する内容には、文末にスクリーンショットのプレースホルダーマークを追加
+</span></span><span class="line"><span class="cl">ステップ2：ffmpeg を呼び出してマーク位置でスクリーンショットを撮影し、ローカル画像でプレースホルダーを置換
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>長文プロンプトのコツ</strong>：改行は <code>Shift + Enter</code> を使用し、直接 Enter を押さないこと（送信されてしまいます）。</p>
+<p>作成完了後、以降の同様のタスクはすべて1つのスラッシュコマンドで完結します。</p>
+<hr>
+<h2 id="十mcp">十、MCP
+</h2><p>MCP（Model Context Protocol）は大規模モデルの<strong>標準化されたツールボックス</strong>であり、AI が外部サービスと対話できるようにします。</p>
+<h3 id="エントリーポイント">エントリーポイント
+</h3><p>「設定 → MCP サーバー → サーバーを追加」</p>
+<h3 id="例supabase-mcp">例：Supabase MCP
+</h3><p>Supabase はオープンソースで無料の PostgreSQL クラウドデータベースです。</p>
+<ol>
+<li>Supabase でプロジェクトを作成 → Connect → MCP クライアント → Codex を選択 → URL をコピー</li>
+<li>Codex で MCP サーバーを追加、転送タイプは「ストリーミング HTTP」を選択、URL を貼り付け</li>
+<li>ターミナルで <code>codex mcp login supabase</code> を実行して認証</li>
+<li><strong>Codex を再起動</strong></li>
+</ol>
+<p>その後、会話でデータベースを操作できます：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Supabase MCP を使用して予約業務テーブルを作成し、
+</span></span><span class="line"><span class="cl">ユーザーのフォームデータはバックエンドから connection pool 方式で書き込む
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="十一コンピュータ自動化computer-use">十一、コンピュータ自動化（Computer Use）
+</h2><blockquote>
+<p>⚠️ 現在 Mac のみ対応</p>
+</blockquote>
+<p>Computer Use プラグインをインストールすると、Codex が直接あなたのコンピュータを操作できます：</p>
+<ul>
+<li>チャットアプリを開いて上司にメッセージを送信</li>
+<li>ブラウザを開いて GitHub かんばんボードを確認し、プロジェクトの進捗をまとめる</li>
+<li>英語のブリーフを生成して上司に送信</li>
+</ul>
+<h3 id="特徴">特徴
+</h3><ul>
+<li><strong>仮想マウス</strong>でバックグラウンド実行、現在のウィンドウを占有しない</li>
+<li><strong>スケジュール自動化タスク</strong>として編成可能（例：毎日午後5時に自動でブリーフを送信）</li>
+<li>Mac では「実行中のシステムスリープを防止」を有効にすることを推奨</li>
+</ul>
+<hr>
+<h2 id="十二まとめcodex-app-能力マップ">十二、まとめ：Codex APP 能力マップ
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>能力</th>
+          <th>説明</th>
+          <th>ハイライト</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>サンドボックス権限</td>
+          <td>OS レベルのセキュリティ分離 + 自動審査</td>
+          <td>安全性と利便性の両立</td>
+      </tr>
+      <tr>
+          <td>マルチプロジェクト並行</td>
+          <td>複数プロジェクト・複数会話を同時実行</td>
+          <td>物理的隔離で干渉なし</td>
+      </tr>
+      <tr>
+          <td>画像生成</td>
+          <td>GPT Image 内蔵</td>
+          <td>スタイル一貫性、プロジェクトに直接埋め込み</td>
+      </tr>
+      <tr>
+          <td>プランモード</td>
+          <td>まず認識合わせ、その後実行</td>
+          <td>手戻り防止</td>
+      </tr>
+      <tr>
+          <td>Git Worktree</td>
+          <td>ブランチレベルの並行開発</td>
+          <td>異なるフォルダで真の隔離</td>
+      </tr>
+      <tr>
+          <td>クラウド実行</td>
+          <td>GitHub 連携クラウド実行</td>
+          <td>スマートフォン承認でいつでも作業</td>
+      </tr>
+      <tr>
+          <td>メモリシステム</td>
+          <td>AGENTS.md プロジェクトレベル + グローバル</td>
+          <td>繰り返しの説明不要</td>
+      </tr>
+      <tr>
+          <td>スケジュール自動化</td>
+          <td>プラグイン + 定期タスク + MEMORY</td>
+          <td>経験蓄積でより安定</td>
+      </tr>
+      <tr>
+          <td>Skills</td>
+          <td>再利用可能な専門能力パック</td>
+          <td>公式/サードパーティ/自作</td>
+      </tr>
+      <tr>
+          <td>MCP</td>
+          <td>標準化された外部ツール連携</td>
+          <td>Supabase、Netlify など</td>
+      </tr>
+      <tr>
+          <td>Computer Use</td>
+          <td>コンピュータ自動操作</td>
+          <td>Mac 専用、バックグラウンド実行</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<blockquote>
+<p><strong>参考ソース</strong>：Bilibili 動画 <a class="link" href="https://www.bilibili.com/video/BV1Kk9kBAEJv/"  target="_blank" rel="noopener"
+    >Codex (APP) 完全ガイド</a> by 技術爬爬蝦（2026-04-28）</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最終更新  08, 2026 23:07 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">関連するコンテンツ</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/ja/p/codex-deepseek-v4-proxy/">
+        
+        
+            <div class="article-image">
+                <img src="/p/codex-deepseek-v4-proxy/bannerImage.dde3a847822c933bba6a28d3918f36c0_hu_c5885f228c0804b1.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決"
+                        data-key="codex-deepseek-v4-proxy" 
+                        data-hash="md5-3eOoR4Iskzu6aijTkY82wA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/opencode-parallel-workflow-tips/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-parallel-workflow-tips/bannerImage.052d81651aef7951346921d53d1ad5c4_hu_4549084811f34791.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド"
+                        data-key="opencode-parallel-workflow-tips" 
+                        data-hash="md5-BS2BZRrveVE0aSHVPRrVxA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/opencode-complete-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-complete-guide/bannerImage.430dc322b9886fa8cc959ee1ab477e13_hu_1d30bf55534d1276.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法"
+                        data-key="opencode-complete-guide" 
+                        data-hash="md5-Qw3DIrmIb6jMlZ7hq0d&#43;Ew==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/claude-code-deepseek-setup/">
+        
+        
+            <div class="article-image">
+                <img src="/p/claude-code-deepseek-setup/bannerImage.893eeb27eb74b1d32493c69de860e065_hu_3892b4af2012730d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 5分で Claude Code をインストールして DeepSeek に接続する"
+                        data-key="claude-code-deepseek-setup" 
+                        data-hash="md5-iT7rJ&#43;t0sdMkk8ad6GDgZQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">5分で Claude Code をインストールして DeepSeek に接続する</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/git-ssh-large-repo/">
+        
+        
+            <div class="article-image">
+                <img src="/p/git-ssh-large-repo/bannerImage.bad96621d05306c2405fa84ab5fa9341_hu_71b1a55a0f0d4c94.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 技術トラブル記録：Git 大規模リポジトリのクローン時のネットワーク切断と SSH による解決策"
+                        data-key="git-ssh-large-repo" 
+                        data-hash="md5-utlmIdBTBsJAX6hKtfqTQQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">技術トラブル記録：Git 大規模リポジトリのクローン時のネットワーク切断と SSH による解決策</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> で構築されています。 <br />
+        テーマ <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> は <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> によって設計されています。
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.5e6aeaaebb97d6a9e08e7d3b4bbe4dc3ce7ea0b2c7d2eed416957bcf6cbbd170.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<script defer src="https://cn.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 170px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.16) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.16) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(245, 245, 250, 0) 0%, rgba(245, 245, 250, 0.72) 100%);
+}
+
+html.at-page-bottom body::after {
+  opacity: 1;
+}
+
+html[data-scheme="dark"] body::after {
+  background:
+    radial-gradient(120% 90px at 50% 100%, rgba(0, 183, 255, 0.12) 0%, rgba(0, 183, 255, 0) 70%),
+    radial-gradient(100% 80px at 50% 100%, rgba(255, 95, 191, 0.1) 0%, rgba(255, 95, 191, 0) 72%),
+    linear-gradient(180deg, rgba(8, 12, 20, 0) 0%, rgba(8, 12, 20, 0.68) 100%);
+}
+</style>
+
+    </body>
+</html>

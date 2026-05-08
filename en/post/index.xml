@@ -7,7 +7,636 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Fri, 08 May 2026 01:07:24 +0800</lastBuildDate><atom:link href="https://Siborne.top/en/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/en/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Codex APP Complete Guide: From Installation to Automation</title>
+        <link>https://Siborne.top/en/p/codex-app-complete-guide/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/en/p/codex-app-complete-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-app-complete-guide/bannerImage.png" alt="Featured image of post Codex APP Complete Guide: From Installation to Automation" /&gt;&lt;h2 id=&#34;key-takeaways&#34;&gt;Key Takeaways
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Codex APP&lt;/strong&gt; is the most powerful Codex product form — generous free quota, full-featured, no rate limits or bans&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sandbox&lt;/strong&gt;: OS-level security isolation; out-of-the-box files and network are blocked by default; three permission tiers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-project parallelism&lt;/strong&gt;: Run multiple projects and conversations simultaneously, physically isolated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Plan Mode&lt;/strong&gt;: Align first, execute later — prevents costly rework from AI misunderstanding&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Git Worktree&lt;/strong&gt;: Branch-level parallel development in separate folders, true isolation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills/MCP&lt;/strong&gt;: Reusable professional capability packs + standardized external tool integration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scheduled automation&lt;/strong&gt;: Plugins + cron tasks + MEMORY experience accumulation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;why-codex-app&#34;&gt;Why Codex APP?
+&lt;/h2&gt;&lt;p&gt;Codex comes in four product forms, and &lt;strong&gt;Codex APP&lt;/strong&gt; is currently the strongest. Compared to Claude Code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Higher quota&lt;/strong&gt;, usable even with free accounts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;More features&lt;/strong&gt;: built-in browser, image generation, plugin marketplace, scheduled tasks&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No rate limits, bans, or downgrades&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Faster onboarding&lt;/strong&gt;: install and go&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This article dissects every feature of Codex APP across 12 sections.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-installation--setup&#34;&gt;1. Installation &amp;amp; Setup
+&lt;/h2&gt;&lt;h3 id=&#34;prerequisites&#34;&gt;Prerequisites
+&lt;/h3&gt;&lt;p&gt;Install these three before Codex APP:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node.js&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VS Code&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;installation-steps&#34;&gt;Installation Steps
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Go to the &lt;a class=&#34;link&#34; href=&#34;https://openai.com/zh-Hans-CN/codex/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex website&lt;/a&gt; and download the installer (Windows / Mac)&lt;/li&gt;
+&lt;li&gt;Follow the installer prompts&lt;/li&gt;
+&lt;li&gt;Launch and sign in with your &lt;strong&gt;ChatGPT account&lt;/strong&gt; (free accounts work)&lt;/li&gt;
+&lt;li&gt;On first launch, select the type of work you want Codex to handle — it will pre-install matching plugins and Skills&lt;/li&gt;
+&lt;li&gt;Choose your primary use case: programming / daily work&lt;/li&gt;
+&lt;li&gt;Click to initialize the sandbox&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Mac vs Windows&lt;/strong&gt;: Features are nearly identical. The only difference is that &lt;strong&gt;Computer Use&lt;/strong&gt; (automatic computer operation) is currently Mac-only.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-basic-usage&#34;&gt;2. Basic Usage
+&lt;/h2&gt;&lt;h3 id=&#34;three-column-layout&#34;&gt;Three-Column Layout
+&lt;/h3&gt;&lt;p&gt;Codex APP uses a classic three-column layout:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Left&lt;/strong&gt;: Task list (projects + conversations)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Center&lt;/strong&gt;: Chat window&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Right&lt;/strong&gt;: Multi-function area (browser, terminal, file tree, etc.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;project-management&#34;&gt;Project Management
+&lt;/h3&gt;&lt;p&gt;Register local folders as Codex projects via &amp;ldquo;Add Project → Use Existing Folder&amp;rdquo;. Each project manages conversations independently with zero interference.&lt;/p&gt;
+&lt;h3 id=&#34;parallel-tasks&#34;&gt;Parallel Tasks
+&lt;/h3&gt;&lt;p&gt;Codex supports &lt;strong&gt;multi-project, multi-conversation parallel execution&lt;/strong&gt;. Task list icons indicate status:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔵 Blue dot → Completed&lt;/li&gt;
+&lt;li&gt;🟢 Green label → Awaiting approval&lt;/li&gt;
+&lt;li&gt;🔄 Spinner → Running&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;conversation-management&#34;&gt;Conversation Management
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;New conversation&lt;/strong&gt;: &lt;code&gt;Ctrl + N&lt;/code&gt; (Win) / &lt;code&gt;Cmd + N&lt;/code&gt; (Mac)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Search history&lt;/strong&gt;: &lt;code&gt;Ctrl + G&lt;/code&gt; / &lt;code&gt;Cmd + G&lt;/code&gt; (searches titles only, not content)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Archive/Restore&lt;/strong&gt;: Click archive to hide conversations; restore from &amp;ldquo;Settings → Archived Conversations&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Auto-generated titles&lt;/strong&gt;: Each conversation title is AI-summarized; double-click to rename&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;permission-system-the-sandbox&#34;&gt;Permission System: The Sandbox
+&lt;/h3&gt;&lt;p&gt;Codex&amp;rsquo;s permission system revolves entirely around the &lt;strong&gt;Sandbox&lt;/strong&gt; — a textbook Harness Engineering implementation that constrains AI capabilities at the OS level.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Default restrictions:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Restriction&lt;/th&gt;
+          &lt;th&gt;Description&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;In-sandbox files&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Direct read/write&lt;/strong&gt; by default, no per-file approval needed&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Out-of-sandbox files&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Blocked&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Network access&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Blocked by default&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;These hard limits are enforced by OS-level mechanisms (Seatbelt/Sandbox on Mac, equivalent on Windows), not by model compliance.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Three permission tiers:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Tier&lt;/th&gt;
+          &lt;th&gt;Description&lt;/th&gt;
+          &lt;th&gt;Recommendation&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Manual approval&lt;/td&gt;
+          &lt;td&gt;Every privilege escalation requires manual confirmation&lt;/td&gt;
+          &lt;td&gt;Safest but tedious&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Auto-review&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Small model auto-reviews low-risk operations; high-risk prompts manual approval&lt;/td&gt;
+          &lt;td&gt;✅ &lt;strong&gt;Recommended&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Full access&lt;/td&gt;
+          &lt;td&gt;Bypass all sandbox restrictions&lt;/td&gt;
+          &lt;td&gt;⚠️ Use with caution&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When Codex needs to access out-of-sandbox files or the network, it will request an &lt;strong&gt;Escalation&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;context-management&#34;&gt;Context Management
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;The circle in the top-right corner shows current context usage&lt;/li&gt;
+&lt;li&gt;When limits are exceeded, Codex &lt;strong&gt;auto-compresses&lt;/strong&gt; conversation history&lt;/li&gt;
+&lt;li&gt;You can also type &lt;code&gt;/compact&lt;/code&gt; to manually trigger compression&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rule of thumb&lt;/strong&gt;: Clearing &amp;gt; Compressing. Start a fresh conversation after completing a task to keep AI focused.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;model-selection&#34;&gt;Model Selection
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Choose thinking intensity based on task complexity&lt;/li&gt;
+&lt;li&gt;Generally use the latest model (e.g., ChatGPT 5.5)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fast mode&lt;/strong&gt;: 50% faster, but consumes 2× quota&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;quota-view&#34;&gt;Quota View
+&lt;/h3&gt;&lt;p&gt;Check &amp;ldquo;Settings → Remaining Quota&amp;rdquo; for two limits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5-hour limit&lt;/li&gt;
+&lt;li&gt;Weekly limit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Usage pauses when either limit is reached and automatically resumes at the reset time.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-image-generation&#34;&gt;3. Image Generation
+&lt;/h2&gt;&lt;p&gt;Codex has built-in &lt;strong&gt;GPT Image&lt;/strong&gt; (currently the most powerful AI image model), allowing image generation directly within conversations.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Typical uses:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web page illustrations, carousel images&lt;/li&gt;
+&lt;li&gt;Stylized maps from annotated screenshots&lt;/li&gt;
+&lt;li&gt;Maintaining visual consistency across multiple images&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;steer-function&#34;&gt;Steer Function
+&lt;/h3&gt;&lt;p&gt;When AI execution veers off course, don&amp;rsquo;t let it continue. Click the &lt;strong&gt;Steer button&lt;/strong&gt; in the conversation (or press &lt;code&gt;Ctrl + Enter&lt;/code&gt;) to take the wheel mid-execution and correct the AI&amp;rsquo;s direction.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In settings, you can choose whether new instructions &amp;ldquo;queue&amp;rdquo; or &amp;ldquo;steer directly&amp;rdquo;. The recommended default is queuing + manually clicking steer when needed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-plan-mode&#34;&gt;4. Plan Mode
+&lt;/h2&gt;&lt;p&gt;For &lt;strong&gt;all complex tasks&lt;/strong&gt;, enable Plan Mode first to align granularity with the AI.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Workflow:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Click the plus icon in the chat window → Enable &amp;ldquo;Plan Mode&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Enter your requirements; Codex will first communicate details via &lt;strong&gt;question cards&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Codex outputs a complete work plan&lt;/li&gt;
+&lt;li&gt;Review and confirm, then click &amp;ldquo;Execute Plan&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Codex executes and automatically opens the built-in browser on the right for verification&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Plan Mode&amp;rsquo;s value&lt;/strong&gt;: Avoids massive rework from AI misinterpretation. Especially suited for architecture migrations and large feature development.&lt;/p&gt;
+&lt;h3 id=&#34;built-in-browser--annotations&#34;&gt;Built-in Browser + Annotations
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;The right multi-function area includes a built-in browser for project preview&lt;/li&gt;
+&lt;li&gt;Click the &amp;ldquo;Annotate&amp;rdquo; button, select page elements, and add comments — the AI will modify accordingly&lt;/li&gt;
+&lt;li&gt;Changes are visible in real time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-code-management&#34;&gt;5. Code Management
+&lt;/h2&gt;&lt;p&gt;Codex APP is not a traditional IDE and doesn&amp;rsquo;t offer full code editing. It&amp;rsquo;s recommended to pair it with VS Code.&lt;/p&gt;
+&lt;h3 id=&#34;git-initialization&#34;&gt;Git Initialization
+&lt;/h3&gt;&lt;p&gt;Let Codex initialize your project as a Git repository:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Auto-creates &lt;code&gt;.gitignore&lt;/code&gt;, excluding unnecessary files&lt;/li&gt;
+&lt;li&gt;Git-related buttons appear in the top-right corner after initialization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;vs-code-integration&#34;&gt;VS Code Integration
+&lt;/h3&gt;&lt;p&gt;Click the &lt;strong&gt;VS Code button&lt;/strong&gt; in the top-right to open the project in one click, or specify a default IDE in settings.&lt;/p&gt;
+&lt;h3 id=&#34;github-sync&#34;&gt;GitHub Sync
+&lt;/h3&gt;&lt;p&gt;Let Codex create a repository on GitHub and push your code. All Git/GitHub operations can be done through conversation.&lt;/p&gt;
+&lt;h3 id=&#34;advanced-tip-1-conversation-fork--git-rollback&#34;&gt;Advanced Tip 1: Conversation Fork + Git Rollback
+&lt;/h3&gt;&lt;p&gt;When you regret a change and want to pretend it never happened:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Conversation Fork&lt;/strong&gt;: Find the pre-change point in the conversation, click the fork button → fork locally to get a conversation copy without the changes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Code Rollback&lt;/strong&gt;: Copy the target commit hash from VS Code&amp;rsquo;s Source Control, and ask Codex to revert the code to that state&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Forking only rolls back conversation history. Code needs separate Git rollback. Together they achieve full &lt;strong&gt;conversation + code&lt;/strong&gt; rollback.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;advanced-tip-2-git-worktree&#34;&gt;Advanced Tip 2: Git Worktree
+&lt;/h3&gt;&lt;p&gt;Worktree essentially creates a new branch via Git and copies the branch code to a separate folder, enabling &lt;strong&gt;multi-branch parallel development&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Use cases:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Right-click project → Create permanent worktree (e.g., &lt;code&gt;customer-rating&lt;/code&gt;, &lt;code&gt;store-info&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Develop different features in different worktrees in parallel, with zero interference&lt;/li&gt;
+&lt;li&gt;After completion, merge each back to main&lt;/li&gt;
+&lt;li&gt;Remove temporary worktrees&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Worktree&amp;rsquo;s core value: different branches live in &lt;strong&gt;different folders&lt;/strong&gt; — true physically isolated parallel development.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-cloud-execution&#34;&gt;6. Cloud Execution
+&lt;/h2&gt;&lt;p&gt;When you don&amp;rsquo;t have your computer handy, or want tasks to run in the background cloud:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Prerequisite&lt;/strong&gt;: Code must be synced to GitHub.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Workflow:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Push local code to GitHub&lt;/li&gt;
+&lt;li&gt;Select &amp;ldquo;Link Codex Web&amp;rdquo; as the run mode&lt;/li&gt;
+&lt;li&gt;Click &amp;ldquo;Go to Cloud&amp;rdquo;, enter the repository name and requirements&lt;/li&gt;
+&lt;li&gt;Codex initializes cloud environment → downloads code → AI analyzes → completes modifications&lt;/li&gt;
+&lt;li&gt;Click &amp;ldquo;Create Pull Request&amp;rdquo; → code is submitted to GitHub as a PR&lt;/li&gt;
+&lt;li&gt;After review, Merge on GitHub&lt;/li&gt;
+&lt;li&gt;Back on local, &lt;code&gt;Sync Changes&lt;/code&gt; to pull the latest code&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Best scenario&lt;/strong&gt;: Out and about, approving via phone while Codex completes tasks in the cloud.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;7-memory-system&#34;&gt;7. Memory System
+&lt;/h2&gt;&lt;p&gt;Every new conversation starts with zero project memory. Complex projects need a memory system to avoid repeating context.&lt;/p&gt;
+&lt;h3 id=&#34;method-1-project-level-agentsmd&#34;&gt;Method 1: Project-level AGENTS.md
+&lt;/h3&gt;&lt;p&gt;Create an &lt;code&gt;AGENTS.md&lt;/code&gt; file in the project root; it&amp;rsquo;s automatically injected as context for every conversation.&lt;/p&gt;
+&lt;p&gt;You can write it by hand or let Codex generate it after reading the project:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Have Codex read the entire current folder and save the project knowledge into AGENTS.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;method-2-global-agentsmd&#34;&gt;Method 2: Global AGENTS.md
+&lt;/h3&gt;&lt;p&gt;Edit under &amp;ldquo;Settings → Personalization → Custom Instructions&amp;rdquo;. Applies to all projects.&lt;/p&gt;
+&lt;p&gt;File location: &lt;code&gt;C:\Users\&amp;lt;username&amp;gt;\.codex\AGENTS.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Practical example&lt;/strong&gt; — preventing accidental file deletion:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Never use scripts to batch-delete files or directories. Only use Remove-Item to delete one at a time.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;If batch deletion is absolutely required, stop and let the user handle it manually.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;experimental-feature-enable-memory&#34;&gt;Experimental Feature: Enable Memory
+&lt;/h3&gt;&lt;p&gt;The &amp;ldquo;Enable Memory&amp;rdquo; setting can auto-extract memories from chats and carry them into new conversations. Still experimental.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;8-plugins--automation&#34;&gt;8. Plugins &amp;amp; Automation
+&lt;/h2&gt;&lt;h3 id=&#34;plugin-marketplace&#34;&gt;Plugin Marketplace
+&lt;/h3&gt;&lt;p&gt;Left sidebar → Plugins, divided into two categories:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Type&lt;/th&gt;
+          &lt;th&gt;Description&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Plugins&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Third-party service capability injection (GitHub, Gmail, Netlify, etc.)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Skills&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Professional capability guides with directory structure&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;example-github--gmail-workflow&#34;&gt;Example: GitHub + Gmail Workflow
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Install GitHub plugin and Gmail plugin&lt;/li&gt;
+&lt;li&gt;Authorize login&lt;/li&gt;
+&lt;li&gt;Enter: &lt;code&gt;/github show me my top 10 starred repos&lt;/code&gt; + &lt;code&gt;/gmail email me a summary&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;scheduled-automation&#34;&gt;Scheduled Automation
+&lt;/h3&gt;&lt;p&gt;Turn the above workflow into a scheduled task:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Turn the above into an automation — email me every Friday at 4 PM
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;After creation, in the &amp;ldquo;Automation&amp;rdquo; panel you can:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit execution frequency (weekly/daily/hourly)&lt;/li&gt;
+&lt;li&gt;Switch models (use mini models for simple tasks)&lt;/li&gt;
+&lt;li&gt;Click &amp;ldquo;Run Now&amp;rdquo; to test&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Execution experience is written to &lt;code&gt;MEMORY.md&lt;/code&gt;, making subsequent runs more stable.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;more-automation-ideas&#34;&gt;More Automation Ideas
+&lt;/h3&gt;&lt;p&gt;With browser automation or Computer Use:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Summarize daily Teams chat messages into a work report&lt;/li&gt;
+&lt;li&gt;Auto-check-in on websites on schedule&lt;/li&gt;
+&lt;li&gt;Periodically scrape data and generate reports&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;9-skills&#34;&gt;9. Skills
+&lt;/h2&gt;&lt;p&gt;Skills are &lt;strong&gt;professional capability packs&lt;/strong&gt; for AI Agents — essentially manuals with directory structure. Encapsulate workflows, expertise, and standards into Skills to make Agent task execution more stable and efficient.&lt;/p&gt;
+&lt;h3 id=&#34;three-installation-methods&#34;&gt;Three Installation Methods
+&lt;/h3&gt;&lt;h4 id=&#34;1-official-skills&#34;&gt;1. Official Skills
+&lt;/h4&gt;&lt;p&gt;Install directly from the plugin marketplace. Example: &lt;strong&gt;Remotion&lt;/strong&gt; — lets AI create animated videos programmatically.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/remotion Generate a 3D conical pendulum animation with force analysis, angular velocity slowly increasing over time
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;2-third-party-skills&#34;&gt;2. Third-party Skills
+&lt;/h4&gt;&lt;p&gt;Download from GitHub and place in your project:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;project&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;folder&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;err&#34;&gt;└──&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;codex&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;err&#34;&gt;└──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;skills&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;err&#34;&gt;└──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;downloaded&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;skill&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Then add the project to Codex and invoke the Skill with a slash command.&lt;/p&gt;
+&lt;h4 id=&#34;3-custom-skills&#34;&gt;3. Custom Skills
+&lt;/h4&gt;&lt;p&gt;Use the built-in &lt;strong&gt;Skill Creator&lt;/strong&gt; to create:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/skill-creator Create a skill:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;When I provide a video and subtitle file —
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 1: Read subtitles, convert to Markdown notes, auto-add punctuation and paragraph breaks,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       for code demonstrations / UI interactions, add screenshot placeholder markers at sentence end
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 2: Use ffmpeg to take screenshots at markers, replace placeholders with local images
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Long prompt tip&lt;/strong&gt;: Use &lt;code&gt;Shift + Enter&lt;/code&gt; for line breaks, not Enter (which sends the message).&lt;/p&gt;
+&lt;p&gt;Once created, all similar future tasks become a single slash command.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;10-mcp&#34;&gt;10. MCP
+&lt;/h2&gt;&lt;p&gt;MCP (Model Context Protocol) is a &lt;strong&gt;standardized toolbox&lt;/strong&gt; for large models, enabling AI to interact with external services.&lt;/p&gt;
+&lt;h3 id=&#34;entry-point&#34;&gt;Entry Point
+&lt;/h3&gt;&lt;p&gt;&amp;ldquo;Settings → MCP Servers → Add Server&amp;rdquo;&lt;/p&gt;
+&lt;h3 id=&#34;example-supabase-mcp&#34;&gt;Example: Supabase MCP
+&lt;/h3&gt;&lt;p&gt;Supabase is an open-source, free PostgreSQL cloud database.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a project on Supabase → Connect → MCP Client → Select Codex → Copy URL&lt;/li&gt;
+&lt;li&gt;Add MCP server in Codex, transport type &amp;ldquo;Streamable HTTP&amp;rdquo;, paste the URL&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;codex mcp login supabase&lt;/code&gt; in the terminal to authorize&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Restart Codex&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now you can operate the database through conversation:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Use Supabase MCP to create a booking table.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;User form data is written from the backend using a connection pool.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;11-computer-use&#34;&gt;11. Computer Use
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ Currently Mac-only&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After installing the Computer Use plugin, Codex can directly operate your computer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open chat apps, find your boss, and send messages&lt;/li&gt;
+&lt;li&gt;Open browser, check GitHub kanban boards, summarize project progress&lt;/li&gt;
+&lt;li&gt;Generate English briefs and send to your boss&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;features&#34;&gt;Features
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Uses a &lt;strong&gt;virtual mouse&lt;/strong&gt; running in the background, not occupying the current window&lt;/li&gt;
+&lt;li&gt;Can be composed into &lt;strong&gt;scheduled automation tasks&lt;/strong&gt; (e.g., auto-send brief every day at 5 PM)&lt;/li&gt;
+&lt;li&gt;On Mac, recommend enabling &amp;ldquo;Prevent system sleep during execution&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-summary-codex-app-capability-map&#34;&gt;12. Summary: Codex APP Capability Map
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Capability&lt;/th&gt;
+          &lt;th&gt;Description&lt;/th&gt;
+          &lt;th&gt;Highlight&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Sandbox Permissions&lt;/td&gt;
+          &lt;td&gt;OS-level security isolation + auto-review&lt;/td&gt;
+          &lt;td&gt;Balance of safety and convenience&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Multi-project Parallelism&lt;/td&gt;
+          &lt;td&gt;Multiple projects &amp;amp; conversations simultaneously&lt;/td&gt;
+          &lt;td&gt;Physical isolation, zero interference&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Image Generation&lt;/td&gt;
+          &lt;td&gt;Built-in GPT Image&lt;/td&gt;
+          &lt;td&gt;Style consistency, embedded in projects&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Plan Mode&lt;/td&gt;
+          &lt;td&gt;Align first, then execute&lt;/td&gt;
+          &lt;td&gt;Prevents rework&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Git Worktree&lt;/td&gt;
+          &lt;td&gt;Branch-level parallel development&lt;/td&gt;
+          &lt;td&gt;Different folders, true isolation&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Cloud Execution&lt;/td&gt;
+          &lt;td&gt;GitHub-linked cloud execution&lt;/td&gt;
+          &lt;td&gt;Approve via phone, work anytime&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Memory System&lt;/td&gt;
+          &lt;td&gt;AGENTS.md project-level + global&lt;/td&gt;
+          &lt;td&gt;No more repeating context&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Scheduled Automation&lt;/td&gt;
+          &lt;td&gt;Plugins + cron tasks + MEMORY&lt;/td&gt;
+          &lt;td&gt;Accumulates experience, gets more stable&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Skills&lt;/td&gt;
+          &lt;td&gt;Reusable professional capability packs&lt;/td&gt;
+          &lt;td&gt;Official / third-party / custom&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;MCP&lt;/td&gt;
+          &lt;td&gt;Standardized external tool integration&lt;/td&gt;
+          &lt;td&gt;Supabase, Netlify, etc.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Computer Use&lt;/td&gt;
+          &lt;td&gt;Automatic computer operation&lt;/td&gt;
+          &lt;td&gt;Mac-only, background execution&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Source&lt;/strong&gt;: Bilibili video &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1Kk9kBAEJv/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex (APP) Complete Guide&lt;/a&gt; by 技术爬爬虾 (2026-04-28)&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>Connect DeepSeek V4 to Codex: Solving API Format Incompatibility with a Proxy Script</title>
+        <link>https://Siborne.top/en/p/codex-deepseek-v4-proxy/</link>
+        <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/en/p/codex-deepseek-v4-proxy/</guid>
+        <description>&lt;img src="https://Siborne.top/p/codex-deepseek-v4-proxy/bannerImage.png" alt="Featured image of post Connect DeepSeek V4 to Codex: Solving API Format Incompatibility with a Proxy Script" /&gt;&lt;blockquote&gt;
+&lt;p&gt;🚀 &lt;strong&gt;Proxy script is now open source&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt; — one-click conversion of any third-party API to Codex-compatible format. Not just DeepSeek.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;where-does-the-problem-come-from&#34;&gt;Where Does the Problem Come From?
+&lt;/h2&gt;&lt;p&gt;DeepSeek V4 series models recently went on sale, offering exceptional value. Many developers want to switch to them within Codex. But in practice, they run into a frustrating issue:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Codex&amp;rsquo;s API request format doesn&amp;rsquo;t match the DeepSeek official API.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Specifically, Codex internally sends requests in a fixed path format. If you simply change the endpoint to DeepSeek&amp;rsquo;s official &lt;code&gt;https://api.deepseek.com&lt;/code&gt; in the config, Codex will error out — no matter how you tweak the model name or parameters, nothing works.&lt;/p&gt;
+&lt;h2 id=&#34;why-do-proxy-services-work&#34;&gt;Why Do Proxy Services Work?
+&lt;/h2&gt;&lt;p&gt;This actually hints at the solution. The reason third-party API proxy services can seamlessly integrate with Codex is that they perform a layer of &lt;strong&gt;protocol adaptation&lt;/strong&gt; — intercepting Codex&amp;rsquo;s requests, reassembling them into the format the target API expects, forwarding them, and then translating the response back into a format Codex understands.&lt;/p&gt;
+&lt;p&gt;With this in mind, we can apply the exact same approach: build our own &lt;strong&gt;local proxy script&lt;/strong&gt; to bridge Codex and the DeepSeek API.&lt;/p&gt;
+&lt;h2 id=&#34;architecture-overview&#34;&gt;Architecture Overview
+&lt;/h2&gt;&lt;p&gt;The overall flow looks like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Codex Client
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CC Switch (model configuration layer)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Local Proxy Script (protocol conversion layer)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DeepSeek Official API
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Three components, each with a clear role:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Component&lt;/th&gt;
+          &lt;th&gt;Responsibility&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Open-source model switcher; injects custom model configs into Codex&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Proxy Script&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Local proxy service; bidirectional request/response format conversion&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;DeepSeek API&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;The actual model service handling user requests&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;step-by-step-guide&#34;&gt;Step-by-Step Guide
+&lt;/h2&gt;&lt;h3 id=&#34;step-1-prepare-the-tools&#34;&gt;Step 1: Prepare the Tools
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CC Switch&lt;/strong&gt;: Open-source tool, available on the Microsoft Store or GitHub&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex&lt;/strong&gt;: Your IDE, already in use&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Proxy Script&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt;, one-click conversion of third-party APIs to Codex-compatible format&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-2-configure-cc-switch&#34;&gt;Step 2: Configure CC Switch
+&lt;/h3&gt;&lt;p&gt;Open CC Switch, find the Codex / OpenAI Codex configuration entry, and click the plus icon to create a custom config:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Endpoint&lt;/strong&gt;: Set to your local proxy script address, e.g., &lt;code&gt;http://localhost:&amp;lt;port&amp;gt;/v1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Model name&lt;/strong&gt;: The DeepSeek model you want, e.g., &lt;code&gt;deepseek-v4-pro&lt;/code&gt; or &lt;code&gt;deepseek-v4-fast&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API Key&lt;/strong&gt;: Use a fixed placeholder (your real API key is embedded in the proxy script)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Critical&lt;/strong&gt;: The endpoint here must &lt;strong&gt;NOT&lt;/strong&gt; be the official DeepSeek address. Codex sends requests in a fixed path format, and direct connection to the official API will fail due to format mismatch. Requests must go through the proxy script first.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Save the configuration.&lt;/p&gt;
+&lt;h3 id=&#34;step-3-start-the-proxy-script&#34;&gt;Step 3: Start the Proxy Script
+&lt;/h3&gt;&lt;p&gt;Run the script. It will first perform a connectivity check, verifying your API key is valid and the network is reachable. Once verified, it starts a local proxy service and begins listening for requests from Codex.&lt;/p&gt;
+&lt;h3 id=&#34;step-4-switch-models-in-codex&#34;&gt;Step 4: Switch Models in Codex
+&lt;/h3&gt;&lt;p&gt;Open Codex, find the custom configuration injected by CC Switch in the model selection list (it will appear with the name you set in Step 2), and select it.&lt;/p&gt;
+&lt;p&gt;Send a quick test message — if everything is working, DeepSeek V4&amp;rsquo;s response will appear right in front of you.&lt;/p&gt;
+&lt;h2 id=&#34;what-does-the-proxy-script-actually-do&#34;&gt;What Does the Proxy Script Actually Do?
+&lt;/h2&gt;&lt;p&gt;The core logic is straightforward:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Receive&lt;/strong&gt; requests from Codex in the fixed format&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parse&lt;/strong&gt; out the effective fields: messages, model, parameters, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reassemble&lt;/strong&gt; them into the request body format required by the DeepSeek official API&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Forward&lt;/strong&gt; to DeepSeek servers with your real API key&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Restore&lt;/strong&gt; the response into Codex-compatible format and return it to the client&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At its core, it&amp;rsquo;s a &lt;strong&gt;protocol conversion layer&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;why-cant-we-just-modify-codexs-request-path&#34;&gt;Why Can&amp;rsquo;t We Just Modify Codex&amp;rsquo;s Request Path?
+&lt;/h2&gt;&lt;p&gt;The instinctive reaction is: &amp;ldquo;Can&amp;rsquo;t I just find where Codex defines the request path and change it to DeepSeek&amp;rsquo;s format?&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Turns out you really can&amp;rsquo;t. The video author mentioned trying many times — changing &lt;code&gt;/chat&lt;/code&gt;, &lt;code&gt;/v1&lt;/code&gt;, various path segments — Codex errors out every time. The request format is hardcoded in Codex&amp;rsquo;s internal logic, and tampering with it breaks the entire communication flow. Rather than fighting Codex&amp;rsquo;s internals, it&amp;rsquo;s far cleaner to add an adaptation layer on the outside.&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Approach&lt;/th&gt;
+          &lt;th&gt;Direct endpoint change&lt;/th&gt;
+          &lt;th&gt;Proxy script&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Does it work?&lt;/td&gt;
+          &lt;td&gt;❌ Errors out&lt;/td&gt;
+          &lt;td&gt;✅ Works&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Implementation cost&lt;/td&gt;
+          &lt;td&gt;Low (one config line)&lt;/td&gt;
+          &lt;td&gt;Medium (run one extra script)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Maintainability&lt;/td&gt;
+          &lt;td&gt;Poor (breaks on Codex updates)&lt;/td&gt;
+          &lt;td&gt;Good (decoupled, no dependency on Codex internals)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Extensibility&lt;/td&gt;
+          &lt;td&gt;None&lt;/td&gt;
+          &lt;td&gt;High (easily add more models)&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The insight here is quite generalizable — &lt;strong&gt;this isn&amp;rsquo;t just about using DeepSeek with Codex. Any scenario with similar API format incompatibility can be solved with a local proxy layer.&lt;/strong&gt; CC Switch handles config injection, and the proxy script handles protocol conversion. Together, they open the door to connecting all kinds of third-party models to Codex.&lt;/p&gt;
+&lt;p&gt;The proxy script is open source at &lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Siborne/any2codex&lt;/a&gt;. Stars and PRs welcome — let&amp;rsquo;s build out compatibility for more models together.&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Source&lt;/strong&gt;: Bilibili video &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1euRbB3E33/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Codex接入国产大模型教程&lt;/a&gt; by 王了小王 (2026-05-06)&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
         <title>OpenCode Advanced Tips: Parallel Scheduling and Workflow Mastery</title>
         <link>https://Siborne.top/en/p/opencode-parallel-workflow-tips/</link>
         <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
