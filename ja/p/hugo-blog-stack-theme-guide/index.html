@@ -1,0 +1,2761 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ゼロから始める Hugo + GitHub Pages での無料ブログ構築。Stack テーマのビジュアルと機能を徹底的にカスタマイズする方法を、再利用可能なコード付きで解説します。">
+<title>Hugo ブログ構築と Stack テーマ完全カスタマイズガイド</title>
+
+<link rel='canonical' href='https://Siborne.top/ja/p/hugo-blog-stack-theme-guide/'>
+
+<link rel="stylesheet" href="/scss/style.min.266c2d3f4822631b105b97664a103c3737ee3a439c2ce01b7142501e9591e1df.css"><meta property='og:title' content="Hugo ブログ構築と Stack テーマ完全カスタマイズガイド">
+<meta property='og:description' content="ゼロから始める Hugo + GitHub Pages での無料ブログ構築。Stack テーマのビジュアルと機能を徹底的にカスタマイズする方法を、再利用可能なコード付きで解説します。">
+<meta property='og:url' content='https://Siborne.top/ja/p/hugo-blog-stack-theme-guide/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='GitHub' /><meta property='article:tag' content='blog' /><meta property='article:tag' content='stack-theme' /><meta property='article:tag' content='tutorial' /><meta property='article:tag' content='ブログ構築' /><meta property='article:published_time' content='2026-05-11T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-11T01:57:14&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/hugo-blog-stack-theme-guide/bannerImage.png' />
+<meta name="twitter:title" content="Hugo ブログ構築と Stack テーマ完全カスタマイズガイド">
+<meta name="twitter:description" content="ゼロから始める Hugo + GitHub Pages での無料ブログ構築。Stack テーマのビジュアルと機能を徹底的にカスタマイズする方法を、再利用可能なコード付きで解説します。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.top/p/hugo-blog-stack-theme-guide/bannerImage.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="メニューを開く・閉じる">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/ja/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/ja">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; 愛好家
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent アーキテクト &amp; フルスタック開発者
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 好奇心旺盛な学生 · 未来のビルダー
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    インテリジェントエージェント＋スケーラブルアプリを構築。創造性とAI効率の融合。🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/ja/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>ホーム</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>プロフィール | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>アーカイブ | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>検索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>テックリンク | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" >繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" selected>日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>ダークモード</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目次</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#はじめに">はじめに</a></li>
+    <li><a href="#1-基本環境のセットアップ">1. 基本環境のセットアップ</a>
+      <ol>
+        <li><a href="#11-git-のインストール">1.1 Git のインストール</a></li>
+        <li><a href="#12-hugo-のインストール">1.2 Hugo のインストール</a></li>
+      </ol>
+    </li>
+    <li><a href="#2-初めての-hugo-サイト作成">2. 初めての Hugo サイト作成</a>
+      <ol>
+        <li><a href="#21-プロジェクトの初期化">2.1 プロジェクトの初期化</a></li>
+        <li><a href="#22-ローカルプレビュー">2.2 ローカルプレビュー</a></li>
+      </ol>
+    </li>
+    <li><a href="#3-stack-テーマの設定">3. Stack テーマの設定</a>
+      <ol>
+        <li><a href="#31-テーマのダウンロード">3.1 テーマのダウンロード</a></li>
+        <li><a href="#32-設定の適用">3.2 設定の適用</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-github-pages-へのデプロイ">4. GitHub Pages へのデプロイ</a>
+      <ol>
+        <li><a href="#41-手動デプロイ">4.1 手動デプロイ</a></li>
+        <li><a href="#42-自動デプロイgithub-actions">4.2 自動デプロイ（GitHub Actions）</a>
+          <ol>
+            <li><a href="#準備">準備</a></li>
+            <li><a href="#ワークフローの作成">ワークフローの作成</a></li>
+            <li><a href="#プッシュと確認">プッシュと確認</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#5-コメントシステムの統合">5. コメントシステムの統合</a>
+      <ol>
+        <li><a href="#51-utterancesissue-ベース">5.1 utterances（Issue ベース）</a></li>
+        <li><a href="#52-giscusdiscussion-ベース">5.2 giscus（Discussion ベース）</a></li>
+      </ol>
+    </li>
+    <li><a href="#6-ビジュアルカスタマイズ">6. ビジュアルカスタマイズ</a>
+      <ol>
+        <li><a href="#61-カスタム背景画像">6.1 カスタム背景画像</a></li>
+        <li><a href="#62-動的背景エフェクト">6.2 動的背景エフェクト</a>
+          <ol>
+            <li><a href="#桜吹雪エフェクト">桜吹雪エフェクト</a></li>
+            <li><a href="#パーティクルネットワークparticlesjs">パーティクルネットワーク（particles.js）</a></li>
+          </ol>
+        </li>
+        <li><a href="#63-フォントの変更">6.3 フォントの変更</a></li>
+        <li><a href="#64-カスタムカーソル">6.4 カスタムカーソル</a></li>
+      </ol>
+    </li>
+    <li><a href="#7-機能拡張">7. 機能拡張</a>
+      <ol>
+        <li><a href="#71-最終更新日の表示">7.1 最終更新日の表示</a></li>
+        <li><a href="#72-リンクアーカイブのマルチカラムレイアウト">7.2 リンク・アーカイブのマルチカラムレイアウト</a></li>
+        <li><a href="#73-目次の自動折りたたみ">7.3 目次の自動折りたたみ</a></li>
+        <li><a href="#74-トップに戻るボタン">7.4 トップに戻るボタン</a></li>
+        <li><a href="#75-macos-風コードブロック">7.5 macOS 風コードブロック</a></li>
+        <li><a href="#76-カラー付きアラート引用ブロック">7.6 カラー付きアラート引用ブロック</a></li>
+        <li><a href="#77-長いコードブロックの折りたたみ">7.7 長いコードブロックの折りたたみ</a></li>
+      </ol>
+    </li>
+    <li><a href="#まとめ">まとめ</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/ja/p/hugo-blog-stack-theme-guide/">
+                <img src="/p/hugo-blog-stack-theme-guide/bannerImage_hu_6cd32a765bc69be9.png"
+                        srcset="/p/hugo-blog-stack-theme-guide/bannerImage_hu_6cd32a765bc69be9.png 800w, /p/hugo-blog-stack-theme-guide/bannerImage_hu_28bff7265023c338.png 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post Hugo ブログ構築と Stack テーマ完全カスタマイズガイド" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/ja/p/hugo-blog-stack-theme-guide/">Hugo ブログ構築と Stack テーマ完全カスタマイズガイド</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-11T00:00:00Z'>2026-05-11</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 11, 2026 01:57 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                6204字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        ゼロから始める Hugo &#43; GitHub Pages での無料ブログ構築。Stack テーマのビジュアルと機能を徹底的にカスタマイズする方法を、再利用可能なコード付きで解説します。
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/ja/categories/computer-tools/" >
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/hugo-blog-stack-theme-guide/" class="link">简体中文</a>
+                
+                    <a href="https://Siborne.top/en/p/hugo-blog-stack-theme-guide/" class="link">English</a>
+                
+                    <a href="https://Siborne.top/zh-tw/p/hugo-blog-stack-theme-guide/" class="link">繁體中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="はじめに">はじめに
+</h2><p>自分だけのブログを持ちたいけれど、サーバー管理やホスティング費用に悩まされたくない——そんな方に最適なのが <strong>Hugo</strong> です。現在最も人気のある静的サイトジェネレーターの一つである Hugo と、無料ホスティングの <strong>GitHub Pages</strong> を組み合わせれば、30分もかからずに機能的で美しい個人ブログを公開できます。</p>
+<p>本ガイドでは、環境構築からテーマの徹底カスタマイズ、自動デプロイまでを一挙に解説します。Hugo が初めての方も、既存ブログのアップグレードを検討している方も、すぐに使える知見が満載です。</p>
+<hr>
+<h2 id="1-基本環境のセットアップ">1. 基本環境のセットアップ
+</h2><p>まずは二つのコアツール、<strong>Git</strong> と <strong>Hugo</strong> を準備します。</p>
+<h3 id="11-git-のインストール">1.1 Git のインストール
+</h3><p><a class="link" href="https://git-scm.com/"  target="_blank" rel="noopener"
+    >Git 公式サイト</a>から各プラットフォーム向けのインストーラーをダウンロードし、デフォルト設定でインストールします。</p>
+<p>インストール完了後、ターミナルで以下のコマンドを実行して確認します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>バージョン番号が表示されればインストール成功です。</p>
+<h3 id="12-hugo-のインストール">1.2 Hugo のインストール
+</h3><p><a class="link" href="https://github.com/gohugoio/hugo/tags"  target="_blank" rel="noopener"
+    >Hugo の GitHub Releases ページ</a>にアクセスし、最新バージョンをダウンロードします。</p>
+<ul>
+<li><strong>Windows ユーザー</strong>：<strong>hugo_extended</strong> と <strong>windows_amd64</strong> を含む zip ファイルを選択</li>
+<li><strong>macOS ユーザー</strong>：<code>brew install hugo</code></li>
+<li><strong>Linux ユーザー</strong>：パッケージマネージャーまたはバイナリを直接ダウンロード</li>
+</ul>
+<p>Hugo のバイナリを使いやすいディレクトリに配置し、パスを控えておきます。これから頻繁に使用します。</p>
+<blockquote>
+<p><strong>なぜ extended バージョンが必要なのか？</strong> Stack テーマは Hugo の組み込み SCSS コンパイル機能に依存しています。extended バージョンのみが完全な SCSS/SASS 処理をサポートしており、通常版ではテーマのスタイルが正しく生成されません。</p>
+</blockquote>
+<hr>
+<h2 id="2-初めての-hugo-サイト作成">2. 初めての Hugo サイト作成
+</h2><h3 id="21-プロジェクトの初期化">2.1 プロジェクトの初期化
+</h3><p>Hugo バイナリのあるディレクトリでターミナルを開き、以下のコマンドを実行します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo new site my-blog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>これで標準的な Hugo プロジェクトの骨格が生成されます。<code>my-blog</code> はお好みの名前に変更可能です。</p>
+<p>プロジェクトディレクトリに移動します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> my-blog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="22-ローカルプレビュー">2.2 ローカルプレビュー
+</h3><p>Hugo 内蔵の開発サーバーを起動します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server -D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>-D</code> フラグは下書き（draft）記事も表示するため、ローカル開発時に便利です。</p>
+<p><code>http://localhost:1313</code> にアクセスすると空白のページが表示されますが、これは正常です。まだテーマをインストールしていないためです。<code>Ctrl + C</code> でサーバーを停止しましょう。</p>
+<hr>
+<h2 id="3-stack-テーマの設定">3. Stack テーマの設定
+</h2><p>Hugo のエコシステムには数百の無料テーマがあります。本ガイドでは、美しいカード型レイアウト、ダークモード、シンタックスハイライト、多言語対応を備えた <strong>Stack</strong> テーマを中心に解説します。</p>
+<h3 id="31-テーマのダウンロード">3.1 テーマのダウンロード
+</h3><p><a class="link" href="https://themes.gohugo.io/"  target="_blank" rel="noopener"
+    >themes.gohugo.io</a> でテーマを閲覧できます。Stack については、<a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/tags"  target="_blank" rel="noopener"
+    >Releases ページ</a>から直接最新バージョンをダウンロードします。</p>
+<p>アーカイブを展開し、テーマフォルダごとプロジェクトの <code>/themes</code> ディレクトリに配置します。</p>
+<blockquote>
+<p>Git サブモジュールの使用も推奨されます：<code>git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack</code></p>
+</blockquote>
+<h3 id="32-設定の適用">3.2 設定の適用
+</h3><p>Stack テーマにはサンプルサイトが同梱されており、<code>exampleSite</code> ディレクトリにあります。その中の <strong>content</strong> フォルダと <strong>hugo.yaml</strong> をプロジェクトルートにコピーし、元の <code>hugo.toml</code>（存在する場合）と <code>content/post/rich-content</code> サンプルファイルを削除します。</p>
+<p><code>hugo.yaml</code> を開き、<code>theme</code> フィールドが <code>/themes</code> 内のテーマフォルダ名と一致していることを確認します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">hugo-theme-stack</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>再度開発サーバーを起動します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server -D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ブラウザを更新すると、クリーンでエレガントな Stack ブログが表示されます。<code>hugo.yaml</code> にはサイトタイトル、説明、ソーシャルリンク、ナビゲーションメニューなど多くの調整可能なパラメータがあります。時間をかけて確認し、必要に応じて変更してください。</p>
+<hr>
+<h2 id="4-github-pages-へのデプロイ">4. GitHub Pages へのデプロイ
+</h2><h3 id="41-手動デプロイ">4.1 手動デプロイ
+</h3><p>まず GitHub で <strong><code>{あなたのユーザー名}.github.io</code></strong> という名前のリポジトリを作成します。</p>
+<p>リポジトリの <code>Settings</code> -&gt; <code>Pages</code> に移動し、Source を <code>Deploy from a branch</code>、Branch を <code>main</code> に設定して保存します。GitHub が自動的に <code>https://{ユーザー名}.github.io</code> という URL を有効にします。</p>
+<p>ローカルに戻り、プロジェクトルートで以下のコマンドを実行します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo -D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ルートディレクトリに <code>public</code> フォルダが生成されます。これが完全な静的サイトです。<code>public</code> に移動して GitHub にプッシュします：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> public
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;first commit&#34;</span>
+</span></span><span class="line"><span class="cl">git branch -M main
+</span></span><span class="line"><span class="cl">git remote add origin https://github.com/<span class="o">{</span>ユーザー名<span class="o">}</span>/<span class="o">{</span>ユーザー名<span class="o">}</span>.github.io.git
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>初回プッシュ時に認証を求められる場合があります（パスワードの代わりに GitHub CLI または Personal Access Token の使用を推奨）。アップロードが完了したら、<code>https://{ユーザー名}.github.io</code> にアクセスしてブログを確認できます。</p>
+<h3 id="42-自動デプロイgithub-actions">4.2 自動デプロイ（GitHub Actions）
+</h3><p>記事を書くたびに手動でビルドとプッシュを行うのは面倒です。<strong>GitHub Actions</strong> を使えば、このワークフロー全体を自動化できます。</p>
+<h4 id="準備">準備
+</h4><ol>
+<li>Hugo ソースファイル用に別のリポジトリを作成します（例：<code>my-blog-source</code>）</li>
+<li>GitHub の <code>Settings</code> -&gt; <code>Developer settings</code> -&gt; <code>Personal access tokens</code> -&gt; <code>Tokens (classic)</code> でトークンを生成</li>
+<li>トークンの有効期限を <strong>無期限</strong> に設定し、<strong>repo</strong> と <strong>workflow</strong> スコープを付与</li>
+<li>生成されたトークンをソースリポジトリの <code>Settings</code> -&gt; <code>Secrets and variables</code> -&gt; <code>Actions</code> に <code>PERSONAL_TOKEN</code> として保存</li>
+</ol>
+<h4 id="ワークフローの作成">ワークフローの作成
+</h4><p>Hugo プロジェクトのルートに <code>.github/workflows/deploy.yaml</code> を作成します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">deploy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Checkout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Hugo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-hugo@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">hugo-version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;latest&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">extended</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build Web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hugo -D</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy Web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-gh-pages@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">PERSONAL_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.PERSONAL_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">EXTERNAL_REPOSITORY</span><span class="p">:</span><span class="w"> </span>{<span class="l">あなたのユーザー名}/{あなたのユーザー名}.github.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">PUBLISH_BRANCH</span><span class="p">:</span><span class="w"> </span><span class="l">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">PUBLISH_DIR</span><span class="p">:</span><span class="w"> </span><span class="l">./public</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">commit_message</span><span class="p">:</span><span class="w"> </span><span class="l">auto deploy</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>また、<code>.gitignore</code> も作成します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">public
+</span></span><span class="line"><span class="cl">resources
+</span></span><span class="line"><span class="cl">.hugo_build.lock
+</span></span><span class="line"><span class="cl">hugo.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="プッシュと確認">プッシュと確認
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;first commit&#34;</span>
+</span></span><span class="line"><span class="cl">git branch -M main
+</span></span><span class="line"><span class="cl">git remote add origin https://github.com/<span class="o">{</span>ユーザー名<span class="o">}</span>/<span class="o">{</span>ソースリポジトリ名<span class="o">}</span>.git
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>プッシュ後、GitHub Actions が自動的に実行されます。リポジトリの <code>Actions</code> タブでビルドの進行状況を確認できます。以降、<code>main</code> ブランチにプッシュするたびに、ブログが自動的にビルド・デプロイされます。</p>
+<hr>
+<h2 id="5-コメントシステムの統合">5. コメントシステムの統合
+</h2><p>Hugo は静的ページを生成するため、コメント機能は組み込まれていません。しかし GitHub の Issue または Discussion の仕組みを活用することで、無料でコメント機能を追加できます。</p>
+<h3 id="51-utterancesissue-ベース">5.1 utterances（Issue ベース）
+</h3><p>utterances は各記事のコメントを、指定したリポジトリの Issue として保存します。</p>
+<ul>
+<li><a class="link" href="https://github.com/apps/utterances"  target="_blank" rel="noopener"
+    >utterances app</a> を対象リポジトリにインストール</li>
+<li><code>hugo.yaml</code> に設定：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">comments</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">utterances</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">utterances</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{あなたのGitHubユーザー名}/{リポジトリ名}&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-giscusdiscussion-ベース">5.2 giscus（Discussion ベース）
+</h3><p>giscus は utterances と同様の仕組みですが、データを Issues ではなく Discussions に保存し、よりモダンな UI を提供します。返信のネストやリアクションにも対応しています。</p>
+<ul>
+<li><a class="link" href="https://github.com/apps/giscus"  target="_blank" rel="noopener"
+    >giscus app</a> をリポジトリにインストールし、リポジトリの <code>Settings</code> で Discussions 機能を有効化</li>
+<li><a class="link" href="https://giscus.app/"  target="_blank" rel="noopener"
+    >giscus 公式サイト</a> にアクセスし、手順に沿って設定するとパラメータが生成されます</li>
+<li><code>hugo.yaml</code> に設定：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">comments</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">giscus</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">giscus</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{あなたのGitHubユーザー名}/{リポジトリ名}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">repoID</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{giscus 生成の repoID}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{Discussion カテゴリ名}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">categoryID</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{giscus 生成の categoryID}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mapping</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;pathname&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">reactionsEnabled</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">emitMetadata</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;0&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">inputPosition</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;bottom&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ja&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>このブログでも giscus を使用しており、非常に良い体験が得られています。Stack テーマは両方のソリューションをネイティブサポートしており、<code>hugo.yaml</code> に入力するだけで利用できます。</p>
+</blockquote>
+<hr>
+<h2 id="6-ビジュアルカスタマイズ">6. ビジュアルカスタマイズ
+</h2><h3 id="61-カスタム背景画像">6.1 カスタム背景画像
+</h3><p>高解像度の画像を <code>assets/background</code> に配置します。</p>
+<p><code>layouts/partials/footer/custom.html</code> に以下を追加します（ファイルがなければ作成）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">body</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">{{ (resources.Get &#34;background/背景画像ファイル名.png&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">Permalink</span> <span class="p">}</span><span class="err">}</span><span class="o">)</span> <span class="nt">no-repeat</span> <span class="nt">center</span> <span class="nt">top</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">background-size</span><span class="o">:</span> <span class="nt">cover</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">background-attachment</span><span class="o">:</span> <span class="nt">fixed</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>background-attachment: fixed</code> により、スクロールしても背景が固定され、パララックス風の奥行き効果が生まれます。</p>
+<h3 id="62-動的背景エフェクト">6.2 動的背景エフェクト
+</h3><h4 id="桜吹雪エフェクト">桜吹雪エフェクト
+</h4><p><a class="link" href="https://github.com/jhammann/sakura.js"  target="_blank" rel="noopener"
+    >sakura.js</a> をダウンロードし、<code>assets/background</code> に配置して、<code>layouts/partials/footer/custom.html</code> で読み込みます：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">{{</span> <span class="err">(</span><span class="na">resources</span><span class="err">.</span><span class="na">Get</span> <span class="err">&#34;</span><span class="na">background</span><span class="err">/</span><span class="na">sakura</span><span class="err">.</span><span class="na">js</span><span class="err">&#34;).</span><span class="na">Permalink</span> <span class="err">}}</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="パーティクルネットワークparticlesjs">パーティクルネットワーク（particles.js）
+</h4><p>particles.js は星空、接続線、バブルなど多彩なエフェクトを生成できる強力なパーティクルアニメーションライブラリです。</p>
+<ol>
+<li><a class="link" href="https://github.com/VincentGarreau/particles.js"  target="_blank" rel="noopener"
+    >particles.js GitHub</a> から <code>particles.min.js</code> をダウンロードし、<code>assets/background</code> に配置</li>
+<li><a class="link" href="https://vincentgarreau.com/particles.js/"  target="_blank" rel="noopener"
+    >公式オンライン設定ツール</a> でパラメータを調整し、設定ファイルを <code>particlesjs-config.json</code> として <code>assets/background</code> に保存</li>
+<li>設定ファイル内の <code>detect_on</code> は <code>window</code> に変更する必要があります</li>
+</ol>
+<p><code>layouts/partials/footer/custom.html</code> に以下を追加：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;particles-js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">{{</span> <span class="err">(</span><span class="na">resources</span><span class="err">.</span><span class="na">Get</span> <span class="err">&#34;</span><span class="na">background</span><span class="err">/</span><span class="na">particles</span><span class="err">.</span><span class="na">min</span><span class="err">.</span><span class="na">js</span><span class="err">&#34;).</span><span class="na">Permalink</span> <span class="err">}}</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">particlesJS</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">&#39;particles-js&#39;</span><span class="p">,</span> <span class="p">{{</span> <span class="p">(</span><span class="nx">resources</span><span class="p">.</span><span class="nx">Get</span> <span class="s2">&#34;background/particlesjs-config.json&#34;</span><span class="p">).</span><span class="nx">Permalink</span> <span class="p">}},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;particles.js loaded - callback&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">#</span><span class="nn">particles-js</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">z-index</span><span class="p">:</span> <span class="mi">-1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>パーティクルコンテナの <code>z-index</code> を <code>-1</code> に設定することが重要です。これにより、パーティクルが他のすべてのコンテンツの背後に表示されます。</p>
+</blockquote>
+<h3 id="63-フォントの変更">6.3 フォントの変更
+</h3><p><code>.ttf</code> または <code>.woff2</code> フォントファイルを <code>assets/font</code> に配置し、<code>layouts/partials/footer/custom.html</code> で登録・適用します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">@</span><span class="k">font-face</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;MyCustomFont&#39;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="p">{</span><span class="err">{</span> <span class="err">(resources.Get</span> <span class="err">&#34;font/フォントファイル名.ttf&#34;).Permalink</span> <span class="p">}}</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;truetype&#39;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="err">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">:</span><span class="nd">root</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">--base-font-family</span><span class="p">:</span> <span class="s1">&#39;MyCustomFont&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">--code-font-family</span><span class="p">:</span> <span class="s1">&#39;MyCustomFont&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Stack テーマは CSS カスタムプロパティでフォントを制御しています。<code>--base-font-family</code> と <code>--code-font-family</code> を上書きすることで、本文とコードブロックの書体をそれぞれ変更できます。</p>
+<h3 id="64-カスタムカーソル">6.4 カスタムカーソル
+</h3><p>デフォルト・ポインター・テキスト選択の3種類のカーソル画像を用意し、<code>static/mouse</code> ディレクトリに配置します。</p>
+<p><code>assets/scss/custom.scss</code>（Stack テーマのスタイルエントリポイント）を作成します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nt">body</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">html</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="nc">.article-content</span> <span class="nt">img</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">cursor</span><span class="o">:</span> <span class="sx">url(../mouse/default.png)</span><span class="o">,</span> <span class="ni">auto</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">a</span><span class="o">:</span><span class="n">hover</span><span class="o">,</span><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">button</span><span class="o">:</span><span class="n">hover</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="na">copyCodeButton</span><span class="o">:</span><span class="n">hover</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="mh">#dark</span><span class="o">-</span><span class="n">mode-toggle</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">cursor</span><span class="o">:</span> <span class="sx">url(../mouse/pointer.png)</span><span class="o">,</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">input</span><span class="o">:</span><span class="n">hover</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">site-description</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">article-subtitle</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">article-content</span> <span class="n">span</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">article-content</span> <span class="n">li</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">article-content</span> <span class="n">p</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">cursor</span><span class="o">:</span> <span class="sx">url(../mouse/text.png)</span><span class="o">,</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3種類のカーソルスタイルを異なる要素状態に割り当てています：デフォルトカーソルはページと画像、ポインターカーソルはクリック可能な要素、テキストカーソルは文章領域です。</p>
+<hr>
+<h2 id="7-機能拡張">7. 機能拡張
+</h2><h3 id="71-最終更新日の表示">7.1 最終更新日の表示
+</h3><p><code>hugo.yaml</code> で Git ベースの日付追跡を有効にします：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">enableGitInfo</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">frontmatter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">lastmod</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="p">:</span><span class="l">git</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="p">:</span><span class="l">fileModTime</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Hugo は各ファイルの Git コミット日時を最終更新日として優先的に使用し、Git 情報がない場合はファイルの変更日時にフォールバックします。</p>
+<p><code>layouts/partials/article/components/details.html</code> を編集し、<code>&lt;footer class=&quot;article-time&quot;&gt;</code> 内に以下を挿入します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- if ne .Lastmod .Date -}}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;article-lastmod&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        {{ partial &#34;helper/icon&#34; &#34;clock&#34; }}
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">time</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            {{ .Lastmod.Format ( or .Site.Params.dateFormat.lastUpdated &#34;Jan 02, 2006 15:04 MST&#34; ) }}
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">{{- end -}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>重要：<code>enableGitInfo</code> を有効にした場合、GitHub Actions の checkout ステップで <code>fetch-depth: 0</code> を設定し、完全なコミット履歴を取得する必要があります。</p>
+</blockquote>
+<h3 id="72-リンクアーカイブのマルチカラムレイアウト">7.2 リンク・アーカイブのマルチカラムレイアウト
+</h3><p><code>assets/scss/custom.scss</code> に以下を追加して、リンク集とアーカイブページをデスクトップで2カラムのカードグリッド表示にします：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">1024</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nc">.article-list--compact</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">grid-template-columns</span><span class="o">:</span> <span class="mi">1</span><span class="kt">fr</span> <span class="mi">1</span><span class="kt">fr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">box-shadow</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">gap</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">article</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-background</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="na">border</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">box-shadow</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">shadow-l2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">margin-right</span><span class="o">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">border-radius</span><span class="o">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="73-目次の自動折りたたみ">7.3 目次の自動折りたたみ
+</h3><p>以下のスタイルとスクリプトを <code>layouts/partials/footer/custom.html</code> に追加して、スクロール位置に応じて目次が自動的に折りたたまれるようにします：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">#</span><span class="nn">TableOfContents</span> <span class="o">&gt;</span> <span class="nt">ul</span><span class="o">,</span> <span class="nt">ol</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">ul,</span> <span class="err">ol</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nc">open</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">initTocHide</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">toc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;.widget--toc&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">toc</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;scroll&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">openUl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&#34;.open&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">openUl</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">openUl</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">ul</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">currentLi</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;.active-class&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">currentLi</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">currentLi</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">currentLi</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">ul</span> <span class="o">=</span> <span class="nx">currentLi</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">do</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ul</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ul</span> <span class="o">=</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">.</span><span class="nx">parentElement</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nx">ul</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">ul</span><span class="p">.</span><span class="nx">localName</span> <span class="o">===</span> <span class="s1">&#39;ul&#39;</span> <span class="o">||</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">localName</span> <span class="o">===</span> <span class="s1">&#39;ol&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">initTocHide</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>未読のセクションは自動的に折りたたまれ、現在のセクションのみが展開されるため、長文記事の目次ナビゲーションが大幅に向上します。</p>
+<h3 id="74-トップに戻るボタン">7.4 トップに戻るボタン
+</h3><p>トップに戻るアイコン（SVG）を用意し、<code>assets/icons</code> に配置します。</p>
+<p><code>layouts/partials/footer/custom.html</code> に以下を追加：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">#</span><span class="nn">backTopBtn</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">bottom</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">z-index</span><span class="p">:</span> <span class="mi">99</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">{{ (resources.Get &#34;icons/backTop.svg&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">Permalink</span> <span class="p">}</span><span class="err">}</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">initScrollTop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">rightSideBar</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;.right-sidebar&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">rightSideBar</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">btn</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="s2">&#34;backTopBtn&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">btn</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">({</span> <span class="nx">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">behavior</span><span class="o">:</span> <span class="s2">&#34;smooth&#34;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">rightSideBar</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">btn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">window</span><span class="p">.</span><span class="nx">onscroll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">&gt;</span> <span class="mi">20</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">btn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s2">&#34;block&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">btn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s2">&#34;none&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">initScrollTop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ボタンは右サイドバーに固定され、20px 以上スクロールすると表示されます。</p>
+<h3 id="75-macos-風コードブロック">7.5 macOS 風コードブロック
+</h3><p><code>assets/scss/custom.scss</code> に以下を追加して、コードブロックに macOS ウィンドウの赤・黄・緑のドットヘッダーを付けます：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.highlight</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">border-radius</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-border-radius</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="na">max-width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin</span><span class="o">:</span> <span class="mi">0</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">box-shadow</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">shadow-l1</span><span class="p">)</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.highlight</span><span class="nd">:before</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">content</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background</span><span class="o">:</span> <span class="sx">url(../icons/macOS-code-header.svg)</span> <span class="ni">no-repeat</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background-size</span><span class="o">:</span> <span class="ni">contain</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">height</span><span class="o">:</span> <span class="mi">18</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin-top</span><span class="o">:</span> <span class="o">-</span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>assets/icons/macOS-code-header.svg</code> に macOS の3ドット SVG アイコンを配置する必要があります。</p>
+<h3 id="76-カラー付きアラート引用ブロック">7.6 カラー付きアラート引用ブロック
+</h3><p>Hugo のレンダーフックを使って、アラートタイプ別に色分けされた引用ブロックを実現します。</p>
+<p><code>layouts/_default/_markup/render-blockquote-alert.html</code> を作成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">blockquote</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-{{ .AlertType }}&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    {{ .Text | safeHTML -}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>assets/scss/custom.scss</code> に4種類の配色を定義します（ライト/ダークモード対応）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// Light mode
+</span></span></span><span class="line"><span class="cl"><span class="nd">:root</span><span class="o">[</span><span class="nt">data-theme</span><span class="o">=</span><span class="s2">&#34;light&#34;</span><span class="o">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-note-bg</span><span class="o">:</span> <span class="mh">#d4e6ff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-note-border</span><span class="o">:</span> <span class="mh">#3b82f6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-tip-bg</span><span class="o">:</span> <span class="mh">#d4f8d4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-tip-border</span><span class="o">:</span> <span class="mh">#22c55e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-warn-bg</span><span class="o">:</span> <span class="mh">#fff3cd</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-warn-border</span><span class="o">:</span> <span class="mh">#f59e0b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-error-bg</span><span class="o">:</span> <span class="mh">#ffe0e0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-error-border</span><span class="o">:</span> <span class="mh">#ef4444</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Dark mode
+</span></span></span><span class="line"><span class="cl"><span class="nd">:root</span><span class="o">[</span><span class="nt">data-theme</span><span class="o">=</span><span class="s2">&#34;dark&#34;</span><span class="o">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-note-bg</span><span class="o">:</span> <span class="mh">#1e2a3a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-note-border</span><span class="o">:</span> <span class="mh">#3b82f6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-tip-bg</span><span class="o">:</span> <span class="mh">#1a2a1a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-tip-border</span><span class="o">:</span> <span class="mh">#22c55e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-warn-bg</span><span class="o">:</span> <span class="mh">#2a2410</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-warn-border</span><span class="o">:</span> <span class="mh">#f59e0b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-error-bg</span><span class="o">:</span> <span class="mh">#2a1a1a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-error-border</span><span class="o">:</span> <span class="mh">#ef4444</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.alert</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span><span class="mf">.8</span><span class="kt">rem</span> <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">border-left</span><span class="o">:</span> <span class="mi">4</span><span class="kt">px</span> <span class="ni">solid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.alert-note</span> <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-note-bg</span><span class="p">);</span> <span class="na">border-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-note-border</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nc">.alert-tip</span>  <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-tip-bg</span><span class="p">);</span>  <span class="na">border-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-tip-border</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nc">.alert-warn</span> <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-warn-bg</span><span class="p">);</span> <span class="na">border-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-warn-border</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nc">.alert-error</span> <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-error-bg</span><span class="p">);</span> <span class="na">border-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-error-border</span><span class="p">);</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Markdown での使用例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">[!NOTE]
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">これは一般的な情報です
+</span></span></span><span class="line"><span class="cl"><span class="k">
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">[!TIP]
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">これは実用的なヒントです
+</span></span></span><span class="line"><span class="cl"><span class="k">
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">[!WARN]
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">これは注意すべき警告です
+</span></span></span><span class="line"><span class="cl"><span class="k">
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">[!ERROR]
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">これはエラーまたはリスクの警告です
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>4種類の引用ブロックがそれぞれ青、緑、黄、赤で表示され、ライト/ダークモードに自動対応します。</p>
+<h3 id="77-長いコードブロックの折りたたみ">7.7 長いコードブロックの折りたたみ
+</h3><p>特に長いコードブロックに対して、折りたたみ・展開機能を追加します。</p>
+<p><code>layouts/partials/footer/custom.html</code> に以下を追加：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">highlight</span> <span class="nt">pre</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">max-height</span><span class="p">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">overflow-y</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">highlight</span> <span class="nt">pre</span><span class="p">.</span><span class="nc">expanded</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">max-height</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">code-expand-btn</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">padding</span><span class="p">:</span> <span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mf">0.85</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card</span><span class="o">-</span><span class="kc">text</span><span class="o">-</span><span class="kc">color</span><span class="o">-</span><span class="n">secondary</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card</span><span class="o">-</span><span class="n">background</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border-top</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card</span><span class="o">-</span><span class="n">separator</span><span class="o">-</span><span class="kc">color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">initCodeCollapse</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.highlight&#39;</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">pre</span> <span class="o">=</span> <span class="nx">block</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;pre&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">pre</span> <span class="o">||</span> <span class="nx">pre</span><span class="p">.</span><span class="nx">scrollHeight</span> <span class="o">&lt;=</span> <span class="mi">420</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">btn</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;code-expand-btn&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">btn</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">&#39;コードを展開&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">block</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">btn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">expanded</span> <span class="o">=</span> <span class="nx">pre</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s1">&#39;expanded&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">btn</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">expanded</span> <span class="o">?</span> <span class="s1">&#39;コードを折りたたむ&#39;</span> <span class="o">:</span> <span class="s1">&#39;コードを展開&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">initCodeCollapse</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>コードブロックの内容が 400px を超える場合、自動的に切り詰められ、「コードを展開」ボタンが表示されます。</p>
+<hr>
+<h2 id="まとめ">まとめ
+</h2><p>ここまでで、Hugo ブログをゼロから構築し、Stack テーマの徹底的なカスタマイズを完了しました。振り返ってみましょう：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>カテゴリ</th>
+          <th>カバーした内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>基本環境</td>
+          <td>Git インストール、Hugo Extended のインストール理由</td>
+      </tr>
+      <tr>
+          <td>サイト初期化</td>
+          <td><code>hugo new site</code>、<code>hugo server -D</code> ローカルプレビュー</td>
+      </tr>
+      <tr>
+          <td>テーマ設定</td>
+          <td>Stack テーマのダウンロード、サンプルサイト移行、<code>hugo.yaml</code> 調整</td>
+      </tr>
+      <tr>
+          <td>デプロイ</td>
+          <td>手動 GitHub Pages プッシュ、GitHub Actions CI/CD</td>
+      </tr>
+      <tr>
+          <td>コメント</td>
+          <td>utterances（Issue ベース）と giscus（Discussion ベース）の統合</td>
+      </tr>
+      <tr>
+          <td>ビジュアル</td>
+          <td>固定背景、パーティクルエフェクト、カスタムフォント、カスタムカーソル</td>
+      </tr>
+      <tr>
+          <td>機能拡張</td>
+          <td>Git 最終更新日、マルチカラムレイアウト、目次自動折りたたみ、トップへ戻る、macOS コードブロック、アラート引用ブロック、コード折りたたみ</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Hugo + Stack の可能性はこのガイドで紹介した内容にとどまりません。<code>hugo.yaml</code> にはショートコード、カスタムメニュー、多言語サイトなど、さらに多くの高度な機能が隠れています。このガイドがあなたのブログ制作の旅の良いスタートとなることを願っています。素晴らしい作品を書き、執筆の楽しさを存分に味わってください。</p>
+<blockquote>
+<p><strong>さらなる情報</strong>：Hugo の高度な使い方については、<a class="link" href="https://gohugo.io/documentation/"  target="_blank" rel="noopener"
+    >Hugo 公式ドキュメント</a> および <a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/wiki"  target="_blank" rel="noopener"
+    >hugo-theme-stack Wiki</a> を参照してください。</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最終更新  11, 2026 01:57 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">関連するコンテンツ</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/ja/p/git-ssh-large-repo/">
+        
+        
+            <div class="article-image">
+                <img src="/p/git-ssh-large-repo/bannerImage.bad96621d05306c2405fa84ab5fa9341_hu_71b1a55a0f0d4c94.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 技術トラブル記録：Git 大規模リポジトリのクローン時のネットワーク切断と SSH による解決策"
+                        data-key="git-ssh-large-repo" 
+                        data-hash="md5-utlmIdBTBsJAX6hKtfqTQQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">技術トラブル記録：Git 大規模リポジトリのクローン時のネットワーク切断と SSH による解決策</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/codex-app-complete-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/codex-app-complete-guide/bannerImage.ef543fe1780e2b00988447209e377f4c_hu_9e22e6c2596537c4.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Codex APP 完全ガイド：インストールから自動化まで徹底解説"
+                        data-key="codex-app-complete-guide" 
+                        data-hash="md5-71Q/4XgOKwCYhEcgnjd/TA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex APP 完全ガイド：インストールから自動化まで徹底解説</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/codex-deepseek-v4-proxy/">
+        
+        
+            <div class="article-image">
+                <img src="/p/codex-deepseek-v4-proxy/bannerImage.dde3a847822c933bba6a28d3918f36c0_hu_c5885f228c0804b1.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決"
+                        data-key="codex-deepseek-v4-proxy" 
+                        data-hash="md5-3eOoR4Iskzu6aijTkY82wA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex で DeepSeek V4 を使う：中継スクリプトで API 形式の非互換を解決</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/opencode-parallel-workflow-tips/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-parallel-workflow-tips/bannerImage.052d81651aef7951346921d53d1ad5c4_hu_4549084811f34791.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド"
+                        data-key="opencode-parallel-workflow-tips" 
+                        data-hash="md5-BS2BZRrveVE0aSHVPRrVxA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/opencode-complete-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-complete-guide/bannerImage.430dc322b9886fa8cc959ee1ab477e13_hu_1d30bf55534d1276.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法"
+                        data-key="opencode-complete-guide" 
+                        data-hash="md5-Qw3DIrmIb6jMlZ7hq0d&#43;Ew==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> で構築されています。 <br />
+        テーマ <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> は <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> によって設計されています。
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.337b391b9709a7de07a4bb428d2ffb003b7e926cdfc9720a68a909ce2cde147d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<div id="jsi-flying-fish-container" class="fish-container"></div>
+
+
+<script defer src="https://events.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+  refreshVercount();
+}
+
+
+function refreshVercount() {
+    let article = document.querySelector(".article-page");
+    if (!article) return;
+
+    let pvEl = document.getElementById("vercount_value_page_pv");
+    if (!pvEl) return;
+
+    
+    pvEl.textContent = 'loading...';
+
+    
+    let oldScript = document.querySelector('script[data-vercount-dynamic]');
+    if (oldScript) oldScript.remove();
+
+    
+    let script = document.createElement('script');
+    script.src = 'https://events.vercount.one/js';
+    script.setAttribute('data-vercount-dynamic', '');
+    document.body.appendChild(script);
+
+    
+    let fallbackTimer = setTimeout(function() {
+        if (pvEl.textContent.trim() === 'loading...') {
+            pvEl.textContent = '';
+        }
+    }, 5000);
+
+    
+    script.addEventListener('load', function() {
+        clearTimeout(fallbackTimer);
+    });
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+
+<script>
+(function() {
+    var RENDERER = {
+        POINT_INTERVAL: 5,
+        FISH_COUNT: 3,
+        MAX_INTERVAL_COUNT: 50,
+        INIT_HEIGHT_RATE: 0.5,
+        THRESHOLD: 50,
+
+        init: function() {
+            this.setParameters();
+            this.reconstructMethods();
+            this.setup();
+            this.bindEvent();
+            this.render();
+        },
+        setParameters: function() {
+            this.$window = window;
+            this.$document = document.body;
+            this.$container = document.getElementById('jsi-flying-fish-container');
+            if (!this.$container) return;
+            this.$canvas = document.createElement('canvas');
+            this.$container.appendChild(this.$canvas);
+            this.context = this.$canvas.getContext('2d');
+            this.points = [];
+            this.fishes = [];
+            this.watchIds = [];
+        },
+        createSurfacePoints: function() {
+            var count = Math.round(this.width / this.POINT_INTERVAL);
+            this.pointInterval = this.width / (count - 1);
+            this.points.push(new SURFACE_POINT(this, 0));
+            for (var i = 1; i < count; i++) {
+                var point = new SURFACE_POINT(this, i * this.pointInterval),
+                    previous = this.points[i - 1];
+                point.setPreviousPoint(previous);
+                previous.setNextPoint(point);
+                this.points.push(point);
+            }
+        },
+        reconstructMethods: function() {
+            this.watchWindowSize = this.watchWindowSize.bind(this);
+            this.jdugeToStopResize = this.jdugeToStopResize.bind(this);
+            this.startEpicenter = this.startEpicenter.bind(this);
+            this.moveEpicenter = this.moveEpicenter.bind(this);
+            this.toggleDirection = this.toggleDirection.bind(this);
+            this.render = this.render.bind(this);
+        },
+        setup: function() {
+            this.points.length = 0;
+            this.fishes.length = 0;
+            this.watchIds.length = 0;
+            this.intervalCount = this.MAX_INTERVAL_COUNT;
+            this.width = this.$container.offsetWidth;
+            this.height = this.$container.offsetHeight;
+            this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
+            this.$canvas.width = this.width;
+            this.$canvas.height = this.height;
+            this.reverse = false;
+            this.fishes.push(new FISH(this));
+            this.createSurfacePoints();
+        },
+        watchWindowSize: function() {
+            this.clearTimer();
+            this.tmpWidth = this.$window.innerWidth;
+            this.tmpHeight = this.$window.innerHeight;
+            this.watchIds.push(setTimeout(this.jdugeToStopResize, 300));
+        },
+        clearTimer: function() {
+            while (this.watchIds.length > 0) {
+                clearTimeout(this.watchIds.pop());
+            }
+        },
+        jdugeToStopResize: function() {
+            var width = this.$window.innerWidth,
+                height = this.$window.innerHeight,
+                stopped = (width === this.tmpWidth && height === this.tmpHeight);
+            this.tmpWidth = width;
+            this.tmpHeight = height;
+            if (stopped) { this.setup(); }
+        },
+        bindEvent: function() {
+            window.addEventListener('resize', this.watchWindowSize);
+            this.$container.addEventListener('click', this.toggleDirection);
+            this.$container.addEventListener('mouseenter', this.startEpicenter);
+            this.$container.addEventListener('mousemove', this.moveEpicenter);
+        },
+        getAxis: function(event) {
+            var rect = this.$container.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        },
+        startEpicenter: function(event) {
+            this.axis = this.getAxis(event);
+        },
+        moveEpicenter: function(event) {
+            var axis = this.getAxis(event);
+            if (!this.axis) { this.axis = axis; }
+            this.generateEpicenter(axis.x, axis.y, axis.y - this.axis.y);
+            this.axis = axis;
+        },
+        generateEpicenter: function(x, y, velocity) {
+            if (y < this.height / 2 - this.THRESHOLD || y > this.height / 2 + this.THRESHOLD) return;
+            var index = Math.round(x / this.pointInterval);
+            if (index < 0 || index >= this.points.length) return;
+            this.points[index].interfere(y, velocity);
+        },
+        toggleDirection: function() {
+            this.reverse = !this.reverse;
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].reverseVertical();
+            }
+        },
+        controlStatus: function() {
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateSelf();
+            }
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateNeighbors();
+            }
+            if (this.fishes.length < this.fishCount) {
+                if (--this.intervalCount === 0) {
+                    this.intervalCount = this.MAX_INTERVAL_COUNT;
+                    this.fishes.push(new FISH(this));
+                }
+            }
+        },
+        render: function() {
+            requestAnimationFrame(this.render);
+            this.controlStatus();
+            this.context.clearRect(0, 0, this.width, this.height);
+
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            this.context.fillStyle = isDark ? 'hsl(210, 30%, 25%)' : 'hsl(210, 80%, 75%)';
+
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].render(this.context);
+            }
+
+            this.context.save();
+            this.context.globalCompositeOperation = 'xor';
+            this.context.beginPath();
+            this.context.moveTo(0, this.reverse ? 0 : this.height);
+
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].render(this.context);
+            }
+            this.context.lineTo(this.width, this.reverse ? 0 : this.height);
+            this.context.closePath();
+            this.context.fill();
+            this.context.restore();
+        }
+    };
+
+    var SURFACE_POINT = function(renderer, x) {
+        this.renderer = renderer;
+        this.x = x;
+        this.init();
+    };
+    SURFACE_POINT.prototype = {
+        SPRING_CONSTANT: 0.03,
+        SPRING_FRICTION: 0.9,
+        WAVE_SPREAD: 0.3,
+        ACCELARATION_RATE: 0.01,
+
+        init: function() {
+            this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE;
+            this.height = this.initHeight;
+            this.fy = 0;
+            this.force = { previous: 0, next: 0 };
+        },
+        setPreviousPoint: function(previous) { this.previous = previous; },
+        setNextPoint: function(next) { this.next = next; },
+        interfere: function(y, velocity) {
+            this.fy = this.renderer.height * this.ACCELARATION_RATE *
+                ((this.renderer.height - this.height - y) >= 0 ? -1 : 1) * Math.abs(velocity);
+        },
+        updateSelf: function() {
+            this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height);
+            this.fy *= this.SPRING_FRICTION;
+            this.height += this.fy;
+        },
+        updateNeighbors: function() {
+            if (this.previous) {
+                this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height);
+            }
+            if (this.next) {
+                this.force.next = this.WAVE_SPREAD * (this.height - this.next.height);
+            }
+        },
+        render: function(context) {
+            if (this.previous) {
+                this.previous.height += this.force.previous;
+                this.previous.fy += this.force.previous;
+            }
+            if (this.next) {
+                this.next.height += this.force.next;
+                this.next.fy += this.force.next;
+            }
+            context.lineTo(this.x, this.renderer.height - this.height);
+        }
+    };
+
+    var FISH = function(renderer) {
+        this.renderer = renderer;
+        this.init();
+    };
+    FISH.prototype = {
+        GRAVITY: 0.4,
+
+        init: function() {
+            this.direction = Math.random() < 0.5;
+            this.x = this.direction ? (this.renderer.width + this.renderer.THRESHOLD) : -this.renderer.THRESHOLD;
+            this.previousY = this.y;
+            this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1);
+
+            if (this.renderer.reverse) {
+                this.y = this.getRandomValue(this.renderer.height * 1 / 10, this.renderer.height * 4 / 10);
+                this.vy = this.getRandomValue(2, 5);
+                this.ay = this.getRandomValue(0.05, 0.2);
+            } else {
+                this.y = this.getRandomValue(this.renderer.height * 6 / 10, this.renderer.height * 9 / 10);
+                this.vy = this.getRandomValue(-5, -2);
+                this.ay = this.getRandomValue(-0.2, -0.05);
+            }
+            this.isOut = false;
+            this.theta = 0;
+            this.phi = 0;
+        },
+        getRandomValue: function(min, max) {
+            return min + (max - min) * Math.random();
+        },
+        reverseVertical: function() {
+            this.isOut = !this.isOut;
+            this.ay *= -1;
+        },
+        controlStatus: function(context) {
+            this.previousY = this.y;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.ay;
+
+            if (this.renderer.reverse) {
+                if (this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy -= this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(0.05, 0.2); }
+                    this.isOut = false;
+                }
+            } else {
+                if (this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy += this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(-0.2, -0.05); }
+                    this.isOut = false;
+                }
+            }
+            if (!this.isOut) {
+                this.theta += Math.PI / 20;
+                this.theta %= Math.PI * 2;
+                this.phi += Math.PI / 30;
+                this.phi %= Math.PI * 2;
+            }
+            this.renderer.generateEpicenter(
+                this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD,
+                this.y,
+                this.y - this.previousY
+            );
+            if (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD ||
+                this.vx < 0 && this.x < -this.renderer.THRESHOLD) {
+                this.init();
+            }
+        },
+        render: function(context) {
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            context.fillStyle = isDark ? 'hsl(210, 60%, 55%)' : 'hsl(210, 70%, 40%)';
+
+            context.save();
+            context.translate(this.x, this.y);
+            context.rotate(Math.PI + Math.atan2(this.vy, this.vx));
+            context.scale(1, this.direction ? 1 : -1);
+            context.beginPath();
+            context.moveTo(-30, 0);
+            context.bezierCurveTo(-20, 15, 15, 10, 40, 0);
+            context.bezierCurveTo(15, -10, -20, -15, -30, 0);
+            context.fill();
+
+            
+            context.save();
+            context.translate(40, 0);
+            context.scale(0.9 + 0.2 * Math.sin(this.theta), 1);
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(5, 10, 20, 8);
+            context.quadraticCurveTo(12, 5, 10, 0);
+            context.quadraticCurveTo(12, -5, 20, -8);
+            context.quadraticCurveTo(5, -10, 0, 0);
+            context.fill();
+            context.restore();
+
+            
+            context.save();
+            context.translate(-3, 0);
+            context.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1));
+            context.beginPath();
+            if (this.renderer.reverse) {
+                context.moveTo(5, 0);
+                context.bezierCurveTo(10, 10, 10, 30, 0, 40);
+                context.bezierCurveTo(-12, 25, -8, 10, 0, 0);
+            } else {
+                context.moveTo(-5, 0);
+                context.bezierCurveTo(-10, -10, -10, -30, 0, -40);
+                context.bezierCurveTo(12, -25, 8, -10, 0, 0);
+            }
+            context.closePath();
+            context.fill();
+            context.restore();
+            context.restore();
+            this.controlStatus(context);
+        }
+    };
+
+    
+    if (!window.__fishRendererInited) {
+        window.__fishRendererInited = true;
+        window.addEventListener('load', function() {
+            if (document.getElementById('jsi-flying-fish-container')) {
+                RENDERER.init();
+            }
+        });
+    }
+})();
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+ 
+.fish-container {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+html.at-page-bottom .fish-container {
+    opacity: 0.42;
+}
+
+@media (max-width: 768px) {
+    .fish-container {
+        height: 150px;
+    }
+    html.at-page-bottom .fish-container {
+        opacity: 0.28;
+    }
+}
+</style>
+
+    </body>
+</html>

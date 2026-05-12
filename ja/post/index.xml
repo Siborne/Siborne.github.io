@@ -8,6 +8,2141 @@
         <language>ja</language>
         <copyright>Siborne</copyright>
         <lastBuildDate>Mon, 11 May 2026 01:57:14 +0800</lastBuildDate><atom:link href="https://Siborne.top/ja/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hugo ブログ構築と Stack テーマ完全カスタマイズガイド</title>
+        <link>https://Siborne.top/ja/p/hugo-blog-stack-theme-guide/</link>
+        <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/hugo-blog-stack-theme-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/hugo-blog-stack-theme-guide/bannerImage.png" alt="Featured image of post Hugo ブログ構築と Stack テーマ完全カスタマイズガイド" /&gt;&lt;h2 id=&#34;はじめに&#34;&gt;はじめに
+&lt;/h2&gt;&lt;p&gt;自分だけのブログを持ちたいけれど、サーバー管理やホスティング費用に悩まされたくない——そんな方に最適なのが &lt;strong&gt;Hugo&lt;/strong&gt; です。現在最も人気のある静的サイトジェネレーターの一つである Hugo と、無料ホスティングの &lt;strong&gt;GitHub Pages&lt;/strong&gt; を組み合わせれば、30分もかからずに機能的で美しい個人ブログを公開できます。&lt;/p&gt;
+&lt;p&gt;本ガイドでは、環境構築からテーマの徹底カスタマイズ、自動デプロイまでを一挙に解説します。Hugo が初めての方も、既存ブログのアップグレードを検討している方も、すぐに使える知見が満載です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-基本環境のセットアップ&#34;&gt;1. 基本環境のセットアップ
+&lt;/h2&gt;&lt;p&gt;まずは二つのコアツール、&lt;strong&gt;Git&lt;/strong&gt; と &lt;strong&gt;Hugo&lt;/strong&gt; を準備します。&lt;/p&gt;
+&lt;h3 id=&#34;11-git-のインストール&#34;&gt;1.1 Git のインストール
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://git-scm.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Git 公式サイト&lt;/a&gt;から各プラットフォーム向けのインストーラーをダウンロードし、デフォルト設定でインストールします。&lt;/p&gt;
+&lt;p&gt;インストール完了後、ターミナルで以下のコマンドを実行して確認します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;バージョン番号が表示されればインストール成功です。&lt;/p&gt;
+&lt;h3 id=&#34;12-hugo-のインストール&#34;&gt;1.2 Hugo のインストール
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/tags&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hugo の GitHub Releases ページ&lt;/a&gt;にアクセスし、最新バージョンをダウンロードします。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Windows ユーザー&lt;/strong&gt;：&lt;strong&gt;hugo_extended&lt;/strong&gt; と &lt;strong&gt;windows_amd64&lt;/strong&gt; を含む zip ファイルを選択&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;macOS ユーザー&lt;/strong&gt;：&lt;code&gt;brew install hugo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linux ユーザー&lt;/strong&gt;：パッケージマネージャーまたはバイナリを直接ダウンロード&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hugo のバイナリを使いやすいディレクトリに配置し、パスを控えておきます。これから頻繁に使用します。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;なぜ extended バージョンが必要なのか？&lt;/strong&gt; Stack テーマは Hugo の組み込み SCSS コンパイル機能に依存しています。extended バージョンのみが完全な SCSS/SASS 処理をサポートしており、通常版ではテーマのスタイルが正しく生成されません。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-初めての-hugo-サイト作成&#34;&gt;2. 初めての Hugo サイト作成
+&lt;/h2&gt;&lt;h3 id=&#34;21-プロジェクトの初期化&#34;&gt;2.1 プロジェクトの初期化
+&lt;/h3&gt;&lt;p&gt;Hugo バイナリのあるディレクトリでターミナルを開き、以下のコマンドを実行します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new site my-blog
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;これで標準的な Hugo プロジェクトの骨格が生成されます。&lt;code&gt;my-blog&lt;/code&gt; はお好みの名前に変更可能です。&lt;/p&gt;
+&lt;p&gt;プロジェクトディレクトリに移動します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; my-blog
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;22-ローカルプレビュー&#34;&gt;2.2 ローカルプレビュー
+&lt;/h3&gt;&lt;p&gt;Hugo 内蔵の開発サーバーを起動します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server -D
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;-D&lt;/code&gt; フラグは下書き（draft）記事も表示するため、ローカル開発時に便利です。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;http://localhost:1313&lt;/code&gt; にアクセスすると空白のページが表示されますが、これは正常です。まだテーマをインストールしていないためです。&lt;code&gt;Ctrl + C&lt;/code&gt; でサーバーを停止しましょう。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-stack-テーマの設定&#34;&gt;3. Stack テーマの設定
+&lt;/h2&gt;&lt;p&gt;Hugo のエコシステムには数百の無料テーマがあります。本ガイドでは、美しいカード型レイアウト、ダークモード、シンタックスハイライト、多言語対応を備えた &lt;strong&gt;Stack&lt;/strong&gt; テーマを中心に解説します。&lt;/p&gt;
+&lt;h3 id=&#34;31-テーマのダウンロード&#34;&gt;3.1 テーマのダウンロード
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://themes.gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;themes.gohugo.io&lt;/a&gt; でテーマを閲覧できます。Stack については、&lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack/tags&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Releases ページ&lt;/a&gt;から直接最新バージョンをダウンロードします。&lt;/p&gt;
+&lt;p&gt;アーカイブを展開し、テーマフォルダごとプロジェクトの &lt;code&gt;/themes&lt;/code&gt; ディレクトリに配置します。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Git サブモジュールの使用も推奨されます：&lt;code&gt;git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;32-設定の適用&#34;&gt;3.2 設定の適用
+&lt;/h3&gt;&lt;p&gt;Stack テーマにはサンプルサイトが同梱されており、&lt;code&gt;exampleSite&lt;/code&gt; ディレクトリにあります。その中の &lt;strong&gt;content&lt;/strong&gt; フォルダと &lt;strong&gt;hugo.yaml&lt;/strong&gt; をプロジェクトルートにコピーし、元の &lt;code&gt;hugo.toml&lt;/code&gt;（存在する場合）と &lt;code&gt;content/post/rich-content&lt;/code&gt; サンプルファイルを削除します。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hugo.yaml&lt;/code&gt; を開き、&lt;code&gt;theme&lt;/code&gt; フィールドが &lt;code&gt;/themes&lt;/code&gt; 内のテーマフォルダ名と一致していることを確認します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;theme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;hugo-theme-stack&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;再度開発サーバーを起動します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server -D
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;ブラウザを更新すると、クリーンでエレガントな Stack ブログが表示されます。&lt;code&gt;hugo.yaml&lt;/code&gt; にはサイトタイトル、説明、ソーシャルリンク、ナビゲーションメニューなど多くの調整可能なパラメータがあります。時間をかけて確認し、必要に応じて変更してください。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-github-pages-へのデプロイ&#34;&gt;4. GitHub Pages へのデプロイ
+&lt;/h2&gt;&lt;h3 id=&#34;41-手動デプロイ&#34;&gt;4.1 手動デプロイ
+&lt;/h3&gt;&lt;p&gt;まず GitHub で &lt;strong&gt;&lt;code&gt;{あなたのユーザー名}.github.io&lt;/code&gt;&lt;/strong&gt; という名前のリポジトリを作成します。&lt;/p&gt;
+&lt;p&gt;リポジトリの &lt;code&gt;Settings&lt;/code&gt; -&amp;gt; &lt;code&gt;Pages&lt;/code&gt; に移動し、Source を &lt;code&gt;Deploy from a branch&lt;/code&gt;、Branch を &lt;code&gt;main&lt;/code&gt; に設定して保存します。GitHub が自動的に &lt;code&gt;https://{ユーザー名}.github.io&lt;/code&gt; という URL を有効にします。&lt;/p&gt;
+&lt;p&gt;ローカルに戻り、プロジェクトルートで以下のコマンドを実行します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo -D
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;ルートディレクトリに &lt;code&gt;public&lt;/code&gt; フォルダが生成されます。これが完全な静的サイトです。&lt;code&gt;public&lt;/code&gt; に移動して GitHub にプッシュします：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;first commit&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch -M main
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote add origin https://github.com/&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;ユーザー名&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;/&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;ユーザー名&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.github.io.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push -u origin main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;初回プッシュ時に認証を求められる場合があります（パスワードの代わりに GitHub CLI または Personal Access Token の使用を推奨）。アップロードが完了したら、&lt;code&gt;https://{ユーザー名}.github.io&lt;/code&gt; にアクセスしてブログを確認できます。&lt;/p&gt;
+&lt;h3 id=&#34;42-自動デプロイgithub-actions&#34;&gt;4.2 自動デプロイ（GitHub Actions）
+&lt;/h3&gt;&lt;p&gt;記事を書くたびに手動でビルドとプッシュを行うのは面倒です。&lt;strong&gt;GitHub Actions&lt;/strong&gt; を使えば、このワークフロー全体を自動化できます。&lt;/p&gt;
+&lt;h4 id=&#34;準備&#34;&gt;準備
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;Hugo ソースファイル用に別のリポジトリを作成します（例：&lt;code&gt;my-blog-source&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;GitHub の &lt;code&gt;Settings&lt;/code&gt; -&amp;gt; &lt;code&gt;Developer settings&lt;/code&gt; -&amp;gt; &lt;code&gt;Personal access tokens&lt;/code&gt; -&amp;gt; &lt;code&gt;Tokens (classic)&lt;/code&gt; でトークンを生成&lt;/li&gt;
+&lt;li&gt;トークンの有効期限を &lt;strong&gt;無期限&lt;/strong&gt; に設定し、&lt;strong&gt;repo&lt;/strong&gt; と &lt;strong&gt;workflow&lt;/strong&gt; スコープを付与&lt;/li&gt;
+&lt;li&gt;生成されたトークンをソースリポジトリの &lt;code&gt;Settings&lt;/code&gt; -&amp;gt; &lt;code&gt;Secrets and variables&lt;/code&gt; -&amp;gt; &lt;code&gt;Actions&lt;/code&gt; に &lt;code&gt;PERSONAL_TOKEN&lt;/code&gt; として保存&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;ワークフローの作成&#34;&gt;ワークフローの作成
+&lt;/h4&gt;&lt;p&gt;Hugo プロジェクトのルートに &lt;code&gt;.github/workflows/deploy.yaml&lt;/code&gt; を作成します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;deploy&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;push&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;branches&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;jobs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;deploy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;runs-on&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ubuntu-latest&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;steps&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Checkout&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;uses&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;actions/checkout@v4&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;with&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;fetch-depth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Setup Hugo&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;uses&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;peaceiris/actions-hugo@v3&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;with&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;hugo-version&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;latest&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;extended&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Build Web&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;hugo -D&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Deploy Web&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;uses&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;peaceiris/actions-gh-pages@v4&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;with&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;PERSONAL_TOKEN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;${{ secrets.PERSONAL_TOKEN }}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;EXTERNAL_REPOSITORY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{&lt;span class=&#34;l&#34;&gt;あなたのユーザー名}/{あなたのユーザー名}.github.io&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;PUBLISH_BRANCH&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;PUBLISH_DIR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;./public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;commit_message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;auto deploy&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;また、&lt;code&gt;.gitignore&lt;/code&gt; も作成します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;public
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;resources
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.hugo_build.lock
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo.exe
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;プッシュと確認&#34;&gt;プッシュと確認
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;first commit&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch -M main
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote add origin https://github.com/&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;ユーザー名&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;/&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;ソースリポジトリ名&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push -u origin main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;プッシュ後、GitHub Actions が自動的に実行されます。リポジトリの &lt;code&gt;Actions&lt;/code&gt; タブでビルドの進行状況を確認できます。以降、&lt;code&gt;main&lt;/code&gt; ブランチにプッシュするたびに、ブログが自動的にビルド・デプロイされます。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-コメントシステムの統合&#34;&gt;5. コメントシステムの統合
+&lt;/h2&gt;&lt;p&gt;Hugo は静的ページを生成するため、コメント機能は組み込まれていません。しかし GitHub の Issue または Discussion の仕組みを活用することで、無料でコメント機能を追加できます。&lt;/p&gt;
+&lt;h3 id=&#34;51-utterancesissue-ベース&#34;&gt;5.1 utterances（Issue ベース）
+&lt;/h3&gt;&lt;p&gt;utterances は各記事のコメントを、指定したリポジトリの Issue として保存します。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/apps/utterances&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;utterances app&lt;/a&gt; を対象リポジトリにインストール&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hugo.yaml&lt;/code&gt; に設定：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;comments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;provider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;utterances&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;utterances&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;repo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;{あなたのGitHubユーザー名}/{リポジトリ名}&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;52-giscusdiscussion-ベース&#34;&gt;5.2 giscus（Discussion ベース）
+&lt;/h3&gt;&lt;p&gt;giscus は utterances と同様の仕組みですが、データを Issues ではなく Discussions に保存し、よりモダンな UI を提供します。返信のネストやリアクションにも対応しています。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/apps/giscus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;giscus app&lt;/a&gt; をリポジトリにインストールし、リポジトリの &lt;code&gt;Settings&lt;/code&gt; で Discussions 機能を有効化&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://giscus.app/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;giscus 公式サイト&lt;/a&gt; にアクセスし、手順に沿って設定するとパラメータが生成されます&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hugo.yaml&lt;/code&gt; に設定：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;comments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;provider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;giscus&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;giscus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;repo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;{あなたのGitHubユーザー名}/{リポジトリ名}&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;repoID&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;{giscus 生成の repoID}&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;category&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;{Discussion カテゴリ名}&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;categoryID&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;{giscus 生成の categoryID}&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;mapping&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;pathname&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;reactionsEnabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;emitMetadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;inputPosition&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;bottom&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;lang&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ja&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;このブログでも giscus を使用しており、非常に良い体験が得られています。Stack テーマは両方のソリューションをネイティブサポートしており、&lt;code&gt;hugo.yaml&lt;/code&gt; に入力するだけで利用できます。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-ビジュアルカスタマイズ&#34;&gt;6. ビジュアルカスタマイズ
+&lt;/h2&gt;&lt;h3 id=&#34;61-カスタム背景画像&#34;&gt;6.1 カスタム背景画像
+&lt;/h3&gt;&lt;p&gt;高解像度の画像を &lt;code&gt;assets/background&lt;/code&gt; に配置します。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt; に以下を追加します（ファイルがなければ作成）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sx&#34;&gt;{{ (resources.Get &amp;#34;background/背景画像ファイル名.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Permalink&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;no-repeat&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;center&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;top&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;background-size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;cover&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;background-attachment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;fixed&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;background-attachment: fixed&lt;/code&gt; により、スクロールしても背景が固定され、パララックス風の奥行き効果が生まれます。&lt;/p&gt;
+&lt;h3 id=&#34;62-動的背景エフェクト&#34;&gt;6.2 動的背景エフェクト
+&lt;/h3&gt;&lt;h4 id=&#34;桜吹雪エフェクト&#34;&gt;桜吹雪エフェクト
+&lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/jhammann/sakura.js&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;sakura.js&lt;/a&gt; をダウンロードし、&lt;code&gt;assets/background&lt;/code&gt; に配置して、&lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt; で読み込みます：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;resources&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;Get&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;sakura&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;js&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#34;).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;Permalink&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;パーティクルネットワークparticlesjs&#34;&gt;パーティクルネットワーク（particles.js）
+&lt;/h4&gt;&lt;p&gt;particles.js は星空、接続線、バブルなど多彩なエフェクトを生成できる強力なパーティクルアニメーションライブラリです。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/VincentGarreau/particles.js&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;particles.js GitHub&lt;/a&gt; から &lt;code&gt;particles.min.js&lt;/code&gt; をダウンロードし、&lt;code&gt;assets/background&lt;/code&gt; に配置&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://vincentgarreau.com/particles.js/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;公式オンライン設定ツール&lt;/a&gt; でパラメータを調整し、設定ファイルを &lt;code&gt;particlesjs-config.json&lt;/code&gt; として &lt;code&gt;assets/background&lt;/code&gt; に保存&lt;/li&gt;
+&lt;li&gt;設定ファイル内の &lt;code&gt;detect_on&lt;/code&gt; は &lt;code&gt;window&lt;/code&gt; に変更する必要があります&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt; に以下を追加：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;particles-js&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;resources&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;Get&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;particles&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;min&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;js&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#34;).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;Permalink&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;particlesJS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;load&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;particles-js&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resources&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Get&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;background/particlesjs-config.json&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Permalink&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}},&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;particles.js loaded - callback&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;particles-js&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;position&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;fixed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;top&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;left&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;z-index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;-1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;パーティクルコンテナの &lt;code&gt;z-index&lt;/code&gt; を &lt;code&gt;-1&lt;/code&gt; に設定することが重要です。これにより、パーティクルが他のすべてのコンテンツの背後に表示されます。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;63-フォントの変更&#34;&gt;6.3 フォントの変更
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;.ttf&lt;/code&gt; または &lt;code&gt;.woff2&lt;/code&gt; フォントファイルを &lt;code&gt;assets/font&lt;/code&gt; に配置し、&lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt; で登録・適用します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;font-face&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;font-family&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;MyCustomFont&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;(resources.Get&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#34;font/フォントファイル名.ttf&amp;#34;).Permalink&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;truetype&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;root&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;--base-font-family&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;MyCustomFont&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;--code-font-family&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;MyCustomFont&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Stack テーマは CSS カスタムプロパティでフォントを制御しています。&lt;code&gt;--base-font-family&lt;/code&gt; と &lt;code&gt;--code-font-family&lt;/code&gt; を上書きすることで、本文とコードブロックの書体をそれぞれ変更できます。&lt;/p&gt;
+&lt;h3 id=&#34;64-カスタムカーソル&#34;&gt;6.4 カスタムカーソル
+&lt;/h3&gt;&lt;p&gt;デフォルト・ポインター・テキスト選択の3種類のカーソル画像を用意し、&lt;code&gt;static/mouse&lt;/code&gt; ディレクトリに配置します。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;assets/scss/custom.scss&lt;/code&gt;（Stack テーマのスタイルエントリポイント）を作成します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scss&#34; data-lang=&#34;scss&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nc&#34;&gt;.article-content&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;cursor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sx&#34;&gt;url(../mouse/default.png)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;!important&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hover&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hover&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;copyCodeButton&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hover&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mh&#34;&gt;#dark&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mode-toggle&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;cursor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sx&#34;&gt;url(../mouse/pointer.png)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hover&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;site-description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;article-subtitle&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;article-content&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;span&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;article-content&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;li&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;article-content&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;cursor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sx&#34;&gt;url(../mouse/text.png)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;3種類のカーソルスタイルを異なる要素状態に割り当てています：デフォルトカーソルはページと画像、ポインターカーソルはクリック可能な要素、テキストカーソルは文章領域です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;7-機能拡張&#34;&gt;7. 機能拡張
+&lt;/h2&gt;&lt;h3 id=&#34;71-最終更新日の表示&#34;&gt;7.1 最終更新日の表示
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;hugo.yaml&lt;/code&gt; で Git ベースの日付追跡を有効にします：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;enableGitInfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;frontmatter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;lastmod&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;git&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;fileModTime&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Hugo は各ファイルの Git コミット日時を最終更新日として優先的に使用し、Git 情報がない場合はファイルの変更日時にフォールバックします。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;layouts/partials/article/components/details.html&lt;/code&gt; を編集し、&lt;code&gt;&amp;lt;footer class=&amp;quot;article-time&amp;quot;&amp;gt;&lt;/code&gt; 内に以下を挿入します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- if ne .Lastmod .Date -}}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;article-lastmod&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        {{ partial &amp;#34;helper/icon&amp;#34; &amp;#34;clock&amp;#34; }}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            {{ .Lastmod.Format ( or .Site.Params.dateFormat.lastUpdated &amp;#34;Jan 02, 2006 15:04 MST&amp;#34; ) }}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- end -}}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;重要：&lt;code&gt;enableGitInfo&lt;/code&gt; を有効にした場合、GitHub Actions の checkout ステップで &lt;code&gt;fetch-depth: 0&lt;/code&gt; を設定し、完全なコミット履歴を取得する必要があります。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;72-リンクアーカイブのマルチカラムレイアウト&#34;&gt;7.2 リンク・アーカイブのマルチカラムレイアウト
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;assets/scss/custom.scss&lt;/code&gt; に以下を追加して、リンク集とアーカイブページをデスクトップで2カラムのカードグリッド表示にします：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scss&#34; data-lang=&#34;scss&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;@media&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;min-width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1024&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nc&#34;&gt;.article-list--compact&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;display&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;grid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;grid-template-columns&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;fr&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;fr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;box-shadow&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;gap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;rem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;article&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;card-background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;border&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;box-shadow&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;shadow-l2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;margin-bottom&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;margin-right&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;border-radius&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;73-目次の自動折りたたみ&#34;&gt;7.3 目次の自動折りたたみ
+&lt;/h3&gt;&lt;p&gt;以下のスタイルとスクリプトを &lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt; に追加して、スクロール位置に応じて目次が自動的に折りたたまれるようにします：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;TableOfContents&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;ol&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;err&#34;&gt;ul,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;ol&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;block&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;initTocHide&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;toc&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;.widget--toc&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;toc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;window&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;addEventListener&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;scroll&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;openUl&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;.open&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;openUl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;openUl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;forEach&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;classList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;remove&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;open&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;currentLi&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;.active-class&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;currentLi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;currentLi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;children&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;currentLi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;children&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;classList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;open&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ul&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;currentLi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;parentElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;classList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;open&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;ul&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;parentElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;parentElement&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ul&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!==&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;undefined&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;ul&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;ol&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;initTocHide&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;未読のセクションは自動的に折りたたまれ、現在のセクションのみが展開されるため、長文記事の目次ナビゲーションが大幅に向上します。&lt;/p&gt;
+&lt;h3 id=&#34;74-トップに戻るボタン&#34;&gt;7.4 トップに戻るボタン
+&lt;/h3&gt;&lt;p&gt;トップに戻るアイコン（SVG）を用意し、&lt;code&gt;assets/icons&lt;/code&gt; に配置します。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt; に以下を追加：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;backTopBtn&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;position&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;fixed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;bottom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;z-index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;99&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;cursor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;pointer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;height&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;background-image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sx&#34;&gt;{{ (resources.Get &amp;#34;icons/backTop.svg&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Permalink&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;initScrollTop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;rightSideBar&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;.right-sidebar&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;rightSideBar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;div&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;backTopBtn&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;onclick&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;window&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;scrollTo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;top&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;behavior&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;smooth&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;rightSideBar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;window&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;onscroll&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;scrollTop&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;documentElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;scrollTop&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;display&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;block&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;display&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;initScrollTop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;ボタンは右サイドバーに固定され、20px 以上スクロールすると表示されます。&lt;/p&gt;
+&lt;h3 id=&#34;75-macos-風コードブロック&#34;&gt;7.5 macOS 風コードブロック
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;assets/scss/custom.scss&lt;/code&gt; に以下を追加して、コードブロックに macOS ウィンドウの赤・黄・緑のドットヘッダーを付けます：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scss&#34; data-lang=&#34;scss&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nc&#34;&gt;.highlight&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;border-radius&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;card-border-radius&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;max-width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;!important&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;margin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;!important&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;box-shadow&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;shadow-l1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;!important&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nc&#34;&gt;.highlight&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;:before&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;display&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;block&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sx&#34;&gt;url(../icons/macOS-code-header.svg)&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;no-repeat&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;background-size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;contain&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;height&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;margin-top&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;margin-bottom&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;assets/icons/macOS-code-header.svg&lt;/code&gt; に macOS の3ドット SVG アイコンを配置する必要があります。&lt;/p&gt;
+&lt;h3 id=&#34;76-カラー付きアラート引用ブロック&#34;&gt;7.6 カラー付きアラート引用ブロック
+&lt;/h3&gt;&lt;p&gt;Hugo のレンダーフックを使って、アラートタイプ別に色分けされた引用ブロックを実現します。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;layouts/_default/_markup/render-blockquote-alert.html&lt;/code&gt; を作成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;blockquote&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;alert alert-{{ .AlertType }}&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    {{ .Text | safeHTML -}}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;blockquote&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;assets/scss/custom.scss&lt;/code&gt; に4種類の配色を定義します（ライト/ダークモード対応）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scss&#34; data-lang=&#34;scss&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Light mode
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;:root&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;data-theme&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;light&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-note-bg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#d4e6ff&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-note-border&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#3b82f6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-tip-bg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#d4f8d4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-tip-border&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#22c55e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-warn-bg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#fff3cd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-warn-border&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#f59e0b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-error-bg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#ffe0e0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-error-border&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#ef4444&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Dark mode
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;:root&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;data-theme&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;dark&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-note-bg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#1e2a3a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-note-border&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#3b82f6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-tip-bg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#1a2a1a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-tip-border&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#22c55e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-warn-bg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#2a2410&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-warn-border&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#f59e0b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-error-bg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#2a1a1a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;--alert-error-border&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#ef4444&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nc&#34;&gt;.alert&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;padding&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.8&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;rem&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;rem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;border-left&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;solid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;border-radius&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;margin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;rem&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nc&#34;&gt;.alert-note&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alert-note-bg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;border-color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alert-note-border&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nc&#34;&gt;.alert-tip&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alert-tip-bg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;na&#34;&gt;border-color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alert-tip-border&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nc&#34;&gt;.alert-warn&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alert-warn-bg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;border-color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alert-warn-border&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nc&#34;&gt;.alert-error&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alert-error-bg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;border-color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alert-error-border&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Markdown での使用例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;[!NOTE]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;これは一般的な情報です
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;[!TIP]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;これは実用的なヒントです
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;[!WARN]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;これは注意すべき警告です
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;[!ERROR]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&#34;ge&#34;&gt;これはエラーまたはリスクの警告です
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;4種類の引用ブロックがそれぞれ青、緑、黄、赤で表示され、ライト/ダークモードに自動対応します。&lt;/p&gt;
+&lt;h3 id=&#34;77-長いコードブロックの折りたたみ&#34;&gt;7.7 長いコードブロックの折りたたみ
+&lt;/h3&gt;&lt;p&gt;特に長いコードブロックに対して、折りたたみ・展開機能を追加します。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt; に以下を追加：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;highlight&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;pre&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;max-height&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;400&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;overflow-y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;hidden&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;position&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;relative&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;highlight&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;pre&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;expanded&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;max-height&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;code-expand-btn&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;block&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;text-align&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;center&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;padding&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;cursor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;pointer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;font-size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.85&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;rem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;card&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;secondary&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;card&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;border-top&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;solid&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;card&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;separator&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;initCodeCollapse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;.highlight&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;forEach&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;block&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;pre&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;block&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;pre&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;pre&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;pre&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;scrollHeight&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;420&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;className&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;code-expand-btn&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;textContent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;コードを展開&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nx&#34;&gt;block&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;addEventListener&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;expanded&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;pre&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;classList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;toggle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;expanded&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;btn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;textContent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;expanded&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;コードを折りたたむ&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;コードを展開&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;initCodeCollapse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;コードブロックの内容が 400px を超える場合、自動的に切り詰められ、「コードを展開」ボタンが表示されます。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;まとめ&#34;&gt;まとめ
+&lt;/h2&gt;&lt;p&gt;ここまでで、Hugo ブログをゼロから構築し、Stack テーマの徹底的なカスタマイズを完了しました。振り返ってみましょう：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;カテゴリ&lt;/th&gt;
+          &lt;th&gt;カバーした内容&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;基本環境&lt;/td&gt;
+          &lt;td&gt;Git インストール、Hugo Extended のインストール理由&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;サイト初期化&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;hugo new site&lt;/code&gt;、&lt;code&gt;hugo server -D&lt;/code&gt; ローカルプレビュー&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;テーマ設定&lt;/td&gt;
+          &lt;td&gt;Stack テーマのダウンロード、サンプルサイト移行、&lt;code&gt;hugo.yaml&lt;/code&gt; 調整&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;デプロイ&lt;/td&gt;
+          &lt;td&gt;手動 GitHub Pages プッシュ、GitHub Actions CI/CD&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;コメント&lt;/td&gt;
+          &lt;td&gt;utterances（Issue ベース）と giscus（Discussion ベース）の統合&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ビジュアル&lt;/td&gt;
+          &lt;td&gt;固定背景、パーティクルエフェクト、カスタムフォント、カスタムカーソル&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;機能拡張&lt;/td&gt;
+          &lt;td&gt;Git 最終更新日、マルチカラムレイアウト、目次自動折りたたみ、トップへ戻る、macOS コードブロック、アラート引用ブロック、コード折りたたみ&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Hugo + Stack の可能性はこのガイドで紹介した内容にとどまりません。&lt;code&gt;hugo.yaml&lt;/code&gt; にはショートコード、カスタムメニュー、多言語サイトなど、さらに多くの高度な機能が隠れています。このガイドがあなたのブログ制作の旅の良いスタートとなることを願っています。素晴らしい作品を書き、執筆の楽しさを存分に味わってください。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;さらなる情報&lt;/strong&gt;：Hugo の高度な使い方については、&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/documentation/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hugo 公式ドキュメント&lt;/a&gt; および &lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack/wiki&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hugo-theme-stack Wiki&lt;/a&gt; を参照してください。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>インデックスファンド積立投資の実践ガイド：バリュエーション判断から利益確定まで</title>
+        <link>https://Siborne.top/ja/p/index-fund-investment-guide/</link>
+        <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/index-fund-investment-guide/</guid>
+        <description>&lt;img src="https://Siborne.top/p/index-fund-investment-guide/bannerImage.png" alt="Featured image of post インデックスファンド積立投資の実践ガイド：バリュエーション判断から利益確定まで" /&gt;&lt;h2 id=&#34;一なぜインデックスファンドなのか&#34;&gt;一、なぜインデックスファンドなのか？
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;積立投資（ドルコスト平均法）は、普通の人にとって生涯最高の友である。投資の世界に 1 万時間の法則は存在しない。&lt;strong&gt;「選択」は「努力」の 1 万倍重要だ。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;11-指数は不死であり企業は死ぬ&#34;&gt;1.1 指数は不死であり、企業は死ぬ
+&lt;/h3&gt;&lt;p&gt;個別株は消滅するが、指数は生き続ける。S&amp;amp;P 500 の初期構成銘柄は 1957 年から現在まで約 10% しか残っておらず、残りは買収されるか除外された。中国の創業板（ChiNext）の初期 100 銘柄のうち、現在まで生き残っているのはわずか 16 社である。&lt;/p&gt;
+&lt;p&gt;指数には厳格なスクリーニングと淘汰のメカニズムが備わっている。弱い企業は除外され、強い企業が残り、常に新陳代謝を繰り返す。この意味で：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;指数は不死であり、個別株は滅びやすい。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;12-インデックスファンドの長期年率リターンは堅実&#34;&gt;1.2 インデックスファンドの長期年率リターンは堅実
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;指数&lt;/th&gt;
+          &lt;th&gt;年率リターン（配当再投資を含む）&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;S&amp;amp;P 500&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;~10%（創設以来）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;CSI 300（滬深300）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;~9.2%（2004年以降、配当再投資含む）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;CSI 1000（中証1000）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;~11%（配当再投資含む）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;創業板指数（ChiNext）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;~8.8%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;13-バフェットの-10-年賭け&#34;&gt;1.3 バフェットの 10 年賭け
+&lt;/h3&gt;&lt;p&gt;2007 年、あるウォール街のファンドマネージャーがバフェットに 10 年間 100 万ドルの賭けを挑んだ。5 本の有名アクティブファンド vs S&amp;amp;P 500 インデックスファンド。&lt;/p&gt;
+&lt;p&gt;10 年後（2017 年）、結果は明らかだった：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;参加した 5 本のファンドの最高年率リターンは 6.5%、最低はわずか 0.3%&lt;/li&gt;
+&lt;li&gt;S&amp;amp;P 500 インデックスファンドの年率リターンは &lt;strong&gt;8.5%&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;すべてのアクティブファンドが敗北した&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;バフェットの結論：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;「インデックスファンドに定期的に投資することで、何も知らない素人投資家でも、大半のプロのファンドマネージャーを上回ることができる。」&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;14-個別株で儲けるのが難しい理由&#34;&gt;1.4 個別株で儲けるのが難しい理由
+&lt;/h3&gt;&lt;p&gt;個別株を買うことは、一つの会社の株式の一部を所有することであり、極めて高い集中リスクを負うことを意味する。次の問いに答えなければならない：その会社は儲かっているか？PE はいくらか？ビジネスモデルは健全か？財務諸表は信頼できるか？経営陣は有能か？将来淘汰されないか？&lt;/p&gt;
+&lt;p&gt;株式市場の現実は「7 割が損、2 割がトントン、1 割が儲ける」である。ほとんどの人が儲けるのは運であり、損するのは必然である。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二なぜ積立投資ドルコスト平均法は有効なのか&#34;&gt;二、なぜ積立投資（ドルコスト平均法）は有効なのか？
+&lt;/h2&gt;&lt;h3 id=&#34;21-スマイルカーブの原理&#34;&gt;2.1 スマイルカーブの原理
+&lt;/h3&gt;&lt;p&gt;積立投資の本質は、&lt;strong&gt;下落相場で自動的により多くの口数を買い付けることで、全体の平均取得単価を引き下げること&lt;/strong&gt;にある。&lt;/p&gt;
+&lt;p&gt;極端な実例がこれをよく示している：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2015 年 6 月 18 日、CSI 300 は 5380 ポイント——バブルの天井だった。この日から毎月 2000 元ずつ CSI 300 インデックスファンドを積み立て始めた。2016 年 11 月 30 日までに、指数は 3412 ポイントまで暴落していた。18 ヶ月間、下落相場で買い続けた結果、最終リターンは &lt;strong&gt;+8.58%&lt;/strong&gt; だった。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;なぜ暴落中に利益が出るのか？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;初期に買ったポジションは確かに含み損&lt;/li&gt;
+&lt;li&gt;しかし価格が下がるほど、同じ 2000 元で&lt;strong&gt;より多くの口数&lt;/strong&gt;を買える&lt;/li&gt;
+&lt;li&gt;全体の平均取得単価が大幅に引き下げられる&lt;/li&gt;
+&lt;li&gt;市場が少し回復するだけで利益に転じる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;22-人間の本能に逆らう規律&#34;&gt;2.2 人間の本能に逆らう規律
+&lt;/h3&gt;&lt;p&gt;皆がパニック売りしている時に、あなたは淡々と積み立てている。指数は死なないと分かっているからだ。冷徹に買い続け、安い株を買えることにむしろ快感すら覚えるようになる。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;積立投資の利益の本質は、人間の本能に逆らったことへの報酬である。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;23-積立投資-vs-一括投資&#34;&gt;2.3 積立投資 vs 一括投資
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;方法&lt;/th&gt;
+          &lt;th&gt;メリット&lt;/th&gt;
+          &lt;th&gt;デメリット&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;積立投資&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;タイミングを計る必要なし、平均取得単価を下げる、規律正しい&lt;/td&gt;
+          &lt;td&gt;一方的な上昇相場では一括投資に劣る&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;一括投資&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;強気相場でリターン最大化&lt;/td&gt;
+          &lt;td&gt;天井で買うと長期の損失に苦しむ可能性&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三いつ積立を始めるべきかバリュエーションの技術&#34;&gt;三、いつ積立を始めるべきか？——バリュエーションの技術
+&lt;/h2&gt;&lt;h3 id=&#34;31-核心指標pe株価収益率&#34;&gt;3.1 核心指標：PE（株価収益率）
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;PE が示すのは：その会社を買って、その利益で&lt;strong&gt;何年で元が取れるか&lt;/strong&gt;である。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;指数レベルでは、&lt;strong&gt;PE の歴史的パーセンタイル&lt;/strong&gt;を見る必要がある：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;PE パーセンタイル&lt;/th&gt;
+          &lt;th&gt;意味&lt;/th&gt;
+          &lt;th&gt;アクション&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;40% 以下&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;割安&lt;/td&gt;
+          &lt;td&gt;積立開始&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;40% ～ 80%&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;適正&lt;/td&gt;
+          &lt;td&gt;保有継続&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;80% 以上&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;割高&lt;/td&gt;
+          &lt;td&gt;売却準備&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;32-バリュエーションを確認するツール&#34;&gt;3.2 バリュエーションを確認するツール
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;ツール&lt;/th&gt;
+          &lt;th&gt;使い方&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;且慢（Qieman）アプリ&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ホーム → 市場温度 → 指数温度&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;雪球基金（Xueqiu）アプリ&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ホーム → 指数バリュエーション → PE パーセンタイルを確認&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;同花順（THS）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;「指数バリュエーションツール」を検索&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;理性人（lixingren.com）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;専門的なバリュエーションデータ&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;AI に直接質問&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;「主要指数の現在の PE 歴史的パーセンタイルは？」&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;バリュエーションを確認する際は、&lt;strong&gt;3 年、5 年、10 年&lt;/strong&gt;のデータを切り替えて見ること。短期データに惑わされないように。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;33-創業板chinextに関する特別注意&#34;&gt;3.3 創業板（ChiNext）に関する特別注意
+&lt;/h3&gt;&lt;p&gt;創業板は変動が大きいため、&lt;strong&gt;PE と PB（株価純資産倍率）の両方&lt;/strong&gt;を見てバリュエーションを判断する必要がある。PE と PB のうち、より保守的な方を信じること。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四どの指数を選ぶべきか&#34;&gt;四、どの指数を選ぶべきか？
+&lt;/h2&gt;&lt;h3 id=&#34;41-三大ブロードマーケット指数の比較&#34;&gt;4.1 三大ブロードマーケット指数の比較
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;指数&lt;/th&gt;
+          &lt;th&gt;特徴&lt;/th&gt;
+          &lt;th&gt;ボラティリティ&lt;/th&gt;
+          &lt;th&gt;適した投資家&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;CSI 300（滬深300）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;大型優良株、安定&lt;/td&gt;
+          &lt;td&gt;低&lt;/td&gt;
+          &lt;td&gt;安定志向&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;CSI 500（中証500）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;中型成長株&lt;/td&gt;
+          &lt;td&gt;中&lt;/td&gt;
+          &lt;td&gt;バランス型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;創業板指数（ChiNext）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;小型高成長、変動大&lt;/td&gt;
+          &lt;td&gt;高&lt;/td&gt;
+          &lt;td&gt;リターン追求型&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ボラティリティが高いほど、積立投資の効果は高まる——下落時に安く買え、上昇時により強く上がる。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;過去のバックテスト（2010 年積立開始 → 2015 年高値で売却）：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;指数&lt;/th&gt;
+          &lt;th&gt;リターン&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;創業板（ChiNext）&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;+185%&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CSI 500（中証500）&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;+120%&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CSI 300（滬深300）&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;+63%&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;42-一つに集中投資しないこと&#34;&gt;4.2 一つに集中投資しないこと
+&lt;/h3&gt;&lt;p&gt;中国 A 株市場には&lt;strong&gt;構造的ブルマーケット&lt;/strong&gt;が存在する——ある時は大型株が上がり、ある時は小型株が上がる。スタイルローテーションが常態化している。3 つの指数すべてに分散配分し、自身のリスク許容度に応じて比率を調整することを推奨する。&lt;/p&gt;
+&lt;h3 id=&#34;43-超初心者向けオプションsp-500&#34;&gt;4.3 超初心者向けオプション：S&amp;amp;P 500
+&lt;/h3&gt;&lt;p&gt;利益確定の学習を省きたいなら、&lt;strong&gt;プラットフォームが継続的に上昇する指数&lt;/strong&gt;——S&amp;amp;P 500 を選べばよい。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;米国市場は「強気長く、弱気短く」の傾向があり、長期で右肩上がり&lt;/li&gt;
+&lt;li&gt;毎年最高値で買っても、30 年の年率リターンは 10.6%&lt;/li&gt;
+&lt;li&gt;毎年最安値で買えば、30 年の年率リターンは 11.7%&lt;/li&gt;
+&lt;li&gt;差が小さいのは、指数のフロアが毎年上がっているからだ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：S&amp;amp;P 500 の QDII ファンドを購入する際は、&lt;strong&gt;プレミアム率と手数料率&lt;/strong&gt;に注意すること。外貨枠が逼迫している時はプレミアムが 30% に達することもあり、購入制限がかかる場合もある。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;44-a-株-vs-米国株&#34;&gt;4.4 A 株 vs 米国株
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;比較項目&lt;/th&gt;
+          &lt;th&gt;A 株（CSI 300 など）&lt;/th&gt;
+          &lt;th&gt;米国株（S&amp;amp;P 500）&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;市場スタイル&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;変動大、サイクルが明確&lt;/td&gt;
+          &lt;td&gt;強気長く弱気短く、フロアが継続上昇&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;利益確定は必要か&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;必須&lt;/strong&gt;——高値で売却&lt;/td&gt;
+          &lt;td&gt;長期保有で OK&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;毎年最高値で購入&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;年率 5.63%&lt;/td&gt;
+          &lt;td&gt;年率 10.6%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;毎年最安値で購入&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;年率 10.69%&lt;/td&gt;
+          &lt;td&gt;年率 11.7%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五どう買うか具体的な実行プラン&#34;&gt;五、どう買うか？——具体的な実行プラン
+&lt;/h2&gt;&lt;h3 id=&#34;51-サラリーマン向けプラン最もシンプル&#34;&gt;5.1 サラリーマン向けプラン（最もシンプル）
+&lt;/h3&gt;&lt;p&gt;毎月の給料日後の流れ：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;生活費と必要経費を差し引く&lt;/li&gt;
+&lt;li&gt;残りの &lt;strong&gt;70%&lt;/strong&gt; を積立に回す&lt;/li&gt;
+&lt;li&gt;毎週または毎月購入（長期では曜日による差はない）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;サラリーマンにとって積立投資は驚くほどシンプルだ：給料が入る → 支出を引く → 残りを買う → 以上。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;52-余剰資金がある場合のプランピラミッド型積立法&#34;&gt;5.2 余剰資金がある場合のプラン：ピラミッド型積立法
+&lt;/h3&gt;&lt;p&gt;3～5 年は使う予定のない余剰資金がある場合。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;資金配分&lt;/strong&gt;：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;用途&lt;/th&gt;
+          &lt;th&gt;割合&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;国債 / リバースレポ（バラスト）&lt;/td&gt;
+          &lt;td&gt;10%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;現金準備（予備資金）&lt;/td&gt;
+          &lt;td&gt;25%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;積立資金&lt;/td&gt;
+          &lt;td&gt;65%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;ピラミッド型積立法&lt;/strong&gt;（3 年サイクル = 36 ヶ月の場合）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;積立資金を &lt;strong&gt;72 ユニット&lt;/strong&gt;に分割（月数の 2 倍、買い増し余地を確保）&lt;/li&gt;
+&lt;li&gt;PE パーセンタイル 40% 以下 → 毎月 &lt;strong&gt;1 ユニット&lt;/strong&gt;購入（少量、ピラミッドの頂点）&lt;/li&gt;
+&lt;li&gt;PE パーセンタイル 20% 以下 → 毎月 &lt;strong&gt;2 ユニット&lt;/strong&gt;購入（倍増）&lt;/li&gt;
+&lt;li&gt;PE パーセンタイル 1% 以下 → さらに買い増し（極度の割安、ピラミッドの底辺）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;暴落時の加速プラン&lt;/strong&gt;（積立開始直後に暴落した場合）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高値から 20% 下落 → 3 ヶ月分を一気に投入&lt;/li&gt;
+&lt;li&gt;40% 下落 → 残りの予定ユニットをすべて投入&lt;/li&gt;
+&lt;li&gt;その後は通常の毎月積立を再開&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;指数は不死だ。慌てる必要はまったくない。むしろ暴落は本当に嬉しくなる——株がさらに安くなったのだから。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;53-初心者向けプランsp-500-専用&#34;&gt;5.3 初心者向けプラン（S&amp;amp;P 500 専用）
+&lt;/h3&gt;&lt;p&gt;バリュエーション不看。利益確定不要。唯一注意すべきは&lt;strong&gt;プレミアム率と手数料率&lt;/strong&gt;のみ。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六どう売るか利益確定戦略&#34;&gt;六、どう売るか？——利益確定戦略
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;売却が最も難しい。A 株の積立投資で高値での売却を適切に実行できなければ、3～5 年の積立も平凡な結果に終わる。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;61-3331-利益確定法&#34;&gt;6.1 3331 利益確定法
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;バリュエーション水準&lt;/th&gt;
+          &lt;th&gt;アクション&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;PE パーセンタイルが &lt;strong&gt;80%&lt;/strong&gt; 到達&lt;/td&gt;
+          &lt;td&gt;機械的に &lt;strong&gt;3 割&lt;/strong&gt;を売却&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;PE パーセンタイルが &lt;strong&gt;90%&lt;/strong&gt; 到達&lt;/td&gt;
+          &lt;td&gt;機械的にさらに &lt;strong&gt;3 割&lt;/strong&gt;を売却&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;過去最高値に接近&lt;/td&gt;
+          &lt;td&gt;さらに &lt;strong&gt;3 割&lt;/strong&gt;を売却&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;過去最高値を突破&lt;/td&gt;
+          &lt;td&gt;残り &lt;strong&gt;1 割&lt;/strong&gt;だけ保有継続、楽しむ&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;62-ドローダウン保護&#34;&gt;6.2 ドローダウン保護
+&lt;/h3&gt;&lt;p&gt;80% / 90% パーセンタイル到達後に上昇が鈍り、下落に転じた場合：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;90%&lt;/strong&gt; レベルまで戻った時点で、&lt;strong&gt;全ポジションを清算&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;または最後の 1 割だけ残して様子を見る&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;63-確実な利益だけを取る&#34;&gt;6.3 確実な利益だけを取る
+&lt;/h3&gt;&lt;p&gt;売る時は思い切りよく。我々が取るのは&lt;strong&gt;確実な利益&lt;/strong&gt;だけだ。最後のバブル局面は 1 割のポジションで軽く楽しめばよい。&lt;/p&gt;
+&lt;h3 id=&#34;64-清算後の行動&#34;&gt;6.4 清算後の行動
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;一部を消費し、自分にご褒美を&lt;/li&gt;
+&lt;li&gt;残りは国債やリバースレポに投入&lt;/li&gt;
+&lt;li&gt;次の割安の機会を辛抱強く待つ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;七複利の力&#34;&gt;七、複利の力
+&lt;/h2&gt;&lt;h3 id=&#34;71-年率リターンの差が生む長期格差&#34;&gt;7.1 年率リターンの差が生む長期格差
+&lt;/h3&gt;&lt;p&gt;30 歳で 100 万元の元本があると仮定：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;年率&lt;/th&gt;
+          &lt;th&gt;30 年後（60 歳）&lt;/th&gt;
+          &lt;th&gt;40 年後（70 歳）&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;8%&lt;/td&gt;
+          &lt;td&gt;1,006 万元&lt;/td&gt;
+          &lt;td&gt;2,172 万元&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;10%&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;1,745 万元&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;4,525 万元&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;11%&lt;/td&gt;
+          &lt;td&gt;2,289 万元&lt;/td&gt;
+          &lt;td&gt;6,500 万元&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;15%&lt;/td&gt;
+          &lt;td&gt;6,621 万元&lt;/td&gt;
+          &lt;td&gt;2.68 億元&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;72-1-の差がどれほど大きいか&#34;&gt;7.2 1% の差がどれほど大きいか
+&lt;/h3&gt;&lt;p&gt;年率わずか 1% の差が、40 年後には数千万、場合によっては数億の絶対的な差になる。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;手数料に注意：長期では、運用管理費用 1.5% と 0.2% の差が 7 桁のリターンを食いつぶす。&lt;strong&gt;必ず低コストのインデックスファンドを選ぶこと。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;73-バフェットの複利の秘密&#34;&gt;7.3 バフェットの複利の秘密
+&lt;/h3&gt;&lt;p&gt;バフェットの富の論理は驚くほどシンプルだ：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;長寿 + 極めて高い年率リターン = 複利の奇跡。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;長く生きれば生きるほど、後半の複利はより猛烈になる。始めるのは早ければ早いほどよい——&lt;strong&gt;知識の複利と金銭の複利を同時に積み上げよ。&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;八積立投資で損が出たらどうするか&#34;&gt;八、積立投資で損が出たらどうするか？
+&lt;/h2&gt;&lt;p&gt;買い始めてすぐに損失が出るのは、&lt;strong&gt;極めて正常&lt;/strong&gt;なことだ。以下の 3 ステップでメンタルを立て直そう：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;積立を一旦停止&lt;/strong&gt;し、読書モードに切り替え、原理を徹底的に理解する&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;正しい認識を確立する&lt;/strong&gt;：指数が下落した時、あなたは嬉しくなるべきだ——安い株が大量に流れてきている&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;どうしても損失に耐えられないなら&lt;/strong&gt;、理解がまだ不十分ということ。学びを続け、感情的な操作はしないこと&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;九禁止事項リスト&#34;&gt;九、禁止事項リスト
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;No.&lt;/th&gt;
+          &lt;th&gt;禁止事項&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;投資の研究に大量の時間を費やすな&lt;/strong&gt;——資金が少ないうちは、時間を自己成長に使い、収入を伸ばすのが最速&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;レバレッジ、信用取引、借金での投資に絶対に手を出すな&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;絶対に空売りをするな&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;過去 1 年のリターン上位 10 ファンドを買うな&lt;/strong&gt;（チャンピオンの呪い——今年の勝者は来年最下位になる確率が高い）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;原油ファンドやコモディティファンドに絶対に手を出すな&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;オールインするな&lt;/strong&gt;——常に安全マージンを確保せよ&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;7&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;感情で操作するな&lt;/strong&gt;——上がったからと追いかけるな、下がったからと投げ売るな&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;8&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;複利を放棄するな&lt;/strong&gt;——知識の複利と金銭の複利は、自由への二本の足である&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;短期的な高リターンを約束する行為の背後には、常に極めて高い不確実性が潜んでいる。時間の不確実性に耐えられないなら、時間をリターンに換える市場に資金を置いてはならない。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>ファンドの選び方：七つのステップ</title>
+        <link>https://Siborne.top/ja/p/how-to-pick-funds-seven-steps/</link>
+        <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/how-to-pick-funds-seven-steps/</guid>
+        <description>&lt;img src="https://Siborne.top/p/how-to-pick-funds-seven-steps/bannerImage.png" alt="Featured image of post ファンドの選び方：七つのステップ" /&gt;&lt;h2 id=&#34;コアコンセプトファンドは長期保有すべき資産である&#34;&gt;コアコンセプト：ファンドは長期保有すべき資産である
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;優良ファンドの長期年率リターンは 22% 以上に達することもあります。しかし、投資家の約 4 割は依然として損失を抱えています。問題はファンドそのものではなく、&lt;strong&gt;選び方と持ち方&lt;/strong&gt;にあります。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;ファンドには見落とされがちな構造的優位性がいくつかあります：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;たとえファンドマネージャーの手腕が並でも、彼らは一流大学出身で長年の投資リサーチ経験を持ち、大半の個人投資家よりはるかに高い水準にあります。&lt;/li&gt;
+&lt;li&gt;マネージャーの背後には、強力な調査能力を持つリサーチチームが控えています。&lt;/li&gt;
+&lt;li&gt;マネージャーのパフォーマンスが振るわなければ、運用会社は速やかに交代させます——これは個人投資家にはない安全策です。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;強気相場の天井で一括投資さえしなければ、長期的に保有することで 95% 以上のファンドが利益を生みます。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ファンドは株式ではありません。頻繁に売買してはいけません。運用会社が解約手数料に段階制を設けているのは、長期保有を促進するためなのです。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ファンド選び七つのステップ&#34;&gt;ファンド選び七つのステップ
+&lt;/h2&gt;&lt;h3 id=&#34;ステップ-1長期保有できる資金であることを確認する&#34;&gt;ステップ 1：長期保有できる資金であることを確認する
+&lt;/h3&gt;&lt;p&gt;ファンド投資の第一原則は&lt;strong&gt;長期保有&lt;/strong&gt;です。そして長期保有の客観的前提は、&lt;strong&gt;投資する資金が当面使う予定のない余裕資金であること&lt;/strong&gt;です。&lt;/p&gt;
+&lt;p&gt;以下のような資金はファンド投資に適しません：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1〜2 ヶ月以内に住宅購入、学費、海外渡航に使う予定の資金&lt;/li&gt;
+&lt;li&gt;レバレッジをかけた借入金&lt;/li&gt;
+&lt;li&gt;緊急予備資金&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;どんなに正しい投資哲学を持っていても、資金的なプレッシャーがあれば最悪のタイミングでの売却を余儀なくされます。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解約手数料の段階制&lt;/strong&gt;（株式型ファンドの例）：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;保有期間&lt;/th&gt;
+          &lt;th&gt;解約手数料率&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;7 日未満&lt;/td&gt;
+          &lt;td&gt;1.50%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;7 日〜1 年&lt;/td&gt;
+          &lt;td&gt;0.50%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1 年〜2 年&lt;/td&gt;
+          &lt;td&gt;0.25%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2 年超&lt;/td&gt;
+          &lt;td&gt;0%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;2 年を超えると解約手数料が無料になります。これは運用会社が手数料体系を通じて長期保有へ誘導している明確な証拠です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;ステップ-2適切な販売プラットフォームを選ぶ&#34;&gt;ステップ 2：適切な販売プラットフォームを選ぶ
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;プラットフォームタイプ&lt;/th&gt;
+          &lt;th&gt;メリット&lt;/th&gt;
+          &lt;th&gt;デメリット&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;サードパーティ系&lt;/strong&gt;（アリペイ、天天基金、且慢）&lt;/td&gt;
+          &lt;td&gt;手数料が安い、品揃えが豊富、決済が早い&lt;/td&gt;
+          &lt;td&gt;自分でリサーチが必要&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;銀行系&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;専任スタッフのサポート、操作が簡単&lt;/td&gt;
+          &lt;td&gt;手数料が非常に高い（サードパーティの 10 倍以上の場合も）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;運用会社直販&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;運用会社と直接取引&lt;/td&gt;
+          &lt;td&gt;その会社の商品しか買えない&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;同じファンドに 100 万元を投資した場合：銀行手数料は約 11,500 元、アリペイでは約 1,000 元——銀行の端数にも満たない金額です。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;結論は明確です。&lt;strong&gt;一般の投資家はサードパーティプラットフォームを第一選択とすべきです。&lt;/strong&gt; 手数料の差は複利効果によってさらに拡大し、長期的に見れば節約できた手数料自体が相当なリターンとなります。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;ステップ-3優良な運用会社を選ぶ&#34;&gt;ステップ 3：優良な運用会社を選ぶ
+&lt;/h3&gt;&lt;p&gt;核心的な判断指標はただ一つ、**運用資産残高（AUM）**です。&lt;/p&gt;
+&lt;p&gt;これは神秘的な指標ではなく、投資家が「足で投票」した結果です：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AUM が大きい → 運用管理報酬が増加 → 優秀なマネージャーやリサーチチームを採用できる → パフォーマンス向上 → さらに資金が集まる&lt;/li&gt;
+&lt;li&gt;これは&lt;strong&gt;好循環のフライホイール&lt;/strong&gt;です&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;公募ファンドの主な収益源は運用管理報酬であり、規模の大きい会社は自然とリサーチ体制の構築により多くのリソースを割けます。&lt;strong&gt;トップクラスの運用会社を選ぶ方が、中小の運用会社より勝率が高いのです。&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;ステップ-4優秀なファンドマネージャーを選ぶ&#34;&gt;ステップ 4：優秀なファンドマネージャーを選ぶ
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;ファンドを買うとは、マネージャーを選ぶことです。これは全ての検討要素の中で&lt;strong&gt;最も重要な要素であり、他に代わるものはありません。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;41-実務経験年数&#34;&gt;4.1 実務経験年数
+&lt;/h4&gt;&lt;p&gt;投資の世界は失敗の許されない厳しい実力社会であり、全てはパフォーマンスで評価されます：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;能力不足や倫理的問題があれば → すぐに市場から淘汰される&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;長期的に生き残っているということは、実力で勝ち抜いてきた証拠&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;経験が長いほど = 豊富な知見 = 強気・弱気相場を乗り越えてきた = あらゆる市場環境に対応できる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ベテランドライバーは新人より速く走れるとは限りませんが、必ず新人より安定しています。ファンド投資においては、速さよりも安定性がはるかに重要です。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;42-過去の実績特にドローダウン抑制に注目&#34;&gt;4.2 過去の実績——特にドローダウン抑制に注目
+&lt;/h4&gt;&lt;p&gt;週単位や月単位の騰落を見るのではなく、直近 1 年や 2 年のチャンピオンを追うのでもありません。正しいアプローチは：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;長期的な視点で見る&lt;/strong&gt;：3〜5 年以上にわたる安定した収益 + 効果的なドローダウン管理&lt;/li&gt;
+&lt;li&gt;1 年で 100% 上昇した後に 50% 下落——これは投資ではなく、ジェットコースターのようなギャンブルです&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ファンドを買う本質は「安定性」を追求することです。持ち続けられるかどうかは、途中で自分が耐えられないほどの大幅なドローダウンが発生するかどうかにかかっています。ドローダウンが自分の許容範囲内にあれば、長期保有が可能になります。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;43-転職回数&#34;&gt;4.3 転職回数
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;優れた実績 + 転職回数が少ない = 安定性が高い、明確なプラス材料&lt;/li&gt;
+&lt;li&gt;好ましいタイプ：入社後長期間同じ会社に勤めているマネージャー → 会社への愛着がある → 不要な誘惑を排除できる → 会社の投資スタイルを一貫して実行できる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;多くの優秀な公募ファンドマネージャーがプライベートエクイティに高額報酬で引き抜かれます。「孤独に耐え、本質を守り続ける」こと自体が、投資家に対する責任の証なのです。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;ステップ-5適切な運用規模かどうかを確認する&#34;&gt;ステップ 5：適切な運用規模かどうかを確認する
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;規模はリターンの敵である。&lt;/strong&gt; これは投資の世界の古い格言です。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;規模の範囲&lt;/th&gt;
+          &lt;th&gt;潜在的な問題&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;大きすぎる&lt;/strong&gt;（数百億〜数千億）&lt;/td&gt;
+          &lt;td&gt;ポジション変更が困難、スタイルドリフトを強いられ、超過リターンが希薄化&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;小さすぎる&lt;/strong&gt;（数億以下）&lt;/td&gt;
+          &lt;td&gt;市場下落時の解約 → 強制売却 → リターン低下または償還のリスク&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;適正（50〜100 億）&lt;/strong&gt; ⭐&lt;/td&gt;
+          &lt;td&gt;推奨レンジ：機動性と規模のメリットのバランス&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;適切な規模は&lt;strong&gt;加点要素&lt;/strong&gt;であり、決定的要因ではありません。張坤（ジャン・クン）は 1000 億超の規模でも優れた成績を維持しています——しかし、彼が&lt;strong&gt;購入制限&lt;/strong&gt;を始めたこと自体が、規模が確かに運用の難易度を上げていることを示しています。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;ステップ-6分散投資型のファンドを選ぶ&#34;&gt;ステップ 6：分散投資型のファンドを選ぶ
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;投資対象をできるだけ&lt;strong&gt;複数のテーマに分散&lt;/strong&gt;させましょう。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;中国 A 株市場ではテーマ株への投機熱が根強く、&lt;strong&gt;セクターローテーション&lt;/strong&gt;の傾向が顕著です：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;単一テーマ型ファンド&lt;/strong&gt;：追い風が吹けばリターン爆発、風向きが変わればリターン崩壊&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分散型ファンド&lt;/strong&gt;：ヘルスケア、消費、テクノロジーなど複数セクターに投資 → ドローダウン抑制がはるかに良好 → 保有体験がより安定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;比較事例：張坤（ヘルスケア + 消費 + テクノロジーの分散型、安定したドローダウン管理） vs 単一セクターファンド（半導体一色、大きなボラティリティ）。前者の保有者は、ほぼ確実により良い眠りにつけるでしょう。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;ステップ-7新規ファンドより既存ファンドを買う&#34;&gt;ステップ 7：新規ファンドより既存ファンドを買う
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;比較項目&lt;/th&gt;
+          &lt;th&gt;新規ファンド&lt;/th&gt;
+          &lt;th&gt;既存ファンド&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;トラックレコード&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;参考記録なし、宣伝資料のみ&lt;/td&gt;
+          &lt;td&gt;完全な過去実績があり、検証可能&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ビルドアップ期間&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;3〜6 ヶ月のポジション構築期間、強気相場に乗り遅れる&lt;/td&gt;
+          &lt;td&gt;構築済みで市場のリズムに乗れる&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;基準価額&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;基準価額 = 1、「安く見える」&lt;/td&gt;
+          &lt;td&gt;基準価額が高く、「高く見える」&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;フロントランニングリスク&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;新規ファンドは既存ファンドの主要保有銘柄を買う可能性が高く、既存ファンドの価格を押し上げるだけ&lt;/td&gt;
+          &lt;td&gt;この問題なし&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ファンドの投資価値は基準価額と一切関係ありません！&lt;/strong&gt; 基準価額 1 元が「安い」ことを意味せず、基準価額 5 元が「高い」ことを意味しません。ファンドが収益を上げるのは、保有株式の値上がりによるものであり、ファンド自体を「安く買って高く売る」ことではありません。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;典型事例&lt;/strong&gt;：E ファンド競争優勢は 1 日で 2300 億の申込を集めましたが、上限は 150 億で、割当率はわずか 6%。これは大多数の投資家がファンドの仕組みについて根本的な誤解を持っていることを如実に示しています。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;早見表七つのステップ総覧&#34;&gt;早見表：七つのステップ総覧
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;① 長期保有        → 余裕資金で投資、借入・レバレッジ禁止
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;② プラットフォーム → サードパーティ（アリペイ等）、手数料が安い
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;③ 運用会社選び    → AUM が大きい = 資金力 = リサーチリソース
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;④ マネージャー    → 経験豊富 + 低ドローダウン + 転職少 + サイクル経験
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⑤ 適正規模        → 50〜100 億が理想的、大きすぎても小さすぎてもリスク
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⑥ 分散投資        → マルチテーマ、単一セクターに集中しない
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⑦ 既存優先        → 検証可能な実績あり、ビルドアップ期間の機会損失なし
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;上級者向けヒントチャンピオンの呪い&#34;&gt;上級者向けヒント：チャンピオンの呪い
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;直近 1 年間のリターン上位 10 ファンドを購入してはいけません。&lt;/strong&gt; これは繰り返し検証されてきた教訓です。&lt;/p&gt;
+&lt;p&gt;中国の公募ファンドの歴史において、年間チャンピオンは翌年に高い確率で大幅なドローダウンを経験します。理由は二つ：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;資金流入が超過リターンを希薄化&lt;/strong&gt;：チャンピオン獲得年に大量の資金が流入し、AUM が数十倍に膨れ上がり、マネージャーの本来の戦略を巨額の資金で再現することが困難になります。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;チャンピオンは単に風向きに乗っただけ&lt;/strong&gt;：ある年のアウトパフォーマンスは、マネージャーに持続的なアルファ創出能力があることを証明するものではありません。風向きが変われば、裸で泳いでいた者が露わになります。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;ドローダウンとボラティリティについて&#34;&gt;ドローダウンとボラティリティについて
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;上昇局面では誰もが「神」と呼ばれ、下降局面でこそ実力が露わになります&lt;/li&gt;
+&lt;li&gt;マネージャーを評価する際、&lt;strong&gt;ドローダウン抑制はリターンよりも重要です&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;ボラティリティが大きすぎる → 絶対に持ちこたえられない → 底値で損切り → その後の反発はあなたとは無関係&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ファンド選びの究極の目標は、最も速く上昇するものを見つけることではなく、&lt;strong&gt;変動の中でもしっかり持ち続けられるもの&lt;/strong&gt;を見つけることです。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>投資信託の基礎入門：株式・債券・ETF と投資信託</title>
+        <link>https://Siborne.top/ja/p/fund-basics-stock-bond-etf/</link>
+        <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/fund-basics-stock-bond-etf/</guid>
+        <description>&lt;img src="https://Siborne.top/p/fund-basics-stock-bond-etf/bannerImage.png" alt="Featured image of post 投資信託の基礎入門：株式・債券・ETF と投資信託" /&gt;&lt;h1 id=&#34;投資信託の基礎入門株式債券etf-と投資信託&#34;&gt;投資信託の基礎入門：株式・債券・ETF と投資信託
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;ファンドを買う本質は、ファンドの背後にある**裏付け資産（原資産）**を買うこと。ファンドの良し悪しは、裏付け資産の良し悪しで決まる。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一三つの基本資産株式債券ファンド&#34;&gt;一、三つの基本資産：株式・債券・ファンド
+&lt;/h2&gt;&lt;h3 id=&#34;11-株式とは&#34;&gt;1.1 株式とは
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;株式 = 会社の一部（所有権）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;株式を購入した後、利益を得る方法は二つある：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;方法&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;配当&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;会社が利益を上げ、その一部を株主に分配する&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;売却益&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;保有する株式をより高い価格で他者に売却する&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;なぜ他者はより高い価格であなたの株式を買うのか？それは、その会社が&lt;strong&gt;将来さらに多くの利益を上げ、より多くの配当を出す&lt;/strong&gt;と予想するからだ。あなたは売却によって、将来の期待をいま現金化しているのである。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;株式は決して宝くじではない。株価とは、市場がその企業の&lt;strong&gt;将来の収益力&lt;/strong&gt;に対してつける値段である。あなたが買っているのは&lt;strong&gt;所有権&lt;/strong&gt;の一部であり、画面の上で上下する数字ではない。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;12-債券とは&#34;&gt;1.2 債券とは
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;債券 = 貸借契約&lt;/strong&gt;。あなたが発行体にお金を貸し、発行体は定期的に利子を支払い、満期時に元本と最終回の利子を返済する。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;債券の種類&lt;/th&gt;
+          &lt;th&gt;発行体&lt;/th&gt;
+          &lt;th&gt;リスク水準&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;国債&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;国家&lt;/td&gt;
+          &lt;td&gt;無リスク（元利金はほぼ確実に回収可能）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;社債&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;企業&lt;/td&gt;
+          &lt;td&gt;リスクあり（企業が債務不履行に陥る可能性がある）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;重要概念：金利と債券価格は逆相関&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;市場金利が&lt;strong&gt;低下&lt;/strong&gt; → 既存債券の固定利子が相対的に魅力的に → 債券価格は&lt;strong&gt;上昇&lt;/strong&gt;（債券保有者に有利）&lt;/li&gt;
+&lt;li&gt;市場金利が&lt;strong&gt;上昇&lt;/strong&gt; → 既存債券の固定利子が相対的に目減り → 債券価格は&lt;strong&gt;下落&lt;/strong&gt;（債券保有者に不利）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;デュレーション（Duration）&lt;/strong&gt;：債券投資家がすべてのキャッシュフローを受け取るまでの加重平均期間。デュレーションが長いほど、債券価格は金利変動に敏感になる。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;金利低下を予想 → &lt;strong&gt;デュレーションを長期化&lt;/strong&gt;（長期債を多めに組み入れ、値上がり益を狙う）&lt;/li&gt;
+&lt;li&gt;金利上昇を予想 → &lt;strong&gt;デュレーションを短期化&lt;/strong&gt;（短期債を多めにし、損失を抑える）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;最終利回り vs 表面利率&lt;/strong&gt;：額面 100 円・表面利率 3% の債券を 80 円で購入した場合、あなたの最終利回りは 3% を大きく上回る——割安で購入したため、表面利息に加えて、額面と購入価格の差額も得られるからだ。&lt;/p&gt;
+&lt;h3 id=&#34;13-ファンドとは&#34;&gt;1.3 ファンドとは
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;ファンド = 資金を集約し、ファンドマネージャーに委託して株式・債券・金などの資産にまとめて投資する仕組み。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;アクティブファンド&lt;/strong&gt;：マネージャーが主体的に市場タイミング・銘柄選択・ポートフォリオ調整を行う。リターンはマネージャーの手腕にかかっている。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;パッシブファンド（インデックスファンド）&lt;/strong&gt;：あらかじめ決められた投資組合せ（指数）に追随し、主観的な銘柄選択は行わない。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;重要な結論&lt;/strong&gt;：大半のアクティブファンドは長期的にパッシブなインデックスファンドに勝てない。これは意見ではなく統計的事実であり、ウォーレン・バフェットが 10 年・100 万ドルの賭けで自ら実証したことでもある。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二a-株市場の取引基礎&#34;&gt;二、A 株市場の取引基礎
+&lt;/h2&gt;&lt;h3 id=&#34;21-取引可能な市場&#34;&gt;2.1 取引可能な市場
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;市場&lt;/th&gt;
+          &lt;th&gt;参加条件&lt;/th&gt;
+          &lt;th&gt;値幅制限&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;A 株メインボード&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;制限なし&lt;/td&gt;
+          &lt;td&gt;±10%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;科創板（STAR Market）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;50 万元の資産&lt;/td&gt;
+          &lt;td&gt;±20%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;香港株（H 株）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;50 万元の資産（ストックコネクト経由）&lt;/td&gt;
+          &lt;td&gt;制限なし&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;取引経路&lt;/strong&gt;：証券会社は投資家と取引所をつなぐ仲介者であり、証券口座を開設しなければ取引できない。&lt;/p&gt;
+&lt;h3 id=&#34;22-取引コスト摩擦コスト&#34;&gt;2.2 取引コスト（摩擦コスト）
+&lt;/h3&gt;&lt;p&gt;売買のたびに以下の費用が発生する：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;費用&lt;/th&gt;
+          &lt;th&gt;買付時&lt;/th&gt;
+          &lt;th&gt;売却時&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;印紙税&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;不要&lt;/td&gt;
+          &lt;td&gt;売り手のみ課税&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;名義書換料&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;売買双方が負担&lt;/td&gt;
+          &lt;td&gt;売買双方が負担&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;証券会社の手数料&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;課金（最低 5 元）&lt;/td&gt;
+          &lt;td&gt;課金（最低 5 元）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ 要注意：最低手数料 5 元のルールは少額取引に大きな影響を与える。頻繁な売買は避けるべき——摩擦コストが静かに利益を食いつぶす。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;23-a-株の税制&#34;&gt;2.3 A 株の税制
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;税目&lt;/th&gt;
+          &lt;th&gt;ルール&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;キャピタルゲイン税&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;非課税&lt;/strong&gt;（売買差益に課税されない）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;配当課税&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;配当支払時に源泉徴収。保有期間が長いほど税率が低くなる&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;印紙税&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;売却時に売り手のみに課税&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;24-基本用語早見表&#34;&gt;2.4 基本用語早見表
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;用語&lt;/th&gt;
+          &lt;th&gt;意味&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;建玉（ポジションを建てる）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;資産を購入し、保有を開始すること&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;保有（ポジションを保有）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;現在保有している資産&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;手仕舞い（ポジションを閉じる）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;資産を売却し、保有を終了すること&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ポジション比率（仓位）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;総資金のうち当該資産に割り当てた割合&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ロング（買い持ち）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;購入後、より高い価格で売却して利益を得ること&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ショート（空売り）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;株を借りて売却し、価格下落後に買い戻すこと（50 万元の条件あり）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;1 単元（一手）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;100 株。A 株市場における最小取引単位&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ローソク足（K 線）&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;一定期間の始値・終値・高値・安値を示すチャート&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三etf上場投資信託vs-一般投資信託&#34;&gt;三、ETF（上場投資信託）vs 一般投資信託
+&lt;/h2&gt;&lt;h3 id=&#34;31-etf上場投資信託&#34;&gt;3.1 ETF（上場投資信託）
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;ETF = Exchange Traded Fund（上場投資信託）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;購入方法&lt;/strong&gt;：株式とまったく同じ。証券会社のアプリでリアルタイムに売買する&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;取引価格&lt;/strong&gt;：取引所での売買注文のリアルタイムなマッチングで決定され、基準価額（NAV）から乖離することがある（&lt;strong&gt;プレミアム&lt;/strong&gt;または&lt;strong&gt;ディスカウント&lt;/strong&gt;が発生）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;信託報酬&lt;/strong&gt;：極めて低い。例えば上海総合指数 ETF の総経費率は&lt;strong&gt;年 0.2%&lt;/strong&gt; 程度まで低減可能&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;低コストの理由&lt;/strong&gt;：指数にパッシブに追随するため、マネージャーの頻繁な売買が不要であり、個人投資家の資金流入・流出に対応するためのキャッシュフロー管理も不要&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;乖離率&lt;/strong&gt; = (ETF 市場価格 − 基準価額) / 基準価額。プラスなら市場価格が基準価額を上回っている（プレミアム）、マイナスなら下回っている（ディスカウント）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;32-一般投資信託場外ファンド&#34;&gt;3.2 一般投資信託（場外ファンド）
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;購入方法&lt;/strong&gt;：アリペイ（支付宝）や天天基金などのプラットフォームで、運用会社に直接申込・解約する（取引所でのマッチングではない）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;約定タイミング&lt;/strong&gt;：T 日に申し込んでも、&lt;strong&gt;T+1 日&lt;/strong&gt;に口数が確定する&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;信託報酬&lt;/strong&gt;：同じタイプの ETF より総じて高い&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高コストの理由&lt;/strong&gt;：運用会社は個人投資家の頻繁な資金流入・流出に対応するキャッシュフロー管理が必要で、運営コストが高くなる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;33-比較まとめ&#34;&gt;3.3 比較まとめ
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;ETF（上場）&lt;/th&gt;
+          &lt;th&gt;一般投資信託（場外）&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;取引方法&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;株式と同じくリアルタイム売買&lt;/td&gt;
+          &lt;td&gt;運用会社に申込・解約&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;約定スピード&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;即時約定&lt;/td&gt;
+          &lt;td&gt;T+1 で口数確定&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;総経費率&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;極めて低い（年 0.2% 程度）&lt;/td&gt;
+          &lt;td&gt;やや高い&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;プレミアム／ディスカウント&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;発生する可能性あり&lt;/td&gt;
+          &lt;td&gt;発生しない（基準価額で取引）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;必要なもの&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;証券口座が必要&lt;/td&gt;
+          &lt;td&gt;アリペイ・ファンドアプリ等で可&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;アドバイス&lt;/strong&gt;：低コストで長期保有したいなら ETF、手軽さや少額積立を重視するなら一般投資信託。長期で見れば、信託報酬の差は無視できないリターンの差に積み上がる。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四国債リバースレポ国債逆回購&#34;&gt;四、国債リバースレポ（国債逆回購）
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;国債を担保とし、短期国債金利に連動する、極めてリスクの低い短期資金運用ツール。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;仕組み&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;あなたが取引所に資金を貸し出す&lt;/li&gt;
+&lt;li&gt;資金調達者は国債を担保として取引所に差し入れる&lt;/li&gt;
+&lt;li&gt;満期時に、取引所は国債を調達者に返却し、あなたは元本＋利息を受け取る&lt;/li&gt;
+&lt;li&gt;資金調達者が返済不能の場合、取引所は担保の国債を清算して弁済できる&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;安全性&lt;/strong&gt;：国債が担保であるため、元本はほぼ無リスク。短期の遊休資金の置き場所として理想的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;年利参考&lt;/strong&gt;：約 1% 〜 1.5%（MMF をやや上回る水準）&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五投資と投機の本質的な違い&#34;&gt;五、投資と投機の本質的な違い
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;ベンジャミン・グレアムによる投資の定義：&lt;strong&gt;投資とは、徹底的な分析に基づき、元本の安全性と十分なリターンを約束する、定性的にも定量的にも正当化できる運用である。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;投資の判断基準&#34;&gt;投資の判断基準
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;その会社は儲かっているか？いくら儲けているか？何で儲けているか？&lt;/li&gt;
+&lt;li&gt;利益成長はあとどれだけ持続しそうか？&lt;/li&gt;
+&lt;li&gt;業界の競争環境はどうか？&lt;/li&gt;
+&lt;li&gt;現在のバリュエーションは妥当か？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;投機の典型的特徴&#34;&gt;投機の典型的特徴
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;勘で買う——「なんとなく上がりそう」&lt;/li&gt;
+&lt;li&gt;チャートだけを見て答えを導こうとする&lt;/li&gt;
+&lt;li&gt;テーマ株を追いかけ、短期売買を繰り返す&lt;/li&gt;
+&lt;li&gt;銘柄を次々に乗り換え、短期的な値幅を狙う&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ローソク足が教えてくれることは二つだけ&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;市場が現在、その企業にどのような価格をつけているか&lt;/li&gt;
+&lt;li&gt;過去、市場はその企業にどのような価格をつけてきたか&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;それ以上でもそれ以下でもない。過去の価格は将来の価格に影響を与えない。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;深く考えさせられるエピソード&#34;&gt;深く考えさせられるエピソード
+&lt;/h3&gt;&lt;p&gt;2020 年の NVIDIA のチャート：はっきりとした下落の後、ゆっくりと回復し、そこから右肩上がりで史上最高値を更新し続けた。もしチャートだけを見ていたら、3 倍になった時点で「上がりすぎた、売ろう」と思ったかもしれない。しかし、もし同社の将来の成長ストーリーを理解していれば、売らなかったはずだ——実際、NVIDIA はそこからさらに何倍にも成長した。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;「なんとなく上がりすぎた気がする、危なそう」という理由だけで売ってしまうなら、一生に一度の富を築くチャンスを逃す可能性がある。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六本当のリスクとは何か&#34;&gt;六、本当のリスクとは何か
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;アカデミックな世界ではリスクをボラティリティ（分散）で定義するが、本当のリスクは価格変動の大きさではなく、&lt;strong&gt;資本が恒久的に失われるリスク&lt;/strong&gt;である。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;企業の競争優位性が失われ、収益力が破壊され、ビジネスモデルが不可逆的に衰退に向かっている場合——&lt;strong&gt;株価の変動がどれほど穏やかでも、リスクは極めて高い&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;企業の長期的な収益力が盤石で、キャッシュフローが持続的に成長している場合——&lt;strong&gt;途中で株価がどれほど激しく変動しても、誤ったタイミングで売りさえしなければ、資本の恒久的な損失にはつながらない&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ボラティリティへの対処法&#34;&gt;ボラティリティへの対処法
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;戦略&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;オールインしない&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;全財産を一つの銘柄に賭けてはいけない——それは投資ではなくギャンブル&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ポジション管理&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;高ボラティリティ銘柄には資産の 10% 程度にとどめ、残り 90% は分散投資&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;余力を残す&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;現金準備を確保しておけば、押し目買いやミスの修正ができる&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;どれだけ長い期間「儲からない、あるいは帳簿上マイナス」の状態に耐えられるか&lt;/strong&gt;——それが、あなたが追求できる&lt;strong&gt;リターンの高さの上限&lt;/strong&gt;を決める。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;投資の道は長い。まず基礎をしっかり固めれば、市場のセンチメントに振り回されることはなくなる。&lt;/em&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>ファンド分類入門：三軍団・九兵種フレームワーク</title>
         <link>https://Siborne.top/ja/p/fund-classification-three-armies/</link>
         <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>

@@ -1,0 +1,2761 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="從零開始，手把手教你用 Hugo + GitHub Pages 搭建免費部落格，並對 Stack 主題進行視覺與功能的全面自訂。每一步都附有可重複使用的程式碼，力求讓你少踩坑、快上手。">
+<title>Hugo 部落格搭建與 Stack 主題深度自訂指南</title>
+
+<link rel='canonical' href='https://Siborne.top/zh-tw/p/hugo-blog-stack-theme-guide/'>
+
+<link rel="stylesheet" href="/scss/style.min.266c2d3f4822631b105b97664a103c3737ee3a439c2ce01b7142501e9591e1df.css"><meta property='og:title' content="Hugo 部落格搭建與 Stack 主題深度自訂指南">
+<meta property='og:description' content="從零開始，手把手教你用 Hugo + GitHub Pages 搭建免費部落格，並對 Stack 主題進行視覺與功能的全面自訂。每一步都附有可重複使用的程式碼，力求讓你少踩坑、快上手。">
+<meta property='og:url' content='https://Siborne.top/zh-tw/p/hugo-blog-stack-theme-guide/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='GitHub' /><meta property='article:tag' content='blog' /><meta property='article:tag' content='stack-theme' /><meta property='article:tag' content='tutorial' /><meta property='article:tag' content='部落格搭建' /><meta property='article:published_time' content='2026-05-11T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-11T01:57:14&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/hugo-blog-stack-theme-guide/bannerImage.png' />
+<meta name="twitter:title" content="Hugo 部落格搭建與 Stack 主題深度自訂指南">
+<meta name="twitter:description" content="從零開始，手把手教你用 Hugo + GitHub Pages 搭建免費部落格，並對 Stack 主題進行視覺與功能的全面自訂。每一步都附有可重複使用的程式碼，力求讓你少踩坑、快上手。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Siborne.top/p/hugo-blog-stack-theme-guide/bannerImage.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/zh-tw/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/zh-tw">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; 愛好者
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent 架構師 &amp; 全端開發者
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 好奇的學生 · 未來的建造者
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    打造智能代理 &#43; 可擴展的應用。將創意與 AI 效率相融合。🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/zh-tw/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首頁</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/zh-tw/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>關於 | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/zh-tw/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>紀錄 | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/zh-tw/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜尋 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/zh-tw/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>技術連結 | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" selected>繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" >日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>夜晚模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#一基礎環境建置">一、基礎環境建置</a>
+      <ol>
+        <li><a href="#11-安裝-git">1.1 安裝 Git</a></li>
+        <li><a href="#12-安裝-hugo">1.2 安裝 Hugo</a></li>
+      </ol>
+    </li>
+    <li><a href="#二建立你的第一個-hugo-網站">二、建立你的第一個 Hugo 網站</a>
+      <ol>
+        <li><a href="#21-初始化專案">2.1 初始化專案</a></li>
+        <li><a href="#22-本機預覽">2.2 本機預覽</a></li>
+      </ol>
+    </li>
+    <li><a href="#三設定-stack-主題">三、設定 Stack 主題</a>
+      <ol>
+        <li><a href="#31-下載主題">3.1 下載主題</a></li>
+        <li><a href="#32-套用設定">3.2 套用設定</a></li>
+      </ol>
+    </li>
+    <li><a href="#四部署到-github-pages">四、部署到 GitHub Pages</a>
+      <ol>
+        <li><a href="#41-手動部署">4.1 手動部署</a></li>
+        <li><a href="#42-自動化部署github-actions">4.2 自動化部署（GitHub Actions）</a>
+          <ol>
+            <li><a href="#準備工作">準備工作</a></li>
+            <li><a href="#編寫-workflow">編寫 Workflow</a></li>
+            <li><a href="#推送與驗證">推送與驗證</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#五整合留言系統">五、整合留言系統</a>
+      <ol>
+        <li><a href="#51-utterances基於-issues">5.1 utterances（基於 Issues）</a></li>
+        <li><a href="#52-giscus基於-discussions">5.2 giscus（基於 Discussions）</a></li>
+      </ol>
+    </li>
+    <li><a href="#六視覺美化">六、視覺美化</a>
+      <ol>
+        <li><a href="#61-自訂背景圖">6.1 自訂背景圖</a></li>
+        <li><a href="#62-動態背景特效">6.2 動態背景特效</a>
+          <ol>
+            <li><a href="#櫻花飄落">櫻花飄落</a></li>
+            <li><a href="#點線粒子particlesjs">點線粒子（particles.js）</a></li>
+          </ol>
+        </li>
+        <li><a href="#63-更換字型">6.3 更換字型</a></li>
+        <li><a href="#64-自訂滑鼠游標樣式">6.4 自訂滑鼠游標樣式</a></li>
+      </ol>
+    </li>
+    <li><a href="#七功能增強">七、功能增強</a>
+      <ol>
+        <li><a href="#71-顯示文章更新時間">7.1 顯示文章更新時間</a></li>
+        <li><a href="#72-友鏈與封存多欄版面配置">7.2 友鏈與封存多欄版面配置</a></li>
+        <li><a href="#73-文章目錄折疊展開">7.3 文章目錄折疊展開</a></li>
+        <li><a href="#74-返回頂部按鈕">7.4 返回頂部按鈕</a></li>
+        <li><a href="#75-macos-風格程式碼區塊">7.5 macOS 風格程式碼區塊</a></li>
+        <li><a href="#76-自訂引用區塊顏色範本">7.6 自訂引用區塊顏色範本</a></li>
+        <li><a href="#77-超長程式碼區塊折疊">7.7 超長程式碼區塊折疊</a></li>
+      </ol>
+    </li>
+    <li><a href="#結語">結語</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/zh-tw/p/hugo-blog-stack-theme-guide/">
+                <img src="/p/hugo-blog-stack-theme-guide/bannerImage_hu_6cd32a765bc69be9.png"
+                        srcset="/p/hugo-blog-stack-theme-guide/bannerImage_hu_6cd32a765bc69be9.png 800w, /p/hugo-blog-stack-theme-guide/bannerImage_hu_28bff7265023c338.png 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post Hugo 部落格搭建與 Stack 主題深度自訂指南" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/zh-tw/p/hugo-blog-stack-theme-guide/">Hugo 部落格搭建與 Stack 主題深度自訂指南</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-11T00:00:00Z'>2026-05-11</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 11, 2026 01:57 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                5042字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        從零開始，手把手教你用 Hugo &#43; GitHub Pages 搭建免費部落格，並對 Stack 主題進行視覺與功能的全面自訂。每一步都附有可重複使用的程式碼，力求讓你少踩坑、快上手。
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/zh-tw/categories/computer-tools/" >
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/hugo-blog-stack-theme-guide/" class="link">简体中文</a>
+                
+                    <a href="https://Siborne.top/en/p/hugo-blog-stack-theme-guide/" class="link">English</a>
+                
+                    <a href="https://Siborne.top/ja/p/hugo-blog-stack-theme-guide/" class="link">日本語</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言
+</h2><p>想要擁有一個屬於自己的部落格，但又不想被伺服器維運和代管費用困擾？<strong>Hugo</strong>——目前最熱門的靜態網站產生器之一，搭配 <strong>GitHub Pages</strong> 免費代管，可以讓你在半小時內上線一個功能完備、顏值線上的個人部落格。</p>
+<p>本指南將從環境建置出發，一路走到主題深度自訂和自動化部署。無論你是初次接觸 Hugo 的新手，還是想對現有部落格進行美化升級的老手，都能在這裡找到可重複使用的方案。</p>
+<hr>
+<h2 id="一基礎環境建置">一、基礎環境建置
+</h2><p>在一切開始之前，我們需要準備好兩樣核心工具：<strong>Git</strong> 和 <strong>Hugo</strong>。</p>
+<h3 id="11-安裝-git">1.1 安裝 Git
+</h3><p>前往 <a class="link" href="https://git-scm.com/"  target="_blank" rel="noopener"
+    >Git 官網</a> 下載對應平臺的安裝包，一路預設安裝即可。</p>
+<p>裝完後開啟命令列，輸入以下指令驗證：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果能正常輸出版本號，說明安裝成功。</p>
+<h3 id="12-安裝-hugo">1.2 安裝 Hugo
+</h3><p>前往 <a class="link" href="https://github.com/gohugoio/hugo/tags"  target="_blank" rel="noopener"
+    >Hugo 的 GitHub Releases 頁面</a>，選擇最新版本進行下載。</p>
+<ul>
+<li>Windows 使用者請選擇帶有 <strong>hugo_extended</strong> 和 <strong>windows_amd64</strong> 字樣的 zip 壓縮檔</li>
+<li>macOS 使用者可使用 <code>brew install hugo</code></li>
+<li>Linux 使用者可從套件管理器或直接下載二進位檔案</li>
+</ul>
+<p>下載後將 Hugo 執行檔放到你喜歡的目錄，記住路徑，後面會頻繁用到。</p>
+<blockquote>
+<p><strong>為什麼必須選 extended 版本？</strong> Stack 主題依賴 Hugo 的 SCSS 即時編譯能力，只有 extended 版本才內建完整的 SCSS/SASS 處理支援。如果使用普通版本，主題樣式會無法正常生成。</p>
+</blockquote>
+<hr>
+<h2 id="二建立你的第一個-hugo-網站">二、建立你的第一個 Hugo 網站
+</h2><h3 id="21-初始化專案">2.1 初始化專案
+</h3><p>在 Hugo 執行檔所在目錄的網址列輸入 <code>cmd</code> 後按 Enter（macOS/Linux 使用者直接在終端機中操作），執行以下指令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo new site my-blog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這條指令會生成一個標準的 Hugo 專案骨架。你可以把 <code>my-blog</code> 換成任意你喜歡的名稱。</p>
+<p>然後進入專案目錄，並將 Hugo 執行檔複製進去，方便後續操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> my-blog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="22-本機預覽">2.2 本機預覽
+</h3><p>啟動 Hugo 內建的開發伺服器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server -D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>-D</code> 參數表示同時顯示草稿（draft）狀態的文章，這在本機除錯時很有用。</p>
+<p>此時前往 <code>http://localhost:1313</code>，你會看到一片空白——這是正常的，因為我們還沒安裝主題。按下 <code>Ctrl + C</code> 停止服務，我們接著來設定主題。</p>
+<hr>
+<h2 id="三設定-stack-主題">三、設定 Stack 主題
+</h2><p>Hugo 官方維護著上百款免費主題，本文以美觀且功能齊全的 <strong>Stack</strong> 主題為核心進行講解。Stack 採用卡片式版面配置，內建深色模式、程式碼高亮、多語言支援等特性，非常適合技術部落格。</p>
+<h3 id="31-下載主題">3.1 下載主題
+</h3><p>前往 <a class="link" href="https://themes.gohugo.io/"  target="_blank" rel="noopener"
+    >Hugo Themes 頁面</a> 可瀏覽更多主題。這裡我們直接前往 <a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/tags"  target="_blank" rel="noopener"
+    >Stack 主題的 Releases 頁面</a> 下載最新版本。</p>
+<p>將下載的壓縮檔解壓縮，把整個主題資料夾放入專案的 <code>/themes</code> 目錄中。</p>
+<blockquote>
+<p>使用 Git 子模組也是推薦做法：<code>git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack</code></p>
+</blockquote>
+<h3 id="32-套用設定">3.2 套用設定
+</h3><p>Stack 主題提供了一個完整的範例網站，位於 <code>exampleSite</code> 目錄。將其中的 <strong>content</strong> 資料夾和 <strong>hugo.yaml</strong> 複製到專案根目錄，然後刪除原本的 <code>hugo.toml</code>（如有）和 <code>content/post/rich-content</code> 範例檔案。</p>
+<p>接著，開啟 <code>hugo.yaml</code>，確認 <code>theme</code> 欄位值與 <code>/themes</code> 下的主題資料夾名稱一致：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">hugo-theme-stack</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>重新啟動開發伺服器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server -D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重新整理瀏覽器，一個乾淨整潔的 Stack 部落格就出現在眼前了。<code>hugo.yaml</code> 中還有大量可調參數——網站標題、描述、社群連結、導覽選單等，建議逐一瀏覽、按需修改。</p>
+<hr>
+<h2 id="四部署到-github-pages">四、部署到 GitHub Pages
+</h2><h3 id="41-手動部署">4.1 手動部署
+</h3><p>首先在 GitHub 上建立一個名為 <strong><code>{你的使用者名稱}.github.io</code></strong> 的存放庫。</p>
+<p>進入存放庫的 <code>Settings</code> -&gt; <code>Pages</code>，將 Source 設定為 <code>Deploy from a branch</code>，Branch 選為 <code>main</code> 並儲存。GitHub 會自動為你開通 <code>https://{使用者名稱}.github.io</code> 這個存取網址。</p>
+<p>回到本機，在專案根目錄執行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo -D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這會在根目錄下生成一個 <code>public</code> 資料夾，裡面就是純靜態的完整網站。進入 <code>public</code> 並推送到 GitHub：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> public
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;first commit&#34;</span>
+</span></span><span class="line"><span class="cl">git branch -M main
+</span></span><span class="line"><span class="cl">git remote add origin https://github.com/<span class="o">{</span>使用者名稱<span class="o">}</span>/<span class="o">{</span>使用者名稱<span class="o">}</span>.github.io.git
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>首次推送可能需要認證（建議使用 GitHub CLI 或 Personal Access Token 替代密碼）。上傳成功後，開啟 <code>https://{使用者名稱}.github.io</code> 就能看到你的部落格了。</p>
+<h3 id="42-自動化部署github-actions">4.2 自動化部署（GitHub Actions）
+</h3><p>每次寫完文章都要手動建置和推送實在太繁瑣，<strong>GitHub Actions</strong> 可以幫我們全自動完成這一流程。</p>
+<h4 id="準備工作">準備工作
+</h4><ol>
+<li>為 Hugo 原始檔單獨建立一個存放庫（例如 <code>my-blog-source</code>）</li>
+<li>在 GitHub 的 <code>Settings</code> -&gt; <code>Developer settings</code> -&gt; <code>Personal access tokens</code> -&gt; <code>Tokens (classic)</code> 中建立一個 token</li>
+<li>Token 有效期設為 <strong>永不過期</strong>，權限勾選 <strong>repo</strong> 和 <strong>workflow</strong></li>
+<li>將生成的 token 存入部落格原始檔存放庫的 <code>Settings</code> -&gt; <code>Secrets and variables</code> -&gt; <code>Actions</code>，命名為 <code>PERSONAL_TOKEN</code></li>
+</ol>
+<h4 id="編寫-workflow">編寫 Workflow
+</h4><p>在 Hugo 專案根目錄建立 <code>.github/workflows/deploy.yaml</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">deploy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Checkout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Hugo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-hugo@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">hugo-version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;latest&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">extended</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build Web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hugo -D</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy Web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-gh-pages@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">PERSONAL_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.PERSONAL_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">EXTERNAL_REPOSITORY</span><span class="p">:</span><span class="w"> </span>{<span class="l">你的GitHub使用者名稱}/{你的使用者名稱}.github.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">PUBLISH_BRANCH</span><span class="p">:</span><span class="w"> </span><span class="l">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">PUBLISH_DIR</span><span class="p">:</span><span class="w"> </span><span class="l">./public</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">commit_message</span><span class="p">:</span><span class="w"> </span><span class="l">auto deploy</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>同時建立 <code>.gitignore</code> 檔案：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">public
+</span></span><span class="line"><span class="cl">resources
+</span></span><span class="line"><span class="cl">.hugo_build.lock
+</span></span><span class="line"><span class="cl">hugo.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="推送與驗證">推送與驗證
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;first commit&#34;</span>
+</span></span><span class="line"><span class="cl">git branch -M main
+</span></span><span class="line"><span class="cl">git remote add origin https://github.com/<span class="o">{</span>使用者名稱<span class="o">}</span>/<span class="o">{</span>原始碼存放庫名稱<span class="o">}</span>.git
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>推送成功後，GitHub Actions 會自動執行。你可以在存放庫的 <code>Actions</code> 頁籤檢視建置進度。之後每次向 <code>main</code> 分支推送程式碼，部落格都會自動重新建置和部署。</p>
+<hr>
+<h2 id="五整合留言系統">五、整合留言系統
+</h2><p>Hugo 生成的是純靜態頁面，天生不帶留言功能。但藉助 GitHub 的 Issue 或 Discussion 機制，我們可以零成本地為部落格加上留言。</p>
+<h3 id="51-utterances基於-issues">5.1 utterances（基於 Issues）
+</h3><p>utterances 會把每篇文章的留言儲存為對應存放庫的一個 Issue。</p>
+<ul>
+<li>前往 <a class="link" href="https://github.com/apps/utterances"  target="_blank" rel="noopener"
+    >utterances app</a> 安裝到你的目標存放庫</li>
+<li>在 <code>hugo.yaml</code> 中設定：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">comments</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">utterances</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">utterances</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{你的GitHub使用者名稱}/{存放庫名稱}&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-giscus基於-discussions">5.2 giscus（基於 Discussions）
+</h3><p>giscus 原理與 utterances 類似，但資料儲存在 Discussions 中，介面更現代，支援回覆巢狀和反應表情。</p>
+<ul>
+<li>前往 <a class="link" href="https://github.com/apps/giscus"  target="_blank" rel="noopener"
+    >giscus app</a> 安裝到你的存放庫，並在存放庫 <code>Settings</code> 中開啟 Discussions 功能</li>
+<li>開啟 <a class="link" href="https://giscus.app/"  target="_blank" rel="noopener"
+    >giscus 官網</a>，按步驟設定後，會生成一段設定參數</li>
+<li>在 <code>hugo.yaml</code> 中設定：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">comments</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">giscus</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">giscus</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{你的GitHub使用者名稱}/{存放庫名稱}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">repoID</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{giscus 生成的 repoID}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{Discussion 分類名稱}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">categoryID</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{giscus 生成的 categoryID}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mapping</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;pathname&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">reactionsEnabled</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">emitMetadata</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;0&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">inputPosition</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;bottom&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;zh-TW&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>本部落格使用的就是 giscus，體驗相當不錯。Stack 主題對兩種方案都有原生支援，只需填寫 <code>hugo.yaml</code> 即可。</p>
+</blockquote>
+<hr>
+<h2 id="六視覺美化">六、視覺美化
+</h2><h3 id="61-自訂背景圖">6.1 自訂背景圖
+</h3><p>準備一張高解析度圖片，放到 <code>assets/background</code> 資料夾。</p>
+<p>在 <code>layouts/partials/footer/custom.html</code> 中新增（沒有則建立該檔案）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">body</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">{{ (resources.Get &#34;background/你的背景圖檔名.png&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">Permalink</span> <span class="p">}</span><span class="err">}</span><span class="o">)</span> <span class="nt">no-repeat</span> <span class="nt">center</span> <span class="nt">top</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">background-size</span><span class="o">:</span> <span class="nt">cover</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">background-attachment</span><span class="o">:</span> <span class="nt">fixed</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>background-attachment: fixed</code> 讓背景固定不隨捲動移動，搭配覆蓋效果更有質感。</p>
+<h3 id="62-動態背景特效">6.2 動態背景特效
+</h3><h4 id="櫻花飄落">櫻花飄落
+</h4><p>下載 <a class="link" href="https://github.com/jhammann/sakura.js"  target="_blank" rel="noopener"
+    >sakura.js</a>，放入 <code>assets/background</code>，然後在 <code>layouts/partials/footer/custom.html</code> 中引用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">{{</span> <span class="err">(</span><span class="na">resources</span><span class="err">.</span><span class="na">Get</span> <span class="err">&#34;</span><span class="na">background</span><span class="err">/</span><span class="na">sakura</span><span class="err">.</span><span class="na">js</span><span class="err">&#34;).</span><span class="na">Permalink</span> <span class="err">}}</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="點線粒子particlesjs">點線粒子（particles.js）
+</h4><p>particles.js 是更強大的粒子動畫庫，可生成星空、連線、氣泡等多種效果。</p>
+<ol>
+<li>從 <a class="link" href="https://github.com/VincentGarreau/particles.js"  target="_blank" rel="noopener"
+    >particles.js GitHub</a> 下載 <code>particles.min.js</code>，放入 <code>assets/background</code></li>
+<li>使用 <a class="link" href="https://vincentgarreau.com/particles.js/"  target="_blank" rel="noopener"
+    >官方線上設定頁面</a> 調整參數，將生成的設定檔案儲存為 <code>particlesjs-config.json</code>，放入 <code>assets/background</code></li>
+<li>注意設定檔中的 <code>detect_on</code> 需設為 <code>window</code></li>
+</ol>
+<p>在 <code>layouts/partials/footer/custom.html</code> 中新增：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;particles-js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">{{</span> <span class="err">(</span><span class="na">resources</span><span class="err">.</span><span class="na">Get</span> <span class="err">&#34;</span><span class="na">background</span><span class="err">/</span><span class="na">particles</span><span class="err">.</span><span class="na">min</span><span class="err">.</span><span class="na">js</span><span class="err">&#34;).</span><span class="na">Permalink</span> <span class="err">}}</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">particlesJS</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">&#39;particles-js&#39;</span><span class="p">,</span> <span class="p">{{</span> <span class="p">(</span><span class="nx">resources</span><span class="p">.</span><span class="nx">Get</span> <span class="s2">&#34;background/particlesjs-config.json&#34;</span><span class="p">).</span><span class="nx">Permalink</span> <span class="p">}},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;particles.js loaded - callback&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">#</span><span class="nn">particles-js</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">z-index</span><span class="p">:</span> <span class="mi">-1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>將粒子容器的 <code>z-index</code> 設為 <code>-1</code> 是關鍵，這樣粒子會沉在所有內容下方作為背景。</p>
+</blockquote>
+<h3 id="63-更換字型">6.3 更換字型
+</h3><p>將 <code>.ttf</code> 或 <code>.woff2</code> 字型檔案放入 <code>assets/font</code> 目錄，然後在 <code>layouts/partials/footer/custom.html</code> 中註冊並套用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">@</span><span class="k">font-face</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;MyCustomFont&#39;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="p">{</span><span class="err">{</span> <span class="err">(resources.Get</span> <span class="err">&#34;font/字型檔名.ttf&#34;).Permalink</span> <span class="p">}}</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;truetype&#39;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="err">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">:</span><span class="nd">root</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">--base-font-family</span><span class="p">:</span> <span class="s1">&#39;MyCustomFont&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">--code-font-family</span><span class="p">:</span> <span class="s1">&#39;MyCustomFont&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Stack 主題透過 CSS 變數控制全域字型，修改 <code>--base-font-family</code> 和 <code>--code-font-family</code> 即可影響正文和程式碼區塊的字型。</p>
+<h3 id="64-自訂滑鼠游標樣式">6.4 自訂滑鼠游標樣式
+</h3><p>準備三張滑鼠游標圖片（預設、指標、文字狀態），放入 <code>static/mouse</code> 目錄。</p>
+<p>建立 <code>assets/scss/custom.scss</code>（這是 Stack 主題的樣式進入點檔案）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nt">body</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">html</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="nc">.article-content</span> <span class="nt">img</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">cursor</span><span class="o">:</span> <span class="sx">url(../mouse/default.png)</span><span class="o">,</span> <span class="ni">auto</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">a</span><span class="o">:</span><span class="n">hover</span><span class="o">,</span><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">button</span><span class="o">:</span><span class="n">hover</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="na">copyCodeButton</span><span class="o">:</span><span class="n">hover</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="mh">#dark</span><span class="o">-</span><span class="n">mode-toggle</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">cursor</span><span class="o">:</span> <span class="sx">url(../mouse/pointer.png)</span><span class="o">,</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">input</span><span class="o">:</span><span class="n">hover</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">site-description</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">article-subtitle</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">article-content</span> <span class="n">span</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">article-content</span> <span class="n">li</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">article-content</span> <span class="n">p</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">cursor</span><span class="o">:</span> <span class="sx">url(../mouse/text.png)</span><span class="o">,</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這裡將三類滑鼠游標樣式分別繫結到不同的元素狀態：預設游標用於頁面和圖片、指標游標用於可點選元素、文字游標用於文字區域。</p>
+<hr>
+<h2 id="七功能增強">七、功能增強
+</h2><h3 id="71-顯示文章更新時間">7.1 顯示文章更新時間
+</h3><p>在 <code>hugo.yaml</code> 中啟用 Git 資訊獲取：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">enableGitInfo</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">frontmatter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">lastmod</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="p">:</span><span class="l">git</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="p">:</span><span class="l">fileModTime</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>這樣 Hugo 會優先從 Git 提交歷史中提取檔案的最後修改時間。然後在對應的範本檔案中插入更新時間。</p>
+<p>編輯 <code>layouts/partials/article/components/details.html</code>，在 <code>&lt;footer class=&quot;article-time&quot;&gt;</code> 內部適當位置新增：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- if ne .Lastmod .Date -}}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;article-lastmod&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        {{ partial &#34;helper/icon&#34; &#34;clock&#34; }}
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">time</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            {{ .Lastmod.Format ( or .Site.Params.dateFormat.lastUpdated &#34;Jan 02, 2006 15:04 MST&#34; ) }}
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">{{- end -}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意：如果啟用了 <code>enableGitInfo</code>，在 GitHub Actions 中 checkout 程式碼時需要設定 <code>fetch-depth: 0</code> 拉取完整歷史，否則無法獲取 Git 提交時間。</p>
+</blockquote>
+<h3 id="72-友鏈與封存多欄版面配置">7.2 友鏈與封存多欄版面配置
+</h3><p>在 <code>assets/scss/custom.scss</code> 中新增以下程式碼，讓友鏈和封存頁面以雙欄卡片形式展示（桌面端）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">1024</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nc">.article-list--compact</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">grid-template-columns</span><span class="o">:</span> <span class="mi">1</span><span class="kt">fr</span> <span class="mi">1</span><span class="kt">fr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">box-shadow</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">gap</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">article</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-background</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="na">border</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">box-shadow</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">shadow-l2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">margin-right</span><span class="o">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">border-radius</span><span class="o">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="73-文章目錄折疊展開">7.3 文章目錄折疊展開
+</h3><p>將以下樣式和指令碼新增到 <code>layouts/partials/footer/custom.html</code>，實作 TOC 隨捲動位置自動收折：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">#</span><span class="nn">TableOfContents</span> <span class="o">&gt;</span> <span class="nt">ul</span><span class="o">,</span> <span class="nt">ol</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">ul,</span> <span class="err">ol</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nc">open</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">initTocHide</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">toc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;.widget--toc&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">toc</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;scroll&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">openUl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&#34;.open&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">openUl</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">openUl</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">ul</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">currentLi</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;.active-class&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">currentLi</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">currentLi</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">currentLi</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">ul</span> <span class="o">=</span> <span class="nx">currentLi</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">do</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ul</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ul</span> <span class="o">=</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">.</span><span class="nx">parentElement</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nx">ul</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">ul</span><span class="p">.</span><span class="nx">localName</span> <span class="o">===</span> <span class="s1">&#39;ul&#39;</span> <span class="o">||</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">localName</span> <span class="o">===</span> <span class="s1">&#39;ol&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">initTocHide</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果是：未閱讀到的章節自動折疊，僅展開目前所在章節，大幅提升長文的目錄瀏覽體驗。</p>
+<h3 id="74-返回頂部按鈕">7.4 返回頂部按鈕
+</h3><p>準備一張返回頂部圖示（SVG 格式），放入 <code>assets/icons</code>。</p>
+<p>在 <code>layouts/partials/footer/custom.html</code> 中新增：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">#</span><span class="nn">backTopBtn</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">bottom</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">z-index</span><span class="p">:</span> <span class="mi">99</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">{{ (resources.Get &#34;icons/backTop.svg&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">Permalink</span> <span class="p">}</span><span class="err">}</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">initScrollTop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">rightSideBar</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;.right-sidebar&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">rightSideBar</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">btn</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="s2">&#34;backTopBtn&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">btn</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">({</span> <span class="nx">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">behavior</span><span class="o">:</span> <span class="s2">&#34;smooth&#34;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">rightSideBar</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">btn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">window</span><span class="p">.</span><span class="nx">onscroll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">&gt;</span> <span class="mi">20</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">btn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s2">&#34;block&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">btn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s2">&#34;none&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">initScrollTop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這個按鈕會附著在右側欄（右側欄將作為錨點容器），當頁面捲動超過 20px 時出現。</p>
+<h3 id="75-macos-風格程式碼區塊">7.5 macOS 風格程式碼區塊
+</h3><p>在 <code>assets/scss/custom.scss</code> 中新增以下樣式，為程式碼區塊加上紅黃綠三色圓點的 macOS 視窗標題欄效果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.highlight</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">border-radius</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-border-radius</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="na">max-width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin</span><span class="o">:</span> <span class="mi">0</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">box-shadow</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">shadow-l1</span><span class="p">)</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.highlight</span><span class="nd">:before</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">content</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background</span><span class="o">:</span> <span class="sx">url(../icons/macOS-code-header.svg)</span> <span class="ni">no-repeat</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background-size</span><span class="o">:</span> <span class="ni">contain</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">height</span><span class="o">:</span> <span class="mi">18</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin-top</span><span class="o">:</span> <span class="o">-</span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>還需要將一張 macOS 三色圓點的 SVG 圖示放入 <code>assets/icons/macOS-code-header.svg</code>。</p>
+<h3 id="76-自訂引用區塊顏色範本">7.6 自訂引用區塊顏色範本
+</h3><p>Hugo 的渲染勾點允許我們自訂 Markdown 中的引用區塊樣式。</p>
+<p>建立 <code>layouts/_default/_markup/render-blockquote-alert.html</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">blockquote</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-{{ .AlertType }}&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    {{ .Text | safeHTML -}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然後在 <code>assets/scss/custom.scss</code> 中定義四種風格的配色（需區分亮色/暗色模式）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// Light mode
+</span></span></span><span class="line"><span class="cl"><span class="nd">:root</span><span class="o">[</span><span class="nt">data-theme</span><span class="o">=</span><span class="s2">&#34;light&#34;</span><span class="o">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-note-bg</span><span class="o">:</span> <span class="mh">#d4e6ff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-note-border</span><span class="o">:</span> <span class="mh">#3b82f6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-tip-bg</span><span class="o">:</span> <span class="mh">#d4f8d4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-tip-border</span><span class="o">:</span> <span class="mh">#22c55e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-warn-bg</span><span class="o">:</span> <span class="mh">#fff3cd</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-warn-border</span><span class="o">:</span> <span class="mh">#f59e0b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-error-bg</span><span class="o">:</span> <span class="mh">#ffe0e0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-error-border</span><span class="o">:</span> <span class="mh">#ef4444</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Dark mode
+</span></span></span><span class="line"><span class="cl"><span class="nd">:root</span><span class="o">[</span><span class="nt">data-theme</span><span class="o">=</span><span class="s2">&#34;dark&#34;</span><span class="o">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-note-bg</span><span class="o">:</span> <span class="mh">#1e2a3a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-note-border</span><span class="o">:</span> <span class="mh">#3b82f6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-tip-bg</span><span class="o">:</span> <span class="mh">#1a2a1a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-tip-border</span><span class="o">:</span> <span class="mh">#22c55e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-warn-bg</span><span class="o">:</span> <span class="mh">#2a2410</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-warn-border</span><span class="o">:</span> <span class="mh">#f59e0b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-error-bg</span><span class="o">:</span> <span class="mh">#2a1a1a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--alert-error-border</span><span class="o">:</span> <span class="mh">#ef4444</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.alert</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span><span class="mf">.8</span><span class="kt">rem</span> <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">border-left</span><span class="o">:</span> <span class="mi">4</span><span class="kt">px</span> <span class="ni">solid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.alert-note</span> <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-note-bg</span><span class="p">);</span> <span class="na">border-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-note-border</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nc">.alert-tip</span>  <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-tip-bg</span><span class="p">);</span>  <span class="na">border-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-tip-border</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nc">.alert-warn</span> <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-warn-bg</span><span class="p">);</span> <span class="na">border-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-warn-border</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nc">.alert-error</span> <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-error-bg</span><span class="p">);</span> <span class="na">border-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">alert-error-border</span><span class="p">);</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用方式如下，直接在 Markdown 中寫：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">[!NOTE]
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">這是一般提示資訊
+</span></span></span><span class="line"><span class="cl"><span class="k">
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">[!TIP]
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">這是實用小技巧
+</span></span></span><span class="line"><span class="cl"><span class="k">
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">[!WARN]
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">這是需要注意的警告
+</span></span></span><span class="line"><span class="cl"><span class="k">
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">[!ERROR]
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">這是錯誤或風險提示
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>渲染後，四種引用區塊將分別以藍、綠、黃、紅四種配色呈現，並自動適配亮色/暗色模式。</p>
+<h3 id="77-超長程式碼區塊折疊">7.7 超長程式碼區塊折疊
+</h3><p>對於特別長的程式碼區塊，可以新增折疊/展開功能。</p>
+<p>在 <code>layouts/partials/footer/custom.html</code> 中新增：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">highlight</span> <span class="nt">pre</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">max-height</span><span class="p">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">overflow-y</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">highlight</span> <span class="nt">pre</span><span class="p">.</span><span class="nc">expanded</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">max-height</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">code-expand-btn</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">padding</span><span class="p">:</span> <span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mf">0.85</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card</span><span class="o">-</span><span class="kc">text</span><span class="o">-</span><span class="kc">color</span><span class="o">-</span><span class="n">secondary</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card</span><span class="o">-</span><span class="n">background</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border-top</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card</span><span class="o">-</span><span class="n">separator</span><span class="o">-</span><span class="kc">color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">initCodeCollapse</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.highlight&#39;</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">pre</span> <span class="o">=</span> <span class="nx">block</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;pre&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">pre</span> <span class="o">||</span> <span class="nx">pre</span><span class="p">.</span><span class="nx">scrollHeight</span> <span class="o">&lt;=</span> <span class="mi">420</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">btn</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;code-expand-btn&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">btn</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">&#39;展開全部程式碼&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">block</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">btn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">expanded</span> <span class="o">=</span> <span class="nx">pre</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s1">&#39;expanded&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">btn</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">expanded</span> <span class="o">?</span> <span class="s1">&#39;收合程式碼&#39;</span> <span class="o">:</span> <span class="s1">&#39;展開全部程式碼&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">initCodeCollapse</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>當程式碼區塊內容超過 400px 高度時，會自動截斷並顯示「展開全部程式碼」按鈕。</p>
+<hr>
+<h2 id="結語">結語
+</h2><p>走到這裡，你已經從零建立起了一個完整的 Hugo 部落格，並完成了 Stack 主題的深度自訂。我們來回顧一下：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>環節</th>
+          <th>核心內容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>基礎環境</td>
+          <td>Git 安裝、Hugo Extended 安裝與原因</td>
+      </tr>
+      <tr>
+          <td>網站初始化</td>
+          <td><code>hugo new site</code>、<code>hugo server -D</code> 本機預覽</td>
+      </tr>
+      <tr>
+          <td>主題設定</td>
+          <td>Stack 主題下載、範例網站搬移、<code>hugo.yaml</code> 調參</td>
+      </tr>
+      <tr>
+          <td>部署上線</td>
+          <td>手動推送到 GitHub Pages、GitHub Actions 全自動部署</td>
+      </tr>
+      <tr>
+          <td>留言系統</td>
+          <td>utterances（基於 Issues）和 giscus（基於 Discussions）的接入</td>
+      </tr>
+      <tr>
+          <td>視覺美化</td>
+          <td>背景圖固定、粒子特效、自訂字型、自訂滑鼠游標</td>
+      </tr>
+      <tr>
+          <td>功能增強</td>
+          <td>Git 更新時間、多欄版面配置、TOC 折疊、返回頂部、macOS 程式碼區塊、Alert 引用區塊配色、程式碼折疊</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Hugo + Stack 的可玩性遠不止於此——<code>hugo.yaml</code> 中還藏著短代碼（shortcodes）、自訂選單、多語言網站等更多進階功能。希望這份指南能為你的部落格之路開個好頭，祝你寫出滿意的作品，享受寫作的樂趣。</p>
+<blockquote>
+<p><strong>延伸閱讀</strong>：如果你對 Hugo 的更多進階用法感興趣，建議翻閱 <a class="link" href="https://gohugo.io/documentation/"  target="_blank" rel="noopener"
+    >Hugo 官方文件</a> 和 <a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/wiki"  target="_blank" rel="noopener"
+    >hugo-theme-stack 存放庫的 Wiki</a>。</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最後更新 May 11, 2026 01:57 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相關文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/zh-tw/p/git-ssh-large-repo/">
+        
+        
+            <div class="article-image">
+                <img src="/p/git-ssh-large-repo/bannerImage.bad96621d05306c2405fa84ab5fa9341_hu_71b1a55a0f0d4c94.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 技術踩坑記錄：Git 大倉庫克隆網路中斷與 SSH 破局方案"
+                        data-key="git-ssh-large-repo" 
+                        data-hash="md5-utlmIdBTBsJAX6hKtfqTQQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">技術踩坑記錄：Git 大倉庫克隆網路中斷與 SSH 破局方案</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/zh-tw/p/codex-app-complete-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/codex-app-complete-guide/bannerImage.ef543fe1780e2b00988447209e377f4c_hu_9e22e6c2596537c4.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Codex APP 保姆級全攻略：從安裝到自動化，一期精通"
+                        data-key="codex-app-complete-guide" 
+                        data-hash="md5-71Q/4XgOKwCYhEcgnjd/TA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex APP 保姆級全攻略：從安裝到自動化，一期精通</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/zh-tw/p/codex-deepseek-v4-proxy/">
+        
+        
+            <div class="article-image">
+                <img src="/p/codex-deepseek-v4-proxy/bannerImage.dde3a847822c933bba6a28d3918f36c0_hu_c5885f228c0804b1.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Codex 接入 DeepSeek V4：用中轉腳本破解 API 格式不相容"
+                        data-key="codex-deepseek-v4-proxy" 
+                        data-hash="md5-3eOoR4Iskzu6aijTkY82wA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex 接入 DeepSeek V4：用中轉腳本破解 API 格式不相容</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/zh-tw/p/opencode-complete-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-complete-guide/bannerImage.430dc322b9886fa8cc959ee1ab477e13_hu_1d30bf55534d1276.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 全深度指南：開源版 Claude Code 的安裝、配置與高階玩法"
+                        data-key="opencode-complete-guide" 
+                        data-hash="md5-Qw3DIrmIb6jMlZ7hq0d&#43;Ew==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 全深度指南：開源版 Claude Code 的安裝、配置與高階玩法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/zh-tw/p/opencode-parallel-workflow-tips/">
+        
+        
+            <div class="article-image">
+                <img src="/p/opencode-parallel-workflow-tips/bannerImage.052d81651aef7951346921d53d1ad5c4_hu_4549084811f34791.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post OpenCode 新手進階：並行排程與使用技巧全攻略"
+                        data-key="opencode-parallel-workflow-tips" 
+                        data-hash="md5-BS2BZRrveVE0aSHVPRrVxA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 新手進階：並行排程與使用技巧全攻略</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 建立 <br />
+        主題 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 設計
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.337b391b9709a7de07a4bb428d2ffb003b7e926cdfc9720a68a909ce2cde147d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<div id="jsi-flying-fish-container" class="fish-container"></div>
+
+
+<script defer src="https://events.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+  refreshVercount();
+}
+
+
+function refreshVercount() {
+    let article = document.querySelector(".article-page");
+    if (!article) return;
+
+    let pvEl = document.getElementById("vercount_value_page_pv");
+    if (!pvEl) return;
+
+    
+    pvEl.textContent = 'loading...';
+
+    
+    let oldScript = document.querySelector('script[data-vercount-dynamic]');
+    if (oldScript) oldScript.remove();
+
+    
+    let script = document.createElement('script');
+    script.src = 'https://events.vercount.one/js';
+    script.setAttribute('data-vercount-dynamic', '');
+    document.body.appendChild(script);
+
+    
+    let fallbackTimer = setTimeout(function() {
+        if (pvEl.textContent.trim() === 'loading...') {
+            pvEl.textContent = '';
+        }
+    }, 5000);
+
+    
+    script.addEventListener('load', function() {
+        clearTimeout(fallbackTimer);
+    });
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+
+<script>
+(function() {
+    var RENDERER = {
+        POINT_INTERVAL: 5,
+        FISH_COUNT: 3,
+        MAX_INTERVAL_COUNT: 50,
+        INIT_HEIGHT_RATE: 0.5,
+        THRESHOLD: 50,
+
+        init: function() {
+            this.setParameters();
+            this.reconstructMethods();
+            this.setup();
+            this.bindEvent();
+            this.render();
+        },
+        setParameters: function() {
+            this.$window = window;
+            this.$document = document.body;
+            this.$container = document.getElementById('jsi-flying-fish-container');
+            if (!this.$container) return;
+            this.$canvas = document.createElement('canvas');
+            this.$container.appendChild(this.$canvas);
+            this.context = this.$canvas.getContext('2d');
+            this.points = [];
+            this.fishes = [];
+            this.watchIds = [];
+        },
+        createSurfacePoints: function() {
+            var count = Math.round(this.width / this.POINT_INTERVAL);
+            this.pointInterval = this.width / (count - 1);
+            this.points.push(new SURFACE_POINT(this, 0));
+            for (var i = 1; i < count; i++) {
+                var point = new SURFACE_POINT(this, i * this.pointInterval),
+                    previous = this.points[i - 1];
+                point.setPreviousPoint(previous);
+                previous.setNextPoint(point);
+                this.points.push(point);
+            }
+        },
+        reconstructMethods: function() {
+            this.watchWindowSize = this.watchWindowSize.bind(this);
+            this.jdugeToStopResize = this.jdugeToStopResize.bind(this);
+            this.startEpicenter = this.startEpicenter.bind(this);
+            this.moveEpicenter = this.moveEpicenter.bind(this);
+            this.toggleDirection = this.toggleDirection.bind(this);
+            this.render = this.render.bind(this);
+        },
+        setup: function() {
+            this.points.length = 0;
+            this.fishes.length = 0;
+            this.watchIds.length = 0;
+            this.intervalCount = this.MAX_INTERVAL_COUNT;
+            this.width = this.$container.offsetWidth;
+            this.height = this.$container.offsetHeight;
+            this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
+            this.$canvas.width = this.width;
+            this.$canvas.height = this.height;
+            this.reverse = false;
+            this.fishes.push(new FISH(this));
+            this.createSurfacePoints();
+        },
+        watchWindowSize: function() {
+            this.clearTimer();
+            this.tmpWidth = this.$window.innerWidth;
+            this.tmpHeight = this.$window.innerHeight;
+            this.watchIds.push(setTimeout(this.jdugeToStopResize, 300));
+        },
+        clearTimer: function() {
+            while (this.watchIds.length > 0) {
+                clearTimeout(this.watchIds.pop());
+            }
+        },
+        jdugeToStopResize: function() {
+            var width = this.$window.innerWidth,
+                height = this.$window.innerHeight,
+                stopped = (width === this.tmpWidth && height === this.tmpHeight);
+            this.tmpWidth = width;
+            this.tmpHeight = height;
+            if (stopped) { this.setup(); }
+        },
+        bindEvent: function() {
+            window.addEventListener('resize', this.watchWindowSize);
+            this.$container.addEventListener('click', this.toggleDirection);
+            this.$container.addEventListener('mouseenter', this.startEpicenter);
+            this.$container.addEventListener('mousemove', this.moveEpicenter);
+        },
+        getAxis: function(event) {
+            var rect = this.$container.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        },
+        startEpicenter: function(event) {
+            this.axis = this.getAxis(event);
+        },
+        moveEpicenter: function(event) {
+            var axis = this.getAxis(event);
+            if (!this.axis) { this.axis = axis; }
+            this.generateEpicenter(axis.x, axis.y, axis.y - this.axis.y);
+            this.axis = axis;
+        },
+        generateEpicenter: function(x, y, velocity) {
+            if (y < this.height / 2 - this.THRESHOLD || y > this.height / 2 + this.THRESHOLD) return;
+            var index = Math.round(x / this.pointInterval);
+            if (index < 0 || index >= this.points.length) return;
+            this.points[index].interfere(y, velocity);
+        },
+        toggleDirection: function() {
+            this.reverse = !this.reverse;
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].reverseVertical();
+            }
+        },
+        controlStatus: function() {
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateSelf();
+            }
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateNeighbors();
+            }
+            if (this.fishes.length < this.fishCount) {
+                if (--this.intervalCount === 0) {
+                    this.intervalCount = this.MAX_INTERVAL_COUNT;
+                    this.fishes.push(new FISH(this));
+                }
+            }
+        },
+        render: function() {
+            requestAnimationFrame(this.render);
+            this.controlStatus();
+            this.context.clearRect(0, 0, this.width, this.height);
+
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            this.context.fillStyle = isDark ? 'hsl(210, 30%, 25%)' : 'hsl(210, 80%, 75%)';
+
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].render(this.context);
+            }
+
+            this.context.save();
+            this.context.globalCompositeOperation = 'xor';
+            this.context.beginPath();
+            this.context.moveTo(0, this.reverse ? 0 : this.height);
+
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].render(this.context);
+            }
+            this.context.lineTo(this.width, this.reverse ? 0 : this.height);
+            this.context.closePath();
+            this.context.fill();
+            this.context.restore();
+        }
+    };
+
+    var SURFACE_POINT = function(renderer, x) {
+        this.renderer = renderer;
+        this.x = x;
+        this.init();
+    };
+    SURFACE_POINT.prototype = {
+        SPRING_CONSTANT: 0.03,
+        SPRING_FRICTION: 0.9,
+        WAVE_SPREAD: 0.3,
+        ACCELARATION_RATE: 0.01,
+
+        init: function() {
+            this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE;
+            this.height = this.initHeight;
+            this.fy = 0;
+            this.force = { previous: 0, next: 0 };
+        },
+        setPreviousPoint: function(previous) { this.previous = previous; },
+        setNextPoint: function(next) { this.next = next; },
+        interfere: function(y, velocity) {
+            this.fy = this.renderer.height * this.ACCELARATION_RATE *
+                ((this.renderer.height - this.height - y) >= 0 ? -1 : 1) * Math.abs(velocity);
+        },
+        updateSelf: function() {
+            this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height);
+            this.fy *= this.SPRING_FRICTION;
+            this.height += this.fy;
+        },
+        updateNeighbors: function() {
+            if (this.previous) {
+                this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height);
+            }
+            if (this.next) {
+                this.force.next = this.WAVE_SPREAD * (this.height - this.next.height);
+            }
+        },
+        render: function(context) {
+            if (this.previous) {
+                this.previous.height += this.force.previous;
+                this.previous.fy += this.force.previous;
+            }
+            if (this.next) {
+                this.next.height += this.force.next;
+                this.next.fy += this.force.next;
+            }
+            context.lineTo(this.x, this.renderer.height - this.height);
+        }
+    };
+
+    var FISH = function(renderer) {
+        this.renderer = renderer;
+        this.init();
+    };
+    FISH.prototype = {
+        GRAVITY: 0.4,
+
+        init: function() {
+            this.direction = Math.random() < 0.5;
+            this.x = this.direction ? (this.renderer.width + this.renderer.THRESHOLD) : -this.renderer.THRESHOLD;
+            this.previousY = this.y;
+            this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1);
+
+            if (this.renderer.reverse) {
+                this.y = this.getRandomValue(this.renderer.height * 1 / 10, this.renderer.height * 4 / 10);
+                this.vy = this.getRandomValue(2, 5);
+                this.ay = this.getRandomValue(0.05, 0.2);
+            } else {
+                this.y = this.getRandomValue(this.renderer.height * 6 / 10, this.renderer.height * 9 / 10);
+                this.vy = this.getRandomValue(-5, -2);
+                this.ay = this.getRandomValue(-0.2, -0.05);
+            }
+            this.isOut = false;
+            this.theta = 0;
+            this.phi = 0;
+        },
+        getRandomValue: function(min, max) {
+            return min + (max - min) * Math.random();
+        },
+        reverseVertical: function() {
+            this.isOut = !this.isOut;
+            this.ay *= -1;
+        },
+        controlStatus: function(context) {
+            this.previousY = this.y;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.ay;
+
+            if (this.renderer.reverse) {
+                if (this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy -= this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(0.05, 0.2); }
+                    this.isOut = false;
+                }
+            } else {
+                if (this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy += this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(-0.2, -0.05); }
+                    this.isOut = false;
+                }
+            }
+            if (!this.isOut) {
+                this.theta += Math.PI / 20;
+                this.theta %= Math.PI * 2;
+                this.phi += Math.PI / 30;
+                this.phi %= Math.PI * 2;
+            }
+            this.renderer.generateEpicenter(
+                this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD,
+                this.y,
+                this.y - this.previousY
+            );
+            if (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD ||
+                this.vx < 0 && this.x < -this.renderer.THRESHOLD) {
+                this.init();
+            }
+        },
+        render: function(context) {
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            context.fillStyle = isDark ? 'hsl(210, 60%, 55%)' : 'hsl(210, 70%, 40%)';
+
+            context.save();
+            context.translate(this.x, this.y);
+            context.rotate(Math.PI + Math.atan2(this.vy, this.vx));
+            context.scale(1, this.direction ? 1 : -1);
+            context.beginPath();
+            context.moveTo(-30, 0);
+            context.bezierCurveTo(-20, 15, 15, 10, 40, 0);
+            context.bezierCurveTo(15, -10, -20, -15, -30, 0);
+            context.fill();
+
+            
+            context.save();
+            context.translate(40, 0);
+            context.scale(0.9 + 0.2 * Math.sin(this.theta), 1);
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(5, 10, 20, 8);
+            context.quadraticCurveTo(12, 5, 10, 0);
+            context.quadraticCurveTo(12, -5, 20, -8);
+            context.quadraticCurveTo(5, -10, 0, 0);
+            context.fill();
+            context.restore();
+
+            
+            context.save();
+            context.translate(-3, 0);
+            context.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1));
+            context.beginPath();
+            if (this.renderer.reverse) {
+                context.moveTo(5, 0);
+                context.bezierCurveTo(10, 10, 10, 30, 0, 40);
+                context.bezierCurveTo(-12, 25, -8, 10, 0, 0);
+            } else {
+                context.moveTo(-5, 0);
+                context.bezierCurveTo(-10, -10, -10, -30, 0, -40);
+                context.bezierCurveTo(12, -25, 8, -10, 0, 0);
+            }
+            context.closePath();
+            context.fill();
+            context.restore();
+            context.restore();
+            this.controlStatus(context);
+        }
+    };
+
+    
+    if (!window.__fishRendererInited) {
+        window.__fishRendererInited = true;
+        window.addEventListener('load', function() {
+            if (document.getElementById('jsi-flying-fish-container')) {
+                RENDERER.init();
+            }
+        });
+    }
+})();
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+ 
+.fish-container {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+html.at-page-bottom .fish-container {
+    opacity: 0.42;
+}
+
+@media (max-width: 768px) {
+    .fish-container {
+        height: 150px;
+    }
+    html.at-page-bottom .fish-container {
+        opacity: 0.28;
+    }
+}
+</style>
+
+    </body>
+</html>
