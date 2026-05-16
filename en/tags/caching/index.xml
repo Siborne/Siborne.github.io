@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Caching on Siborne</title>
+        <link>https://Siborne.top/en/tags/caching/</link>
+        <description>Recent content in Caching on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Sat, 16 May 2026 20:07:25 +0800</lastBuildDate><atom:link href="https://Siborne.top/en/tags/caching/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Internet Architecture Explained: One Story to Rule Them All</title>
+        <link>https://Siborne.top/en/p/internet-architecture-in-one-story/</link>
+        <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/en/p/internet-architecture-in-one-story/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" alt="Featured image of post Internet Architecture Explained: One Story to Rule Them All" /&gt;&lt;blockquote&gt;
+&lt;p&gt;A comprehensive guide to all high-frequency internet architecture concepts. At first glance, it seems overwhelming with concepts piled up, but at its core, it&amp;rsquo;s a continuous loop of fixing weaknesses and solving new problems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-where-it-all-began-monolithic-architecture&#34;&gt;1. Where It All Began: Monolithic Architecture
+&lt;/h2&gt;&lt;p&gt;The story begins simply — you&amp;rsquo;ve just built a small website with very few users and minimal traffic. No need to overthink it. Keep it simple.&lt;/p&gt;
+&lt;p&gt;One server, running both the application and database, quickly set up with an open-source LNMP stack. You call it &lt;strong&gt;monolithic architecture&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│     One Server       │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ┌───────────────┐  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │  Application   │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ├───────────────┤  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │    Database    │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  └───────────────┘  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Simple, straightforward, zero operational overhead — this is where all architectures begin.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-separating-application-and-database&#34;&gt;2. Separating Application and Database
+&lt;/h2&gt;&lt;p&gt;Business picks up, users increase, and the single server can&amp;rsquo;t keep up. Application and database constantly compete for CPU, memory, and IO, dragging each other down.&lt;/p&gt;
+&lt;p&gt;What to do? &lt;strong&gt;Add machines and split them up.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Separate application and database onto two servers: application server handles requests and business logic, database server stores data and performs IO operations. Each has its own responsibility, no interference, and availability improves.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/971b672f47816ce42f466b9b7ee507cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-high-concurrency-arrives-clustering--load-balancing&#34;&gt;3. High Concurrency Arrives: Clustering + Load Balancing
+&lt;/h2&gt;&lt;p&gt;But the good times don&amp;rsquo;t last — user numbers explode again. A single application server can&amp;rsquo;t handle the load, and the database can&amp;rsquo;t withstand massive queries. The story reaches its climax — &lt;strong&gt;high concurrency&lt;/strong&gt; arrives.&lt;/p&gt;
+&lt;p&gt;Even a maxed-out application server has limits. If it can handle 100 requests per second but 500 come in, what then?&lt;/p&gt;
+&lt;p&gt;500 ÷ 100 = 5, so you deploy &lt;strong&gt;five servers&lt;/strong&gt; with identical code. You call it a &lt;strong&gt;cluster&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;But there&amp;rsquo;s another problem: how to distribute traffic across each server? So you create a middle layer that evenly distributes requests to each application server. You call it &lt;strong&gt;load balancing&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Can&amp;rsquo;t handle the load? Add more machines → &lt;strong&gt;horizontal scaling&lt;/strong&gt;.
+One goes down, traffic is automatically rerouted, others pick up the slack → &lt;strong&gt;high availability&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9904429e3cf9788116b93e186e28f888.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-database-becomes-the-new-bottleneck-multi-level-caching&#34;&gt;4. Database Becomes the New Bottleneck: Multi-Level Caching
+&lt;/h2&gt;&lt;p&gt;The application handles the load, but a new problem emerges — massive requests penetrate through to the database, making it the new bottleneck.&lt;/p&gt;
+&lt;p&gt;You start researching how applications query databases:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Application sends query request to database&lt;/li&gt;
+&lt;li&gt;Database first checks the &lt;strong&gt;memory buffer&lt;/strong&gt; for data&lt;/li&gt;
+&lt;li&gt;Found → return directly; not found → go to disk, read it into memory buffer, then return to application&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Key discovery: &lt;strong&gt;Reading from memory buffer is over 1000x faster than reading from disk.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Can we read everything from the memory buffer? No, it&amp;rsquo;s too small. What to do? Extract and expand the memory buffer! Put frequently accessed &lt;strong&gt;hot data&lt;/strong&gt; there for quick queries without touching the database. You call it &lt;strong&gt;cache&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;You design three levels of cache:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Level&lt;/th&gt;
+          &lt;th&gt;Description&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Browser Cache&lt;/td&gt;
+          &lt;td&gt;Local to user, fastest&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Application Server Local Cache&lt;/td&gt;
+          &lt;td&gt;In service instance memory, very fast&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Distributed Cache (e.g., Redis)&lt;/td&gt;
+          &lt;td&gt;Centralized high-capacity memory, fast&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;User requests flow: Browser cache → Local cache → Distributed cache → Database.&lt;/p&gt;
+&lt;p&gt;The vast majority of requests are intercepted at the cache layer, never reaching the database. Query speed jumps from &lt;strong&gt;milliseconds to microseconds&lt;/strong&gt;, and database pressure plummets. Even if the database goes down, the cache can hold for a while.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/62412070ecbcc2629a8a26794f67b4f7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-read-write-separation-dividing-database-responsibilities&#34;&gt;5. Read-Write Separation: Dividing Database Responsibilities
+&lt;/h2&gt;&lt;p&gt;Caching solves &lt;strong&gt;hot reads&lt;/strong&gt;, but write requests and non-hot reads still hit the database.&lt;/p&gt;
+&lt;p&gt;Databases have a characteristic: writes themselves aren&amp;rsquo;t slow, but &lt;strong&gt;multiple writes lock rows and tables&lt;/strong&gt;, causing queues under high concurrency. Can we divide database responsibilities?&lt;/p&gt;
+&lt;p&gt;So you make the &lt;strong&gt;master database handle only writes&lt;/strong&gt; and &lt;strong&gt;replica databases handle only reads&lt;/strong&gt;, using data synchronization to keep master-replica consistency. You call it &lt;strong&gt;read-write separation&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In reality, internet systems are &lt;strong&gt;read-heavy, write-heavy&lt;/strong&gt;. With one master and multiple replicas, read pressure is immediately distributed, and read-write blocking issues are completely resolved.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/dc14f70c0e24733647b4832f51d387ea.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-massive-storage-database-sharding&#34;&gt;6. Massive Storage: Database Sharding
+&lt;/h2&gt;&lt;p&gt;After running for years, data volume grows massive. Order tables, log tables become bloated — &lt;strong&gt;single database, single table can&amp;rsquo;t hold up&lt;/strong&gt;. Database splitting becomes necessary.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Vertical Sharding&lt;/strong&gt;: Split by business — user database, product database, order database, independent of each other.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Horizontal Sharding&lt;/strong&gt;: Split one large table into multiple smaller tables, like hashing by UID to distribute pressure. With database middleware, it&amp;rsquo;s transparent to applications, no need to change lots of code.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/e3b4d69ce691009f3b211f9599e3a73f.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;7-cdn--reverse-proxy-fast-and-secure&#34;&gt;7. CDN + Reverse Proxy: Fast and Secure
+&lt;/h2&gt;&lt;p&gt;Your system users are nationwide. Some access it lightning-fast, others sluggish. Plus, application servers exposed directly on the public internet — too dangerous.&lt;/p&gt;
+&lt;p&gt;So you create two new tools:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CDN (Content Delivery Network)&lt;/strong&gt;: Deploy nodes across the country, pre-placing static resources at nodes closest to users, like a delivery station near your home. Users get the nearest node IP through domain resolution and fetch data — speed takes off.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reverse Proxy&lt;/strong&gt;: Placed between users and applications, public requests hit it first, then forward to internal application servers. Hides real servers, prevents attacks, handles traffic cleaning, permission verification — multi-purpose.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/d03a28d70fa16bec0e280e06b3adeb43.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;8-complex-queries-search-engines--nosql&#34;&gt;8. Complex Queries: Search Engines + NoSQL
+&lt;/h2&gt;&lt;p&gt;Internet scenarios become increasingly complex. Traditional databases struggle with fuzzy queries, full-text search, and multi-dimensional statistics. Searching products with &lt;code&gt;LIKE&lt;/code&gt; — painfully slow.&lt;/p&gt;
+&lt;p&gt;So you create two new tools:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Search Engine (e.g., Elasticsearch)&lt;/strong&gt;: Uses &lt;strong&gt;inverted indices&lt;/strong&gt; for instant search responses.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NoSQL Database (e.g., MongoDB, HBase)&lt;/strong&gt;: Stores unstructured and semi-structured data, high concurrency, easy to scale.&lt;/p&gt;
+&lt;p&gt;The system evolves from simple CRUD to supporting &lt;strong&gt;complex retrieval and analysis&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9553ba3d899101463688c3de653abbb1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;9-distributed-architecture-split-it-up&#34;&gt;9. Distributed Architecture: Split It Up!
+&lt;/h2&gt;&lt;p&gt;Business grows, your website evolves from a small e-commerce site into a massive platform combining users, products, and orders.&lt;/p&gt;
+&lt;p&gt;All functionality crammed into one application becomes what&amp;rsquo;s known as a &lt;strong&gt;monolithic application&lt;/strong&gt;. Problems follow:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Changing one line of user code requires full deployment&lt;/li&gt;
+&lt;li&gt;Multiple developers modifying code daily, constant conflicts&lt;/li&gt;
+&lt;li&gt;Want to scale orders? Must scale the entire application — resources wasted&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What to do? &lt;strong&gt;Split it!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Along business boundaries, cut this big application piece by piece: users, products, orders become independent small systems. Each system &lt;strong&gt;deploys, releases, and scales independently&lt;/strong&gt;, no interference. You call it &lt;strong&gt;distributed architecture&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;But new problems emerge after splitting — systems are separated, how to call each other? So you create &lt;strong&gt;RPC (Remote Procedure Call)&lt;/strong&gt;, making cross-machine service calls as simple as calling local code.&lt;/p&gt;
+&lt;p&gt;Services multiply, call chains grow complex, quick target finding becomes a challenge. So you create a manager — &lt;strong&gt;Service Registry and Discovery Center&lt;/strong&gt;: new services register, anyone needing to call finds them here.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2bd4c9168cb12c9cea585ae357527b1c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;10-message-queues-decoupling-and-peak-shaving&#34;&gt;10. Message Queues: Decoupling and Peak Shaving
+&lt;/h2&gt;&lt;p&gt;Services call each other, wait for each other — one service gets stuck, the entire chain blocks. Traffic spikes, &lt;strong&gt;avalanche&lt;/strong&gt; occurs.&lt;/p&gt;
+&lt;p&gt;What to do? Can we stop services from waiting on each other?&lt;/p&gt;
+&lt;p&gt;So you create a super-capacity smart mailbox: services don&amp;rsquo;t need to wait for immediate replies, just throw messages in and continue their work. Anyone needing it fetches it themselves. You call it &lt;strong&gt;message queue (MQ)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Now services are completely decoupled, no dragging each other down. A service temporarily goes down, messages aren&amp;rsquo;t lost — process them gradually after recovery. Traffic surges, store requests first and digest at system capacity — &lt;strong&gt;peak shaving&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c1f8f2e306753c78c33868a76a61fe00.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-microservices-architecture-splitting-even-finer&#34;&gt;11. Microservices Architecture: Splitting Even Finer
+&lt;/h2&gt;&lt;p&gt;After using distributed architecture for years, you discover new problems — split, yes, but &lt;strong&gt;not fine enough&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Take the user system: it still contains login, profile, membership, address&amp;hellip; a big blob. Different teams want different tech stacks — some Java, some Go — mixing in one system doesn&amp;rsquo;t work. Membership module needs scaling for promotions, must scale the entire user system, money and resources wasted.&lt;/p&gt;
+&lt;p&gt;What to do? &lt;strong&gt;Keep splitting!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Following the principle of &lt;strong&gt;one service does one thing&lt;/strong&gt;, split smaller and finer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Login becomes a standalone service&lt;/li&gt;
+&lt;li&gt;Membership becomes a standalone service&lt;/li&gt;
+&lt;li&gt;Payment becomes a standalone service&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each small service develops, releases, and scales independently, using whatever tech stack you want. You call this more extreme architecture &lt;strong&gt;microservices architecture&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;When promotions hit, the hottest services like orders and payments get ten times the machines, other quiet services untouched — zero resource waste. A service bug affects only that small feature, never drags down the entire site. Dozens of teams, each managing their own service, no interference — development efficiency soars.&lt;/p&gt;
+&lt;p&gt;Of course, with benefits come challenges — call relationships like spider webs, add &lt;strong&gt;distributed tracing&lt;/strong&gt; to pinpoint slow services instantly; fear of cascading failures, add &lt;strong&gt;rate limiting, circuit breaking, degradation&lt;/strong&gt; for automatic protection; too many services to manage, implement &lt;strong&gt;service governance&lt;/strong&gt;: unified monitoring, logging, permissions all organized clearly.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/5951eb71303e83cdf7ed8e359bc4c779.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-containerization-package-once-run-anywhere&#34;&gt;12. Containerization: Package Once, Run Anywhere
+&lt;/h2&gt;&lt;p&gt;Microservices are truly useful, but operations engineers cry.&lt;/p&gt;
+&lt;p&gt;Services split finer and finer, from a few applications to hundreds of microservices. Each service online needs environment setup, dependency installation, parameter tuning — slightest difference causes &amp;ldquo;works on my machine, not on server&amp;rdquo; mystic bugs. Before promotions, emergency scaling of hundreds of machines, setting up environments one by one can&amp;rsquo;t keep up; after promotions, scaling down requires cleaning one by one — efficiency ridiculously low.&lt;/p&gt;
+&lt;p&gt;What to do?&lt;/p&gt;
+&lt;p&gt;Can we package the service and its required runtime environment together into a &lt;strong&gt;sealed box&lt;/strong&gt; that runs directly on any server?&lt;/p&gt;
+&lt;p&gt;So you create a new tool — no more environment setup. Package each microservice&amp;rsquo;s code, dependencies, configuration, and environment into an &lt;strong&gt;image&lt;/strong&gt; — package once, run anywhere, completely solving the century-old problem of environment inconsistency. You call it &lt;strong&gt;Docker container&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c11875b5c575e737e363a15111b223cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;13-container-orchestration-kubernetes-the-manager&#34;&gt;13. Container Orchestration: Kubernetes the Manager
+&lt;/h2&gt;&lt;p&gt;But problems persist — hundreds or thousands of containers, who manages them?&lt;/p&gt;
+&lt;p&gt;So you bring in an all-powerful manager. It arranges container resources, schedules container placement, auto-scales. You call it &lt;strong&gt;Kubernetes (K8s)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Traffic spikes → auto-add containers&lt;/li&gt;
+&lt;li&gt;Traffic drops → auto-remove containers&lt;/li&gt;
+&lt;li&gt;Container crashes → auto-restart&lt;/li&gt;
+&lt;li&gt;You don&amp;rsquo;t need to manage any of it&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/6adc9fa5ce93a121718c07160b86079b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;14-cloud-native-the-new-era-of-architecture&#34;&gt;14. Cloud Native: The New Era of Architecture
+&lt;/h2&gt;&lt;p&gt;Still not done — even with K8s, you still buy servers and maintain data centers. Preparing heaps of machines for promotions that sit idle daily — too wasteful.&lt;/p&gt;
+&lt;p&gt;So you move your system to a &lt;strong&gt;cloud platform&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The cloud platform is like an infinite resource pool — CPU, memory, bandwidth, apply anytime, use anytime, release when done, &lt;strong&gt;pay as you go&lt;/strong&gt;. Underlying infrastructure is completely transparent; you only focus on business.&lt;/p&gt;
+&lt;p&gt;Your architecture enters a new era — you call it &lt;strong&gt;cloud native&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2f74242037162690b0d22e8dfe5fd20b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;15-story-summary-architecture-evolution-panorama&#34;&gt;15. Story Summary: Architecture Evolution Panorama
+&lt;/h2&gt;&lt;p&gt;From a small server to elastic, automated, highly available, infinitely scalable modern architecture — no matter how business grows or traffic explodes, it stands firm.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Stage&lt;/th&gt;
+          &lt;th&gt;Problem Solved&lt;/th&gt;
+          &lt;th&gt;Core Solution&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Monolithic&lt;/td&gt;
+          &lt;td&gt;Building from scratch&lt;/td&gt;
+          &lt;td&gt;One server does everything&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;App/DB Separation&lt;/td&gt;
+          &lt;td&gt;Resource contention&lt;/td&gt;
+          &lt;td&gt;Split into two, each with its own role&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Cluster + Load Balancing&lt;/td&gt;
+          &lt;td&gt;High concurrency&lt;/td&gt;
+          &lt;td&gt;Multiple servers + traffic distribution&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Multi-Level Caching&lt;/td&gt;
+          &lt;td&gt;Query performance, DB pressure&lt;/td&gt;
+          &lt;td&gt;Browser → Local → Distributed cache&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Read-Write Separation&lt;/td&gt;
+          &lt;td&gt;DB read/write blocking&lt;/td&gt;
+          &lt;td&gt;Master writes, replicas read&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Database Sharding&lt;/td&gt;
+          &lt;td&gt;Massive storage&lt;/td&gt;
+          &lt;td&gt;Vertical sharding + horizontal sharding&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CDN + Reverse Proxy&lt;/td&gt;
+          &lt;td&gt;Access speed, security&lt;/td&gt;
+          &lt;td&gt;Nearby access + hide real servers&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Search + NoSQL&lt;/td&gt;
+          &lt;td&gt;Complex queries&lt;/td&gt;
+          &lt;td&gt;Inverted indices + unstructured storage&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Distributed Architecture&lt;/td&gt;
+          &lt;td&gt;Business bloat, code maintenance&lt;/td&gt;
+          &lt;td&gt;Split by business, RPC communication&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Message Queues&lt;/td&gt;
+          &lt;td&gt;Service coupling, traffic impact&lt;/td&gt;
+          &lt;td&gt;Async decoupling + peak shaving&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Microservices&lt;/td&gt;
+          &lt;td&gt;Team collaboration, extreme elasticity&lt;/td&gt;
+          &lt;td&gt;One service does one thing&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Containerization (Docker)&lt;/td&gt;
+          &lt;td&gt;Environment inconsistency&lt;/td&gt;
+          &lt;td&gt;Package once, run anywhere&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Container Orchestration (K8s)&lt;/td&gt;
+          &lt;td&gt;Operations cost&lt;/td&gt;
+          &lt;td&gt;Auto-scheduling + elastic scaling&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Cloud Native&lt;/td&gt;
+          &lt;td&gt;Resource utilization&lt;/td&gt;
+          &lt;td&gt;Pay as you go, transparent infrastructure&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/b54ac34e408d2d78d7b77db0d3445640.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;three-core-architect-mindsets&#34;&gt;Three Core Architect Mindsets
+&lt;/h2&gt;&lt;p&gt;Finally, three takeaways. Understand them, and you can design good architectures.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;One: There&amp;rsquo;s no best architecture, only the architecture that best fits the business.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Startups shouldn&amp;rsquo;t jump straight to microservices. Monolith is fine — business drives architecture, not the other way around.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Two: The essence of architecture evolution: trade space for time, trade complexity for performance.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adding machines, components, layers — all to handle bigger traffic, higher concurrency.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Three: Always center on five goals: high performance, high availability, scalability, extensibility, and security.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;These five goals are the North Star for all architecture decisions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;From a small server to cloud-native architecture handling tens of millions of concurrent requests, every step is traceable, every step solves real problems. This is internet architecture.&lt;/em&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

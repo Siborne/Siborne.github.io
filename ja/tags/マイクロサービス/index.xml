@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>マイクロサービス on Siborne</title>
+        <link>https://Siborne.top/ja/tags/%E3%83%9E%E3%82%A4%E3%82%AF%E3%83%AD%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9/</link>
+        <description>Recent content in マイクロサービス on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ja</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Sat, 16 May 2026 20:07:25 +0800</lastBuildDate><atom:link href="https://Siborne.top/ja/tags/%E3%83%9E%E3%82%A4%E3%82%AF%E3%83%AD%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>インターネットアーキテクチャ、これだけ？1つのストーリーで完全理解</title>
+        <link>https://Siborne.top/ja/p/internet-architecture-in-one-story/</link>
+        <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/ja/p/internet-architecture-in-one-story/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" alt="Featured image of post インターネットアーキテクチャ、これだけ？1つのストーリーで完全理解" /&gt;&lt;blockquote&gt;
+&lt;p&gt;インターネットアーキテクチャのすべての頻出用語を一気通貫で解説。一見複雑に見える概念の集まりですが、核心を分解すると、欠点を補い、新しい問題を解決し続ける反復ループなのです。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-すべての始まりモノリシックアーキテクチャ&#34;&gt;1. すべての始まり：モノリシックアーキテクチャ
+&lt;/h2&gt;&lt;p&gt;ストーリーの始まりは非常にシンプル——あなたは小さなウェブサイトを作り、ユーザーは数人、アクセスは極めて低い。考え過ぎる必要はない。シンプルにいく。&lt;/p&gt;
+&lt;p&gt;1台のサーバーにアプリケーションとデータベースの両方をインストールし、オープンソースのLNMPスタックで素早く構築。それを&lt;strong&gt;モノリシックアーキテクチャ&lt;/strong&gt;と呼ぶ。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│     1台のサーバー     │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ┌───────────────┐  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │   アプリケーション │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ├───────────────┤  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │   データベース    │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  └───────────────┘  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;シンプル、直接的、運用コストゼロ——これがすべてのアーキテクチャの出発点です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-アプリケーションとデータベースの分離&#34;&gt;2. アプリケーションとデータベースの分離
+&lt;/h2&gt;&lt;p&gt;ビジネスが少しずつ良くなり、ユーザーが増えてきたが、単一サーバーでは対応できない。アプリケーションとデータベースがCPU、メモリ、IOを奪い合い、互いに足を引っ張る。&lt;/p&gt;
+&lt;p&gt;どうする？&lt;strong&gt;マシンを追加して分離する。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;アプリケーションとデータベースを2台のサーバーに分ける：アプリケーションサーバーはリクエストとビジネスロジックを処理し、データベースサーバーはデータ保存とIO操作を専門に行う。それぞれが専門分野を持ち、干渉しなくなり、可用性も向上。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/971b672f47816ce42f466b9b7ee507cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-高同時接続の到来クラスターロードバランシング&#34;&gt;3. 高同時接続の到来：クラスター＋ロードバランシング
+&lt;/h2&gt;&lt;p&gt;しかし好景は長く続かず、ユーザーがまた急増。単一のアプリケーションサーバーでは処理しきれず、データベースも大量のクエリに耐えられない。ストーリーのクライマックス——&lt;strong&gt;高同時接続&lt;/strong&gt;の到来。&lt;/p&gt;
+&lt;p&gt;即使最大構成のアプリケーションサーバーにも上限がある。例えば1秒間に100リクエストしか処理できないが、500リクエストが来たらどうする？&lt;/p&gt;
+&lt;p&gt;500 ÷ 100 = 5、 therefore &lt;strong&gt;5台のサーバー&lt;/strong&gt;を同じコードでデプロイ。これを&lt;strong&gt;クラスター&lt;/strong&gt;と呼ぶ。&lt;/p&gt;
+&lt;p&gt;また別の問題：各サーバーにトラフィックをどう分配するか？そこでリクエストを各アプリケーションサーバーに均等に分配する中間層を作成。これを&lt;strong&gt;ロードバランシング&lt;/strong&gt;と呼ぶ。&lt;/p&gt;
+&lt;p&gt;耐えきれなければマシンを追加 → &lt;strong&gt;水平スケーリング&lt;/strong&gt;。
+1台がダウンしても自動的にトラフィックを遮断し、他のマシンがカバー → &lt;strong&gt;高可用性&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9904429e3cf9788116b93e186e28f888.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-データベースが新たなボトルネックにマルチレベルキャッシュ&#34;&gt;4. データベースが新たなボトルネックに：マルチレベルキャッシュ
+&lt;/h2&gt;&lt;p&gt;アプリケーションが負荷を処理できるようになったが、新たな問題が発生——大量のリクエストがデータベースに貫通し、データベースが新たなボトルネックに。&lt;/p&gt;
+&lt;p&gt;アプリケーションがデータベースにクエリする原理を研究し始める：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;アプリケーションがデータベースにクエリリクエストを送信&lt;/li&gt;
+&lt;li&gt;データベースはまず&lt;strong&gt;メモリバッファ&lt;/strong&gt;でデータを探す&lt;/li&gt;
+&lt;li&gt;見つかった → 直接返却；見つからなかった → ディスクから読み込み、メモリバッファに格納してからアプリケーションに返却&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;重要な発見：&lt;strong&gt;メモリバッファからの読み取りは、ディスクからの読み取りより1000倍以上高速。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;では全てメモリバッファから読めるか？いや、小さすぎる。どうする？メモリバッファを単独で取り出し、拡大！頻繁にアクセスされる&lt;strong&gt;ホットデータ&lt;/strong&gt;を全てそこに格納し、高速にクエリ。データベースにアクセスする必要がない。これを&lt;strong&gt;キャッシュ&lt;/strong&gt;と呼ぶ。&lt;/p&gt;
+&lt;p&gt;3レベルのキャッシュを設計：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;レベル&lt;/th&gt;
+          &lt;th&gt;説明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ブラウザキャッシュ&lt;/td&gt;
+          &lt;td&gt;ユーザーローカル、最速&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;アプリケーションサーバーローカルキャッシュ&lt;/td&gt;
+          &lt;td&gt;サービスインスタンスメモリ、非常に高速&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分散キャッシュ（Redisなど）&lt;/td&gt;
+          &lt;td&gt;集中型大容量メモリ、高速&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;ユーザーのリクエストフロー：ブラウザキャッシュ → ローカルキャッシュ → 分散キャッシュ → データベース。&lt;/p&gt;
+&lt;p&gt;绝大多数のリクエストはキャッシュ層でブロックされ、データベースに到達しない。クエリ速度は&lt;strong&gt;ミリ秒級 → マイクロ秒級&lt;/strong&gt;に向上し、データベースの負荷は急減。データベースがダウンしても、キャッシュはしばらく対応可能。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/62412070ecbcc2629a8a26794f67b4f7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-読み書き分離データベースの役割分担&#34;&gt;5. 読み書き分離：データベースの役割分担
+&lt;/h2&gt;&lt;p&gt;キャッシュは&lt;strong&gt;ホットリード&lt;/strong&gt;を解決したが、書き込みリクエストと非ホットリードはまだデータベースに到達する。&lt;/p&gt;
+&lt;p&gt;データベースの特性：書き込み自体は遅くないが、&lt;strong&gt;複数の書き込みは行ロック・テーブルロック&lt;/strong&gt;を引き起こし、同時接続が高まるとキューが発生。データベースの役割分担はできないか？&lt;/p&gt;
+&lt;p&gt;于是、&lt;strong&gt;マスターデータベースは書き込みのみ&lt;/strong&gt;、&lt;strong&gt;レプリカデータベースは読み込みのみ&lt;/strong&gt;を担当させ、データ同期でマスターレプリカの一貫性を保証。これを&lt;strong&gt;読み書き分離&lt;/strong&gt;と呼ぶ。&lt;/p&gt;
+&lt;p&gt;実際のインターネットシステムは&lt;strong&gt;読み込みが多く書き込みが少ない&lt;/strong&gt;ため、マスター1台、レプリカ複数台で、読み込み圧力が分散され、読み書きの相互ブロック問題も完全に解決。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/dc14f70c0e24733647b4832f51d387ea.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-大量ストレージデータベースシャーディング&#34;&gt;6. 大量ストレージ：データベースシャーディング
+&lt;/h2&gt;&lt;p&gt;システムが数年稼働し、データ量が膨大に。注文テーブル、ログテーブルが肥大化し、&lt;strong&gt;単一データベース・単一テーブルでは対応できない&lt;/strong&gt;。データベースの分割が必要に。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;垂直シャーディング&lt;/strong&gt;：ビジネス別に分割——ユーザーデータベース、商品データベース、注文データベースが相互に干渉しない。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;水平シャーディング&lt;/strong&gt;：1つの大きなテーブルを複数の小さなテーブルに分割。UIDのハッシュで複数テーブルに分散。データベースミドルウェアによりアプリケーションから透明に、大量のコード変更不要。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/e3b4d69ce691009f3b211f9599e3a73f.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;7-cdnリバースプロキシ高速かつ安全&#34;&gt;7. CDN＋リバースプロキシ：高速かつ安全
+&lt;/h2&gt;&lt;p&gt;システムのユーザーは全国に分散。一部のユーザーは閃電のように高速、一部はカタツムリのように遅い。さらにアプリケーションサーバーがパブリックインターネットに直接公開されるのは危険。&lt;/p&gt;
+&lt;p&gt;于是、2つの新しいツールを作成：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CDN（コンテンツ配信ネットワーク）&lt;/strong&gt;：全国に多数のノードを配置し、静的リソースをユーザーに最も近いノードに事前配置。家の近くの配送センターのようなもの。ユーザーはドメイン解決により最寄りのノードIPを取得してデータを取得——速度が飛躍的に向上。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;リバースプロキシ&lt;/strong&gt;：ユーザーとアプリケーションの間に配置。パブリックリクエストが最初にこちらに到達し、内部アプリケーションサーバーに転送。実際のサーバーを隠し、攻撃を防止。トラフィッククリーニング、権限検証も可能——一石多鳥。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/d03a28d70fa16bec0e280e06b3adeb43.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;8-複雑なクエリ検索エンジンnosql&#34;&gt;8. 複雑なクエリ：検索エンジン＋NoSQL
+&lt;/h2&gt;&lt;p&gt;インターネットのシナリオはますます複雑に。従来のデータベースは曖昧検索、全文検索、多次元統計に弱い。&lt;code&gt;LIKE&lt;/code&gt;で商品検索——とてつもなく遅い。&lt;/p&gt;
+&lt;p&gt;于是、2つの新しいツールを作成：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;検索エンジン（Elasticsearchなど）&lt;/strong&gt;：&lt;strong&gt;転置インデックス&lt;/strong&gt;を利用して検索を秒速で応答。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NoSQLデータベース（MongoDB、HBaseなど）&lt;/strong&gt;：非構造化・準構造化データの保存に特化。高同時接続で拡張しやすい。&lt;/p&gt;
+&lt;p&gt;システムは単純なCRUDから、&lt;strong&gt;複雑な検索と分析&lt;/strong&gt;をサポートするように進化。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9553ba3d899101463688c3de653abbb1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;9-分散アーキテクチャ分割&#34;&gt;9. 分散アーキテクチャ：分割！
+&lt;/h2&gt;&lt;p&gt;ビジネスが成長し、小さなECサイトからユーザー・商品・注文を統合した大規模プラットフォームに。&lt;/p&gt;
+&lt;p&gt;すべての機能コードが1つのアプリケーションに押し込まれ、いわゆる&lt;strong&gt;モノリシックアプリケーション&lt;/strong&gt;に。問題も続く：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ユーザーコードの1行変更でもフルデプロイが必要&lt;/li&gt;
+&lt;li&gt;複数の開発者が同時にコードを変更し、毎日コンフリクト&lt;/li&gt;
+&lt;li&gt;注文にマシンを追加したいが、アプリケーション全体をスケールするしかなく、リソースが無駄に&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;どうする？&lt;strong&gt;分割！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ビジネス境界に沿って、この大きなアプリケーションを一刀ずつ切断：ユーザー・商品・注文がそれぞれ独立した小さなシステムに。各システムは&lt;strong&gt;個別にデプロイ、個別にリリース、個別にスケーリング&lt;/strong&gt;し、互いに干渉しない。これを&lt;strong&gt;分散アーキテクチャ&lt;/strong&gt;と呼ぶ。&lt;/p&gt;
+&lt;p&gt;しかし分割後に新たな問題——システムが分かれたが、どう相互呼び出しするか？于是、**RPC（リモートプロシージャコール）**を作成。マシンをまたぐサービス呼び出しが、ローカルコードの呼び出しのように簡単になった。&lt;/p&gt;
+&lt;p&gt;サービスが増えるほど呼び出しチェーンが複雑になり、タ겟の迅速な検索が課題に。于是、管理者——&lt;strong&gt;サービスレジストリ＆ディスカバリーセンター&lt;/strong&gt;を作成：新サービスが登録し、呼び出したいサービスはここで検索。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2bd4c9168cb12c9cea585ae357527b1c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;10-メッセージキューデカップリングとピークシービング&#34;&gt;10. メッセージキュー：デカップリングとピークシービング
+&lt;/h2&gt;&lt;p&gt;サービスが互いを呼び出し、互いに待機——1つのサービスが詰まると、チェーン全体がブロック。トラフィックが高まると&lt;strong&gt;雪崩&lt;/strong&gt;が発生。&lt;/p&gt;
+&lt;p&gt;どうする？サービス同士が互いに待つことをやめられないか？&lt;/p&gt;
+&lt;p&gt;于是、超大容量のスマート邮箱を作成：サービス同士が相手の即時返信を待つ必要はなく、メッセージを投げ込めば自分の作業を続行可能。必要な人が自分で取得。これを**メッセージキュー（MQ）**と呼ぶ。&lt;/p&gt;
+&lt;p&gt;これでサービス間が完全にデカップリングされ、互いに足を引っ張らなくなった。サービスが一時的にダウンしても、メッセージは失われず、復帰後にゆっくり処理。トラフィック急増時にはリクエストを先に保存し、システムの能力に合わせて消化——&lt;strong&gt;ピークシービング&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c1f8f2e306753c78c33868a76a61fe00.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-マイクロサービスアーキテクチャさらに細かく分割&#34;&gt;11. マイクロサービスアーキテクチャ：さらに細かく分割
+&lt;/h2&gt;&lt;p&gt;分散アーキテクチャを数年使用したが、新たな問題が——分割はしたが、&lt;strong&gt;まだ十分に細かくない&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;ユーザーシステム为例、ログイン、個人情報、会員、アドレス……まだ1つの塊。異なるチームが異なる技術スタックを使用したい場合、Javaを使いたい、Goを使いたい、混合すると根本的に機能しない。会員モジュールがセール時にスケーリングする必要がある場合、ユーザーシステム全体をスケールするしかなく、コストとリソースが無駄に。&lt;/p&gt;
+&lt;p&gt;どうする？&lt;strong&gt;さらに分割！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1つのサービスは1つのことだけやる&lt;/strong&gt;の原則に従い、さらに細かく：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ログインを単独サービスに&lt;/li&gt;
+&lt;li&gt;会員を単独サービスに&lt;/li&gt;
+&lt;li&gt;支払いを単独サービスに&lt;/li&gt;
+&lt;li&gt;……&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;各小サービスが個別に開発、個別にリリース、個別にスケーリング。使用したい技術スタックを自由に選択可能。これをさらに極端なアーキテクチャ、&lt;strong&gt;マイクロサービスアーキテクチャ&lt;/strong&gt;と呼ぶ。&lt;/p&gt;
+&lt;p&gt;セールが来ると、注文や支払いといった最もホットなサービスに10倍のマシンを追加し、他の闲servicesには手を加えない——リソースの無駄なし。サービスのバグはその小機能にのみ影響し、サイト全体を揺るがすことはない。数十のチームが各サービスを管理し、干渉なし——開発効率が飛躍的に向上。&lt;/p&gt;
+&lt;p&gt;もちろん利点には課題も——呼び出し関係が蜘蛛の巣のように複雑になり、&lt;strong&gt;分散トレースング&lt;/strong&gt;でスローサービスを瞬時に特定；カスケード障害を恐れ、&lt;strong&gt;レート制限、サーキットブレーキング、デグラデーション&lt;/strong&gt;で自動保護；サービスが多すぎて管理困難、&lt;strong&gt;サービスガバナンス&lt;/strong&gt;を実施：統一モニタリング、ログ、権限をすべて明確に管理。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/5951eb71303e83cdf7ed8e359bc4c779.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-コンテナ化一度パッケージ化しどこでも実行&#34;&gt;12. コンテナ化：一度パッケージ化し、どこでも実行
+&lt;/h2&gt;&lt;p&gt;マイクロサービスは本当に便利だが、運用エンジニアは泣きたくなる。&lt;/p&gt;
+&lt;p&gt;サービスがより細かく分割され、数個のアプリケーションから数百のマイクロサービスに。各サービスの公開時に環境設定、依存関係インストール、パラメータ調整が必要——少し異なるだけで「自分のPCでは動くが、サーバーでは動かない」という神秘的バグが発生。セール前の緊急スケーリングで数百台のマシンを1台ずつ設定し、間に合わない。セール後のスケールダウンでは1台ずつ削除——効率が低すぎる。&lt;/p&gt;
+&lt;p&gt;どうする？&lt;/p&gt;
+&lt;p&gt;サービスとその実行環境を一緒に&lt;strong&gt;密封ボックスにパッケージ化&lt;/strong&gt;し、どのサーバーでも直接実行できるようにできないか？&lt;/p&gt;
+&lt;p&gt;于是、環境設定不要の新しいツールを作成。各マイクロサービスのコード、依存関係、設定、環境をすべて&lt;strong&gt;イメージ&lt;/strong&gt;にパッケージ化。一度パッケージ化すればどこでも実行可能。環境不一致という世紀の難題を完全に解決。これを&lt;strong&gt;Dockerコンテナ&lt;/strong&gt;と呼ぶ。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c11875b5c575e737e363a15111b223cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;13-コンテナオーケストレーションkubernetesの管理者&#34;&gt;13. コンテナオーケストレーション：Kubernetesの管理者
+&lt;/h2&gt;&lt;p&gt;しかし問題は残る——数百から数千のコンテナを誰が管理するか？&lt;/p&gt;
+&lt;p&gt;于是、万能の管理者を招聘。コンテナリソースの配置、コンテナ位置のスケジューリング、自動スケーリングが可能。これを**Kubernetes（K8s）**と呼ぶ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;トラフィック増加 → コンテナを自動追加&lt;/li&gt;
+&lt;li&gt;トラフィック減少 → コンテナを自動削除&lt;/li&gt;
+&lt;li&gt;コンテナダウン → 自動再起動&lt;/li&gt;
+&lt;li&gt;すべて自動で管理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/6adc9fa5ce93a121718c07160b86079b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;14-クラウドネイティブ新時代のアーキテクチャ&#34;&gt;14. クラウドネイティブ：新時代のアーキテクチャ
+&lt;/h2&gt;&lt;p&gt;まだ終わらない——K8sがあっても、サーバー購入やデータセンターのメンテナンスが必要。セールのために大量のマシンを準備し、通常時は全てアイドル——コストが無駄。&lt;/p&gt;
+&lt;p&gt;于是、システムを&lt;strong&gt;クラウドプラットフォーム&lt;/strong&gt;に移行。&lt;/p&gt;
+&lt;p&gt;クラウドプラットフォームは無限のリソースプールのよう。CPU、メモリ、帯域幅を必要な時に申請し、必要な時に使用し、使用後に解放。&lt;strong&gt;従量課金&lt;/strong&gt;。下位のデータセンターは完全に透明で、ビジネスにのみ集中可能。&lt;/p&gt;
+&lt;p&gt;アーキテクチャは新時代に突入——これを&lt;strong&gt;クラウドネイティブ&lt;/strong&gt;と呼ぶ。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2f74242037162690b0d22e8dfe5fd20b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;15-ストーリーまとめアーキテクチャ進化の全体像&#34;&gt;15. ストーリーまとめ：アーキテクチャ進化の全体像
+&lt;/h2&gt;&lt;p&gt;1台の小さなサーバーから、弾力的で自動化、高可用性、無限にスケール可能な現代アーキテクチャまで——ビジネスがどう成長し、トラフィックがどう爆発しても、しっかり対応可能。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;ステージ&lt;/th&gt;
+          &lt;th&gt;解決する問題&lt;/th&gt;
+          &lt;th&gt;コアソリューション&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;モノリシック&lt;/td&gt;
+          &lt;td&gt;零から構築&lt;/td&gt;
+          &lt;td&gt;1台のサーバーで全て&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;アプリ/DB分離&lt;/td&gt;
+          &lt;td&gt;リソース競合&lt;/td&gt;
+          &lt;td&gt;2台に分割、それぞれ専門分野&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;クラスター＋ロードバランシング&lt;/td&gt;
+          &lt;td&gt;高同時接続&lt;/td&gt;
+          &lt;td&gt;複数サーバー＋トラフィック分配&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;マルチレベルキャッシュ&lt;/td&gt;
+          &lt;td&gt;クエリ性能、DB負荷&lt;/td&gt;
+          &lt;td&gt;ブラウザ→ローカル→分散キャッシュ&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;読み書き分離&lt;/td&gt;
+          &lt;td&gt;DB読み書きブロック&lt;/td&gt;
+          &lt;td&gt;マスター書き込み、レプリカ読み込み&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DBシャーディング&lt;/td&gt;
+          &lt;td&gt;大量ストレージ&lt;/td&gt;
+          &lt;td&gt;垂直シャーディング＋水平シャーディング&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CDN＋リバースプロキシ&lt;/td&gt;
+          &lt;td&gt;アクセス速度、セキュリティ&lt;/td&gt;
+          &lt;td&gt;近接アクセス＋実サーバー隠蔽&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;検索エンジン＋NoSQL&lt;/td&gt;
+          &lt;td&gt;複雑なクエリ&lt;/td&gt;
+          &lt;td&gt;転置インデックス＋非構造化ストレージ&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分散アーキテクチャ&lt;/td&gt;
+          &lt;td&gt;ビジネス膨張、コードメンテナンス&lt;/td&gt;
+          &lt;td&gt;ビジネス別分割、RPC通信&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;メッセージキュー&lt;/td&gt;
+          &lt;td&gt;サービスカップリング、トラフィック衝撃&lt;/td&gt;
+          &lt;td&gt;非同期デカップリング＋ピークシービング&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;マイクロサービス&lt;/td&gt;
+          &lt;td&gt;チーム協調、極端な弾力性&lt;/td&gt;
+          &lt;td&gt;1サービスは1ことだけ&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;コンテナ化（Docker）&lt;/td&gt;
+          &lt;td&gt;環境不一致&lt;/td&gt;
+          &lt;td&gt;一度パッケージ化、どこでも実行&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;コンテナオーケストレーション（K8s）&lt;/td&gt;
+          &lt;td&gt;運用コスト&lt;/td&gt;
+          &lt;td&gt;自動スケジューリング＋弾力的スケーリング&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;クラウドネイティブ&lt;/td&gt;
+          &lt;td&gt;リソース利用率&lt;/td&gt;
+          &lt;td&gt;従量課金、下位基盤透明&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/b54ac34e408d2d78d7b77db0d3445640.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;アーキテクトの3つの核心思考&#34;&gt;アーキテクトの3つの核心思考
+&lt;/h2&gt;&lt;p&gt;最後に、3つのメッセージ。理解すれば、あなたも良いアーキテクチャを設計できる。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;1. 最良のアーキテクチャはなく、ビジネスに最適なアーキテクチャだけがある。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;スタートアップはいきなりマイクロサービスにする必要はない。モノリシックで十分——ビジネスがアーキテクチャを押し進め、アーキテクチャがビジネスを引っ張らない。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;2. アーキテクチャ進化の本質：空間を時間に換え、複雑さを性能に換える。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;マシン追加、コンポーネント追加、レイヤー追加——すべてがより大きなトラフィック、より高い同時接続に対応するため。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;3. 常に5つの目標を中心に：高性能、高可用性、スケーラビリティ、拡張性、十分なセキュリティ。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;この5つの目標がすべてのアーキテクチャ決定の北極星。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;1台の小さなサーバーから千万級同時接続のクラウドネイティブアーキテクチャまで、すべてのステップに迹可循、すべてのステップが実際の問題を解決。これがインターネットアーキテクチャです。&lt;/em&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,2708 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="JavaにおけるThreadLocalの簡単な説明">
+<title>ThreadLocalの理解</title>
+
+<link rel='canonical' href='https://Siborne.top/ja/p/threadlocal%E3%81%AE%E7%90%86%E8%A7%A3/'>
+
+<link rel="stylesheet" href="/scss/style.min.f169add374573a6d5393fbcd112ed0f3071161116b122a3ecff4c5a0e1eb28aa.css"><meta property='og:title' content="ThreadLocalの理解">
+<meta property='og:description' content="JavaにおけるThreadLocalの簡単な説明">
+<meta property='og:url' content='https://Siborne.top/ja/p/threadlocal%E3%81%AE%E7%90%86%E8%A7%A3/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Java' /><meta property='article:published_time' content='2025-12-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-16T20:07:25&#43;08:00'/><meta property='og:image' content='https://img.siborne.top/2026/05/a8020477e9a0baea0d4a7e92f55dd1b6.png' />
+<meta name="twitter:title" content="ThreadLocalの理解">
+<meta name="twitter:description" content="JavaにおけるThreadLocalの簡単な説明"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://img.siborne.top/2026/05/a8020477e9a0baea0d4a7e92f55dd1b6.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="メニューを開く・閉じる">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/ja/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/ja">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; 愛好家
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent アーキテクト &amp; フルスタック開発者
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 好奇心旺盛な学生 · 未来のビルダー
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    インテリジェントエージェント＋スケーラブルアプリを構築。創造性とAI効率の融合。🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/ja/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>ホーム</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>プロフィール | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>アーカイブ | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/projects/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder-open"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2" /></svg>
+                
+                <span>オープンソースプロジェクト | Projects</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>検索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>テックリンク | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" >繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" selected>日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>ダークモード</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目次</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#threadlocal紹介">ThreadLocal紹介</a></li>
+    <li><a href="#基本的な使用法">基本的な使用法</a></li>
+    <li><a href="#使用例">使用例</a></li>
+    <li><a href="#threadlocalクラスとsynchronizedキーワード">ThreadLocalクラスとSynchronizedキーワード</a>
+      <ol>
+        <li><a href="#synchronized同期方式">Synchronized同期方式</a></li>
+        <li><a href="#threadlocalとsynchronizedの違い">ThreadLocalとSynchronizedの違い</a></li>
+      </ol>
+    </li>
+    <li><a href="#使用シナリオ">使用シナリオ</a>
+      <ol>
+        <li><a href="#送金ケース">送金ケース</a></li>
+        <li><a href="#トランザクションの導入">トランザクションの導入</a></li>
+        <li><a href="#従来の解決方法">従来の解決方法</a></li>
+        <li><a href="#従来の解決方法の欠点">従来の解決方法の欠点</a></li>
+        <li><a href="#threadlocalを使用した解決">ThreadLocalを使用した解決</a></li>
+        <li><a href="#threadlocal実現のメリット">ThreadLocal実現のメリット</a></li>
+      </ol>
+    </li>
+    <li><a href="#threadlocalの内部構造">ThreadLocalの内部構造</a>
+      <ol>
+        <li><a href="#よくある誤解">よくある誤解</a></li>
+        <li><a href="#現在の設計">現在の設計</a></li>
+        <li><a href="#比較">比較</a></li>
+      </ol>
+    </li>
+    <li><a href="#threadlocalコアメソッドのソースコード">ThreadLocalコアメソッドのソースコード</a>
+      <ol>
+        <li><a href="#setメソッド">setメソッド</a></li>
+        <li><a href="#getメソッド">getメソッド</a></li>
+        <li><a href="#removeメソッド">removeメソッド</a></li>
+        <li><a href="#initialvalueメソッド">initialValueメソッド</a></li>
+      </ol>
+    </li>
+    <li><a href="#threadlocalmapソースコード分析">ThreadLocalMapソースコード分析</a>
+      <ol>
+        <li><a href="#基本構造">基本構造</a>
+          <ol>
+            <li><a href="#メンバー変数">メンバー変数</a></li>
+          </ol>
+        </li>
+        <li><a href="#保存構造---entry">保存構造 - Entry</a></li>
+      </ol>
+    </li>
+    <li><a href="#弱参照とメモリリーク">弱参照とメモリリーク</a>
+      <ol>
+        <li><a href="#メモリリーク関連概念">メモリリーク関連概念</a></li>
+        <li><a href="#弱参照関連概念">弱参照関連概念</a></li>
+        <li><a href="#keyが強参照を使用した場合メモリリークは発生するか">keyが強参照を使用した場合、メモリリークは発生するか？</a></li>
+        <li><a href="#keyが弱参照を使用した場合メモリリークは発生するか">keyが弱参照を使用した場合、メモリリークは発生するか？</a></li>
+        <li><a href="#メモリリークの真の原因">メモリリークの真の原因</a></li>
+        <li><a href="#なぜ弱参照を使用するのか">なぜ弱参照を使用するのか？</a></li>
+      </ol>
+    </li>
+    <li><a href="#hash衝突の解決">Hash衝突の解決</a>
+      <ol>
+        <li><a href="#コンストラクタ">コンストラクタ</a></li>
+        <li><a href="#getメソッド-1">Getメソッド</a></li>
+        <li><a href="#線形探测法によるhash衝突解決">線形探测法によるHash衝突解決</a></li>
+      </ol>
+    </li>
+    <li><a href="#threadlocal使用シナリオ">ThreadLocal使用シナリオ</a>
+      <ol>
+        <li><a href="#ソースコード使用シナリオ">ソースコード使用シナリオ</a></li>
+        <li><a href="#ユーザー使用シナリオ1">ユーザー使用シナリオ1</a></li>
+        <li><a href="#ユーザー使用シナリオ2">ユーザー使用シナリオ2</a></li>
+      </ol>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/ja/p/threadlocal%E3%81%AE%E7%90%86%E8%A7%A3/">
+                
+                    <img src="https://img.siborne.top/2026/05/a8020477e9a0baea0d4a7e92f55dd1b6.png" loading="lazy" alt="Featured image of post ThreadLocalの理解" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/ja/p/threadlocal%E3%81%AE%E7%90%86%E8%A7%A3/">ThreadLocalの理解</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2025-12-30T00:00:00Z'>2025-12-30</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 16, 2026 20:07 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                12393字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        JavaにおけるThreadLocalの簡単な説明
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/ja/categories/java/" >
+                Java
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/" class="link">简体中文</a>
+                
+                    <a href="https://Siborne.top/en/p/understanding-threadlocal/" class="link">English</a>
+                
+                    <a href="https://Siborne.top/zh-tw/p/%E5%B0%8Dthreadlocal%E7%9A%84%E7%90%86%E8%A7%A3/" class="link">繁體中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="threadlocal紹介">ThreadLocal紹介
+</h2><p>Java公式ドキュメントの記述によると：ThreadLocalクラスはスレッドローカルな変数を提供するために使用されます。これらの変数は、マルチスレッド環境でアクセスされる際（getおよびsetメソッドを介して）、各スレッドの変数が他のスレッド内の変数に対して相対的に独立していることを保証します。ThreadLocalインスタンスは通常private static型で、スレッドとスレッドコンテキストを関連付けるために使用されます。</p>
+<p>ThreadLocalの役割は：スレッド内のローカル変数を提供し、異なるスレッド間で相互に干渉しないこと。これらの変数はスレッドのライフサイクル内で有効で、同じスレッド内の複数の関数やコンポーネント間の公共変数渡しの複しの複雑さを軽減します。</p>
+<ul>
+<li>スレッド並行性：マルチスレッド並行シナリオにおいて</li>
+<li>データ渡し：ThreadLocalを使用して、同じスレッド内の異なるコンポーネント間で公共変数を渡すことができる（セッションに少し似ている？）</li>
+<li>スレッド隔離：各スレッドの変数は独立しており、相互に影響しない</li>
+</ul>
+<h2 id="基本的な使用法">基本的な使用法
+</h2><p>Threadの使用法を紹介する前に、まずいくつかのThreadの一般的なメソッドを認識しましょう</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>メソッド宣言</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ThreadLocal()</td>
+          <td>ThreadLocalオブジェクトの作成</td>
+      </tr>
+      <tr>
+          <td>public void set(T value)</td>
+          <td>現在のスレッドにバインドされたローカル変数の設定</td>
+      </tr>
+      <tr>
+          <td>public T get()</td>
+          <td>現在のスレッドにバインドされたローカル変数の取得</td>
+      </tr>
+      <tr>
+          <td>public void remove()</td>
+          <td>現在のスレッドにバインドされたローカル変数の削除</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="使用例">使用例
+</h2><p>以下の例を見て、ThreadLocalのスレッド隔離の特徴を体験しましょう</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 要件：スレッド隔離
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * マルチスレッド並行シナリオでは、各スレッドの変数は相互に独立している
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * スレッドA：変数1を設定、変数2を取得
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * スレッドB：変数2を設定、変数2を取得
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author: Siborne
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create: 2025-12-30-17:03
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyDemo01</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 変数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getContent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setContent</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyDemo01</span><span class="w"> </span><span class="n">myDemo01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyDemo01</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">myDemo01</span><span class="p">.</span><span class="na">setContent</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;のデータ&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;-----------------------------------------&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;\t  &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">myDemo01</span><span class="p">.</span><span class="na">getContent</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">i</span><span class="p">)).</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>実行後の効果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">3	  4のデータ
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">2	  4のデータ
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">1	  4のデータ
+</span></span><span class="line"><span class="cl">4	  4のデータ
+</span></span><span class="line"><span class="cl">0	  4のデータ
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上記より、スレッド非隔離の問題が発生したことがわかります。つまり、スレッド1がスレッド4のデータを取得してしまいました。では、どう解決するでしょうか？</p>
+<p>この場合、ThreadLocalが使えます。setを使用して変数を現在のスレッドにバインドし、getで現在のスレッドにバインドされた変数を取得します</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 要件：スレッド隔離
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * マルチスレッド並行シナリオでは、各スレッドの変数は相互に独立している
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * スレッドA：変数1を設定、変数2を取得
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * スレッドB：変数2を設定、変数2を取得
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author: Siborne
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create: 2025-12-30-17:03
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyDemo01</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 変数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getContent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setContent</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyDemo01</span><span class="w"> </span><span class="n">myDemo01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyDemo01</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">threadLocal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">threadLocal</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;のデータ&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;-----------------------------------------&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;\t  &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">threadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">i</span><span class="p">)).</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>ThreadLocalを導入した後の実行結果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">4	  4のデータ
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">3	  3のデータ
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">2	  2のデータ
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">1	  1のデータ
+</span></span><span class="line"><span class="cl">0	  0のデータ
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上記の問題が発生しなくなりました。つまり、現在のスレッドは自分のスレッドが保存したオブジェクトしか取得できないようになりました</p>
+<h2 id="threadlocalクラスとsynchronizedキーワード">ThreadLocalクラスとSynchronizedキーワード
+</h2><h3 id="synchronized同期方式">Synchronized同期方式
+</h3><p>上記の例については、完全にロックを追加する方法でこの機能を実装できます。Synchronizedコードブロックを使用した効果を見てみましょう：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyDemo03</span><span class="w"> </span><span class="n">myDemo01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyDemo03</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">MyDemo03</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">myDemo01</span><span class="p">.</span><span class="na">setContent</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;のデータ&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;-----------------------------------------&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;\t  &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">myDemo01</span><span class="p">.</span><span class="na">getContent</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">i</span><span class="p">)).</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>実行結果は以下の通りで、同じ機能を実装したことがわかりますが、並行性は低下しました</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">0	  0のデータ
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">4	  4のデータ
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">3	  3のデータ
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">2	  2のデータ
+</span></span><span class="line"><span class="cl">-----------------------------------------
+</span></span><span class="line"><span class="cl">1	  1のデータ
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="threadlocalとsynchronizedの違い">ThreadLocalとSynchronizedの違い
+</h3><p>ThreadLocalパターンとSynchronizedキーワードの両方とも、マルチスレッドの並行変数アクセスを処理しますが、問題解決のアプローチと視点が異なります。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Synchronized</th>
+          <th>ThreadLocal</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>原理</td>
+          <td>同期メカニズムは時間を空間に換える方式で、変数を1つだけ提供し、異なるスレッドにアクセスをキューイングさせる</td>
+          <td>ThreadLocalは空間を時間に換える概念で、各スレッドに変数のコピーを提供し、干渉なしで同時アクセスを実現する</td>
+      </tr>
+      <tr>
+          <td>重点</td>
+          <td>複数のスレッド間のリソースアクセスの同期</td>
+          <td>マルチスレッド環境での各スレッド間のデータ隔離</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>まとめ：先ほどの例では、ThreadLocalとSynchronizedの両方で問題を解決できますが、ThreadLocalの方が適切です。なぜなら、より高い並行性を実現できるからです。</p>
+<h2 id="使用シナリオ">使用シナリオ
+</h2><p>上記の紹介を通じて、ThreadLocalの特徴をある程度理解しました。では、具体的にどのようなシナリオで使用されるのでしょうか？次にケースを見てみましょう：トランザクション操作</p>
+<h3 id="送金ケース">送金ケース
+</h3><p>まず簡単な送金シナリオを構築しましょう：accountテーブルにJackとRoseの2人のユーザーがいて、ユーザーJackがユーザーRoseに送金します。この実装は主にMySQLデータベース、JDBC、C3P0フレームワークを使用しています。以下の詳細なコード</p>
+<p><img src="https://img.siborne.top/2026/05/d4b7bdca1343cd0c1a990ae829c7335d.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="accountテーブルと送金SQL文"
+	
+	
+></p>
+<h3 id="トランザクションの導入">トランザクションの導入
+</h3><p>この送金は2つのDML操作を含みます：出金と入金。これらの操作はアトミシティが必要で、分割できません。否则、データ修正の異常が発生する可能性があります。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AccountService</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">outUser</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">inUser</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">money</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">AccountDao</span><span class="w"> </span><span class="n">ad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AccountDao</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 出金</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ad</span><span class="p">.</span><span class="na">out</span><span class="p">(</span><span class="n">outUser</span><span class="p">,</span><span class="w"> </span><span class="n">money</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 送金中の例外をシミュレート</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1</span><span class="o">/</span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 入金</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ad</span><span class="p">.</span><span class="na">in</span><span class="p">(</span><span class="n">inUser</span><span class="p">,</span><span class="w"> </span><span class="n">money</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>therefore、トランザクション操作が必要です。これにより、送金のアトミシティが保証されます。完全な成功か完全な失敗かのいずれかです。</p>
+<p>JDBCトランザクション操作API</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Connectionインタフェースのメソッド</th>
+          <th>機能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>void setAutoCommit(false)</td>
+          <td>トランザクションの自動コミットを無効にする（手動コミットに切り替え）</td>
+      </tr>
+      <tr>
+          <td>void commit()</td>
+          <td>トランザクションをコミットする</td>
+      </tr>
+      <tr>
+          <td>void rollback()</td>
+          <td>トランザクションをロールバックする</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>トランザクション開始の注意点</p>
+<p>すべての操作が1つのトランザクション内で実行されるように、使用される接続は同じでなければなりません；サービスレイヤーのトランザクション接続はDAOレイヤーのデータベース接続と一致する必要があります。</p>
+<p>マルチスレッド環境では、各スレッドは自分の接続のみ操作できます。つまり、スレッド隔離です。</p>
+<h3 id="従来の解決方法">従来の解決方法
+</h3><p>上記の前提に基づいて、一般的に想到される解決方法は：</p>
+<ul>
+<li>サービスレイヤーからConnectionオブジェクトをDAOレイヤーに渡す</li>
+<li>ロックを追加する</li>
+</ul>
+<h3 id="従来の解決方法の欠点">従来の解決方法の欠点
+</h3><ul>
+<li>コードの結合度が高まる（サービスレイヤーからConnectionパラメータを渡す必要があるため）</li>
+<li>プログラムのパフォーマンスが低下する（同期コードブロックを追加し、並行性を失う）</li>
+</ul>
+<p>この場合、ThreadLocalを使用して現在のスレッドにバインドすることで、コード間の結合を軽減できます</p>
+<p><img src="https://img.siborne.top/2026/05/06e3ed6f748cee7981c64383a9c77601.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="スレッド実行図"
+	
+	
+></p>
+<h3 id="threadlocalを使用した解決">ThreadLocalを使用した解決
+</h3><p>上記の状況に対処するために、元のJDBC接続プールオブジェクトを変更する必要があります</p>
+<ul>
+<li>接続プールからオブジェクトを取得する方法を、現在のスレッドにバインドされた接続オブジェクトを直接取得する方法に変更</li>
+<li>接続オブジェクトがnullの場合
+<ul>
+<li>接続プールから接続を取得</li>
+<li>この接続オブジェクトを現在のスレッドにバインド</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Connection</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="nf">getConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Connection</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tl</span><span class="p">.</span><span class="na">get</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">conn</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ds</span><span class="p">.</span><span class="na">getConnection</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">tl</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="threadlocal実現のメリット">ThreadLocal実現のメリット
+</h3><p>上記のケースから、特定のシナリオではThreadLocalソリューションには2つの顕著な利点があることがわかります：</p>
+<ul>
+<li>データ渡し：各スレッドにバインドされたデータを保存し、必要な場所で直接取得可能。パラメータの直接渡しによるコード結合の問題を回避</li>
+<li>スレッド隔離：スレッド間のデータは隔離されているが並行性もあり、同期方式によるパフォーマンス損失を回避</li>
+</ul>
+<h2 id="threadlocalの内部構造">ThreadLocalの内部構造
+</h2><p>上記の学習を通じて、ThreadLocalの機能についてある程度の理解が得られました。次に、ThreadLocalの内部構造をExaminingし、スレッドデータ隔離を実現する原理を探求しましょう。</p>
+<h3 id="よくある誤解">よくある誤解
+</h3><p>ソースコードを見なければ、ThreadLocalは次のように設計されていると推測するかもしれません：各ThreadLocalがMapを作成し、スレッドをMapのkey、保存するローカル変数をMapのvalueとして使用し、各スレッドのローカル変数隔離を実現します。これは最も簡単な設計方法で、JDKの初期のThreadLocalは確かにこのように設計されていましたが、現在は違います。</p>
+<p><img src="https://img.siborne.top/2026/05/ead7201b5aadea8e40d14aec8b7d5e84.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ThreadLocal誤解——初期実装"
+	
+	
+></p>
+<h3 id="現在の設計">現在の設計
+</h3><p>しかし、JDKは後に設計を最適化しました。JDK 8では、ThreadLocalの設計は：各ThreadがThreadLocalMapを維持し、このMapのkeyはThreadLocalインスタンスそのもので、valueは実際に保存する値のobjectです。具体的なプロセスは以下の通りです：</p>
+<ul>
+<li>各Threadには内部にMap（ThreadLocalMap）がある</li>
+<li>MapにはThreadLocalオブジェクト（key）とスレッドの変数コピー（value）が保存される</li>
+<li>Thread内部のMapはThreadLocalによって維護され、ThreadLocalがmapからスレッドの変数値を取得および設定する責任を負う</li>
+<li>異なるスレッドについて、コピー値を取得する際、他のスレッドは現在のスレッドのコピー値にアクセスできず、コピーの隔離が形成され、相互に干渉しない</li>
+</ul>
+<p><img src="https://img.siborne.top/2026/05/7d8acf46b9195798e5e52ee63d134f2c.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ThreadLocal——JDK8の実装"
+	
+	
+></p>
+<h3 id="比較">比較
+</h3><p><img src="https://img.siborne.top/2026/05/de8522df7f829f086f23bc4f115005d2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="初期とJDK8以降の比較"
+	
+	
+></p>
+<p>JDK8の設計に変更することの利点は何ですか？</p>
+<ul>
+<li>各Mapに保存されるEntry数が少なくなる。なぜなら、元のEntry数はThreadによって決定されていたが、現在はThreadLocalによって決定されるから
+<ul>
+<li>実際の開発では、Thread数はThreadLocal数を大幅に上回る</li>
+</ul>
+</li>
+<li>Threadが破棄されると、ThreadLocalMapも随之破棄される。ThreadLocalはThread内に保存されているため、Threadの破棄と共に消滅し、オーバーヘッドを削減</li>
+</ul>
+<h2 id="threadlocalコアメソッドのソースコード">ThreadLocalコアメソッドのソースコード
+</h2><p>ThreadLocalの内部構造に基づいて、そのコアメソッドのソースコードを分析し、操作原理をより深く理解しましょう。
+コンストラクタを除き、ThreadLocalが外部に公開するメソッドは以下の4つです</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>メソッド宣言</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>protected T initialValue()</td>
+          <td>現在のスレッドのローカル変数の初期値を返す</td>
+      </tr>
+      <tr>
+          <td>public void set(T value)</td>
+          <td>現在のスレッドにバインドされたローカル変数を返す</td>
+      </tr>
+      <tr>
+          <td>public T get()</td>
+          <td>現在のスレッドにバインドされたローカル変数を取得</td>
+      </tr>
+      <tr>
+          <td>public void remove()</td>
+          <td>現在のスレッドにバインドされたローカル変数を削除</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>以下はこれらの4つのメソッドの詳細なソースコード分析です（思路を明確にするため、ThreadLocalMap部分は一旦展開せず、次の知識ポイントで詳しく説明します）</p>
+<h3 id="setメソッド">setメソッド
+</h3><p><img src="https://img.siborne.top/2026/05/6001914b618c16e85bfc4784fa72b37d.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="setメソッド内部実装1"
+	
+	
+></p>
+<p><img src="https://img.siborne.top/2026/05/f09d38b911e492c7b4e3c236b5979437.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="setメソッド内部実装2"
+	
+	
+></p>
+<p>コードフロー</p>
+<ul>
+<li>まず現在のスレッドを取得し、現在のスレッドに基づいてMapを取得</li>
+<li>取得したMapが空でなければ、パラメータをMapに設定（現在のThreadLocalの参照をkeyとして）</li>
+<li>Mapが空であれば、そのスレッドのMapを作成し、初期値を設定</li>
+</ul>
+<h3 id="getメソッド">getメソッド
+</h3><p><img src="https://img.siborne.top/2026/05/c88695dc45dbb58ddf7f56e74feb5dee.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="getメソッド内部実装1"
+	
+	
+></p>
+<p><img src="https://img.siborne.top/2026/05/f6227ce8c61133b5b7eb12b013d120c2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="getメソッド内部実装2"
+	
+	
+></p>
+<p>コード実行フロー</p>
+<ul>
+<li>まず現在のスレッドを取得し、現在のスレッドに基づいてMapを取得</li>
+<li>取得したMapが空でなければ、ThreadLocalの参照をkeyとしてMapから対応するEntryを取得、否则はステップ4へ</li>
+<li>eがnullでなければe.valueを返す、否则はステップ4へ</li>
+<li>Mapが空またはeが空の場合、initialValue関数で初期値valueを取得し、ThreadLocalの参照とvalueをfirstKeyとfirstValueとして新しいMapを作成</li>
+</ul>
+<p>まとめ：まず現在のスレッドのThreadLocal変数を取得、存在すれば値を返し、存在しなければ作成して初期値を返す</p>
+<h3 id="removeメソッド">removeメソッド
+</h3><p><img src="https://img.siborne.top/2026/05/99284eaacfd9a0b6d5b0140ed3c6bc50.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="removeメソッド内部実装"
+	
+	
+></p>
+<p>コード実行フロー</p>
+<ul>
+<li>まず現在のスレッドを取得し、現在のスレッドに基づいてMapを取得</li>
+<li>取得したMapが空でなければ、現在のThreadLocalオブジェクトに対応するEntryを削除</li>
+</ul>
+<h3 id="initialvalueメソッド">initialValueメソッド
+</h3><p><img src="https://img.siborne.top/2026/05/a345f4de212091bc609e4644944b876d.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="initialValueメソッド内部実装"
+	
+	
+></p>
+<p>このメソッドの役割は、スレッドローカル変数の初期値を返すことです。</p>
+<ul>
+<li>このメソッドは遅延呼び出しメソッドです。上記のコードから、setメソッドが呼ばれる前にgetメソッドが呼ばれた場合にのみ実行され、1回だけ実行されます。</li>
+<li>このメソッドのデフォルト実装は直接nullを返します。</li>
+<li>null以外の初期値が必要な場合、このメソッドをオーバーライドできます。（注：このメソッドはprotectedで、明らかにサブクラスによるオーバーライドを想定して設計されています）</li>
+</ul>
+<h2 id="threadlocalmapソースコード分析">ThreadLocalMapソースコード分析
+</h2><p>ThreadLocalメソッドを分析する際、ThreadLocalの操作は実際にはThreadLocalMapを中心に展開されることを学びました。
+ThreadLocalMapのソースコードは比較的複雑で、以下の3つの側面から議論します。</p>
+<h3 id="基本構造">基本構造
+</h3><p>ThreadLocalMapはThreadLocalの内部クラスで、Mapインタフェースを実装しておらず、独立した方法でMapの機能を実装しています。内部のEntryも独立して実装されています。</p>
+<p><img src="https://img.siborne.top/2026/05/88eb45fcff99700281d92c49e341f8e7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ThreadLocalMap"
+	
+	
+></p>
+<h4 id="メンバー変数">メンバー変数
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 初期容量 - 2の整数べきでなければならない
+</span></span></span><span class="line"><span class="cl"><span class="cm"> **/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">INITIAL_CAPACITY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">16</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * データを保存するtable、Entryクラスの定義は以下で分析。同様に、配列の長さは2の整数べきでなければならない
+</span></span></span><span class="line"><span class="cl"><span class="cm"> **/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="n">Entry</span><span class="o">[]</span><span class="w"> </span><span class="n">table</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 配列内のエントリ数。tableの現在の使用量がしきい値を超えているかを判断するために使用できる
+</span></span></span><span class="line"><span class="cl"><span class="cm"> **/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 拡張のしきい値。表の使用量がこれを超えた場合に拡張
+</span></span></span><span class="line"><span class="cl"><span class="cm"> **/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">threshold</span><span class="p">;</span><span class="w"> </span><span class="c1">// Default to 0</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>HashMapと同様に、INITIAL_CAPACITYはMapの初期容量を表します。tableはEntry型の配列で、データ保存用。sizeは保存数を表し、thresholdは拡張時のsizeのしきい値を表します。</p>
+<h3 id="保存構造---entry">保存構造 - Entry
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *EntryはWeakReferenceを継承し、ThreadLocalをkeyとして使用。
+</span></span></span><span class="line"><span class="cl"><span class="cm"> keyがnullの場合（entry.get()==null）、keyは参照されていないことを意味し、
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *そのためentryはtableから削除できる。
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Entry</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">WeakReference</span><span class="o">&lt;</span><span class="n">ThreadLocal</span><span class="o">&lt;?&gt;&gt;</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Object</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="n">Entry</span><span class="p">(</span><span class="n">ThreadLocal</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">super</span><span class="p">(</span><span class="n">k</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>ThreadLocalMapでも、EntryはK-V構造データを保存します。ただし、EntryのkeyはThreadLocalオブジェクトのみで、これはコンストラクタで制限されています。</p>
+<p>さらに、EntryはWeakReferenceを継承しており、key（ThreadLocal）は弱参照です。これはThreadLocalオブジェクトのライフサイクルとスレッドのライフサイクルを分離することを目的としています。</p>
+<h2 id="弱参照とメモリリーク">弱参照とメモリリーク
+</h2><p>開発者の中には、ThreadLocalを使用している際にメモリリークが発生する場合があり、Entryで使用されている弱参照のkeyに関連していると推測する人がいます。この理解は実は正しくありません。</p>
+<p>まず、この問題に関連するいくつかの用語の概念を振り返ってから、問題を分析しましょう。</p>
+<h3 id="メモリリーク関連概念">メモリリーク関連概念
+</h3><p>メモリオーバーフロー：メモリ不足。申請者に十分なメモリが提供されない。</p>
+<p>メモリリーク：プログラムで動的に割り当てられたヒープメモリが、何らかの理由で解放されないか解放できず、システムメモリの浪費を引き起こし、プログラムの実行速度が低下したり、システムがクラッシュしたりする深刻な結果をもたらします。メモリリークの蓄積は最終的にメモリオーバーフローを引き起こします。</p>
+<h3 id="弱参照関連概念">弱参照関連概念
+</h3><p>Javaの参照には4つのタイプがあります：強、ソフト、弱、 Phantom。現在の問題は主に強参照と弱参照に関わっています：</p>
+<p>強参照（&ldquo;Strong&quot;Reference）：最も一般的なオブジェクト参照です。オブジェクトへの強参照がまだ存在する限り、オブジェクトは「生きている」と見なされ、ガベージコレクターはこのオブジェクトを収集しません。</p>
+<p>弱参照（WeakReference）：ガベージコレクターが弱参照のみを持つオブジェクトを発見した場合、現在のメモリ空間の空き状況に関係なく、そのメモリを収集します。</p>
+<h3 id="keyが強参照を使用した場合メモリリークは発生するか">keyが強参照を使用した場合、メモリリークは発生するか？
+</h3><p>ThreadLocalMapのkeyが強参照を使用していると仮定すると、メモリリークは発生するでしょうか？</p>
+<p>この場合のThreadLocalのメモリ図（実線は強参照を表す）：</p>
+<p><img src="https://img.siborne.top/2026/05/90cb6845bec3042354566d76b7e3c1d0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ThreadLocalメモリ図1"
+	
+	
+></p>
+<ul>
+<li>ビジネスコードでThreadLocalを使用し終えた後、threadLocal Refが収集されると仮定</li>
+<li>しかし、threadLocalMapのEntryがthreadLocalを強参照しているため、threadLocalは収集されない</li>
+<li>このEntryを手動で削除せず、CurrentThreadがまだ実行されている限り、常に強参照チェーン threadRef-&gt;currentThread-&gt;threadLocalMap-&gt;entryがあり、Entryは収集されない（EntryにはThreadLocalインスタンスとvalueが含まれる）、ため、Entryのメモリリークが発生</li>
+</ul>
+<p>つまり、ThreadLocalMapのkeyが強参照を使用している場合、メモリリークを完全に回避することはできません。</p>
+<h3 id="keyが弱参照を使用した場合メモリリークは発生するか">keyが弱参照を使用した場合、メモリリークは発生するか？
+</h3><p><img src="https://img.siborne.top/2026/05/835257833e4ae55243365ee5ac9cfa09.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ThreadLocalメモリ図2"
+	
+	
+></p>
+<ul>
+<li>同様に、ビジネスコードでThreadLocalを使用し終えた後、threadLocal Refが収集されると仮定</li>
+<li>ThreadLocalMapはThreadLocalの弱参照のみを持ち、threadlocalインスタンスへの強参照がないため、threadlocalは顺利にGC収集され、この場合Entryのkey=nullとなる</li>
+<li>しかし、このEntryを手動で削除せず、CurrentThreadがまだ実行されている限り、強参照チェーン threadRef-&gt;currentThread-&gt;threadLocalMap-&gt;entry-&gt;valueもあり、valueは収集されず、このvalueは永遠にアクセスされないため、valueのメモリリークが発生</li>
+</ul>
+<p>つまり、ThreadLocalMapのkeyが弱参照を使用している場合でも、メモリリークが発生する可能性があります。</p>
+<h3 id="メモリリークの真の原因">メモリリークの真の原因
+</h3><p>上記の2つの状況を比較すると、メモリリークの発生はThreadLocalMapのkeyが弱参照を使用しているかどうかとは関係がないことがわかります。では、メモリリークの真の原因は何でしょうか？</p>
+<p>注意深い人は気づくでしょうが、上記の2つのメモリリークの状況には2つの前提があります：</p>
+<ul>
+<li>このEntryを手動で削除しない</li>
+<li>CurrentThreadがまだ実行されている</li>
+</ul>
+<p>1点目は簡単に理解できます。ThreadLocalを使用した後にremoveメソッドを呼び出して対応するEntryを削除すれば、メモリリークを回避できます。</p>
+<p>2点目は少し複雑です。ThreadLocalMapはThreadの属性であり、現在のスレッドから参照されるため、そのライフサイクルはThreadと同じです。ThreadLocalを使用した後、現在のThreadも実行を終了すると、ThreadLocalMapは自然にGC収集され、根本的にメモリリークを回避できます。</p>
+<p>以上から、ThreadLocalメモリリークの根源は：ThreadLocalMapのライフサイクルがThreadと同じであるため、対応するkeyを手動で削除しないとメモリリークが発生することです。</p>
+<h3 id="なぜ弱参照を使用するのか">なぜ弱参照を使用するのか？
+</h3><p>上記の分析から、ThreadLocalMapのkeyがどのタイプの参照を使用しても、メモリリークを完全に回避することはできず、弱参照の使用とは関係がないことがわかりました。</p>
+<p>メモリリークを回避するには2つの方法があります：</p>
+<ul>
+<li>ThreadLocalを使用した後にremoveメソッドを呼び出して対応するEntryを削除</li>
+<li>ThreadLocalを使用した後、現在のThreadも実行を終了</li>
+</ul>
+<p>1つ目の方法と比較して、2つ目は明らかに制御が困難です。特にスレッドプールを使用する場合、スレッドは終了しても破棄されず、スレッドプールに戻されます。</p>
+<p>つまり、ThreadLocalを使用した後にrememberしてremoveを呼び出すことを忘れない限り、keyが強参照であれ弱参照であれ、問題はありません。
+では、なぜkeyに弱参照を使用するのでしょうか？</p>
+<p>実際、ThreadLocalMapのset/getEntryメソッドでは、keyがnull（ThreadLocalがnull）の場合を判断し、nullであればvalueをnullに設定します。</p>
+<p>これ意味着ThreadLocalを使用した後、CurrentThreadがまだ実行されている場合、removeメソッドの呼び出しを忘れたとしても、弱参照は強参照よりも1つの追加保証を提供します：弱参照のThreadLocalは収集され、対応するvalueは次のThreadLocalMapのset、get、removeのいずれかのメソッド呼び出し時にクリアされ、メモリリークを回避できます。</p>
+<h2 id="hash衝突の解決">Hash衝突の解決
+</h2><p>Hash衝突の解決はMapの重要な内容です。Hash衝突の解決を手がかりに、ThreadLocalMapの核心ソースコードを研究しましょう。</p>
+<p>まずThreadLocalのsetメソッドから</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ThreadLocal</span><span class="p">.</span><span class="na">ThreadLocalMap</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getMap</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">map</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// ThreadLocalMapのsetメソッドを呼び出し</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">else</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">createMap</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">ThreadLocal</span><span class="p">.</span><span class="na">ThreadLocalMap</span><span class="w"> </span><span class="nf">getMap</span><span class="p">(</span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="na">threadLocals</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">createMap</span><span class="p">(</span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">firstValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// ThreadLocalMapのコンストラクタを呼び出し</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="na">threadLocals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="p">.</span><span class="na">ThreadLocalMap</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">firstValue</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>このメソッドは先ほど分析しました。現在のスレッドにバインドされたローカル変数を設定する役割</p>
+<ul>
+<li>まず現在のスレッドを取得し、現在のスレッドに基づいてMapを取得</li>
+<li>取得したMapが空でなければ、パラメータをMapに設定（現在のThreadLocalの参照をkeyとして）（ここでThreadLocalMapのsetメソッドを呼び出し）</li>
+<li>Mapが空であれば、そのスレッドのMapを作成し、初期値を設定（ここでThreadLocalMapのコンストラクタを呼び出し）</li>
+</ul>
+<p>このコードには2つのThreadLocalMapメソッドが関与しており、これらの2つのメソッドを分析しましょう</p>
+<h3 id="コンストラクタ">コンストラクタ
+</h3><p>ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue)</p>
+<p><img src="https://img.siborne.top/2026/05/de0f32d41d52ed8ed242091f134b05e2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ThreadLocalMapコンストラクタ"
+	
+	
+></p>
+<p>コンストラクタはまず長さ16のEntry配列を作成し、firstKeyの対応するインデックスを計算してtableに保存し、sizeとthresholdを設定します。</p>
+<p>重点分析：int i = firstKey.threadLocalHashCode &amp; (INITIAL_CAPACITY - 1)</p>
+<p><strong>threadLocalHashCodeについて</strong></p>
+<p><img src="https://img.siborne.top/2026/05/37c09b2647d4c1c8113781959c8ce564.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="threadLocalHashCode"
+	
+	
+></p>
+<p>ここではAtomicInteger型が定義されており、現在の値にHASH_INCREMENTを加算します。HASH_INCREMENT = 0x61c88647で、この値はフィボナッチ数列（黄金比）に関連しています。主な目的は、ハッシュコードが2のn乗の配列（Entry[] table）に均等に分布するようにすることで、hash衝突を最小限に抑えることです。</p>
+<p><strong>&amp; (INITIAL_CAPACITY - 1) について</strong></p>
+<p>hash計算ではhashCode &amp; (size-1)アルゴリズムが使用されています。これはhashCode % sizeの modulo演算のより効率的な実装に相当します。このアルゴリズムのおかげで、sizeは2の整数べきでなければならず、インデックスがオーバーフローしない前提でhash衝突の回数を減らすことができます。</p>
+<h3 id="getメソッド-1">Getメソッド
+</h3><p><img src="https://img.siborne.top/2026/05/fe25df1b5d5b514c99413f012097e085.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Getメソッド1"
+	
+	
+></p>
+<p><img src="https://img.siborne.top/2026/05/fe25df1b5d5b514c99413f012097e085.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Getメソッド2"
+	
+	
+></p>
+<p>コード実行フロー</p>
+<ul>
+<li>まずkeyに基づいてインデックスiを計算し、その位置のEntryを検索</li>
+<li>Entryが存在しkeyが渡されたkeyと一致する場合、このEntryに新しいvalue値を直接代入</li>
+<li>Entryが存在するがkeyがnullの場合、replaceStaleEntryを呼び出してこのnullキーのEntryを置換</li>
+<li>nullの場所に遭遇するまでループ検証を繰り返し、ループ中にreturnしなかった場合、このnullの位置に新しいEntryを作成し、挿入。同時にsizeを1増加</li>
+</ul>
+<p>最後にcleanSomeSlotsを呼び出し、nullキーのEntryをクリア。Entryがクリアされたかどうかを返し、次にsz &gt;= thresholdのrehash条件を判断。達した場合、rehash関数を呼び出して全テーブルスキャンのクリーンアップを実行</p>
+<h3 id="線形探测法によるhash衝突解決">線形探测法によるHash衝突解決
+</h3><p>この方法は次のアドレスを順次探测し、空きアドレスが見つかったら挿入。全体のスペースに空きアドレスがない場合はオーバーフローが発生します。</p>
+<p>例：現在のtable長が16とすると、計算されたkeyのhash値が14の場合、table[14]に既に値があり、そのkeyが現在のkeyと一致しない場合、hash衝突が発生。この場合、14+1=15でtable[15]を確認。まだ衝突する場合は0に戻りtable[0]を確認。こうして挿入できるまで繰り返す。</p>
+<p>上記の記述に従い、Entry tableを環形配列と見なすことができます。</p>
+<h2 id="threadlocal使用シナリオ">ThreadLocal使用シナリオ
+</h2><h3 id="ソースコード使用シナリオ">ソースコード使用シナリオ
+</h3><p>ThreadLocalの主な機能はデータ隔離です。填充されたデータは現在のスレッドのみに属し、変数データは他のスレッドに対して相対的に隔離されています。マルチスレッド環境で、自分の変数が他のスレッドによって篡改されるのを防ぐ方法。</p>
+<p>例えば、Springがトランザクション隔離レベルを実装するソースコード</p>
+<p>SpringはThreadLocalの方法を使用して、単一スレッドのデータベース操作が同じデータベース接続を使用することを保証しています。さらに、この方法により、ビジネスレイヤーがトランザクションを使用する際にconnectionオブジェクトを知覚管理する必要がなくなり、伝播レベルを巧妙に使用して、複数のトランザクション設定間の切り替え、サスペンド、リカバリを管理します。</p>
+<p>Springフレームワークでは、ThreadLocalを使用してこの隔離を実装しています。主に<code>TransactionSynchronizationManager</code>クラスで、コードは以下の通りです：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Log</span><span class="w"> </span><span class="n">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LogFactory</span><span class="p">.</span><span class="na">getLog</span><span class="p">(</span><span class="n">TransactionSynchronizationManager</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">resources</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">NamedThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&#34;Transactional resources&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">TransactionSynchronization</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">synchronizations</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">NamedThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&#34;Transaction synchronizations&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentTransactionName</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">NamedThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&#34;Current transaction name&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Springのトランザクションは主にThreadLocalとAOPで実装されています。ここで言及します。各スレッドの自分の接続はThreadLocalで保存されていることを知っておいてください</p>
+<h3 id="ユーザー使用シナリオ1">ユーザー使用シナリオ1
+</h3><p>ソースコード内のThreadLocal使用シナリオ以外に、自分の使用シナリオはありますか？</p>
+<p>以前、リリース後に一部のユーザーの日付が間違っていることが発覚しました。調査した結果、SimpleDataFormatが原因でした。当時、SimpleDataFormatのparse()メソッドを使用しており、内部にCalendarオブジェクトがありました。SimpleDataFormatのparse()メソッドを呼び出すと、まずCalendar.clear()を呼び出し、次にCalendar.add()を呼び出します。1つのスレッドがadd()を呼び出した後に別のスレッドがclear()を呼び出すと、parse()メソッドの解析時間が間違くなります。</p>
+<p>実は、この問題を解決するのは簡単です。各スレッドに自分のSimpleDataFormatをnewすればよいですが、1000スレッドなら1000個のSimpleDataFormatをnewするでしょうか？</p>
+<p>そのため、當時、スレッドプールとThreadLocalでSimpleDataFormatをラッピングし、initialValueを呼び出して各スレッドにSimpleDataFormatのコピーを持たせることで、スレッド安全の問題を解決し、パフォーマンスも向上しました。</p>
+<h3 id="ユーザー使用シナリオ2">ユーザー使用シナリオ2
+</h3><p>プロジェクト内に、複数のメソッド呼び出しを横断するスレッドが頻繁にあり、渡す必要があるオブジェクト、つまりコンテキスト（Context）があります。これはユーザーID、タスク情報などの状態で、過度なパラメータ渡しの問題が発生します。</p>
+<p>責任鏈パターンに似て、各メソッドにcontextパラメータを追加するのは面倒で、呼び出しチェーンにソースコードを変更できないサードパーティライブラリがある場合、オブジェクトパラメータを渡すことができません。そこで、ThreadLocalを使用して改造しました。これにより、呼び出し前にThreadLocalにパラメータを設定するだけで、他の場所はgetするだけになりました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">before</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">getInfo</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">checkInfo</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">setSomeThing</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">threadLocalUser</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">// 内部で User u = threadLocalUser.get(); だけでよい</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">getInfo</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">checkInfo</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">setSomeThing</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">threadLocalUser</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>多くのシナリオで、cookie、sessionなどのデータ隔離はThreadLocalで実装されていることを確認しました</p>
+<p>Androidでは、LooperクラスはThreadLocalの特性を利用して、各スレッドにLooperオブジェクトが1つだけ存在することを保証しています。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Looper</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sThreadLocal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Looper</span><span class="o">&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">prepare</span><span class="p">(</span><span class="kt">boolean</span><span class="w"> </span><span class="n">quitAllowed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sThreadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&#34;Only one Looper may be created per thread&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sThreadLocal</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Looper</span><span class="p">(</span><span class="n">quitAllowed</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考
+</h2><p><a class="link" href="https://blog.csdn.net/qq_35190492/article/details/107599875"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/qq_35190492/article/details/107599875</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最終更新  16, 2026 20:07 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">関連するコンテンツ</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/ja/p/mvc%E3%81%8B%E3%82%89ddd%E3%81%B8%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%90%8D%E3%81%8C%E5%A4%89%E3%82%8F%E3%82%8B%E3%81%A0%E3%81%91%E3%81%A7%E3%81%AA%E3%81%8F%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8C%E7%94%9F%E3%81%8D%E3%82%8B/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/1557c6be2dda6bb74eb03b4d0eaf23ec.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/1557c6be2dda6bb74eb03b4d0eaf23ec.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MVCからDDDへ：パッケージ名が変わるだけでなく、「オブジェクト」が生きる</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/lru-%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%AE%E5%AE%9F%E8%A3%85/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/f0e326574cdcea40078081e6d757389b.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/f0e326574cdcea40078081e6d757389b.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LRU キャッシュアルゴリズムの実装</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/java--mysql--redis-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E4%B8%BB%E3%82%AD%E3%83%BC%E7%94%9F%E6%88%90%E3%81%AE6%E3%81%A4%E3%81%AE%E6%96%B9%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/54074f014a63b85f280277238cbd8e80.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/54074f014a63b85f280277238cbd8e80.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Java &#43; MySQL &#43; Redis ユーザー主キー生成の6つの方法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/jwt-%E7%B0%A1%E6%98%93%E8%A7%A3%E8%AA%AC/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/14078955d0308bd7c8ae4d32af16584a.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/14078955d0308bd7c8ae4d32af16584a.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JWT 簡易解説</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> で構築されています。 <br />
+        テーマ <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> は <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> によって設計されています。
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.337b391b9709a7de07a4bb428d2ffb003b7e926cdfc9720a68a909ce2cde147d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<div id="jsi-flying-fish-container" class="fish-container"></div>
+
+
+<script defer src="https://events.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+  refreshVercount();
+}
+
+
+function refreshVercount() {
+    let article = document.querySelector(".article-page");
+    if (!article) return;
+
+    let pvEl = document.getElementById("vercount_value_page_pv");
+    if (!pvEl) return;
+
+    
+    pvEl.textContent = 'loading...';
+
+    
+    let oldScript = document.querySelector('script[data-vercount-dynamic]');
+    if (oldScript) oldScript.remove();
+
+    
+    let script = document.createElement('script');
+    script.src = 'https://events.vercount.one/js';
+    script.setAttribute('data-vercount-dynamic', '');
+    document.body.appendChild(script);
+
+    
+    let fallbackTimer = setTimeout(function() {
+        if (pvEl.textContent.trim() === 'loading...') {
+            pvEl.textContent = '';
+        }
+    }, 5000);
+
+    
+    script.addEventListener('load', function() {
+        clearTimeout(fallbackTimer);
+    });
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+
+<script>
+(function() {
+    var RENDERER = {
+        POINT_INTERVAL: 5,
+        FISH_COUNT: 3,
+        MAX_INTERVAL_COUNT: 50,
+        INIT_HEIGHT_RATE: 0.5,
+        THRESHOLD: 50,
+
+        init: function() {
+            this.setParameters();
+            this.reconstructMethods();
+            this.setup();
+            this.bindEvent();
+            this.render();
+        },
+        setParameters: function() {
+            this.$window = window;
+            this.$document = document.body;
+            this.$container = document.getElementById('jsi-flying-fish-container');
+            if (!this.$container) return;
+            this.$canvas = document.createElement('canvas');
+            this.$container.appendChild(this.$canvas);
+            this.context = this.$canvas.getContext('2d');
+            this.points = [];
+            this.fishes = [];
+            this.watchIds = [];
+        },
+        createSurfacePoints: function() {
+            var count = Math.round(this.width / this.POINT_INTERVAL);
+            this.pointInterval = this.width / (count - 1);
+            this.points.push(new SURFACE_POINT(this, 0));
+            for (var i = 1; i < count; i++) {
+                var point = new SURFACE_POINT(this, i * this.pointInterval),
+                    previous = this.points[i - 1];
+                point.setPreviousPoint(previous);
+                previous.setNextPoint(point);
+                this.points.push(point);
+            }
+        },
+        reconstructMethods: function() {
+            this.watchWindowSize = this.watchWindowSize.bind(this);
+            this.jdugeToStopResize = this.jdugeToStopResize.bind(this);
+            this.startEpicenter = this.startEpicenter.bind(this);
+            this.moveEpicenter = this.moveEpicenter.bind(this);
+            this.toggleDirection = this.toggleDirection.bind(this);
+            this.render = this.render.bind(this);
+        },
+        setup: function() {
+            this.points.length = 0;
+            this.fishes.length = 0;
+            this.watchIds.length = 0;
+            this.intervalCount = this.MAX_INTERVAL_COUNT;
+            this.width = this.$container.offsetWidth;
+            this.height = this.$container.offsetHeight;
+            this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
+            this.$canvas.width = this.width;
+            this.$canvas.height = this.height;
+            this.reverse = false;
+            this.fishes.push(new FISH(this));
+            this.createSurfacePoints();
+        },
+        watchWindowSize: function() {
+            this.clearTimer();
+            this.tmpWidth = this.$window.innerWidth;
+            this.tmpHeight = this.$window.innerHeight;
+            this.watchIds.push(setTimeout(this.jdugeToStopResize, 300));
+        },
+        clearTimer: function() {
+            while (this.watchIds.length > 0) {
+                clearTimeout(this.watchIds.pop());
+            }
+        },
+        jdugeToStopResize: function() {
+            var width = this.$window.innerWidth,
+                height = this.$window.innerHeight,
+                stopped = (width === this.tmpWidth && height === this.tmpHeight);
+            this.tmpWidth = width;
+            this.tmpHeight = height;
+            if (stopped) { this.setup(); }
+        },
+        bindEvent: function() {
+            window.addEventListener('resize', this.watchWindowSize);
+            this.$container.addEventListener('click', this.toggleDirection);
+            this.$container.addEventListener('mouseenter', this.startEpicenter);
+            this.$container.addEventListener('mousemove', this.moveEpicenter);
+        },
+        getAxis: function(event) {
+            var rect = this.$container.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        },
+        startEpicenter: function(event) {
+            this.axis = this.getAxis(event);
+        },
+        moveEpicenter: function(event) {
+            var axis = this.getAxis(event);
+            if (!this.axis) { this.axis = axis; }
+            this.generateEpicenter(axis.x, axis.y, axis.y - this.axis.y);
+            this.axis = axis;
+        },
+        generateEpicenter: function(x, y, velocity) {
+            if (y < this.height / 2 - this.THRESHOLD || y > this.height / 2 + this.THRESHOLD) return;
+            var index = Math.round(x / this.pointInterval);
+            if (index < 0 || index >= this.points.length) return;
+            this.points[index].interfere(y, velocity);
+        },
+        toggleDirection: function() {
+            this.reverse = !this.reverse;
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].reverseVertical();
+            }
+        },
+        controlStatus: function() {
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateSelf();
+            }
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateNeighbors();
+            }
+            if (this.fishes.length < this.fishCount) {
+                if (--this.intervalCount === 0) {
+                    this.intervalCount = this.MAX_INTERVAL_COUNT;
+                    this.fishes.push(new FISH(this));
+                }
+            }
+        },
+        render: function() {
+            requestAnimationFrame(this.render);
+            this.controlStatus();
+            this.context.clearRect(0, 0, this.width, this.height);
+
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            this.context.fillStyle = isDark ? 'hsl(210, 30%, 25%)' : 'hsl(210, 80%, 75%)';
+
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].render(this.context);
+            }
+
+            this.context.save();
+            this.context.globalCompositeOperation = 'xor';
+            this.context.beginPath();
+            this.context.moveTo(0, this.reverse ? 0 : this.height);
+
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].render(this.context);
+            }
+            this.context.lineTo(this.width, this.reverse ? 0 : this.height);
+            this.context.closePath();
+            this.context.fill();
+            this.context.restore();
+        }
+    };
+
+    var SURFACE_POINT = function(renderer, x) {
+        this.renderer = renderer;
+        this.x = x;
+        this.init();
+    };
+    SURFACE_POINT.prototype = {
+        SPRING_CONSTANT: 0.03,
+        SPRING_FRICTION: 0.9,
+        WAVE_SPREAD: 0.3,
+        ACCELARATION_RATE: 0.01,
+
+        init: function() {
+            this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE;
+            this.height = this.initHeight;
+            this.fy = 0;
+            this.force = { previous: 0, next: 0 };
+        },
+        setPreviousPoint: function(previous) { this.previous = previous; },
+        setNextPoint: function(next) { this.next = next; },
+        interfere: function(y, velocity) {
+            this.fy = this.renderer.height * this.ACCELARATION_RATE *
+                ((this.renderer.height - this.height - y) >= 0 ? -1 : 1) * Math.abs(velocity);
+        },
+        updateSelf: function() {
+            this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height);
+            this.fy *= this.SPRING_FRICTION;
+            this.height += this.fy;
+        },
+        updateNeighbors: function() {
+            if (this.previous) {
+                this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height);
+            }
+            if (this.next) {
+                this.force.next = this.WAVE_SPREAD * (this.height - this.next.height);
+            }
+        },
+        render: function(context) {
+            if (this.previous) {
+                this.previous.height += this.force.previous;
+                this.previous.fy += this.force.previous;
+            }
+            if (this.next) {
+                this.next.height += this.force.next;
+                this.next.fy += this.force.next;
+            }
+            context.lineTo(this.x, this.renderer.height - this.height);
+        }
+    };
+
+    var FISH = function(renderer) {
+        this.renderer = renderer;
+        this.init();
+    };
+    FISH.prototype = {
+        GRAVITY: 0.4,
+
+        init: function() {
+            this.direction = Math.random() < 0.5;
+            this.x = this.direction ? (this.renderer.width + this.renderer.THRESHOLD) : -this.renderer.THRESHOLD;
+            this.previousY = this.y;
+            this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1);
+
+            if (this.renderer.reverse) {
+                this.y = this.getRandomValue(this.renderer.height * 1 / 10, this.renderer.height * 4 / 10);
+                this.vy = this.getRandomValue(2, 5);
+                this.ay = this.getRandomValue(0.05, 0.2);
+            } else {
+                this.y = this.getRandomValue(this.renderer.height * 6 / 10, this.renderer.height * 9 / 10);
+                this.vy = this.getRandomValue(-5, -2);
+                this.ay = this.getRandomValue(-0.2, -0.05);
+            }
+            this.isOut = false;
+            this.theta = 0;
+            this.phi = 0;
+        },
+        getRandomValue: function(min, max) {
+            return min + (max - min) * Math.random();
+        },
+        reverseVertical: function() {
+            this.isOut = !this.isOut;
+            this.ay *= -1;
+        },
+        controlStatus: function(context) {
+            this.previousY = this.y;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.ay;
+
+            if (this.renderer.reverse) {
+                if (this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy -= this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(0.05, 0.2); }
+                    this.isOut = false;
+                }
+            } else {
+                if (this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy += this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(-0.2, -0.05); }
+                    this.isOut = false;
+                }
+            }
+            if (!this.isOut) {
+                this.theta += Math.PI / 20;
+                this.theta %= Math.PI * 2;
+                this.phi += Math.PI / 30;
+                this.phi %= Math.PI * 2;
+            }
+            this.renderer.generateEpicenter(
+                this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD,
+                this.y,
+                this.y - this.previousY
+            );
+            if (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD ||
+                this.vx < 0 && this.x < -this.renderer.THRESHOLD) {
+                this.init();
+            }
+        },
+        render: function(context) {
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            context.fillStyle = isDark ? 'hsl(210, 60%, 55%)' : 'hsl(210, 70%, 40%)';
+
+            context.save();
+            context.translate(this.x, this.y);
+            context.rotate(Math.PI + Math.atan2(this.vy, this.vx));
+            context.scale(1, this.direction ? 1 : -1);
+            context.beginPath();
+            context.moveTo(-30, 0);
+            context.bezierCurveTo(-20, 15, 15, 10, 40, 0);
+            context.bezierCurveTo(15, -10, -20, -15, -30, 0);
+            context.fill();
+
+            
+            context.save();
+            context.translate(40, 0);
+            context.scale(0.9 + 0.2 * Math.sin(this.theta), 1);
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(5, 10, 20, 8);
+            context.quadraticCurveTo(12, 5, 10, 0);
+            context.quadraticCurveTo(12, -5, 20, -8);
+            context.quadraticCurveTo(5, -10, 0, 0);
+            context.fill();
+            context.restore();
+
+            
+            context.save();
+            context.translate(-3, 0);
+            context.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1));
+            context.beginPath();
+            if (this.renderer.reverse) {
+                context.moveTo(5, 0);
+                context.bezierCurveTo(10, 10, 10, 30, 0, 40);
+                context.bezierCurveTo(-12, 25, -8, 10, 0, 0);
+            } else {
+                context.moveTo(-5, 0);
+                context.bezierCurveTo(-10, -10, -10, -30, 0, -40);
+                context.bezierCurveTo(12, -25, 8, -10, 0, 0);
+            }
+            context.closePath();
+            context.fill();
+            context.restore();
+            context.restore();
+            this.controlStatus(context);
+        }
+    };
+
+    
+    if (!window.__fishRendererInited) {
+        window.__fishRendererInited = true;
+        window.addEventListener('load', function() {
+            if (document.getElementById('jsi-flying-fish-container')) {
+                RENDERER.init();
+            }
+        });
+    }
+})();
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+ 
+.fish-container {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+html.at-page-bottom .fish-container {
+    opacity: 0.42;
+}
+
+@media (max-width: 768px) {
+    .fish-container {
+        height: 150px;
+    }
+    html.at-page-bottom .fish-container {
+        opacity: 0.28;
+    }
+}
+</style>
+
+    </body>
+</html>

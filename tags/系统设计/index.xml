@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>系统设计 on Siborne</title>
+        <link>https://Siborne.top/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</link>
+        <description>Recent content in 系统设计 on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Sat, 16 May 2026 20:07:25 +0800</lastBuildDate><atom:link href="https://Siborne.top/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>互联网架构就这？1个故事讲清楚</title>
+        <link>https://Siborne.top/p/internet-architecture-in-one-story/</link>
+        <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/p/internet-architecture-in-one-story/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" alt="Featured image of post 互联网架构就这？1个故事讲清楚" /&gt;&lt;blockquote&gt;
+&lt;p&gt;一口气讲透互联网架构所有高频名词。看似眼花缭乱、概念扎堆，拆解核心逻辑，它其实就是一套不断补短板、解决新问题的迭代闭环。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-一切的开端单机架构&#34;&gt;1. 一切的开端：单机架构
+&lt;/h2&gt;&lt;p&gt;故事的起点非常朴素——你刚做了一个小网站，用户没几个，访问量极低。这还用想？怎么简单怎么来。&lt;/p&gt;
+&lt;p&gt;一台服务器，上面装应用程序，也装数据库，用一套开源的 LNMP 技术栈就能迅速搞定。你给它取名叫&lt;strong&gt;单机架构&lt;/strong&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│     一台服务器        │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ┌───────────────┐  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │   应用程序      │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ├───────────────┤  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │   数据库       │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  └───────────────┘  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;简单、直接、零运维成本——这就是所有架构的起点。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-应用与数据库分离&#34;&gt;2. 应用与数据库分离
+&lt;/h2&gt;&lt;p&gt;业务慢慢有了起色，用户多了一点，单机扛不住了。应用和数据库经常抢 CPU、抢内存、抢 IO，互相拖累。&lt;/p&gt;
+&lt;p&gt;怎么办？&lt;strong&gt;加机器，拆。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;把应用和数据库拆到两台服务器上：应用服务器专门处理请求和业务逻辑，数据库服务器专门存数据、做 IO 操作。两者各司其职，互不干扰，可用性也上来了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/971b672f47816ce42f466b9b7ee507cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-高并发来了集群--负载均衡&#34;&gt;3. 高并发来了：集群 + 负载均衡
+&lt;/h2&gt;&lt;p&gt;但好景不长，用户又暴涨了。单台应用服务器处理不过来，数据库也扛不住大量查询。故事进入高潮——&lt;strong&gt;高并发&lt;/strong&gt;来了。&lt;/p&gt;
+&lt;p&gt;单台应用服务器就算配置拉满也有上限，比如一秒只能扛 100 个请求，来了 500 个请求咋办？&lt;/p&gt;
+&lt;p&gt;500 ÷ 100 = 5，那就来&lt;strong&gt;五台服务器&lt;/strong&gt;，部署一模一样的代码。你给它取名叫&lt;strong&gt;集群&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;还有个问题：流量怎么分配到每台服务器呢？于是你发明了一个中间层——它能将请求均匀分配到每台应用服务器。你给它取名叫&lt;strong&gt;负载均衡&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;扛不住就加机器 → &lt;strong&gt;水平扩展&lt;/strong&gt;。
+一台挂了自动屏蔽流量，其他顶上 → &lt;strong&gt;高可用&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9904429e3cf9788116b93e186e28f888.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-数据库成为新瓶颈多级缓存&#34;&gt;4. 数据库成为新瓶颈：多级缓存
+&lt;/h2&gt;&lt;p&gt;应用扛住了，新问题紧随而来——大量请求穿透到数据库，数据库成了新瓶颈。&lt;/p&gt;
+&lt;p&gt;你开始研究应用查询数据库的原理：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;应用发查询请求给数据库&lt;/li&gt;
+&lt;li&gt;数据库先去&lt;strong&gt;内存缓冲区&lt;/strong&gt;找数据&lt;/li&gt;
+&lt;li&gt;找到 → 直接返回；没找到 → 去磁盘折腾一圈，读出来放进内存缓冲区，再返回给应用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;关键发现：&lt;strong&gt;从内存缓冲区读，比从磁盘读快 1000 倍以上。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;那能不能都去内存缓冲区读？不行，太小了。怎么办？直接把内存缓冲区单独出来、放大！经常被访问的&lt;strong&gt;热点数据&lt;/strong&gt;全放上去，快速查，不用去数据库。你给它取名叫&lt;strong&gt;缓存&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;你设计了三层缓存：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;层级&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;浏览器缓存&lt;/td&gt;
+          &lt;td&gt;用户本地，最快&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;应用服务器本地缓存&lt;/td&gt;
+          &lt;td&gt;服务实例内存，极快&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分布式缓存（如 Redis）&lt;/td&gt;
+          &lt;td&gt;集中式大容量内存，快&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;用户每次请求：浏览器缓存 → 本地缓存 → 分布式缓存 → 数据库。&lt;/p&gt;
+&lt;p&gt;绝大多数请求在缓存层就被拦住，根本到不了数据库。查询速度从&lt;strong&gt;毫秒级 → 微秒级&lt;/strong&gt;，数据库压力暴跌。就算数据库挂了，缓存还能顶一阵。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/62412070ecbcc2629a8a26794f67b4f7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-读写分离给数据库分工&#34;&gt;5. 读写分离：给数据库分工
+&lt;/h2&gt;&lt;p&gt;缓存解决了&lt;strong&gt;热点读&lt;/strong&gt;，但写请求和非热点读还是要打到数据库。&lt;/p&gt;
+&lt;p&gt;数据库有个特点：写本身并不慢，但&lt;strong&gt;多写会锁行锁表&lt;/strong&gt;，并发一高就排队。能不能给数据库分工？&lt;/p&gt;
+&lt;p&gt;于是你让&lt;strong&gt;主库只负责写&lt;/strong&gt;，&lt;strong&gt;从库只负责读&lt;/strong&gt;，通过数据同步保证主从数据一致。你给它取名叫&lt;strong&gt;读写分离&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;现实中互联网系统&lt;strong&gt;读多写少&lt;/strong&gt;，可以一主多从，读压力一下就分摊了，读写互相阻塞的问题也彻底解决。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/dc14f70c0e24733647b4832f51d387ea.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-海量存储分库分表&#34;&gt;6. 海量存储：分库分表
+&lt;/h2&gt;&lt;p&gt;系统跑了几年，数据量越来越大。订单表、日志表越来越臃肿，&lt;strong&gt;单库单表撑不住了&lt;/strong&gt;。必须对数据库进行拆分。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;垂直分库&lt;/strong&gt;：按业务拆分——用户库、商品库、订单库，互不干扰。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;水平分表&lt;/strong&gt;：一张大表拆成多张小表，比如按 UID 哈希分成多张表，分散压力。配合数据库中间件对应用透明，不用改大量代码。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/e3b4d69ce691009f3b211f9599e3a73f.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;7-cdn--反向代理快且安全&#34;&gt;7. CDN + 反向代理：快且安全
+&lt;/h2&gt;&lt;p&gt;你的系统用户遍布全国，有人访问快如闪电，有人慢如蜗牛。而且应用服务器直接暴露在公网，太危险。&lt;/p&gt;
+&lt;p&gt;于是你发明了两个新玩意儿：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CDN（内容分发网络）&lt;/strong&gt;：在全国铺了很多节点，静态资源提前放到离用户最近的节点，就像你家门口的快递站。用户通过域名解析获取最近的节点 IP 取数据，速度直接起飞。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;反向代理&lt;/strong&gt;：放在用户和应用之间，公网请求先到它，再转发给内网应用服务器。隐藏真实服务器，防止攻击，还能做流量清洗、权限校验，一举多得。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/d03a28d70fa16bec0e280e06b3adeb43.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;8-复杂查询搜索引擎--nosql&#34;&gt;8. 复杂查询：搜索引擎 + NoSQL
+&lt;/h2&gt;&lt;p&gt;互联网玩法越来越花，场景越来越复杂。传统数据库遇到模糊查询、全文搜索、多维统计就力不从心了。用 &lt;code&gt;LIKE&lt;/code&gt; 搜商品，慢到死。&lt;/p&gt;
+&lt;p&gt;于是你发明了两个新玩意儿：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;搜索引擎（如 Elasticsearch）&lt;/strong&gt;：利用&lt;strong&gt;倒排索引&lt;/strong&gt;让搜索秒级响应。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NoSQL 数据库（如 MongoDB、HBase）&lt;/strong&gt;：专门存非结构化、半结构化数据，高并发易扩展。&lt;/p&gt;
+&lt;p&gt;系统从此不再是简单增删改查，而是能支持&lt;strong&gt;复杂检索与分析&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9553ba3d899101463688c3de653abbb1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;9-分布式架构拆&#34;&gt;9. 分布式架构：拆！
+&lt;/h2&gt;&lt;p&gt;生意越做越大，你的网站从小电商长成了集用户、商品、订单于一体的大平台。&lt;/p&gt;
+&lt;p&gt;所有功能代码全挤在一个应用里，长成了大家常说的&lt;strong&gt;巨石应用&lt;/strong&gt;。麻烦也跟着来了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;改一行用户代码要全量发布&lt;/li&gt;
+&lt;li&gt;多个开发同时改代码，天天冲突&lt;/li&gt;
+&lt;li&gt;想给订单加机器，只能整个应用一起扩容，资源白白浪费&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;怎么办？&lt;strong&gt;拆！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按业务边界，把这个大应用一刀一刀切开：用户、商品、订单各成一个独立小系统。每个系统&lt;strong&gt;单独部署、单独发布、单独扩容&lt;/strong&gt;，谁也不影响谁。你给它取名叫&lt;strong&gt;分布式架构&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;但拆完新问题又来了——系统分开了，怎么互相调用？于是你发明了&lt;strong&gt;RPC（远程过程调用）&lt;/strong&gt;，让跨机器的服务调用像调本地代码一样简单。&lt;/p&gt;
+&lt;p&gt;服务越来越多，调用链路越来越复杂，快速找到目标成了难题。于是你又发明了一个总管——&lt;strong&gt;服务注册与发现中心&lt;/strong&gt;：新服务来注册，谁要调用谁来这找。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2bd4c9168cb12c9cea585ae357527b1c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;10-消息队列解耦与削峰&#34;&gt;10. 消息队列：解耦与削峰
+&lt;/h2&gt;&lt;p&gt;服务之间相互调用、相互等待——一个服务卡住，整条链路都跟着堵死。流量一高，&lt;strong&gt;雪崩&lt;/strong&gt;了。&lt;/p&gt;
+&lt;p&gt;怎么办？能不能不让服务之间相互等待？&lt;/p&gt;
+&lt;p&gt;于是你发明了一个超大容量的智能收件箱：服务之间不用死死等着对方立刻回复，把消息扔进去就可以继续干自己的事。谁要谁自己来拿。你给它取名叫&lt;strong&gt;消息队列（MQ）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这下服务之间彻底解耦、互不拖累。某个服务临时挂了，消息不会丢，等恢复了再慢慢处理。遇到流量突增，先把请求存起来按系统能力慢慢消化——&lt;strong&gt;削峰填谷&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c1f8f2e306753c78c33868a76a61fe00.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-微服务架构拆得更细&#34;&gt;11. 微服务架构：拆得更细
+&lt;/h2&gt;&lt;p&gt;分布式架构用了几年，你又发现新问题——拆是拆了，但&lt;strong&gt;拆得还不够细&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;就拿用户系统来说，里面装着登录、个人信息、会员、地址……还是一大坨。不同团队想用的技术不一样，有的想用 Java，有的想用 Go，混在一个系统里根本没法搞。会员模块要大促扩容，只能把整个用户系统一起加机器，钱和资源全浪费。&lt;/p&gt;
+&lt;p&gt;怎么办？&lt;strong&gt;继续拆！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按照&lt;strong&gt;一个服务只干一件事&lt;/strong&gt;的原则，拆得更细更小：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;登录做成单独服务&lt;/li&gt;
+&lt;li&gt;会员做成单独服务&lt;/li&gt;
+&lt;li&gt;支付做成单独服务&lt;/li&gt;
+&lt;li&gt;……&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个小服务独立开发、独立发布、独立扩容，想用什么技术栈就用什么。你给这套更极致的架构取名叫&lt;strong&gt;微服务架构&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;大促一来，订单、支付这几个最热的服务直接加十倍机器抗流量，其他不忙的服务完全不用动，资源一点不浪费。哪个服务出 bug 就只影响这一个小功能，绝不会拖垮整个网站。几十个团队，各管各的服务，互不打扰，开发效率直接起飞。&lt;/p&gt;
+&lt;p&gt;当然有利就有挑战——调用关系像蜘蛛网，加上&lt;strong&gt;全链路追踪&lt;/strong&gt;一眼定位慢服务；怕连锁崩盘，加上&lt;strong&gt;限流、熔断、降级&lt;/strong&gt;自动保护；服务太多不好管，做&lt;strong&gt;服务治理&lt;/strong&gt;：统一监控、日志、权限全安排得明明白白。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/5951eb71303e83cdf7ed8e359bc4c779.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-容器化一次打包到处运行&#34;&gt;12. 容器化：一次打包，到处运行
+&lt;/h2&gt;&lt;p&gt;微服务是真好用，可运维同学直接哭了。&lt;/p&gt;
+&lt;p&gt;服务越拆越细，从原来几个应用一下子变成几百个微服务。每个服务上线都要配环境、装依赖、调参数——稍微不一样就出现&amp;quot;我电脑能跑，服务器跑不起来&amp;quot;的玄学 bug。大促前要紧急扩容几百台机器，一台台配环境根本赶不上；大促结束要缩容，还得一台台清理，效率低到离谱。&lt;/p&gt;
+&lt;p&gt;怎么办？&lt;/p&gt;
+&lt;p&gt;能不能把服务和他需要的运行环境一起，&lt;strong&gt;打包成一个密封盒子&lt;/strong&gt;，放到哪台服务器都能直接跑？&lt;/p&gt;
+&lt;p&gt;于是你又发明了一个新玩意儿——不用再配环境。把每个微服务的代码、依赖、配置、环境全部打包成一个&lt;strong&gt;镜像&lt;/strong&gt;，一次打包，到处运行，彻底解决了环境不一致的世纪难题。你给它取名叫 &lt;strong&gt;Docker 容器&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c11875b5c575e737e363a15111b223cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;13-容器编排kubernetes-大管家&#34;&gt;13. 容器编排：Kubernetes 大管家
+&lt;/h2&gt;&lt;p&gt;可问题又来了——几百上千个容器，谁能帮你管？&lt;/p&gt;
+&lt;p&gt;于是你又请来一个全能大管家。它能安排容器资源、调度容器位置、自动伸缩。你给它取名叫 &lt;strong&gt;Kubernetes（K8s）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;流量高了 → 自动加容器&lt;/li&gt;
+&lt;li&gt;流量低了 → 自动缩容器&lt;/li&gt;
+&lt;li&gt;容器挂了 → 自动重启&lt;/li&gt;
+&lt;li&gt;全程不用你管&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/6adc9fa5ce93a121718c07160b86079b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;14-云原生新时代的架构&#34;&gt;14. 云原生：新时代的架构
+&lt;/h2&gt;&lt;p&gt;还没完——就算有了 K8s，还是得自己买服务器、维护机房。为了大促备一堆机器，平日全闲着，太浪费钱。&lt;/p&gt;
+&lt;p&gt;于是你直接把系统搬到了&lt;strong&gt;云平台&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;云平台就像一个无限大的资源池，要多少 CPU、内存、带宽，随时申请、随时用、用完释放，&lt;strong&gt;按需付费&lt;/strong&gt;。底层机房完全透明，你只需要关注业务。&lt;/p&gt;
+&lt;p&gt;你的架构彻底进入了新的时代——你给它取名叫&lt;strong&gt;云原生（Cloud Native）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2f74242037162690b0d22e8dfe5fd20b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;15-故事总结架构演进全景图&#34;&gt;15. 故事总结：架构演进全景图
+&lt;/h2&gt;&lt;p&gt;从最开始一台小服务器到如今弹性自动化、高可用、能无限扩展的现代化架构——不管业务怎么涨、流量怎么爆，它都能稳稳扛住。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;阶段&lt;/th&gt;
+          &lt;th&gt;解决的问题&lt;/th&gt;
+          &lt;th&gt;核心方案&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;单机架构&lt;/td&gt;
+          &lt;td&gt;从零搭建&lt;/td&gt;
+          &lt;td&gt;一台服务器全包&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;应用与数据库分离&lt;/td&gt;
+          &lt;td&gt;资源争抢&lt;/td&gt;
+          &lt;td&gt;拆成两台，各司其职&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;集群 + 负载均衡&lt;/td&gt;
+          &lt;td&gt;高并发&lt;/td&gt;
+          &lt;td&gt;多台服务器 + 流量分发&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;多级缓存&lt;/td&gt;
+          &lt;td&gt;查询性能、数据库压力&lt;/td&gt;
+          &lt;td&gt;浏览器 → 本地 → 分布式缓存&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;读写分离&lt;/td&gt;
+          &lt;td&gt;数据库读写阻塞&lt;/td&gt;
+          &lt;td&gt;主库写、从库读&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分库分表&lt;/td&gt;
+          &lt;td&gt;海量存储&lt;/td&gt;
+          &lt;td&gt;垂直分库 + 水平分表&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CDN + 反向代理&lt;/td&gt;
+          &lt;td&gt;访问速度、系统安全&lt;/td&gt;
+          &lt;td&gt;就近访问 + 隐藏真实服务器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;搜索引擎 + NoSQL&lt;/td&gt;
+          &lt;td&gt;复杂查询&lt;/td&gt;
+          &lt;td&gt;倒排索引 + 非结构化存储&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分布式架构&lt;/td&gt;
+          &lt;td&gt;业务膨胀、代码维护&lt;/td&gt;
+          &lt;td&gt;按业务拆分，RPC 通信&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;消息队列&lt;/td&gt;
+          &lt;td&gt;服务耦合、流量冲击&lt;/td&gt;
+          &lt;td&gt;异步解耦 + 削峰填谷&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;微服务架构&lt;/td&gt;
+          &lt;td&gt;团队协作、极致弹性&lt;/td&gt;
+          &lt;td&gt;一个服务只干一件事&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;容器化（Docker）&lt;/td&gt;
+          &lt;td&gt;环境不一致&lt;/td&gt;
+          &lt;td&gt;一次打包，到处运行&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;容器编排（K8s）&lt;/td&gt;
+          &lt;td&gt;运维成本&lt;/td&gt;
+          &lt;td&gt;自动化调度 + 弹性伸缩&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;云原生&lt;/td&gt;
+          &lt;td&gt;资源利用率&lt;/td&gt;
+          &lt;td&gt;按需付费，底层透明&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/b54ac34e408d2d78d7b77db0d3445640.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;架构师的三句核心思维&#34;&gt;架构师的三句核心思维
+&lt;/h2&gt;&lt;p&gt;最后，送你三句话。听懂了，你也能设计好架构。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一、没有最好的架构，只有最适合业务的架构。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;初创公司别一上来就微服务。单机够用就好——业务推着架构走，不要架构拖着业务跑。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;二、架构演进的本质：用空间换时间，用复杂度换性能。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;加机器、加组件、加分层——这一切都是为了扛住更大的流量、更高的并发。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;三、永远围绕五大目标：高性能、高可用、可伸缩、可扩展、够安全。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这五个目标是一切架构决策的北极星。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;从一台小服务器到千万级并发的云原生架构，每一步都有迹可循，每一步都在解决真实问题。这就是互联网架构。&lt;/em&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

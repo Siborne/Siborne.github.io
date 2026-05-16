@@ -7,13 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-CN</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Fri, 08 May 2026 01:07:24 +0800</lastBuildDate><atom:link href="https://Siborne.top/tags/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 16 May 2026 20:07:25 +0800</lastBuildDate><atom:link href="https://Siborne.top/tags/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>技术踩坑记录：Git 大仓库克隆网络中断与 SSH 破局方案</title>
         <link>https://Siborne.top/p/git-ssh-large-repo/</link>
         <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/git-ssh-large-repo/</guid>
-        <description>&lt;img src="https://Siborne.top/p/git-ssh-large-repo/bannerImage.png" alt="Featured image of post 技术踩坑记录：Git 大仓库克隆网络中断与 SSH 破局方案" /&gt;&lt;h2 id=&#34;1-问题背景&#34;&gt;1. 问题背景
+        <description>&lt;img src="https://img.siborne.top/2026/05/bad96621d05306c2405fa84ab5fa9341.png" alt="Featured image of post 技术踩坑记录：Git 大仓库克隆网络中断与 SSH 破局方案" /&gt;&lt;h2 id=&#34;1-问题背景&#34;&gt;1. 问题背景
 &lt;/h2&gt;&lt;p&gt;在尝试克隆大型开源项目 &lt;code&gt;taichi-project/anyagent&lt;/code&gt; 时，终端频繁出现由于网络层断开导致克隆失败的报错。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;初始报错迹象&lt;/strong&gt;：执行基础 &lt;code&gt;git clone&lt;/code&gt; 时，数据拉取到一半突然中断：&lt;/p&gt;
 &lt;blockquote&gt;

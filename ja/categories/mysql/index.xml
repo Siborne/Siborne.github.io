@@ -7,13 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>ja</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/ja/categories/mysql/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 16 May 2026 20:07:25 +0800</lastBuildDate><atom:link href="https://Siborne.top/ja/categories/mysql/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Java &#43; MySQL &#43; Redis ユーザー主キー生成の6つの方法</title>
         <link>https://Siborne.top/ja/p/java--mysql--redis-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E4%B8%BB%E3%82%AD%E3%83%BC%E7%94%9F%E6%88%90%E3%81%AE6%E3%81%A4%E3%81%AE%E6%96%B9%E6%B3%95/</link>
         <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/ja/p/java--mysql--redis-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E4%B8%BB%E3%82%AD%E3%83%BC%E7%94%9F%E6%88%90%E3%81%AE6%E3%81%A4%E3%81%AE%E6%96%B9%E6%B3%95/</guid>
-        <description>&lt;img src="https://Siborne.top/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.png" alt="Featured image of post Java &#43; MySQL &#43; Redis ユーザー主キー生成の6つの方法" /&gt;&lt;h1 id=&#34;java--mysql-ユーザー主キー生成の6つの方法auto_increment-から-redis-まで完全解説&#34;&gt;Java + MySQL ユーザー主キー生成の6つの方法：AUTO_INCREMENT から Redis まで完全解説！
+        <description>&lt;img src="https://img.siborne.top/2026/05/54074f014a63b85f280277238cbd8e80.png" alt="Featured image of post Java &#43; MySQL &#43; Redis ユーザー主キー生成の6つの方法" /&gt;&lt;h1 id=&#34;java--mysql-ユーザー主キー生成の6つの方法auto_increment-から-redis-まで完全解説&#34;&gt;Java + MySQL ユーザー主キー生成の6つの方法：AUTO_INCREMENT から Redis まで完全解説！
 &lt;/h1&gt;&lt;p&gt;Java アプリケーションと MySQL データベースを組み合わせた開発において、ユーザーや注文などのエンティティに対して&lt;strong&gt;グローバルに一意で、高性能、重複しない主キー ID&lt;/strong&gt; を生成することは避けて通れない問題です。&lt;br&gt;
 最も馴染み深い &lt;code&gt;AUTO_INCREMENT&lt;/code&gt; や &lt;code&gt;UUID&lt;/code&gt; 以外にも、より洗練された方法があります——例えば &lt;strong&gt;Redis&lt;/strong&gt; や &lt;strong&gt;Snowflake（スノーフレーク）アルゴリズム&lt;/strong&gt; を使う方法です。&lt;/p&gt;
 &lt;p&gt;本記事では、&lt;strong&gt;6つの主要な ID 生成方法&lt;/strong&gt;を分かりやすく整理します：&lt;/p&gt;

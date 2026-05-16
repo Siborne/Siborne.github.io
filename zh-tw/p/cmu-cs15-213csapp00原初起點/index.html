@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-tw" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="夢開始的地方——介紹卡內基美隆大學經典課程 CS15-213（《深入理解電腦系統》/CS:APP），並記錄實驗環境的搭建過程。">
-<title>CMU CS15-213（CS:APP）00：原初起點</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="夢開始的地方——介紹卡內基梅隆大學經典課程 CS15-213（《深入理解電腦系統》/CS:APP），並記錄實驗環境的搭建過程。">
+<title>CMU CS15-213（CSAPP）00：原初起點</title>
 
 <link rel='canonical' href='https://Siborne.top/zh-tw/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E9%BB%9E/'>
 
-<link rel="stylesheet" href="/scss/style.min.f169add374573a6d5393fbcd112ed0f3071161116b122a3ecff4c5a0e1eb28aa.css"><meta property='og:title' content="CMU CS15-213（CS:APP）00：原初起點">
-<meta property='og:description' content="夢開始的地方——介紹卡內基美隆大學經典課程 CS15-213（《深入理解電腦系統》/CS:APP），並記錄實驗環境的搭建過程。">
+<link rel="stylesheet" href="/scss/style.min.f169add374573a6d5393fbcd112ed0f3071161116b122a3ecff4c5a0e1eb28aa.css"><meta property='og:title' content="CMU CS15-213（CSAPP）00：原初起點">
+<meta property='og:description' content="夢開始的地方——介紹卡內基梅隆大學經典課程 CS15-213（《深入理解電腦系統》/CS:APP），並記錄實驗環境的搭建過程。">
 <meta property='og:url' content='https://Siborne.top/zh-tw/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E9%BB%9E/'>
 <meta property='og:site_name' content='Siborne'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CMU CS15213:CSAPP' /><meta property='article:published_time' content='2026-01-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-08T23:07:31&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/bannerImage.png' />
-<meta name="twitter:title" content="CMU CS15-213（CS:APP）00：原初起點">
-<meta name="twitter:description" content="夢開始的地方——介紹卡內基美隆大學經典課程 CS15-213（《深入理解電腦系統》/CS:APP），並記錄實驗環境的搭建過程。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/bannerImage.png' /><div class="loading">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CMU CS15213:CSAPP' /><meta property='article:published_time' content='2026-01-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-16T20:07:25&#43;08:00'/><meta property='og:image' content='https://img.siborne.top/2026/05/b8cb91a9ad2a7fbfe987c5ec1b37f5ea.png' />
+<meta name="twitter:title" content="CMU CS15-213（CSAPP）00：原初起點">
+<meta name="twitter:description" content="夢開始的地方——介紹卡內基梅隆大學經典課程 CS15-213（《深入理解電腦系統》/CS:APP），並記錄實驗環境的搭建過程。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://img.siborne.top/2026/05/b8cb91a9ad2a7fbfe987c5ec1b37f5ea.png' /><div class="loading">
   
   
   <div class="loader">
@@ -426,7 +426,7 @@
             <nav id="TableOfContents">
   <ol>
     <li><a href="#課程簡介">課程簡介</a></li>
-    <li><a href="#實驗環境搭建教學">實驗環境搭建教學</a>
+    <li><a href="#實驗環境搭建教程">實驗環境搭建教程</a>
       <ol>
         <li><a href="#第一步工具準備">第一步：工具準備</a>
           <ol>
@@ -434,9 +434,9 @@
             <li><a href="#其他版本為什麼不推薦">其他版本為什麼不推薦？</a></li>
           </ol>
         </li>
-        <li><a href="#第二步建立虛擬機器">第二步：建立虛擬機器</a></li>
+        <li><a href="#第二步建立虛擬機">第二步：建立虛擬機</a></li>
         <li><a href="#第三步安裝-ubuntu">第三步：安裝 Ubuntu</a></li>
-        <li><a href="#第四步配置-csapp-實驗開發環境">第四步：配置 CSAPP 實驗開發環境</a>
+        <li><a href="#第四步設定-csapp-實驗開發環境">第四步：設定 CSAPP 實驗開發環境</a>
           <ol>
             <li><a href="#1-更新系統軟體源">1. 更新系統軟體源</a></li>
             <li><a href="#2-安裝編譯與除錯工具">2. 安裝編譯與除錯工具</a></li>
@@ -445,7 +445,7 @@
         <li><a href="#第五步啟用-ssh-服務便於遠端互動">第五步：啟用 SSH 服務（便於遠端互動）</a>
           <ol>
             <li><a href="#1-安裝-openssh-服務端">1. 安裝 OpenSSH 服務端</a></li>
-            <li><a href="#2-獲取虛擬機器-ip-地址">2. 獲取虛擬機器 IP 地址</a></li>
+            <li><a href="#2-取得虛擬機-ip-位址">2. 取得虛擬機 IP 位址</a></li>
           </ol>
         </li>
       </ol>
@@ -465,12 +465,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/zh-tw/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E9%BB%9E/">
-                <img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/bannerImage_hu_3d574debcf9ebee4.png"
-                        srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/bannerImage_hu_3d574debcf9ebee4.png 800w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/bannerImage_hu_f2e7624d7af2e82d.png 1600w"
-                        width="800" 
-                        height="371" 
-                        loading="lazy"
-                        alt="Featured image of post CMU CS15-213（CS:APP）00：原初起點" />
+                
+                    <img src="https://img.siborne.top/2026/05/b8cb91a9ad2a7fbfe987c5ec1b37f5ea.png" loading="lazy" alt="Featured image of post CMU CS15-213（CSAPP）00：原初起點" />
                 
             </a>
         </div>
@@ -479,7 +475,7 @@
     <div class="article-details">
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/zh-tw/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E9%BB%9E/">CMU CS15-213（CS:APP）00：原初起點</a>
+            <a href="/zh-tw/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E9%BB%9E/">CMU CS15-213（CSAPP）00：原初起點</a>
         </h2>
     </div>
 
@@ -515,13 +511,13 @@
 
 
                 <time>
-                    May 08, 2026 23:07 &#43;0800
+                    May 16, 2026 20:07 &#43;0800
                 </time>
             </div>
         <div class="article-word-count">
             <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
             <time class="article-time--reading">
-                1921字
+                1948字
             </time>
         </div>
 
@@ -539,7 +535,7 @@
 
     
     <h3 class="article-subtitle">
-        夢開始的地方——介紹卡內基美隆大學經典課程 CS15-213（《深入理解電腦系統》/CS:APP），並記錄實驗環境的搭建過程。
+        夢開始的地方——介紹卡內基梅隆大學經典課程 CS15-213（《深入理解電腦系統》/CS:APP），並記錄實驗環境的搭建過程。
     </h3>
     
 
@@ -570,9 +566,9 @@
                 
                     <a href="https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/" class="link">简体中文</a>
                 
-                    <a href="https://Siborne.top/en/p/cmu-15-213-csapp-00-the-beginning/" class="link">English</a>
+                    <a href="https://Siborne.top/en/p/cmu-cs15-213-csapp-00-the-origin/" class="link">English</a>
                 
-                    <a href="https://Siborne.top/ja/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E3%81%AE%E8%B5%B7%E7%82%B9/" class="link">日本語</a>
+                    <a href="https://Siborne.top/ja/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E3%81%AE%E5%87%BA%E7%99%BA%E7%82%B9/" class="link">日本語</a>
                 
             </div>
         </footer>
@@ -584,145 +580,121 @@
     <section class="article-content">
     
     
-    <h1 id="cmu-15-213-csapp-課程簡介與實驗環境搭建指南">CMU 15-213: CSAPP 課程簡介與實驗環境搭建指南
+    <h1 id="cmu-15-213csapp-課程簡介與實驗環境搭建指南">CMU 15-213：CSAPP 課程簡介與實驗環境搭建指南
 </h1><h2 id="課程簡介">課程簡介
-</h2><p>CMU 的 15-213（CSAPP）是電腦科學領域公認的「鎮系神課」，以其內容廣博、專案難度極高而聞名。課程全面覆蓋組合語言、電腦體系結構、作業系統、程式的編譯與連結、併發程式設計以及網路基礎等核心主題，是一門兼具深度與廣度的系統級入門課程。對於自學者而言，完成這門課程需要極強的毅力和紮實的程式設計基礎。</p>
+</h2><p>CMU 的 15-213（CSAPP）是電腦科學領域公認的「鎮系神課」，以其內容廣博、專案難度極高而聞名。課程全面覆蓋組語、電腦架構、作業系統、程式的編譯與連結、並行程式設計以及網路基礎等核心主題，是一門兼具深度與廣度的系統級入門課程。對於自學者而言，完成這門課程需要極強的毅力和紮實的程式設計基礎。</p>
 <p>該課程配套教材《Computer Systems: A Programmer&rsquo;s Perspective》（簡稱 CSAPP）由 CMU 電腦系前系主任 Randal E. Bryant 教授與 David R. O&rsquo;Hallaron 合著，被全球眾多高校採用。這本書也是許多學習者第一本逐頁精讀的電腦系統教材——雖艱深，但收穫巨大。</p>
 <p>北京大學已引進該課程並開設《電腦系統導論》（Introduction to Computer Systems），但 CSAPP 的全部課程資料、實驗程式碼和講義均可在其<a class="link" href="http://csapp.cs.cmu.edu/"  target="_blank" rel="noopener"
     >官方網站</a>免費獲取。</p>
-<p>由於課程影響力極大，網上流傳著大量實驗（Project）的參考答案。然而，若你希望真正提升系統程式設計能力，強烈建議獨立完成所有實驗，避免直接參考第三方程式碼。堅持學完並動手實踐，你對電腦系統的理解將實現質的飛躍。</p>
+<p>由於課程影響力極大，網路上流傳著大量實驗（Project）的參考答案。然而，若你希望真正提升系統程式設計能力，強烈建議獨立完成所有實驗，避免直接參考第三方程式碼。堅持學完並動手實踐，你對電腦系統的理解將實現質的飛躍。</p>
 <blockquote>
 <p>摘自：<a class="link" href="https://csdiy.wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/CSAPP/"  target="_blank" rel="noopener"
-    >CS 自學指南 - CMU 15-213: CSAPP</a></p>
+    >CS 自學指南 - CMU 15-213：CSAPP</a></p>
 </blockquote>
 <hr>
-<h2 id="實驗環境搭建教學">實驗環境搭建教學
-</h2><p>為順利開展 CSAPP 的各項實驗（如 Data Lab、Bomb Lab、Malloc Lab 等），推薦在虛擬機器中搭建一個乾淨、可控的 Linux 開發環境。以下是詳細步驟：</p>
+<h2 id="實驗環境搭建教程">實驗環境搭建教程
+</h2><p>為順利開展 CSAPP 的各項實驗（如 Data Lab、Bomb Lab、Malloc Lab 等），推薦在虛擬機中搭建一個乾淨、可控的 Linux 開發環境。以下是詳細步驟：</p>
 <h3 id="第一步工具準備">第一步：工具準備
 </h3><p>在開始之前，請下載以下兩個檔案：</p>
 <ul>
 <li><strong>VMware Workstation Pro（個人免費版）</strong>
 前往 Broadcom 官網下載適用於你作業系統的版本。</li>
-<li><strong>Ubuntu 24.04 LTS 桌面版 ISO 映像檔</strong>
+<li><strong>Ubuntu 24.04 LTS 桌面版 ISO 映像</strong>
 檔名通常為 <code>ubuntu-24.04.3-desktop-amd64.iso</code>。
-推薦從 <a class="link" href="https://mirrors.ustc.edu.cn/"  target="_blank" rel="noopener"
-    >中國科學技術大學開源軟體映象站</a> 或 <a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/"  target="_blank" rel="noopener"
-    >清華大學開源映象站</a> 下載，速度更快。</li>
+推薦從<a class="link" href="https://mirrors.ustc.edu.cn/"  target="_blank" rel="noopener"
+    >中國科學技術大學開源軟體映像站</a>或<a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/"  target="_blank" rel="noopener"
+    >清華大學開源映像站</a>下載，速度更快。</li>
 </ul>
 <h4 id="為什麼選擇-ubuntu-桌面版">為什麼選擇 Ubuntu 桌面版？
 </h4><ul>
-<li><strong>自帶圖形介面（GUI）</strong>：對剛從 Windows 或 macOS 遷移過來的學習者更友好，可同時使用終端、瀏覽器、檔案管理器和文字編輯器，便於查閱文件、觀看教學影片或搜尋錯誤資訊。</li>
-<li><strong>社群支援完善</strong>：絕大多數 CSAPP 實驗教學（包括 Bilibili 上「九曲闌干」等知名 UP 主的影片）均基於帶 GUI 的 Ubuntu 演示。</li>
-<li><strong>支援「最小安裝」</strong>：雖然完整映像檔約 6GB，但在安裝過程中可勾選 <strong>&ldquo;Minimal installation&rdquo;</strong>，僅保留瀏覽器和基礎終端，兼顧輕量與便利。</li>
+<li><strong>自帶圖形介面（GUI）</strong>：對剛從 Windows 或 macOS 遷移過來的學習者更友好，可同時使用終端機、瀏覽器、檔案管理員和文字編輯器，便於查閱文件、觀看教學影片或搜尋錯誤資訊。</li>
+<li><strong>社群支援完善</strong>：絕大多數 CSAPP 實驗教程（包括 Bilibili 上「九曲闌干」等知名 UP 主的影片）均基於帶 GUI 的 Ubuntu 示範。</li>
+<li><strong>支援「最小安裝」</strong>：雖然完整映像約 6GB，但在安裝過程中可勾選 <strong>「Minimal installation」</strong>，僅保留瀏覽器和基礎終端機，兼顧輕量與便利。</li>
 </ul>
 <h4 id="其他版本為什麼不推薦">其他版本為什麼不推薦？
 </h4><ul>
 <li><code>live-server-amd64.iso</code>：伺服器版，無圖形介面，純命令列操作，對新手不友好。</li>
-<li><code>.torrent</code> / <code>.zsync</code>：僅為下載種子或校驗檔案，非系統映像檔。</li>
-<li><code>netboot.tar.gz</code>：用於網路引導安裝，流程複雜，不適合虛擬機器初學者。</li>
+<li><code>.torrent</code> / <code>.zsync</code>：僅為下載種子或校驗檔案，非系統映像。</li>
+<li><code>netboot.tar.gz</code>：用於網路引導安裝，流程複雜，不適合虛擬機初學者。</li>
 <li>WSL 相關檔案：專為 Windows Subsystem for Linux 設計，無法在 VMware 中使用。</li>
 </ul>
 <hr>
-<h3 id="第二步建立虛擬機器">第二步：建立虛擬機器
+<h3 id="第二步建立虛擬機">第二步：建立虛擬機
 </h3><ol>
 <li>
-<p>開啟 VMware，點選 <strong>「建立新的虛擬機器」</strong>，選擇 <strong>「典型（推薦）」</strong>。
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image1.png"
-	width="1484"
-	height="944"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image1_hu_638bef92ee705bfa.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image1_hu_49faef4f187327ee.png 1024w"
+<p>開啟 VMware，點選 <strong>「建立新的虛擬機」</strong>，選擇 <strong>「典型（推薦）」</strong>。
+<img src="https://img.siborne.top/2026/05/ecb963f078236dcbe711b196366c4037.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="建立新的虛擬機器"
+		alt="建立新的虛擬機"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="157"
-		data-flex-basis="377px"
 	
 ></p>
 </li>
 <li>
-<p>在安裝源選項中，選擇 <strong>「稍後安裝作業系統」</strong>（便於手動調整硬體配置，避免簡易安裝帶來的許可權或路徑問題）。
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image2.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image2_hu_d4aac66a1979201b.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image2_hu_66fd21c4096703ca.png 1024w"
+<p>在安裝來源選項中，選擇 <strong>「稍後安裝作業系統」</strong>（便於手動調整硬體配置，避免簡易安裝帶來的權限或路徑問題）。
+<img src="https://img.siborne.top/2026/05/300ab1824c603b454e191496ae0c2793.png"
+	
+	
+	
 	loading="lazy"
 	
 		alt="稍後安裝作業系統"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
-	
 ></p>
 </li>
 <li>
-<p>客戶機作業系統選擇：<strong>Linux → Ubuntu 64 位</strong>。
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image3.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image3_hu_134d5b758ce9009d.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image3_hu_6ba6e295a7612046.png 1024w"
+<p>客戶機作業系統選擇：<strong>Linux → Ubuntu 64 位元</strong>。
+<img src="https://img.siborne.top/2026/05/1cf1adcd362ae5b8b2e504664a228dfe.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="Linux → Ubuntu 64 位"
+		alt="Linux → Ubuntu 64 位元"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
 	
 >
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image4.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image4_hu_137f66ecd0eb2329.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image4_hu_45143fcdfd567f2d.png 1024w"
+<img src="https://img.siborne.top/2026/05/fd31c1e4e0ed62f0196996d8bcdf993e.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="虛擬機器名字設定與存放位置"
+		alt="虛擬機名字設定與存放位置"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
 	
 ></p>
 </li>
 <li>
-<p>配置關鍵硬體引數：</p>
+<p>設定關鍵硬體參數：</p>
 <ul>
 <li><strong>記憶體</strong>：建議分配 <strong>4GB 或以上</strong>（若主機記憶體為 16GB）。
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5_hu_5e0e278794b31f84.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5_hu_5a9c4421302524d4.png 1024w"
+<img src="https://img.siborne.top/2026/05/23b0559fa925aea07bf4aec9f88cb17c.png"
+	
+	
+	
 	loading="lazy"
 	
 		alt="記憶體設定"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
-	
 ></li>
 <li><strong>處理器</strong>：設定為 <strong>2 或 4 核</strong>，並確保啟用 <strong>虛擬化引擎（Intel VT-x / AMD-V）</strong>。</li>
 <li><strong>硬碟</strong>：至少 <strong>40GB</strong>，選擇 <strong>「將虛擬磁碟儲存為單個檔案」</strong> 以提升 I/O 效能。</li>
-<li><strong>網路介面卡</strong>：使用 <strong>NAT 模式</strong>，使虛擬機器可通過主機訪問網際網路。
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6.png"
-	width="1557"
-	height="936"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6_hu_31cd209450ea402d.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6_hu_56b6979f80cfa382.png 1024w"
+<li><strong>網路介面卡</strong>：使用 <strong>NAT 模式</strong>，使虛擬機可透過主機存取網際網路。
+<img src="https://img.siborne.top/2026/05/b94b9f605feadcd636a2cea20d38ad82.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="其他配置"
+		alt="其他設定"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="166"
-		data-flex-basis="399px"
 	
 ></li>
 </ul>
@@ -730,66 +702,50 @@
 </ol>
 <hr>
 <h3 id="第三步安裝-ubuntu">第三步：安裝 Ubuntu
-</h3><p>啟動虛擬機器，開始安裝流程：
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image7.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image7_hu_25c978237cea2d85.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image7_hu_625671f1b49e4e29.png 1024w"
+</h3><p>啟動虛擬機，開始安裝流程：
+<img src="https://img.siborne.top/2026/05/64e18b4651b591c5e57f961b937fb36e.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="啟動虛擬機器"
+		alt="啟動虛擬機"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
 	
 >
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image8.png"
-	width="722"
-	height="442"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image8_hu_3f59b9015dd55036.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image8_hu_44ac25bbad39a1f7.png 1024w"
+<img src="https://img.siborne.top/2026/05/ca5642fd49fa247a84fe060e18b6c9d7.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="安裝虛擬機器"
+		alt="安裝虛擬機"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="163"
-		data-flex-basis="392px"
 	
 ></p>
 <ul>
 <li><strong>語言</strong>：建議選擇 <strong>English</strong>，提前適應 CSAPP 的技術語境。
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image9.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image9_hu_b0b277eb65f60bf0.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image9_hu_b4a5f8549d90eeaa.png 1024w"
+<img src="https://img.siborne.top/2026/05/3e700ef98e7102d83132fdd88afd9ddd.png"
+	
+	
+	
 	loading="lazy"
 	
 		alt="語言選擇"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
-	
 ></li>
-<li><strong>安裝型別</strong>：勾選 <strong>&ldquo;Minimal installation&rdquo;</strong>（最小安裝），避免安裝不必要的辦公套件。</li>
-<li><strong>磁碟分割區</strong>：選擇 <strong>&ldquo;Erase disk and install Ubuntu&rdquo;</strong>（擦除磁碟並安裝）。</li>
-<li><strong>設定使用者</strong>：填寫使用者名稱與密碼，為了方便，可以直接填寫 <strong>&ldquo;123456&rdquo;</strong> 為密碼
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image10.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image10_hu_fbe947d0d2277d10.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image10_hu_350f62f2e798a122.png 1024w"
+<li><strong>安裝類型</strong>：勾選 <strong>「Minimal installation」</strong>（最小安裝），避免安裝不必要的辦公套件。</li>
+<li><strong>磁碟分割</strong>：選擇 <strong>「Erase disk and install Ubuntu」</strong>（擦除磁碟並安裝）。</li>
+<li><strong>設定使用者</strong>：填寫使用者名稱與密碼，為了方便，可以直接填寫 <strong>「123456」</strong> 為密碼
+<img src="https://img.siborne.top/2026/05/28f660f6de69291241fee16033a9a634.png"
+	
+	
+	
 	loading="lazy"
 	
 		alt="設定使用者"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
 	
 ></li>
 </ul>
@@ -797,26 +753,22 @@
 <p>注意：若無特別提及，一直按 Next（下一步）即可。</p>
 </blockquote>
 <p>安裝完成後重啟，即可進入 Ubuntu 桌面環境。
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image11.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image11_hu_97041ce2966fe3c.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image11_hu_2619241ddbe81e19.png 1024w"
+<img src="https://img.siborne.top/2026/05/0f22a4283f92f3ce723a7b44e732d246.png"
+	
+	
+	
 	loading="lazy"
 	
 		alt="安裝完成"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
 	
 ></p>
 <blockquote>
 <p>此過程可能會比較久，請耐心等待。</p>
 </blockquote>
 <hr>
-<h3 id="第四步配置-csapp-實驗開發環境">第四步：配置 CSAPP 實驗開發環境
-</h3><p>即使看到桌面，仍需通過終端安裝必要的開發工具鏈。按下 <code>Ctrl + Alt + T</code> 開啟終端，依次執行以下命令：</p>
+<h3 id="第四步設定-csapp-實驗開發環境">第四步：設定 CSAPP 實驗開發環境
+</h3><p>即使看到桌面，仍需透過終端機安裝必要的開發工具鏈。按下 <code>Ctrl + Alt + T</code> 開啟終端機，依次執行以下命令：</p>
 <h4 id="1-更新系統軟體源">1. 更新系統軟體源
 </h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -836,7 +788,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="第五步啟用-ssh-服務便於遠端互動">第五步：啟用 SSH 服務（便於遠端互動）
-</h3><p>為方便後續通過主機終端（如 Windows Terminal、iTerm2 或 VS Code Remote）連線虛擬機器，建議啟用 SSH 服務。</p>
+</h3><p>為方便後續透過主機終端機（如 Windows Terminal、iTerm2 或 VS Code Remote）連線虛擬機，建議啟用 SSH 服務。</p>
 <h4 id="1-安裝-openssh-服務端">1. 安裝 OpenSSH 服務端
 </h4><p>Ubuntu 桌面版預設僅包含 SSH 客戶端，需手動安裝服務端：</p>
 <div class="highlight"><div class="chroma">
@@ -849,21 +801,17 @@
 </span></span><span class="line"><span class="cl">sudo apt install openssh-server -y
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image12.png"
-	width="1280"
-	height="1504"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image12_hu_f50ade4f58368aff.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image12_hu_256fabfb6f990e36.png 1024w"
+</div><p><img src="https://img.siborne.top/2026/05/266f9891520c15257c7411a1a36fb754.png"
+	
+	
+	
 	loading="lazy"
 	
 		alt="安裝SSH服務端"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="85"
-		data-flex-basis="204px"
-	
 ></p>
-<p>驗證 SSH 服務是否正常執行：</p>
+<p>驗證 SSH 服務是否正常運行：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -872,23 +820,19 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl status ssh
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>若輸出中包含綠色的 active (running)，說明服務已成功啟動。
-<img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image13.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image13_hu_ea3db04896ff51e2.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image13_hu_b18fcac60f9d760e.png 1024w"
+</div><p>若輸出中包含綠色的 active (running)，表示服務已成功啟動。
+<img src="https://img.siborne.top/2026/05/29e6fb12c1f0b945d1739c78584bedbb.png"
+	
+	
+	
 	loading="lazy"
 	
 		alt="驗證SSH"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
-	
 ></p>
-<h4 id="2-獲取虛擬機器-ip-地址">2. 獲取虛擬機器 IP 地址
-</h4><p>在終端執行以下命令檢視網路介面資訊：</p>
+<h4 id="2-取得虛擬機-ip-位址">2. 取得虛擬機 IP 位址
+</h4><p>在終端機執行以下命令查看網路介面資訊：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -897,21 +841,17 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip addr
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image14.png"
-	width="1280"
-	height="800"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image14_hu_fe593c80f8593c47.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image14_hu_b54dc67899a2f950.png 1024w"
+</div><p><img src="https://img.siborne.top/2026/05/cec87a319560ec41a7a3f8832ccf7ffa.png"
+	
+	
+	
 	loading="lazy"
 	
-		alt="檢視IP地址"
+		alt="查看IP位址"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
 	
 ></p>
-<p>找到名為 ens33（或 eth0）的網路介面，其對應的 inet 欄位（如 192.168.x.x）即為虛擬機器的區域網 IP 地址。後續可透過該地址從主機 SSH 登入虛擬機器，例如：</p>
+<p>找到名為 ens33（或 eth0）的網路介面，其對應的 inet 欄位（如 192.168.x.x）即為虛擬機的區域網路 IP 位址。後續可透過該位址從主機 SSH 登入虛擬機，例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -920,22 +860,18 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh username@192.168.x.x
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image15.png"
-	width="1241"
-	height="1070"
-	srcset="/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image15_hu_fb809fbb026c988c.png 480w, /p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image15_hu_3f2527fee494b6f1.png 1024w"
+</div><p><img src="https://img.siborne.top/2026/05/9f32d68dacf91ba639163194c14153c7.png"
+	
+	
+	
 	loading="lazy"
 	
 		alt="SSH遠端連線"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="115"
-		data-flex-basis="278px"
-	
->
-至此，你的 CSAPP 實驗環境已完全就緒。接下來可從 <a class="link" href="http://csapp.cs.cmu.edu/"  target="_blank" rel="noopener"
-    >CSAPP 官網</a> 下載各實驗程式碼框架，正式開啟系統程式設計之旅。</p>
+></p>
+<p>至此，你的CSAPP實驗環境已完全就緒。接下來可從<a class="link" href="http://csapp.cs.cmu.edu/"  target="_blank" rel="noopener"
+    >CSAPP官網</a>下載各實驗程式碼框架，正式開啟系統程式設計之旅。</p>
 
 </section>
 
@@ -951,7 +887,7 @@
 
 
         <span>
-            最後更新 May 08, 2026 23:07 &#43;0800
+            最後更新 May 16, 2026 20:07 &#43;0800
         </span>
     </section></footer>
 
@@ -1008,13 +944,8 @@
         
         
             <div class="article-image">
-                <img src="/p/cmu-cs15-213csapp01datalab/bannerImage.9166c6f90b84173ff2f2a39be9514289_hu_d76bbe65bca66337.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post CMU CS15-213（CS:APP）01：datalab"
-                        
-                        data-hash="md5-kWbG&#43;QuEFz/y8qOb6VFCiQ==">
+                
+                    <img src="https://img.siborne.top/2026/05/9166c6f90b84173ff2f2a39be9514289.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/9166c6f90b84173ff2f2a39be9514289.png"/>
                 
             </div>
         

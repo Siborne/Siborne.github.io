@@ -7,41 +7,37 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/zh-tw/tags/java/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 16 May 2026 20:07:25 +0800</lastBuildDate><atom:link href="https://Siborne.top/zh-tw/tags/java/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了</title>
         <link>https://Siborne.top/zh-tw/p/%E5%BE%9E-mvc-%E5%88%B0-ddd%E4%B8%8D%E5%83%85%E5%83%85%E6%98%AF%E5%8C%85%E5%90%8D%E8%AE%8A%E4%BA%86%E8%80%8C%E6%98%AF%E7%89%A9%E4%BB%B6%E6%B4%BB%E4%BA%86/</link>
         <pubDate>Sat, 14 Mar 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/zh-tw/p/%E5%BE%9E-mvc-%E5%88%B0-ddd%E4%B8%8D%E5%83%85%E5%83%85%E6%98%AF%E5%8C%85%E5%90%8D%E8%AE%8A%E4%BA%86%E8%80%8C%E6%98%AF%E7%89%A9%E4%BB%B6%E6%B4%BB%E4%BA%86/</guid>
-        <description>&lt;img src="https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage.png" alt="Featured image of post 從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了" /&gt;&lt;h1 id=&#34;從-mvc-到-ddd不僅僅是包名變了而是物件活了&#34;&gt;從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了
+        <description>&lt;img src="https://img.siborne.top/2026/05/1557c6be2dda6bb74eb03b4d0eaf23ec.png" alt="Featured image of post 從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了" /&gt;&lt;h1 id=&#34;從-mvc-到-ddd不僅僅是包名變了而是物件活了&#34;&gt;從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了
 &lt;/h1&gt;&lt;h3 id=&#34;引言&#34;&gt;引言
-&lt;/h3&gt;&lt;p&gt;在學習 DDD（領域驅動設計）時，很多人都會被複雜的概念勸退。但迴歸本質，我們可以將 DDD 理解為 &lt;strong&gt;MVC 的「超進化增強版」&lt;/strong&gt;。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;在學習 DDD（領域驅動設計）時，很多人會被複雜的概念勸退。但回歸本質，我們可以將 DDD 理解為 &lt;strong&gt;MVC 的「超進化增強版」&lt;/strong&gt;。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。&lt;/p&gt;
 &lt;h3 id=&#34;一-核心心法從找說明書到問當事人&#34;&gt;一、 核心心法：從「找說明書」到「問當事人」
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178.png&#34;
-	width=&#34;2816&#34;
-	height=&#34;1536&#34;
-	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_c31cbdbbe82ef9d0.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_8e42d5d83cedc346.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/8d63484f9883152b7f4e04691a1f6f5c.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;183&#34;
-		data-flex-basis=&#34;440px&#34;
-	
 &gt;&lt;/p&gt;
-&lt;p&gt;在傳統的 &lt;strong&gt;MVC（貧血模型）&lt;/strong&gt; 中，實體類（Entity/PO）往往只是資料的載體，像是一張&lt;strong&gt;白紙&lt;/strong&gt;。所有的業務邏輯都堆積在 &lt;code&gt;Service&lt;/code&gt; 層。&lt;/p&gt;
+&lt;p&gt;在傳統的 &lt;strong&gt;MVC（貧血模型）&lt;/strong&gt; 中，實體類別（Entity/PO）往往只是資料的載體，像是一張&lt;strong&gt;白紙&lt;/strong&gt;。所有的業務邏輯都堆積在 &lt;code&gt;Service&lt;/code&gt; 層。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;痛點：&lt;/strong&gt; Service 越來越大，邏輯散亂，維護起來像在一坨亂麻中找線頭。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;痛點：&lt;/strong&gt; Service 越來越大，邏輯散亂，維護起來像是在一坨亂麻中找線頭。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;在 &lt;strong&gt;DDD（充血模型）&lt;/strong&gt; 中，&lt;strong&gt;資料和業務邏輯是寫在一起的&lt;/strong&gt;。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;轉變：&lt;/strong&gt; 實體類變成了有生命、有原則的「業務專家」。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;轉變：&lt;/strong&gt; 實體類別變成了有生命、有原則的「業務專家」。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt; 比如「訂單取消」邏輯。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;MVC：&lt;/strong&gt; &lt;code&gt;OrderService&lt;/code&gt; 獲取 Order 資料，判斷狀態，修改狀態，儲存。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MVC：&lt;/strong&gt; &lt;code&gt;OrderService&lt;/code&gt; 取得 Order 資料，判斷狀態，修改狀態，存盤。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;DDD：&lt;/strong&gt; &lt;code&gt;Order&lt;/code&gt; 實體內部有一個 &lt;code&gt;cancel()&lt;/code&gt; 方法，它自己判斷能不能取消。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -49,17 +45,13 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;要點：&lt;/strong&gt; DDD 的好處是邏輯高度內聚。一旦業務邏輯有變化，你只需要修改對應的領域模型物件，而不是去翻幾千行的 Service。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;二-架構連連看ddd-與-mvc-的對映關係&#34;&gt;二、 架構連連看：DDD 與 MVC 的對映關係
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734.png&#34;
-	width=&#34;2816&#34;
-	height=&#34;1536&#34;
-	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_3e27a03a3dc76dc6.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_9af9db3ed1912419.png 1024w&#34;
+&lt;h3 id=&#34;二-架構連連看ddd-與-mvc-的映射關係&#34;&gt;二、 架構連連看：DDD 與 MVC 的映射關係
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9d18e097ad57f5bcd680cc0748e634fc.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;183&#34;
-		data-flex-basis=&#34;440px&#34;
 	
 &gt;我們可以把 DDD 的流程簡單理解為：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Controller $\rightarrow$ Application Service $\rightarrow$ Domain Model $\rightarrow$ Repository (Impl $\rightarrow$ Mapper)&lt;/strong&gt;&lt;/p&gt;
@@ -78,7 +70,7 @@
           &lt;td&gt;&lt;strong&gt;介面層&lt;/strong&gt;&lt;/td&gt;
           &lt;td&gt;Interfaces&lt;/td&gt;
           &lt;td&gt;Controller&lt;/td&gt;
-          &lt;td&gt;僅負責協定轉換（REST/JSON），不做任何業務。&lt;/td&gt;
+          &lt;td&gt;僅負責協議轉換（REST/JSON），不做任何業務。&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&lt;strong&gt;應用層&lt;/strong&gt;&lt;/td&gt;
@@ -96,7 +88,7 @@
           &lt;td&gt;&lt;strong&gt;基礎層&lt;/strong&gt;&lt;/td&gt;
           &lt;td&gt;Infrastructure&lt;/td&gt;
           &lt;td&gt;DAO / Mapper&lt;/td&gt;
-          &lt;td&gt;&lt;strong&gt;外掛化：&lt;/strong&gt; 遮蔽資料庫細節。Repository 是介面，Mapper 是實現。&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;外掛化：&lt;/strong&gt; 蔽蓋資料庫細節。Repository 是介面，Mapper 是實現。&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -114,45 +106,41 @@
 &lt;li&gt;&lt;strong&gt;收益：&lt;/strong&gt; 就算資料庫從 MySQL 換成 MongoDB，你的核心業務邏輯（Domain 層）一個字都不用改。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;四-模型的三大成員戰術建模&#34;&gt;四、 模型的三大成員（戰術建模）
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292.png&#34;
-	width=&#34;2816&#34;
-	height=&#34;1536&#34;
-	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_8c3f5c6fa3c0ebda.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_1abf29be7841aec0.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/20bf0b83731bcd39a510b621d1afa2e0.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;183&#34;
-		data-flex-basis=&#34;440px&#34;
-	
 &gt;
-在 DDD 的領域層中，並不是所有的類都是一樣的。為了讓業務邏輯組織得更科學，我們通常將模型分為以下三類：&lt;/p&gt;
+在 DDD 的領域層中，並不是所有的類別都是一樣的。為了讓業務邏輯組織得更科學，我們通常將模型分為以下三類：&lt;/p&gt;
 &lt;h4 id=&#34;1-實體-entity--有唯一標識&#34;&gt;1. 實體 (Entity) —— 有唯一標識
-&lt;/h4&gt;&lt;p&gt;實體最核心的特徵是&lt;strong&gt;身份（Identity）&lt;/strong&gt;。即使它的所有屬性都變了，它依然是那個物件。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;實體最核心的特徵是&lt;strong&gt;身分（Identity）&lt;/strong&gt;。即使它的所有屬性都變了，它依然是那個物件。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;定義：&lt;/strong&gt; 具有唯一標識（ID）的物件。即使兩個訂單的商品、價格完全一樣，只要 ID 不同，它們就是兩個不同的東西。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;特點：&lt;/strong&gt; 有生命週期（建立、修改、狀態流轉、存檔）。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;例子：&lt;/strong&gt; &lt;code&gt;Order&lt;/code&gt;（訂單）、&lt;code&gt;User&lt;/code&gt;（使用者）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;情景：&lt;/strong&gt; 訂單建立時，狀態是「待支付」，收貨地址是「上海」；支付後，狀態變成了「已支付」，地址改成了「北京」。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;核心：&lt;/strong&gt; 雖然狀態和地址都變了，但由於它的 &lt;strong&gt;OrderNo（或 ID）&lt;/strong&gt; 沒變，我們依然認為它是同一個訂單。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;情境：&lt;/strong&gt; 訂單建立時，狀態是「待支付」，收貨地址是「上海」；支付後，狀態變成了「已支付」，地址改成了「北京」。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;核心：&lt;/strong&gt; 雖然狀態和地址都變了，但由於它的 &lt;strong&gt;OrderNo (或 ID)&lt;/strong&gt; 沒變，我們依然認為它是同一個訂單。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;程式碼特徵：&lt;/strong&gt; 內部一定有一個 &lt;code&gt;private Long id;&lt;/code&gt; 或 &lt;code&gt;private String orderNo;&lt;/code&gt;，且邏輯判斷時使用這個 ID 進行 &lt;code&gt;equals()&lt;/code&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;2-值物件-value-object--只有屬性沒有-id&#34;&gt;2. 值物件 (Value Object) —— 只有屬性，沒有 ID
 &lt;/h4&gt;&lt;p&gt;值物件就像是「描述性的文字」。如果兩個值物件的所有屬性都一樣，那它們就是同一個東西。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;定義：&lt;/strong&gt; 沒有 ID，透過屬性來定義。如果兩個物件的屬性值完全相同，它們就可以互相替換。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;特點：&lt;/strong&gt; &lt;strong&gt;不可變性（Immutable）&lt;/strong&gt;。如果你要改一個地址，不是改原地址物件的屬性，而是直接換一個新的地址物件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;特點：&lt;/strong&gt; &lt;strong&gt;不可變性 (Immutable)&lt;/strong&gt;。如果你要改一個地址，不是改原地址物件的屬性，而是直接換一個新的地址物件。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;例子：&lt;/strong&gt; &lt;code&gt;Address&lt;/code&gt;（省市區街道組合）、&lt;code&gt;Money&lt;/code&gt;（幣種+金額）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;情景：&lt;/strong&gt; 訂單裡有一個收貨地址：&lt;code&gt;{省: &amp;quot;廣東&amp;quot;, 市: &amp;quot;深圳&amp;quot;, 街道: &amp;quot;南山區&amp;quot;}&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;情境：&lt;/strong&gt; 訂單裡有一個收貨地址：&lt;code&gt;{省: &amp;quot;廣東&amp;quot;, 市: &amp;quot;深圳&amp;quot;, 街道: &amp;quot;南山區&amp;quot;}&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;核心：&lt;/strong&gt; 我們並不關心這個地址物件的「身份證」，我們只關心它填的是哪。如果兩個訂單都發往這個地方，那這兩個地址物件在邏輯上是&lt;strong&gt;等價&lt;/strong&gt;的。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;程式碼特徵：&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;沒有 ID&lt;/strong&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;不可變性（Immutable）&lt;/strong&gt;：如果你想改地址，不是呼叫 &lt;code&gt;address.setStreet(&amp;quot;福田區&amp;quot;)&lt;/code&gt;，而是直接給 Order 換一個新的 Address 物件：&lt;code&gt;order.changeAddress(new Address(&amp;quot;廣東&amp;quot;, &amp;quot;深圳&amp;quot;, &amp;quot;福田區&amp;quot;))&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不可變性 (Immutable)&lt;/strong&gt;：如果你想改地址，不是呼叫 &lt;code&gt;address.setStreet(&amp;quot;福田區&amp;quot;)&lt;/code&gt;，而是直接給 Order 換一個新的 Address 物件：&lt;code&gt;order.changeAddress(new Address(&amp;quot;廣東&amp;quot;, &amp;quot;深圳&amp;quot;, &amp;quot;福田區&amp;quot;))&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -172,14 +160,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;3-聚合根-aggregate-root--組織管理者&#34;&gt;3. 聚合根 (Aggregate Root) —— 組織管理者
+&lt;/div&gt;&lt;h4 id=&#34;3-聚合根-aggregate-root---組織管理者&#34;&gt;3. 聚合根 (Aggregate Root)  —— 組織管理者
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;定義：&lt;/strong&gt; 一組關聯物件的「大老闆」。外部只能透過聚合根來訪問它內部的成員。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;職責：&lt;/strong&gt; 維護業務完整性（不變數）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;職責：&lt;/strong&gt; 維護業務完整性（不變量）。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;例子：&lt;/strong&gt; 在訂單業務中，&lt;code&gt;Order&lt;/code&gt; 是聚合根，&lt;code&gt;OrderItem&lt;/code&gt;（訂單項）是它內部的成員。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;情景：&lt;/strong&gt; 一個訂單裡有 3 個商品（訂單項）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;情境：&lt;/strong&gt; 一個訂單裡有 3 個商品（訂單項）。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;核心：&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;外面的 Service 不能直接繞過 &lt;code&gt;Order&lt;/code&gt; 去修改某個 &lt;code&gt;OrderItem&lt;/code&gt; 的價格。&lt;/li&gt;
@@ -194,7 +182,7 @@
 &lt;/h4&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th&gt;&lt;strong&gt;模型型別&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;模型類型&lt;/strong&gt;&lt;/th&gt;
           &lt;th&gt;&lt;strong&gt;是否有唯一 ID&lt;/strong&gt;&lt;/th&gt;
           &lt;th&gt;&lt;strong&gt;屬性完全相同時&lt;/strong&gt;&lt;/th&gt;
           &lt;th&gt;&lt;strong&gt;修改方式&lt;/strong&gt;&lt;/th&gt;
@@ -207,44 +195,40 @@
           &lt;td&gt;是&lt;/td&gt;
           &lt;td&gt;依然是兩個獨立的物件&lt;/td&gt;
           &lt;td&gt;透過方法修改屬性&lt;/td&gt;
-          &lt;td&gt;使用者（User）、商品（Product）&lt;/td&gt;
+          &lt;td&gt;使用者(User)、商品(Product)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&lt;strong&gt;值物件 (VO)&lt;/strong&gt;&lt;/td&gt;
           &lt;td&gt;否&lt;/td&gt;
           &lt;td&gt;視為同一個物件&lt;/td&gt;
           &lt;td&gt;整體替換（不可變）&lt;/td&gt;
-          &lt;td&gt;貨幣（Money）、地址（Address）&lt;/td&gt;
+          &lt;td&gt;貨幣(Money)、地址(Address)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&lt;strong&gt;聚合根 (AR)&lt;/strong&gt;&lt;/td&gt;
           &lt;td&gt;是&lt;/td&gt;
-          &lt;td&gt;（同實體）&lt;/td&gt;
+          &lt;td&gt;(同實體)&lt;/td&gt;
           &lt;td&gt;負責協調內部所有成員&lt;/td&gt;
-          &lt;td&gt;訂單（Order）、論壇主題（Topic）&lt;/td&gt;
+          &lt;td&gt;訂單(Order)、論壇主題(Topic)&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;五-模型轉換每一層都有自己的臉&#34;&gt;五、 模型轉換：每一層都有自己的「臉」
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115.png&#34;
-	width=&#34;2816&#34;
-	height=&#34;1536&#34;
-	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_3a6f248a9a08ff2d.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_9532cd5c6ba76ad0.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/402fb87ecbd0b469968565310cfceb8e.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;183&#34;
-		data-flex-basis=&#34;440px&#34;
-	
-&gt;為了實現「解耦」，每一層使用的模型其實是不一樣的。雖然寫起來麻煩，但能有效防止資料庫邏輯汙染業務邏輯：&lt;/p&gt;
+&gt;為了實現「解耦」，每一層使用的模型其實是不一樣的。雖然寫起來麻煩，但能有效防止資料庫邏輯污染業務邏輯：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;DTO（Data Transfer Object）：&lt;/strong&gt; 介面層使用。長得像表單，欄位可能很少。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Domain Entity：&lt;/strong&gt; 領域層使用。這是你寫的那個「活的物件」，帶業務邏輯。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PO（Persistent Object）：&lt;/strong&gt; 基礎設施層使用。長得和資料庫表一模一樣。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DTO (Data Transfer Object):&lt;/strong&gt; 介面層使用。長得像表單，欄位可能很少。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Domain Entity:&lt;/strong&gt; 領域層使用。這是你寫的那個「活的物件」，帶業務邏輯。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PO (Persistent Object):&lt;/strong&gt; 基礎設施層使用。長得和資料庫表一模一樣。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;六-ddd-業務落地實戰新增與取消訂單&#34;&gt;六、🚀 DDD 業務落地實戰：新增與取消訂單
-&lt;/h3&gt;&lt;h4 id=&#34;1-領域層domain-layer-業務邏輯的靈魂&#34;&gt;1. 領域層（Domain Layer）—— &lt;strong&gt;業務邏輯的靈魂&lt;/strong&gt;
+&lt;/h3&gt;&lt;h4 id=&#34;1-領域層-domain-layer--業務邏輯的靈魂&#34;&gt;1. 領域層 (Domain Layer) —— &lt;strong&gt;業務邏輯的靈魂&lt;/strong&gt;
 &lt;/h4&gt;&lt;p&gt;這是「資料和業務在一起」的地方。它不依賴任何框架，只負責業務規則。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -296,15 +280,15 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Java&#34; data-lang=&#34;Java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 實體類：Order.java&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Order&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// &amp;lt;--- 這是一個【聚合根】&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;orderId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// &amp;lt;--- 聚合根也是實體，有唯一 ID&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OrderItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;items&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// &amp;lt;--- 訂單項是【實體】，但受聚合根管理&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Java&#34; data-lang=&#34;Java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 實體類別：Order.java&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Order&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// &amp;lt;--- 這是一個【聚合根】&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;orderId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// &amp;lt;--- 聚合根也是實體，有唯一 ID&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OrderItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;items&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// &amp;lt;--- 訂單項是【實體】，但受聚合根管理&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OrderStatus&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// CREATED, PAID, CANCELLED, SHIPPED&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Address&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;address&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// &amp;lt;--- 收貨地址是【值物件】，沒有 ID，整體替換&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BigDecimal&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;totalPrice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 聚合根的方法：確保業務完整性&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 聚合根的方法：確保業務完整性&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;changeAddress&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Address&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;newAddress&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OrderStatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;SHIPPED&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;throw&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BusinessException&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;發貨後不能改地址&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -337,14 +321,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 省略 Getter...&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 倉庫介面：OrderRepository.java（只定義業務行為）&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 倉庫介面：OrderRepository.java (只定義業務行為)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;OrderRepository&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Order&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;order&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Order&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;findById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;2-應用層application-layer-流程指揮官&#34;&gt;2. 應用層（Application Layer）—— &lt;strong&gt;流程指揮官&lt;/strong&gt;
+&lt;/div&gt;&lt;h4 id=&#34;2-應用層-application-layer--流程指揮官&#34;&gt;2. 應用層 (Application Layer) —— &lt;strong&gt;流程指揮官&lt;/strong&gt;
 &lt;/h4&gt;&lt;p&gt;不寫 &lt;code&gt;if-else&lt;/code&gt; 邏輯，只負責編排：從倉庫取物件 -&amp;gt; 下達指令 -&amp;gt; 儲存物件。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -394,7 +378,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;cancelOrder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 1. 透過倉庫找到那個「活的」物件&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Order&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;order&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;orderRepository&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;findById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 2. 傳送指令給物件：你自己取消吧&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 2. 發送指令給物件：你自己取消吧&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;order&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;cancel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 3. 儲存修改後的狀態&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;orderRepository&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;order&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -402,7 +386,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;3-基礎設施層infrastructure-layer-技術打工人&#34;&gt;3. 基礎設施層（Infrastructure Layer）—— &lt;strong&gt;技術打工人&lt;/strong&gt;
+&lt;/div&gt;&lt;h4 id=&#34;3-基礎設施層-infrastructure-layer--技術打工仔&#34;&gt;3. 基礎設施層 (Infrastructure Layer) —— &lt;strong&gt;技術打工仔&lt;/strong&gt;
 &lt;/h4&gt;&lt;p&gt;這裡負責和資料庫打交道。你提到的 &lt;strong&gt;Mapper&lt;/strong&gt; 就在這一層被呼叫。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -458,8 +442,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;4-介面層interfaces-layer-門衛&#34;&gt;4. 介面層（Interfaces Layer）—— &lt;strong&gt;門衛&lt;/strong&gt;
-&lt;/h4&gt;&lt;p&gt;只負責接收請求、校驗引數格式，然後轉發。&lt;/p&gt;
+&lt;/div&gt;&lt;h4 id=&#34;4-介面層-interfaces-layer--門衛&#34;&gt;4. 介面層 (Interfaces Layer) —— &lt;strong&gt;門衛&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;只負責接收請求、校驗參數格式，然後轉發。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -507,7 +491,7 @@
 &lt;/ol&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;「能否取消」的判斷&lt;/strong&gt;邏輯在 &lt;code&gt;Order&lt;/code&gt; 類裡（領域層）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;判斷「能否取消」&lt;/strong&gt; 的邏輯在 &lt;code&gt;Order&lt;/code&gt; 類別裡（領域層）。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;「先查出來、再改、再存」&lt;/strong&gt; 的步驟在 &lt;code&gt;OrderApplicationService&lt;/code&gt; 裡（應用層）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
@@ -516,7 +500,7 @@
 &lt;/ol&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;ApplicationService&lt;/code&gt; 根本不知道資料庫是 MySQL 還是文字檔案，因為它只呼叫了 &lt;code&gt;orderRepository.save()&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ApplicationService&lt;/code&gt; 根本不知道資料庫是 MySQL 還是文字檔，因為它只呼叫了 &lt;code&gt;orderRepository.save()&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;真正的 SQL 語句全被物理隔離在 &lt;code&gt;Infrastructure&lt;/code&gt; 層的 &lt;code&gt;Mapper&lt;/code&gt; 中。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
@@ -525,7 +509,7 @@
 &lt;/ol&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;如果未來「取消訂單」的規則變了（比如支付超過30分鐘不能取消），你&lt;strong&gt;只需要改 &lt;code&gt;Order&lt;/code&gt; 實體類一個地方&lt;/strong&gt;，其他三層程式碼動都不用動。這就是 DDD 應對複雜業務的威力。&lt;/li&gt;
+&lt;li&gt;如果未來「取消訂單」的規則變了（比如支付超過30分鐘不能取消），你&lt;strong&gt;只需要改 &lt;code&gt;Order&lt;/code&gt; 實體類別一個地方&lt;/strong&gt;，其他三層程式碼動都不用動。這就是 DDD 應對複雜業務的威力。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;七總結ddd-到底增強了什麼&#34;&gt;七、總結：DDD 到底增強了什麼？
@@ -545,7 +529,7 @@
         <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/zh-tw/p/lru-%E5%BF%AB%E5%8F%96%E6%BC%94%E7%AE%97%E6%B3%95%E7%9A%84%E5%AF%A6%E7%8F%BE/</guid>
-        <description>&lt;img src="https://Siborne.top/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.png" alt="Featured image of post LRU 快取演算法的實現" /&gt;&lt;h1 id=&#34;lru-快取演算法實現筆記java&#34;&gt;LRU 快取演算法實現筆記（Java）
+        <description>&lt;img src="https://img.siborne.top/2026/05/f0e326574cdcea40078081e6d757389b.png" alt="Featured image of post LRU 快取演算法的實現" /&gt;&lt;h1 id=&#34;lru-快取演算法實現筆記java&#34;&gt;LRU 快取演算法實現筆記（Java）
 &lt;/h1&gt;&lt;h3 id=&#34;一什麼是-lru&#34;&gt;一、什麼是 LRU？
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -1009,7 +993,7 @@ A: 可以！重寫 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面試
         <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/zh-tw/p/java--mysql--redis-%E7%94%9F%E6%88%90%E4%BD%BF%E7%94%A8%E8%80%85%E4%B8%BB%E9%8D%B5%E7%9A%84-6-%E7%A8%AE%E6%96%B9%E6%A1%88/</guid>
-        <description>&lt;img src="https://Siborne.top/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.png" alt="Featured image of post Java &#43; MySQL &#43; Redis 生成使用者主鍵的 6 種方案" /&gt;&lt;h1 id=&#34;java--mysql-生成使用者主鍵的-6-種方案從自增到-redis一篇講透&#34;&gt;Java + MySQL 生成使用者主鍵的 6 種方案：從自增到 Redis，一篇講透！
+        <description>&lt;img src="https://img.siborne.top/2026/05/54074f014a63b85f280277238cbd8e80.png" alt="Featured image of post Java &#43; MySQL &#43; Redis 生成使用者主鍵的 6 種方案" /&gt;&lt;h1 id=&#34;java--mysql-生成使用者主鍵的-6-種方案從自增到-redis一篇講透&#34;&gt;Java + MySQL 生成使用者主鍵的 6 種方案：從自增到 Redis，一篇講透！
 &lt;/h1&gt;&lt;p&gt;在開發 Java 應用搭配 MySQL 資料庫時，如何為使用者、訂單等實體生成&lt;strong&gt;全域性唯一、高效能、不重複的主鍵 ID&lt;/strong&gt;，是一個繞不開的問題。&lt;br&gt;
 除了最熟悉的 &lt;code&gt;AUTO_INCREMENT&lt;/code&gt; 和 &lt;code&gt;UUID&lt;/code&gt;，其實還有更優雅的方案——比如藉助 &lt;strong&gt;Redis&lt;/strong&gt; 或 &lt;strong&gt;雪花演算法（Snowflake）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;本文用大白話為你梳理 &lt;strong&gt;6 種主流 ID 生成方案&lt;/strong&gt;，包括：&lt;/p&gt;
@@ -1432,7 +1416,7 @@ A: 可以！重寫 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面試
         <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/zh-tw/p/jwt-%E7%B0%A1%E5%96%AE%E8%A7%A3%E6%9E%90/</guid>
-        <description>&lt;img src="https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/bannerImage.png" alt="Featured image of post JWT 簡單解析" /&gt;&lt;h3 id=&#34;使用者登入驗證流程基於-jwt&#34;&gt;使用者登入驗證流程（基於 JWT）
+        <description>&lt;img src="https://img.siborne.top/2026/05/14078955d0308bd7c8ae4d32af16584a.png" alt="Featured image of post JWT 簡單解析" /&gt;&lt;h3 id=&#34;使用者登入驗證流程基於-jwt&#34;&gt;使用者登入驗證流程（基於 JWT）
 &lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;使用者輸入使用者名稱和密碼&lt;/strong&gt;，並透過 HTTPS 請求傳送至伺服器。&lt;/p&gt;
@@ -1549,18 +1533,14 @@ A: 可以！重寫 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面試
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1.png&#34;
-	width=&#34;554&#34;
-	height=&#34;401&#34;
-	srcset=&#34;https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1_hu_f500152678508be8.png 480w, https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1_hu_21a39f4e946dd95a.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/25149e8dddbed562dab5d1c698e53350.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Jwt的生成與驗證&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;138&#34;
-		data-flex-basis=&#34;331px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; JWT 本身包含認證資訊，因此一旦資訊洩露，任何人都可以獲得令牌的所有許可權。因此做前端開發時，最好不要把 JWT 存放在 &lt;code&gt;Cookie&lt;/code&gt; 這種容易洩露個人隱私資訊的儲存單元。&lt;/p&gt;
@@ -1703,21 +1683,21 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 </description>
         </item>
         <item>
-        <title>對 ThreadLocal 的理解</title>
-        <link>https://Siborne.top/zh-tw/p/%E5%B0%8D-threadlocal-%E7%9A%84%E7%90%86%E8%A7%A3/</link>
+        <title>對ThreadLocal的理解</title>
+        <link>https://Siborne.top/zh-tw/p/%E5%B0%8Dthreadlocal%E7%9A%84%E7%90%86%E8%A7%A3/</link>
         <pubDate>Tue, 30 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://Siborne.top/zh-tw/p/%E5%B0%8D-threadlocal-%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
-        <description>&lt;img src="https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.png" alt="Featured image of post 對 ThreadLocal 的理解" /&gt;&lt;h2 id=&#34;threadlocal-介紹&#34;&gt;ThreadLocal 介紹
-&lt;/h2&gt;&lt;p&gt;從 Java 官方文件中的描述：ThreadLocal 類用來提供執行緒內部的區域性變數。這種變數在多執行緒環境下存取（透過 get 和 set 方法存取）時能保證各個執行緒的變數相對獨立於其他執行緒內的變數。ThreadLocal 例項通常來說都是 private static 型別的，用於關聯執行緒和執行緒上下文。&lt;/p&gt;
-&lt;p&gt;我們可以得知 ThreadLocal 的作用是：提供執行緒內的區域性變數，不同的執行緒之間不會相互干擾，這種變數在執行緒的生命週期內起作用，減少同一個執行緒內多個函式或元件之間一些公共變數傳遞的複雜度。&lt;/p&gt;
+        <guid>https://Siborne.top/zh-tw/p/%E5%B0%8Dthreadlocal%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/05/a8020477e9a0baea0d4a7e92f55dd1b6.png" alt="Featured image of post 對ThreadLocal的理解" /&gt;&lt;h2 id=&#34;threadlocal介紹&#34;&gt;ThreadLocal介紹
+&lt;/h2&gt;&lt;p&gt;從Java官方文件中的描述：ThreadLocal類別用來提供執行緒內部的區域變數。這種變數在多執行緒環境下存取（透過get和set方法存取）時能確保各個執行緒的變數相對於其他執行緒內的變數是相對獨立的。ThreadLocal實例通常來說都是private static型別的，用於關聯執行緒和執行緒上下文。&lt;/p&gt;
+&lt;p&gt;我們可以得知ThreadLocal的作用是：提供執行緒內的區域變數，不同的執行緒之間不會相互干擾，這種變數在執行緒的生命周期內起作用，減少同一個執行緒內多個函式或組件之間一些公共變數傳遞的複雜度。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;執行緒併發：在多執行緒併發的場景下&lt;/li&gt;
-&lt;li&gt;傳遞資料：我們可以透過 ThreadLocal 在同一執行緒，不同元件之間傳遞公共變數（有點類似於 Session？）&lt;/li&gt;
+&lt;li&gt;執行緒並發：在多執行緒並發的場景下&lt;/li&gt;
+&lt;li&gt;傳遞資料：我們可以透過ThreadLocal在同一執行緒，不同組件之間傳遞公共變數（有點類似於Session？）&lt;/li&gt;
 &lt;li&gt;執行緒隔離：每個執行緒的變數都是獨立的，不會互相影響&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;基本使用&#34;&gt;基本使用
-&lt;/h2&gt;&lt;p&gt;在介紹 Thread 使用之前，我們首先認識幾個 Thread 的常見方法&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;在介紹Thread使用之前，我們首先認識幾個Thread的常見方法&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1728,24 +1708,24 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
   &lt;tbody&gt;
       &lt;tr&gt;
           &lt;td&gt;ThreadLocal()&lt;/td&gt;
-          &lt;td&gt;建立 ThreadLocal 物件&lt;/td&gt;
+          &lt;td&gt;建立ThreadLocal物件&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;public void set(T value)&lt;/td&gt;
-          &lt;td&gt;設定當前執行緒繫結的區域性變數&lt;/td&gt;
+          &lt;td&gt;設定目前執行緒繫結的區域變數&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;public T get()&lt;/td&gt;
-          &lt;td&gt;獲取當前執行緒繫結的區域性變數&lt;/td&gt;
+          &lt;td&gt;取得目前執行緒繫結的區域變數&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;public void remove()&lt;/td&gt;
-          &lt;td&gt;移除當前執行緒繫結的區域性變數&lt;/td&gt;
+          &lt;td&gt;移除目前執行緒繫結的區域變數&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;使用案例&#34;&gt;使用案例
-&lt;/h2&gt;&lt;p&gt;我們來看下面這個案例，感受一下 ThreadLocal 執行緒隔離的特點&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;我們來看下面這個案例，感受一下ThreadLocal執行緒隔離的特點&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1783,9 +1763,9 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/**
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 需求：執行緒隔離
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 在多執行緒併發的場景下，每個執行緒中的變數都是相互獨立的
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 執行緒A：設定變數1，獲取變數2
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 執行緒B：設定變數2，獲取變數2
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 在多執行緒並發的場景下，每個執行緒中的變數都是相互獨立的
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 執行緒A：設定變數1，取得變數2
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 執行緒B：設定變數2，取得變數2
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * @author: Siborne
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * @create: 2025-12-30-17:03
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; */&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -1842,7 +1822,7 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;從上面我們可以看到，出現了執行緒不隔離的問題，也就是執行緒1取出了執行緒4的內容，那麼如何解決呢？&lt;/p&gt;
-&lt;p&gt;這個時候就可以用到 ThreadLocal 了，我們透過 set 將變數繫結到當前執行緒中，然後 get 獲取當前執行緒繫結的變數&lt;/p&gt;
+&lt;p&gt;這個時候就可以用到ThreadLocal了，我們透過 set 將變數繫結到目前執行緒中，然後 get 取得目前執行緒繫結的變數&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1869,9 +1849,25 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;MyDemo01&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/**
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 需求：執行緒隔離
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 在多執行緒並發的場景下，每個執行緒中的變數都是相互獨立的
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 執行緒A：設定變數1，取得變數2
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 執行緒B：設定變數2，取得變數2
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * @author: Siborne
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * @create: 2025-12-30-17:03
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; */&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;MyDemo01&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 變數&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
@@ -1897,7 +1893,7 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;我們引入 ThreadLocal 後，檢視執行結果&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;我們引入ThreadLocal後，查看執行結果&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1924,10 +1920,10 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0	  0的資料
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;我們發現不會出現上面的情況了，也就是當前執行緒只能獲取該執行緒儲存的物件&lt;/p&gt;
-&lt;h2 id=&#34;threadlocal-類和-synchronized-關鍵字&#34;&gt;ThreadLocal 類和 Synchronized 關鍵字
-&lt;/h2&gt;&lt;h3 id=&#34;synchronized-同步方式&#34;&gt;Synchronized 同步方式
-&lt;/h3&gt;&lt;p&gt;對於上述的例子，我們完全可以透過加鎖的方式來實現這個功能，我們來看一下用 Synchronized 程式碼塊實現的效果：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;我們發現不會出現上面的情況了，也就是目前執行緒只能取得執行緒執行緒儲存的物件&lt;/p&gt;
+&lt;h2 id=&#34;threadlocal類別和synchronized關鍵字&#34;&gt;ThreadLocal類別和Synchronized關鍵字
+&lt;/h2&gt;&lt;h3 id=&#34;synchronized同步方式&#34;&gt;Synchronized同步方式
+&lt;/h3&gt;&lt;p&gt;對於上述的例子，我們完全可以透過加鎖的方式來實現這個功能，我們來看一下用Synchronized程式碼區塊實現的效果：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1958,7 +1954,7 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;執行結果如下所示，我們發現同樣實現了功能，但是併發性降低了&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;執行結果如下所示，我們發現我們可以看到同樣實現了功能，但是並發性降低了&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1985,8 +1981,8 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1	  1的資料
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;threadlocal-與-synchronized-的區別&#34;&gt;ThreadLocal 與 Synchronized 的區別
-&lt;/h3&gt;&lt;p&gt;雖然 ThreadLocal 模式與 Synchronized 關鍵字都用於處理多執行緒併發訪問變數的問題，不過兩者處理問題的角度和思路不同。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;threadlocal與synchronized的區別&#34;&gt;ThreadLocal與Synchronized的區別
+&lt;/h3&gt;&lt;p&gt;雖然ThreadLocal模式與Synchronized關鍵字都用於處理多執行緒並發存取變數的問題，不過兩者處理問題的角度和思路不同。&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1998,37 +1994,33 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
   &lt;tbody&gt;
       &lt;tr&gt;
           &lt;td&gt;原理&lt;/td&gt;
-          &lt;td&gt;同步機制採用以時間換空間的方式，只提供了一份變數，讓不同的執行緒排隊訪問&lt;/td&gt;
-          &lt;td&gt;ThreadLocal 採用以空間換時間的概念，為每個執行緒都提供一份變數副本，從而實現同時訪問而互不干擾&lt;/td&gt;
+          &lt;td&gt;同步機制採用以時間換空間的方式，只提供了一份變數，讓不同的執行緒排隊存取&lt;/td&gt;
+          &lt;td&gt;ThreadLocal採用以空間換時間的概念，為每個執行緒都提供一份變數副本，從而實現同時存取而互不干擾&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;側重點&lt;/td&gt;
-          &lt;td&gt;多個執行緒之間訪問資源的同步&lt;/td&gt;
+          &lt;td&gt;多個執行緒之間存取資源的同步&lt;/td&gt;
           &lt;td&gt;多執行緒中讓每個執行緒之間的資料相互隔離&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;總結：在剛剛的案例中，雖然使用 ThreadLocal 和 Synchronized 都能解決問題，但是使用 ThreadLocal 更為合適，因為這樣可以使程式擁有更高的併發性。&lt;/p&gt;
+&lt;p&gt;總結：在剛剛的案例中，雖然使用ThreadLocal和Synchronized都能解決問題，但是使用ThreadLocal更為合適，因為這樣可以使程式擁有更高的並發性。&lt;/p&gt;
 &lt;h2 id=&#34;運用場景&#34;&gt;運用場景
-&lt;/h2&gt;&lt;p&gt;透過以上的介紹，我們已經基本瞭解 ThreadLocal 的特點，但是它具體是運用在什麼場景中的呢？接下來讓我們看一個案例：事務操作&lt;/p&gt;
-&lt;h3 id=&#34;轉賬案例&#34;&gt;轉賬案例
-&lt;/h3&gt;&lt;p&gt;這裡們先構建一個簡單的轉賬場景：有一個資料表 account，裡面有兩個使用者 jack 和 Rose，使用者 Jack 給使用者 Rose 轉賬。案例的實現主要是用 mysql 資料庫，JDBC 和 C3P0 框架，以下是詳細程式碼&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153.png&#34;
-	width=&#34;1154&#34;
-	height=&#34;424&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_6da148d510b974c9.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_4a6face6da4e5a04.png 1024w&#34;
+&lt;/h2&gt;&lt;p&gt;透過以上的介紹，我們已經基本了解ThreadLocal的特點，但是它具體是運用在什麼場景中的呢？接下來讓我們看一個案例：事務操作&lt;/p&gt;
+&lt;h3 id=&#34;轉帳案例&#34;&gt;轉帳案例
+&lt;/h3&gt;&lt;p&gt;這裡們先構建一個簡單的轉帳場景：有一個資料表account，裡面有兩個使用者 jack 和 Rose，使用者Jack給使用者Rose轉帳。案例的實現主要是用mysql資料庫，JDBC和C3P0框架，以下是詳細程式碼&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/d4b7bdca1343cd0c1a990ae829c7335d.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;account表和轉賬SQL語句&#34;
+		alt=&#34;account表和轉帳SQL語句&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;272&#34;
-		data-flex-basis=&#34;653px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;引入事務&#34;&gt;引入事務
-&lt;/h3&gt;&lt;p&gt;案例中轉賬涉及兩個 DML 操作：一個轉出，一個轉入。這些操作是需要具備原子性的，不可分割。不然有可能出現資料修改異常情況。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;案例中轉帳涉及兩個DML操作：一個轉出，一個轉入。這些操作是需要具備原子性的，不可分割。不然有可能出現資料修改異常情況。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2051,12 +2043,12 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;AccountService&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;boolean&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;transfer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;outUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;isUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;money&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;boolean&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;transfer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;outUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;inUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;money&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AccountDao&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ad&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AccountDao&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;try&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 轉出&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ad&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;outUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;money&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 模擬轉賬過程中的異常&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 模擬轉帳過程中的異常&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 轉入&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ad&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;inUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;money&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -2069,19 +2061,19 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;所以這裡就需要操作事務，來保證轉入和轉出具備原子性，要麼成功，要麼失敗。&lt;/p&gt;
-&lt;p&gt;JDBC 中關於事務操作的 API&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;所以這裡就需要操作事務，來保證轉入和轉出具備原子性，要么成功，要么失敗。&lt;/p&gt;
+&lt;p&gt;JDBC中關於事務操作的API&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th&gt;Connection 介面的方法&lt;/th&gt;
+          &lt;th&gt;Connection介面的方法&lt;/th&gt;
           &lt;th&gt;作用&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
           &lt;td&gt;void setAutoCommit(false)&lt;/td&gt;
-          &lt;td&gt;禁用事務自動提交（改為手動提交）&lt;/td&gt;
+          &lt;td&gt;停用事務自動提交（改為手動提交）&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;void commit()&lt;/td&gt;
@@ -2094,42 +2086,38 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;開啟事務的注意點&lt;/p&gt;
-&lt;p&gt;為了保證所有操作在一個事務中，案例中使用的連線必須是同一個；service 層開啟事務的 connection 需要跟 dao 層訪問資料庫的 connection 保持一致&lt;/p&gt;
-&lt;p&gt;執行緒併發情況下，每個執行緒只能操作各自的 connection，也就是執行緒隔離&lt;/p&gt;
+&lt;p&gt;為了保證所有操作在一個事務中，案例中使用的連線必須是同一個；service層開啟事務的connection需要跟dao層存取資料庫的connection保持一致&lt;/p&gt;
+&lt;p&gt;執行緒並發情況下，每個執行緒只能操作各自的connection，也就是執行緒隔離&lt;/p&gt;
 &lt;h3 id=&#34;常規解決方法&#34;&gt;常規解決方法
 &lt;/h3&gt;&lt;p&gt;基於上面給出的前提，大家通常想到的解決方法&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;從 service 層將 connection 物件向 dao 層傳遞&lt;/li&gt;
+&lt;li&gt;從service層將connection物件向dao層傳遞&lt;/li&gt;
 &lt;li&gt;加鎖&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;常規解決方法的弊端&#34;&gt;常規解決方法的弊端
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;提高程式碼的耦合度（因為我們需要從 service 層傳入 connection 引數）&lt;/li&gt;
-&lt;li&gt;降低程式的效能（加了同步程式碼塊，失去了併發性）&lt;/li&gt;
+&lt;li&gt;提高程式碼的耦合度（因為我們需要從service 層 傳入 connection參數）&lt;/li&gt;
+&lt;li&gt;降低程式的效能（加了同步程式碼區塊，失去了並發性）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;這個時候就可以透過 ThreadLocal 和當前執行緒進行繫結，來降低程式碼之間的耦合&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494.png&#34;
-	width=&#34;1364&#34;
-	height=&#34;515&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_84670a5e7f2d0c8.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_d502ecbc53dccae5.png 1024w&#34;
+&lt;p&gt;這個時候就可以透過ThreadLocal和目前執行緒進行繫結，來降低程式碼之間的耦合&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/06e3ed6f748cee7981c64383a9c77601.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;執行緒執行圖&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;264&#34;
-		data-flex-basis=&#34;635px&#34;
-	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;使用-threadlocal-解決&#34;&gt;使用 ThreadLocal 解決
-&lt;/h3&gt;&lt;p&gt;針對上面出現的情況，我們需要對原來的 JDBC 連線池物件進行更改&lt;/p&gt;
+&lt;h3 id=&#34;使用threadlocal解決&#34;&gt;使用ThreadLocal解決
+&lt;/h3&gt;&lt;p&gt;針對上面出現的情況，我們需要對原來的JDBC連線池物件進行更改&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;將原來從連線池中獲取物件，改成直接獲取當前執行緒繫結的連線物件&lt;/li&gt;
+&lt;li&gt;將原來從連線池中獲取物件，改成直接獲取目前執行緒繫結的連線物件&lt;/li&gt;
 &lt;li&gt;如果連線物件是空的
 &lt;ul&gt;
 &lt;li&gt;再去連線池中獲取連線&lt;/li&gt;
-&lt;li&gt;將此連線物件跟當前執行緒進行繫結&lt;/li&gt;
+&lt;li&gt;將此連線物件跟目前執行緒進行繫結&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -2157,79 +2145,67 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;threadlocal-實現的好處&#34;&gt;ThreadLocal 實現的好處
-&lt;/h3&gt;&lt;p&gt;從上述的案例中我們可以看到，在一些特定場景下，ThreadLocal 方案有兩個突出的優勢：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;threadlocal實現的好處&#34;&gt;ThreadLocal實現的好處
+&lt;/h3&gt;&lt;p&gt;從上述的案例中我們可以看到，在一些特定場景下，ThreadLocal方案有兩個突出的優勢：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;傳遞資料：儲存每個執行緒繫結的資料，在需要的地方可以直接獲取，避免引數直接傳遞帶來的程式碼耦合問題&lt;/li&gt;
-&lt;li&gt;執行緒隔離：各執行緒之間的資料相互隔離卻又具備併發性，避免同步方式帶來的效能損失&lt;/li&gt;
+&lt;li&gt;傳遞資料：儲存每個執行緒繫結的資料，在需要的地方可以直接獲取，避免參數直接傳遞帶來的程式碼耦合問題&lt;/li&gt;
+&lt;li&gt;執行緒隔離：各執行緒之間的資料相互隔離卻又具備並發性，避免同步方式帶來的效能損失&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;threadlocal-的內部結構&#34;&gt;ThreadLocal 的內部結構
-&lt;/h2&gt;&lt;p&gt;透過以上的學習，我們對 ThreadLocal 的作用有了一定的認識。現在我們一起來看一下 ThreadLocal 的內部結構，探究它能夠實現執行緒資料隔離的原理。&lt;/p&gt;
+&lt;h2 id=&#34;threadlocal的內部結構&#34;&gt;ThreadLocal的內部結構
+&lt;/h2&gt;&lt;p&gt;透過以上的學習，我們對ThreadLocal的作用有了一定的認識。現在我們一起來看一下ThreadLocal的內部結構，探究它能夠實現執行緒資料隔離的原理。&lt;/p&gt;
 &lt;h3 id=&#34;常見誤解&#34;&gt;常見誤解
-&lt;/h3&gt;&lt;p&gt;如果我們不去看原始碼的話，可能會猜測 ThreadLocal 是這樣子設計的：每個 ThreadLocal 都建立一個 Map，然後用執行緒作為 Map 的 key，要儲存的區域性變數作為 Map 的 value，這樣就能達到各個執行緒的區域性變數隔離的效果。這是最簡單的設計方法，JDK 最早期的 ThreadLocal 確實是這樣設計的，但現在早已不是了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638.png&#34;
-	width=&#34;821&#34;
-	height=&#34;371&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_ad718fe2fcbb711d.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_c41f57ef3ba1d643.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;如果我們不去看原始碼的話，可能會猜測 ThreadLocal 是這樣子設計的：每個ThreadLocal都建立一個Map，然後用執行緒作為Map的key，要儲存的區域變數作為Map的value，這樣就能達到各個執行緒的區域變數隔離的效果。這是最簡單的設計方法，JDK最早期的ThreadLocal確實是這樣設計的，但現在早已不是了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/ead7201b5aadea8e40d14aec8b7d5e84.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal誤解——早期實現&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;221&#34;
-		data-flex-basis=&#34;531px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;現在的設計&#34;&gt;現在的設計
-&lt;/h3&gt;&lt;p&gt;但是，JDK 後面最佳化了設計方案，在 JDK8 中 ThreadLocal 的設計是：每個 Thread 維護一個 ThreadLocalMap，這個 Map 的 key 是 ThreadLocal 例項本身，value 才是真正要儲存的值 object。具體的過程是這樣的：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;但是，JDK後面優化了設計方案，在JDK8中 ThreadLocal的設計是：每個Thread維護一個ThreadLocalMap，這個Map的key是ThreadLocal實例本身，value 才是真正要儲存的值object。具體的過程是這樣的：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;每個 Thread 執行緒內部都有一個 Map（ThreadLocalMap）&lt;/li&gt;
-&lt;li&gt;Map 裡面儲存 ThreadLocal 物件（key）和執行緒的變數副本（value）&lt;/li&gt;
-&lt;li&gt;Thread 內部的 Map 是由 ThreadLocal 維護的，由 ThreadLocal 負責向 map 獲取和設定執行緒的變數值。&lt;/li&gt;
-&lt;li&gt;對於不同的執行緒，每次獲取副本值時，別的執行緒並不能獲取到當前執行緒的副本值，形成了副本的隔離，互不干擾。&lt;/li&gt;
+&lt;li&gt;每個Thread執行緒內部都有一個Map（ThreadLocalMap）&lt;/li&gt;
+&lt;li&gt;Map裡面儲存ThreadLocal物件（key）和執行緒的變數副本（value）&lt;/li&gt;
+&lt;li&gt;Thread內部的Map是由ThreadLocal維護的，由ThreadLocal負責向map獲取和設定執行緒的變數值。&lt;/li&gt;
+&lt;li&gt;對於不同的執行緒，每次獲取副本值時，別的執行緒並不能獲取到目前執行緒的副本值，形成了副本的隔離，互不干擾。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748.png&#34;
-	width=&#34;932&#34;
-	height=&#34;355&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_91b80341ed4c06e5.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_e2b882980d755233.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/7d8acf46b9195798e5e52ee63d134f2c.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal——JDK8的實現&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;262&#34;
-		data-flex-basis=&#34;630px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;對比&#34;&gt;對比
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743.png&#34;
-	width=&#34;924&#34;
-	height=&#34;726&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_e09220964b2c3542.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_ecabfd46752b5af9.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/de8522df7f829f086f23bc4f115005d2.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;早期與JDK8以後的對比&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;127&#34;
-		data-flex-basis=&#34;305px&#34;
-	
 &gt;&lt;/p&gt;
-&lt;p&gt;從上面變成 JDK8 的設計有什麼好處？&lt;/p&gt;
+&lt;p&gt;從上面變成JDK8的設計有什麼好處？&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;每個 Map 儲存的 Entry 數量變少，因為原來的 Entry 數量是由 Thread 決定，而現在是由 ThreadLocal 決定的
+&lt;li&gt;每個Map儲存的Entry數量變少，因為原來的Entry數量是由Thread決定，現在是由ThreadLocal決定的
 &lt;ul&gt;
-&lt;li&gt;真實開發中，Thread 的數量遠遠大於 ThreadLocal 的數量&lt;/li&gt;
+&lt;li&gt;真實開發中，Thread的數量遠遠大於ThreadLocal的數量&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;當 Thread 銷燬的時候，ThreadLocalMap 也會隨之銷燬，因為 ThreadLocal 是存放在 Thread 中的，隨著 Thread 銷燬而消失，能降低開銷。&lt;/li&gt;
+&lt;li&gt;當Thread銷毀的時候，ThreadLocalMap也會隨之銷毀，因為ThreadLocal是存放在Thread中的，隨著Thread銷毀而消失，能降低開銷。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;threadlocal-核心方法原始碼&#34;&gt;ThreadLocal 核心方法原始碼
-&lt;/h2&gt;&lt;p&gt;基於 ThreadLocal 的內部結構，我們繼續分析它的核心方法原始碼，更深入的瞭解其操作原理。
-除了構造方法之外，ThreadLocal 對外暴露的方法有以下4個&lt;/p&gt;
+&lt;h2 id=&#34;threadlocal核心方法原始碼&#34;&gt;ThreadLocal核心方法原始碼
+&lt;/h2&gt;&lt;p&gt;基於ThreadLocal的內部結構，我們繼續分析它的核心方法原始碼，更深入的了解其操作原理。
+除了建構方法之外，ThreadLocal對外暴露的方法有以下4個&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -2240,56 +2216,127 @@ JWT 透過網路傳輸，若使用 HTTP，極易被中間人竊取。&lt;strong&
   &lt;tbody&gt;
       &lt;tr&gt;
           &lt;td&gt;protected T initialValue()&lt;/td&gt;
-          &lt;td&gt;返回當前執行緒區域性變數的初始值&lt;/td&gt;
+          &lt;td&gt;回傳目前執行緒區域變數的初始值&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;public void set(T value)&lt;/td&gt;
-          &lt;td&gt;設定當前執行緒繫結的區域性變數&lt;/td&gt;
+          &lt;td&gt;回傳目前執行緒繫結的區域變數&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;public T get()&lt;/td&gt;
-          &lt;td&gt;獲取當前執行緒繫結的區域性變數&lt;/td&gt;
+          &lt;td&gt;取得目前執行緒繫結的區域變數&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;public void remove()&lt;/td&gt;
-          &lt;td&gt;移除當前執行緒繫結的區域性變數&lt;/td&gt;
+          &lt;td&gt;移除目前執行緒繫結的區域變數&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id=&#34;set-方法&#34;&gt;set 方法
-&lt;/h3&gt;&lt;p&gt;程式碼流程&lt;/p&gt;
+&lt;p&gt;以下是這4個方法的詳細原始碼分析（為了保證思路清晰，ThreadLocalMap部分暫時不展開，下一個知識點詳解）&lt;/p&gt;
+&lt;h3 id=&#34;set方法&#34;&gt;set方法
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/6001914b618c16e85bfc4784fa72b37d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;set方法內部實現1&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/f09d38b911e492c7b4e3c236b5979437.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;set方法內部實現2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;程式碼流程&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;首先獲取當前執行緒，並根據當前執行緒獲取一個 Map&lt;/li&gt;
-&lt;li&gt;如果獲取的 Map 不為空，則將引數設定到 Map 中（當前 ThreadLocal 的引用作為 key）&lt;/li&gt;
-&lt;li&gt;如果 Map 為空，則給該執行緒建立 Map，並設定初始化值&lt;/li&gt;
+&lt;li&gt;首先取得目前執行緒，並根據目前執行緒取得一個Map&lt;/li&gt;
+&lt;li&gt;如果取得的Map不為空，則將參數設定到Map中（目前ThreadLocal的引用作為key）&lt;/li&gt;
+&lt;li&gt;如果Map為空，則給該執行緒建立Map，並設定初始化值&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;get-方法&#34;&gt;get 方法
-&lt;/h3&gt;&lt;p&gt;程式碼執行流程&lt;/p&gt;
+&lt;h3 id=&#34;get方法&#34;&gt;get方法
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c88695dc45dbb58ddf7f56e74feb5dee.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;get方法內部實現1&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/f6227ce8c61133b5b7eb12b013d120c2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;get方法內部實現2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;程式碼執行流程&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;首先獲取當前執行緒，根據當前執行緒獲取一個 Map&lt;/li&gt;
-&lt;li&gt;如果獲取的 Map 不為空，則在 Map 中以 ThreadLocal 的引用作為 key 來在 Map 中獲取對應的 Entry，否則轉到第四步&lt;/li&gt;
-&lt;li&gt;如果 e 不為 null，則返回 e.value，否則轉到第四步&lt;/li&gt;
-&lt;li&gt;Map 為空或者 e 為空，則透過 initialValue 函式獲取初始值 value，然後用 ThreadLocal 的引用和 value 作為 firstKey 和 firstValue 建立一個新的 Map&lt;/li&gt;
+&lt;li&gt;首先取得目前執行緒，根據目前執行緒取得一個Map&lt;/li&gt;
+&lt;li&gt;如果取得的Map不為空，則在Map中以ThreadLocal的引用作為key來在Map中獲取對應的Entry，否則轉到第四步&lt;/li&gt;
+&lt;li&gt;如果e不為null，則回傳e.value，否則轉到第四步&lt;/li&gt;
+&lt;li&gt;Map為空或者e為空，則透過initialValue函數獲取初始值value，然後用ThreadLocal的引用和value作為firstKey和firstValue建立一個新的Map&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;總結：先獲取當前執行緒的 ThreadLocal 變數，如果存在則返回值，不存在則建立並返回初始值&lt;/p&gt;
-&lt;h3 id=&#34;remove-方法&#34;&gt;remove 方法
-&lt;/h3&gt;&lt;p&gt;程式碼執行流程&lt;/p&gt;
+&lt;p&gt;總結：先取得目前執行緒的ThreadLocal變數，如果存在則回傳值，不存在則建立並回傳初始值&lt;/p&gt;
+&lt;h3 id=&#34;remove方法&#34;&gt;remove方法
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/99284eaacfd9a0b6d5b0140ed3c6bc50.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;remove方法內部實現&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;程式碼執行流程&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;首先獲取當前執行緒，並根據當前執行緒獲取一個 Map&lt;/li&gt;
-&lt;li&gt;如果獲取的 Map 不為空，則移除當前 ThreadLocal 物件對應的 Entry&lt;/li&gt;
+&lt;li&gt;首先取得目前執行緒，並根據目前執行緒取得一個Map&lt;/li&gt;
+&lt;li&gt;如果取得的Map不為空，則移除目前ThreadLocal物件對應的Entry&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;initialvalue-方法&#34;&gt;initialValue 方法
-&lt;/h3&gt;&lt;p&gt;此方法的作用是返回該執行緒區域性變數的初始值。&lt;/p&gt;
+&lt;h3 id=&#34;initialvalue方法&#34;&gt;initialValue方法
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/a345f4de212091bc609e4644944b876d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;initialValue方法內部實現&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此方法的作用是回傳該執行緒區域變數的初始值。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;這個方法是一個延遲呼叫方法，從上面的程式碼我們得知，在 set 方法還未呼叫而先呼叫了 get 方法時才執行，並且僅執行1次。&lt;/li&gt;
-&lt;li&gt;這個方法預設實現直接返回一個 null。&lt;/li&gt;
-&lt;li&gt;如果想要一個除 null 之外的初始值，可以重寫此方法。（備註：該方法是一個 protected 的方法，顯然是為了讓子類覆蓋而設計的）&lt;/li&gt;
+&lt;li&gt;這個方法是一個延遲呼叫方法，從上面的程式碼我們得知，在set方法還未呼叫而先呼叫了get方法時才執行，並且僅執行1次。&lt;/li&gt;
+&lt;li&gt;這個方法預設實現直接回傳一個null。&lt;/li&gt;
+&lt;li&gt;如果想要一個除null之外的初始值，可以重寫此方法。（備註：該方法是一個protected的方法，顯然是為了讓子類覆蓋而設計的）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;threadlocalmap-原始碼分析&#34;&gt;ThreadLocalMap 原始碼分析
-&lt;/h2&gt;&lt;p&gt;在分析 ThreadLocal 方法的時候，我們瞭解到 ThreadLocal 的操作實際上是圍繞 ThreadLocalMap 展開的。
-ThreadLocalMap 的原始碼相對比較複雜，我們從以下三個方面進行討論。&lt;/p&gt;
+&lt;h2 id=&#34;threadlocalmap原始碼分析&#34;&gt;ThreadLocalMap原始碼分析
+&lt;/h2&gt;&lt;p&gt;在分析ThreadLocal方法的時候，我們了解到ThreadLocal的操作實際上是圍繞ThreadLocalMap展開的。
+ThreadLocalMap的原始碼相對比較複雜，我們從以下三個方面進行討論。&lt;/p&gt;
 &lt;h3 id=&#34;基本結構&#34;&gt;基本結構
-&lt;/h3&gt;&lt;p&gt;ThreadLocalMap 是 ThreadLocal 的內部類，沒有實現 Map 介面，用獨立的方式實現了 Map 的功能，其內部的 Entry 也是獨立實現。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;ThreadLocalMap是ThreadLocal的內部類別，沒有實現Map介面，用獨立的方式實現了Map的功能，其內部的Entry也是獨立實現。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/88eb45fcff99700281d92c49e341f8e7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ThreadLocalMap&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h4 id=&#34;成員變數&#34;&gt;成員變數
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2315,27 +2362,27 @@ ThreadLocalMap 的原始碼相對比較複雜，我們從以下三個方面進�
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/**
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;* 初始容量 - 必須是2的整次冪
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;**/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * 初始容量 - 必須是2的整次冪
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; **/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;INITIAL_CAPACITY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/**
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;*存放資料的table，Entry類的定義在下面分析，同樣，陣列的長度必須是2的整次冪
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;**/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; *儲存資料的table ，Entry類別的定義在下面分析，同樣，陣列的長度必須是2的整次冪
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; **/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Entry&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;table&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/**
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;*陣列裡面entrys的個數，可以用於判斷table當前使用量是否超過閾值
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;**/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; *陣列裡面entrys的個數，可以用於判斷table目前使用量是否超過閾值
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; **/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/**
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;*進行擴容的閾值，表使用量大於它的時候進行擴容
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;**/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; *進行擴充的閾值，表使用量大於它的時候進行擴充
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; **/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;threshold&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// Default to 0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;跟 HashMap 類似，INITIAL_CAPACITY 代表這個 Map 的初始容量；table 是一個 Entry 型別的陣列，用於儲存資料；size 代表表中的儲存數目；threshold 代表需要擴容時對應的 size 的閾值。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;跟HashMap類似，INITIAL_CAPACITY代表這個Map的初始容量；table是一個Entry型別的陣列，用於儲存資料；size代表表中的儲存數目；threshold代表需要擴充時對應的size的閾值。&lt;/p&gt;
 &lt;h3 id=&#34;儲存結構---entry&#34;&gt;儲存結構 - Entry
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2353,70 +2400,91 @@ ThreadLocalMap 的原始碼相對比較複雜，我們從以下三個方面進�
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/*
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;*Entry繼承WeakRefefence，並且用ThreadLocal作為key。
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;如果key為null（entry.get（）==null），意味著key不再被引用，
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; *Entry繼承WeakRefefence，並且用ThreadLocal作為key.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;如果key為nu11（entry.get（）==nu11），表示key不再被引用，
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;*因此這時候entry也可以從table中清除。
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;*/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Entry&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;extends&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;WeakReference&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Entry&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;extends&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weakReference&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;；&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Entry&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;？&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;v&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;；&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Entry&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;？&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;v&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;v&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;在 ThreadLocalMap 中，也是用 Entry 來儲存 K-V 結構資料的。不過 Entry 中的 key 只能是 ThreadLocal 物件，這點在構造方法中已經限定死了。&lt;/p&gt;
-&lt;p&gt;另外，Entry 繼承 WeakReference，也就是 key（ThreadLocal）是弱引用，其目的是將 ThreadLocal 物件的生命週期和執行緒生命週期解綁。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;在ThreadLocalMap中，也是用Entry來儲存K-V結構資料的。不過Entry中的key只能是ThreadLocal物件，這點在建構方法中已經限定死了。&lt;/p&gt;
+&lt;p&gt;另外，Entry繼承WeakReference，也就是key（ThreadLocal）是弱引用，其目的是將ThreadLocal物件的生命周期和執行緒生命周期解綁。&lt;/p&gt;
 &lt;h2 id=&#34;弱引用和記憶體洩漏&#34;&gt;弱引用和記憶體洩漏
-&lt;/h2&gt;&lt;p&gt;有些程式員在使用 ThreadLocal 的過程中會發現有記憶體洩漏的情況發生，就猜測這個記憶體洩漏跟 Entry 中使用了弱引用的 key 有關係。這個理解其實是不對的。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;有些程式設計師在使用ThreadLocal的過程中會發現有記憶體洩漏的情況發生，就猜測這個記憶體洩漏跟Entry中使用了弱引用的key有關係。這個理解其實是不對的。&lt;/p&gt;
 &lt;p&gt;我們先來回顧這個問題中涉及的幾個名詞概念，再來分析問題。&lt;/p&gt;
 &lt;h3 id=&#34;記憶體洩漏相關概念&#34;&gt;記憶體洩漏相關概念
-&lt;/h3&gt;&lt;p&gt;Memory overflow：記憶體溢位，沒有足夠的記憶體提供申請者使用。&lt;/p&gt;
-&lt;p&gt;Memory leak：記憶體洩漏是指程式中已動態分配的堆記憶體由於某種原因程式未釋放或無法釋放，造成系統記憶體的浪費，導致程式執行速度減慢甚至系統崩潰等嚴重後果。記憶體洩漏的堆積終將導致記憶體溢位。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;Memory overflow：記憶體溢出，沒有足夠的記憶體提供申請者使用。&lt;/p&gt;
+&lt;p&gt;Memory leak：記憶體洩漏是指程式中己動態分配的堆記憶體由於某種原因程式未釋放或無法釋放，造成系統記憶體的浪費，導致程式運行速度減慢甚至系統潰等嚴重後果。I記憶體洩漏的堆積終將導致記憶體溢出。&lt;/p&gt;
 &lt;h3 id=&#34;弱引用相關概念&#34;&gt;弱引用相關概念
-&lt;/h3&gt;&lt;p&gt;Java 中的引用有4種類型：強、軟、弱、虛。當前這個問題主要涉及到強引用和弱引用：&lt;/p&gt;
-&lt;p&gt;強引用（&amp;ldquo;Strong&amp;rdquo; Reference），就是我們最常見的普通物件引用，只要還有強引用指向一個物件，就能表明物件還&amp;quot;活著&amp;quot;，垃圾回收器就不會回收這種物件。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;Java中的引用有4種型別：強、軟、弱、虛。當前這個問題主要涉及到強引用和弱引用：&lt;/p&gt;
+&lt;p&gt;強引用（&amp;ldquo;Strong&amp;quot;Reference），就是我們最常見的普通物件引用，只要還有強引用指向一個物件，就能表明物件還「活著」，垃圾回收器就不會回收這種物件。&lt;/p&gt;
 &lt;p&gt;弱引用（WeakReference），垃圾回收器一旦發現了只具有弱引用的物件，不管當前記憶體空間足夠與否，都會回收它的記憶體。&lt;/p&gt;
-&lt;h3 id=&#34;如果-key-使用強引用那麼會出現記憶體洩漏&#34;&gt;如果 key 使用強引用，那麼會出現記憶體洩漏？
-&lt;/h3&gt;&lt;p&gt;假設 ThreadLocalMap 中的 key 使用了強引用，那麼會出現記憶體洩漏嗎？&lt;/p&gt;
+&lt;h3 id=&#34;如果key使用強引用那麼會出現記憶體洩漏&#34;&gt;如果key使用強引用，那麼會出現記憶體洩漏？
+&lt;/h3&gt;&lt;p&gt;假設ThreadLocalMap中的key使用了強引用，那麼會出現記憶體洩漏嗎？&lt;/p&gt;
+&lt;p&gt;此時ThreadLocal的記憶體圖（實線表示強引用）如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/90cb6845bec3042354566d76b7e3c1d0.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ThreadLocal的記憶體圖1&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;假設在業務程式碼中使用完 ThreadLocal，threadLocal Ref 被回收了&lt;/li&gt;
-&lt;li&gt;但是因為 threadLocalMap 的 Entry 強引用了 threadLocal，造成 threadLocal 無法被回收。&lt;/li&gt;
-&lt;li&gt;在沒有手動刪除這個 Entry 以及 CurrentThread 依然執行的前提下，始終有強引用鏈 threadRef-&amp;gt;currentThread-&amp;gt;threadLocalMap-&amp;gt;entry，Entry 就不會被回收（Entry 中包括了 ThreadLocal 例項和 value），導致 Entry 記憶體洩漏。&lt;/li&gt;
+&lt;li&gt;假設在業務程式碼中使用完ThreadLocal，threadLocal Ref被回收了&lt;/li&gt;
+&lt;li&gt;但是因為threadLocalMap的Entry強引用了threadLocal，造成threadLocal無法被回收。&lt;/li&gt;
+&lt;li&gt;在沒有手動刪除這個Entry以及CurrentThread依然運行的前提下，始終有強引用鏈 threadRef-&amp;gt;currentThread-&amp;gt;threadLocalMap-&amp;gt;entry，Entry就不會被回收（Entry中包括了ThreadLocal實例和value），導致Entry記憶體洩漏。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;也就是說，ThreadLocalMap 中的 key 使用了強引用，是無法完全避免記憶體洩漏的。&lt;/p&gt;
-&lt;h3 id=&#34;如果-key-使用弱引用那麼會出現記憶體洩漏&#34;&gt;如果 key 使用弱引用，那麼會出現記憶體洩漏？
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;同樣假設在業務程式碼中使用完 ThreadLocal，threadLocal Ref 被回收了。&lt;/li&gt;
-&lt;li&gt;由於 ThreadLocalMap 只持有 ThreadLocal 的弱引用，沒有任何強引用指向 threadlocal 例項，所以 threadlocal 就可以順利被 gc 回收，此時 Entry 中的 key=null。&lt;/li&gt;
-&lt;li&gt;但是在沒有手動刪除這個 Entry 以及 CurrentThread 依然執行的前提下，也存在有強引用鏈 threadRef-&amp;gt;currentThread-&amp;gt;threadLocalMap-&amp;gt;entry-&amp;gt;value，value 不會被回收，而這塊 value 永遠不會被訪問到了，導致 value 記憶體洩漏。&lt;/li&gt;
+&lt;p&gt;也就是說，ThreadLocalMap中的key使用了強引用，是無法完全避免記憶體洩漏的。&lt;/p&gt;
+&lt;h3 id=&#34;如果key使用弱引用那麼會出現記憶體洩漏&#34;&gt;如果key使用弱引用，那麼會出現記憶體洩漏？
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/835257833e4ae55243365ee5ac9cfa09.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ThreadLocal的記憶體圖2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;同樣假設在業務程式碼中使用完ThreadLocal，threadLocal Ref被回收了。&lt;/li&gt;
+&lt;li&gt;由於ThreadLocalMap只持有ThreadLocal的弱引用，沒有任何強引用指向threadlocal實例，所以threadloca就可以順利被gc回收，此時Entry中的key=null。&lt;/li&gt;
+&lt;li&gt;但是在沒有手動刪除這個Entry以及CurrentThread依然運行的前提下，也存在有強引用鏈 threadRef-&amp;gt;currentThread-&amp;gt;threadLocalMap-&amp;gt;entry-&amp;gt; value，value不會被回收，而這塊value永遠不會被存取到了，導致value記憶體洩漏。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;也就是說，ThreadLocalMap 中的 key 使用了弱引用，也有可能記憶體洩漏。&lt;/p&gt;
+&lt;p&gt;也就是說，ThreadLocalMap中的key使用了弱引用，也有可能記憶體洩漏。&lt;/p&gt;
 &lt;h3 id=&#34;出現記憶體洩漏的真實原因&#34;&gt;出現記憶體洩漏的真實原因
-&lt;/h3&gt;&lt;p&gt;比較以上兩種情況，我們就會發現，記憶體洩漏的發生跟 ThreadLocalMap 中的 key 是否使用弱引用是沒有關係的。那麼記憶體洩漏的真正原因是什麼呢？&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;比較以上兩種情況，我們就會發現，記憶體洩漏的發生跟ThreadLocalMap中的key是否使用弱引用是沒有關係的。那麼記憶體洩漏的的真正原因是什麼呢？&lt;/p&gt;
 &lt;p&gt;細心的同學會發現，在以上兩種記憶體洩漏的情況中，都有兩個前提：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;沒有手動刪除這個 Entry&lt;/li&gt;
-&lt;li&gt;CurrentThread 依然執行&lt;/li&gt;
+&lt;li&gt;沒有手動刪除這個Entry&lt;/li&gt;
+&lt;li&gt;CurrentThread依然運行&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;第一點很好理解，只要在使用完 ThreadLocal，呼叫其 remove 方法刪除對應的 Entry，就能避免記憶體洩漏。&lt;/p&gt;
-&lt;p&gt;第二點稍微複雜一點，由於 ThreadLocalMap 是 Thread 的一個屬性，被當前執行緒所引用，所以它的生命週期跟 Thread 一樣長。那麼在使用完 ThreadLocal 的使用，如果當前 Thread 也隨之執行結束，ThreadLocalMap 自然也會被 gc 回收，從根源上避免了記憶體洩漏。&lt;/p&gt;
-&lt;p&gt;綜上，ThreadLocal 記憶體洩漏的根源是：由於 ThreadLocalMap 的生命週期跟 Thread 一樣長，如果沒有手動刪除對應 key 就會導致記憶體洩漏。&lt;/p&gt;
+&lt;p&gt;第一點很好理解，只要在使用完ThreadLocal，呼叫其remove方法刪除對應的Entry，就能避免記憶體洩漏。&lt;/p&gt;
+&lt;p&gt;第二點稍微複雜一點，由於ThreadLocalMap是Thread的一個屬性，被目前執行緒所引用，所以它的生命周期跟Thread一樣長。那麼在使用完ThreadLocal的使用，如果目前Thread也隨之執行結束，ThreadLocalMap自然也會被gc回收，從根源上避免了記憶體洩漏。&lt;/p&gt;
+&lt;p&gt;綜上，ThreadLocal記憶體洩漏的根源是：由於ThreadLocalMap的生命周期跟Thread-樣長，如果沒有手動刪除對應key就會導致記憶體洩漏。&lt;/p&gt;
 &lt;h3 id=&#34;為什麼要使用弱引用&#34;&gt;為什麼要使用弱引用？
-&lt;/h3&gt;&lt;p&gt;根據剛才的分析，我們知道了：無論 ThreadLocalMap 中的 key 使用哪種型別引用都無法完全避免記憶體洩漏，跟使用弱引用沒有關係。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;根據剛才的分析，我們知道了：無論ThreadLocalMap中的key使用哪種型別引用都無法完全避免記憶體洩漏，跟使用弱引用沒有關係。&lt;/p&gt;
 &lt;p&gt;要避免記憶體洩漏有兩種方式：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;使用完 ThreadLocal，呼叫其 remove 方法刪除對應的 Entry&lt;/li&gt;
-&lt;li&gt;使用完 ThreadLocal，當前 Thread 也隨之執行結束&lt;/li&gt;
+&lt;li&gt;使用完ThreadLocal，呼叫其remove方法刪除對應的Entry&lt;/li&gt;
+&lt;li&gt;使用完ThreadLocal，目前Thread也隨之運行結束&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;相對第一種方式，第二種方式顯然更不好控制，特別是使用執行緒池的時候，執行緒結束是不會銷燬的，而是接著放入了執行緒池中。&lt;/p&gt;
-&lt;p&gt;也就是說，只要記得在使用完 ThreadLocal 及時的呼叫 remove，無論 key 是強引用還是弱引用都不會有問題。
-那麼為什麼 key 要用弱引用呢？&lt;/p&gt;
-&lt;p&gt;事實上，在 ThreadLocalMap 中的 set / getEntry 方法中，會對 key 為 null（也即是 ThreadLocal 為 null）進行判斷，如果為 null 的話，那麼是會對 value 置為 null 的。&lt;/p&gt;
-&lt;p&gt;這就意味著使用完 ThreadLocal，CurrentThread 依然執行的前提下，就算忘記呼叫 remove 方法，弱引用比強引用可以多一層保障：弱引用的 ThreadLocal 會被回收，對應的 value 在下次 ThreadLocalMap 呼叫 set，get，remove 中的任一方法的時候會被清除，從而避免記憶體洩漏。&lt;/p&gt;
-&lt;h2 id=&#34;hash-衝突的解決&#34;&gt;Hash 衝突的解決
-&lt;/h2&gt;&lt;p&gt;hash 衝突的解決是 Map 中的一個重要內容。我們以 hash 衝突的解決為線索，來研究一下 ThreadLocalMap 的核心原始碼。&lt;/p&gt;
-&lt;p&gt;首先從 ThreadLocal 的 set 方法入手&lt;/p&gt;
+&lt;p&gt;相對第一種方式，第二種方式顯然更不好控制，特別是使用執行緒池的時候，執行緒結束是不會銷毀的，而是接著放入了執行緒池中。&lt;/p&gt;
+&lt;p&gt;也就是說，只要記得在使用完ThreadLocal及時的呼叫remove，無論key是強引用還是弱引用都不會有問題。
+那麼為什麼key要用弱引用呢？&lt;/p&gt;
+&lt;p&gt;事實上，在ThreadLocalMap中的 set / getEntry方法中，會對key為null（也即是ThreadLocal為null）進行判斷，如果為null的話，那麼是會對value置為nul的。&lt;/p&gt;
+&lt;p&gt;這就意味著使用完ThreadLocal，CurrentThread依然運行的前提下，就算忘記呼叫remove方法，弱引用比強引用可以多一層保障：弱引用的ThreadLocal會被回收，對應的value在下一次ThreadLocalMap呼叫set，get，remove中的任一方法的時候會被清除，從而避免記憶體洩漏。&lt;/p&gt;
+&lt;h2 id=&#34;hash衝突的解決&#34;&gt;Hash衝突的解決
+&lt;/h2&gt;&lt;p&gt;hash衝突的解決是Map中的一個重要內容。我們以hash衝突的解決為線索，來研究一下ThreadLocalMap的核心原始碼。&lt;/p&gt;
+&lt;p&gt;首先從ThreadLocal的set方法入手&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2435,61 +2503,102 @@ ThreadLocalMap 的原始碼相對比較複雜，我們從以下三個方面進�
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;currentThread&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;ThreadLocalMap&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getMap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Threadt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;currentThread&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLoca1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;ThreadLocalMap&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getMap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mapl&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nu11&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//呼叫了ThreadLocalMap的set方法I &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;createMap&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;createMap&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;ThreadLocalMap&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getMap&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;threadLocals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;threadLocals&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;；&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;createMap&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;firstValue&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;threadLocals&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;ThreadLocalMap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;firstValue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;createMap&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;firstValue&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//呼叫了ThreadLocalMap的建構方法&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;threadlocals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;ThreadtocalMap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;firstValue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;這個方法我們剛才分析過，其作用是設定當前執行緒繫結的區域性變數&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;這個方法我們剛才分析過，其作用是設定目前執行緒繫結的區域變數&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;首先獲取當前執行緒，並根據當前執行緒獲取一個 Map&lt;/li&gt;
-&lt;li&gt;如果獲取的 Map 不為空，則將引數設定到 Map 中（當前 ThreadLocal 的引用作為 key）（這裡呼叫了 ThreadLocalMap 的 set 方法）&lt;/li&gt;
-&lt;li&gt;如果 Map 為空，則給該執行緒建立 Map，並設定初始值（這裡呼叫了 ThreadLocalMap 的構造方法）&lt;/li&gt;
+&lt;li&gt;首先取得目前執行緒，並根據目前執行緒取得一個Map&lt;/li&gt;
+&lt;li&gt;如果取得的Map不為空，則將參數設定到Map中（目前ThreadLocal的引用作為key)（這裡呼叫了ThreadLocalMap的set方法）&lt;/li&gt;
+&lt;li&gt;如果Map為空，則給該執行緒建立Map，並設定初始值（這裡呼叫了ThreadLocalMap的建構方法）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;這段程式碼有兩個地方分別涉及到 ThreadLocalMap 的兩個方法，我們接著分析這兩個方法&lt;/p&gt;
-&lt;h3 id=&#34;構造方法&#34;&gt;構造方法
+&lt;p&gt;這段程式碼有兩個地方分別涉及到ThreadLocalMap的兩個方法，我們接著分析這兩個方法&lt;/p&gt;
+&lt;h3 id=&#34;建構方法&#34;&gt;建構方法
 &lt;/h3&gt;&lt;p&gt;ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue)&lt;/p&gt;
-&lt;p&gt;建構函式首先建立一個長度為16的 Entry 陣列，然後計算出 firstKey 對應的索引，然後儲存到 table 中，並設定 size 和 threshold。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/de0f32d41d52ed8ed242091f134b05e2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ThreadLocalMap的建構方法&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;建構函數首先建立一個長度為16的Entry陣列，然後計算出firstKey對應的索引，然後儲存到table中，並設定size和threshold。&lt;/p&gt;
 &lt;p&gt;重點分析：int i = firstKey.threadLocalHashCode &amp;amp; ( INITIAL_CAPACITY - 1)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;關於：threadLocalHashCode&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;這裡定義了一個 AtomicInteger 型別，每次獲取當前值並加上 HASH_INCREMENT，HASH_INCREMENT =
-0x61c88647，這個值跟斐波那契數列（黃金分割數）有關，其主要目的就是為了讓雜湊碼能均勻的分佈在2的n次方的陣列裡，也就是 Entry table 中，這樣做可以儘量避免 hash 衝突。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;關於 &amp;amp;（INITIAL_CAPACITY - 1）&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;計算 hash 的時候裡面採用了 hashCode &amp;amp;（size-1）的演算法，這相當於取模運算 hashCode % size 的一個更高效的實現。正是因為這種演算法，我們要求 size 必須是2的整次冪，這也能保證保證在索引不越界的前提下，使得 hash 發生衝突的次數減小。&lt;/p&gt;
-&lt;h3 id=&#34;set-方法-1&#34;&gt;set 方法
-&lt;/h3&gt;&lt;p&gt;程式碼執行流程&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/37c09b2647d4c1c8113781959c8ce564.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;threadLocalHashCode&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;這裡定義了一個Atomiclnteger型別，每次獲取目前值並加上HASHINCREMENT，HASH_INCREMENT = 0x61c88647，這個值跟斐波那契數列（黃金分割數）有關，其主要目的就是為了讓哈希碼能均勻的分布在2的n次方的陣列裡，也就是EntryI table中，這樣做可以盡量避免hash衝突。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;關於&amp;amp;（INITIAL_CAPACITY-1）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;計算hash的時候裡面採用了hashCode&amp;amp;（size-1）的演算法，這相當於取模運算hashCode%size的一個更高效的實現。正是因為這種演算法，我們要求size必須是2的整次冪，這也能保證保證在索引不越界的前提下，使得hash發生衝突的次數減小。&lt;/p&gt;
+&lt;h3 id=&#34;get方法-1&#34;&gt;Get方法
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/fe25df1b5d5b514c99413f012097e085.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Get方法1&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/fe25df1b5d5b514c99413f012097e085.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Get方法2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;程式碼執行流程&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;首先還是根據 key 計算出索引 i，然後查詢位置上的 Entry，&lt;/li&gt;
-&lt;li&gt;若是 Entry 已經存在並且 key 等於傳入的 key，那麼這時候直接給這個 Entry 賦新的 value 值，&lt;/li&gt;
-&lt;li&gt;若是 Entry 存在，但是 key 為 null，則呼叫 replaceStaleEntry 來更換這個 key 為空的 Entry，&lt;/li&gt;
-&lt;li&gt;不斷迴圈檢測，直到遇到為 null 的地方，這時候要是還沒在迴圈過程中 return，那麼就在這個 null 的位置新建一個 Entry，並且插入，同時 size 增加1。&lt;/li&gt;
+&lt;li&gt;首先還是根據key計算出索引i，然後查找位置上的Entry，&lt;/li&gt;
+&lt;li&gt;若是Entry已經存在並且key等於傳入的key，那麼這時候直接給這個Entry賦新的value值，&lt;/li&gt;
+&lt;li&gt;若是Entry存在，但是key為null，則呼叫replaceStaleEntry來更換這個key為空的Entry，&lt;/li&gt;
+&lt;li&gt;不斷迴圈檢測，直到遇到為null的地方，這時候要是還沒在迴圈過程中return，那麼就在這個null的位置新建一個Entry，並且插入，同時size增加1。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;最後呼叫 cleanSomeSlots，清理 key 為 null 的 Entry，最後返回是否清理了 Entry，接下來再判斷 sz &amp;gt;= threshold 達到了 rehash 的條件，達到的話就會呼叫 rehash 函式執行一次全表的掃描清理。&lt;/p&gt;
-&lt;h3 id=&#34;線性探測法解決-hash-衝突&#34;&gt;線性探測法解決 Hash 衝突
-&lt;/h3&gt;&lt;p&gt;該方法一次探測下一個地址，直到有空的地址後插入，若整個空間都找不到空餘的地址，則產生溢位。&lt;/p&gt;
-&lt;p&gt;舉個例子，假設當前 table 長度為16，也就是說如果計算出來 key 的 hash 值為14，如果 table[14] 上已經有值，並且其 key 與當前 key 不一致，那麼就發生了 hash 衝突，這個時候將 14+1 得到15，取 table[15] 進行判斷，這個時候如果還是衝突會回到0，取 table[0]，以此類推，直到可以插入。&lt;/p&gt;
-&lt;p&gt;按照上面的描述，可以把 Entry table 看成一個環形陣列。&lt;/p&gt;
-&lt;h2 id=&#34;threadlocal-使用場景&#34;&gt;ThreadLocal 使用場景
+&lt;p&gt;最後呼叫cleanSomeSlots，清理key為null的Entry，最後回傳是否清理了Entry，接下來再判斷sz是否&amp;gt;= thresgold達到了rehash的條件，達到的話就會呼叫rehash函數執行一次全表的掃描清理。&lt;/p&gt;
+&lt;h3 id=&#34;線性探測法解決hash衝突&#34;&gt;線性探測法解決Hash衝突
+&lt;/h3&gt;&lt;p&gt;該方法一次探測下一個地址，直到有空的地址後插入，若整個空間都找不到空餘的地址，則產生溢出。&lt;/p&gt;
+&lt;p&gt;舉個例子，假設目前table長度為16，也就是說如果計算出來key的hash值為14，如果table[14]上已經有值，並且其key與當前key不一致，那麼就發生了hash衝突，這個時候將1401得到15，取table[15]進行判斷，這個時候如果還是衝突會回到0，取table[0]，以此類推，直到可以插入。&lt;/p&gt;
+&lt;p&gt;按照上面的描述，可以把Entry table看成一個環形陣列。&lt;/p&gt;
+&lt;h2 id=&#34;threadlocal使用場景&#34;&gt;ThreadLocal使用場景
 &lt;/h2&gt;&lt;h3 id=&#34;原始碼使用場景&#34;&gt;原始碼使用場景
-&lt;/h3&gt;&lt;p&gt;ThreadLocal 的作用主要是做資料隔離，填充的資料只屬於當前執行緒，變數的資料對別的執行緒而言是相對隔離的，在多執行緒環境下，如何防止自己的變數被其它執行緒篡改。&lt;/p&gt;
-&lt;p&gt;例如，用於 Spring 實現事務隔離級別的原始碼&lt;/p&gt;
-&lt;p&gt;Spring 採用 ThreadLocal 的方式，來保證單個執行緒中的資料庫操作使用的是同一個資料庫連線，同時，採用這種方式可以使業務層使用事務時不需要感知並管理 connection 物件，透過傳播級別，巧妙地管理多個事務配置之間的切換，掛起和恢復。&lt;/p&gt;
-&lt;p&gt;Spring 框架裡面就是用的 ThreadLocal 來實現這種隔離，主要是在 &lt;code&gt;TransactionSynchronizationManager&lt;/code&gt; 這個類裡面，程式碼如下所示：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;ThreadLocal的作用主要是做資料隔離，填充的資料只屬於目前執行緒，變數的資料對別的執行緒而言是相對隔離的，在多執行緒環境下，如何防止自己的變數被其它執行緒竄改。&lt;/p&gt;
+&lt;p&gt;例如，用於 Spring實現事務隔離級別的原始碼&lt;/p&gt;
+&lt;p&gt;Spring採用Threadlocal的方式，來保證單個執行緒中的資料庫操作使用的是同一個資料庫連線，同時，採用這種方式可以使業務層使用事務時不需要感知並管理connection物件，透過傳播級別，巧妙地管理多個事務配置之間的切換，掛起和恢復。&lt;/p&gt;
+&lt;p&gt;Spring框架裡面就是用的ThreadLocal來實現這種隔離，主要是在&lt;code&gt;TransactionSynchronizationManager&lt;/code&gt;這個類別裡面，程式碼如下所示:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2506,25 +2615,25 @@ ThreadLocalMap 的原始碼相對比較複雜，我們從以下三個方面進�
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Log&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logger&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LogFactory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getLog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TransactionSynchronizationManager&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Map&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;resources&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NamedThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Transactional resources&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Map&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;resources&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NamedThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Transactional resources&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Set&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TransactionSynchronization&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;synchronizations&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NamedThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Transaction synchronizations&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Set&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TransactionSynchronization&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;synchronizations&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NamedThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Transaction synchronizations&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;currentTransactionName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NamedThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Current transaction name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;currentTransactionName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NamedThreadLocal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Current transaction name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Spring 的事務主要是 ThreadLocal 和 AOP 去做實現的，我這裡提一下，大家知道每個執行緒自己的連結是靠 ThreadLocal 儲存的就好了&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;Spring的事務主要是ThreadLocal和AOP去做實現的，我這裡提一下，大家知道每個線程自己的連結是靠ThreadLocal儲存的就好了&lt;/p&gt;
 &lt;h3 id=&#34;使用者使用場景1&#34;&gt;使用者使用場景1
-&lt;/h3&gt;&lt;p&gt;除了原始碼裡面使用到 ThreadLocal 的場景，你自己有使用他的場景麼？&lt;/p&gt;
-&lt;p&gt;之前我們上線後發現部分使用者的日期居然不對了，排查下來是 SimpleDateFormat 的鍋，當時我們使用 SimpleDateFormat 的 parse() 方法，內部有一個 Calendar 物件，呼叫 SimpleDateFormat 的 parse() 方法會先呼叫 Calendar.clear()，然後呼叫 Calendar.add()，如果一個執行緒先呼叫了 add() 然後另一個執行緒又呼叫了 clear()，這時候 parse() 方法解析的時間就不對了。&lt;/p&gt;
-&lt;p&gt;其實要解決這個問題很簡單，讓每個執行緒都 new 一個自己的 SimpleDateFormat 就好了，但是1000個執行緒難道 new 1000個 SimpleDateFormat？&lt;/p&gt;
-&lt;p&gt;所以當時我們使用了執行緒池加上 ThreadLocal 包裝 SimpleDateFormat，再呼叫 initialValue 讓每個執行緒有一個 SimpleDateFormat 的副本，從而解決了執行緒安全的問題，也提高了效能。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;除了原始碼裡面使用到ThreadLocal的場景，你自己有使用他的場景麼？&lt;/p&gt;
+&lt;p&gt;之前我們上線後發現部分使用者的日期居然不對了，排查下來是SimpleDataFormat的鍋，當時我們使用SimpleDataFormat的parse()方法，內部有一個Calendar物件，呼叫SimpleDataFormat的parse()方法會先呼叫Calendar.clear（），然後呼叫Calendar.add()，如果一個執行緒先呼叫了add()然後另一個執行緒又呼叫了clear()，這時候parse()方法解析的時間就不對了。&lt;/p&gt;
+&lt;p&gt;其實要解決這個問題很簡單，讓每個執行緒都new 一個自己的 SimpleDataFormat就好了，但是1000個執行緒難道new1000個SimpleDataFormat？&lt;/p&gt;
+&lt;p&gt;所以當時我們使用了執行緒池加上ThreadLocal包裝SimpleDataFormat，再呼叫initialValue讓每個執行緒有一個SimpleDataFormat的副本，從而解決了執行緒安全的問題，也提高了效能。&lt;/p&gt;
 &lt;h3 id=&#34;使用者使用場景2&#34;&gt;使用者使用場景2
 &lt;/h3&gt;&lt;p&gt;我在專案中存在一個執行緒經常遇到橫跨若干方法呼叫，需要傳遞的物件，也就是上下文（Context），它是一種狀態，經常就是是使用者身份、任務資訊等，就會存在過渡傳參的問題。&lt;/p&gt;
-&lt;p&gt;使用到類似責任鏈模式，給每個方法增加一個 context 引數非常麻煩，而且有些時候，如果呼叫鏈有無法修改原始碼的第三方庫，物件引數就傳不進去了，所以我使用到了 ThreadLocal 去做了一下改造，這樣只需要在呼叫前在 ThreadLocal 中設定引數，其他地方 get 一下就好了。&lt;/p&gt;
+&lt;p&gt;使用到類似責任鏈模式，給每個方法增加一個context參數非常麻煩，而且有些時候，如果呼叫鏈有無法修改原始碼的第三方庫，物件參數就傳不進去了，所以我使用到了ThreadLocal去做了一下改造，這樣只需要在呼叫前在ThreadLocal中設定參數，其他地方get一下就好了。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2564,21 +2673,21 @@ ThreadLocalMap 的原始碼相對比較複雜，我們從以下三個方面進�
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;work&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;try&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;threadLocalUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 他們內部  User u = threadLocalUser.get(); 就好了&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getInfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;checkInfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setSomeThing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;try&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	  &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;threadLocalUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 他們內部  User u = threadLocalUser.get(); 就好了&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getInfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;checkInfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setSomeThing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;finally&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;threadLocalUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;remove&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;threadLocalUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;remove&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;我看了一下很多場景的 cookie，session 等資料隔離都是透過 ThreadLocal 去做實現的&lt;/p&gt;
-&lt;p&gt;在 Android 中，Looper 類就是利用了 ThreadLocal 的特性，保證每個執行緒只存在一個 Looper 物件。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;我看了一下很多場景的cookie，session等資料隔離都是透過ThreadLocal去做實現的&lt;/p&gt;
+&lt;p&gt;在Android中，Looper類就是利用了ThreadLocal的特性，保證每個執行緒只存在一個Looper物件。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1

@@ -7,13 +7,394 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-CN</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Mon, 11 May 2026 01:57:14 +0800</lastBuildDate><atom:link href="https://Siborne.top/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 16 May 2026 20:07:25 +0800</lastBuildDate><atom:link href="https://Siborne.top/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>互联网架构就这？1个故事讲清楚</title>
+        <link>https://Siborne.top/p/internet-architecture-in-one-story/</link>
+        <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/p/internet-architecture-in-one-story/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" alt="Featured image of post 互联网架构就这？1个故事讲清楚" /&gt;&lt;blockquote&gt;
+&lt;p&gt;一口气讲透互联网架构所有高频名词。看似眼花缭乱、概念扎堆，拆解核心逻辑，它其实就是一套不断补短板、解决新问题的迭代闭环。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-一切的开端单机架构&#34;&gt;1. 一切的开端：单机架构
+&lt;/h2&gt;&lt;p&gt;故事的起点非常朴素——你刚做了一个小网站，用户没几个，访问量极低。这还用想？怎么简单怎么来。&lt;/p&gt;
+&lt;p&gt;一台服务器，上面装应用程序，也装数据库，用一套开源的 LNMP 技术栈就能迅速搞定。你给它取名叫&lt;strong&gt;单机架构&lt;/strong&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│     一台服务器        │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ┌───────────────┐  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │   应用程序      │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ├───────────────┤  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │   数据库       │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  └───────────────┘  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;简单、直接、零运维成本——这就是所有架构的起点。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-应用与数据库分离&#34;&gt;2. 应用与数据库分离
+&lt;/h2&gt;&lt;p&gt;业务慢慢有了起色，用户多了一点，单机扛不住了。应用和数据库经常抢 CPU、抢内存、抢 IO，互相拖累。&lt;/p&gt;
+&lt;p&gt;怎么办？&lt;strong&gt;加机器，拆。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;把应用和数据库拆到两台服务器上：应用服务器专门处理请求和业务逻辑，数据库服务器专门存数据、做 IO 操作。两者各司其职，互不干扰，可用性也上来了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/971b672f47816ce42f466b9b7ee507cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-高并发来了集群--负载均衡&#34;&gt;3. 高并发来了：集群 + 负载均衡
+&lt;/h2&gt;&lt;p&gt;但好景不长，用户又暴涨了。单台应用服务器处理不过来，数据库也扛不住大量查询。故事进入高潮——&lt;strong&gt;高并发&lt;/strong&gt;来了。&lt;/p&gt;
+&lt;p&gt;单台应用服务器就算配置拉满也有上限，比如一秒只能扛 100 个请求，来了 500 个请求咋办？&lt;/p&gt;
+&lt;p&gt;500 ÷ 100 = 5，那就来&lt;strong&gt;五台服务器&lt;/strong&gt;，部署一模一样的代码。你给它取名叫&lt;strong&gt;集群&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;还有个问题：流量怎么分配到每台服务器呢？于是你发明了一个中间层——它能将请求均匀分配到每台应用服务器。你给它取名叫&lt;strong&gt;负载均衡&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;扛不住就加机器 → &lt;strong&gt;水平扩展&lt;/strong&gt;。
+一台挂了自动屏蔽流量，其他顶上 → &lt;strong&gt;高可用&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9904429e3cf9788116b93e186e28f888.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-数据库成为新瓶颈多级缓存&#34;&gt;4. 数据库成为新瓶颈：多级缓存
+&lt;/h2&gt;&lt;p&gt;应用扛住了，新问题紧随而来——大量请求穿透到数据库，数据库成了新瓶颈。&lt;/p&gt;
+&lt;p&gt;你开始研究应用查询数据库的原理：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;应用发查询请求给数据库&lt;/li&gt;
+&lt;li&gt;数据库先去&lt;strong&gt;内存缓冲区&lt;/strong&gt;找数据&lt;/li&gt;
+&lt;li&gt;找到 → 直接返回；没找到 → 去磁盘折腾一圈，读出来放进内存缓冲区，再返回给应用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;关键发现：&lt;strong&gt;从内存缓冲区读，比从磁盘读快 1000 倍以上。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;那能不能都去内存缓冲区读？不行，太小了。怎么办？直接把内存缓冲区单独出来、放大！经常被访问的&lt;strong&gt;热点数据&lt;/strong&gt;全放上去，快速查，不用去数据库。你给它取名叫&lt;strong&gt;缓存&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;你设计了三层缓存：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;层级&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;浏览器缓存&lt;/td&gt;
+          &lt;td&gt;用户本地，最快&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;应用服务器本地缓存&lt;/td&gt;
+          &lt;td&gt;服务实例内存，极快&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分布式缓存（如 Redis）&lt;/td&gt;
+          &lt;td&gt;集中式大容量内存，快&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;用户每次请求：浏览器缓存 → 本地缓存 → 分布式缓存 → 数据库。&lt;/p&gt;
+&lt;p&gt;绝大多数请求在缓存层就被拦住，根本到不了数据库。查询速度从&lt;strong&gt;毫秒级 → 微秒级&lt;/strong&gt;，数据库压力暴跌。就算数据库挂了，缓存还能顶一阵。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/62412070ecbcc2629a8a26794f67b4f7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-读写分离给数据库分工&#34;&gt;5. 读写分离：给数据库分工
+&lt;/h2&gt;&lt;p&gt;缓存解决了&lt;strong&gt;热点读&lt;/strong&gt;，但写请求和非热点读还是要打到数据库。&lt;/p&gt;
+&lt;p&gt;数据库有个特点：写本身并不慢，但&lt;strong&gt;多写会锁行锁表&lt;/strong&gt;，并发一高就排队。能不能给数据库分工？&lt;/p&gt;
+&lt;p&gt;于是你让&lt;strong&gt;主库只负责写&lt;/strong&gt;，&lt;strong&gt;从库只负责读&lt;/strong&gt;，通过数据同步保证主从数据一致。你给它取名叫&lt;strong&gt;读写分离&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;现实中互联网系统&lt;strong&gt;读多写少&lt;/strong&gt;，可以一主多从，读压力一下就分摊了，读写互相阻塞的问题也彻底解决。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/dc14f70c0e24733647b4832f51d387ea.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-海量存储分库分表&#34;&gt;6. 海量存储：分库分表
+&lt;/h2&gt;&lt;p&gt;系统跑了几年，数据量越来越大。订单表、日志表越来越臃肿，&lt;strong&gt;单库单表撑不住了&lt;/strong&gt;。必须对数据库进行拆分。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;垂直分库&lt;/strong&gt;：按业务拆分——用户库、商品库、订单库，互不干扰。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;水平分表&lt;/strong&gt;：一张大表拆成多张小表，比如按 UID 哈希分成多张表，分散压力。配合数据库中间件对应用透明，不用改大量代码。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/e3b4d69ce691009f3b211f9599e3a73f.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;7-cdn--反向代理快且安全&#34;&gt;7. CDN + 反向代理：快且安全
+&lt;/h2&gt;&lt;p&gt;你的系统用户遍布全国，有人访问快如闪电，有人慢如蜗牛。而且应用服务器直接暴露在公网，太危险。&lt;/p&gt;
+&lt;p&gt;于是你发明了两个新玩意儿：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CDN（内容分发网络）&lt;/strong&gt;：在全国铺了很多节点，静态资源提前放到离用户最近的节点，就像你家门口的快递站。用户通过域名解析获取最近的节点 IP 取数据，速度直接起飞。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;反向代理&lt;/strong&gt;：放在用户和应用之间，公网请求先到它，再转发给内网应用服务器。隐藏真实服务器，防止攻击，还能做流量清洗、权限校验，一举多得。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/d03a28d70fa16bec0e280e06b3adeb43.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;8-复杂查询搜索引擎--nosql&#34;&gt;8. 复杂查询：搜索引擎 + NoSQL
+&lt;/h2&gt;&lt;p&gt;互联网玩法越来越花，场景越来越复杂。传统数据库遇到模糊查询、全文搜索、多维统计就力不从心了。用 &lt;code&gt;LIKE&lt;/code&gt; 搜商品，慢到死。&lt;/p&gt;
+&lt;p&gt;于是你发明了两个新玩意儿：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;搜索引擎（如 Elasticsearch）&lt;/strong&gt;：利用&lt;strong&gt;倒排索引&lt;/strong&gt;让搜索秒级响应。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NoSQL 数据库（如 MongoDB、HBase）&lt;/strong&gt;：专门存非结构化、半结构化数据，高并发易扩展。&lt;/p&gt;
+&lt;p&gt;系统从此不再是简单增删改查，而是能支持&lt;strong&gt;复杂检索与分析&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9553ba3d899101463688c3de653abbb1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;9-分布式架构拆&#34;&gt;9. 分布式架构：拆！
+&lt;/h2&gt;&lt;p&gt;生意越做越大，你的网站从小电商长成了集用户、商品、订单于一体的大平台。&lt;/p&gt;
+&lt;p&gt;所有功能代码全挤在一个应用里，长成了大家常说的&lt;strong&gt;巨石应用&lt;/strong&gt;。麻烦也跟着来了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;改一行用户代码要全量发布&lt;/li&gt;
+&lt;li&gt;多个开发同时改代码，天天冲突&lt;/li&gt;
+&lt;li&gt;想给订单加机器，只能整个应用一起扩容，资源白白浪费&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;怎么办？&lt;strong&gt;拆！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按业务边界，把这个大应用一刀一刀切开：用户、商品、订单各成一个独立小系统。每个系统&lt;strong&gt;单独部署、单独发布、单独扩容&lt;/strong&gt;，谁也不影响谁。你给它取名叫&lt;strong&gt;分布式架构&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;但拆完新问题又来了——系统分开了，怎么互相调用？于是你发明了&lt;strong&gt;RPC（远程过程调用）&lt;/strong&gt;，让跨机器的服务调用像调本地代码一样简单。&lt;/p&gt;
+&lt;p&gt;服务越来越多，调用链路越来越复杂，快速找到目标成了难题。于是你又发明了一个总管——&lt;strong&gt;服务注册与发现中心&lt;/strong&gt;：新服务来注册，谁要调用谁来这找。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2bd4c9168cb12c9cea585ae357527b1c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;10-消息队列解耦与削峰&#34;&gt;10. 消息队列：解耦与削峰
+&lt;/h2&gt;&lt;p&gt;服务之间相互调用、相互等待——一个服务卡住，整条链路都跟着堵死。流量一高，&lt;strong&gt;雪崩&lt;/strong&gt;了。&lt;/p&gt;
+&lt;p&gt;怎么办？能不能不让服务之间相互等待？&lt;/p&gt;
+&lt;p&gt;于是你发明了一个超大容量的智能收件箱：服务之间不用死死等着对方立刻回复，把消息扔进去就可以继续干自己的事。谁要谁自己来拿。你给它取名叫&lt;strong&gt;消息队列（MQ）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这下服务之间彻底解耦、互不拖累。某个服务临时挂了，消息不会丢，等恢复了再慢慢处理。遇到流量突增，先把请求存起来按系统能力慢慢消化——&lt;strong&gt;削峰填谷&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c1f8f2e306753c78c33868a76a61fe00.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-微服务架构拆得更细&#34;&gt;11. 微服务架构：拆得更细
+&lt;/h2&gt;&lt;p&gt;分布式架构用了几年，你又发现新问题——拆是拆了，但&lt;strong&gt;拆得还不够细&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;就拿用户系统来说，里面装着登录、个人信息、会员、地址……还是一大坨。不同团队想用的技术不一样，有的想用 Java，有的想用 Go，混在一个系统里根本没法搞。会员模块要大促扩容，只能把整个用户系统一起加机器，钱和资源全浪费。&lt;/p&gt;
+&lt;p&gt;怎么办？&lt;strong&gt;继续拆！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按照&lt;strong&gt;一个服务只干一件事&lt;/strong&gt;的原则，拆得更细更小：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;登录做成单独服务&lt;/li&gt;
+&lt;li&gt;会员做成单独服务&lt;/li&gt;
+&lt;li&gt;支付做成单独服务&lt;/li&gt;
+&lt;li&gt;……&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个小服务独立开发、独立发布、独立扩容，想用什么技术栈就用什么。你给这套更极致的架构取名叫&lt;strong&gt;微服务架构&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;大促一来，订单、支付这几个最热的服务直接加十倍机器抗流量，其他不忙的服务完全不用动，资源一点不浪费。哪个服务出 bug 就只影响这一个小功能，绝不会拖垮整个网站。几十个团队，各管各的服务，互不打扰，开发效率直接起飞。&lt;/p&gt;
+&lt;p&gt;当然有利就有挑战——调用关系像蜘蛛网，加上&lt;strong&gt;全链路追踪&lt;/strong&gt;一眼定位慢服务；怕连锁崩盘，加上&lt;strong&gt;限流、熔断、降级&lt;/strong&gt;自动保护；服务太多不好管，做&lt;strong&gt;服务治理&lt;/strong&gt;：统一监控、日志、权限全安排得明明白白。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/5951eb71303e83cdf7ed8e359bc4c779.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-容器化一次打包到处运行&#34;&gt;12. 容器化：一次打包，到处运行
+&lt;/h2&gt;&lt;p&gt;微服务是真好用，可运维同学直接哭了。&lt;/p&gt;
+&lt;p&gt;服务越拆越细，从原来几个应用一下子变成几百个微服务。每个服务上线都要配环境、装依赖、调参数——稍微不一样就出现&amp;quot;我电脑能跑，服务器跑不起来&amp;quot;的玄学 bug。大促前要紧急扩容几百台机器，一台台配环境根本赶不上；大促结束要缩容，还得一台台清理，效率低到离谱。&lt;/p&gt;
+&lt;p&gt;怎么办？&lt;/p&gt;
+&lt;p&gt;能不能把服务和他需要的运行环境一起，&lt;strong&gt;打包成一个密封盒子&lt;/strong&gt;，放到哪台服务器都能直接跑？&lt;/p&gt;
+&lt;p&gt;于是你又发明了一个新玩意儿——不用再配环境。把每个微服务的代码、依赖、配置、环境全部打包成一个&lt;strong&gt;镜像&lt;/strong&gt;，一次打包，到处运行，彻底解决了环境不一致的世纪难题。你给它取名叫 &lt;strong&gt;Docker 容器&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c11875b5c575e737e363a15111b223cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;13-容器编排kubernetes-大管家&#34;&gt;13. 容器编排：Kubernetes 大管家
+&lt;/h2&gt;&lt;p&gt;可问题又来了——几百上千个容器，谁能帮你管？&lt;/p&gt;
+&lt;p&gt;于是你又请来一个全能大管家。它能安排容器资源、调度容器位置、自动伸缩。你给它取名叫 &lt;strong&gt;Kubernetes（K8s）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;流量高了 → 自动加容器&lt;/li&gt;
+&lt;li&gt;流量低了 → 自动缩容器&lt;/li&gt;
+&lt;li&gt;容器挂了 → 自动重启&lt;/li&gt;
+&lt;li&gt;全程不用你管&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/6adc9fa5ce93a121718c07160b86079b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;14-云原生新时代的架构&#34;&gt;14. 云原生：新时代的架构
+&lt;/h2&gt;&lt;p&gt;还没完——就算有了 K8s，还是得自己买服务器、维护机房。为了大促备一堆机器，平日全闲着，太浪费钱。&lt;/p&gt;
+&lt;p&gt;于是你直接把系统搬到了&lt;strong&gt;云平台&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;云平台就像一个无限大的资源池，要多少 CPU、内存、带宽，随时申请、随时用、用完释放，&lt;strong&gt;按需付费&lt;/strong&gt;。底层机房完全透明，你只需要关注业务。&lt;/p&gt;
+&lt;p&gt;你的架构彻底进入了新的时代——你给它取名叫&lt;strong&gt;云原生（Cloud Native）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2f74242037162690b0d22e8dfe5fd20b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;15-故事总结架构演进全景图&#34;&gt;15. 故事总结：架构演进全景图
+&lt;/h2&gt;&lt;p&gt;从最开始一台小服务器到如今弹性自动化、高可用、能无限扩展的现代化架构——不管业务怎么涨、流量怎么爆，它都能稳稳扛住。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;阶段&lt;/th&gt;
+          &lt;th&gt;解决的问题&lt;/th&gt;
+          &lt;th&gt;核心方案&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;单机架构&lt;/td&gt;
+          &lt;td&gt;从零搭建&lt;/td&gt;
+          &lt;td&gt;一台服务器全包&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;应用与数据库分离&lt;/td&gt;
+          &lt;td&gt;资源争抢&lt;/td&gt;
+          &lt;td&gt;拆成两台，各司其职&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;集群 + 负载均衡&lt;/td&gt;
+          &lt;td&gt;高并发&lt;/td&gt;
+          &lt;td&gt;多台服务器 + 流量分发&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;多级缓存&lt;/td&gt;
+          &lt;td&gt;查询性能、数据库压力&lt;/td&gt;
+          &lt;td&gt;浏览器 → 本地 → 分布式缓存&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;读写分离&lt;/td&gt;
+          &lt;td&gt;数据库读写阻塞&lt;/td&gt;
+          &lt;td&gt;主库写、从库读&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分库分表&lt;/td&gt;
+          &lt;td&gt;海量存储&lt;/td&gt;
+          &lt;td&gt;垂直分库 + 水平分表&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CDN + 反向代理&lt;/td&gt;
+          &lt;td&gt;访问速度、系统安全&lt;/td&gt;
+          &lt;td&gt;就近访问 + 隐藏真实服务器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;搜索引擎 + NoSQL&lt;/td&gt;
+          &lt;td&gt;复杂查询&lt;/td&gt;
+          &lt;td&gt;倒排索引 + 非结构化存储&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分布式架构&lt;/td&gt;
+          &lt;td&gt;业务膨胀、代码维护&lt;/td&gt;
+          &lt;td&gt;按业务拆分，RPC 通信&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;消息队列&lt;/td&gt;
+          &lt;td&gt;服务耦合、流量冲击&lt;/td&gt;
+          &lt;td&gt;异步解耦 + 削峰填谷&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;微服务架构&lt;/td&gt;
+          &lt;td&gt;团队协作、极致弹性&lt;/td&gt;
+          &lt;td&gt;一个服务只干一件事&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;容器化（Docker）&lt;/td&gt;
+          &lt;td&gt;环境不一致&lt;/td&gt;
+          &lt;td&gt;一次打包，到处运行&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;容器编排（K8s）&lt;/td&gt;
+          &lt;td&gt;运维成本&lt;/td&gt;
+          &lt;td&gt;自动化调度 + 弹性伸缩&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;云原生&lt;/td&gt;
+          &lt;td&gt;资源利用率&lt;/td&gt;
+          &lt;td&gt;按需付费，底层透明&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/b54ac34e408d2d78d7b77db0d3445640.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;架构师的三句核心思维&#34;&gt;架构师的三句核心思维
+&lt;/h2&gt;&lt;p&gt;最后，送你三句话。听懂了，你也能设计好架构。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一、没有最好的架构，只有最适合业务的架构。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;初创公司别一上来就微服务。单机够用就好——业务推着架构走，不要架构拖着业务跑。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;二、架构演进的本质：用空间换时间，用复杂度换性能。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;加机器、加组件、加分层——这一切都是为了扛住更大的流量、更高的并发。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;三、永远围绕五大目标：高性能、高可用、可伸缩、可扩展、够安全。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这五个目标是一切架构决策的北极星。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;从一台小服务器到千万级并发的云原生架构，每一步都有迹可循，每一步都在解决真实问题。这就是互联网架构。&lt;/em&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Hugo 博客搭建与 Stack 主题深度定制指南</title>
         <link>https://Siborne.top/p/hugo-blog-stack-theme-guide/</link>
         <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/hugo-blog-stack-theme-guide/</guid>
-        <description>&lt;img src="https://Siborne.top/p/hugo-blog-stack-theme-guide/bannerImage.png" alt="Featured image of post Hugo 博客搭建与 Stack 主题深度定制指南" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+        <description>&lt;img src="https://img.siborne.top/2026/05/8659349220f79df797ea76e05f55625a.png" alt="Featured image of post Hugo 博客搭建与 Stack 主题深度定制指南" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;想要拥有一个属于自己的博客，但又不想被服务器运维和托管费用困扰？&lt;strong&gt;Hugo&lt;/strong&gt;——目前最流行的静态站点生成器之一，搭配 &lt;strong&gt;GitHub Pages&lt;/strong&gt; 免费托管，可以让你在半小时内上线一个功能完备、颜值在线的个人博客。&lt;/p&gt;
 &lt;p&gt;本指南将从环境搭建出发，一路走到主题深度定制和自动化部署。无论你是初次接触 Hugo 的新手，还是想对现有博客进行美化升级的老用户，都能在这里找到可复用的方案。&lt;/p&gt;
 &lt;hr&gt;
@@ -1066,7 +1447,7 @@
         <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/fund-basics-stock-bond-etf/</guid>
-        <description>&lt;img src="https://Siborne.top/p/fund-basics-stock-bond-etf/bannerImage.png" alt="Featured image of post 基金基础概念扫盲：股票、债券、ETF 与场外基金" /&gt;&lt;h1 id=&#34;基金基础概念扫盲股票债券etf-与场外基金&#34;&gt;基金基础概念扫盲：股票、债券、ETF 与场外基金
+        <description>&lt;img src="https://img.siborne.top/2026/05/bad96621d05306c2405fa84ab5fa9341.png" alt="Featured image of post 基金基础概念扫盲：股票、债券、ETF 与场外基金" /&gt;&lt;h1 id=&#34;基金基础概念扫盲股票债券etf-与场外基金&#34;&gt;基金基础概念扫盲：股票、债券、ETF 与场外基金
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;买基金的本质是买基金背后的&lt;strong&gt;底层资产（标的资产）&lt;/strong&gt;。基金好不好，取决于底层资产好不好。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1422,7 +1803,7 @@
         <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/how-to-pick-funds-seven-steps/</guid>
-        <description>&lt;img src="https://Siborne.top/p/how-to-pick-funds-seven-steps/bannerImage.png" alt="Featured image of post 如何挑选基金：七步选基法" /&gt;&lt;h2 id=&#34;核心认知基金是值得长期持有的资产&#34;&gt;核心认知：基金是值得长期持有的资产
+        <description>&lt;img src="https://img.siborne.top/2026/05/1a9aa9727f87dd716beb2c1665128797.png" alt="Featured image of post 如何挑选基金：七步选基法" /&gt;&lt;h2 id=&#34;核心认知基金是值得长期持有的资产&#34;&gt;核心认知：基金是值得长期持有的资产
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;优秀基金长期年化可达 22%+。但近四成投资者仍在亏钱，问题不出在基金本身，而出在&lt;strong&gt;怎么选、怎么拿&lt;/strong&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1673,7 +2054,7 @@
         <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/index-fund-investment-guide/</guid>
-        <description>&lt;img src="https://Siborne.top/p/index-fund-investment-guide/bannerImage.png" alt="Featured image of post 指数基金定投实操指南：从估值判断到止盈卖出" /&gt;&lt;h2 id=&#34;一为什么是指数基金&#34;&gt;一、为什么是指数基金？
+        <description>&lt;img src="https://img.siborne.top/2026/05/748656791090b25dc63aa28a05ca6fdf.png" alt="Featured image of post 指数基金定投实操指南：从估值判断到止盈卖出" /&gt;&lt;h2 id=&#34;一为什么是指数基金&#34;&gt;一、为什么是指数基金？
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;定投是普通人一辈子最好的朋友。在投资领域不存在 1 万小时定律，&lt;strong&gt;选择比努力重要 1 万倍。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2147,7 +2528,7 @@
         <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/fund-classification-three-armies/</guid>
-        <description>&lt;img src="https://Siborne.top/p/fund-classification-three-armies/bannerImage.png" alt="Featured image of post 基金分类入门：三军团九兵种框架" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://img.siborne.top/2026/05/9278baf3c4d41d22e508bf279d1df2b9.png" alt="Featured image of post 基金分类入门：三军团九兵种框架" /&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;核心观点&lt;/strong&gt;：市面上所有基金，名字再花哨，都逃不出三个框架。搞清楚分类，是入场之前必须完成的基本功。很多人亏钱，不是因为选错了基金，而是买了自己根本不认识的东西。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
@@ -2468,7 +2849,7 @@
         <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/codex-app-complete-guide/</guid>
-        <description>&lt;img src="https://Siborne.top/p/codex-app-complete-guide/bannerImage.png" alt="Featured image of post Codex APP 保姆级全攻略：从安装到自动化，一期精通" /&gt;&lt;h2 id=&#34;核心要点概括&#34;&gt;核心要点概括
+        <description>&lt;img src="https://img.siborne.top/2026/05/ef543fe1780e2b00988447209e377f4c.png" alt="Featured image of post Codex APP 保姆级全攻略：从安装到自动化，一期精通" /&gt;&lt;h2 id=&#34;核心要点概括&#34;&gt;核心要点概括
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Codex APP&lt;/strong&gt; 是目前最强的 Codex 产品形态，免费额度高、功能全、不封号不限速&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;沙箱机制&lt;/strong&gt;：OS 级安全隔离，默认禁止访问沙箱外文件和联网，三档权限可选&lt;/li&gt;
@@ -2950,7 +3331,7 @@
         <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/codex-deepseek-v4-proxy/</guid>
-        <description>&lt;img src="https://Siborne.top/p/codex-deepseek-v4-proxy/bannerImage.png" alt="Featured image of post Codex 接入 DeepSeek V4：用中转脚本破解 API 格式不兼容" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://img.siborne.top/2026/05/dde3a847822c933bba6a28d3918f36c0.png" alt="Featured image of post Codex 接入 DeepSeek V4：用中转脚本破解 API 格式不兼容" /&gt;&lt;blockquote&gt;
 &lt;p&gt;🚀 &lt;strong&gt;中转脚本已开源&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Siborne/any2codex&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Siborne/any2codex&lt;/a&gt; —— 一键将任意第三方 API 转为 Codex 兼容格式，不止 DeepSeek。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -3097,7 +3478,7 @@
         <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/opencode-complete-guide/</guid>
-        <description>&lt;img src="https://Siborne.top/p/opencode-complete-guide/bannerImage.png" alt="Featured image of post OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法" /&gt;&lt;h2 id=&#34;核心要点概括&#34;&gt;核心要点概括
+        <description>&lt;img src="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png" alt="Featured image of post OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法" /&gt;&lt;h2 id=&#34;核心要点概括&#34;&gt;核心要点概括
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;OpenCode 定位&lt;/strong&gt;：开源版 Claude Code，具备几乎 Claude Code 的全部功能，中国用户友好，不限速不封号。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;免费模型&lt;/strong&gt;：开箱即用 GLM-4.7、MiniMax-2.1 等免费模型，零配置即可上手 AI 编程。&lt;/li&gt;
@@ -3899,7 +4280,7 @@
         <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/opencode-parallel-workflow-tips/</guid>
-        <description>&lt;img src="https://Siborne.top/p/opencode-parallel-workflow-tips/bannerImage.png" alt="Featured image of post OpenCode 新手进阶：并行调度与使用技巧全攻略" /&gt;&lt;h2 id=&#34;核心要点概括&#34;&gt;核心要点概括
+        <description>&lt;img src="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png" alt="Featured image of post OpenCode 新手进阶：并行调度与使用技巧全攻略" /&gt;&lt;h2 id=&#34;核心要点概括&#34;&gt;核心要点概括
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Session 并行&lt;/strong&gt;：OpenCode 杀手级功能，多个任务同时跑，互不干扰，效率翻倍。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Ultra Work 模式&lt;/strong&gt;：输入 &lt;code&gt;ULW&lt;/code&gt;，主智能体自动拆解任务、调度多个子智能体并行干活。&lt;/li&gt;
@@ -4439,7 +4820,7 @@
         <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/claude-code-deepseek-setup/</guid>
-        <description>&lt;img src="https://Siborne.top/p/claude-code-deepseek-setup/bannerImage.png" alt="Featured image of post 5分钟安装 Claude Code 并接入 DeepSeek" /&gt;&lt;h2 id=&#34;概述&#34;&gt;概述
+        <description>&lt;img src="https://img.siborne.top/2026/05/893eeb27eb74b1d32493c69de860e065.png" alt="Featured image of post 5分钟安装 Claude Code 并接入 DeepSeek" /&gt;&lt;h2 id=&#34;概述&#34;&gt;概述
 &lt;/h2&gt;&lt;p&gt;Claude Code 是 Anthropic 推出的命令行 AI 编程助手，内置多种 Skills 插件，通过不同组合可以完成许多 AI 单独做不到的事。接入国产大模型 DeepSeek V4 后，可以大幅降低使用成本。&lt;/p&gt;
 &lt;p&gt;核心用途：&lt;/p&gt;
 &lt;ul&gt;
@@ -4606,7 +4987,7 @@
         <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/git-ssh-large-repo/</guid>
-        <description>&lt;img src="https://Siborne.top/p/git-ssh-large-repo/bannerImage.png" alt="Featured image of post 技术踩坑记录：Git 大仓库克隆网络中断与 SSH 破局方案" /&gt;&lt;h2 id=&#34;1-问题背景&#34;&gt;1. 问题背景
+        <description>&lt;img src="https://img.siborne.top/2026/05/bad96621d05306c2405fa84ab5fa9341.png" alt="Featured image of post 技术踩坑记录：Git 大仓库克隆网络中断与 SSH 破局方案" /&gt;&lt;h2 id=&#34;1-问题背景&#34;&gt;1. 问题背景
 &lt;/h2&gt;&lt;p&gt;在尝试克隆大型开源项目 &lt;code&gt;taichi-project/anyagent&lt;/code&gt; 时，终端频繁出现由于网络层断开导致克隆失败的报错。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;初始报错迹象&lt;/strong&gt;：执行基础 &lt;code&gt;git clone&lt;/code&gt; 时，数据拉取到一半突然中断：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4712,20 +5093,16 @@
         <pubDate>Sat, 14 Mar 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/</guid>
-        <description>&lt;img src="https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage.png" alt="Featured image of post 从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了" /&gt;&lt;h1 id=&#34;从-mvc-到-ddd不仅仅是包名变了而是对象活了&#34;&gt;从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了
+        <description>&lt;img src="https://img.siborne.top/2026/05/1557c6be2dda6bb74eb03b4d0eaf23ec.png" alt="Featured image of post 从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了" /&gt;&lt;h1 id=&#34;从-mvc-到-ddd不仅仅是包名变了而是对象活了&#34;&gt;从 MVC 到 DDD：不仅仅是包名变了，而是“对象”活了
 &lt;/h1&gt;&lt;h3 id=&#34;引言&#34;&gt;引言
 &lt;/h3&gt;&lt;p&gt;在学习 DDD（领域驱动设计）时，很多人会被复杂的概念劝退。但回归本质，我们可以将 DDD 理解为 &lt;strong&gt;MVC 的“超进化增强版”&lt;/strong&gt;。它在 MVC 的基础上，通过更清晰的职责划分和逻辑解耦，解决了系统在业务复杂后的“臃肿”痛点。&lt;/p&gt;
 &lt;h3 id=&#34;一-核心心法从找说明书到问当事人&#34;&gt;一、 核心心法：从“找说明书”到“问当事人”
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178.png&#34;
-	width=&#34;2816&#34;
-	height=&#34;1536&#34;
-	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_c31cbdbbe82ef9d0.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_8e42d5d83cedc346.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/8d63484f9883152b7f4e04691a1f6f5c.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;183&#34;
-		data-flex-basis=&#34;440px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;在传统的 &lt;strong&gt;MVC（贫血模型）&lt;/strong&gt; 中，实体类（Entity/PO）往往只是数据的载体，像是一张&lt;strong&gt;白纸&lt;/strong&gt;。所有的业务逻辑都堆积在 &lt;code&gt;Service&lt;/code&gt; 层。&lt;/p&gt;
@@ -4749,16 +5126,12 @@
 &lt;p&gt;&lt;strong&gt;要点：&lt;/strong&gt; DDD 的好处是逻辑高度内聚。一旦业务逻辑有变化，你只需要修改对应的领域模型对象，而不是去翻几千行的 Service。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;二-架构连连看ddd-与-mvc-的映射关系&#34;&gt;二、 架构连连看：DDD 与 MVC 的映射关系
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734.png&#34;
-	width=&#34;2816&#34;
-	height=&#34;1536&#34;
-	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_3e27a03a3dc76dc6.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_9af9db3ed1912419.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9d18e097ad57f5bcd680cc0748e634fc.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;183&#34;
-		data-flex-basis=&#34;440px&#34;
 	
 &gt;我们可以把 DDD 的流程简单理解为：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Controller $\rightarrow$ Application Service $\rightarrow$ Domain Model $\rightarrow$ Repository (Impl $\rightarrow$ Mapper)&lt;/strong&gt;&lt;/p&gt;
@@ -4813,16 +5186,12 @@
 &lt;li&gt;&lt;strong&gt;收益：&lt;/strong&gt; 就算数据库从 MySQL 换成 MongoDB，你的核心业务逻辑（Domain 层）一个字都不用改。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;四-模型的三大成员战术建模&#34;&gt;四、 模型的三大成员（战术建模）
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292.png&#34;
-	width=&#34;2816&#34;
-	height=&#34;1536&#34;
-	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_8c3f5c6fa3c0ebda.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_1abf29be7841aec0.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/20bf0b83731bcd39a510b621d1afa2e0.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;183&#34;
-		data-flex-basis=&#34;440px&#34;
 	
 &gt;
 在 DDD 的领域层中，并不是所有的类都是一样的。为了让业务逻辑组织得更科学，我们通常将模型分为以下三类：&lt;/p&gt;
@@ -4925,16 +5294,12 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;五-模型转换每一层都有自己的脸&#34;&gt;五、 模型转换：每一层都有自己的“脸”
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115.png&#34;
-	width=&#34;2816&#34;
-	height=&#34;1536&#34;
-	srcset=&#34;https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_3a6f248a9a08ff2d.png 480w, https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_9532cd5c6ba76ad0.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/402fb87ecbd0b469968565310cfceb8e.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;183&#34;
-		data-flex-basis=&#34;440px&#34;
 	
 &gt;为了实现“解耦”，每一层使用的模型其实是不一样的。虽然写起来麻烦，但能有效防止数据库逻辑污染业务逻辑：&lt;/p&gt;
 &lt;ol&gt;
@@ -5244,20 +5609,16 @@
         <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/cmu-cs15-213csapp01datalab/</guid>
-        <description>&lt;img src="https://Siborne.top/p/cmu-cs15-213csapp01datalab/bannerImage.png" alt="Featured image of post CMU CS15-213（CS:APP）01：datalab" /&gt;&lt;h1 id=&#34;cmu-15-213-csapp-project1datalab&#34;&gt;CMU 15-213: CSAPP project1：datalab
+        <description>&lt;img src="https://img.siborne.top/2026/05/9166c6f90b84173ff2f2a39be9514289.png" alt="Featured image of post CMU CS15-213（CS:APP）01：datalab" /&gt;&lt;h1 id=&#34;cmu-15-213-csapp-project1datalab&#34;&gt;CMU 15-213: CSAPP project1：datalab
 &lt;/h1&gt;&lt;p&gt;首先附上评分截图，终于做完了，虽然看了很多网上的思路（bushi）
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp01datalab/assets/image1.jpg&#34;
-	width=&#34;650&#34;
-	height=&#34;352&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp01datalab/assets/image1_hu_5b824747d6df426.jpg 480w, https://Siborne.top/p/cmu-cs15-213csapp01datalab/assets/image1_hu_2daaf2c8d2e0a3a1.jpg 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/a44a9b304143486854fe223880798b20.jpg&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;评分截图&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;184&#34;
-		data-flex-basis=&#34;443px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;开始准备&#34;&gt;开始准备
@@ -6846,7 +7207,7 @@
         <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/</guid>
-        <description>&lt;img src="https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/bannerImage.png" alt="Featured image of post CMU CS15-213（CS:APP）00：原初起点" /&gt;&lt;h1 id=&#34;cmu-15-213-csapp-课程简介与实验环境搭建指南&#34;&gt;CMU 15-213: CSAPP 课程简介与实验环境搭建指南
+        <description>&lt;img src="https://img.siborne.top/2026/05/b8cb91a9ad2a7fbfe987c5ec1b37f5ea.png" alt="Featured image of post CMU CS15-213（CS:APP）00：原初起点" /&gt;&lt;h1 id=&#34;cmu-15-213-csapp-课程简介与实验环境搭建指南&#34;&gt;CMU 15-213: CSAPP 课程简介与实验环境搭建指南
 &lt;/h1&gt;&lt;h2 id=&#34;课程简介&#34;&gt;课程简介
 &lt;/h2&gt;&lt;p&gt;CMU 的 15-213（CSAPP）是计算机科学领域公认的“镇系神课”，以其内容广博、项目难度极高而闻名。课程全面覆盖汇编语言、计算机体系结构、操作系统、程序的编译与链接、并发编程以及网络基础等核心主题，是一门兼具深度与广度的系统级入门课程。对于自学者而言，完成这门课程需要极强的毅力和扎实的编程基础。&lt;/p&gt;
 &lt;p&gt;该课程配套教材《Computer Systems: A Programmer&amp;rsquo;s Perspective》（简称 CSAPP）由 CMU 计算机系前系主任 Randal E. Bryant 教授与 David R. O&amp;rsquo;Hallaron 合著，被全球众多高校采用。这本书也是许多学习者第一本逐页精读的计算机系统教材——虽艰深，但收获巨大。&lt;/p&gt;
@@ -6889,66 +7250,50 @@
 &lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;打开 VMware，点击 &lt;strong&gt;“创建新的虚拟机”&lt;/strong&gt;，选择 &lt;strong&gt;“典型（推荐）”&lt;/strong&gt;。
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image1.png&#34;
-	width=&#34;1484&#34;
-	height=&#34;944&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image1_hu_638bef92ee705bfa.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image1_hu_49faef4f187327ee.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/ecb963f078236dcbe711b196366c4037.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;创建新的虚拟机&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;157&#34;
-		data-flex-basis=&#34;377px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;在安装源选项中，选择 &lt;strong&gt;“稍后安装操作系统”&lt;/strong&gt;（便于手动调整硬件配置，避免简易安装带来的权限或路径问题）。
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image2.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image2_hu_d4aac66a1979201b.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image2_hu_66fd21c4096703ca.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/300ab1824c603b454e191496ae0c2793.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;稍后安装操作系统&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;客户机操作系统选择：&lt;strong&gt;Linux → Ubuntu 64 位&lt;/strong&gt;。
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image3.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image3_hu_134d5b758ce9009d.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image3_hu_6ba6e295a7612046.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/1cf1adcd362ae5b8b2e504664a228dfe.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Linux → Ubuntu 64 位&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
-	
 &gt;
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image4.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image4_hu_137f66ecd0eb2329.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image4_hu_45143fcdfd567f2d.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/fd31c1e4e0ed62f0196996d8bcdf993e.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;虚拟机名字设置与存放位置&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -6956,35 +7301,27 @@
 &lt;p&gt;配置关键硬件参数：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;内存&lt;/strong&gt;：建议分配 &lt;strong&gt;4GB 或以上&lt;/strong&gt;（若主机内存为 16GB）。
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5_hu_5e0e278794b31f84.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image5_hu_5a9c4421302524d4.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/23b0559fa925aea07bf4aec9f88cb17c.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;内存设置&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
-	
 &gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;处理器&lt;/strong&gt;：设置为 &lt;strong&gt;2 或 4 核&lt;/strong&gt;，并确保启用 &lt;strong&gt;虚拟化引擎（Intel VT-x / AMD-V）&lt;/strong&gt;。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;硬盘&lt;/strong&gt;：至少 &lt;strong&gt;40GB&lt;/strong&gt;，选择 &lt;strong&gt;“将虚拟磁盘存储为单个文件”&lt;/strong&gt; 以提升 I/O 性能。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;网络适配器&lt;/strong&gt;：使用 &lt;strong&gt;NAT 模式&lt;/strong&gt;，使虚拟机可通过主机访问互联网。
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6.png&#34;
-	width=&#34;1557&#34;
-	height=&#34;936&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6_hu_31cd209450ea402d.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image6_hu_56b6979f80cfa382.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/b94b9f605feadcd636a2cea20d38ad82.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;其他配置&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;166&#34;
-		data-flex-basis=&#34;399px&#34;
 	
 &gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -6993,65 +7330,49 @@
 &lt;hr&gt;
 &lt;h3 id=&#34;第三步安装-ubuntu&#34;&gt;第三步：安装 Ubuntu
 &lt;/h3&gt;&lt;p&gt;启动虚拟机，开始安装流程：
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image7.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image7_hu_25c978237cea2d85.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image7_hu_625671f1b49e4e29.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/64e18b4651b591c5e57f961b937fb36e.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;启动虚拟机&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
-	
 &gt;
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image8.png&#34;
-	width=&#34;722&#34;
-	height=&#34;442&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image8_hu_3f59b9015dd55036.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image8_hu_44ac25bbad39a1f7.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/ca5642fd49fa247a84fe060e18b6c9d7.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;安装虚拟机&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;163&#34;
-		data-flex-basis=&#34;392px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;语言&lt;/strong&gt;：建议选择 &lt;strong&gt;English&lt;/strong&gt;，提前适应 CSAPP 的技术语境。
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image9.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image9_hu_b0b277eb65f60bf0.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image9_hu_b4a5f8549d90eeaa.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/3e700ef98e7102d83132fdd88afd9ddd.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;语言选择&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
-	
 &gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;安装类型&lt;/strong&gt;：勾选 &lt;strong&gt;“Minimal installation”&lt;/strong&gt;（最小安装），避免安装不必要的办公套件。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;磁盘分区&lt;/strong&gt;：选择 &lt;strong&gt;“Erase disk and install Ubuntu”&lt;/strong&gt;（擦除磁盘并安装）。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;设置用户&lt;/strong&gt;：填写用户名与密码，为了方便，可以直接填写 &lt;strong&gt;“123456”&lt;/strong&gt; 为密码
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image10.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image10_hu_fbe947d0d2277d10.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image10_hu_350f62f2e798a122.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/28f660f6de69291241fee16033a9a634.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;设置用户&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
 	
 &gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -7059,18 +7380,14 @@
 &lt;p&gt;注意：若无特别提及，一直按Next（下一步）即可。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;安装完成后重启，即可进入 Ubuntu 桌面环境。
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image11.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image11_hu_97041ce2966fe3c.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image11_hu_2619241ddbe81e19.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/0f22a4283f92f3ce723a7b44e732d246.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;安装完成&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -7111,18 +7428,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install openssh-server -y
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image12.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;1504&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image12_hu_f50ade4f58368aff.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image12_hu_256fabfb6f990e36.png 1024w&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/266f9891520c15257c7411a1a36fb754.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;安装SSH服务端&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;85&#34;
-		data-flex-basis=&#34;204px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;验证 SSH 服务是否正常运行：&lt;/p&gt;
@@ -7135,18 +7448,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;若输出中包含绿色的 active (running)，说明服务已成功启动。
-&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image13.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image13_hu_ea3db04896ff51e2.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image13_hu_b18fcac60f9d760e.png 1024w&#34;
+&lt;img src=&#34;https://img.siborne.top/2026/05/29e6fb12c1f0b945d1739c78584bedbb.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;验证SSH&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;2-获取虚拟机-ip-地址&#34;&gt;2. 获取虚拟机 IP 地址
@@ -7159,18 +7468,14 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ip addr
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image14.png&#34;
-	width=&#34;1280&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image14_hu_fe593c80f8593c47.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image14_hu_b54dc67899a2f950.png 1024w&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/cec87a319560ec41a7a3f8832ccf7ffa.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;查看IP地址&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;找到名为 ens33（或 eth0）的网络接口，其对应的 inet 字段（如 192.168.x.x）即为虚拟机的局域网 IP 地址。后续可通过该地址从主机 SSH 登录虚拟机，例如：&lt;/p&gt;
@@ -7182,18 +7487,14 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh username@192.168.x.x
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image15.png&#34;
-	width=&#34;1241&#34;
-	height=&#34;1070&#34;
-	srcset=&#34;https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image15_hu_fb809fbb026c988c.png 480w, https://Siborne.top/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E8%B5%B7%E7%82%B9/assets/image15_hu_3f2527fee494b6f1.png 1024w&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9f32d68dacf91ba639163194c14153c7.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;SSH远程连接&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;115&#34;
-		data-flex-basis=&#34;278px&#34;
 	
 &gt;
 至此，你的 CSAPP 实验环境已完全就绪。接下来可从 &lt;a class=&#34;link&#34; href=&#34;http://csapp.cs.cmu.edu/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -7206,7 +7507,7 @@
         <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/interview-experience/</guid>
-        <description>&lt;img src="https://Siborne.top/p/interview-experience/bannerImage.png" alt="Featured image of post 【金山办公】数据分析岗(一面)" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://img.siborne.top/2026/05/5743e591f443ed03e52fc2fd942cb4b5.png" alt="Featured image of post 【金山办公】数据分析岗(一面)" /&gt;&lt;blockquote&gt;
 &lt;p&gt;时间：2026年1月7日
 地点：线上面试&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -7265,7 +7566,7 @@
         <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
-        <description>&lt;img src="https://Siborne.top/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.png" alt="Featured image of post LRU 缓存算法的实现" /&gt;&lt;h1 id=&#34;lru-缓存算法实现笔记java&#34;&gt;LRU 缓存算法实现笔记（Java）
+        <description>&lt;img src="https://img.siborne.top/2026/05/f0e326574cdcea40078081e6d757389b.png" alt="Featured image of post LRU 缓存算法的实现" /&gt;&lt;h1 id=&#34;lru-缓存算法实现笔记java&#34;&gt;LRU 缓存算法实现笔记（Java）
 &lt;/h1&gt;&lt;h3 id=&#34;一什么是-lru&#34;&gt;一、什么是 LRU？
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -7729,7 +8030,7 @@ A: 可以！重写 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面试
         <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/</guid>
-        <description>&lt;img src="https://Siborne.top/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BC%A0%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83/bannerImage.png" alt="Featured image of post 计算机中传统进程和线程的比较" /&gt;&lt;h1 id=&#34;计算机中传统进程和线程的比较&#34;&gt;计算机中传统进程和线程的比较
+        <description>&lt;img src="https://img.siborne.top/2026/05/61940b3fde0990504b23c5d9309a5433.png" alt="Featured image of post 计算机中传统进程和线程的比较" /&gt;&lt;h1 id=&#34;计算机中传统进程和线程的比较&#34;&gt;计算机中传统进程和线程的比较
 &lt;/h1&gt;&lt;h2 id=&#34;一基本定义&#34;&gt;一、基本定义
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -7871,7 +8172,7 @@ A: 可以！重写 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面试
         <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/</guid>
-        <description>&lt;img src="https://Siborne.top/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.png" alt="Featured image of post Java &#43; MySQL &#43; Redis 生成用户主键的 6 种方案" /&gt;&lt;h1 id=&#34;java--mysql-生成用户主键的-6-种方案从自增到-redis一篇讲透&#34;&gt;Java + MySQL 生成用户主键的 6 种方案：从自增到 Redis，一篇讲透！
+        <description>&lt;img src="https://img.siborne.top/2026/05/54074f014a63b85f280277238cbd8e80.png" alt="Featured image of post Java &#43; MySQL &#43; Redis 生成用户主键的 6 种方案" /&gt;&lt;h1 id=&#34;java--mysql-生成用户主键的-6-种方案从自增到-redis一篇讲透&#34;&gt;Java + MySQL 生成用户主键的 6 种方案：从自增到 Redis，一篇讲透！
 &lt;/h1&gt;&lt;p&gt;在开发 Java 应用搭配 MySQL 数据库时，如何为用户、订单等实体生成&lt;strong&gt;全局唯一、高性能、不重复的主键 ID&lt;/strong&gt;，是一个绕不开的问题。&lt;br&gt;
 除了最熟悉的 &lt;code&gt;AUTO_INCREMENT&lt;/code&gt; 和 &lt;code&gt;UUID&lt;/code&gt;，其实还有更优雅的方案——比如借助 &lt;strong&gt;Redis&lt;/strong&gt; 或 &lt;strong&gt;雪花算法（Snowflake）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;本文用大白话为你梳理 &lt;strong&gt;6 种主流 ID 生成方案&lt;/strong&gt;，包括：&lt;/p&gt;
@@ -8294,7 +8595,7 @@ A: 可以！重写 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面试
         <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/</guid>
-        <description>&lt;img src="https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/bannerImage.png" alt="Featured image of post JWT简单解析" /&gt;&lt;h3 id=&#34;用户登录验证流程基于-jwt&#34;&gt;用户登录验证流程（基于 JWT）
+        <description>&lt;img src="https://img.siborne.top/2026/05/14078955d0308bd7c8ae4d32af16584a.png" alt="Featured image of post JWT简单解析" /&gt;&lt;h3 id=&#34;用户登录验证流程基于-jwt&#34;&gt;用户登录验证流程（基于 JWT）
 &lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;用户输入用户名和密码&lt;/strong&gt;，并通过 HTTPS 请求发送至服务器。&lt;/p&gt;
@@ -8411,18 +8712,14 @@ A: 可以！重写 &lt;code&gt;removeEldestEntry&lt;/code&gt; 即可，但面试
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1.png&#34;
-	width=&#34;554&#34;
-	height=&#34;401&#34;
-	srcset=&#34;https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1_hu_f500152678508be8.png 480w, https://Siborne.top/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/assets/image1_hu_21a39f4e946dd95a.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/25149e8dddbed562dab5d1c698e53350.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Jwt的生成与验证&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;138&#34;
-		data-flex-basis=&#34;331px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意:&lt;/strong&gt; JWT本身包含认证信息，因此一旦信息泄露，任何人都可以获得令牌的所有权限。因此做前端开发时,最好不要把JWT存放在&lt;code&gt;Cookie&lt;/code&gt;这种容易泄露个人隐私信息的存储单元.&lt;/p&gt;
@@ -8570,7 +8867,7 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
         <pubDate>Tue, 30 Dec 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
-        <description>&lt;img src="https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.png" alt="Featured image of post 对ThreadLocal的理解" /&gt;&lt;h2 id=&#34;threadlocal介绍&#34;&gt;ThreadLocal介绍
+        <description>&lt;img src="https://img.siborne.top/2026/05/a8020477e9a0baea0d4a7e92f55dd1b6.png" alt="Featured image of post 对ThreadLocal的理解" /&gt;&lt;h2 id=&#34;threadlocal介绍&#34;&gt;ThreadLocal介绍
 &lt;/h2&gt;&lt;p&gt;从Java官方文档中的描述：ThreadLocal类用来提供线程内部的局部变量。这种变量在多线程环境下访问（通过get和set方法访问）时能保证各个线程的变量相对独立于其他线程内的变量。ThreadLocal实例通常来说都是private static类型的，用于关联线程和线程上下文。&lt;/p&gt;
 &lt;p&gt;我们可以得知ThreadLocal的作用是：提供线程内的局部变量，不同的线程之间不会相互干扰，这种变量在线程的生命周期内起作用，减少同一个线程内多个函数或组件之间一些公共变量传递的复杂度。&lt;/p&gt;
 &lt;ul&gt;
@@ -8891,18 +9188,14 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;/h2&gt;&lt;p&gt;通过以上的介绍，我们已经基本了解ThreadLocal的特点，但是它具体是运用在什么场景中的呢？接下来让我们看一个案例：事务操作&lt;/p&gt;
 &lt;h3 id=&#34;转账案例&#34;&gt;转账案例
 &lt;/h3&gt;&lt;p&gt;这里们先构建一个简单的转账场景：有一个数据表account，里面有两个用户 jack 和 Rose，用户Jack给用户Rose转账。案例的实现主要是用mysql数据库，JDBC和C3P0框架，以下是详细代码&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153.png&#34;
-	width=&#34;1154&#34;
-	height=&#34;424&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_6da148d510b974c9.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710204941153_hu_4a6face6da4e5a04.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/d4b7bdca1343cd0c1a990ae829c7335d.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;account表和转账SQL语句&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;272&#34;
-		data-flex-basis=&#34;653px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;引入事务&#34;&gt;引入事务
@@ -8986,18 +9279,14 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;li&gt;降低程序的性能（加了同步代码块，失去了并发性）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;这个时候就可以通过ThreadLocal和当前线程进行绑定，来降低代码之间的耦合&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494.png&#34;
-	width=&#34;1364&#34;
-	height=&#34;515&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_84670a5e7f2d0c8.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710212423494_hu_d502ecbc53dccae5.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/06e3ed6f748cee7981c64383a9c77601.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;线程执行图&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;264&#34;
-		data-flex-basis=&#34;635px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;使用threadlocal解决&#34;&gt;使用ThreadLocal解决
@@ -9045,18 +9334,14 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;/h2&gt;&lt;p&gt;通过以上的学习，我们对ThreadLocal的作用有了一定的认识。现在我们一起来看一下ThreadLocal的内部结构，探究它能够实现线程数据隔离的原理。&lt;/p&gt;
 &lt;h3 id=&#34;常见误解&#34;&gt;常见误解
 &lt;/h3&gt;&lt;p&gt;如果我们不去看源代码的话，可能会猜测 ThreadLocal 是这样子设计的：每个ThreadLocal都创建一个Map，然后用线程作为Map的key，要存储的局部变量作为Map的value，这样就能达到各个线程的局部变量隔离的效果。这是最简单的设计方法，JDK最早期的ThreadLocal确实是这样设计的，但现在早已不是了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638.png&#34;
-	width=&#34;821&#34;
-	height=&#34;371&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_ad718fe2fcbb711d.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710214857638_hu_c41f57ef3ba1d643.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/ead7201b5aadea8e40d14aec8b7d5e84.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal误解——早期实现&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;221&#34;
-		data-flex-basis=&#34;531px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;现在的设计&#34;&gt;现在的设计
@@ -9067,33 +9352,25 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;li&gt;Thread内部的Map是由ThreadLocal维护的，由ThreadLocal负责向map获取和设置线程的变量值。&lt;/li&gt;
 &lt;li&gt;对于不同的线程，每次获取副本值时，别的线程并不能获取到当前线程的副本值，形成了副本的隔离，互不干扰。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748.png&#34;
-	width=&#34;932&#34;
-	height=&#34;355&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_91b80341ed4c06e5.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215038748_hu_e2b882980d755233.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/7d8acf46b9195798e5e52ee63d134f2c.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal——JDK8的实现&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;262&#34;
-		data-flex-basis=&#34;630px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;对比&#34;&gt;对比
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743.png&#34;
-	width=&#34;924&#34;
-	height=&#34;726&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_e09220964b2c3542.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215128743_hu_ecabfd46752b5af9.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/de8522df7f829f086f23bc4f115005d2.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;早期与JDK8以后的对比&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;127&#34;
-		data-flex-basis=&#34;305px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;从上面变成JDK8的设计有什么好处？&lt;/p&gt;
@@ -9136,32 +9413,24 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;/table&gt;
 &lt;p&gt;以下是这4个方法的详细源码分析（为了保证思路清晰，ThreadLocalMap部分暂时不展开，下一个知识点详解）&lt;/p&gt;
 &lt;h3 id=&#34;set方法&#34;&gt;set方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026.png&#34;
-	width=&#34;911&#34;
-	height=&#34;590&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026_hu_231081a87fff4e88.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215706026_hu_a5ca1b8b857b8deb.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/6001914b618c16e85bfc4784fa72b37d.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;set方法内部实现1&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;154&#34;
-		data-flex-basis=&#34;370px&#34;
-	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494.png&#34;
-	width=&#34;838&#34;
-	height=&#34;550&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494_hu_7e331f986d604d7f.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710215827494_hu_21e24853cab3ac8b.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/f09d38b911e492c7b4e3c236b5979437.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;set方法内部实现2&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;152&#34;
-		data-flex-basis=&#34;365px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;代码流程&lt;/p&gt;
@@ -9171,32 +9440,24 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;li&gt;如果Map为空，则给该线程创建Map，并设置初始化值&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;get方法&#34;&gt;get方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887.png&#34;
-	width=&#34;867&#34;
-	height=&#34;799&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887_hu_c7bd97ff39b3f897.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220037887_hu_fc7e3b890aa83f03.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c88695dc45dbb58ddf7f56e74feb5dee.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;get方法内部实现1&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;108&#34;
-		data-flex-basis=&#34;260px&#34;
-	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472.png&#34;
-	width=&#34;910&#34;
-	height=&#34;734&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472_hu_9e1559517242241b.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220201472_hu_41782bd8b1a221d8.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/f6227ce8c61133b5b7eb12b013d120c2.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;get方法内部实现2&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;123&#34;
-		data-flex-basis=&#34;297px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;代码执行流程&lt;/p&gt;
@@ -9208,18 +9469,14 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;/ul&gt;
 &lt;p&gt;总结：先获取当前线程的ThreadLocal变量，如果存在则返回值，不存在则创建并返回初始值&lt;/p&gt;
 &lt;h3 id=&#34;remove方法&#34;&gt;remove方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229.png&#34;
-	width=&#34;745&#34;
-	height=&#34;340&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229_hu_996f562cdcbf97d5.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220519229_hu_95ac7a5cc63b0881.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/99284eaacfd9a0b6d5b0140ed3c6bc50.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;remove方法内部实现&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;219&#34;
-		data-flex-basis=&#34;525px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;代码执行流程&lt;/p&gt;
@@ -9228,18 +9485,14 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 &lt;li&gt;如果获取的Map不为空，则移除当前ThreadLocal对象对应的Entry&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;initialvalue方法&#34;&gt;initialValue方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455.png&#34;
-	width=&#34;739&#34;
-	height=&#34;489&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455_hu_650603342b60aa07.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220639455_hu_53e8db49149c2e9d.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/a345f4de212091bc609e4644944b876d.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;initialValue方法内部实现&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;151&#34;
-		data-flex-basis=&#34;362px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;此方法的作用是返回该线程局部变量的初始值。&lt;/p&gt;
@@ -9253,18 +9506,14 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​&lt;stro
 ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨论。&lt;/p&gt;
 &lt;h3 id=&#34;基本结构&#34;&gt;基本结构
 &lt;/h3&gt;&lt;p&gt;ThreadLocalMap是ThreadLocal的内部类，没有实现Map接口，用独立的方式实现了Map的功能，其内部的Entry也是独立实现。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315.png&#34;
-	width=&#34;757&#34;
-	height=&#34;422&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315_hu_8959e017ee459be.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710220856315_hu_6d6122b6ddbe64ae.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/88eb45fcff99700281d92c49e341f8e7.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocalMap&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;179&#34;
-		data-flex-basis=&#34;430px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;成员变量&#34;&gt;成员变量
@@ -9357,18 +9606,14 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 &lt;h3 id=&#34;如果key使用强引用那么会出现内存泄漏&#34;&gt;如果key使用强引用，那么会出现内存泄漏？
 &lt;/h3&gt;&lt;p&gt;假设ThreadLocalMap中的key使用了强引用，那么会出现内存泄漏吗？&lt;/p&gt;
 &lt;p&gt;此时ThreadLocal的内存图（实线表示强引用）如下：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109.png&#34;
-	width=&#34;883&#34;
-	height=&#34;473&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109_hu_bb92f38ce79647b6.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222559109_hu_bace06a265205062.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/90cb6845bec3042354566d76b7e3c1d0.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal的内存图1&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;186&#34;
-		data-flex-basis=&#34;448px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -9378,18 +9623,14 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 &lt;/ul&gt;
 &lt;p&gt;也就是说，ThreadLocalMap中的key使用了强引用，是无法完全避免内存泄漏的。&lt;/p&gt;
 &lt;h3 id=&#34;如果key使用弱引用那么会出现内存泄漏&#34;&gt;如果key使用弱引用，那么会出现内存泄漏？
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567.png&#34;
-	width=&#34;851&#34;
-	height=&#34;491&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567_hu_d0e6b325d17fee09.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710222847567_hu_eec71cb1b78926b1.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/835257833e4ae55243365ee5ac9cfa09.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocal的内存图2&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;173&#34;
-		data-flex-basis=&#34;415px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -9472,35 +9713,27 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 &lt;p&gt;这段代码有两个地方分别涉及到ThreadLocalMap的两个方法，我们接着分析这两个方法&lt;/p&gt;
 &lt;h3 id=&#34;构造方法&#34;&gt;构造方法
 &lt;/h3&gt;&lt;p&gt;ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132.png&#34;
-	width=&#34;878&#34;
-	height=&#34;431&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132_hu_bdd0df64049786ab.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224030132_hu_57c3075c999ff04.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/de0f32d41d52ed8ed242091f134b05e2.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ThreadLocalMap的构造方法&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;203&#34;
-		data-flex-basis=&#34;488px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;p&gt;构造函数首先创建一个长度为16的Entry数组，然后计算出firstKey对应的索引，然后存储到table中，并设置size和threshold。&lt;/p&gt;
 &lt;p&gt;重点分析：int i = firstKey.threadLocalHashCode &amp;amp; ( INITIAL_CAPACITY - 1)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;关于：threadLocalHashCode&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493.png&#34;
-	width=&#34;908&#34;
-	height=&#34;269&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493_hu_43cbce75d5bd379d.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224257493_hu_7d2f0ea684b4669f.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/37c09b2647d4c1c8113781959c8ce564.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;threadLocalHashCode&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;337&#34;
-		data-flex-basis=&#34;810px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这里定义了一个Atomiclnteger类型，每次获取当前值并加上HASHINCREMENT，HASH_INCREMENT =
@@ -9508,32 +9741,24 @@ ThreadLocalMap的源码相对比较复杂，我们从以下三个方面进行讨
 &lt;p&gt;&lt;strong&gt;关于&amp;amp;（INITIAL_CAPACITY-1）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;计算hash的时候里面采用了hashCode&amp;amp;（size-1）的算法，这相当于取模运算hashCode%size的一个更高效的实现。正是因为这种算法，我们要求size必须是2的整次幂，这也能保证保证在索引不越界的前提下，使得hash发生冲突的次数减小。&lt;/p&gt;
 &lt;h3 id=&#34;get方法-1&#34;&gt;Get方法
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317.png&#34;
-	width=&#34;955&#34;
-	height=&#34;800&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317_hu_8d6bf81959c9543.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224609317_hu_137a7bf4e0f2a09.png 1024w&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/fe25df1b5d5b514c99413f012097e085.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Get方法1&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;119&#34;
-		data-flex-basis=&#34;286px&#34;
-	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127.png&#34;
-	width=&#34;924&#34;
-	height=&#34;584&#34;
-	srcset=&#34;https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127_hu_2b49e1f2febc0e5b.png 480w, https://Siborne.top/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/assets/image-20200710224724127_hu_79b203b34f50c655.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/fe25df1b5d5b514c99413f012097e085.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Get方法2&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;158&#34;
-		data-flex-basis=&#34;379px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;代码执行流程&lt;/p&gt;
@@ -9675,7 +9900,7 @@ thresgold达到了rehash的条件，达到的话就会调用rehash函数执行�
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/scoop/</guid>
-        <description>&lt;img src="https://Siborne.top/p/scoop/bannerImage.png" alt="Featured image of post Scoop" /&gt;&lt;h2 id=&#34;为什么使用-scoop&#34;&gt;为什么使用 Scoop
+        <description>&lt;img src="https://img.siborne.top/2026/05/51bac46210d74eba3c67533f21792b1e.png" alt="Featured image of post Scoop" /&gt;&lt;h2 id=&#34;为什么使用-scoop&#34;&gt;为什么使用 Scoop
 &lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;scoop.sh&#34; &gt;Scoop官网网址&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;在 Windows 下，搭建开发环境一直是一个复杂且困难的问题。由于没有一个统一的标准，导致各种开发环境的安装方式差异巨大，需要付出很多不必要的时间成本。而 Scoop 可以帮助你统一安装并管理常见的开发软件，省去了手动下载安装，配置环境变量等繁琐步骤。&lt;/p&gt;
 &lt;p&gt;例如安装 python 和 nodejs 只需要执行：&lt;/p&gt;
@@ -9693,18 +9918,12 @@ thresgold达到了rehash的条件，达到的话就会调用rehash函数执行�
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;亲测+官方安装方法&lt;/p&gt;
 &lt;p&gt;微软商店安装最新版Powershell&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/scoop/assets/image-20251204204702-qhzlv3b.png&#34;
-	width=&#34;1920&#34;
-	height=&#34;1080&#34;
-	srcset=&#34;https://Siborne.top/p/scoop/assets/image-20251204204702-qhzlv3b_hu_5818130fdd011680.png 480w, https://Siborne.top/p/scoop/assets/image-20251204204702-qhzlv3b_hu_8523b4acd3edbb57.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/55b1deed14935b83ece20483995372c7.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;177&#34;
-		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;打开PowerShell，输入以下指令&lt;/p&gt;
@@ -9719,18 +9938,12 @@ thresgold达到了rehash的条件，达到的话就会调用rehash函数执行�
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;出现下图，即为安装成功&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Siborne.top/p/scoop/assets/image-20251204205229-f18qg4o.png&#34;
-	width=&#34;1241&#34;
-	height=&#34;1078&#34;
-	srcset=&#34;https://Siborne.top/p/scoop/assets/image-20251204205229-f18qg4o_hu_f49963283263e6eb.png 480w, https://Siborne.top/p/scoop/assets/image-20251204205229-f18qg4o_hu_e1fdc3aa93e6dd06.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/8234824b2239baec3c02061c17f37ac2.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;115&#34;
-		data-flex-basis=&#34;276px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -9850,7 +10063,7 @@ thresgold达到了rehash的条件，达到的话就会调用rehash函数执行�
         <pubDate>Sat, 27 Dec 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/p/computer-tools/</guid>
-        <description>&lt;img src="https://Siborne.top/p/computer-tools/bannerImage.png" alt="Featured image of post Markdown" /&gt;&lt;h2 id=&#34;1标题语法&#34;&gt;1.标题语法
+        <description>&lt;img src="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png" alt="Featured image of post Markdown" /&gt;&lt;h2 id=&#34;1标题语法&#34;&gt;1.标题语法
 &lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1

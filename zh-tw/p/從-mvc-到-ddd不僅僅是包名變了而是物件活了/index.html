@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-tw" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在學習 DDD（領域驅動設計）時，很多人都會被複雜的概念勸退。但迴歸本質，我們可以將 DDD 理解為 MVC 的「超進化增強版」。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在學習 DDD（領域驅動設計）時，很多人會被複雜的概念勸退。但回歸本質，我們可以將 DDD 理解為 MVC 的「超進化增強版」。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。">
 <title>從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了</title>
 
 <link rel='canonical' href='https://Siborne.top/zh-tw/p/%E5%BE%9E-mvc-%E5%88%B0-ddd%E4%B8%8D%E5%83%85%E5%83%85%E6%98%AF%E5%8C%85%E5%90%8D%E8%AE%8A%E4%BA%86%E8%80%8C%E6%98%AF%E7%89%A9%E4%BB%B6%E6%B4%BB%E4%BA%86/'>
 
 <link rel="stylesheet" href="/scss/style.min.f169add374573a6d5393fbcd112ed0f3071161116b122a3ecff4c5a0e1eb28aa.css"><meta property='og:title' content="從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了">
-<meta property='og:description' content="在學習 DDD（領域驅動設計）時，很多人都會被複雜的概念勸退。但迴歸本質，我們可以將 DDD 理解為 MVC 的「超進化增強版」。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。">
+<meta property='og:description' content="在學習 DDD（領域驅動設計）時，很多人會被複雜的概念勸退。但回歸本質，我們可以將 DDD 理解為 MVC 的「超進化增強版」。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。">
 <meta property='og:url' content='https://Siborne.top/zh-tw/p/%E5%BE%9E-mvc-%E5%88%B0-ddd%E4%B8%8D%E5%83%85%E5%83%85%E6%98%AF%E5%8C%85%E5%90%8D%E8%AE%8A%E4%BA%86%E8%80%8C%E6%98%AF%E7%89%A9%E4%BB%B6%E6%B4%BB%E4%BA%86/'>
 <meta property='og:site_name' content='Siborne'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Java' /><meta property='article:published_time' content='2026-03-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-08T23:07:31&#43;08:00'/><meta property='og:image' content='https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Java' /><meta property='article:published_time' content='2026-03-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-16T20:07:25&#43;08:00'/><meta property='og:image' content='https://img.siborne.top/2026/05/1557c6be2dda6bb74eb03b4d0eaf23ec.png' />
 <meta name="twitter:title" content="從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了">
-<meta name="twitter:description" content="在學習 DDD（領域驅動設計）時，很多人都會被複雜的概念勸退。但迴歸本質，我們可以將 DDD 理解為 MVC 的「超進化增強版」。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage.png' /><div class="loading">
+<meta name="twitter:description" content="在學習 DDD（領域驅動設計）時，很多人會被複雜的概念勸退。但回歸本質，我們可以將 DDD 理解為 MVC 的「超進化增強版」。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://img.siborne.top/2026/05/1557c6be2dda6bb74eb03b4d0eaf23ec.png' /><div class="loading">
   
   
   <div class="loader">
@@ -429,7 +429,7 @@
       <ol>
         <li><a href="#引言">引言</a></li>
         <li><a href="#一-核心心法從找說明書到問當事人">一、 核心心法：從「找說明書」到「問當事人」</a></li>
-        <li><a href="#二-架構連連看ddd-與-mvc-的對映關係">二、 架構連連看：DDD 與 MVC 的對映關係</a></li>
+        <li><a href="#二-架構連連看ddd-與-mvc-的映射關係">二、 架構連連看：DDD 與 MVC 的映射關係</a></li>
         <li><a href="#三-為什麼-ddd-的包變多了關於解耦的真相">三、 為什麼 DDD 的包變多了？（關於解耦的真相）</a>
           <ol>
             <li><a href="#1-業務邏輯與流程編排解耦-application-vs-domain">1. 業務邏輯與流程編排解耦 (Application vs Domain)</a></li>
@@ -440,17 +440,17 @@
           <ol>
             <li><a href="#1-實體-entity--有唯一標識">1. 實體 (Entity) —— 有唯一標識</a></li>
             <li><a href="#2-值物件-value-object--只有屬性沒有-id">2. 值物件 (Value Object) —— 只有屬性，沒有 ID</a></li>
-            <li><a href="#3-聚合根-aggregate-root--組織管理者">3. 聚合根 (Aggregate Root) —— 組織管理者</a></li>
+            <li><a href="#3-聚合根-aggregate-root---組織管理者">3. 聚合根 (Aggregate Root)  —— 組織管理者</a></li>
             <li><a href="#4-總結對比">4. 總結對比</a></li>
           </ol>
         </li>
         <li><a href="#五-模型轉換每一層都有自己的臉">五、 模型轉換：每一層都有自己的「臉」</a></li>
         <li><a href="#六-ddd-業務落地實戰新增與取消訂單">六、🚀 DDD 業務落地實戰：新增與取消訂單</a>
           <ol>
-            <li><a href="#1-領域層domain-layer-業務邏輯的靈魂">1. 領域層（Domain Layer）—— <strong>業務邏輯的靈魂</strong></a></li>
-            <li><a href="#2-應用層application-layer-流程指揮官">2. 應用層（Application Layer）—— <strong>流程指揮官</strong></a></li>
-            <li><a href="#3-基礎設施層infrastructure-layer-技術打工人">3. 基礎設施層（Infrastructure Layer）—— <strong>技術打工人</strong></a></li>
-            <li><a href="#4-介面層interfaces-layer-門衛">4. 介面層（Interfaces Layer）—— <strong>門衛</strong></a></li>
+            <li><a href="#1-領域層-domain-layer--業務邏輯的靈魂">1. 領域層 (Domain Layer) —— <strong>業務邏輯的靈魂</strong></a></li>
+            <li><a href="#2-應用層-application-layer--流程指揮官">2. 應用層 (Application Layer) —— <strong>流程指揮官</strong></a></li>
+            <li><a href="#3-基礎設施層-infrastructure-layer--技術打工仔">3. 基礎設施層 (Infrastructure Layer) —— <strong>技術打工仔</strong></a></li>
+            <li><a href="#4-介面層-interfaces-layer--門衛">4. 介面層 (Interfaces Layer) —— <strong>門衛</strong></a></li>
           </ol>
         </li>
         <li><a href="#七總結ddd-到底增強了什麼">七、總結：DDD 到底增強了什麼？</a></li>
@@ -472,12 +472,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/zh-tw/p/%E5%BE%9E-mvc-%E5%88%B0-ddd%E4%B8%8D%E5%83%85%E5%83%85%E6%98%AF%E5%8C%85%E5%90%8D%E8%AE%8A%E4%BA%86%E8%80%8C%E6%98%AF%E7%89%A9%E4%BB%B6%E6%B4%BB%E4%BA%86/">
-                <img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage_hu_56a19ec5da05d35f.png"
-                        srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage_hu_56a19ec5da05d35f.png 800w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/bannerImage_hu_ae88ae381fe6a264.png 1600w"
-                        width="800" 
-                        height="371" 
-                        loading="lazy"
-                        alt="Featured image of post 從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了" />
+                
+                    <img src="https://img.siborne.top/2026/05/1557c6be2dda6bb74eb03b4d0eaf23ec.png" loading="lazy" alt="Featured image of post 從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了" />
                 
             </a>
         </div>
@@ -522,13 +518,13 @@
 
 
                 <time>
-                    May 08, 2026 23:07 &#43;0800
+                    May 16, 2026 20:07 &#43;0800
                 </time>
             </div>
         <div class="article-word-count">
             <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
             <time class="article-time--reading">
-                3837字
+                3733字
             </time>
         </div>
 
@@ -546,7 +542,7 @@
 
     
     <h3 class="article-subtitle">
-        在學習 DDD（領域驅動設計）時，很多人都會被複雜的概念勸退。但迴歸本質，我們可以將 DDD 理解為 MVC 的「超進化增強版」。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。
+        在學習 DDD（領域驅動設計）時，很多人會被複雜的概念勸退。但回歸本質，我們可以將 DDD 理解為 MVC 的「超進化增強版」。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。
     </h3>
     
 
@@ -577,9 +573,9 @@
                 
                     <a href="https://Siborne.top/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/" class="link">简体中文</a>
                 
-                    <a href="https://Siborne.top/en/p/from-mvc-to-ddd-not-just-package-names-changed-but-objects-came-alive/" class="link">English</a>
+                    <a href="https://Siborne.top/en/p/from-mvc-to-ddd-not-just-package-name-changes-but-objects-coming-alive/" class="link">English</a>
                 
-                    <a href="https://Siborne.top/ja/p/mvc-%E3%81%8B%E3%82%89-ddd-%E3%81%B8%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%90%8D%E3%81%8C%E5%A4%89%E3%82%8F%E3%81%A3%E3%81%9F%E3%81%A0%E3%81%91%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8C%E7%94%9F%E3%81%8D%E3%81%9F/" class="link">日本語</a>
+                    <a href="https://Siborne.top/ja/p/mvc%E3%81%8B%E3%82%89ddd%E3%81%B8%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%90%8D%E3%81%8C%E5%A4%89%E3%82%8F%E3%82%8B%E3%81%A0%E3%81%91%E3%81%A7%E3%81%AA%E3%81%8F%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8C%E7%94%9F%E3%81%8D%E3%82%8B/" class="link">日本語</a>
                 
             </div>
         </footer>
@@ -593,33 +589,29 @@
     
     <h1 id="從-mvc-到-ddd不僅僅是包名變了而是物件活了">從 MVC 到 DDD：不僅僅是包名變了，而是「物件」活了
 </h1><h3 id="引言">引言
-</h3><p>在學習 DDD（領域驅動設計）時，很多人都會被複雜的概念勸退。但迴歸本質，我們可以將 DDD 理解為 <strong>MVC 的「超進化增強版」</strong>。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。</p>
+</h3><p>在學習 DDD（領域驅動設計）時，很多人會被複雜的概念勸退。但回歸本質，我們可以將 DDD 理解為 <strong>MVC 的「超進化增強版」</strong>。它在 MVC 的基礎上，透過更清晰的職責劃分和邏輯解耦，解決了系統在業務複雜後的「臃腫」痛點。</p>
 <h3 id="一-核心心法從找說明書到問當事人">一、 核心心法：從「找說明書」到「問當事人」
-</h3><p><img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178.png"
-	width="2816"
-	height="1536"
-	srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_c31cbdbbe82ef9d0.png 480w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160404178_hu_8e42d5d83cedc346.png 1024w"
+</h3><p><img src="https://img.siborne.top/2026/05/8d63484f9883152b7f4e04691a1f6f5c.png"
+	
+	
+	
 	loading="lazy"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="183"
-		data-flex-basis="440px"
-	
 ></p>
-<p>在傳統的 <strong>MVC（貧血模型）</strong> 中，實體類（Entity/PO）往往只是資料的載體，像是一張<strong>白紙</strong>。所有的業務邏輯都堆積在 <code>Service</code> 層。</p>
+<p>在傳統的 <strong>MVC（貧血模型）</strong> 中，實體類別（Entity/PO）往往只是資料的載體，像是一張<strong>白紙</strong>。所有的業務邏輯都堆積在 <code>Service</code> 層。</p>
 <ul>
-<li><strong>痛點：</strong> Service 越來越大，邏輯散亂，維護起來像在一坨亂麻中找線頭。</li>
+<li><strong>痛點：</strong> Service 越來越大，邏輯散亂，維護起來像是在一坨亂麻中找線頭。</li>
 </ul>
 <p>在 <strong>DDD（充血模型）</strong> 中，<strong>資料和業務邏輯是寫在一起的</strong>。</p>
 <ul>
 <li>
-<p><strong>轉變：</strong> 實體類變成了有生命、有原則的「業務專家」。</p>
+<p><strong>轉變：</strong> 實體類別變成了有生命、有原則的「業務專家」。</p>
 </li>
 <li>
 <p><strong>例子：</strong> 比如「訂單取消」邏輯。</p>
 <ul>
-<li><strong>MVC：</strong> <code>OrderService</code> 獲取 Order 資料，判斷狀態，修改狀態，儲存。</li>
+<li><strong>MVC：</strong> <code>OrderService</code> 取得 Order 資料，判斷狀態，修改狀態，存盤。</li>
 <li><strong>DDD：</strong> <code>Order</code> 實體內部有一個 <code>cancel()</code> 方法，它自己判斷能不能取消。</li>
 </ul>
 </li>
@@ -627,17 +619,13 @@
 <blockquote>
 <p><strong>要點：</strong> DDD 的好處是邏輯高度內聚。一旦業務邏輯有變化，你只需要修改對應的領域模型物件，而不是去翻幾千行的 Service。</p>
 </blockquote>
-<h3 id="二-架構連連看ddd-與-mvc-的對映關係">二、 架構連連看：DDD 與 MVC 的對映關係
-</h3><p><img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734.png"
-	width="2816"
-	height="1536"
-	srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_3e27a03a3dc76dc6.png 480w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160445734_hu_9af9db3ed1912419.png 1024w"
+<h3 id="二-架構連連看ddd-與-mvc-的映射關係">二、 架構連連看：DDD 與 MVC 的映射關係
+</h3><p><img src="https://img.siborne.top/2026/05/9d18e097ad57f5bcd680cc0748e634fc.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="183"
-		data-flex-basis="440px"
 	
 >我們可以把 DDD 的流程簡單理解為：</p>
 <p><strong>Controller $\rightarrow$ Application Service $\rightarrow$ Domain Model $\rightarrow$ Repository (Impl $\rightarrow$ Mapper)</strong></p>
@@ -656,7 +644,7 @@
           <td><strong>介面層</strong></td>
           <td>Interfaces</td>
           <td>Controller</td>
-          <td>僅負責協定轉換（REST/JSON），不做任何業務。</td>
+          <td>僅負責協議轉換（REST/JSON），不做任何業務。</td>
       </tr>
       <tr>
           <td><strong>應用層</strong></td>
@@ -674,7 +662,7 @@
           <td><strong>基礎層</strong></td>
           <td>Infrastructure</td>
           <td>DAO / Mapper</td>
-          <td><strong>外掛化：</strong> 遮蔽資料庫細節。Repository 是介面，Mapper 是實現。</td>
+          <td><strong>外掛化：</strong> 蔽蓋資料庫細節。Repository 是介面，Mapper 是實現。</td>
       </tr>
   </tbody>
 </table></div>
@@ -692,45 +680,41 @@
 <li><strong>收益：</strong> 就算資料庫從 MySQL 換成 MongoDB，你的核心業務邏輯（Domain 層）一個字都不用改。</li>
 </ul>
 <h3 id="四-模型的三大成員戰術建模">四、 模型的三大成員（戰術建模）
-</h3><p><img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292.png"
-	width="2816"
-	height="1536"
-	srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_8c3f5c6fa3c0ebda.png 480w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160534292_hu_1abf29be7841aec0.png 1024w"
+</h3><p><img src="https://img.siborne.top/2026/05/20bf0b83731bcd39a510b621d1afa2e0.png"
+	
+	
+	
 	loading="lazy"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="183"
-		data-flex-basis="440px"
-	
 >
-在 DDD 的領域層中，並不是所有的類都是一樣的。為了讓業務邏輯組織得更科學，我們通常將模型分為以下三類：</p>
+在 DDD 的領域層中，並不是所有的類別都是一樣的。為了讓業務邏輯組織得更科學，我們通常將模型分為以下三類：</p>
 <h4 id="1-實體-entity--有唯一標識">1. 實體 (Entity) —— 有唯一標識
-</h4><p>實體最核心的特徵是<strong>身份（Identity）</strong>。即使它的所有屬性都變了，它依然是那個物件。</p>
+</h4><p>實體最核心的特徵是<strong>身分（Identity）</strong>。即使它的所有屬性都變了，它依然是那個物件。</p>
 <ul>
 <li><strong>定義：</strong> 具有唯一標識（ID）的物件。即使兩個訂單的商品、價格完全一樣，只要 ID 不同，它們就是兩個不同的東西。</li>
 <li><strong>特點：</strong> 有生命週期（建立、修改、狀態流轉、存檔）。</li>
 <li><strong>例子：</strong> <code>Order</code>（訂單）、<code>User</code>（使用者）。</li>
 </ul>
 <blockquote>
-<p><strong>情景：</strong> 訂單建立時，狀態是「待支付」，收貨地址是「上海」；支付後，狀態變成了「已支付」，地址改成了「北京」。</p>
-<p><strong>核心：</strong> 雖然狀態和地址都變了，但由於它的 <strong>OrderNo（或 ID）</strong> 沒變，我們依然認為它是同一個訂單。</p>
+<p><strong>情境：</strong> 訂單建立時，狀態是「待支付」，收貨地址是「上海」；支付後，狀態變成了「已支付」，地址改成了「北京」。</p>
+<p><strong>核心：</strong> 雖然狀態和地址都變了，但由於它的 <strong>OrderNo (或 ID)</strong> 沒變，我們依然認為它是同一個訂單。</p>
 </blockquote>
 <p><strong>程式碼特徵：</strong> 內部一定有一個 <code>private Long id;</code> 或 <code>private String orderNo;</code>，且邏輯判斷時使用這個 ID 進行 <code>equals()</code>。</p>
 <h4 id="2-值物件-value-object--只有屬性沒有-id">2. 值物件 (Value Object) —— 只有屬性，沒有 ID
 </h4><p>值物件就像是「描述性的文字」。如果兩個值物件的所有屬性都一樣，那它們就是同一個東西。</p>
 <ul>
 <li><strong>定義：</strong> 沒有 ID，透過屬性來定義。如果兩個物件的屬性值完全相同，它們就可以互相替換。</li>
-<li><strong>特點：</strong> <strong>不可變性（Immutable）</strong>。如果你要改一個地址，不是改原地址物件的屬性，而是直接換一個新的地址物件。</li>
+<li><strong>特點：</strong> <strong>不可變性 (Immutable)</strong>。如果你要改一個地址，不是改原地址物件的屬性，而是直接換一個新的地址物件。</li>
 <li><strong>例子：</strong> <code>Address</code>（省市區街道組合）、<code>Money</code>（幣種+金額）。</li>
 </ul>
 <blockquote>
-<p><strong>情景：</strong> 訂單裡有一個收貨地址：<code>{省: &quot;廣東&quot;, 市: &quot;深圳&quot;, 街道: &quot;南山區&quot;}</code>。</p>
+<p><strong>情境：</strong> 訂單裡有一個收貨地址：<code>{省: &quot;廣東&quot;, 市: &quot;深圳&quot;, 街道: &quot;南山區&quot;}</code>。</p>
 <p><strong>核心：</strong> 我們並不關心這個地址物件的「身份證」，我們只關心它填的是哪。如果兩個訂單都發往這個地方，那這兩個地址物件在邏輯上是<strong>等價</strong>的。</p>
 <p><strong>程式碼特徵：</strong></p>
 <ol>
 <li><strong>沒有 ID</strong>。</li>
-<li><strong>不可變性（Immutable）</strong>：如果你想改地址，不是呼叫 <code>address.setStreet(&quot;福田區&quot;)</code>，而是直接給 Order 換一個新的 Address 物件：<code>order.changeAddress(new Address(&quot;廣東&quot;, &quot;深圳&quot;, &quot;福田區&quot;))</code>。</li>
+<li><strong>不可變性 (Immutable)</strong>：如果你想改地址，不是呼叫 <code>address.setStreet(&quot;福田區&quot;)</code>，而是直接給 Order 換一個新的 Address 物件：<code>order.changeAddress(new Address(&quot;廣東&quot;, &quot;深圳&quot;, &quot;福田區&quot;))</code>。</li>
 </ol>
 </blockquote>
 <ul>
@@ -750,14 +734,14 @@
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="3-聚合根-aggregate-root--組織管理者">3. 聚合根 (Aggregate Root) —— 組織管理者
+</div><h4 id="3-聚合根-aggregate-root---組織管理者">3. 聚合根 (Aggregate Root)  —— 組織管理者
 </h4><ul>
 <li><strong>定義：</strong> 一組關聯物件的「大老闆」。外部只能透過聚合根來訪問它內部的成員。</li>
-<li><strong>職責：</strong> 維護業務完整性（不變數）。</li>
+<li><strong>職責：</strong> 維護業務完整性（不變量）。</li>
 <li><strong>例子：</strong> 在訂單業務中，<code>Order</code> 是聚合根，<code>OrderItem</code>（訂單項）是它內部的成員。</li>
 </ul>
 <blockquote>
-<p><strong>情景：</strong> 一個訂單裡有 3 個商品（訂單項）。</p>
+<p><strong>情境：</strong> 一個訂單裡有 3 個商品（訂單項）。</p>
 <p><strong>核心：</strong></p>
 <ol>
 <li>外面的 Service 不能直接繞過 <code>Order</code> 去修改某個 <code>OrderItem</code> 的價格。</li>
@@ -772,7 +756,7 @@
 </h4><div class="table-wrapper"><table>
   <thead>
       <tr>
-          <th><strong>模型型別</strong></th>
+          <th><strong>模型類型</strong></th>
           <th><strong>是否有唯一 ID</strong></th>
           <th><strong>屬性完全相同時</strong></th>
           <th><strong>修改方式</strong></th>
@@ -785,44 +769,40 @@
           <td>是</td>
           <td>依然是兩個獨立的物件</td>
           <td>透過方法修改屬性</td>
-          <td>使用者（User）、商品（Product）</td>
+          <td>使用者(User)、商品(Product)</td>
       </tr>
       <tr>
           <td><strong>值物件 (VO)</strong></td>
           <td>否</td>
           <td>視為同一個物件</td>
           <td>整體替換（不可變）</td>
-          <td>貨幣（Money）、地址（Address）</td>
+          <td>貨幣(Money)、地址(Address)</td>
       </tr>
       <tr>
           <td><strong>聚合根 (AR)</strong></td>
           <td>是</td>
-          <td>（同實體）</td>
+          <td>(同實體)</td>
           <td>負責協調內部所有成員</td>
-          <td>訂單（Order）、論壇主題（Topic）</td>
+          <td>訂單(Order)、論壇主題(Topic)</td>
       </tr>
   </tbody>
 </table></div>
 <h3 id="五-模型轉換每一層都有自己的臉">五、 模型轉換：每一層都有自己的「臉」
-</h3><p><img src="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115.png"
-	width="2816"
-	height="1536"
-	srcset="/p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_3a6f248a9a08ff2d.png 480w, /p/%E4%BB%8E-mvc-%E5%88%B0-ddd%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8C%85%E5%90%8D%E5%8F%98%E4%BA%86%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E6%B4%BB%E4%BA%86/assets/file-20260314160509115_hu_9532cd5c6ba76ad0.png 1024w"
+</h3><p><img src="https://img.siborne.top/2026/05/402fb87ecbd0b469968565310cfceb8e.png"
+	
+	
+	
 	loading="lazy"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="183"
-		data-flex-basis="440px"
-	
->為了實現「解耦」，每一層使用的模型其實是不一樣的。雖然寫起來麻煩，但能有效防止資料庫邏輯汙染業務邏輯：</p>
+>為了實現「解耦」，每一層使用的模型其實是不一樣的。雖然寫起來麻煩，但能有效防止資料庫邏輯污染業務邏輯：</p>
 <ol>
-<li><strong>DTO（Data Transfer Object）：</strong> 介面層使用。長得像表單，欄位可能很少。</li>
-<li><strong>Domain Entity：</strong> 領域層使用。這是你寫的那個「活的物件」，帶業務邏輯。</li>
-<li><strong>PO（Persistent Object）：</strong> 基礎設施層使用。長得和資料庫表一模一樣。</li>
+<li><strong>DTO (Data Transfer Object):</strong> 介面層使用。長得像表單，欄位可能很少。</li>
+<li><strong>Domain Entity:</strong> 領域層使用。這是你寫的那個「活的物件」，帶業務邏輯。</li>
+<li><strong>PO (Persistent Object):</strong> 基礎設施層使用。長得和資料庫表一模一樣。</li>
 </ol>
 <h3 id="六-ddd-業務落地實戰新增與取消訂單">六、🚀 DDD 業務落地實戰：新增與取消訂單
-</h3><h4 id="1-領域層domain-layer-業務邏輯的靈魂">1. 領域層（Domain Layer）—— <strong>業務邏輯的靈魂</strong>
+</h3><h4 id="1-領域層-domain-layer--業務邏輯的靈魂">1. 領域層 (Domain Layer) —— <strong>業務邏輯的靈魂</strong>
 </h4><p>這是「資料和業務在一起」的地方。它不依賴任何框架，只負責業務規則。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -874,15 +854,15 @@
 </span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// 實體類：Order.java</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Order</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// &lt;--- 這是一個【聚合根】</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">;</span><span class="w"> </span><span class="c1">// &lt;--- 聚合根也是實體，有唯一 ID</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">OrderItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">items</span><span class="p">;</span><span class="w"> </span><span class="c1">// &lt;--- 訂單項是【實體】，但受聚合根管理</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// 實體類別：Order.java</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Order</span><span class="w"> </span><span class="p">{</span><span class="c1">// &lt;--- 這是一個【聚合根】</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">;</span><span class="c1">// &lt;--- 聚合根也是實體，有唯一 ID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">OrderItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">items</span><span class="p">;</span><span class="c1">// &lt;--- 訂單項是【實體】，但受聚合根管理</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">OrderStatus</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w"> </span><span class="c1">// CREATED, PAID, CANCELLED, SHIPPED</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"> </span><span class="c1">// &lt;--- 收貨地址是【值物件】，沒有 ID，整體替換</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">totalPrice</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 聚合根的方法：確保業務完整性</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 聚合根的方法：確保業務完整性</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeAddress</span><span class="p">(</span><span class="n">Address</span><span class="w"> </span><span class="n">newAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">OrderStatus</span><span class="p">.</span><span class="na">SHIPPED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BusinessException</span><span class="p">(</span><span class="s">&#34;發貨後不能改地址&#34;</span><span class="p">);</span><span class="w">
@@ -915,14 +895,14 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 省略 Getter...</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// 倉庫介面：OrderRepository.java（只定義業務行為）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 倉庫介面：OrderRepository.java (只定義業務行為)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">OrderRepository</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Order</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="2-應用層application-layer-流程指揮官">2. 應用層（Application Layer）—— <strong>流程指揮官</strong>
+</div><h4 id="2-應用層-application-layer--流程指揮官">2. 應用層 (Application Layer) —— <strong>流程指揮官</strong>
 </h4><p>不寫 <code>if-else</code> 邏輯，只負責編排：從倉庫取物件 -&gt; 下達指令 -&gt; 儲存物件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -972,7 +952,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">cancelOrder</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 1. 透過倉庫找到那個「活的」物件</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orderRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 2. 傳送指令給物件：你自己取消吧</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 2. 發送指令給物件：你自己取消吧</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">order</span><span class="p">.</span><span class="na">cancel</span><span class="p">();</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 3. 儲存修改後的狀態</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">orderRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">order</span><span class="p">);</span><span class="w">
@@ -980,7 +960,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="3-基礎設施層infrastructure-layer-技術打工人">3. 基礎設施層（Infrastructure Layer）—— <strong>技術打工人</strong>
+</div><h4 id="3-基礎設施層-infrastructure-layer--技術打工仔">3. 基礎設施層 (Infrastructure Layer) —— <strong>技術打工仔</strong>
 </h4><p>這裡負責和資料庫打交道。你提到的 <strong>Mapper</strong> 就在這一層被呼叫。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1036,8 +1016,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="4-介面層interfaces-layer-門衛">4. 介面層（Interfaces Layer）—— <strong>門衛</strong>
-</h4><p>只負責接收請求、校驗引數格式，然後轉發。</p>
+</div><h4 id="4-介面層-interfaces-layer--門衛">4. 介面層 (Interfaces Layer) —— <strong>門衛</strong>
+</h4><p>只負責接收請求、校驗參數格式，然後轉發。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1085,7 +1065,7 @@
 </ol>
 <blockquote>
 <ul>
-<li><strong>「能否取消」的判斷</strong>邏輯在 <code>Order</code> 類裡（領域層）。</li>
+<li><strong>判斷「能否取消」</strong> 的邏輯在 <code>Order</code> 類別裡（領域層）。</li>
 <li><strong>「先查出來、再改、再存」</strong> 的步驟在 <code>OrderApplicationService</code> 裡（應用層）。</li>
 </ul>
 </blockquote>
@@ -1094,7 +1074,7 @@
 </ol>
 <blockquote>
 <ul>
-<li><code>ApplicationService</code> 根本不知道資料庫是 MySQL 還是文字檔案，因為它只呼叫了 <code>orderRepository.save()</code>。</li>
+<li><code>ApplicationService</code> 根本不知道資料庫是 MySQL 還是文字檔，因為它只呼叫了 <code>orderRepository.save()</code>。</li>
 <li>真正的 SQL 語句全被物理隔離在 <code>Infrastructure</code> 層的 <code>Mapper</code> 中。</li>
 </ul>
 </blockquote>
@@ -1103,7 +1083,7 @@
 </ol>
 <blockquote>
 <ul>
-<li>如果未來「取消訂單」的規則變了（比如支付超過30分鐘不能取消），你<strong>只需要改 <code>Order</code> 實體類一個地方</strong>，其他三層程式碼動都不用動。這就是 DDD 應對複雜業務的威力。</li>
+<li>如果未來「取消訂單」的規則變了（比如支付超過30分鐘不能取消），你<strong>只需要改 <code>Order</code> 實體類別一個地方</strong>，其他三層程式碼動都不用動。這就是 DDD 應對複雜業務的威力。</li>
 </ul>
 </blockquote>
 <h3 id="七總結ddd-到底增強了什麼">七、總結：DDD 到底增強了什麼？
@@ -1130,7 +1110,7 @@
 
 
         <span>
-            最後更新 May 08, 2026 23:07 &#43;0800
+            最後更新 May 16, 2026 20:07 &#43;0800
         </span>
     </section></footer>
 
@@ -1187,13 +1167,8 @@
         
         
             <div class="article-image">
-                <img src="/p/lru-%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/bannerImage.f0e326574cdcea40078081e6d757389b_hu_764ad83851422e00.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post LRU 快取演算法的實現"
-                        
-                        data-hash="md5-8OMmV0zc6kAHgIHm11c4mw==">
+                
+                    <img src="https://img.siborne.top/2026/05/f0e326574cdcea40078081e6d757389b.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/f0e326574cdcea40078081e6d757389b.png"/>
                 
             </div>
         
@@ -1211,13 +1186,8 @@
         
         
             <div class="article-image">
-                <img src="/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.54074f014a63b85f280277238cbd8e80_hu_ac97836973c31531.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Java &#43; MySQL &#43; Redis 生成使用者主鍵的 6 種方案"
-                        
-                        data-hash="md5-VAdPAUpjuF8oAncjjL2OgA==">
+                
+                    <img src="https://img.siborne.top/2026/05/54074f014a63b85f280277238cbd8e80.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/54074f014a63b85f280277238cbd8e80.png"/>
                 
             </div>
         
@@ -1235,13 +1205,8 @@
         
         
             <div class="article-image">
-                <img src="/p/jwt%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/bannerImage.14078955d0308bd7c8ae4d32af16584a_hu_70ee50d98229c494.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post JWT 簡單解析"
-                        
-                        data-hash="md5-FAeJVdAwi9fIrk0yrxZYSg==">
+                
+                    <img src="https://img.siborne.top/2026/05/14078955d0308bd7c8ae4d32af16584a.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/14078955d0308bd7c8ae4d32af16584a.png"/>
                 
             </div>
         
@@ -1255,23 +1220,18 @@
             
                 
 <article class="has-image">
-    <a href="/zh-tw/p/%E5%B0%8D-threadlocal-%E7%9A%84%E7%90%86%E8%A7%A3/">
+    <a href="/zh-tw/p/%E5%B0%8Dthreadlocal%E7%9A%84%E7%90%86%E8%A7%A3/">
         
         
             <div class="article-image">
-                <img src="/p/%E5%AF%B9threadlocal%E7%9A%84%E7%90%86%E8%A7%A3/bannerImage.a8020477e9a0baea0d4a7e92f55dd1b6_hu_cfb96ec03030dc04.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 對 ThreadLocal 的理解"
-                        
-                        data-hash="md5-qAIEd&#43;mguuoNSn6S9V3Rtg==">
+                
+                    <img src="https://img.siborne.top/2026/05/a8020477e9a0baea0d4a7e92f55dd1b6.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/a8020477e9a0baea0d4a7e92f55dd1b6.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">對 ThreadLocal 的理解</h2>
+            <h2 class="article-title">對ThreadLocal的理解</h2>
         </div>
     </a>
 </article>

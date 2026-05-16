@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>CDN on Siborne</title>
+        <link>https://Siborne.top/zh-tw/tags/cdn/</link>
+        <description>Recent content in CDN on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Sat, 16 May 2026 20:07:25 +0800</lastBuildDate><atom:link href="https://Siborne.top/zh-tw/tags/cdn/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>互聯網架構就這？1個故事講清楚</title>
+        <link>https://Siborne.top/zh-tw/p/internet-architecture-in-one-story/</link>
+        <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/zh-tw/p/internet-architecture-in-one-story/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" alt="Featured image of post 互聯網架構就這？1個故事講清楚" /&gt;&lt;blockquote&gt;
+&lt;p&gt;一口氣講透互聯網架構所有高頻名詞。看似眼花繚亂、概念紮堆，拆解核心邏輯，它其實就是一套不斷補短板、解決新問題的迭代閉環。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-一切的開端單機架構&#34;&gt;1. 一切的開端：單機架構
+&lt;/h2&gt;&lt;p&gt;故事的起點非常樸素——你剛做了一個小網站，用戶沒幾個，訪問量極低。這還用想？怎麼簡單怎麼來。&lt;/p&gt;
+&lt;p&gt;一台伺服器，上面裝應用程式，也裝資料庫，用一套開源的 LNMP 技術棧就能迅速搞定。你給它取名叫&lt;strong&gt;單機架構&lt;/strong&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│     一台伺服器        │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ┌───────────────┐  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │   應用程式      │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  ├───────────────┤  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  │   資料庫       │  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  └───────────────┘  │
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;簡單、直接、零運維成本——這就是所有架構的起點。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-應用與資料庫分離&#34;&gt;2. 應用與資料庫分離
+&lt;/h2&gt;&lt;p&gt;業務慢慢有了起色，用戶多了一點，單機扛不住了。應用和資料庫經常搶 CPU、搶記憶體、搶 IO，互相拖累。&lt;/p&gt;
+&lt;p&gt;怎麼辦？&lt;strong&gt;加機器，拆。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;把應用和資料庫拆到兩台伺服器上：應用伺服器專門處理請求和業務邏輯，資料庫伺服器專門存資料、做 IO 操作。兩者各司其職，互不干擾，可用性也上來了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/971b672f47816ce42f466b9b7ee507cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-高並發來了叢集--負載均衡&#34;&gt;3. 高並發來了：叢集 + 負載均衡
+&lt;/h2&gt;&lt;p&gt;但好景不長，用戶又暴漲了。單台應用伺服器處理不過來，資料庫也扛不住大量查詢。故事進入高潮——&lt;strong&gt;高並發&lt;/strong&gt;來了。&lt;/p&gt;
+&lt;p&gt;單台應用伺服器就算配置拉滿也有上限，比如一秒只能扛 100 個請求，來了 500 個請求咋辦？&lt;/p&gt;
+&lt;p&gt;500 ÷ 100 = 5，那就來&lt;strong&gt;五台伺服器&lt;/strong&gt;，部署一模一樣的程式碼。你給它取名叫&lt;strong&gt;叢集&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;還有個問題：流量怎麼分配到每台伺服器呢？於是你發明了一個中間層——它能將請求均勻分配到每台應用伺服器。你給它取名叫&lt;strong&gt;負載均衡&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;扛不住就加機器 → &lt;strong&gt;水平擴展&lt;/strong&gt;。
+一台掛了自動屏蔽流量，其他頂上 → &lt;strong&gt;高可用&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9904429e3cf9788116b93e186e28f888.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-資料庫成為新瓶頸多級快取&#34;&gt;4. 資料庫成為新瓶頸：多級快取
+&lt;/h2&gt;&lt;p&gt;應用扛住了，新問題緊隨而來——大量請求穿透到資料庫，資料庫成了新瓶頸。&lt;/p&gt;
+&lt;p&gt;你開始研究應用查詢資料庫的原理：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;應用發查詢請求給資料庫&lt;/li&gt;
+&lt;li&gt;資料庫先去&lt;strong&gt;記憶體緩衝區&lt;/strong&gt;找資料&lt;/li&gt;
+&lt;li&gt;找到 → 直接返回；沒找到 → 去磁碟折騰一圈，讀出來放進記憶體緩衝區，再返回給應用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;關鍵發現：&lt;strong&gt;從記憶體緩衝區讀，比從磁碟讀快 1000 倍以上。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;那能不能都去記憶體緩衝區讀？不行，太小了。怎麼辦？直接把記憶體緩衝區單獨出來、放大！經常被訪問的&lt;strong&gt;熱點資料&lt;/strong&gt;全放上去，快速查，不用去資料庫。你給它取名叫&lt;strong&gt;快取&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;你設計了三層快取：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;層級&lt;/th&gt;
+          &lt;th&gt;說明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;瀏覽器快取&lt;/td&gt;
+          &lt;td&gt;用戶本地，最快&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;應用伺服器本地快取&lt;/td&gt;
+          &lt;td&gt;服務實例記憶體，極快&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分佈式快取（如 Redis）&lt;/td&gt;
+          &lt;td&gt;集中式大容量記憶體，快&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;用戶每次請求：瀏覽器快取 → 本地快取 → 分佈式快取 → 資料庫。&lt;/p&gt;
+&lt;p&gt;絕大多數請求在快取層就被攔住，根本到不了資料庫。查詢速度從&lt;strong&gt;毫秒級 → 微秒級&lt;/strong&gt;，資料庫壓力暴跌。就算資料庫掛了，快取還能頂一陣。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/62412070ecbcc2629a8a26794f67b4f7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-讀寫分離給資料庫分工&#34;&gt;5. 讀寫分離：給資料庫分工
+&lt;/h2&gt;&lt;p&gt;快取解決了&lt;strong&gt;熱點讀&lt;/strong&gt;，但寫請求和非熱點讀還是要打到資料庫。&lt;/p&gt;
+&lt;p&gt;資料庫有個特點：寫本身並不慢，但&lt;strong&gt;多寫會鎖行鎖表&lt;/strong&gt;，並發一高就排隊。能不能給資料庫分工？&lt;/p&gt;
+&lt;p&gt;於是你讓&lt;strong&gt;主庫只負責寫&lt;/strong&gt;，&lt;strong&gt;從庫只負責讀&lt;/strong&gt;，通過資料同步保證主從資料一致。你給它取名叫&lt;strong&gt;讀寫分離&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;現實中互聯網系統&lt;strong&gt;讀多寫少&lt;/strong&gt;，可以一主多從，讀壓力一下就分攤了，讀寫互相阻塞的問題也徹底解決。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/dc14f70c0e24733647b4832f51d387ea.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-海量儲存分庫分表&#34;&gt;6. 海量儲存：分庫分表
+&lt;/h2&gt;&lt;p&gt;系統跑了幾年，資料量越來越大。訂單表、日誌表越來越臃腫，&lt;strong&gt;單庫單表撐不住了&lt;/strong&gt;。必須對資料庫進行拆分。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;垂直分庫&lt;/strong&gt;：按業務拆分——用戶庫、商品庫、訂單庫，互不干擾。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;水平分表&lt;/strong&gt;：一張大表拆成多張小表，比如按 UID 雜湊分成多張表，分散壓力。配合資料庫中間件對應用透明，不用改大量程式碼。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/e3b4d69ce691009f3b211f9599e3a73f.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;7-cdn--反向代理快且安全&#34;&gt;7. CDN + 反向代理：快且安全
+&lt;/h2&gt;&lt;p&gt;你的系統用戶遍佈全國，有人訪問快如閃電，有人慢如蝸牛。而且應用伺服器直接暴露在公網，太危險。&lt;/p&gt;
+&lt;p&gt;於是你發明了兩個新玩意兒：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CDN（內容分發網路）&lt;/strong&gt;：在全國鋪了很多節點，靜態資源提前放到離用戶最近的節點，就像你家門口的快遞站。用戶通過域名解析獲取最近的節點 IP 取資料，速度直接起飛。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;反向代理&lt;/strong&gt;：放在用戶和應用之間，公網請求先到它，再轉發給內網應用伺服器。隱藏真實伺服器，防止攻擊，還能做流量清洗、權限校驗，一舉多得。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/d03a28d70fa16bec0e280e06b3adeb43.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;8-複雜查詢搜尋引擎--nosql&#34;&gt;8. 複雜查詢：搜尋引擎 + NoSQL
+&lt;/h2&gt;&lt;p&gt;互聯網玩法越來越花，場景越來越複雜。傳統資料庫遇到模糊查詢、全文搜尋、多維統計就力不從心了。用 &lt;code&gt;LIKE&lt;/code&gt; 搜商品，慢到死。&lt;/p&gt;
+&lt;p&gt;於是你發明了兩個新玩意兒：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;搜尋引擎（如 Elasticsearch）&lt;/strong&gt;：利用&lt;strong&gt;倒排索引&lt;/strong&gt;讓搜尋秒級響應。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NoSQL 資料庫（如 MongoDB、HBase）&lt;/strong&gt;：專門存非結構化、半結構化資料，高並發易擴展。&lt;/p&gt;
+&lt;p&gt;系統從此不再是簡單增刪改查，而是能支援&lt;strong&gt;複雜檢索與分析&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/9553ba3d899101463688c3de653abbb1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;9-分佈式架構拆&#34;&gt;9. 分佈式架構：拆！
+&lt;/h2&gt;&lt;p&gt;生意越做越大，你的網站從小電商長成了集用戶、商品、訂單於一體的大平台。&lt;/p&gt;
+&lt;p&gt;所有功能程式碼全擠在一個應用裡，長成了大家常說的&lt;strong&gt;巨石應用&lt;/strong&gt;。麻煩也跟著來了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;改一行用戶程式碼要全量發布&lt;/li&gt;
+&lt;li&gt;多個開發同時改程式碼，天天衝突&lt;/li&gt;
+&lt;li&gt;想給訂單加機器，只能整個應用一起擴容，資源白白浪費&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;怎麼辦？&lt;strong&gt;拆！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按業務邊界，把這個大應用一刀一刀切開：用戶、商品、訂單各成一個獨立小系統。每個系統&lt;strong&gt;單獨部署、單獨發布、單獨擴容&lt;/strong&gt;，誰也不影響誰。你給它取名叫&lt;strong&gt;分佈式架構&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;但拆完新問題又來了——系統分開了，怎麼互相調用？於是你發明了&lt;strong&gt;RPC（遠端過程呼叫）&lt;/strong&gt;，讓跨機器的服務呼叫像呼叫本地程式碼一樣簡單。&lt;/p&gt;
+&lt;p&gt;服務越來越多，呼叫鏈路越來越複雜，快速找到目標成了難題。於是你又發明了一個總管——&lt;strong&gt;服務註冊與發現中心&lt;/strong&gt;：新服務來註冊，誰要呼叫誰來這找。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2bd4c9168cb12c9cea585ae357527b1c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;10-訊息佇列解耦與削峰&#34;&gt;10. 訊息佇列：解耦與削峰
+&lt;/h2&gt;&lt;p&gt;服務之間相互呼叫、相互等待——一個服務卡住，整條鏈路都跟著堵死。流量一高，&lt;strong&gt;雪崩&lt;/strong&gt;了。&lt;/p&gt;
+&lt;p&gt;怎麼辦？能不能不讓服務之間相互等待？&lt;/p&gt;
+&lt;p&gt;於是你發明了一個超大容量的智慧收件箱：服務之間不用死死等著對方立刻回覆，把訊息扔進去就可以繼續幹自己的事。誰要誰自己來拿。你給它取名叫&lt;strong&gt;訊息佇列（MQ）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;這下服務之間徹底解耦、互不拖累。某個服務臨時掛了，訊息不會丟，等恢復了再慢慢處理。遇到流量突增，先把請求存起來按系統能力慢慢消化——&lt;strong&gt;削峰填谷&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c1f8f2e306753c78c33868a76a61fe00.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-微服務架構拆得更細&#34;&gt;11. 微服務架構：拆得更細
+&lt;/h2&gt;&lt;p&gt;分佈式架構用了幾年，你又發現新問題——拆是拆了，但&lt;strong&gt;拆得還不夠細&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;就拿用戶系統來說，裡面裝著登入、個人資訊、會員、地址……還是一大坨。不同團隊想用的技術不一樣，有的想用 Java，有的想用 Go，混在一個系統裡根本沒法搞。會員模組要大促擴容，只能把整個用戶系統一起加機器，錢和資源全浪費。&lt;/p&gt;
+&lt;p&gt;怎麼辦？&lt;strong&gt;繼續拆！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按照&lt;strong&gt;一個服務只幹一件事&lt;/strong&gt;的原則，拆得更細更小：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;登入做成單獨服務&lt;/li&gt;
+&lt;li&gt;會員做成單獨服務&lt;/li&gt;
+&lt;li&gt;支付做成單獨服務&lt;/li&gt;
+&lt;li&gt;……&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每個小服務獨立開發、獨立發布、獨立擴容，想用什麼技術棧就用什麼。你給這套更極致的架構取名叫&lt;strong&gt;微服務架構&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;大促一來，訂單、支付這幾個最熱的服務直接加十倍機器抗流量，其他不忙的服務完全不用動，資源一點不浪費。哪個服務出 bug 就只影響這一個小功能，絕不會拖垮整個網站。幾十個團隊，各管各的服務，互不打擾，開發效率直接起飛。&lt;/p&gt;
+&lt;p&gt;當然有利就有挑戰——呼叫關係像蜘蛛網，加上&lt;strong&gt;全鏈路追蹤&lt;/strong&gt;一眼定位慢服務；怕連鎖崩盤，加上&lt;strong&gt;限流、熔斷、降級&lt;/strong&gt;自動保護；服務太多不好管，做&lt;strong&gt;服務治理&lt;/strong&gt;：統一監控、日誌、權限全安排得明明白白。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/5951eb71303e83cdf7ed8e359bc4c779.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-容器化一次打包到處執行&#34;&gt;12. 容器化：一次打包，到處執行
+&lt;/h2&gt;&lt;p&gt;微服務是真好用，可運維同學直接哭了。&lt;/p&gt;
+&lt;p&gt;服務越拆越細，從原來幾個應用一下子變成幾百個微服務。每個服務上線都要配環境、裝依賴、調參數——稍微不一樣就出現&amp;quot;我電腦能跑，伺服器跑不起來&amp;quot;的玄學 bug。大促前要緊急擴容幾百台機器，一台台配環境根本趕不上；大促結束要縮容，還得一台台清理，效率低到離譜。&lt;/p&gt;
+&lt;p&gt;怎麼辦？&lt;/p&gt;
+&lt;p&gt;能不能把服務和他需要的執行環境一起，&lt;strong&gt;打包成一個密封盒子&lt;/strong&gt;，放到哪台伺服器都能直接跑？&lt;/p&gt;
+&lt;p&gt;於是你又發明了一個新玩意兒——不用再配環境。把每個微服務的程式碼、依賴、配置、環境全部打包成一個&lt;strong&gt;映像&lt;/strong&gt;，一次打包，到處執行，徹底解決了環境不一致的世紀難題。你給它取名叫 &lt;strong&gt;Docker 容器&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/c11875b5c575e737e363a15111b223cf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;13-容器編排kubernetes-大管家&#34;&gt;13. 容器編排：Kubernetes 大管家
+&lt;/h2&gt;&lt;p&gt;可問題又來了——幾百上千個容器，誰能幫你管？&lt;/p&gt;
+&lt;p&gt;於是你又請來一個全能大管家。它能安排容器資源、排程容器位置、自動伸縮。你給它取名叫 &lt;strong&gt;Kubernetes（K8s）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;流量高了 → 自動加容器&lt;/li&gt;
+&lt;li&gt;流量低了 → 自動縮容器&lt;/li&gt;
+&lt;li&gt;容器掛了 → 自動重啟&lt;/li&gt;
+&lt;li&gt;全程不用你管&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/6adc9fa5ce93a121718c07160b86079b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;14-雲原生新時代的架構&#34;&gt;14. 雲原生：新時代的架構
+&lt;/h2&gt;&lt;p&gt;還沒完——就算有了 K8s，還是得自己買伺服器、維護機房。為了大促備一堆機器，平日全閒著，太浪費錢。&lt;/p&gt;
+&lt;p&gt;於是你直接把系統搬到了&lt;strong&gt;雲平台&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;雲平台就像一個無限大的資源池，要多少 CPU、記憶體、頻寬，隨時申請、隨時用、用完釋放，&lt;strong&gt;按需付費&lt;/strong&gt;。底層機房完全透明，你只需要關注業務。&lt;/p&gt;
+&lt;p&gt;你的架構徹底進入了新的時代——你給它取名叫&lt;strong&gt;雲原生（Cloud Native）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/2f74242037162690b0d22e8dfe5fd20b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;15-故事總結架構演進全景圖&#34;&gt;15. 故事總結：架構演進全景圖
+&lt;/h2&gt;&lt;p&gt;從最開始一台小伺服器到如今彈性自動化、高可用、能無限擴展的現代化架構——不管業務怎麼漲、流量怎麼爆，它都能穩穩扛住。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;階段&lt;/th&gt;
+          &lt;th&gt;解決的問題&lt;/th&gt;
+          &lt;th&gt;核心方案&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;單機架構&lt;/td&gt;
+          &lt;td&gt;從零搭建&lt;/td&gt;
+          &lt;td&gt;一台伺服器全包&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;應用與資料庫分離&lt;/td&gt;
+          &lt;td&gt;資源爭搶&lt;/td&gt;
+          &lt;td&gt;拆成兩台，各司其職&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;叢集 + 負載均衡&lt;/td&gt;
+          &lt;td&gt;高並發&lt;/td&gt;
+          &lt;td&gt;多台伺服器 + 流量分發&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;多級快取&lt;/td&gt;
+          &lt;td&gt;查詢效能、資料庫壓力&lt;/td&gt;
+          &lt;td&gt;瀏覽器 → 本地 → 分佈式快取&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;讀寫分離&lt;/td&gt;
+          &lt;td&gt;資料庫讀寫阻塞&lt;/td&gt;
+          &lt;td&gt;主庫寫、從庫讀&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分庫分表&lt;/td&gt;
+          &lt;td&gt;海量儲存&lt;/td&gt;
+          &lt;td&gt;垂直分庫 + 水平分表&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CDN + 反向代理&lt;/td&gt;
+          &lt;td&gt;訪問速度、系統安全&lt;/td&gt;
+          &lt;td&gt;就近訪問 + 隱藏真實伺服器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;搜尋引擎 + NoSQL&lt;/td&gt;
+          &lt;td&gt;複雜查詢&lt;/td&gt;
+          &lt;td&gt;倒排索引 + 非結構化儲存&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分佈式架構&lt;/td&gt;
+          &lt;td&gt;業務膨脹、程式碼維護&lt;/td&gt;
+          &lt;td&gt;按業務拆分，RPC 通訊&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;訊息佇列&lt;/td&gt;
+          &lt;td&gt;服務耦合、流量衝擊&lt;/td&gt;
+          &lt;td&gt;異步解耦 + 削峰填谷&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;微服務架構&lt;/td&gt;
+          &lt;td&gt;團隊協作、極致彈性&lt;/td&gt;
+          &lt;td&gt;一個服務只幹一件事&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;容器化（Docker）&lt;/td&gt;
+          &lt;td&gt;環境不一致&lt;/td&gt;
+          &lt;td&gt;一次打包，到處執行&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;容器編排（K8s）&lt;/td&gt;
+          &lt;td&gt;運維成本&lt;/td&gt;
+          &lt;td&gt;自動化排程 + 彈性伸縮&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;雲原生&lt;/td&gt;
+          &lt;td&gt;資源利用率&lt;/td&gt;
+          &lt;td&gt;按需付費，底層透明&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/05/b54ac34e408d2d78d7b77db0d3445640.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;架構師的三句核心思維&#34;&gt;架構師的三句核心思維
+&lt;/h2&gt;&lt;p&gt;最後，送你三句話。聽懂了，你也能設計好架構。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一、沒有最好的架構，只有最適合業務的架構。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;創業公司別一上來就微服務。單機夠用就好——業務推著架構走，不要架構拖著業務跑。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;二、架構演進的本質：用空間換時間，用複雜度換效能。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;加機器、加元件、加分層——這一切都是為了扛住更大的流量、更高的並發。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;三、永遠圍繞五大目標：高效能、高可用、可伸縮、可擴展、夠安全。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;這五個目標是一切架構決策的北極星。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;從一台小伺服器到千萬級並發的雲原生架構，每一步都有跡可循，每一步都在解決真實問題。這就是互聯網架構。&lt;/em&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

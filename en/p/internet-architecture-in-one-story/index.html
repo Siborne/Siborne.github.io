@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="From a single server to cloud-native architecture handling tens of millions of concurrent requests — a comprehensive guide to all high-frequency concepts: load balancing, caching, read-write separation, sharding, CDN, microservices, containerization, K8s... Every step solves a real problem.">
+<title>Internet Architecture Explained: One Story to Rule Them All</title>
+
+<link rel='canonical' href='https://Siborne.top/en/p/internet-architecture-in-one-story/'>
+
+<link rel="stylesheet" href="/scss/style.min.f169add374573a6d5393fbcd112ed0f3071161116b122a3ecff4c5a0e1eb28aa.css"><meta property='og:title' content="Internet Architecture Explained: One Story to Rule Them All">
+<meta property='og:description' content="From a single server to cloud-native architecture handling tens of millions of concurrent requests — a comprehensive guide to all high-frequency concepts: load balancing, caching, read-write separation, sharding, CDN, microservices, containerization, K8s... Every step solves a real problem.">
+<meta property='og:url' content='https://Siborne.top/en/p/internet-architecture-in-one-story/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Internet Architecture' /><meta property='article:tag' content='System Design' /><meta property='article:tag' content='Backend' /><meta property='article:tag' content='Distributed Systems' /><meta property='article:tag' content='Microservices' /><meta property='article:tag' content='Cloud Native' /><meta property='article:tag' content='Load Balancing' /><meta property='article:tag' content='Caching' /><meta property='article:tag' content='Read-Write Separation' /><meta property='article:tag' content='Database Sharding' /><meta property='article:tag' content='CDN' /><meta property='article:tag' content='Docker' /><meta property='article:tag' content='Kubernetes' /><meta property='article:published_time' content='2026-05-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-05-16T20:07:25&#43;08:00'/><meta property='og:image' content='https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png' />
+<meta name="twitter:title" content="Internet Architecture Explained: One Story to Rule Them All">
+<meta name="twitter:description" content="From a single server to cloud-native architecture handling tens of millions of concurrent requests — a comprehensive guide to all high-frequency concepts: load balancing, caching, read-write separation, sharding, CDN, microservices, containerization, K8s... Every step solves a real problem."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar3_hu_b3a9059d09e2220d.gif" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; Enthusiast
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent Architect &amp; Full-Stack Dev
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 Curious Student · Future Builder
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    Building intelligent agents &#43; scalable apps. Blending creativity with AI efficiency. 🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/projects/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder-open"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2" /></svg>
+                
+                <span>Projects</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" selected>English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" >繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" >日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-where-it-all-began-monolithic-architecture">1. Where It All Began: Monolithic Architecture</a></li>
+    <li><a href="#2-separating-application-and-database">2. Separating Application and Database</a></li>
+    <li><a href="#3-high-concurrency-arrives-clustering--load-balancing">3. High Concurrency Arrives: Clustering + Load Balancing</a></li>
+    <li><a href="#4-database-becomes-the-new-bottleneck-multi-level-caching">4. Database Becomes the New Bottleneck: Multi-Level Caching</a></li>
+    <li><a href="#5-read-write-separation-dividing-database-responsibilities">5. Read-Write Separation: Dividing Database Responsibilities</a></li>
+    <li><a href="#6-massive-storage-database-sharding">6. Massive Storage: Database Sharding</a></li>
+    <li><a href="#7-cdn--reverse-proxy-fast-and-secure">7. CDN + Reverse Proxy: Fast and Secure</a></li>
+    <li><a href="#8-complex-queries-search-engines--nosql">8. Complex Queries: Search Engines + NoSQL</a></li>
+    <li><a href="#9-distributed-architecture-split-it-up">9. Distributed Architecture: Split It Up!</a></li>
+    <li><a href="#10-message-queues-decoupling-and-peak-shaving">10. Message Queues: Decoupling and Peak Shaving</a></li>
+    <li><a href="#11-microservices-architecture-splitting-even-finer">11. Microservices Architecture: Splitting Even Finer</a></li>
+    <li><a href="#12-containerization-package-once-run-anywhere">12. Containerization: Package Once, Run Anywhere</a></li>
+    <li><a href="#13-container-orchestration-kubernetes-the-manager">13. Container Orchestration: Kubernetes the Manager</a></li>
+    <li><a href="#14-cloud-native-the-new-era-of-architecture">14. Cloud Native: The New Era of Architecture</a></li>
+    <li><a href="#15-story-summary-architecture-evolution-panorama">15. Story Summary: Architecture Evolution Panorama</a></li>
+    <li><a href="#three-core-architect-mindsets">Three Core Architect Mindsets</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/en/p/internet-architecture-in-one-story/">
+                
+                    <img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" loading="lazy" alt="Featured image of post Internet Architecture Explained: One Story to Rule Them All" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/internet-architecture-in-one-story/">Internet Architecture Explained: One Story to Rule Them All</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-16T00:00:00Z'>2026-05-16</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    May 16, 2026 20:07 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                2010字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        From a single server to cloud-native architecture handling tens of millions of concurrent requests — a comprehensive guide to all high-frequency concepts: load balancing, caching, read-write separation, sharding, CDN, microservices, containerization, K8s... Every step solves a real problem.
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/en/categories/computer-tools/" >
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/internet-architecture-in-one-story/" class="link">简体中文</a>
+                
+                    <a href="https://Siborne.top/zh-tw/p/internet-architecture-in-one-story/" class="link">繁體中文</a>
+                
+                    <a href="https://Siborne.top/ja/p/internet-architecture-in-one-story/" class="link">日本語</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>A comprehensive guide to all high-frequency internet architecture concepts. At first glance, it seems overwhelming with concepts piled up, but at its core, it&rsquo;s a continuous loop of fixing weaknesses and solving new problems.</p>
+</blockquote>
+<hr>
+<h2 id="1-where-it-all-began-monolithic-architecture">1. Where It All Began: Monolithic Architecture
+</h2><p>The story begins simply — you&rsquo;ve just built a small website with very few users and minimal traffic. No need to overthink it. Keep it simple.</p>
+<p>One server, running both the application and database, quickly set up with an open-source LNMP stack. You call it <strong>monolithic architecture</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────┐
+</span></span><span class="line"><span class="cl">│     One Server       │
+</span></span><span class="line"><span class="cl">│  ┌───────────────┐  │
+</span></span><span class="line"><span class="cl">│  │  Application   │  │
+</span></span><span class="line"><span class="cl">│  ├───────────────┤  │
+</span></span><span class="line"><span class="cl">│  │    Database    │  │
+</span></span><span class="line"><span class="cl">│  └───────────────┘  │
+</span></span><span class="line"><span class="cl">└─────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Simple, straightforward, zero operational overhead — this is where all architectures begin.</p>
+<hr>
+<h2 id="2-separating-application-and-database">2. Separating Application and Database
+</h2><p>Business picks up, users increase, and the single server can&rsquo;t keep up. Application and database constantly compete for CPU, memory, and IO, dragging each other down.</p>
+<p>What to do? <strong>Add machines and split them up.</strong></p>
+<p>Separate application and database onto two servers: application server handles requests and business logic, database server stores data and performs IO operations. Each has its own responsibility, no interference, and availability improves.</p>
+<p><img src="https://img.siborne.top/2026/05/971b672f47816ce42f466b9b7ee507cf.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="3-high-concurrency-arrives-clustering--load-balancing">3. High Concurrency Arrives: Clustering + Load Balancing
+</h2><p>But the good times don&rsquo;t last — user numbers explode again. A single application server can&rsquo;t handle the load, and the database can&rsquo;t withstand massive queries. The story reaches its climax — <strong>high concurrency</strong> arrives.</p>
+<p>Even a maxed-out application server has limits. If it can handle 100 requests per second but 500 come in, what then?</p>
+<p>500 ÷ 100 = 5, so you deploy <strong>five servers</strong> with identical code. You call it a <strong>cluster</strong>.</p>
+<p>But there&rsquo;s another problem: how to distribute traffic across each server? So you create a middle layer that evenly distributes requests to each application server. You call it <strong>load balancing</strong>.</p>
+<p>Can&rsquo;t handle the load? Add more machines → <strong>horizontal scaling</strong>.
+One goes down, traffic is automatically rerouted, others pick up the slack → <strong>high availability</strong>.</p>
+<p><img src="https://img.siborne.top/2026/05/9904429e3cf9788116b93e186e28f888.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="4-database-becomes-the-new-bottleneck-multi-level-caching">4. Database Becomes the New Bottleneck: Multi-Level Caching
+</h2><p>The application handles the load, but a new problem emerges — massive requests penetrate through to the database, making it the new bottleneck.</p>
+<p>You start researching how applications query databases:</p>
+<ol>
+<li>Application sends query request to database</li>
+<li>Database first checks the <strong>memory buffer</strong> for data</li>
+<li>Found → return directly; not found → go to disk, read it into memory buffer, then return to application</li>
+</ol>
+<p>Key discovery: <strong>Reading from memory buffer is over 1000x faster than reading from disk.</strong></p>
+<p>Can we read everything from the memory buffer? No, it&rsquo;s too small. What to do? Extract and expand the memory buffer! Put frequently accessed <strong>hot data</strong> there for quick queries without touching the database. You call it <strong>cache</strong>.</p>
+<p>You design three levels of cache:</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Level</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Browser Cache</td>
+          <td>Local to user, fastest</td>
+      </tr>
+      <tr>
+          <td>Application Server Local Cache</td>
+          <td>In service instance memory, very fast</td>
+      </tr>
+      <tr>
+          <td>Distributed Cache (e.g., Redis)</td>
+          <td>Centralized high-capacity memory, fast</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>User requests flow: Browser cache → Local cache → Distributed cache → Database.</p>
+<p>The vast majority of requests are intercepted at the cache layer, never reaching the database. Query speed jumps from <strong>milliseconds to microseconds</strong>, and database pressure plummets. Even if the database goes down, the cache can hold for a while.</p>
+<p><img src="https://img.siborne.top/2026/05/62412070ecbcc2629a8a26794f67b4f7.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="5-read-write-separation-dividing-database-responsibilities">5. Read-Write Separation: Dividing Database Responsibilities
+</h2><p>Caching solves <strong>hot reads</strong>, but write requests and non-hot reads still hit the database.</p>
+<p>Databases have a characteristic: writes themselves aren&rsquo;t slow, but <strong>multiple writes lock rows and tables</strong>, causing queues under high concurrency. Can we divide database responsibilities?</p>
+<p>So you make the <strong>master database handle only writes</strong> and <strong>replica databases handle only reads</strong>, using data synchronization to keep master-replica consistency. You call it <strong>read-write separation</strong>.</p>
+<p>In reality, internet systems are <strong>read-heavy, write-heavy</strong>. With one master and multiple replicas, read pressure is immediately distributed, and read-write blocking issues are completely resolved.</p>
+<p><img src="https://img.siborne.top/2026/05/dc14f70c0e24733647b4832f51d387ea.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="6-massive-storage-database-sharding">6. Massive Storage: Database Sharding
+</h2><p>After running for years, data volume grows massive. Order tables, log tables become bloated — <strong>single database, single table can&rsquo;t hold up</strong>. Database splitting becomes necessary.</p>
+<p><strong>Vertical Sharding</strong>: Split by business — user database, product database, order database, independent of each other.</p>
+<p><strong>Horizontal Sharding</strong>: Split one large table into multiple smaller tables, like hashing by UID to distribute pressure. With database middleware, it&rsquo;s transparent to applications, no need to change lots of code.</p>
+<p><img src="https://img.siborne.top/2026/05/e3b4d69ce691009f3b211f9599e3a73f.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="7-cdn--reverse-proxy-fast-and-secure">7. CDN + Reverse Proxy: Fast and Secure
+</h2><p>Your system users are nationwide. Some access it lightning-fast, others sluggish. Plus, application servers exposed directly on the public internet — too dangerous.</p>
+<p>So you create two new tools:</p>
+<p><strong>CDN (Content Delivery Network)</strong>: Deploy nodes across the country, pre-placing static resources at nodes closest to users, like a delivery station near your home. Users get the nearest node IP through domain resolution and fetch data — speed takes off.</p>
+<p><strong>Reverse Proxy</strong>: Placed between users and applications, public requests hit it first, then forward to internal application servers. Hides real servers, prevents attacks, handles traffic cleaning, permission verification — multi-purpose.</p>
+<p><img src="https://img.siborne.top/2026/05/d03a28d70fa16bec0e280e06b3adeb43.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="8-complex-queries-search-engines--nosql">8. Complex Queries: Search Engines + NoSQL
+</h2><p>Internet scenarios become increasingly complex. Traditional databases struggle with fuzzy queries, full-text search, and multi-dimensional statistics. Searching products with <code>LIKE</code> — painfully slow.</p>
+<p>So you create two new tools:</p>
+<p><strong>Search Engine (e.g., Elasticsearch)</strong>: Uses <strong>inverted indices</strong> for instant search responses.</p>
+<p><strong>NoSQL Database (e.g., MongoDB, HBase)</strong>: Stores unstructured and semi-structured data, high concurrency, easy to scale.</p>
+<p>The system evolves from simple CRUD to supporting <strong>complex retrieval and analysis</strong>.</p>
+<p><img src="https://img.siborne.top/2026/05/9553ba3d899101463688c3de653abbb1.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="9-distributed-architecture-split-it-up">9. Distributed Architecture: Split It Up!
+</h2><p>Business grows, your website evolves from a small e-commerce site into a massive platform combining users, products, and orders.</p>
+<p>All functionality crammed into one application becomes what&rsquo;s known as a <strong>monolithic application</strong>. Problems follow:</p>
+<ul>
+<li>Changing one line of user code requires full deployment</li>
+<li>Multiple developers modifying code daily, constant conflicts</li>
+<li>Want to scale orders? Must scale the entire application — resources wasted</li>
+</ul>
+<p>What to do? <strong>Split it!</strong></p>
+<p>Along business boundaries, cut this big application piece by piece: users, products, orders become independent small systems. Each system <strong>deploys, releases, and scales independently</strong>, no interference. You call it <strong>distributed architecture</strong>.</p>
+<p>But new problems emerge after splitting — systems are separated, how to call each other? So you create <strong>RPC (Remote Procedure Call)</strong>, making cross-machine service calls as simple as calling local code.</p>
+<p>Services multiply, call chains grow complex, quick target finding becomes a challenge. So you create a manager — <strong>Service Registry and Discovery Center</strong>: new services register, anyone needing to call finds them here.</p>
+<p><img src="https://img.siborne.top/2026/05/2bd4c9168cb12c9cea585ae357527b1c.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="10-message-queues-decoupling-and-peak-shaving">10. Message Queues: Decoupling and Peak Shaving
+</h2><p>Services call each other, wait for each other — one service gets stuck, the entire chain blocks. Traffic spikes, <strong>avalanche</strong> occurs.</p>
+<p>What to do? Can we stop services from waiting on each other?</p>
+<p>So you create a super-capacity smart mailbox: services don&rsquo;t need to wait for immediate replies, just throw messages in and continue their work. Anyone needing it fetches it themselves. You call it <strong>message queue (MQ)</strong>.</p>
+<p>Now services are completely decoupled, no dragging each other down. A service temporarily goes down, messages aren&rsquo;t lost — process them gradually after recovery. Traffic surges, store requests first and digest at system capacity — <strong>peak shaving</strong>.</p>
+<p><img src="https://img.siborne.top/2026/05/c1f8f2e306753c78c33868a76a61fe00.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="11-microservices-architecture-splitting-even-finer">11. Microservices Architecture: Splitting Even Finer
+</h2><p>After using distributed architecture for years, you discover new problems — split, yes, but <strong>not fine enough</strong>.</p>
+<p>Take the user system: it still contains login, profile, membership, address&hellip; a big blob. Different teams want different tech stacks — some Java, some Go — mixing in one system doesn&rsquo;t work. Membership module needs scaling for promotions, must scale the entire user system, money and resources wasted.</p>
+<p>What to do? <strong>Keep splitting!</strong></p>
+<p>Following the principle of <strong>one service does one thing</strong>, split smaller and finer:</p>
+<ul>
+<li>Login becomes a standalone service</li>
+<li>Membership becomes a standalone service</li>
+<li>Payment becomes a standalone service</li>
+<li>&hellip;</li>
+</ul>
+<p>Each small service develops, releases, and scales independently, using whatever tech stack you want. You call this more extreme architecture <strong>microservices architecture</strong>.</p>
+<p>When promotions hit, the hottest services like orders and payments get ten times the machines, other quiet services untouched — zero resource waste. A service bug affects only that small feature, never drags down the entire site. Dozens of teams, each managing their own service, no interference — development efficiency soars.</p>
+<p>Of course, with benefits come challenges — call relationships like spider webs, add <strong>distributed tracing</strong> to pinpoint slow services instantly; fear of cascading failures, add <strong>rate limiting, circuit breaking, degradation</strong> for automatic protection; too many services to manage, implement <strong>service governance</strong>: unified monitoring, logging, permissions all organized clearly.</p>
+<p><img src="https://img.siborne.top/2026/05/5951eb71303e83cdf7ed8e359bc4c779.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="12-containerization-package-once-run-anywhere">12. Containerization: Package Once, Run Anywhere
+</h2><p>Microservices are truly useful, but operations engineers cry.</p>
+<p>Services split finer and finer, from a few applications to hundreds of microservices. Each service online needs environment setup, dependency installation, parameter tuning — slightest difference causes &ldquo;works on my machine, not on server&rdquo; mystic bugs. Before promotions, emergency scaling of hundreds of machines, setting up environments one by one can&rsquo;t keep up; after promotions, scaling down requires cleaning one by one — efficiency ridiculously low.</p>
+<p>What to do?</p>
+<p>Can we package the service and its required runtime environment together into a <strong>sealed box</strong> that runs directly on any server?</p>
+<p>So you create a new tool — no more environment setup. Package each microservice&rsquo;s code, dependencies, configuration, and environment into an <strong>image</strong> — package once, run anywhere, completely solving the century-old problem of environment inconsistency. You call it <strong>Docker container</strong>.</p>
+<p><img src="https://img.siborne.top/2026/05/c11875b5c575e737e363a15111b223cf.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="13-container-orchestration-kubernetes-the-manager">13. Container Orchestration: Kubernetes the Manager
+</h2><p>But problems persist — hundreds or thousands of containers, who manages them?</p>
+<p>So you bring in an all-powerful manager. It arranges container resources, schedules container placement, auto-scales. You call it <strong>Kubernetes (K8s)</strong>:</p>
+<ul>
+<li>Traffic spikes → auto-add containers</li>
+<li>Traffic drops → auto-remove containers</li>
+<li>Container crashes → auto-restart</li>
+<li>You don&rsquo;t need to manage any of it</li>
+</ul>
+<p><img src="https://img.siborne.top/2026/05/6adc9fa5ce93a121718c07160b86079b.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="14-cloud-native-the-new-era-of-architecture">14. Cloud Native: The New Era of Architecture
+</h2><p>Still not done — even with K8s, you still buy servers and maintain data centers. Preparing heaps of machines for promotions that sit idle daily — too wasteful.</p>
+<p>So you move your system to a <strong>cloud platform</strong>.</p>
+<p>The cloud platform is like an infinite resource pool — CPU, memory, bandwidth, apply anytime, use anytime, release when done, <strong>pay as you go</strong>. Underlying infrastructure is completely transparent; you only focus on business.</p>
+<p>Your architecture enters a new era — you call it <strong>cloud native</strong>.</p>
+<p><img src="https://img.siborne.top/2026/05/2f74242037162690b0d22e8dfe5fd20b.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="15-story-summary-architecture-evolution-panorama">15. Story Summary: Architecture Evolution Panorama
+</h2><p>From a small server to elastic, automated, highly available, infinitely scalable modern architecture — no matter how business grows or traffic explodes, it stands firm.</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Stage</th>
+          <th>Problem Solved</th>
+          <th>Core Solution</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Monolithic</td>
+          <td>Building from scratch</td>
+          <td>One server does everything</td>
+      </tr>
+      <tr>
+          <td>App/DB Separation</td>
+          <td>Resource contention</td>
+          <td>Split into two, each with its own role</td>
+      </tr>
+      <tr>
+          <td>Cluster + Load Balancing</td>
+          <td>High concurrency</td>
+          <td>Multiple servers + traffic distribution</td>
+      </tr>
+      <tr>
+          <td>Multi-Level Caching</td>
+          <td>Query performance, DB pressure</td>
+          <td>Browser → Local → Distributed cache</td>
+      </tr>
+      <tr>
+          <td>Read-Write Separation</td>
+          <td>DB read/write blocking</td>
+          <td>Master writes, replicas read</td>
+      </tr>
+      <tr>
+          <td>Database Sharding</td>
+          <td>Massive storage</td>
+          <td>Vertical sharding + horizontal sharding</td>
+      </tr>
+      <tr>
+          <td>CDN + Reverse Proxy</td>
+          <td>Access speed, security</td>
+          <td>Nearby access + hide real servers</td>
+      </tr>
+      <tr>
+          <td>Search + NoSQL</td>
+          <td>Complex queries</td>
+          <td>Inverted indices + unstructured storage</td>
+      </tr>
+      <tr>
+          <td>Distributed Architecture</td>
+          <td>Business bloat, code maintenance</td>
+          <td>Split by business, RPC communication</td>
+      </tr>
+      <tr>
+          <td>Message Queues</td>
+          <td>Service coupling, traffic impact</td>
+          <td>Async decoupling + peak shaving</td>
+      </tr>
+      <tr>
+          <td>Microservices</td>
+          <td>Team collaboration, extreme elasticity</td>
+          <td>One service does one thing</td>
+      </tr>
+      <tr>
+          <td>Containerization (Docker)</td>
+          <td>Environment inconsistency</td>
+          <td>Package once, run anywhere</td>
+      </tr>
+      <tr>
+          <td>Container Orchestration (K8s)</td>
+          <td>Operations cost</td>
+          <td>Auto-scheduling + elastic scaling</td>
+      </tr>
+      <tr>
+          <td>Cloud Native</td>
+          <td>Resource utilization</td>
+          <td>Pay as you go, transparent infrastructure</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><img src="https://img.siborne.top/2026/05/b54ac34e408d2d78d7b77db0d3445640.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<hr>
+<h2 id="three-core-architect-mindsets">Three Core Architect Mindsets
+</h2><p>Finally, three takeaways. Understand them, and you can design good architectures.</p>
+<blockquote>
+<p><strong>One: There&rsquo;s no best architecture, only the architecture that best fits the business.</strong></p>
+<p>Startups shouldn&rsquo;t jump straight to microservices. Monolith is fine — business drives architecture, not the other way around.</p>
+</blockquote>
+<blockquote>
+<p><strong>Two: The essence of architecture evolution: trade space for time, trade complexity for performance.</strong></p>
+<p>Adding machines, components, layers — all to handle bigger traffic, higher concurrency.</p>
+</blockquote>
+<blockquote>
+<p><strong>Three: Always center on five goals: high performance, high availability, scalability, extensibility, and security.</strong></p>
+<p>These five goals are the North Star for all architecture decisions.</p>
+</blockquote>
+<hr>
+<p><em>From a small server to cloud-native architecture handling tens of millions of concurrent requests, every step is traceable, every step solves real problems. This is internet architecture.</em></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on May 16, 2026 20:07 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/en/p/hugo-blog-stack-theme-guide/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/8659349220f79df797ea76e05f55625a.png" loading="lazy" data-key="hugo-blog-stack-theme-guide" data-hash="https://img.siborne.top/2026/05/8659349220f79df797ea76e05f55625a.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Building a Hugo Blog with the Stack Theme: A Complete Customization Guide</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/codex-app-complete-guide/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/ef543fe1780e2b00988447209e377f4c.png" loading="lazy" data-key="codex-app-complete-guide" data-hash="https://img.siborne.top/2026/05/ef543fe1780e2b00988447209e377f4c.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex APP Complete Guide: From Installation to Automation</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/codex-deepseek-v4-proxy/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/dde3a847822c933bba6a28d3918f36c0.png" loading="lazy" data-key="codex-deepseek-v4-proxy" data-hash="https://img.siborne.top/2026/05/dde3a847822c933bba6a28d3918f36c0.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Connect DeepSeek V4 to Codex: Solving API Format Incompatibility with a Proxy Script</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/opencode-parallel-workflow-tips/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png" loading="lazy" data-key="opencode-parallel-workflow-tips" data-hash="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode Advanced Tips: Parallel Scheduling and Workflow Mastery</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/opencode-complete-guide/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png" loading="lazy" data-key="opencode-complete-guide" data-hash="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode Complete Guide: Installation, Configuration, and Advanced Usage</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.337b391b9709a7de07a4bb428d2ffb003b7e926cdfc9720a68a909ce2cde147d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<div id="jsi-flying-fish-container" class="fish-container"></div>
+
+
+<script defer src="https://events.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255, 255, 255, 1)',
+            '1.0': 'rgba(56, 189, 248, 1)'
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        topbar.show();
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+        topbar.hide();
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  requestAnimationFrame(initCodeMoreBox);
+  refreshVercount();
+}
+
+
+function refreshVercount() {
+    let article = document.querySelector(".article-page");
+    if (!article) return;
+
+    let pvEl = document.getElementById("vercount_value_page_pv");
+    if (!pvEl) return;
+
+    
+    pvEl.textContent = 'loading...';
+
+    
+    let oldScript = document.querySelector('script[data-vercount-dynamic]');
+    if (oldScript) oldScript.remove();
+
+    
+    let script = document.createElement('script');
+    script.src = 'https://events.vercount.one/js';
+    script.setAttribute('data-vercount-dynamic', '');
+    document.body.appendChild(script);
+
+    
+    let fallbackTimer = setTimeout(function() {
+        if (pvEl.textContent.trim() === 'loading...') {
+            pvEl.textContent = '';
+        }
+    }, 5000);
+
+    
+    script.addEventListener('load', function() {
+        clearTimeout(fallbackTimer);
+    });
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+
+<script>
+(function() {
+    var RENDERER = {
+        POINT_INTERVAL: 5,
+        FISH_COUNT: 3,
+        MAX_INTERVAL_COUNT: 50,
+        INIT_HEIGHT_RATE: 0.5,
+        THRESHOLD: 50,
+
+        init: function() {
+            this.setParameters();
+            this.reconstructMethods();
+            this.setup();
+            this.bindEvent();
+            this.render();
+        },
+        setParameters: function() {
+            this.$window = window;
+            this.$document = document.body;
+            this.$container = document.getElementById('jsi-flying-fish-container');
+            if (!this.$container) return;
+            this.$canvas = document.createElement('canvas');
+            this.$container.appendChild(this.$canvas);
+            this.context = this.$canvas.getContext('2d');
+            this.points = [];
+            this.fishes = [];
+            this.watchIds = [];
+        },
+        createSurfacePoints: function() {
+            var count = Math.round(this.width / this.POINT_INTERVAL);
+            this.pointInterval = this.width / (count - 1);
+            this.points.push(new SURFACE_POINT(this, 0));
+            for (var i = 1; i < count; i++) {
+                var point = new SURFACE_POINT(this, i * this.pointInterval),
+                    previous = this.points[i - 1];
+                point.setPreviousPoint(previous);
+                previous.setNextPoint(point);
+                this.points.push(point);
+            }
+        },
+        reconstructMethods: function() {
+            this.watchWindowSize = this.watchWindowSize.bind(this);
+            this.jdugeToStopResize = this.jdugeToStopResize.bind(this);
+            this.startEpicenter = this.startEpicenter.bind(this);
+            this.moveEpicenter = this.moveEpicenter.bind(this);
+            this.toggleDirection = this.toggleDirection.bind(this);
+            this.render = this.render.bind(this);
+        },
+        setup: function() {
+            this.points.length = 0;
+            this.fishes.length = 0;
+            this.watchIds.length = 0;
+            this.intervalCount = this.MAX_INTERVAL_COUNT;
+            this.width = this.$container.offsetWidth;
+            this.height = this.$container.offsetHeight;
+            this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
+            this.$canvas.width = this.width;
+            this.$canvas.height = this.height;
+            this.reverse = false;
+            this.fishes.push(new FISH(this));
+            this.createSurfacePoints();
+        },
+        watchWindowSize: function() {
+            this.clearTimer();
+            this.tmpWidth = this.$window.innerWidth;
+            this.tmpHeight = this.$window.innerHeight;
+            this.watchIds.push(setTimeout(this.jdugeToStopResize, 300));
+        },
+        clearTimer: function() {
+            while (this.watchIds.length > 0) {
+                clearTimeout(this.watchIds.pop());
+            }
+        },
+        jdugeToStopResize: function() {
+            var width = this.$window.innerWidth,
+                height = this.$window.innerHeight,
+                stopped = (width === this.tmpWidth && height === this.tmpHeight);
+            this.tmpWidth = width;
+            this.tmpHeight = height;
+            if (stopped) { this.setup(); }
+        },
+        bindEvent: function() {
+            window.addEventListener('resize', this.watchWindowSize);
+            this.$container.addEventListener('click', this.toggleDirection);
+            this.$container.addEventListener('mouseenter', this.startEpicenter);
+            this.$container.addEventListener('mousemove', this.moveEpicenter);
+        },
+        getAxis: function(event) {
+            var rect = this.$container.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        },
+        startEpicenter: function(event) {
+            this.axis = this.getAxis(event);
+        },
+        moveEpicenter: function(event) {
+            var axis = this.getAxis(event);
+            if (!this.axis) { this.axis = axis; }
+            this.generateEpicenter(axis.x, axis.y, axis.y - this.axis.y);
+            this.axis = axis;
+        },
+        generateEpicenter: function(x, y, velocity) {
+            if (y < this.height / 2 - this.THRESHOLD || y > this.height / 2 + this.THRESHOLD) return;
+            var index = Math.round(x / this.pointInterval);
+            if (index < 0 || index >= this.points.length) return;
+            this.points[index].interfere(y, velocity);
+        },
+        toggleDirection: function() {
+            this.reverse = !this.reverse;
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].reverseVertical();
+            }
+        },
+        controlStatus: function() {
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateSelf();
+            }
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateNeighbors();
+            }
+            if (this.fishes.length < this.fishCount) {
+                if (--this.intervalCount === 0) {
+                    this.intervalCount = this.MAX_INTERVAL_COUNT;
+                    this.fishes.push(new FISH(this));
+                }
+            }
+        },
+        render: function() {
+            requestAnimationFrame(this.render);
+            this.controlStatus();
+            this.context.clearRect(0, 0, this.width, this.height);
+
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            this.context.fillStyle = isDark ? 'hsl(210, 30%, 25%)' : 'hsl(210, 80%, 75%)';
+
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].render(this.context);
+            }
+
+            this.context.save();
+            this.context.globalCompositeOperation = 'xor';
+            this.context.beginPath();
+            this.context.moveTo(0, this.reverse ? 0 : this.height);
+
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].render(this.context);
+            }
+            this.context.lineTo(this.width, this.reverse ? 0 : this.height);
+            this.context.closePath();
+            this.context.fill();
+            this.context.restore();
+        }
+    };
+
+    var SURFACE_POINT = function(renderer, x) {
+        this.renderer = renderer;
+        this.x = x;
+        this.init();
+    };
+    SURFACE_POINT.prototype = {
+        SPRING_CONSTANT: 0.03,
+        SPRING_FRICTION: 0.9,
+        WAVE_SPREAD: 0.3,
+        ACCELARATION_RATE: 0.01,
+
+        init: function() {
+            this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE;
+            this.height = this.initHeight;
+            this.fy = 0;
+            this.force = { previous: 0, next: 0 };
+        },
+        setPreviousPoint: function(previous) { this.previous = previous; },
+        setNextPoint: function(next) { this.next = next; },
+        interfere: function(y, velocity) {
+            this.fy = this.renderer.height * this.ACCELARATION_RATE *
+                ((this.renderer.height - this.height - y) >= 0 ? -1 : 1) * Math.abs(velocity);
+        },
+        updateSelf: function() {
+            this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height);
+            this.fy *= this.SPRING_FRICTION;
+            this.height += this.fy;
+        },
+        updateNeighbors: function() {
+            if (this.previous) {
+                this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height);
+            }
+            if (this.next) {
+                this.force.next = this.WAVE_SPREAD * (this.height - this.next.height);
+            }
+        },
+        render: function(context) {
+            if (this.previous) {
+                this.previous.height += this.force.previous;
+                this.previous.fy += this.force.previous;
+            }
+            if (this.next) {
+                this.next.height += this.force.next;
+                this.next.fy += this.force.next;
+            }
+            context.lineTo(this.x, this.renderer.height - this.height);
+        }
+    };
+
+    var FISH = function(renderer) {
+        this.renderer = renderer;
+        this.init();
+    };
+    FISH.prototype = {
+        GRAVITY: 0.4,
+
+        init: function() {
+            this.direction = Math.random() < 0.5;
+            this.x = this.direction ? (this.renderer.width + this.renderer.THRESHOLD) : -this.renderer.THRESHOLD;
+            this.previousY = this.y;
+            this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1);
+
+            if (this.renderer.reverse) {
+                this.y = this.getRandomValue(this.renderer.height * 1 / 10, this.renderer.height * 4 / 10);
+                this.vy = this.getRandomValue(2, 5);
+                this.ay = this.getRandomValue(0.05, 0.2);
+            } else {
+                this.y = this.getRandomValue(this.renderer.height * 6 / 10, this.renderer.height * 9 / 10);
+                this.vy = this.getRandomValue(-5, -2);
+                this.ay = this.getRandomValue(-0.2, -0.05);
+            }
+            this.isOut = false;
+            this.theta = 0;
+            this.phi = 0;
+        },
+        getRandomValue: function(min, max) {
+            return min + (max - min) * Math.random();
+        },
+        reverseVertical: function() {
+            this.isOut = !this.isOut;
+            this.ay *= -1;
+        },
+        controlStatus: function(context) {
+            this.previousY = this.y;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.ay;
+
+            if (this.renderer.reverse) {
+                if (this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy -= this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(0.05, 0.2); }
+                    this.isOut = false;
+                }
+            } else {
+                if (this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy += this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(-0.2, -0.05); }
+                    this.isOut = false;
+                }
+            }
+            if (!this.isOut) {
+                this.theta += Math.PI / 20;
+                this.theta %= Math.PI * 2;
+                this.phi += Math.PI / 30;
+                this.phi %= Math.PI * 2;
+            }
+            this.renderer.generateEpicenter(
+                this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD,
+                this.y,
+                this.y - this.previousY
+            );
+            if (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD ||
+                this.vx < 0 && this.x < -this.renderer.THRESHOLD) {
+                this.init();
+            }
+        },
+        render: function(context) {
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            context.fillStyle = isDark ? 'hsl(210, 60%, 55%)' : 'hsl(210, 70%, 40%)';
+
+            context.save();
+            context.translate(this.x, this.y);
+            context.rotate(Math.PI + Math.atan2(this.vy, this.vx));
+            context.scale(1, this.direction ? 1 : -1);
+            context.beginPath();
+            context.moveTo(-30, 0);
+            context.bezierCurveTo(-20, 15, 15, 10, 40, 0);
+            context.bezierCurveTo(15, -10, -20, -15, -30, 0);
+            context.fill();
+
+            
+            context.save();
+            context.translate(40, 0);
+            context.scale(0.9 + 0.2 * Math.sin(this.theta), 1);
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(5, 10, 20, 8);
+            context.quadraticCurveTo(12, 5, 10, 0);
+            context.quadraticCurveTo(12, -5, 20, -8);
+            context.quadraticCurveTo(5, -10, 0, 0);
+            context.fill();
+            context.restore();
+
+            
+            context.save();
+            context.translate(-3, 0);
+            context.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1));
+            context.beginPath();
+            if (this.renderer.reverse) {
+                context.moveTo(5, 0);
+                context.bezierCurveTo(10, 10, 10, 30, 0, 40);
+                context.bezierCurveTo(-12, 25, -8, 10, 0, 0);
+            } else {
+                context.moveTo(-5, 0);
+                context.bezierCurveTo(-10, -10, -10, -30, 0, -40);
+                context.bezierCurveTo(12, -25, 8, -10, 0, 0);
+            }
+            context.closePath();
+            context.fill();
+            context.restore();
+            context.restore();
+            this.controlStatus(context);
+        }
+    };
+
+    
+    if (!window.__fishRendererInited) {
+        window.__fishRendererInited = true;
+        window.addEventListener('load', function() {
+            if (document.getElementById('jsi-flying-fish-container')) {
+                RENDERER.init();
+            }
+        });
+    }
+})();
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+ 
+.fish-container {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+html.at-page-bottom .fish-container {
+    opacity: 0.42;
+}
+
+@media (max-width: 768px) {
+    .fish-container {
+        height: 150px;
+    }
+    html.at-page-bottom .fish-container {
+        opacity: 0.28;
+    }
+}
+</style>
+
+    </body>
+</html>

@@ -7,13 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Fri, 08 May 2026 23:07:31 +0800</lastBuildDate><atom:link href="https://Siborne.top/zh-tw/categories/redis/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 16 May 2026 20:07:25 +0800</lastBuildDate><atom:link href="https://Siborne.top/zh-tw/categories/redis/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Java &#43; MySQL &#43; Redis 生成使用者主鍵的 6 種方案</title>
         <link>https://Siborne.top/zh-tw/p/java--mysql--redis-%E7%94%9F%E6%88%90%E4%BD%BF%E7%94%A8%E8%80%85%E4%B8%BB%E9%8D%B5%E7%9A%84-6-%E7%A8%AE%E6%96%B9%E6%A1%88/</link>
         <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/zh-tw/p/java--mysql--redis-%E7%94%9F%E6%88%90%E4%BD%BF%E7%94%A8%E8%80%85%E4%B8%BB%E9%8D%B5%E7%9A%84-6-%E7%A8%AE%E6%96%B9%E6%A1%88/</guid>
-        <description>&lt;img src="https://Siborne.top/p/java--mysql--redis-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E4%B8%BB%E9%94%AE%E7%9A%84-6-%E7%A7%8D%E6%96%B9%E6%A1%88/bannerImage.png" alt="Featured image of post Java &#43; MySQL &#43; Redis 生成使用者主鍵的 6 種方案" /&gt;&lt;h1 id=&#34;java--mysql-生成使用者主鍵的-6-種方案從自增到-redis一篇講透&#34;&gt;Java + MySQL 生成使用者主鍵的 6 種方案：從自增到 Redis，一篇講透！
+        <description>&lt;img src="https://img.siborne.top/2026/05/54074f014a63b85f280277238cbd8e80.png" alt="Featured image of post Java &#43; MySQL &#43; Redis 生成使用者主鍵的 6 種方案" /&gt;&lt;h1 id=&#34;java--mysql-生成使用者主鍵的-6-種方案從自增到-redis一篇講透&#34;&gt;Java + MySQL 生成使用者主鍵的 6 種方案：從自增到 Redis，一篇講透！
 &lt;/h1&gt;&lt;p&gt;在開發 Java 應用搭配 MySQL 資料庫時，如何為使用者、訂單等實體生成&lt;strong&gt;全域性唯一、高效能、不重複的主鍵 ID&lt;/strong&gt;，是一個繞不開的問題。&lt;br&gt;
 除了最熟悉的 &lt;code&gt;AUTO_INCREMENT&lt;/code&gt; 和 &lt;code&gt;UUID&lt;/code&gt;，其實還有更優雅的方案——比如藉助 &lt;strong&gt;Redis&lt;/strong&gt; 或 &lt;strong&gt;雪花演算法（Snowflake）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;本文用大白話為你梳理 &lt;strong&gt;6 種主流 ID 生成方案&lt;/strong&gt;，包括：&lt;/p&gt;
