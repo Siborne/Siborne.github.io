@@ -1400,6 +1400,8 @@ See the section on <a class="link" href="#code" >code</a>.</p>
 
 
 
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
@@ -1425,25 +1427,30 @@ See the section on <a class="link" href="#code" >code</a>.</p>
     }
 
     
-    topbar.config({
-        barColors: {
-            '0': 'rgba(255, 255, 255, 1)',
-            '1.0': 'rgba(56, 189, 248, 1)'
-        }
-    })
+    if (typeof topbar !== 'undefined') {
+        topbar.config({
+            barColors: {
+                '0': 'rgba(255, 255, 255, 1)',
+                '1.0': 'rgba(56, 189, 248, 1)'
+            }
+        })
 
-    document.addEventListener('pjax:send', () => {
-        topbar.show();
-    })
+        document.addEventListener('pjax:send', () => {
+            topbar.show();
+        })
 
+        document.addEventListener('pjax:complete', () => {
+            topbar.hide();
+        })
+    }
+
+    
     document.addEventListener('pjax:complete', () => {
-        
         requestAnimationFrame(() => {
             window.Stack.init();
             reinitCustom();
             renderKaTeX();
         });
-        topbar.hide();
     })
 
     
@@ -1560,10 +1567,34 @@ window.addEventListener('load', () => {
 initBottomVisualEffect();
 
 
+(function() {
+  var pending = false;
+  var observer = new MutationObserver(function(mutations) {
+    if (pending) return;
+    for (var i = 0; i < mutations.length; i++) {
+      var nodes = mutations[i].addedNodes;
+      for (var j = 0; j < nodes.length; j++) {
+        var node = nodes[j];
+        if (node.nodeType === 1 && node.querySelectorAll && node.querySelectorAll('.highlight').length > 0) {
+          pending = true;
+          
+          setTimeout(function() {
+            initCodeMoreBox();
+            pending = false;
+          }, 150);
+          return;
+        }
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+
+
 function reinitCustom() {
   showHideView();
   initScrollTop();
-  requestAnimationFrame(initCodeMoreBox);
+  setTimeout(initCodeMoreBox, 0);
   refreshVercount();
 }
 
