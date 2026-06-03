@@ -643,26 +643,26 @@
 <p>那能不能都去内存缓冲区读？不行，太小了。怎么办？直接把内存缓冲区单独出来、放大！经常被访问的<strong>热点数据</strong>全放上去，快速查，不用去数据库。你给它取名叫<strong>缓存</strong>。</p>
 <p>你设计了三层缓存：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>层级</th>
-          <th>说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>浏览器缓存</td>
-          <td>用户本地，最快</td>
-      </tr>
-      <tr>
-          <td>应用服务器本地缓存</td>
-          <td>服务实例内存，极快</td>
-      </tr>
-      <tr>
-          <td>分布式缓存（如 Redis）</td>
-          <td>集中式大容量内存，快</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>层级</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>浏览器缓存</td>
+					<td>用户本地，最快</td>
+			</tr>
+			<tr>
+					<td>应用服务器本地缓存</td>
+					<td>服务实例内存，极快</td>
+			</tr>
+			<tr>
+					<td>分布式缓存（如 Redis）</td>
+					<td>集中式大容量内存，快</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>用户每次请求：浏览器缓存 → 本地缓存 → 分布式缓存 → 数据库。</p>
 <p>绝大多数请求在缓存层就被拦住，根本到不了数据库。查询速度从<strong>毫秒级 → 微秒级</strong>，数据库压力暴跌。就算数据库挂了，缓存还能顶一阵。</p>
@@ -839,85 +839,85 @@
 <h2 id="15-故事总结架构演进全景图">15. 故事总结：架构演进全景图
 </h2><p>从最开始一台小服务器到如今弹性自动化、高可用、能无限扩展的现代化架构——不管业务怎么涨、流量怎么爆，它都能稳稳扛住。</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>阶段</th>
-          <th>解决的问题</th>
-          <th>核心方案</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>单机架构</td>
-          <td>从零搭建</td>
-          <td>一台服务器全包</td>
-      </tr>
-      <tr>
-          <td>应用与数据库分离</td>
-          <td>资源争抢</td>
-          <td>拆成两台，各司其职</td>
-      </tr>
-      <tr>
-          <td>集群 + 负载均衡</td>
-          <td>高并发</td>
-          <td>多台服务器 + 流量分发</td>
-      </tr>
-      <tr>
-          <td>多级缓存</td>
-          <td>查询性能、数据库压力</td>
-          <td>浏览器 → 本地 → 分布式缓存</td>
-      </tr>
-      <tr>
-          <td>读写分离</td>
-          <td>数据库读写阻塞</td>
-          <td>主库写、从库读</td>
-      </tr>
-      <tr>
-          <td>分库分表</td>
-          <td>海量存储</td>
-          <td>垂直分库 + 水平分表</td>
-      </tr>
-      <tr>
-          <td>CDN + 反向代理</td>
-          <td>访问速度、系统安全</td>
-          <td>就近访问 + 隐藏真实服务器</td>
-      </tr>
-      <tr>
-          <td>搜索引擎 + NoSQL</td>
-          <td>复杂查询</td>
-          <td>倒排索引 + 非结构化存储</td>
-      </tr>
-      <tr>
-          <td>分布式架构</td>
-          <td>业务膨胀、代码维护</td>
-          <td>按业务拆分，RPC 通信</td>
-      </tr>
-      <tr>
-          <td>消息队列</td>
-          <td>服务耦合、流量冲击</td>
-          <td>异步解耦 + 削峰填谷</td>
-      </tr>
-      <tr>
-          <td>微服务架构</td>
-          <td>团队协作、极致弹性</td>
-          <td>一个服务只干一件事</td>
-      </tr>
-      <tr>
-          <td>容器化（Docker）</td>
-          <td>环境不一致</td>
-          <td>一次打包，到处运行</td>
-      </tr>
-      <tr>
-          <td>容器编排（K8s）</td>
-          <td>运维成本</td>
-          <td>自动化调度 + 弹性伸缩</td>
-      </tr>
-      <tr>
-          <td>云原生</td>
-          <td>资源利用率</td>
-          <td>按需付费，底层透明</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>阶段</th>
+					<th>解决的问题</th>
+					<th>核心方案</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>单机架构</td>
+					<td>从零搭建</td>
+					<td>一台服务器全包</td>
+			</tr>
+			<tr>
+					<td>应用与数据库分离</td>
+					<td>资源争抢</td>
+					<td>拆成两台，各司其职</td>
+			</tr>
+			<tr>
+					<td>集群 + 负载均衡</td>
+					<td>高并发</td>
+					<td>多台服务器 + 流量分发</td>
+			</tr>
+			<tr>
+					<td>多级缓存</td>
+					<td>查询性能、数据库压力</td>
+					<td>浏览器 → 本地 → 分布式缓存</td>
+			</tr>
+			<tr>
+					<td>读写分离</td>
+					<td>数据库读写阻塞</td>
+					<td>主库写、从库读</td>
+			</tr>
+			<tr>
+					<td>分库分表</td>
+					<td>海量存储</td>
+					<td>垂直分库 + 水平分表</td>
+			</tr>
+			<tr>
+					<td>CDN + 反向代理</td>
+					<td>访问速度、系统安全</td>
+					<td>就近访问 + 隐藏真实服务器</td>
+			</tr>
+			<tr>
+					<td>搜索引擎 + NoSQL</td>
+					<td>复杂查询</td>
+					<td>倒排索引 + 非结构化存储</td>
+			</tr>
+			<tr>
+					<td>分布式架构</td>
+					<td>业务膨胀、代码维护</td>
+					<td>按业务拆分，RPC 通信</td>
+			</tr>
+			<tr>
+					<td>消息队列</td>
+					<td>服务耦合、流量冲击</td>
+					<td>异步解耦 + 削峰填谷</td>
+			</tr>
+			<tr>
+					<td>微服务架构</td>
+					<td>团队协作、极致弹性</td>
+					<td>一个服务只干一件事</td>
+			</tr>
+			<tr>
+					<td>容器化（Docker）</td>
+					<td>环境不一致</td>
+					<td>一次打包，到处运行</td>
+			</tr>
+			<tr>
+					<td>容器编排（K8s）</td>
+					<td>运维成本</td>
+					<td>自动化调度 + 弹性伸缩</td>
+			</tr>
+			<tr>
+					<td>云原生</td>
+					<td>资源利用率</td>
+					<td>按需付费，底层透明</td>
+			</tr>
+	</tbody>
 </table></div>
 <p><img src="https://img.siborne.top/2026/05/b54ac34e408d2d78d7b77db0d3445640.png"
 	
@@ -1012,6 +1012,25 @@
             
                 
 <article class="has-image">
+    <a href="/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" data-key="from-prompt-engineering-to-multi-agent-ai-builder-roadmap" data-hash="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Beyond LLM：从提示词工程到多智能体的 AI Builder 全景路线图</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/hugo-blog-stack-theme-guide/">
         
         
@@ -1081,25 +1100,6 @@
 
         <div class="article-details">
             <h2 class="article-title">OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/opencode-parallel-workflow-tips/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png" loading="lazy" data-key="opencode-parallel-workflow-tips" data-hash="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">OpenCode 新手进阶：并行调度与使用技巧全攻略</h2>
         </div>
     </a>
 </article>

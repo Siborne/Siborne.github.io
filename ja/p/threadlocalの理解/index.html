@@ -635,30 +635,30 @@
 <h2 id="基本的な使用法">基本的な使用法
 </h2><p>Threadの使用法を紹介する前に、まずいくつかのThreadの一般的なメソッドを認識しましょう</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>メソッド宣言</th>
-          <th>説明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>ThreadLocal()</td>
-          <td>ThreadLocalオブジェクトの作成</td>
-      </tr>
-      <tr>
-          <td>public void set(T value)</td>
-          <td>現在のスレッドにバインドされたローカル変数の設定</td>
-      </tr>
-      <tr>
-          <td>public T get()</td>
-          <td>現在のスレッドにバインドされたローカル変数の取得</td>
-      </tr>
-      <tr>
-          <td>public void remove()</td>
-          <td>現在のスレッドにバインドされたローカル変数の削除</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>メソッド宣言</th>
+					<th>説明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ThreadLocal()</td>
+					<td>ThreadLocalオブジェクトの作成</td>
+			</tr>
+			<tr>
+					<td>public void set(T value)</td>
+					<td>現在のスレッドにバインドされたローカル変数の設定</td>
+			</tr>
+			<tr>
+					<td>public T get()</td>
+					<td>現在のスレッドにバインドされたローカル変数の取得</td>
+			</tr>
+			<tr>
+					<td>public void remove()</td>
+					<td>現在のスレッドにバインドされたローカル変数の削除</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="使用例">使用例
 </h2><p>以下の例を見て、ThreadLocalのスレッド隔離の特徴を体験しましょう</p>
@@ -920,25 +920,25 @@
 </div><h3 id="threadlocalとsynchronizedの違い">ThreadLocalとSynchronizedの違い
 </h3><p>ThreadLocalパターンとSynchronizedキーワードの両方とも、マルチスレッドの並行変数アクセスを処理しますが、問題解決のアプローチと視点が異なります。</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th></th>
-          <th>Synchronized</th>
-          <th>ThreadLocal</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>原理</td>
-          <td>同期メカニズムは時間を空間に換える方式で、変数を1つだけ提供し、異なるスレッドにアクセスをキューイングさせる</td>
-          <td>ThreadLocalは空間を時間に換える概念で、各スレッドに変数のコピーを提供し、干渉なしで同時アクセスを実現する</td>
-      </tr>
-      <tr>
-          <td>重点</td>
-          <td>複数のスレッド間のリソースアクセスの同期</td>
-          <td>マルチスレッド環境での各スレッド間のデータ隔離</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th></th>
+					<th>Synchronized</th>
+					<th>ThreadLocal</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>原理</td>
+					<td>同期メカニズムは時間を空間に換える方式で、変数を1つだけ提供し、異なるスレッドにアクセスをキューイングさせる</td>
+					<td>ThreadLocalは空間を時間に換える概念で、各スレッドに変数のコピーを提供し、干渉なしで同時アクセスを実現する</td>
+			</tr>
+			<tr>
+					<td>重点</td>
+					<td>複数のスレッド間のリソースアクセスの同期</td>
+					<td>マルチスレッド環境での各スレッド間のデータ隔離</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>まとめ：先ほどの例では、ThreadLocalとSynchronizedの両方で問題を解決できますが、ThreadLocalの方が適切です。なぜなら、より高い並行性を実現できるからです。</p>
 <h2 id="使用シナリオ">使用シナリオ
@@ -1000,26 +1000,26 @@
 </div><p>therefore、トランザクション操作が必要です。これにより、送金のアトミシティが保証されます。完全な成功か完全な失敗かのいずれかです。</p>
 <p>JDBCトランザクション操作API</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Connectionインタフェースのメソッド</th>
-          <th>機能</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>void setAutoCommit(false)</td>
-          <td>トランザクションの自動コミットを無効にする（手動コミットに切り替え）</td>
-      </tr>
-      <tr>
-          <td>void commit()</td>
-          <td>トランザクションをコミットする</td>
-      </tr>
-      <tr>
-          <td>void rollback()</td>
-          <td>トランザクションをロールバックする</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Connectionインタフェースのメソッド</th>
+					<th>機能</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>void setAutoCommit(false)</td>
+					<td>トランザクションの自動コミットを無効にする（手動コミットに切り替え）</td>
+			</tr>
+			<tr>
+					<td>void commit()</td>
+					<td>トランザクションをコミットする</td>
+			</tr>
+			<tr>
+					<td>void rollback()</td>
+					<td>トランザクションをロールバックする</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>トランザクション開始の注意点</p>
 <p>すべての操作が1つのトランザクション内で実行されるように、使用される接続は同じでなければなりません；サービスレイヤーのトランザクション接続はDAOレイヤーのデータベース接続と一致する必要があります。</p>
@@ -1143,30 +1143,30 @@
 </h2><p>ThreadLocalの内部構造に基づいて、そのコアメソッドのソースコードを分析し、操作原理をより深く理解しましょう。
 コンストラクタを除き、ThreadLocalが外部に公開するメソッドは以下の4つです</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>メソッド宣言</th>
-          <th>説明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>protected T initialValue()</td>
-          <td>現在のスレッドのローカル変数の初期値を返す</td>
-      </tr>
-      <tr>
-          <td>public void set(T value)</td>
-          <td>現在のスレッドにバインドされたローカル変数を返す</td>
-      </tr>
-      <tr>
-          <td>public T get()</td>
-          <td>現在のスレッドにバインドされたローカル変数を取得</td>
-      </tr>
-      <tr>
-          <td>public void remove()</td>
-          <td>現在のスレッドにバインドされたローカル変数を削除</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>メソッド宣言</th>
+					<th>説明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>protected T initialValue()</td>
+					<td>現在のスレッドのローカル変数の初期値を返す</td>
+			</tr>
+			<tr>
+					<td>public void set(T value)</td>
+					<td>現在のスレッドにバインドされたローカル変数を返す</td>
+			</tr>
+			<tr>
+					<td>public T get()</td>
+					<td>現在のスレッドにバインドされたローカル変数を取得</td>
+			</tr>
+			<tr>
+					<td>public void remove()</td>
+					<td>現在のスレッドにバインドされたローカル変数を削除</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>以下はこれらの4つのメソッドの詳細なソースコード分析です（思路を明確にするため、ThreadLocalMap部分は一旦展開せず、次の知識ポイントで詳しく説明します）</p>
 <h3 id="setメソッド">setメソッド

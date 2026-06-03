@@ -586,30 +586,30 @@
 <hr>
 <h2 id="二排程機制">二、排程機制
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>專案</th>
-          <th>行程</th>
-          <th>執行緒</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>排程單位</td>
-          <td>作業系統以行程為<strong>資源分配單位</strong></td>
-          <td>作業系統以執行緒為<strong>CPU排程單位</strong></td>
-      </tr>
-      <tr>
-          <td>上下文切換</td>
-          <td>需完整切換：虛擬記憶體、暫存器、檔案描述符等 → <strong>開銷大</strong></td>
-          <td>僅切換執行緒私有資料（棧、暫存器、PC） → <strong>開銷小</strong></td>
-      </tr>
-      <tr>
-          <td>排程方式</td>
-          <td>核心排程，時間片輪轉、搶佔式執行</td>
-          <td>同樣由核心排程（或部分使用者態實現）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>專案</th>
+					<th>行程</th>
+					<th>執行緒</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>排程單位</td>
+					<td>作業系統以行程為<strong>資源分配單位</strong></td>
+					<td>作業系統以執行緒為<strong>CPU排程單位</strong></td>
+			</tr>
+			<tr>
+					<td>上下文切換</td>
+					<td>需完整切換：虛擬記憶體、暫存器、檔案描述符等 → <strong>開銷大</strong></td>
+					<td>僅切換執行緒私有資料（棧、暫存器、PC） → <strong>開銷小</strong></td>
+			</tr>
+			<tr>
+					<td>排程方式</td>
+					<td>核心排程，時間片輪轉、搶佔式執行</td>
+					<td>同樣由核心排程（或部分使用者態實現）</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="三併發與通訊">三、併發與通訊
@@ -632,58 +632,58 @@
 <hr>
 <h2 id="四資源擁有情況">四、資源擁有情況
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>資源型別</th>
-          <th>行程</th>
-          <th>執行緒</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>虛擬記憶體空間</td>
-          <td>獨立</td>
-          <td>共享所屬行程的記憶體</td>
-      </tr>
-      <tr>
-          <td>檔案描述符/控制代碼</td>
-          <td>獨立</td>
-          <td>共享</td>
-      </tr>
-      <tr>
-          <td>訊號處理器</td>
-          <td>獨立</td>
-          <td>共享（但可設定執行緒特定行為）</td>
-      </tr>
-      <tr>
-          <td>棧、暫存器、PC</td>
-          <td>（每個行程至少一個主執行緒有）</td>
-          <td>每個執行緒獨立擁有</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>資源型別</th>
+					<th>行程</th>
+					<th>執行緒</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>虛擬記憶體空間</td>
+					<td>獨立</td>
+					<td>共享所屬行程的記憶體</td>
+			</tr>
+			<tr>
+					<td>檔案描述符/控制代碼</td>
+					<td>獨立</td>
+					<td>共享</td>
+			</tr>
+			<tr>
+					<td>訊號處理器</td>
+					<td>獨立</td>
+					<td>共享（但可設定執行緒特定行為）</td>
+			</tr>
+			<tr>
+					<td>棧、暫存器、PC</td>
+					<td>（每個行程至少一個主執行緒有）</td>
+					<td>每個執行緒獨立擁有</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="五系統開銷對比">五、系統開銷對比
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>操作</th>
-          <th>行程</th>
-          <th>執行緒</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>建立/銷燬</td>
-          <td>需分配/回收 MB 級記憶體，初始化大量資源 → <strong>開銷大</strong>（涉及系統呼叫）</td>
-          <td>僅需分配 KB 級棧空間和少量元資料 → <strong>開銷小</strong>（可在使用者態實現）</td>
-      </tr>
-      <tr>
-          <td>切換成本</td>
-          <td>高（完整上下文切換）</td>
-          <td>低（僅切換私有暫存器和棧）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>操作</th>
+					<th>行程</th>
+					<th>執行緒</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>建立/銷燬</td>
+					<td>需分配/回收 MB 級記憶體，初始化大量資源 → <strong>開銷大</strong>（涉及系統呼叫）</td>
+					<td>僅需分配 KB 級棧空間和少量元資料 → <strong>開銷小</strong>（可在使用者態實現）</td>
+			</tr>
+			<tr>
+					<td>切換成本</td>
+					<td>高（完整上下文切換）</td>
+					<td>低（僅切換私有暫存器和棧）</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="六總結">六、總結

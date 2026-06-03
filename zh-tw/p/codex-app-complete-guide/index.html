@@ -707,54 +707,54 @@
 </h3><p>Codex 的權限系統全部圍繞**沙箱（Sandbox）**展開，這是 Harness Engineering 概念的典型工程實現——用作業系統級別的機制，把 AI 的能力約束在可控範圍內。</p>
 <p><strong>預設限制：</strong></p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>限制</th>
-          <th>說明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>沙箱內檔案</td>
-          <td>預設<strong>直接讀寫</strong>，不需要逐檔案審批</td>
-      </tr>
-      <tr>
-          <td>沙箱外檔案</td>
-          <td><strong>禁止訪問</strong></td>
-      </tr>
-      <tr>
-          <td>聯網</td>
-          <td><strong>預設禁止</strong></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>限制</th>
+					<th>說明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>沙箱內檔案</td>
+					<td>預設<strong>直接讀寫</strong>，不需要逐檔案審批</td>
+			</tr>
+			<tr>
+					<td>沙箱外檔案</td>
+					<td><strong>禁止訪問</strong></td>
+			</tr>
+			<tr>
+					<td>聯網</td>
+					<td><strong>預設禁止</strong></td>
+			</tr>
+	</tbody>
 </table></div>
 <p>這兩條硬性限制不是靠模型自覺，而是透過作業系統底層機制實現的（Mac 用 Seatbelt/Sandbox，Windows 有對應機制）。</p>
 <p><strong>三個權限檔位：</strong></p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>檔位</th>
-          <th>說明</th>
-          <th>推薦</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>人工審批</td>
-          <td>每次提權都需要手動確認</td>
-          <td>最安全但繁瑣</td>
-      </tr>
-      <tr>
-          <td><strong>自動審查</strong></td>
-          <td>小模型自動審查低風險操作，高風險才人工確認</td>
-          <td>✅ <strong>推薦</strong></td>
-      </tr>
-      <tr>
-          <td>完全訪問</td>
-          <td>無視沙箱限制，可執行一切操作</td>
-          <td>⚠️ 慎用</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>檔位</th>
+					<th>說明</th>
+					<th>推薦</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>人工審批</td>
+					<td>每次提權都需要手動確認</td>
+					<td>最安全但繁瑣</td>
+			</tr>
+			<tr>
+					<td><strong>自動審查</strong></td>
+					<td>小模型自動審查低風險操作，高風險才人工確認</td>
+					<td>✅ <strong>推薦</strong></td>
+			</tr>
+			<tr>
+					<td>完全訪問</td>
+					<td>無視沙箱限制，可執行一切操作</td>
+					<td>⚠️ 慎用</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>當 Codex 需要訪問沙箱外檔案或聯網時，會發起「提權（Escalate）」申請。</p>
@@ -897,22 +897,22 @@
 </h2><h3 id="外掛市集">外掛市集
 </h3><p>左側邊欄 → 外掛，分為兩類：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>類型</th>
-          <th>說明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>外掛</strong></td>
-          <td>第三方服務的能力注入（GitHub、Gmail、Netlify 等）</td>
-      </tr>
-      <tr>
-          <td><strong>技能（Skills）</strong></td>
-          <td>帶目錄的專業能力說明書</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>類型</th>
+					<th>說明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>外掛</strong></td>
+					<td>第三方服務的能力注入（GitHub、Gmail、Netlify 等）</td>
+			</tr>
+			<tr>
+					<td><strong>技能（Skills）</strong></td>
+					<td>帶目錄的專業能力說明書</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="示例github--gmail-聯動">示例：GitHub + Gmail 聯動
 </h3><ol>
@@ -1041,70 +1041,70 @@
 <hr>
 <h2 id="十二總結codex-app-能力全景">十二、總結：Codex APP 能力全景
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>能力</th>
-          <th>說明</th>
-          <th>亮點</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>沙箱權限</td>
-          <td>OS 級安全隔離 + 自動審查</td>
-          <td>安全與便利兼顧</td>
-      </tr>
-      <tr>
-          <td>多專案並行</td>
-          <td>多專案、多對話同時跑</td>
-          <td>物理隔離，互不干擾</td>
-      </tr>
-      <tr>
-          <td>畫圖</td>
-          <td>GPT Image 內建</td>
-          <td>風格一致，直接嵌入專案</td>
-      </tr>
-      <tr>
-          <td>計劃模式</td>
-          <td>先對齊再執行</td>
-          <td>避免返工</td>
-      </tr>
-      <tr>
-          <td>Git Worktree</td>
-          <td>分支級並行開發</td>
-          <td>不同資料夾，真正隔離</td>
-      </tr>
-      <tr>
-          <td>雲端執行</td>
-          <td>GitHub 聯動雲端執行</td>
-          <td>手機審批，隨時幹活</td>
-      </tr>
-      <tr>
-          <td>記憶系統</td>
-          <td>AGENTS.md 專案級 + 全域</td>
-          <td>告別重複交代</td>
-      </tr>
-      <tr>
-          <td>定時自動化</td>
-          <td>外掛 + 定時任務 + MEMORY</td>
-          <td>積累經驗，越用越穩</td>
-      </tr>
-      <tr>
-          <td>Skills</td>
-          <td>可重複使用專業能力包</td>
-          <td>官方/第三方/自建</td>
-      </tr>
-      <tr>
-          <td>MCP</td>
-          <td>標準化外部工具接入</td>
-          <td>Supabase、Netlify 等</td>
-      </tr>
-      <tr>
-          <td>Computer Use</td>
-          <td>自動操作電腦</td>
-          <td>Mac 專屬，後臺執行</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>能力</th>
+					<th>說明</th>
+					<th>亮點</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>沙箱權限</td>
+					<td>OS 級安全隔離 + 自動審查</td>
+					<td>安全與便利兼顧</td>
+			</tr>
+			<tr>
+					<td>多專案並行</td>
+					<td>多專案、多對話同時跑</td>
+					<td>物理隔離，互不干擾</td>
+			</tr>
+			<tr>
+					<td>畫圖</td>
+					<td>GPT Image 內建</td>
+					<td>風格一致，直接嵌入專案</td>
+			</tr>
+			<tr>
+					<td>計劃模式</td>
+					<td>先對齊再執行</td>
+					<td>避免返工</td>
+			</tr>
+			<tr>
+					<td>Git Worktree</td>
+					<td>分支級並行開發</td>
+					<td>不同資料夾，真正隔離</td>
+			</tr>
+			<tr>
+					<td>雲端執行</td>
+					<td>GitHub 聯動雲端執行</td>
+					<td>手機審批，隨時幹活</td>
+			</tr>
+			<tr>
+					<td>記憶系統</td>
+					<td>AGENTS.md 專案級 + 全域</td>
+					<td>告別重複交代</td>
+			</tr>
+			<tr>
+					<td>定時自動化</td>
+					<td>外掛 + 定時任務 + MEMORY</td>
+					<td>積累經驗，越用越穩</td>
+			</tr>
+			<tr>
+					<td>Skills</td>
+					<td>可重複使用專業能力包</td>
+					<td>官方/第三方/自建</td>
+			</tr>
+			<tr>
+					<td>MCP</td>
+					<td>標準化外部工具接入</td>
+					<td>Supabase、Netlify 等</td>
+			</tr>
+			<tr>
+					<td>Computer Use</td>
+					<td>自動操作電腦</td>
+					<td>Mac 專屬，後臺執行</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <blockquote>
@@ -1179,6 +1179,25 @@
             
                 
 <article class="has-image">
+    <a href="/zh-tw/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" data-key="from-prompt-engineering-to-multi-agent-ai-builder-roadmap" data-hash="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Beyond LLM：從提示詞工程到多智能體的 AI Builder 全景路線圖</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/zh-tw/p/codex-deepseek-v4-proxy/">
         
         
@@ -1248,25 +1267,6 @@
 
         <div class="article-details">
             <h2 class="article-title">5分鐘安裝 Claude Code 並接入 DeepSeek</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/zh-tw/p/internet-architecture-in-one-story/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" loading="lazy" data-key="internet-architecture-in-one-story" data-hash="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">互聯網架構就這？1個故事講清楚</h2>
         </div>
     </a>
 </article>

@@ -631,40 +631,40 @@
 <p><strong>Controller $\rightarrow$ Application Service $\rightarrow$ Domain Model $\rightarrow$ Repository (Impl $\rightarrow$ Mapper)</strong></p>
 <p>為了方便理解，我們可以看這張對比表：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>層次</strong></th>
-          <th><strong>DDD 命名</strong></th>
-          <th><strong>MVC 對應</strong></th>
-          <th><strong>職責增強點</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>介面層</strong></td>
-          <td>Interfaces</td>
-          <td>Controller</td>
-          <td>僅負責協議轉換（REST/JSON），不做任何業務。</td>
-      </tr>
-      <tr>
-          <td><strong>應用層</strong></td>
-          <td>Application</td>
-          <td>Service (輕)</td>
-          <td><strong>指揮官：</strong> 不寫 <code>if-else</code>，只負責編排領域物件幹活。</td>
-      </tr>
-      <tr>
-          <td><strong>領域層</strong></td>
-          <td><strong>Domain</strong></td>
-          <td><strong>Entity (重)</strong></td>
-          <td><strong>核心：</strong> 包含業務規則，資料與邏輯共存。</td>
-      </tr>
-      <tr>
-          <td><strong>基礎層</strong></td>
-          <td>Infrastructure</td>
-          <td>DAO / Mapper</td>
-          <td><strong>外掛化：</strong> 蔽蓋資料庫細節。Repository 是介面，Mapper 是實現。</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>層次</strong></th>
+					<th><strong>DDD 命名</strong></th>
+					<th><strong>MVC 對應</strong></th>
+					<th><strong>職責增強點</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>介面層</strong></td>
+					<td>Interfaces</td>
+					<td>Controller</td>
+					<td>僅負責協議轉換（REST/JSON），不做任何業務。</td>
+			</tr>
+			<tr>
+					<td><strong>應用層</strong></td>
+					<td>Application</td>
+					<td>Service (輕)</td>
+					<td><strong>指揮官：</strong> 不寫 <code>if-else</code>，只負責編排領域物件幹活。</td>
+			</tr>
+			<tr>
+					<td><strong>領域層</strong></td>
+					<td><strong>Domain</strong></td>
+					<td><strong>Entity (重)</strong></td>
+					<td><strong>核心：</strong> 包含業務規則，資料與邏輯共存。</td>
+			</tr>
+			<tr>
+					<td><strong>基礎層</strong></td>
+					<td>Infrastructure</td>
+					<td>DAO / Mapper</td>
+					<td><strong>外掛化：</strong> 蔽蓋資料庫細節。Repository 是介面，Mapper 是實現。</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="三-為什麼-ddd-的包變多了關於解耦的真相">三、 為什麼 DDD 的包變多了？（關於解耦的真相）
 </h3><p>你會發現 DDD 引入了 <code>ApplicationService</code>、<code>Domain Model</code>、<code>Repository</code> 等。這看似繁瑣，實則是為了實現<strong>兩級核心解耦</strong>：</p>
@@ -754,38 +754,38 @@
 </blockquote>
 <h4 id="4-總結對比">4. 總結對比
 </h4><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>模型類型</strong></th>
-          <th><strong>是否有唯一 ID</strong></th>
-          <th><strong>屬性完全相同時</strong></th>
-          <th><strong>修改方式</strong></th>
-          <th><strong>舉例</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>實體 (Entity)</strong></td>
-          <td>是</td>
-          <td>依然是兩個獨立的物件</td>
-          <td>透過方法修改屬性</td>
-          <td>使用者(User)、商品(Product)</td>
-      </tr>
-      <tr>
-          <td><strong>值物件 (VO)</strong></td>
-          <td>否</td>
-          <td>視為同一個物件</td>
-          <td>整體替換（不可變）</td>
-          <td>貨幣(Money)、地址(Address)</td>
-      </tr>
-      <tr>
-          <td><strong>聚合根 (AR)</strong></td>
-          <td>是</td>
-          <td>(同實體)</td>
-          <td>負責協調內部所有成員</td>
-          <td>訂單(Order)、論壇主題(Topic)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>模型類型</strong></th>
+					<th><strong>是否有唯一 ID</strong></th>
+					<th><strong>屬性完全相同時</strong></th>
+					<th><strong>修改方式</strong></th>
+					<th><strong>舉例</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>實體 (Entity)</strong></td>
+					<td>是</td>
+					<td>依然是兩個獨立的物件</td>
+					<td>透過方法修改屬性</td>
+					<td>使用者(User)、商品(Product)</td>
+			</tr>
+			<tr>
+					<td><strong>值物件 (VO)</strong></td>
+					<td>否</td>
+					<td>視為同一個物件</td>
+					<td>整體替換（不可變）</td>
+					<td>貨幣(Money)、地址(Address)</td>
+			</tr>
+			<tr>
+					<td><strong>聚合根 (AR)</strong></td>
+					<td>是</td>
+					<td>(同實體)</td>
+					<td>負責協調內部所有成員</td>
+					<td>訂單(Order)、論壇主題(Topic)</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="五-模型轉換每一層都有自己的臉">五、 模型轉換：每一層都有自己的「臉」
 </h3><p><img src="https://img.siborne.top/2026/05/402fb87ecbd0b469968565310cfceb8e.png"

@@ -952,73 +952,73 @@ Besides the most familiar <code>AUTO_INCREMENT</code> and <code>UUID</code>, the
 </div><hr>
 <h2 id="comparison-summary-of-the-six-approaches">Comparison Summary of the Six Approaches
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Approach</th>
-          <th>Ordered</th>
-          <th>Readable</th>
-          <th>Performance</th>
-          <th>Distributed-Friendly</th>
-          <th>Complexity</th>
-          <th>Recommended Scenario</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>MySQL Auto-Increment</strong></td>
-          <td>Yes</td>
-          <td>Yes</td>
-          <td>Medium (DB-dependent)</td>
-          <td>Difficult with sharding</td>
-          <td>Low</td>
-          <td>Monolithic small projects</td>
-      </tr>
-      <tr>
-          <td><strong>UUID</strong></td>
-          <td>No</td>
-          <td>No</td>
-          <td>High</td>
-          <td>Yes</td>
-          <td>Low</td>
-          <td>Tokens, temporary IDs</td>
-      </tr>
-      <tr>
-          <td><strong>Redis INCR</strong></td>
-          <td>Yes</td>
-          <td>Yes</td>
-          <td>Very High</td>
-          <td>Yes</td>
-          <td>Low</td>
-          <td>Small-medium systems with Redis</td>
-      </tr>
-      <tr>
-          <td><strong>Snowflake (Pure)</strong></td>
-          <td>Roughly ordered</td>
-          <td>Yes</td>
-          <td>Very High</td>
-          <td>Yes</td>
-          <td>Medium</td>
-          <td>High-concurrency distributed</td>
-      </tr>
-      <tr>
-          <td><strong>Snowflake + Redis</strong></td>
-          <td>Roughly ordered</td>
-          <td>Yes</td>
-          <td>High</td>
-          <td>Strong consistency</td>
-          <td>Medium-High</td>
-          <td>Finance, payments</td>
-      </tr>
-      <tr>
-          <td><strong>Timestamp + Redis Sequence</strong></td>
-          <td>Roughly ordered</td>
-          <td>Yes</td>
-          <td>High</td>
-          <td>Yes</td>
-          <td>Low</td>
-          <td>Custom ID format</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Approach</th>
+					<th>Ordered</th>
+					<th>Readable</th>
+					<th>Performance</th>
+					<th>Distributed-Friendly</th>
+					<th>Complexity</th>
+					<th>Recommended Scenario</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>MySQL Auto-Increment</strong></td>
+					<td>Yes</td>
+					<td>Yes</td>
+					<td>Medium (DB-dependent)</td>
+					<td>Difficult with sharding</td>
+					<td>Low</td>
+					<td>Monolithic small projects</td>
+			</tr>
+			<tr>
+					<td><strong>UUID</strong></td>
+					<td>No</td>
+					<td>No</td>
+					<td>High</td>
+					<td>Yes</td>
+					<td>Low</td>
+					<td>Tokens, temporary IDs</td>
+			</tr>
+			<tr>
+					<td><strong>Redis INCR</strong></td>
+					<td>Yes</td>
+					<td>Yes</td>
+					<td>Very High</td>
+					<td>Yes</td>
+					<td>Low</td>
+					<td>Small-medium systems with Redis</td>
+			</tr>
+			<tr>
+					<td><strong>Snowflake (Pure)</strong></td>
+					<td>Roughly ordered</td>
+					<td>Yes</td>
+					<td>Very High</td>
+					<td>Yes</td>
+					<td>Medium</td>
+					<td>High-concurrency distributed</td>
+			</tr>
+			<tr>
+					<td><strong>Snowflake + Redis</strong></td>
+					<td>Roughly ordered</td>
+					<td>Yes</td>
+					<td>High</td>
+					<td>Strong consistency</td>
+					<td>Medium-High</td>
+					<td>Finance, payments</td>
+			</tr>
+			<tr>
+					<td><strong>Timestamp + Redis Sequence</strong></td>
+					<td>Roughly ordered</td>
+					<td>Yes</td>
+					<td>High</td>
+					<td>Yes</td>
+					<td>Low</td>
+					<td>Custom ID format</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="final-recommendations">Final Recommendations

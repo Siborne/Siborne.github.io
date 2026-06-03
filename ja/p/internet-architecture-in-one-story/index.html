@@ -643,26 +643,26 @@
 <p>では全てメモリバッファから読めるか？いや、小さすぎる。どうする？メモリバッファを単独で取り出し、拡大！頻繁にアクセスされる<strong>ホットデータ</strong>を全てそこに格納し、高速にクエリ。データベースにアクセスする必要がない。これを<strong>キャッシュ</strong>と呼ぶ。</p>
 <p>3レベルのキャッシュを設計：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>レベル</th>
-          <th>説明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>ブラウザキャッシュ</td>
-          <td>ユーザーローカル、最速</td>
-      </tr>
-      <tr>
-          <td>アプリケーションサーバーローカルキャッシュ</td>
-          <td>サービスインスタンスメモリ、非常に高速</td>
-      </tr>
-      <tr>
-          <td>分散キャッシュ（Redisなど）</td>
-          <td>集中型大容量メモリ、高速</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>レベル</th>
+					<th>説明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ブラウザキャッシュ</td>
+					<td>ユーザーローカル、最速</td>
+			</tr>
+			<tr>
+					<td>アプリケーションサーバーローカルキャッシュ</td>
+					<td>サービスインスタンスメモリ、非常に高速</td>
+			</tr>
+			<tr>
+					<td>分散キャッシュ（Redisなど）</td>
+					<td>集中型大容量メモリ、高速</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>ユーザーのリクエストフロー：ブラウザキャッシュ → ローカルキャッシュ → 分散キャッシュ → データベース。</p>
 <p>绝大多数のリクエストはキャッシュ層でブロックされ、データベースに到達しない。クエリ速度は<strong>ミリ秒級 → マイクロ秒級</strong>に向上し、データベースの負荷は急減。データベースがダウンしても、キャッシュはしばらく対応可能。</p>
@@ -839,85 +839,85 @@
 <h2 id="15-ストーリーまとめアーキテクチャ進化の全体像">15. ストーリーまとめ：アーキテクチャ進化の全体像
 </h2><p>1台の小さなサーバーから、弾力的で自動化、高可用性、無限にスケール可能な現代アーキテクチャまで——ビジネスがどう成長し、トラフィックがどう爆発しても、しっかり対応可能。</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>ステージ</th>
-          <th>解決する問題</th>
-          <th>コアソリューション</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>モノリシック</td>
-          <td>零から構築</td>
-          <td>1台のサーバーで全て</td>
-      </tr>
-      <tr>
-          <td>アプリ/DB分離</td>
-          <td>リソース競合</td>
-          <td>2台に分割、それぞれ専門分野</td>
-      </tr>
-      <tr>
-          <td>クラスター＋ロードバランシング</td>
-          <td>高同時接続</td>
-          <td>複数サーバー＋トラフィック分配</td>
-      </tr>
-      <tr>
-          <td>マルチレベルキャッシュ</td>
-          <td>クエリ性能、DB負荷</td>
-          <td>ブラウザ→ローカル→分散キャッシュ</td>
-      </tr>
-      <tr>
-          <td>読み書き分離</td>
-          <td>DB読み書きブロック</td>
-          <td>マスター書き込み、レプリカ読み込み</td>
-      </tr>
-      <tr>
-          <td>DBシャーディング</td>
-          <td>大量ストレージ</td>
-          <td>垂直シャーディング＋水平シャーディング</td>
-      </tr>
-      <tr>
-          <td>CDN＋リバースプロキシ</td>
-          <td>アクセス速度、セキュリティ</td>
-          <td>近接アクセス＋実サーバー隠蔽</td>
-      </tr>
-      <tr>
-          <td>検索エンジン＋NoSQL</td>
-          <td>複雑なクエリ</td>
-          <td>転置インデックス＋非構造化ストレージ</td>
-      </tr>
-      <tr>
-          <td>分散アーキテクチャ</td>
-          <td>ビジネス膨張、コードメンテナンス</td>
-          <td>ビジネス別分割、RPC通信</td>
-      </tr>
-      <tr>
-          <td>メッセージキュー</td>
-          <td>サービスカップリング、トラフィック衝撃</td>
-          <td>非同期デカップリング＋ピークシービング</td>
-      </tr>
-      <tr>
-          <td>マイクロサービス</td>
-          <td>チーム協調、極端な弾力性</td>
-          <td>1サービスは1ことだけ</td>
-      </tr>
-      <tr>
-          <td>コンテナ化（Docker）</td>
-          <td>環境不一致</td>
-          <td>一度パッケージ化、どこでも実行</td>
-      </tr>
-      <tr>
-          <td>コンテナオーケストレーション（K8s）</td>
-          <td>運用コスト</td>
-          <td>自動スケジューリング＋弾力的スケーリング</td>
-      </tr>
-      <tr>
-          <td>クラウドネイティブ</td>
-          <td>リソース利用率</td>
-          <td>従量課金、下位基盤透明</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>ステージ</th>
+					<th>解決する問題</th>
+					<th>コアソリューション</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>モノリシック</td>
+					<td>零から構築</td>
+					<td>1台のサーバーで全て</td>
+			</tr>
+			<tr>
+					<td>アプリ/DB分離</td>
+					<td>リソース競合</td>
+					<td>2台に分割、それぞれ専門分野</td>
+			</tr>
+			<tr>
+					<td>クラスター＋ロードバランシング</td>
+					<td>高同時接続</td>
+					<td>複数サーバー＋トラフィック分配</td>
+			</tr>
+			<tr>
+					<td>マルチレベルキャッシュ</td>
+					<td>クエリ性能、DB負荷</td>
+					<td>ブラウザ→ローカル→分散キャッシュ</td>
+			</tr>
+			<tr>
+					<td>読み書き分離</td>
+					<td>DB読み書きブロック</td>
+					<td>マスター書き込み、レプリカ読み込み</td>
+			</tr>
+			<tr>
+					<td>DBシャーディング</td>
+					<td>大量ストレージ</td>
+					<td>垂直シャーディング＋水平シャーディング</td>
+			</tr>
+			<tr>
+					<td>CDN＋リバースプロキシ</td>
+					<td>アクセス速度、セキュリティ</td>
+					<td>近接アクセス＋実サーバー隠蔽</td>
+			</tr>
+			<tr>
+					<td>検索エンジン＋NoSQL</td>
+					<td>複雑なクエリ</td>
+					<td>転置インデックス＋非構造化ストレージ</td>
+			</tr>
+			<tr>
+					<td>分散アーキテクチャ</td>
+					<td>ビジネス膨張、コードメンテナンス</td>
+					<td>ビジネス別分割、RPC通信</td>
+			</tr>
+			<tr>
+					<td>メッセージキュー</td>
+					<td>サービスカップリング、トラフィック衝撃</td>
+					<td>非同期デカップリング＋ピークシービング</td>
+			</tr>
+			<tr>
+					<td>マイクロサービス</td>
+					<td>チーム協調、極端な弾力性</td>
+					<td>1サービスは1ことだけ</td>
+			</tr>
+			<tr>
+					<td>コンテナ化（Docker）</td>
+					<td>環境不一致</td>
+					<td>一度パッケージ化、どこでも実行</td>
+			</tr>
+			<tr>
+					<td>コンテナオーケストレーション（K8s）</td>
+					<td>運用コスト</td>
+					<td>自動スケジューリング＋弾力的スケーリング</td>
+			</tr>
+			<tr>
+					<td>クラウドネイティブ</td>
+					<td>リソース利用率</td>
+					<td>従量課金、下位基盤透明</td>
+			</tr>
+	</tbody>
 </table></div>
 <p><img src="https://img.siborne.top/2026/05/b54ac34e408d2d78d7b77db0d3445640.png"
 	
@@ -1012,6 +1012,25 @@
             
                 
 <article class="has-image">
+    <a href="/ja/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" data-key="from-prompt-engineering-to-multi-agent-ai-builder-roadmap" data-hash="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Beyond LLM：プロンプトエンジニアリングからマルチエージェントまでの AI Builder 全景ロードマップ</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/ja/p/hugo-blog-stack-theme-guide/">
         
         
@@ -1081,25 +1100,6 @@
 
         <div class="article-details">
             <h2 class="article-title">OpenCode 初心者から上級者へ：並行スケジューリングと活用テクニック完全ガイド</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/ja/p/opencode-complete-guide/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png" loading="lazy" data-key="opencode-complete-guide" data-hash="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法</h2>
         </div>
     </a>
 </article>

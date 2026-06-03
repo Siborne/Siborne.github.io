@@ -815,26 +815,26 @@ JWT 通过网络传输，若使用 HTTP，极易被中间人窃取。​<strong>
 <hr>
 <h3 id="综合建议">综合建议
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>场景</th>
-          <th>推荐方案</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>普通 Web 应用、移动端 App</td>
-          <td><strong>Access Token + Refresh Token</strong>（平衡安全与性能）</td>
-      </tr>
-      <tr>
-          <td>高安全要求系统（如金融、后台管理）</td>
-          <td><strong>Refresh Token + Redis 黑名单/白名单</strong></td>
-      </tr>
-      <tr>
-          <td>需支持“多设备登录管理”</td>
-          <td>使用 <strong>Redis 白名单 + session_id 标识设备</strong></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>场景</th>
+					<th>推荐方案</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>普通 Web 应用、移动端 App</td>
+					<td><strong>Access Token + Refresh Token</strong>（平衡安全与性能）</td>
+			</tr>
+			<tr>
+					<td>高安全要求系统（如金融、后台管理）</td>
+					<td><strong>Refresh Token + Redis 黑名单/白名单</strong></td>
+			</tr>
+			<tr>
+					<td>需支持“多设备登录管理”</td>
+					<td>使用 <strong>Redis 白名单 + session_id 标识设备</strong></td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>💡 ​<strong>最佳实践</strong>：即使采用黑名单机制，也应保持 Access Token 的短期有效期（如 ≤30 分钟），以限制 Redis 存储压力和潜在攻击窗口。</p>

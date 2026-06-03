@@ -605,22 +605,22 @@
 <h3 id="二資料結構選擇">二、資料結構選擇
 </h3><p>為了實現 O(1) 的操作，需結合兩種結構：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>資料結構</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>HashMap</strong></td>
-          <td>快速透過 <code>key</code> 查詢對應的節點（O(1)）</td>
-      </tr>
-      <tr>
-          <td><strong>雙向連結串列（Doubly Linked List）</strong></td>
-          <td>維護存取順序 —— 連結串列尾部為最近使用，頭部為最久未使用</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>資料結構</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>HashMap</strong></td>
+					<td>快速透過 <code>key</code> 查詢對應的節點（O(1)）</td>
+			</tr>
+			<tr>
+					<td><strong>雙向連結串列（Doubly Linked List）</strong></td>
+					<td>維護存取順序 —— 連結串列尾部為最近使用，頭部為最久未使用</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>雙向連結串列支援 O(1) 刪除中間節點（因為有 <code>last</code> 指標）。</p>
@@ -649,26 +649,26 @@
 <h4 id="2-內部類-doublelist雙向連結串列封裝">2. 內部類 <code>DoubleList</code>（雙向連結串列封裝）
 </h4><p>提供三個核心操作：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>方法</th>
-          <th>功能</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>addNode(node)</code></td>
-          <td>將新節點加到<strong>尾部</strong>（表示最新使用）</td>
-      </tr>
-      <tr>
-          <td><code>moveNodeToTail(node)</code></td>
-          <td>將已有節點移到尾部（被存取/更新時呼叫）</td>
-      </tr>
-      <tr>
-          <td><code>removeHead()</code></td>
-          <td>移除<strong>頭部節點</strong>（最久未使用），返回該節點</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方法</th>
+					<th>功能</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>addNode(node)</code></td>
+					<td>將新節點加到<strong>尾部</strong>（表示最新使用）</td>
+			</tr>
+			<tr>
+					<td><code>moveNodeToTail(node)</code></td>
+					<td>將已有節點移到尾部（被存取/更新時呼叫）</td>
+			</tr>
+			<tr>
+					<td><code>removeHead()</code></td>
+					<td>移除<strong>頭部節點</strong>（最久未使用），返回該節點</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>注意邊界情況：</p>

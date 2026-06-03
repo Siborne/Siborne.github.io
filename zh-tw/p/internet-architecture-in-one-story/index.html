@@ -643,26 +643,26 @@
 <p>那能不能都去記憶體緩衝區讀？不行，太小了。怎麼辦？直接把記憶體緩衝區單獨出來、放大！經常被訪問的<strong>熱點資料</strong>全放上去，快速查，不用去資料庫。你給它取名叫<strong>快取</strong>。</p>
 <p>你設計了三層快取：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>層級</th>
-          <th>說明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>瀏覽器快取</td>
-          <td>用戶本地，最快</td>
-      </tr>
-      <tr>
-          <td>應用伺服器本地快取</td>
-          <td>服務實例記憶體，極快</td>
-      </tr>
-      <tr>
-          <td>分佈式快取（如 Redis）</td>
-          <td>集中式大容量記憶體，快</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>層級</th>
+					<th>說明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>瀏覽器快取</td>
+					<td>用戶本地，最快</td>
+			</tr>
+			<tr>
+					<td>應用伺服器本地快取</td>
+					<td>服務實例記憶體，極快</td>
+			</tr>
+			<tr>
+					<td>分佈式快取（如 Redis）</td>
+					<td>集中式大容量記憶體，快</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>用戶每次請求：瀏覽器快取 → 本地快取 → 分佈式快取 → 資料庫。</p>
 <p>絕大多數請求在快取層就被攔住，根本到不了資料庫。查詢速度從<strong>毫秒級 → 微秒級</strong>，資料庫壓力暴跌。就算資料庫掛了，快取還能頂一陣。</p>
@@ -839,85 +839,85 @@
 <h2 id="15-故事總結架構演進全景圖">15. 故事總結：架構演進全景圖
 </h2><p>從最開始一台小伺服器到如今彈性自動化、高可用、能無限擴展的現代化架構——不管業務怎麼漲、流量怎麼爆，它都能穩穩扛住。</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>階段</th>
-          <th>解決的問題</th>
-          <th>核心方案</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>單機架構</td>
-          <td>從零搭建</td>
-          <td>一台伺服器全包</td>
-      </tr>
-      <tr>
-          <td>應用與資料庫分離</td>
-          <td>資源爭搶</td>
-          <td>拆成兩台，各司其職</td>
-      </tr>
-      <tr>
-          <td>叢集 + 負載均衡</td>
-          <td>高並發</td>
-          <td>多台伺服器 + 流量分發</td>
-      </tr>
-      <tr>
-          <td>多級快取</td>
-          <td>查詢效能、資料庫壓力</td>
-          <td>瀏覽器 → 本地 → 分佈式快取</td>
-      </tr>
-      <tr>
-          <td>讀寫分離</td>
-          <td>資料庫讀寫阻塞</td>
-          <td>主庫寫、從庫讀</td>
-      </tr>
-      <tr>
-          <td>分庫分表</td>
-          <td>海量儲存</td>
-          <td>垂直分庫 + 水平分表</td>
-      </tr>
-      <tr>
-          <td>CDN + 反向代理</td>
-          <td>訪問速度、系統安全</td>
-          <td>就近訪問 + 隱藏真實伺服器</td>
-      </tr>
-      <tr>
-          <td>搜尋引擎 + NoSQL</td>
-          <td>複雜查詢</td>
-          <td>倒排索引 + 非結構化儲存</td>
-      </tr>
-      <tr>
-          <td>分佈式架構</td>
-          <td>業務膨脹、程式碼維護</td>
-          <td>按業務拆分，RPC 通訊</td>
-      </tr>
-      <tr>
-          <td>訊息佇列</td>
-          <td>服務耦合、流量衝擊</td>
-          <td>異步解耦 + 削峰填谷</td>
-      </tr>
-      <tr>
-          <td>微服務架構</td>
-          <td>團隊協作、極致彈性</td>
-          <td>一個服務只幹一件事</td>
-      </tr>
-      <tr>
-          <td>容器化（Docker）</td>
-          <td>環境不一致</td>
-          <td>一次打包，到處執行</td>
-      </tr>
-      <tr>
-          <td>容器編排（K8s）</td>
-          <td>運維成本</td>
-          <td>自動化排程 + 彈性伸縮</td>
-      </tr>
-      <tr>
-          <td>雲原生</td>
-          <td>資源利用率</td>
-          <td>按需付費，底層透明</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>階段</th>
+					<th>解決的問題</th>
+					<th>核心方案</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>單機架構</td>
+					<td>從零搭建</td>
+					<td>一台伺服器全包</td>
+			</tr>
+			<tr>
+					<td>應用與資料庫分離</td>
+					<td>資源爭搶</td>
+					<td>拆成兩台，各司其職</td>
+			</tr>
+			<tr>
+					<td>叢集 + 負載均衡</td>
+					<td>高並發</td>
+					<td>多台伺服器 + 流量分發</td>
+			</tr>
+			<tr>
+					<td>多級快取</td>
+					<td>查詢效能、資料庫壓力</td>
+					<td>瀏覽器 → 本地 → 分佈式快取</td>
+			</tr>
+			<tr>
+					<td>讀寫分離</td>
+					<td>資料庫讀寫阻塞</td>
+					<td>主庫寫、從庫讀</td>
+			</tr>
+			<tr>
+					<td>分庫分表</td>
+					<td>海量儲存</td>
+					<td>垂直分庫 + 水平分表</td>
+			</tr>
+			<tr>
+					<td>CDN + 反向代理</td>
+					<td>訪問速度、系統安全</td>
+					<td>就近訪問 + 隱藏真實伺服器</td>
+			</tr>
+			<tr>
+					<td>搜尋引擎 + NoSQL</td>
+					<td>複雜查詢</td>
+					<td>倒排索引 + 非結構化儲存</td>
+			</tr>
+			<tr>
+					<td>分佈式架構</td>
+					<td>業務膨脹、程式碼維護</td>
+					<td>按業務拆分，RPC 通訊</td>
+			</tr>
+			<tr>
+					<td>訊息佇列</td>
+					<td>服務耦合、流量衝擊</td>
+					<td>異步解耦 + 削峰填谷</td>
+			</tr>
+			<tr>
+					<td>微服務架構</td>
+					<td>團隊協作、極致彈性</td>
+					<td>一個服務只幹一件事</td>
+			</tr>
+			<tr>
+					<td>容器化（Docker）</td>
+					<td>環境不一致</td>
+					<td>一次打包，到處執行</td>
+			</tr>
+			<tr>
+					<td>容器編排（K8s）</td>
+					<td>運維成本</td>
+					<td>自動化排程 + 彈性伸縮</td>
+			</tr>
+			<tr>
+					<td>雲原生</td>
+					<td>資源利用率</td>
+					<td>按需付費，底層透明</td>
+			</tr>
+	</tbody>
 </table></div>
 <p><img src="https://img.siborne.top/2026/05/b54ac34e408d2d78d7b77db0d3445640.png"
 	
@@ -1012,6 +1012,25 @@
             
                 
 <article class="has-image">
+    <a href="/zh-tw/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" data-key="from-prompt-engineering-to-multi-agent-ai-builder-roadmap" data-hash="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Beyond LLM：從提示詞工程到多智能體的 AI Builder 全景路線圖</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/zh-tw/p/hugo-blog-stack-theme-guide/">
         
         
@@ -1081,25 +1100,6 @@
 
         <div class="article-details">
             <h2 class="article-title">OpenCode 全深度指南：開源版 Claude Code 的安裝、配置與高階玩法</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/zh-tw/p/opencode-parallel-workflow-tips/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png" loading="lazy" data-key="opencode-parallel-workflow-tips" data-hash="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">OpenCode 新手進階：並行排程與使用技巧全攻略</h2>
         </div>
     </a>
 </article>

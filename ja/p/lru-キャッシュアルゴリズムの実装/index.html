@@ -605,22 +605,22 @@
 <h3 id="二データ構造の選択">二、データ構造の選択
 </h3><p>O(1) の操作を実現するには、2 つの構造を組み合わせる必要があります：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>データ構造</th>
-          <th>役割</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>HashMap</strong></td>
-          <td><code>key</code> で対応するノードを素早く検索（O(1)）</td>
-      </tr>
-      <tr>
-          <td><strong>双方向連結リスト（Doubly Linked List）</strong></td>
-          <td>アクセス順序を維持 —— リスト末尾が最近使用、先頭が最も長く未使用</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>データ構造</th>
+					<th>役割</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>HashMap</strong></td>
+					<td><code>key</code> で対応するノードを素早く検索（O(1)）</td>
+			</tr>
+			<tr>
+					<td><strong>双方向連結リスト（Doubly Linked List）</strong></td>
+					<td>アクセス順序を維持 —— リスト末尾が最近使用、先頭が最も長く未使用</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>双方向連結リストは O(1) で中間ノードを削除できます（<code>last</code> ポインタがあるため）。</p>
@@ -649,26 +649,26 @@
 <h4 id="2-内部クラス-doublelist双方向連結リストのカプセル化">2. 内部クラス <code>DoubleList</code>（双方向連結リストのカプセル化）
 </h4><p>3 つのコア操作を提供：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>メソッド</th>
-          <th>機能</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>addNode(node)</code></td>
-          <td>新しいノードを<strong>末尾</strong>に追加（最新の使用を表す）</td>
-      </tr>
-      <tr>
-          <td><code>moveNodeToTail(node)</code></td>
-          <td>既存ノードを末尾に移動（アクセス/更新時に呼び出し）</td>
-      </tr>
-      <tr>
-          <td><code>removeHead()</code></td>
-          <td><strong>先頭ノード</strong>（最も長く未使用）を削除し、そのノードを返す</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>メソッド</th>
+					<th>機能</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>addNode(node)</code></td>
+					<td>新しいノードを<strong>末尾</strong>に追加（最新の使用を表す）</td>
+			</tr>
+			<tr>
+					<td><code>moveNodeToTail(node)</code></td>
+					<td>既存ノードを末尾に移動（アクセス/更新時に呼び出し）</td>
+			</tr>
+			<tr>
+					<td><code>removeHead()</code></td>
+					<td><strong>先頭ノード</strong>（最も長く未使用）を削除し、そのノードを返す</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>境界ケースに注意：</p>

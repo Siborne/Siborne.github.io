@@ -586,30 +586,30 @@
 <hr>
 <h2 id="ii-scheduling-mechanisms">II. Scheduling Mechanisms
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Item</th>
-          <th>Process</th>
-          <th>Thread</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Scheduling Unit</td>
-          <td>The OS treats a process as the <strong>resource allocation unit</strong></td>
-          <td>The OS treats a thread as the <strong>CPU scheduling unit</strong></td>
-      </tr>
-      <tr>
-          <td>Context Switch</td>
-          <td>Requires a full switch: virtual memory, registers, file descriptors, etc. → <strong>high overhead</strong></td>
-          <td>Only switches thread-private data (stack, registers, PC) → <strong>low overhead</strong></td>
-      </tr>
-      <tr>
-          <td>Scheduling Mode</td>
-          <td>Kernel scheduling, round-robin time slicing, preemptive execution</td>
-          <td>Also scheduled by the kernel (or partially in user mode)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Item</th>
+					<th>Process</th>
+					<th>Thread</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Scheduling Unit</td>
+					<td>The OS treats a process as the <strong>resource allocation unit</strong></td>
+					<td>The OS treats a thread as the <strong>CPU scheduling unit</strong></td>
+			</tr>
+			<tr>
+					<td>Context Switch</td>
+					<td>Requires a full switch: virtual memory, registers, file descriptors, etc. → <strong>high overhead</strong></td>
+					<td>Only switches thread-private data (stack, registers, PC) → <strong>low overhead</strong></td>
+			</tr>
+			<tr>
+					<td>Scheduling Mode</td>
+					<td>Kernel scheduling, round-robin time slicing, preemptive execution</td>
+					<td>Also scheduled by the kernel (or partially in user mode)</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="iii-concurrency-and-communication">III. Concurrency and Communication
@@ -632,58 +632,58 @@
 <hr>
 <h2 id="iv-resource-ownership">IV. Resource Ownership
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Resource Type</th>
-          <th>Process</th>
-          <th>Thread</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Virtual Memory Space</td>
-          <td>Independent</td>
-          <td>Shared with the owning process</td>
-      </tr>
-      <tr>
-          <td>File Descriptors/Handles</td>
-          <td>Independent</td>
-          <td>Shared</td>
-      </tr>
-      <tr>
-          <td>Signal Handlers</td>
-          <td>Independent</td>
-          <td>Shared (but thread-specific behavior can be configured)</td>
-      </tr>
-      <tr>
-          <td>Stack, Registers, PC</td>
-          <td>(Each process has at least one main thread)</td>
-          <td>Each thread independently owns</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Resource Type</th>
+					<th>Process</th>
+					<th>Thread</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Virtual Memory Space</td>
+					<td>Independent</td>
+					<td>Shared with the owning process</td>
+			</tr>
+			<tr>
+					<td>File Descriptors/Handles</td>
+					<td>Independent</td>
+					<td>Shared</td>
+			</tr>
+			<tr>
+					<td>Signal Handlers</td>
+					<td>Independent</td>
+					<td>Shared (but thread-specific behavior can be configured)</td>
+			</tr>
+			<tr>
+					<td>Stack, Registers, PC</td>
+					<td>(Each process has at least one main thread)</td>
+					<td>Each thread independently owns</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="v-system-overhead-comparison">V. System Overhead Comparison
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Operation</th>
-          <th>Process</th>
-          <th>Thread</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Creation/Destruction</td>
-          <td>Requires allocating/reclaiming MB-level memory and initializing numerous resources → <strong>high overhead</strong> (involves system calls)</td>
-          <td>Only requires allocating KB-level stack space and a small amount of metadata → <strong>low overhead</strong> (can be done in user mode)</td>
-      </tr>
-      <tr>
-          <td>Context Switch Cost</td>
-          <td>High (full context switch)</td>
-          <td>Low (only switches private registers and stack)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Operation</th>
+					<th>Process</th>
+					<th>Thread</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Creation/Destruction</td>
+					<td>Requires allocating/reclaiming MB-level memory and initializing numerous resources → <strong>high overhead</strong> (involves system calls)</td>
+					<td>Only requires allocating KB-level stack space and a small amount of metadata → <strong>low overhead</strong> (can be done in user mode)</td>
+			</tr>
+			<tr>
+					<td>Context Switch Cost</td>
+					<td>High (full context switch)</td>
+					<td>Low (only switches private registers and stack)</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="vi-summary">VI. Summary

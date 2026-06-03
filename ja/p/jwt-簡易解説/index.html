@@ -815,26 +815,26 @@ JWT はネットワーク経由で転送されるため、HTTP を使用する�
 <hr>
 <h3 id="総合的な推奨">総合的な推奨
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>シナリオ</th>
-          <th>推奨案</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>一般 Web アプリケーション、モバイルアプリ</td>
-          <td><strong>Access Token + Refresh Token</strong>（セキュリティとパフォーマンスのバランス）</td>
-      </tr>
-      <tr>
-          <td>高いセキュリティ要件のシステム（金融、管理画面）</td>
-          <td><strong>Refresh Token + Redis ブラックリスト/ホワイトリスト</strong></td>
-      </tr>
-      <tr>
-          <td>「マルチデバイスログイン管理」のサポートが必要</td>
-          <td><strong>Redis ホワイトリスト + session_id によるデバイス識別</strong></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>シナリオ</th>
+					<th>推奨案</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>一般 Web アプリケーション、モバイルアプリ</td>
+					<td><strong>Access Token + Refresh Token</strong>（セキュリティとパフォーマンスのバランス）</td>
+			</tr>
+			<tr>
+					<td>高いセキュリティ要件のシステム（金融、管理画面）</td>
+					<td><strong>Refresh Token + Redis ブラックリスト/ホワイトリスト</strong></td>
+			</tr>
+			<tr>
+					<td>「マルチデバイスログイン管理」のサポートが必要</td>
+					<td><strong>Redis ホワイトリスト + session_id によるデバイス識別</strong></td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>💡 <strong>ベストプラクティス</strong>：ブラックリスト機構を採用する場合でも、Access Token の短期有効期限（≤30分）を維持し、Redis ストレージ負荷と潜在的な攻撃ウィンドウを制限すべきです。</p>

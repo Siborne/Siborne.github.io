@@ -811,26 +811,26 @@ Compared to traditional session IDs, JWT is longer because it contains data, whi
 <hr>
 <h3 id="comprehensive-recommendations">Comprehensive Recommendations
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Scenario</th>
-          <th>Recommended Approach</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>General Web applications, mobile Apps</td>
-          <td><strong>Access Token + Refresh Token</strong> (balances security and performance)</td>
-      </tr>
-      <tr>
-          <td>High-security systems (e.g., finance, admin panels)</td>
-          <td><strong>Refresh Token + Redis Blacklist/Whitelist</strong></td>
-      </tr>
-      <tr>
-          <td>Need to support &ldquo;multi-device login management&rdquo;</td>
-          <td>Use <strong>Redis Whitelist + session_id to identify devices</strong></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Scenario</th>
+					<th>Recommended Approach</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>General Web applications, mobile Apps</td>
+					<td><strong>Access Token + Refresh Token</strong> (balances security and performance)</td>
+			</tr>
+			<tr>
+					<td>High-security systems (e.g., finance, admin panels)</td>
+					<td><strong>Refresh Token + Redis Blacklist/Whitelist</strong></td>
+			</tr>
+			<tr>
+					<td>Need to support &ldquo;multi-device login management&rdquo;</td>
+					<td>Use <strong>Redis Whitelist + session_id to identify devices</strong></td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>💡 <strong>Best Practice</strong>: Even when using a blacklist mechanism, keep the Access Token&rsquo;s validity period short (e.g., ≤30 minutes) to limit Redis storage pressure and potential attack windows.</p>

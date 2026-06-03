@@ -635,30 +635,30 @@
 <h2 id="basic-usage">Basic Usage
 </h2><p>Before introducing Thread usage, let&rsquo;s first understand some common Thread methods</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Method Declaration</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>ThreadLocal()</td>
-          <td>Create ThreadLocal object</td>
-      </tr>
-      <tr>
-          <td>public void set(T value)</td>
-          <td>Set local variable bound to current thread</td>
-      </tr>
-      <tr>
-          <td>public T get()</td>
-          <td>Get local variable bound to current thread</td>
-      </tr>
-      <tr>
-          <td>public void remove()</td>
-          <td>Remove local variable bound to current thread</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Method Declaration</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ThreadLocal()</td>
+					<td>Create ThreadLocal object</td>
+			</tr>
+			<tr>
+					<td>public void set(T value)</td>
+					<td>Set local variable bound to current thread</td>
+			</tr>
+			<tr>
+					<td>public T get()</td>
+					<td>Get local variable bound to current thread</td>
+			</tr>
+			<tr>
+					<td>public void remove()</td>
+					<td>Remove local variable bound to current thread</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="usage-example">Usage Example
 </h2><p>Let&rsquo;s look at the following example to experience ThreadLocal&rsquo;s thread isolation characteristics</p>
@@ -920,25 +920,25 @@
 </div><h3 id="threadlocal-vs-synchronized-differences">ThreadLocal vs Synchronized Differences
 </h3><p>Although both ThreadLocal pattern and Synchronized keyword handle multithreaded concurrent variable access, their problem-solving approaches and perspectives differ.</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th></th>
-          <th>Synchronized</th>
-          <th>ThreadLocal</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Principle</td>
-          <td>Synchronization mechanism trades time for space, providing only one variable copy, forcing threads to queue for access</td>
-          <td>ThreadLocal trades space for time, providing each thread with its own variable copy, enabling simultaneous access without interference</td>
-      </tr>
-      <tr>
-          <td>Focus</td>
-          <td>Synchronization of resource access between multiple threads</td>
-          <td>Isolating data between threads in multithreaded environments</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th></th>
+					<th>Synchronized</th>
+					<th>ThreadLocal</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Principle</td>
+					<td>Synchronization mechanism trades time for space, providing only one variable copy, forcing threads to queue for access</td>
+					<td>ThreadLocal trades space for time, providing each thread with its own variable copy, enabling simultaneous access without interference</td>
+			</tr>
+			<tr>
+					<td>Focus</td>
+					<td>Synchronization of resource access between multiple threads</td>
+					<td>Isolating data between threads in multithreaded environments</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>Summary: In the earlier example, both ThreadLocal and Synchronized solve the problem, but ThreadLocal is more appropriate as it enables higher program concurrency.</p>
 <h2 id="application-scenarios">Application Scenarios
@@ -1000,26 +1000,26 @@
 </div><p>Therefore, transaction operations are needed to ensure transfer atomicity - either complete success or complete failure.</p>
 <p>JDBC transaction operation API</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Connection Interface Method</th>
-          <th>Function</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>void setAutoCommit(false)</td>
-          <td>Disable automatic transaction commit (switch to manual)</td>
-      </tr>
-      <tr>
-          <td>void commit()</td>
-          <td>Commit transaction</td>
-      </tr>
-      <tr>
-          <td>void rollback()</td>
-          <td>Rollback transaction</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Connection Interface Method</th>
+					<th>Function</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>void setAutoCommit(false)</td>
+					<td>Disable automatic transaction commit (switch to manual)</td>
+			</tr>
+			<tr>
+					<td>void commit()</td>
+					<td>Commit transaction</td>
+			</tr>
+			<tr>
+					<td>void rollback()</td>
+					<td>Rollback transaction</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>Transaction opening notes</p>
 <p>To ensure all operations occur within one transaction, the connection used must be the same; the service layer&rsquo;s transaction connection must match the DAO layer&rsquo;s database connection.</p>
@@ -1143,30 +1143,30 @@
 </h2><p>Based on ThreadLocal&rsquo;s internal structure, we continue analyzing its core method source code for deeper understanding of its operational principles.
 Besides constructors, ThreadLocal exposes the following 4 methods</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Method Declaration</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>protected T initialValue()</td>
-          <td>Return initial value of current thread&rsquo;s local variable</td>
-      </tr>
-      <tr>
-          <td>public void set(T value)</td>
-          <td>Return current thread&rsquo;s bound local variable</td>
-      </tr>
-      <tr>
-          <td>public T get()</td>
-          <td>Get current thread&rsquo;s bound local variable</td>
-      </tr>
-      <tr>
-          <td>public void remove()</td>
-          <td>Remove current thread&rsquo;s bound local variable</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Method Declaration</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>protected T initialValue()</td>
+					<td>Return initial value of current thread&rsquo;s local variable</td>
+			</tr>
+			<tr>
+					<td>public void set(T value)</td>
+					<td>Return current thread&rsquo;s bound local variable</td>
+			</tr>
+			<tr>
+					<td>public T get()</td>
+					<td>Get current thread&rsquo;s bound local variable</td>
+			</tr>
+			<tr>
+					<td>public void remove()</td>
+					<td>Remove current thread&rsquo;s bound local variable</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>Below is detailed source code analysis of these 4 methods (ThreadLocalMap section temporarily omitted for clarity, to be detailed in next knowledge point)</p>
 <h3 id="set-method">set Method

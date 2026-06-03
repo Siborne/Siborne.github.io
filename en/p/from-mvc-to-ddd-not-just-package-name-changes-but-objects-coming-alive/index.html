@@ -631,40 +631,40 @@
 <p><strong>Controller $\rightarrow$ Application Service $\rightarrow$ Domain Model $\rightarrow$ Repository (Impl $\rightarrow$ Mapper)</strong></p>
 <p>For easier understanding, let&rsquo;s look at this comparison table:</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>Layer</strong></th>
-          <th><strong>DDD Naming</strong></th>
-          <th><strong>MVC Correspondence</strong></th>
-          <th><strong>Enhanced Responsibility</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Interface</strong></td>
-          <td>Interfaces</td>
-          <td>Controller</td>
-          <td>Only responsible for protocol conversion (REST/JSON), no business logic.</td>
-      </tr>
-      <tr>
-          <td><strong>Application</strong></td>
-          <td>Application</td>
-          <td>Service (Light)</td>
-          <td><strong>Conductor:</strong> No <code>if-else</code> logic, only orchestrates domain objects to work.</td>
-      </tr>
-      <tr>
-          <td><strong>Domain</strong></td>
-          <td><strong>Domain</strong></td>
-          <td><strong>Entity (Heavy)</strong></td>
-          <td><strong>Core:</strong> Contains business rules, data and logic coexist.</td>
-      </tr>
-      <tr>
-          <td><strong>Infrastructure</strong></td>
-          <td>Infrastructure</td>
-          <td>DAO / Mapper</td>
-          <td><strong>Plugin-style:</strong> Shields database details. Repository is interface, Mapper is implementation.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Layer</strong></th>
+					<th><strong>DDD Naming</strong></th>
+					<th><strong>MVC Correspondence</strong></th>
+					<th><strong>Enhanced Responsibility</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Interface</strong></td>
+					<td>Interfaces</td>
+					<td>Controller</td>
+					<td>Only responsible for protocol conversion (REST/JSON), no business logic.</td>
+			</tr>
+			<tr>
+					<td><strong>Application</strong></td>
+					<td>Application</td>
+					<td>Service (Light)</td>
+					<td><strong>Conductor:</strong> No <code>if-else</code> logic, only orchestrates domain objects to work.</td>
+			</tr>
+			<tr>
+					<td><strong>Domain</strong></td>
+					<td><strong>Domain</strong></td>
+					<td><strong>Entity (Heavy)</strong></td>
+					<td><strong>Core:</strong> Contains business rules, data and logic coexist.</td>
+			</tr>
+			<tr>
+					<td><strong>Infrastructure</strong></td>
+					<td>Infrastructure</td>
+					<td>DAO / Mapper</td>
+					<td><strong>Plugin-style:</strong> Shields database details. Repository is interface, Mapper is implementation.</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="3-why-ddd-has-more-packages-the-truth-about-decoupling">3. Why DDD Has More Packages? (The Truth About Decoupling)
 </h3><p>You&rsquo;ll notice DDD introduces <code>ApplicationService</code>, <code>Domain Model</code>, <code>Repository</code>, etc. This seems cumbersome, but actually achieves <strong>two-level core decoupling</strong>:</p>
@@ -754,38 +754,38 @@ You absolutely cannot call <code>OrderItemMapper</code> directly in Controller t
 </blockquote>
 <h4 id="4-summary-comparison">4. Summary Comparison
 </h4><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>Model Type</strong></th>
-          <th><strong>Has Unique ID</strong></th>
-          <th><strong>When Attributes Identical</strong></th>
-          <th><strong>Modification Method</strong></th>
-          <th><strong>Example</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Entity</strong></td>
-          <td>Yes</td>
-          <td>Still two independent objects</td>
-          <td>Modify attributes via methods</td>
-          <td>User, Product</td>
-      </tr>
-      <tr>
-          <td><strong>Value Object</strong></td>
-          <td>No</td>
-          <td>Considered same object</td>
-          <td>Complete replacement (immutable)</td>
-          <td>Money, Address</td>
-      </tr>
-      <tr>
-          <td><strong>Aggregate Root</strong></td>
-          <td>Yes</td>
-          <td>(Same as Entity)</td>
-          <td>Coordinates all internal members</td>
-          <td>Order, Forum Topic</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Model Type</strong></th>
+					<th><strong>Has Unique ID</strong></th>
+					<th><strong>When Attributes Identical</strong></th>
+					<th><strong>Modification Method</strong></th>
+					<th><strong>Example</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Entity</strong></td>
+					<td>Yes</td>
+					<td>Still two independent objects</td>
+					<td>Modify attributes via methods</td>
+					<td>User, Product</td>
+			</tr>
+			<tr>
+					<td><strong>Value Object</strong></td>
+					<td>No</td>
+					<td>Considered same object</td>
+					<td>Complete replacement (immutable)</td>
+					<td>Money, Address</td>
+			</tr>
+			<tr>
+					<td><strong>Aggregate Root</strong></td>
+					<td>Yes</td>
+					<td>(Same as Entity)</td>
+					<td>Coordinates all internal members</td>
+					<td>Order, Forum Topic</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="5-model-transformation-each-layer-has-its-own-face">5. Model Transformation: Each Layer Has Its Own &ldquo;Face&rdquo;
 </h3><p><img src="https://img.siborne.top/2026/05/402fb87ecbd0b469968565310cfceb8e.png"

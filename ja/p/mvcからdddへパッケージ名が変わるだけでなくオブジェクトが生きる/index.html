@@ -631,40 +631,40 @@
 <p><strong>Controller $\rightarrow$ Application Service $\rightarrow$ Domain Model $\rightarrow$ Repository (Impl $\rightarrow$ Mapper)</strong></p>
 <p>理解しやすくするために、この比較表を見てみましょう：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>レイヤー</strong></th>
-          <th><strong>DDD命名</strong></th>
-          <th><strong>MVC対応</strong></th>
-          <th><strong>強化された責任</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>インターフェース</strong></td>
-          <td>Interfaces</td>
-          <td>Controller</td>
-          <td>プロトコル変換（REST/JSON）のみ担当し、ビジネスロジックはなし。</td>
-      </tr>
-      <tr>
-          <td><strong>アプリケーション</strong></td>
-          <td>Application</td>
-          <td>Service（軽量）</td>
-          <td><strong>指揮官：</strong> <code>if-else</code>ロジックはなく、ドメインオブジェクトの動作を調整するのみ。</td>
-      </tr>
-      <tr>
-          <td><strong>ドメイン</strong></td>
-          <td><strong>Domain</strong></td>
-          <td><strong>Entity（重厚）</strong></td>
-          <td><strong>コア：</strong> ビジネスルールを含み、データとロジックが共存。</td>
-      </tr>
-      <tr>
-          <td><strong>インフラストラクチャ</strong></td>
-          <td>Infrastructure</td>
-          <td>DAO / Mapper</td>
-          <td><strong>プラグイン型：</strong> データベース詳細を隠蔽。Repositoryはインターフェース、Mapperは実装。</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>レイヤー</strong></th>
+					<th><strong>DDD命名</strong></th>
+					<th><strong>MVC対応</strong></th>
+					<th><strong>強化された責任</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>インターフェース</strong></td>
+					<td>Interfaces</td>
+					<td>Controller</td>
+					<td>プロトコル変換（REST/JSON）のみ担当し、ビジネスロジックはなし。</td>
+			</tr>
+			<tr>
+					<td><strong>アプリケーション</strong></td>
+					<td>Application</td>
+					<td>Service（軽量）</td>
+					<td><strong>指揮官：</strong> <code>if-else</code>ロジックはなく、ドメインオブジェクトの動作を調整するのみ。</td>
+			</tr>
+			<tr>
+					<td><strong>ドメイン</strong></td>
+					<td><strong>Domain</strong></td>
+					<td><strong>Entity（重厚）</strong></td>
+					<td><strong>コア：</strong> ビジネスルールを含み、データとロジックが共存。</td>
+			</tr>
+			<tr>
+					<td><strong>インフラストラクチャ</strong></td>
+					<td>Infrastructure</td>
+					<td>DAO / Mapper</td>
+					<td><strong>プラグイン型：</strong> データベース詳細を隠蔽。Repositoryはインターフェース、Mapperは実装。</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="3-なぜdddのパッケージが増えるのか疎通化の真実">3. なぜDDDのパッケージが増えるのか？（疎通化の真実）
 </h3><p>DDDが<code>ApplicationService</code>、<code>Domain Model</code>、<code>Repository</code>などを導入していることに気づくでしょう。これは一見煩雑に見えますが、実は<strong>2レベルのコア疎通化</strong>を実現しています：</p>
@@ -754,38 +754,38 @@ Controllerで<code>OrderItemMapper</code>を直接呼び出して特定の商品
 </blockquote>
 <h4 id="4-まとめ比較">4. まとめ比較
 </h4><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>モデルタイプ</strong></th>
-          <th><strong>ユニークIDあり</strong></th>
-          <th><strong>属性が同じ場合</strong></th>
-          <th><strong>変更方法</strong></th>
-          <th><strong>例</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>エンティティ</strong></td>
-          <td>はい</td>
-          <td>依然として2つの独立したオブジェクト</td>
-          <td>メソッドで属性を変更</td>
-          <td>User, Product</td>
-      </tr>
-      <tr>
-          <td><strong>値オブジェクト</strong></td>
-          <td>いいえ</td>
-          <td>同じオブジェクトと見なされる</td>
-          <td>完全な置き換え（イミュータブル）</td>
-          <td>Money, Address</td>
-      </tr>
-      <tr>
-          <td><strong>アグリゲートルート</strong></td>
-          <td>はい</td>
-          <td>（エンティティと同じ）</td>
-          <td>内部メンバーすべてを調整</td>
-          <td>Order, Forum Topic</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>モデルタイプ</strong></th>
+					<th><strong>ユニークIDあり</strong></th>
+					<th><strong>属性が同じ場合</strong></th>
+					<th><strong>変更方法</strong></th>
+					<th><strong>例</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>エンティティ</strong></td>
+					<td>はい</td>
+					<td>依然として2つの独立したオブジェクト</td>
+					<td>メソッドで属性を変更</td>
+					<td>User, Product</td>
+			</tr>
+			<tr>
+					<td><strong>値オブジェクト</strong></td>
+					<td>いいえ</td>
+					<td>同じオブジェクトと見なされる</td>
+					<td>完全な置き換え（イミュータブル）</td>
+					<td>Money, Address</td>
+			</tr>
+			<tr>
+					<td><strong>アグリゲートルート</strong></td>
+					<td>はい</td>
+					<td>（エンティティと同じ）</td>
+					<td>内部メンバーすべてを調整</td>
+					<td>Order, Forum Topic</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="5-モデル変換各レイヤー独自の顔">5. モデル変換：各レイヤー独自の「顔」
 </h3><p><img src="https://img.siborne.top/2026/05/402fb87ecbd0b469968565310cfceb8e.png"

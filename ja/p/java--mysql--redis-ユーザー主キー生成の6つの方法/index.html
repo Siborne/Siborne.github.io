@@ -952,73 +952,73 @@
 </div><hr>
 <h2 id="6つの方法の比較まとめ">6つの方法の比較まとめ
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>方法</th>
-          <th>順序あり</th>
-          <th>可読</th>
-          <th>パフォーマンス</th>
-          <th>分散対応</th>
-          <th>複雑さ</th>
-          <th>推奨シーン</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>MySQL AUTO_INCREMENT</strong></td>
-          <td>はい</td>
-          <td>はい</td>
-          <td>中（DB依存）</td>
-          <td>シャーディング困難</td>
-          <td>低</td>
-          <td>単体小規模プロジェクト</td>
-      </tr>
-      <tr>
-          <td><strong>UUID</strong></td>
-          <td>いいえ</td>
-          <td>いいえ</td>
-          <td>高</td>
-          <td>はい</td>
-          <td>低</td>
-          <td>Token、一時 ID</td>
-      </tr>
-      <tr>
-          <td><strong>Redis INCR</strong></td>
-          <td>はい</td>
-          <td>はい</td>
-          <td>非常に高い</td>
-          <td>はい</td>
-          <td>低</td>
-          <td>中小システム、Redis あり</td>
-      </tr>
-      <tr>
-          <td><strong>Snowflake（純粋）</strong></td>
-          <td>トレンド増加</td>
-          <td>はい</td>
-          <td>非常に高い</td>
-          <td>はい</td>
-          <td>中</td>
-          <td>高並行分散</td>
-      </tr>
-      <tr>
-          <td><strong>Snowflake + Redis</strong></td>
-          <td>トレンド増加</td>
-          <td>はい</td>
-          <td>高</td>
-          <td>強整合性</td>
-          <td>中高</td>
-          <td>金融、決済</td>
-      </tr>
-      <tr>
-          <td><strong>タイムスタンプ+Redis シーケンス</strong></td>
-          <td>トレンド増加</td>
-          <td>はい</td>
-          <td>高</td>
-          <td>はい</td>
-          <td>低</td>
-          <td>カスタム ID フォーマット</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方法</th>
+					<th>順序あり</th>
+					<th>可読</th>
+					<th>パフォーマンス</th>
+					<th>分散対応</th>
+					<th>複雑さ</th>
+					<th>推奨シーン</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>MySQL AUTO_INCREMENT</strong></td>
+					<td>はい</td>
+					<td>はい</td>
+					<td>中（DB依存）</td>
+					<td>シャーディング困難</td>
+					<td>低</td>
+					<td>単体小規模プロジェクト</td>
+			</tr>
+			<tr>
+					<td><strong>UUID</strong></td>
+					<td>いいえ</td>
+					<td>いいえ</td>
+					<td>高</td>
+					<td>はい</td>
+					<td>低</td>
+					<td>Token、一時 ID</td>
+			</tr>
+			<tr>
+					<td><strong>Redis INCR</strong></td>
+					<td>はい</td>
+					<td>はい</td>
+					<td>非常に高い</td>
+					<td>はい</td>
+					<td>低</td>
+					<td>中小システム、Redis あり</td>
+			</tr>
+			<tr>
+					<td><strong>Snowflake（純粋）</strong></td>
+					<td>トレンド増加</td>
+					<td>はい</td>
+					<td>非常に高い</td>
+					<td>はい</td>
+					<td>中</td>
+					<td>高並行分散</td>
+			</tr>
+			<tr>
+					<td><strong>Snowflake + Redis</strong></td>
+					<td>トレンド増加</td>
+					<td>はい</td>
+					<td>高</td>
+					<td>強整合性</td>
+					<td>中高</td>
+					<td>金融、決済</td>
+			</tr>
+			<tr>
+					<td><strong>タイムスタンプ+Redis シーケンス</strong></td>
+					<td>トレンド増加</td>
+					<td>はい</td>
+					<td>高</td>
+					<td>はい</td>
+					<td>低</td>
+					<td>カスタム ID フォーマット</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="最後のアドバイス">最後のアドバイス

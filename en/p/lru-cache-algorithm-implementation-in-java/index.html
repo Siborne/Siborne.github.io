@@ -605,22 +605,22 @@
 <h3 id="ii-data-structure-selection">II. Data Structure Selection
 </h3><p>To achieve O(1) operations, two structures must be combined:</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Data Structure</th>
-          <th>Purpose</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>HashMap</strong></td>
-          <td>Quickly look up the corresponding node by <code>key</code> (O(1))</td>
-      </tr>
-      <tr>
-          <td><strong>Doubly Linked List</strong></td>
-          <td>Maintain access order — tail is most recently used, head is least recently used</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Data Structure</th>
+					<th>Purpose</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>HashMap</strong></td>
+					<td>Quickly look up the corresponding node by <code>key</code> (O(1))</td>
+			</tr>
+			<tr>
+					<td><strong>Doubly Linked List</strong></td>
+					<td>Maintain access order — tail is most recently used, head is least recently used</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>A doubly linked list supports O(1) deletion of intermediate nodes (because of the <code>last</code> pointer).</p>
@@ -649,26 +649,26 @@
 <h4 id="2-inner-class-doublelist-doubly-linked-list-wrapper">2. Inner Class <code>DoubleList</code> (Doubly Linked List Wrapper)
 </h4><p>Provides three core operations:</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Method</th>
-          <th>Function</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>addNode(node)</code></td>
-          <td>Add a new node to the <strong>tail</strong> (indicating most recently used)</td>
-      </tr>
-      <tr>
-          <td><code>moveNodeToTail(node)</code></td>
-          <td>Move an existing node to the tail (called on access/update)</td>
-      </tr>
-      <tr>
-          <td><code>removeHead()</code></td>
-          <td>Remove the <strong>head node</strong> (least recently used) and return it</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Method</th>
+					<th>Function</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>addNode(node)</code></td>
+					<td>Add a new node to the <strong>tail</strong> (indicating most recently used)</td>
+			</tr>
+			<tr>
+					<td><code>moveNodeToTail(node)</code></td>
+					<td>Move an existing node to the tail (called on access/update)</td>
+			</tr>
+			<tr>
+					<td><code>removeHead()</code></td>
+					<td>Remove the <strong>head node</strong> (least recently used) and return it</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>Edge cases to watch for:</p>

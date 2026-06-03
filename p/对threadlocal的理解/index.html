@@ -635,30 +635,30 @@
 <h2 id="基本使用">基本使用
 </h2><p>在介绍Thread使用之前，我们首先认识几个Thread的常见方法</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>方法声明</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>ThreadLocal()</td>
-          <td>创建ThreadLocal对象</td>
-      </tr>
-      <tr>
-          <td>public void set(T value)</td>
-          <td>设置当前线程绑定的局部变量</td>
-      </tr>
-      <tr>
-          <td>public T get()</td>
-          <td>获取当前线程绑定的局部变量</td>
-      </tr>
-      <tr>
-          <td>public void remove()</td>
-          <td>移除当前线程绑定的局部变量</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方法声明</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ThreadLocal()</td>
+					<td>创建ThreadLocal对象</td>
+			</tr>
+			<tr>
+					<td>public void set(T value)</td>
+					<td>设置当前线程绑定的局部变量</td>
+			</tr>
+			<tr>
+					<td>public T get()</td>
+					<td>获取当前线程绑定的局部变量</td>
+			</tr>
+			<tr>
+					<td>public void remove()</td>
+					<td>移除当前线程绑定的局部变量</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="使用案例">使用案例
 </h2><p>我们来看下面这个案例，感受一下ThreadLocal线程隔离的特点</p>
@@ -920,25 +920,25 @@
 </div><h3 id="threadlocal与synchronized的区别">ThreadLocal与Synchronized的区别
 </h3><p>虽然ThreadLocal模式与Synchronized关键字都用于处理多线程并发访问变量的问题，不过两者处理问题的角度和思路不同。</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th></th>
-          <th>Synchronized</th>
-          <th>ThreadLocal</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>原理</td>
-          <td>同步机制采用以时间换空间的方式，只提供了一份变量，让不同的线程排队访问</td>
-          <td>ThreadLocal采用以空间换时间的概念，为每个线程都提供一份变量副本，从而实现同时访问而互不干扰</td>
-      </tr>
-      <tr>
-          <td>侧重点</td>
-          <td>多个线程之间访问资源的同步</td>
-          <td>多线程中让每个线程之间的数据相互隔离</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th></th>
+					<th>Synchronized</th>
+					<th>ThreadLocal</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>原理</td>
+					<td>同步机制采用以时间换空间的方式，只提供了一份变量，让不同的线程排队访问</td>
+					<td>ThreadLocal采用以空间换时间的概念，为每个线程都提供一份变量副本，从而实现同时访问而互不干扰</td>
+			</tr>
+			<tr>
+					<td>侧重点</td>
+					<td>多个线程之间访问资源的同步</td>
+					<td>多线程中让每个线程之间的数据相互隔离</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>总结：在刚刚的案例中，虽然使用ThreadLocal和Synchronized都能解决问题，但是使用ThreadLocal更为合适，因为这样可以使程序拥有更高的并发性。</p>
 <h2 id="运用场景">运用场景
@@ -1000,26 +1000,26 @@
 </div><p>所以这里就需要操作事务，来保证转入和转出具备原子性，要么成功，要么失败。</p>
 <p>JDBC中关于事务操作的API</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Connection接口的方法</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>void setAutoCommit(false)</td>
-          <td>禁用事务自动提交（改为手动提交）</td>
-      </tr>
-      <tr>
-          <td>void commit()</td>
-          <td>提交事务</td>
-      </tr>
-      <tr>
-          <td>void rollbakc()</td>
-          <td>回滚事务</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Connection接口的方法</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>void setAutoCommit(false)</td>
+					<td>禁用事务自动提交（改为手动提交）</td>
+			</tr>
+			<tr>
+					<td>void commit()</td>
+					<td>提交事务</td>
+			</tr>
+			<tr>
+					<td>void rollbakc()</td>
+					<td>回滚事务</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>开启事务的注意点</p>
 <p>为了保证所有操作在一个事务中，案例中使用的连接必须是同一个；service层开启事务的connection需要跟dao层访问数据库的connection保持一致</p>
@@ -1143,30 +1143,30 @@
 </h2><p>基于ThreadLocal的内部结构，我们继续分析它的核心方法源码，更深入的了解其操作原理。
 除了构造方法之外，ThreadLocal对外暴露的方法有以下4个</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>方法声明</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>protected T initialValue()</td>
-          <td>返回当前线程局部变量的初始值</td>
-      </tr>
-      <tr>
-          <td>public void set(T value)</td>
-          <td>返回当前线程绑定的局部变量</td>
-      </tr>
-      <tr>
-          <td>public T get()</td>
-          <td>获取当前线程绑定的局部变量</td>
-      </tr>
-      <tr>
-          <td>public void remove()</td>
-          <td>移除当前线程绑定的局部变量</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方法声明</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>protected T initialValue()</td>
+					<td>返回当前线程局部变量的初始值</td>
+			</tr>
+			<tr>
+					<td>public void set(T value)</td>
+					<td>返回当前线程绑定的局部变量</td>
+			</tr>
+			<tr>
+					<td>public T get()</td>
+					<td>获取当前线程绑定的局部变量</td>
+			</tr>
+			<tr>
+					<td>public void remove()</td>
+					<td>移除当前线程绑定的局部变量</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>以下是这4个方法的详细源码分析（为了保证思路清晰，ThreadLocalMap部分暂时不展开，下一个知识点详解）</p>
 <h3 id="set方法">set方法

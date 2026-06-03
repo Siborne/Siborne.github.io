@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Starting from Stanford's Beyond LLM course, this article systematically covers the full tech stack from Prompt Engineering, RAG, and Fine-Tuning to Agentic Workflow and Multi-Agent — helping you build a complete cognitive framework for AI engineering.">
+<title>Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building</title>
+
+<link rel='canonical' href='https://Siborne.top/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/'>
+
+<link rel="stylesheet" href="/scss/style.min.f169add374573a6d5393fbcd112ed0f3071161116b122a3ecff4c5a0e1eb28aa.css"><meta property='og:title' content="Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building">
+<meta property='og:description' content="Starting from Stanford's Beyond LLM course, this article systematically covers the full tech stack from Prompt Engineering, RAG, and Fine-Tuning to Agentic Workflow and Multi-Agent — helping you build a complete cognitive framework for AI engineering.">
+<meta property='og:url' content='https://Siborne.top/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI' /><meta property='article:tag' content='LLM' /><meta property='article:tag' content='Prompt Engineering' /><meta property='article:tag' content='RAG' /><meta property='article:tag' content='Agent' /><meta property='article:tag' content='Multi-Agent' /><meta property='article:tag' content='MCP' /><meta property='article:tag' content='Fine-Tuning' /><meta property='article:tag' content='Agentic Workflow' /><meta property='article:published_time' content='2026-06-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-06-04T01:41:49&#43;08:00'/><meta property='og:image' content='https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png' />
+<meta name="twitter:title" content="Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building">
+<meta name="twitter:description" content="Starting from Stanford's Beyond LLM course, this article systematically covers the full tech stack from Prompt Engineering, RAG, and Fine-Tuning to Agentic Workflow and Multi-Agent — helping you build a complete cognitive framework for AI engineering."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar4_hu_c86b86ec6639ffee.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; Enthusiast
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent Architect &amp; Full-Stack Dev
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 Curious Student · Future Builder
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    Building intelligent agents &#43; scalable apps. Blending creativity with AI efficiency. 🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/projects/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder-open"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2" /></svg>
+                
+                <span>Projects</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" selected>English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" >繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" >日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#key-takeaways">Key Takeaways</a></li>
+    <li><a href="#part-1-the-ai-builders-dilemma-and-vertical-axis-thinking">Part 1: The AI Builder&rsquo;s Dilemma and Vertical-Axis Thinking</a>
+      <ol>
+        <li><a href="#what-is-llm-what-are-its-limitations">What Is LLM? What Are Its Limitations?</a></li>
+      </ol>
+    </li>
+    <li><a href="#part-2-three-tools-for-strengthening-a-single-llm">Part 2: Three Tools for Strengthening a Single LLM</a>
+      <ol>
+        <li><a href="#prompt-engineering-every-engineers-basic-skill">Prompt Engineering: Every Engineer&rsquo;s Basic Skill</a>
+          <ol>
+            <li><a href="#the-jagged-frontier-falling-asleep-and-the-centaur-metaphor">The Jagged Frontier, Falling Asleep, and the Centaur Metaphor</a></li>
+            <li><a href="#prompt-chaining-the-most-important-yet-most-undervalued-technique">Prompt Chaining: The Most Important yet Most Undervalued Technique</a></li>
+          </ol>
+        </li>
+        <li><a href="#fine-tuning-avoid-if-possible">Fine-Tuning: Avoid If Possible</a></li>
+        <li><a href="#rag-the-standard-solution-for-connecting-llms-to-private-knowledge">RAG: The Standard Solution for Connecting LLMs to Private Knowledge</a>
+          <ol>
+            <li><a href="#rag-workflow">RAG Workflow</a></li>
+            <li><a href="#chunking-and-multi-level-retrieval">Chunking and Multi-Level Retrieval</a></li>
+            <li><a href="#will-rag-be-replaced-by-ultra-long-context-windows">Will RAG Be Replaced by Ultra-Long Context Windows?</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#part-3-agentic-workflow--from-model-to-system">Part 3: Agentic Workflow — From Model to System</a>
+      <ol>
+        <li><a href="#what-is-agentic-workflow">What Is Agentic Workflow?</a></li>
+        <li><a href="#four-engineering-mindset-shifts">Four Engineering Mindset Shifts</a></li>
+        <li><a href="#three-core-elements-of-building-an-agent">Three Core Elements of Building an Agent</a></li>
+        <li><a href="#three-levels-of-agent-autonomy">Three Levels of Agent Autonomy</a></li>
+        <li><a href="#mcp-industrial-grade-tool-integration-standard">MCP: Industrial-Grade Tool Integration Standard</a></li>
+      </ol>
+    </li>
+    <li><a href="#part-4-evaluation--the-lifeline-of-production-systems">Part 4: Evaluation — The Lifeline of Production Systems</a>
+      <ol>
+        <li><a href="#three-dimensional-evaluation-framework">Three-Dimensional Evaluation Framework</a></li>
+        <li><a href="#llm-as-judge-using-ai-to-evaluate-ai">LLM-as-Judge: Using AI to Evaluate AI</a></li>
+        <li><a href="#hands-on-travel-agent-politeness-example">Hands-On: Travel Agent &ldquo;Politeness&rdquo; Example</a></li>
+      </ol>
+    </li>
+    <li><a href="#part-5-case-study--building-a-customer-service-ai-agent">Part 5: Case Study — Building a Customer Service AI Agent</a>
+      <ol>
+        <li><a href="#step-1-task-decomposition">Step 1: Task Decomposition</a></li>
+        <li><a href="#step-2-choose-tools-for-each-step">Step 2: Choose Tools for Each Step</a></li>
+        <li><a href="#step-3-build-evals">Step 3: Build Evals</a></li>
+      </ol>
+    </li>
+    <li><a href="#part-6-multi-agent--treating-agents-as-tools">Part 6: Multi-Agent — Treating Agents as Tools</a>
+      <ol>
+        <li><a href="#why-multi-agent">Why Multi-Agent?</a></li>
+        <li><a href="#smart-home-multi-agent-example">Smart Home Multi-Agent Example</a></li>
+      </ol>
+    </li>
+    <li><a href="#part-7-summary--your-ai-learning-roadmap">Part 7: Summary — Your AI Learning Roadmap</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" alt="Featured image of post Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-06-03T00:00:00Z'>2026-06-03</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    Jun 04, 2026 01:41 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                4859字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        Starting from Stanford&#39;s Beyond LLM course, this article systematically covers the full tech stack from Prompt Engineering, RAG, and Fine-Tuning to Agentic Workflow and Multi-Agent — helping you build a complete cognitive framework for AI engineering.
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/en/categories/ai/" >
+                AI
+            </a>
+        
+            <a href="/en/categories/computer-tools/" >
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/" class="link">简体中文</a>
+                
+                    <a href="https://Siborne.top/zh-tw/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/" class="link">繁體中文</a>
+                
+                    <a href="https://Siborne.top/ja/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/" class="link">日本語</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="key-takeaways">Key Takeaways
+</h2><ul>
+<li><strong>Horizontal vs Vertical Axis</strong>: Upgrading the base model is OpenAI and Anthropic&rsquo;s job. Ordinary developers should focus on the vertical axis — using engineering techniques to enhance existing LLM capabilities, i.e., <strong>Augmenting LLM</strong>.</li>
+<li><strong>Three Tools for Strengthening a Single LLM</strong>: Prompt Engineering (zero cost, use first) → RAG (fill knowledge gaps) → Fine-Tuning (last resort).</li>
+<li><strong>From Model to System</strong>: Agentic Workflow upgrades LLM from &ldquo;a model that answers questions&rdquo; to &ldquo;a system that actually operates and delivers value.&rdquo;</li>
+<li><strong>Mindset Shift</strong>: Switch from deterministic engineering thinking to fuzzy engineering thinking — you are the manager, AI is the executor.</li>
+<li><strong>Evaluation is the Lifeline</strong>: Without a robust evaluation system, the risks of deploying an Agent are uncontrollable.</li>
+<li><strong>The Essence of Multi-Agent</strong>: Treat Agents as Tools, just like calling APIs.</li>
+</ul>
+<hr>
+<h2 id="part-1-the-ai-builders-dilemma-and-vertical-axis-thinking">Part 1: The AI Builder&rsquo;s Dilemma and Vertical-Axis Thinking
+</h2><p>If you follow the AI space, the hottest roles in the past two years have been <strong>AI Engineer</strong> and <strong>AI Builder</strong>. The stronger large language models get, the more valuable these people become — they help companies build internal tools, optimize operations, and many have even turned their ideas into products and started their own companies.</p>
+<p>But while many want to learn AI, most don&rsquo;t know where to start. Resources out there are either too fragmented or too dense, and after reading them you still don&rsquo;t know what you&rsquo;ve learned or where to go next.</p>
+<p>Stanford offers a course called <strong>Beyond LLM</strong>, which I believe is the closest thing to an answer right now. It starts from the fundamentals of large language models and extends all the way to Prompt Engineering, RAG, Fine-Tuning, Agentic Workflow, and Multi-Agent frameworks. This article distills the core content into a single read — after finishing, you&rsquo;ll have a complete cognitive framework for AI applications in business.</p>
+<h3 id="what-is-llm-what-are-its-limitations">What Is LLM? What Are Its Limitations?
+</h3><p><strong>LLM (Large Language Model)</strong> is a massive neural network based on the Transformer architecture. Through training on vast amounts of text data, it has learned to predict the probability distribution of the next token. Essentially, it is an extremely complex <strong>autoregressive probability predictor</strong>.</p>
+<p>There are two paths for an LLM to become stronger:</p>
+<ul>
+<li><strong>Horizontal Axis</strong>: Switch to a more powerful <strong>Base Model</strong>, like upgrading from GPT-4 to GPT-5. But this path is walked by OpenAI and Anthropic — ordinary people lack the ability and funding to train their own large models.</li>
+<li><strong>Vertical Axis</strong>: Layer various engineering techniques on top of existing LLMs, i.e., <strong>Augmenting LLM</strong> — finding ways to enhance capabilities on top of existing base models.</li>
+</ul>
+<p>This vertical axis is the core focus of this entire article.</p>
+<blockquote>
+<p><strong>Learning Tip</strong>: If you&rsquo;re a beginner, invest 100% of your energy in the vertical axis. Horizontal-axis news — today GPT-5 launches, tomorrow Claude 4 comes out — treat it as news. What truly gives you differentiated competitiveness in the workplace is: while others can only chat with ChatGPT, you can build an automated customer service ticket processing system with RAG + Agentic Workflow.</p>
+</blockquote>
+<p>If you only know how to use a Base Model, you&rsquo;ll inevitably hit a wall in business scenarios. When ChatGPT first came out, it had no internet access and couldn&rsquo;t call tools — at best it was a clever Q&amp;A bot that couldn&rsquo;t actually accomplish anything.</p>
+<p>Stanford professors have identified several common limitations of Base Models:</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Limitation</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Lack of Domain Knowledge</strong></td>
+					<td>Your company data, internal docs, product specs — the Base Model knows none of it</td>
+			</tr>
+			<tr>
+					<td><strong>Outdated Information</strong></td>
+					<td>Models can&rsquo;t be retrained every few months; new terms, events, and companies are unknown to them</td>
+			</tr>
+			<tr>
+					<td><strong>Uncontrollable Output</strong></td>
+					<td>LLM output is probabilistic — running the same prompt twice may yield different results. Fine for chat, but potentially catastrophic in production</td>
+			</tr>
+			<tr>
+					<td><strong>Long-Context Degradation</strong></td>
+					<td>Model performance drops significantly when the context is too long, exhibiting the &ldquo;Lost in the Middle&rdquo; phenomenon — even if information is in the context, the model may not find it</td>
+			</tr>
+	</tbody>
+</table></div>
+<blockquote>
+<p><strong>Key Insight</strong>: These four limitations don&rsquo;t exist independently — they amplify each other. For instance, &ldquo;outdated information&rdquo; combined with &ldquo;uncontrollable output&rdquo; means the model may confidently state outdated false information that you can&rsquo;t easily spot. Understanding these four limitations is the underlying motivation for learning RAG and Agentic Workflow — each technology essentially addresses one or more of them.</p>
+</blockquote>
+<p><img src="https://img.siborne.top/2026/06/27b3ed750fdf78a479fc1b2b8134a01b.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Four Limitations of Base Models"
+	
+	
+></p>
+<p>Building AI products requires more than just swapping to a stronger Base Model — you need to <strong>push hard on the vertical axis</strong>.</p>
+<p>The first half of this article introduces <strong>three tools for strengthening a single LLM</strong>: Prompt Engineering, Fine-Tuning, and RAG. The second half moves into <strong>system design</strong>, covering Agentic Workflow, Evaluation methods, and Multi-Agent.</p>
+<hr>
+<h2 id="part-2-three-tools-for-strengthening-a-single-llm">Part 2: Three Tools for Strengthening a Single LLM
+</h2><h3 id="prompt-engineering-every-engineers-basic-skill">Prompt Engineering: Every Engineer&rsquo;s Basic Skill
+</h3><p><strong>Prompt Engineering</strong> is the practice of designing and optimizing text instructions fed to an LLM to guide it toward higher-quality, more expected output.</p>
+<p>Stanford professors are blunt: they don&rsquo;t believe &ldquo;Prompt Engineer&rdquo; will become an independent career — because it&rsquo;s a <strong>fundamental skill every engineer should master</strong>, like multiplication tables.</p>
+<h4 id="the-jagged-frontier-falling-asleep-and-the-centaur-metaphor">The Jagged Frontier, Falling Asleep, and the Centaur Metaphor
+</h4><p>Top consulting firm BCG ran a classic experiment: splitting consultants into three groups — no AI, ChatGPT, and ChatGPT + prompt training. Three important phenomena emerged:</p>
+<ol>
+<li>
+<p><strong>The Jagged Frontier</strong>: AI doesn&rsquo;t perform well on all tasks. Some tasks get a significant boost with AI, but others actually suffer. You need to clearly know where this boundary lies.</p>
+</li>
+<li>
+<p><strong>Falling Asleep at the Wheel</strong>: When you don&rsquo;t realize a task falls in AI&rsquo;s weak zone, over-trust it, and deliver the output directly — the result is worse than not using AI at all.</p>
+</li>
+<li>
+<p><strong>Centaurs vs Cyborgs</strong>:</p>
+<ul>
+<li><strong>Centaur Mode</strong>: Delegation-oriented — throw a long prompt at AI to complete an entire briefing while you do other things. Best for <strong>highly repetitive, well-defined流程</strong> tasks.</li>
+<li><strong>Cyborg Mode</strong>: High-frequency collaborative — conversing with the model sentence by sentence. Best for <strong>tasks requiring judgment, creativity, and iterative refinement</strong>.</li>
+</ul>
+</li>
+</ol>
+<p>The key isn&rsquo;t which is better, but <strong>consciously switching between them</strong>. Enterprise automation commonly uses Centaur mode; personal deep collaboration commonly uses Cyborg mode.</p>
+<blockquote>
+<p><strong>Conceptual Link</strong>: Centaur mode is essentially the prototype of Agentic Workflow discussed later — you throw the entire task to a system that decomposes and executes it internally. Cyborg mode is closer to how you use ChatGPT/Claude daily. When you build an Agent system, your role shifts from Cyborg (personally going back and forth) to Centaur (designing the process, letting the system run automatically).</p>
+</blockquote>
+<p><img src="https://img.siborne.top/2026/06/4e7203069f50d46d9d7eb6d841f2a244.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="The Jagged Frontier and Two AI Usage Modes"
+	
+	
+></p>
+<h4 id="prompt-chaining-the-most-important-yet-most-undervalued-technique">Prompt Chaining: The Most Important yet Most Undervalued Technique
+</h4><p>Many think Prompt Engineering is just about formatting — who it&rsquo;s for, what format, what to emphasize. These matter, but the professor points out that the <strong>most commonly used and most important</strong> technique is <strong>Prompt Chaining</strong>.</p>
+<blockquote>
+<p>Note the distinction: <strong>Chain of Thought (CoT)</strong> makes the model think &ldquo;step by step&rdquo;; <strong>Chaining</strong> breaks a complex prompt into multiple independent prompts, feeding one&rsquo;s output to the next.</p>
+</blockquote>
+<p>Example — writing a customer complaint response:</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Approach</th>
+					<th>Method</th>
+					<th>Problem</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Single Prompt</strong></td>
+					<td>&ldquo;Read this complaint, write a professional response&rdquo;</td>
+					<td>Black box — if output is wrong, you don&rsquo;t know what to fix</td>
+			</tr>
+			<tr>
+					<td><strong>Chaining (3 steps)</strong></td>
+					<td>① Extract complaints → ② Draft outline → ③ Write full response</td>
+					<td>Each step can be independently tested and debugged</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>Chaining not only improves model performance but also gives you <strong>Observability</strong> — you can see what the LLM is doing and which step went wrong.</p>
+<blockquote>
+<p><strong>Practical Advice</strong>: In real projects, start with Chaining rather than a single prompt. Even for the simplest requirements, break it into 2-3 steps — you&rsquo;ll find debug efficiency improves at least 3x. Tools like LangChain&rsquo;s LCEL or hand-written Python chaining work well, with core logic under 50 lines of code.</p>
+</blockquote>
+<hr>
+<h3 id="fine-tuning-avoid-if-possible">Fine-Tuning: Avoid If Possible
+</h3><p><strong>Fine-Tuning</strong> refers to further training a pre-trained model&rsquo;s parameters with domain-specific annotated data to improve performance on specific tasks.</p>
+<p>Stanford&rsquo;s position is clear: <strong>avoid it if possible</strong>. Four reasons:</p>
+<ol>
+<li><strong>Requires大量 high-quality annotated data</strong>: Too expensive for most people.</li>
+<li><strong>Prone to Overfitting</strong>: Becomes excellent on your specific task but fails on general questions, losing the Base Model&rsquo;s breadth.</li>
+<li><strong>Poor Timeliness</strong>: You spend two months fine-tuning and deploying; next month a new generation Base Model makes yours obsolete.</li>
+<li><strong>Prompt Engineering usually achieves the same effect</strong>: Far cheaper, and prompts are <strong>Portable</strong> — they mostly still work after switching to a new Base Model, while fine-tuned models don&rsquo;t.</li>
+</ol>
+<p>Of course, fine-tuning is still worthwhile in rare scenarios like <strong>legal, scientific, or other high-precision repetitive output domains</strong>, or when the Base Model genuinely struggles with a specific domain.</p>
+<blockquote>
+<p><strong>Common Misconception</strong>: Many think &ldquo;my industry is specialized, so I need to fine-tune.&rdquo; In reality, for most use cases in healthcare, finance, and law, RAG + well-designed prompts can achieve production-grade quality. The judgment criterion is simple: <strong>only when your task requires the model to learn a &ldquo;new ability&rdquo; (not just &ldquo;new knowledge&rdquo;) is fine-tuning truly necessary.</strong></p>
+</blockquote>
+<p><strong>What if Prompt Engineering can&rsquo;t fit domain-specific knowledge and Fine-Tuning isn&rsquo;t cost-effective? The answer is RAG.</strong></p>
+<hr>
+<h3 id="rag-the-standard-solution-for-connecting-llms-to-private-knowledge">RAG: The Standard Solution for Connecting LLMs to Private Knowledge
+</h3><p><strong>RAG (Retrieval-Augmented Generation)</strong> is one of the most frequently tested topics in AI engineering interviews. Its core idea: <strong>don&rsquo;t stuff knowledge into model parameters; instead, dynamically retrieve relevant content at inference time and include it in the prompt for the model to reference</strong>.</p>
+<p>RAG addresses these pain points:</p>
+<ul>
+<li>Context Window too small / inaccurate retrieval in long contexts</li>
+<li>Information timeliness issues</li>
+<li>Models prone to <strong>Hallucination</strong> (LLMs fabricating non-existent facts)</li>
+</ul>
+<blockquote>
+<p><strong>Key Insight</strong>: Hallucination is the core problem RAG aims to solve, but note — RAG only &ldquo;reduces&rdquo; the probability of hallucination, not &ldquo;eliminates&rdquo; it. Even with information locked in the prompt, the model may still deviate during summarization or reasoning. This is why the Evaluation system discussed later is critical: you need to continuously monitor hallucination rates, not assume everything is fine after deployment.</p>
+</blockquote>
+<h4 id="rag-workflow">RAG Workflow
+</h4><p>Consider a healthcare scenario requiring high accuracy — querying drug side effects:</p>
+<ol>
+<li>
+<p><strong>Vectorize and Store</strong>: Use an <strong>Embedding model</strong> to convert all data into vectors and store them in a <strong>Vector Database</strong>. Semantically similar text is closer in mathematical space.</p>
+</li>
+<li>
+<p><strong>Query Vectorization</strong>: The user&rsquo;s question &ldquo;side effects of Drug A&rdquo; is also converted into a vector using the same embedding model.</p>
+</li>
+<li>
+<p><strong>Semantic Retrieval</strong>: Use distance metrics to find the most relevant document chunks from the vector database. Note: this isn&rsquo;t keyword matching — even if the document says &ldquo;adverse reactions&rdquo; instead of &ldquo;side effects,&rdquo; it can still be found.</p>
+</li>
+<li>
+<p><strong>Assemble Prompt</strong>: Combine retrieved documents + System Prompt + user question into the final prompt, with a template roughly like:</p>
+</li>
+</ol>
+<blockquote>
+<p>Answer the user&rsquo;s question based on the following Documents. If the Documents don&rsquo;t contain the answer, say &ldquo;I don&rsquo;t know.&rdquo;</p>
+</blockquote>
+<p>This design <strong>locks the model within your provided data</strong>, preventing it from free-styling. You can also require the model to cite answer sources (page number, chapter) for user verification.</p>
+<h4 id="chunking-and-multi-level-retrieval">Chunking and Multi-Level Retrieval
+</h4><p>A drug information sheet may be 50 pages long; converting it entirely to vectors would lose details. So <strong>Chunking</strong> is typically needed — splitting documents into fixed-size segments, each vectorized separately.</p>
+<p>More advanced approaches use <strong>multi-level storage</strong>: maintaining vectors for the entire document, each chapter, and each paragraph simultaneously. Retrieval first finds relevant chapters, then drills down to precise paragraphs.</p>
+<blockquote>
+<p><strong>Practical Advice</strong>: Chunking is the most commonly underestimated component in RAG systems. A rule of thumb — <strong>Chunk Size between 256-1024 tokens, with 10%-20% Overlap between adjacent chunks</strong>. Too small means incomplete semantics; too large means reduced retrieval precision. Multi-level retrieval (search chapters first, then paragraphs) shows significant improvement for documents over 50 pages, but complexity increases accordingly — start with single-layer chunking to get the full pipeline working, then optimize.</p>
+</blockquote>
+<h4 id="will-rag-be-replaced-by-ultra-long-context-windows">Will RAG Be Replaced by Ultra-Long Context Windows?
+</h4><p>Some say that once models support ultra-long context windows and compute is cheap enough, the Base Model can read the entire database directly, making RAG obsolete. Stanford&rsquo;s answer:</p>
+<blockquote>
+<p><strong>Theoretically correct, practically wrong.</strong></p>
+</blockquote>
+<p>The reason is very practical — <strong>Latency</strong>. Having the model re-read your entire Google Drive every time you ask a question is unbearable. Just like search engines rely on pre-built indexes for fast lookup rather than re-crawling the entire web for each query.</p>
+<p>Beyond accuracy, RAG also offers <strong>retrieval efficiency and real-time update advantages</strong>, remaining valuable for the foreseeable future.</p>
+<p><img src="https://img.siborne.top/2026/06/65ffbe306c5b38dda210f97aa184f507.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="RAG Workflow Overview"
+	
+	
+></p>
+<hr>
+<h2 id="part-3-agentic-workflow--from-model-to-system">Part 3: Agentic Workflow — From Model to System
+</h2><p>Having covered three tools for strengthening a single model, we now enter the second major section — <strong>from model to system</strong>. No matter how powerful a single LLM is, there are things it can&rsquo;t do. Agentic Workflow transforms AI from &ldquo;a model that answers questions&rdquo; into &ldquo;a system that actually operates and delivers value.&rdquo;</p>
+<h3 id="what-is-agentic-workflow">What Is Agentic Workflow?
+</h3><p>The term <strong>Agentic Workflow</strong> comes from <strong>Andrew Ng</strong> — Coursera co-founder, founding lead of Google Brain, and former Chief Scientist at Baidu. He deliberately avoids the overused &ldquo;AI Agent&rdquo; term, using Agentic Workflow for precise description:</p>
+<blockquote>
+<p>Combining a set of prompts, external tools, memory, and various components into a structured workflow to form a system.</p>
+</blockquote>
+<p>RAG primarily does one thing: <strong>provide external data as reference for the LLM</strong>. An Agent treats RAG as one of many tools, and can also call external APIs, maintain memory, and execute multi-step decisions.</p>
+<p>Example of a return order:</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Scenario</th>
+					<th>What RAG Can Do</th>
+					<th>What an Agent Can Do</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>&ldquo;I want to return this order&rdquo;</td>
+					<td>Gives you the refund policy document</td>
+					<td>Uses RAG to retrieve policy → proactively asks for order ID → uses Tool to look up order → confirms refund → informs 3-5 business days for processing</td>
+			</tr>
+	</tbody>
+</table></div>
+<blockquote>
+<p><strong>RAG is a tool; an Agent is a system that uses RAG as a tool.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Learning Tip</strong>: This sentence is one of the course&rsquo;s most important mental models. Build this thinking habit: every time you see a new technology (e.g., a new vector database, a new Agent framework), first ask yourself — is this a &ldquo;tool&rdquo; or a &ldquo;system&rdquo;? Tools are puzzle pieces; systems are how you assemble the puzzle. Most people are stuck not because they can&rsquo;t use tools, but because they don&rsquo;t know how to assemble them.</p>
+</blockquote>
+<h3 id="four-engineering-mindset-shifts">Four Engineering Mindset Shifts
+</h3><p>To build Agentic Workflow, your engineering mindset needs to flip across four dimensions:</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Dimension</th>
+					<th>Traditional Software</th>
+					<th>Agentic AI Software</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Data</strong></td>
+					<td>Structured data (JSON, databases, forms)</td>
+					<td>Free text, images, audio — no fixed format</td>
+			</tr>
+			<tr>
+					<td><strong>Logic</strong></td>
+					<td><strong>Deterministic</strong>: same input always gives same output</td>
+					<td><strong>Fuzzy</strong>: same input may produce different output</td>
+			</tr>
+			<tr>
+					<td><strong>Architecture Mindset</strong></td>
+					<td>Precisely control every execution path, like writing Microservices</td>
+					<td><strong>Think like a manager</strong>: give AI goals and constraints, let it decide how to execute</td>
+			</tr>
+			<tr>
+					<td><strong>Testing</strong></td>
+					<td>Deterministic testing, run 100 times results are the same</td>
+					<td>Iterative exploratory testing, model is context-sensitive, can&rsquo;t exhaust all cases</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>The first implementation principle follows:</p>
+<blockquote>
+<p><strong>If a problem can be solved deterministically, solve it deterministically. For the remaining fuzzy parts, add Guardrails.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Key Insight</strong>: This principle translates to a more specific rule — <strong>your code should always have if-else wrapping LLM calls, not LLM calls wrapping if-else.</strong> Treat the LLM as a &ldquo;fuzzy reasoning module&rdquo; in your system, protected by deterministic logic (validation, retry, fallback) on the outside. This way, even if the LLM makes mistakes, the system won&rsquo;t crash.</p>
+</blockquote>
+<p>The professor shared his own example: in a skills assessment system, multiple-choice and matching questions are scored deterministically (standard answers exist); but voice + coding hybrid questions have no standard answers, requiring LLM fuzzy scoring. And fuzzy scoring will inevitably have errors — so they designed an <strong>Appeal Feature</strong> in the system, allowing test-takers to submit disputes for human review.</p>
+<p>This is the concrete form of guardrails: <strong>not trying to make AI error-free, but having someone catch it when it errs.</strong></p>
+<blockquote>
+<p><strong>Practical Advice</strong>: Guardrail design has three levels — ① <strong>Input Guardrails</strong>: validate whether user input is legal; ② <strong>Process Guardrails</strong>: monitor whether each Agent step&rsquo;s output matches expected format; ③ <strong>Output Guardrails</strong>: whether the final result is within safe bounds. Implement at least ① and ③; ② is advanced optimization. Also, always have a <strong>Human-in-the-loop</strong> escape hatch.</p>
+</blockquote>
+<h3 id="three-core-elements-of-building-an-agent">Three Core Elements of Building an Agent
+</h3><p>Using &ldquo;Help me book a flight to Paris&rdquo; as an example:</p>
+<p><strong>① Prompts</strong></p>
+<p>How you tell the AI: what its role is, what it can and cannot do.</p>
+<p><strong>② Context Management</strong></p>
+<p>Essentially one thing: <strong>provide the right information to the Agent at the right time</strong>. Including:</p>
+<ul>
+<li><strong>Working Memory</strong>: High-frequency, fast-needed information, like user name, current destination.</li>
+<li><strong>Archival Memory</strong>: Low-frequency, can-be-slower information, like booking records from the past five years, queried when needed.</li>
+</ul>
+<p><strong>③ Tools</strong></p>
+<p>External capabilities the Agent can call, typically two types:</p>
+<ul>
+<li><strong>Action-oriented</strong>: Flight Search, Hotel Booking, Payment</li>
+<li><strong>Query-oriented</strong>: CRM customer data lookup, order record queries</li>
+</ul>
+<h3 id="three-levels-of-agent-autonomy">Three Levels of Agent Autonomy
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Level</th>
+					<th>Description</th>
+					<th>Characteristics</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Level 1: Hardcoded Steps</strong></td>
+					<td>All steps are fixed, executed in order</td>
+					<td>Safe and predictable, but rigid</td>
+			</tr>
+			<tr>
+					<td><strong>Level 2: Hardcoded Tools + Autonomous Steps</strong></td>
+					<td>Give Agent a set of tools, let it decide execution order</td>
+					<td><strong>Most common Production Setup today</strong>, professor&rsquo;s recommended starting point</td>
+			</tr>
+			<tr>
+					<td><strong>Level 3: Fully Autonomous</strong></td>
+					<td>Decides its own steps, even creates its own tools</td>
+					<td>Most capable, highest risk — misjudgment can cause serious losses</td>
+			</tr>
+	</tbody>
+</table></div>
+<blockquote>
+<p><strong>Learning Tip</strong>: If you&rsquo;re building an Agent for the first time, definitely start with Level 2. Level 1 is too rigid and gets stuck on unexpected situations; Level 3 is too dangerous and uncontrollable in production. Level 2&rsquo;s sweet spot is — <strong>you control the &ldquo;tool scope,&rdquo; the Agent controls the &ldquo;execution order.&rdquo;</strong> Once you&rsquo;re fully proficient with Level 2 and have built your Eval system, then consider exploring Level 3.</p>
+</blockquote>
+<p><img src="https://img.siborne.top/2026/06/b757a8b83639ec18d28fa14bba0547af.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Three Levels of Agent Autonomy"
+	
+	
+></p>
+<h3 id="mcp-industrial-grade-tool-integration-standard">MCP: Industrial-Grade Tool Integration Standard
+</h3><p><strong>MCP (Model Context Protocol)</strong> is Anthropic&rsquo;s standardized client-server architecture designed to solve the fragmentation problem in the AI tool ecosystem.</p>
+<p>The traditional approach: you need to write integration logic for each API individually, manually teaching the LLM how to use each API and what parameters to pass.</p>
+<p>MCP&rsquo;s approach: place a protocol layer in between — <strong>the Agent doesn&rsquo;t need to know each API; it only needs to communicate with the MCP Server, which handles the backend services</strong>.</p>
+<blockquote>
+<p>You can think of MCP as a <strong>universal USB-C plug</strong>: previously every country had different outlet specs and you needed a bag of adapters; with MCP, one plug works everywhere.</p>
+</blockquote>
+<blockquote>
+<p><strong>Key Insight</strong>: After its release in late 2024, MCP rapidly became an industry standard. By now (mid-2026), mainstream AI tools (Claude Desktop, Cursor, Continue, etc.) all natively support MCP. This means you only need to write one MCP Server (e.g., connecting to your company&rsquo;s Jira), and all MCP-supporting AI applications can call it directly. Additionally, MCP natively supports Agent-to-Agent Communication — expanded in the Multi-Agent section.</p>
+</blockquote>
+<hr>
+<h2 id="part-4-evaluation--the-lifeline-of-production-systems">Part 4: Evaluation — The Lifeline of Production Systems
+</h2><p>Whether single-Agent or Multi-Agent, before deployment you must answer the same question: <strong>how do you know it actually works?</strong></p>
+<p>The answer is <strong>Evaluation</strong> — it&rsquo;s the lifeline of production-grade Agentic systems.</p>
+<h3 id="three-dimensional-evaluation-framework">Three-Dimensional Evaluation Framework
+</h3><p>Stanford professors provide a complete evaluation framework with three dimensions used in cross-combination:</p>
+<p><strong>Dimension 1: End-to-End vs Component-based</strong></p>
+<ul>
+<li>End-to-End looks at the whole: what score do users give after using it? Are they satisfied?</li>
+<li>Component-based breaks it apart: did this Tool forget to update the email? Was the format correct in the sending step?</li>
+<li>Only looking at the whole tells you what&rsquo;s broken but not why; only looking at components may fix details while the overall experience remains poor. <strong>In practice, do both.</strong></li>
+</ul>
+<p><strong>Dimension 2: Objective vs Subjective</strong></p>
+<ul>
+<li>Objective can be automatically verified: user says Order ID is X, LLM writes Y to the database — write a Python script to auto-compare.</li>
+<li>Subjective has no standard answer: is the tone good? Is the response empathetic? These require human scoring or another LLM as judge.</li>
+</ul>
+<p><strong>Dimension 3: Quantitative vs Qualitative</strong></p>
+<ul>
+<li>Quantitative is numbers: what percentage of address changes succeed? What&rsquo;s the latency at each step?</li>
+<li>Qualitative is feelings: where did hallucinations occur? Where was the tone off? Where did users get stuck? This requires <strong>manual review of each item, no shortcuts</strong>.</li>
+</ul>
+<blockquote>
+<p><strong>Practical Advice</strong>: When initially building an Eval system, the most common mistake is trying to cover all 8 cross-cells from the start. Recommended priority: <strong>① Component × Objective (auto-verify each step&rsquo;s correctness) → ② End-to-End × Quantitative (track core metrics) → ③ End-to-End × Subjective (periodic manual sampling)</strong>. The first two can run automatically in CI/CD; the third reviews 20 samples weekly. More advanced approaches like LLM-as-Judge should be introduced once you have sufficient confidence in the system.</p>
+</blockquote>
+<p><img src="https://img.siborne.top/2026/06/dac23713171a341462dcc92fd5ebd70d.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Three-Dimensional Evaluation Framework Matrix"
+	
+	
+></p>
+<h3 id="llm-as-judge-using-ai-to-evaluate-ai">LLM-as-Judge: Using AI to Evaluate AI
+</h3><p>For Subjective Evaluation, the common approach is <strong>LLM-as-Judge</strong> — using an additional LLM to score. Four mainstream designs:</p>
+<ol>
+<li><strong>Pairwise Comparison</strong>: Give the Judge two answers, ask which is better</li>
+<li><strong>Single-answer Grading</strong>: Direct 1-5 scoring</li>
+<li><strong>Reference-guided Pairwise</strong>: Provide a reference answer for comparison</li>
+<li><strong>Rubric-based</strong>: Define your own scoring criteria, e.g., &ldquo;5 points = under 100 words, contains 3 key points, first sentence is a summary; 0 points = off-topic, verbose&rdquo;</li>
+</ol>
+<p>These four can be mixed. For example, Rubric-based + Few-shot Examples help the judge better understand your expectations.</p>
+<blockquote>
+<p><strong>Common Misconception</strong>: The biggest trap of LLM-as-Judge is &ldquo;using the same model to judge itself&rdquo; — e.g., using GPT-4 to evaluate GPT-4&rsquo;s output, which easily produces Self-bias with inflated scores. Best practice is <strong>using models from different families as Judges</strong> (e.g., using Claude to evaluate GPT&rsquo;s output), or at least different versions within the same family. Also, the Judge&rsquo;s Rubric must be very specific; vague Rubrics produce scores with no reference value.</p>
+</blockquote>
+<h3 id="hands-on-travel-agent-politeness-example">Hands-On: Travel Agent &ldquo;Politeness&rdquo; Example
+</h3><p>The professor demonstrated the complete four-step process using Travel Agent politeness evaluation:</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Step</th>
+					<th>Content</th>
+					<th>Why It Can&rsquo;t Be Skipped</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Step 1: Error Analysis</strong></td>
+					<td>Sample 20 from 1000 user conversations, read each manually</td>
+					<td>You must first know what problems look like to design the right evaluation</td>
+			</tr>
+			<tr>
+					<td><strong>Step 2: Design Eval</strong></td>
+					<td>Use LLM-as-Judge + Politeness Rubric</td>
+					<td>Translate problems found in Step 1 into scoring criteria</td>
+			</tr>
+			<tr>
+					<td><strong>Step 3: A/B Test (Model)</strong></td>
+					<td>Fix Prompt, swap underlying model, run same conversations, Judge scores</td>
+					<td>See which model has higher politeness</td>
+			</tr>
+			<tr>
+					<td><strong>Step 4: A/B Test (Prompt)</strong></td>
+					<td>Fix model, change Prompt wording, see how much one word matters</td>
+					<td>Minor prompt changes can bring significant differences</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>Core principle: <strong>manually sweep for problems first, then design automated evaluation; and only change one variable (model or prompt) at a time.</strong></p>
+<blockquote>
+<p><strong>Learning Tip</strong>: This &ldquo;A/B Test one variable at a time&rdquo; principle sounds simple but is easily violated in practice. A common mistake: &ldquo;switching to Claude model + simultaneously optimizing the Prompt&rdquo; — results improve, but you don&rsquo;t know if it was the model or the prompt. Build a habit: <strong>only change one thing per experiment, and log it in your experiment journal.</strong></p>
+</blockquote>
+<hr>
+<h2 id="part-5-case-study--building-a-customer-service-ai-agent">Part 5: Case Study — Building a Customer Service AI Agent
+</h2><p>The professor provided a complete hands-on case — building a customer service Agent to handle &ldquo;change order address&rdquo; requests. The use case:</p>
+<blockquote>
+<p>User says: &ldquo;I want to change the address for order A127 because I moved to Jianguo South Road.&rdquo;</p>
+</blockquote>
+<h3 id="step-1-task-decomposition">Step 1: Task Decomposition
+</h3><p>The first step in building an Agentic Workflow isn&rsquo;t coding — it&rsquo;s <strong>sitting with customer service reps for a day or two, watching how they actually handle这类 requests</strong>. After understanding the human workflow, do Task Decomposition — breaking the big task into smaller tasks.</p>
+<p>Observation revealed that customer service actually takes five steps:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">① Extract key info (Intent, Order ID, new address)
+</span></span><span class="line"><span class="cl">  → ② Query database for customer records
+</span></span><span class="line"><span class="cl">    → ③ Check company policy (can it be changed? has it shipped?)
+</span></span><span class="line"><span class="cl">      → ④ Draft response based on collected info
+</span></span><span class="line"><span class="cl">        → ⑤ Send Email
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="step-2-choose-tools-for-each-step">Step 2: Choose Tools for Each Step
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Step</th>
+					<th>Tool Choice</th>
+					<th>Reason</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>① Info Extraction</td>
+					<td>Single LLM API call</td>
+					<td>Pure text understanding, no external tools needed</td>
+			</tr>
+			<tr>
+					<td>② Query/Modify DB</td>
+					<td>Custom Tool or MCP Server</td>
+					<td>Needs to interact with external systems</td>
+			</tr>
+			<tr>
+					<td>③ Policy Check</td>
+					<td>RAG</td>
+					<td>Policy documents update, needs efficient retrieval</td>
+			</tr>
+			<tr>
+					<td>④ Draft Response</td>
+					<td>LLM</td>
+					<td>Synthesizes information from previous steps into natural language</td>
+			</tr>
+			<tr>
+					<td>⑤ Send Email</td>
+					<td>Email Tool</td>
+					<td>Calls external email service</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>The judgment method is simple: <strong>first ask whether each step is Fuzzy or Deterministic, then decide what tool to use.</strong></p>
+<p>This is what AI Builders actually do — <strong>knowing the boundaries of each tool and technology, then combining them into the solution you need.</strong></p>
+<blockquote>
+<p><strong>Conceptual Link</strong>: Reviewing the three-level classification — this customer service Agent is a classic <strong>Level 2</strong>: the tool scope is fixed (5 steps each with clear tools), but execution order is dynamically determined by the Agent based on input.</p>
+</blockquote>
+<h3 id="step-3-build-evals">Step 3: Build Evals
+</h3><p>Apply all three dimensions of the framework:</p>
+<ul>
+<li><strong>End-to-End</strong>: Final response correctness, tone, user satisfaction</li>
+<li><strong>Component-based</strong>: Info extraction accuracy, API error rate, policy compliance rate</li>
+<li><strong>Objective</strong>: Auto-verify Order ID correctness, refund policy violations</li>
+<li><strong>Subjective</strong>: Human + LLM-as-Judge evaluates response politeness, empathy</li>
+<li><strong>Quantitative</strong>: Address change success rate, latency, refund correctness rate</li>
+<li><strong>Qualitative</strong>: Where did hallucinations occur? Where was tone inconsistent? Where did users get confused?</li>
+</ul>
+<p><img src="https://img.siborne.top/2026/06/bf5d030a2f93d22262dfaee803d7e6a9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Customer Service Agent Task Decomposition"
+	
+	
+></p>
+<p>The engineering process from zero to deployment boils down to three steps:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Decompose the task → Design the workflow → Build the evaluation system
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>Learning Tip</strong>: If this is your first AI project, start with an ultra-simple version — pick a small task with only 3-5 steps, skip RAG and Multi-Agent, just use Prompt Chaining to build a Level 1 Agent, then add an evaluation system with only Objective Eval. After getting it working, iterate by adding RAG, adding Tools, upgrading to Level 2. <strong>Get it working first, then optimize. Simple first, complex later — this is the most important engineering discipline for AI Builders.</strong></p>
+</blockquote>
+<hr>
+<h2 id="part-6-multi-agent--treating-agents-as-tools">Part 6: Multi-Agent — Treating Agents as Tools
+</h2><h3 id="why-multi-agent">Why Multi-Agent?
+</h3><p>A single Agent can already decompose steps, call tools, do RAG, and write emails — seemingly enough. Multi-Agent exists mainly for two reasons:</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Reason</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Parallel Processing</strong></td>
+					<td>When booking a flight, finding flights, hotels, and checking weather — all three can happen simultaneously. A single Agent can only work serially; Multi-Agent lets three specialized Agents run in parallel</td>
+			</tr>
+			<tr>
+					<td><strong>Reusability</strong></td>
+					<td>A company&rsquo;s Design Agent can be used by both the marketing and product teams</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>But the design principle is: <strong>if a single Agent can solve the problem, forcing Multi-Agent only adds unnecessary complexity. Keep it simple; don&rsquo;t over-design.</strong></p>
+<blockquote>
+<p><strong>Common Misconception</strong>: Many teams start by saying &ldquo;we want to build a Multi-Agent system,&rdquo; thinking single Agent isn&rsquo;t &ldquo;advanced&rdquo; enough. In reality, Multi-Agent introduces three additional costs — <strong>① inter-Agent communication overhead and latency, ② maintenance burden of multiple System Prompts, ③ debugging requires tracing through multiple Agent logs</strong>. Only when your business meets one of these two conditions is Multi-Agent worthwhile: <strong>a) the task can clearly be split into 2+ independent parallel subtasks; b) different subtasks require vastly different core capabilities, making a single Agent prompt too bloated.</strong></p>
+</blockquote>
+<h3 id="smart-home-multi-agent-example">Smart Home Multi-Agent Example
+</h3><p>The professor used a smart home brainstorming example. A complete smart home Multi-Agent system might include:</p>
+<ul>
+<li>Temperature Control Agent</li>
+<li>Lighting Agent</li>
+<li>Security Agent</li>
+<li>Entertainment Agent</li>
+<li>Notification Agent</li>
+<li>Energy Management Agent</li>
+<li>Plus an <strong>Orchestrator</strong> to coordinate</li>
+</ul>
+<p>Two interaction patterns:</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Pattern</th>
+					<th>How It Works</th>
+					<th>Use Case</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Hierarchical</strong></td>
+					<td>User only talks to Orchestrator, which delegates to sub-Agents</td>
+					<td>User side — &ldquo;I&rsquo;m leaving,&rdquo; Orchestrator coordinates lighting, security, temperature</td>
+			</tr>
+			<tr>
+					<td><strong>Flat</strong></td>
+					<td>Agents communicate directly with each other, no middleman</td>
+					<td>Backend — Temperature Agent and Energy Agent communicate directly, saving the overhead of going through Orchestrator each time</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>When Agents communicate with each other — it&rsquo;s essentially the <strong>MCP Protocol</strong>. <strong>You treat Agents as Tools, just like treating APIs as Tools.</strong> Each Agent exposes a set of Tool-like interfaces, and other Agents call it like calling a tool.</p>
+<p>Once you internalize this mindset, Multi-Agent is no longer mysterious — it&rsquo;s just adding one more layer on top of what you already know.</p>
+<p><img src="https://img.siborne.top/2026/06/223816641ed3265dde26673c5269ecd5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Multi-Agent Smart Home Architecture"
+	
+	
+></p>
+<hr>
+<h2 id="part-7-summary--your-ai-learning-roadmap">Part 7: Summary — Your AI Learning Roadmap
+</h2><p>Starting from the limitations of base models, this article has unfolded the complete tech stack for enhancing LLM capabilities layer by layer:</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>Level</th>
+					<th>Technology</th>
+					<th>Key Points</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>L1</strong></td>
+					<td><strong>Prompt Engineering</strong></td>
+					<td>Lowest cost, use first. Focus on Chaining and Testing — every engineer&rsquo;s basic skill</td>
+			</tr>
+			<tr>
+					<td><strong>L2</strong></td>
+					<td><strong>Fine-Tuning</strong></td>
+					<td>Unless handling legal, scientific, or other high-precision domains, or driven by interest, don&rsquo;t touch it lightly. High cost, poor timeliness, Prompt Engineering usually suffices</td>
+			</tr>
+			<tr>
+					<td><strong>L3</strong></td>
+					<td><strong>RAG</strong></td>
+					<td>The standard solution for filling model knowledge gaps. Almost inevitable when building AI products — Embedding → Vector DB → Retrieval → Generation</td>
+			</tr>
+			<tr>
+					<td><strong>L4</strong></td>
+					<td><strong>Agentic Workflow</strong></td>
+					<td>From strengthening single models to system design. Core is mindset shift: from Deterministic Engineering to Fuzzy Engineering, Task Decomposition, building Evaluation systems</td>
+			</tr>
+			<tr>
+					<td><strong>L5</strong></td>
+					<td><strong>Multi-Agent</strong></td>
+					<td>Treat Agents as Tools, collaborate with each other. Improves speed (parallelism) and reusability. But remember: keep it simple when possible</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>With this cognitive framework, you won&rsquo;t blindly follow trends — doing Multi-Agent because others do it, thinking Fine-Tuning is cool because others talk about it. <strong>Start from implementation</strong>: look at pain points in your life or work, and think about solutions from those pain points. In this process, you&rsquo;ll naturally discover which technologies you need to learn, efficiently planning your learning path.</p>
+<blockquote>
+<p><strong>Next Steps</strong>: If you want to start today, here&rsquo;s a &ldquo;minimum viable path&rdquo; — ① Find a repetitive text task at work (like writing weekly reports, answering FAQs); ② Use Prompt Chaining to break it into 2-3 steps and run through them; ③ Write a few Objective Test Cases to auto-verify output format; ④ Run it for a week, noting what works and what doesn&rsquo;t. Complete these four steps, and you&rsquo;re already an AI Builder growing through practice.</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on Jun 04, 2026 01:41 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/en/p/codex-app-complete-guide/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/ef543fe1780e2b00988447209e377f4c.png" loading="lazy" data-key="codex-app-complete-guide" data-hash="https://img.siborne.top/2026/05/ef543fe1780e2b00988447209e377f4c.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex APP Complete Guide: From Installation to Automation</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/codex-deepseek-v4-proxy/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/dde3a847822c933bba6a28d3918f36c0.png" loading="lazy" data-key="codex-deepseek-v4-proxy" data-hash="https://img.siborne.top/2026/05/dde3a847822c933bba6a28d3918f36c0.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Connect DeepSeek V4 to Codex: Solving API Format Incompatibility with a Proxy Script</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/opencode-parallel-workflow-tips/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png" loading="lazy" data-key="opencode-parallel-workflow-tips" data-hash="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode Advanced Tips: Parallel Scheduling and Workflow Mastery</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/opencode-complete-guide/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png" loading="lazy" data-key="opencode-complete-guide" data-hash="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode Complete Guide: Installation, Configuration, and Advanced Usage</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/en/p/claude-code-deepseek-setup/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/893eeb27eb74b1d32493c69de860e065.png" loading="lazy" data-key="claude-code-deepseek-setup" data-hash="https://img.siborne.top/2026/05/893eeb27eb74b1d32493c69de860e065.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">5-Minute Claude Code Setup with DeepSeek</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.337b391b9709a7de07a4bb428d2ffb003b7e926cdfc9720a68a909ce2cde147d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<div id="jsi-flying-fish-container" class="fish-container"></div>
+
+
+<script defer src="https://events.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    if (typeof topbar !== 'undefined') {
+        topbar.config({
+            barColors: {
+                '0': 'rgba(255, 255, 255, 1)',
+                '1.0': 'rgba(56, 189, 248, 1)'
+            }
+        })
+
+        document.addEventListener('pjax:send', () => {
+            topbar.show();
+        })
+
+        document.addEventListener('pjax:complete', () => {
+            topbar.hide();
+        })
+    }
+
+    
+    document.addEventListener('pjax:complete', () => {
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+(function() {
+  var pending = false;
+  var observer = new MutationObserver(function(mutations) {
+    if (pending) return;
+    for (var i = 0; i < mutations.length; i++) {
+      var nodes = mutations[i].addedNodes;
+      for (var j = 0; j < nodes.length; j++) {
+        var node = nodes[j];
+        if (node.nodeType === 1 && node.querySelectorAll && node.querySelectorAll('.highlight').length > 0) {
+          pending = true;
+          
+          setTimeout(function() {
+            initCodeMoreBox();
+            pending = false;
+          }, 150);
+          return;
+        }
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  setTimeout(initCodeMoreBox, 0);
+  refreshVercount();
+}
+
+
+function refreshVercount() {
+    let article = document.querySelector(".article-page");
+    if (!article) return;
+
+    let pvEl = document.getElementById("vercount_value_page_pv");
+    if (!pvEl) return;
+
+    
+    pvEl.textContent = 'loading...';
+
+    
+    let oldScript = document.querySelector('script[data-vercount-dynamic]');
+    if (oldScript) oldScript.remove();
+
+    
+    let script = document.createElement('script');
+    script.src = 'https://events.vercount.one/js';
+    script.setAttribute('data-vercount-dynamic', '');
+    document.body.appendChild(script);
+
+    
+    let fallbackTimer = setTimeout(function() {
+        if (pvEl.textContent.trim() === 'loading...') {
+            pvEl.textContent = '';
+        }
+    }, 5000);
+
+    
+    script.addEventListener('load', function() {
+        clearTimeout(fallbackTimer);
+    });
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+
+<script>
+(function() {
+    var RENDERER = {
+        POINT_INTERVAL: 5,
+        FISH_COUNT: 3,
+        MAX_INTERVAL_COUNT: 50,
+        INIT_HEIGHT_RATE: 0.5,
+        THRESHOLD: 50,
+
+        init: function() {
+            this.setParameters();
+            this.reconstructMethods();
+            this.setup();
+            this.bindEvent();
+            this.render();
+        },
+        setParameters: function() {
+            this.$window = window;
+            this.$document = document.body;
+            this.$container = document.getElementById('jsi-flying-fish-container');
+            if (!this.$container) return;
+            this.$canvas = document.createElement('canvas');
+            this.$container.appendChild(this.$canvas);
+            this.context = this.$canvas.getContext('2d');
+            this.points = [];
+            this.fishes = [];
+            this.watchIds = [];
+        },
+        createSurfacePoints: function() {
+            var count = Math.round(this.width / this.POINT_INTERVAL);
+            this.pointInterval = this.width / (count - 1);
+            this.points.push(new SURFACE_POINT(this, 0));
+            for (var i = 1; i < count; i++) {
+                var point = new SURFACE_POINT(this, i * this.pointInterval),
+                    previous = this.points[i - 1];
+                point.setPreviousPoint(previous);
+                previous.setNextPoint(point);
+                this.points.push(point);
+            }
+        },
+        reconstructMethods: function() {
+            this.watchWindowSize = this.watchWindowSize.bind(this);
+            this.jdugeToStopResize = this.jdugeToStopResize.bind(this);
+            this.startEpicenter = this.startEpicenter.bind(this);
+            this.moveEpicenter = this.moveEpicenter.bind(this);
+            this.toggleDirection = this.toggleDirection.bind(this);
+            this.render = this.render.bind(this);
+        },
+        setup: function() {
+            this.points.length = 0;
+            this.fishes.length = 0;
+            this.watchIds.length = 0;
+            this.intervalCount = this.MAX_INTERVAL_COUNT;
+            this.width = this.$container.offsetWidth;
+            this.height = this.$container.offsetHeight;
+            this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
+            this.$canvas.width = this.width;
+            this.$canvas.height = this.height;
+            this.reverse = false;
+            this.fishes.push(new FISH(this));
+            this.createSurfacePoints();
+        },
+        watchWindowSize: function() {
+            this.clearTimer();
+            this.tmpWidth = this.$window.innerWidth;
+            this.tmpHeight = this.$window.innerHeight;
+            this.watchIds.push(setTimeout(this.jdugeToStopResize, 300));
+        },
+        clearTimer: function() {
+            while (this.watchIds.length > 0) {
+                clearTimeout(this.watchIds.pop());
+            }
+        },
+        jdugeToStopResize: function() {
+            var width = this.$window.innerWidth,
+                height = this.$window.innerHeight,
+                stopped = (width === this.tmpWidth && height === this.tmpHeight);
+            this.tmpWidth = width;
+            this.tmpHeight = height;
+            if (stopped) { this.setup(); }
+        },
+        bindEvent: function() {
+            window.addEventListener('resize', this.watchWindowSize);
+            this.$container.addEventListener('click', this.toggleDirection);
+            this.$container.addEventListener('mouseenter', this.startEpicenter);
+            this.$container.addEventListener('mousemove', this.moveEpicenter);
+        },
+        getAxis: function(event) {
+            var rect = this.$container.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        },
+        startEpicenter: function(event) {
+            this.axis = this.getAxis(event);
+        },
+        moveEpicenter: function(event) {
+            var axis = this.getAxis(event);
+            if (!this.axis) { this.axis = axis; }
+            this.generateEpicenter(axis.x, axis.y, axis.y - this.axis.y);
+            this.axis = axis;
+        },
+        generateEpicenter: function(x, y, velocity) {
+            if (y < this.height / 2 - this.THRESHOLD || y > this.height / 2 + this.THRESHOLD) return;
+            var index = Math.round(x / this.pointInterval);
+            if (index < 0 || index >= this.points.length) return;
+            this.points[index].interfere(y, velocity);
+        },
+        toggleDirection: function() {
+            this.reverse = !this.reverse;
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].reverseVertical();
+            }
+        },
+        controlStatus: function() {
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateSelf();
+            }
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateNeighbors();
+            }
+            if (this.fishes.length < this.fishCount) {
+                if (--this.intervalCount === 0) {
+                    this.intervalCount = this.MAX_INTERVAL_COUNT;
+                    this.fishes.push(new FISH(this));
+                }
+            }
+        },
+        render: function() {
+            requestAnimationFrame(this.render);
+            this.controlStatus();
+            this.context.clearRect(0, 0, this.width, this.height);
+
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            this.context.fillStyle = isDark ? 'hsl(210, 30%, 25%)' : 'hsl(210, 80%, 75%)';
+
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].render(this.context);
+            }
+
+            this.context.save();
+            this.context.globalCompositeOperation = 'xor';
+            this.context.beginPath();
+            this.context.moveTo(0, this.reverse ? 0 : this.height);
+
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].render(this.context);
+            }
+            this.context.lineTo(this.width, this.reverse ? 0 : this.height);
+            this.context.closePath();
+            this.context.fill();
+            this.context.restore();
+        }
+    };
+
+    var SURFACE_POINT = function(renderer, x) {
+        this.renderer = renderer;
+        this.x = x;
+        this.init();
+    };
+    SURFACE_POINT.prototype = {
+        SPRING_CONSTANT: 0.03,
+        SPRING_FRICTION: 0.9,
+        WAVE_SPREAD: 0.3,
+        ACCELARATION_RATE: 0.01,
+
+        init: function() {
+            this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE;
+            this.height = this.initHeight;
+            this.fy = 0;
+            this.force = { previous: 0, next: 0 };
+        },
+        setPreviousPoint: function(previous) { this.previous = previous; },
+        setNextPoint: function(next) { this.next = next; },
+        interfere: function(y, velocity) {
+            this.fy = this.renderer.height * this.ACCELARATION_RATE *
+                ((this.renderer.height - this.height - y) >= 0 ? -1 : 1) * Math.abs(velocity);
+        },
+        updateSelf: function() {
+            this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height);
+            this.fy *= this.SPRING_FRICTION;
+            this.height += this.fy;
+        },
+        updateNeighbors: function() {
+            if (this.previous) {
+                this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height);
+            }
+            if (this.next) {
+                this.force.next = this.WAVE_SPREAD * (this.height - this.next.height);
+            }
+        },
+        render: function(context) {
+            if (this.previous) {
+                this.previous.height += this.force.previous;
+                this.previous.fy += this.force.previous;
+            }
+            if (this.next) {
+                this.next.height += this.force.next;
+                this.next.fy += this.force.next;
+            }
+            context.lineTo(this.x, this.renderer.height - this.height);
+        }
+    };
+
+    var FISH = function(renderer) {
+        this.renderer = renderer;
+        this.init();
+    };
+    FISH.prototype = {
+        GRAVITY: 0.4,
+
+        init: function() {
+            this.direction = Math.random() < 0.5;
+            this.x = this.direction ? (this.renderer.width + this.renderer.THRESHOLD) : -this.renderer.THRESHOLD;
+            this.previousY = this.y;
+            this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1);
+
+            if (this.renderer.reverse) {
+                this.y = this.getRandomValue(this.renderer.height * 1 / 10, this.renderer.height * 4 / 10);
+                this.vy = this.getRandomValue(2, 5);
+                this.ay = this.getRandomValue(0.05, 0.2);
+            } else {
+                this.y = this.getRandomValue(this.renderer.height * 6 / 10, this.renderer.height * 9 / 10);
+                this.vy = this.getRandomValue(-5, -2);
+                this.ay = this.getRandomValue(-0.2, -0.05);
+            }
+            this.isOut = false;
+            this.theta = 0;
+            this.phi = 0;
+        },
+        getRandomValue: function(min, max) {
+            return min + (max - min) * Math.random();
+        },
+        reverseVertical: function() {
+            this.isOut = !this.isOut;
+            this.ay *= -1;
+        },
+        controlStatus: function(context) {
+            this.previousY = this.y;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.ay;
+
+            if (this.renderer.reverse) {
+                if (this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy -= this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(0.05, 0.2); }
+                    this.isOut = false;
+                }
+            } else {
+                if (this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy += this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(-0.2, -0.05); }
+                    this.isOut = false;
+                }
+            }
+            if (!this.isOut) {
+                this.theta += Math.PI / 20;
+                this.theta %= Math.PI * 2;
+                this.phi += Math.PI / 30;
+                this.phi %= Math.PI * 2;
+            }
+            this.renderer.generateEpicenter(
+                this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD,
+                this.y,
+                this.y - this.previousY
+            );
+            if (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD ||
+                this.vx < 0 && this.x < -this.renderer.THRESHOLD) {
+                this.init();
+            }
+        },
+        render: function(context) {
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            context.fillStyle = isDark ? 'hsl(210, 60%, 55%)' : 'hsl(210, 70%, 40%)';
+
+            context.save();
+            context.translate(this.x, this.y);
+            context.rotate(Math.PI + Math.atan2(this.vy, this.vx));
+            context.scale(1, this.direction ? 1 : -1);
+            context.beginPath();
+            context.moveTo(-30, 0);
+            context.bezierCurveTo(-20, 15, 15, 10, 40, 0);
+            context.bezierCurveTo(15, -10, -20, -15, -30, 0);
+            context.fill();
+
+            
+            context.save();
+            context.translate(40, 0);
+            context.scale(0.9 + 0.2 * Math.sin(this.theta), 1);
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(5, 10, 20, 8);
+            context.quadraticCurveTo(12, 5, 10, 0);
+            context.quadraticCurveTo(12, -5, 20, -8);
+            context.quadraticCurveTo(5, -10, 0, 0);
+            context.fill();
+            context.restore();
+
+            
+            context.save();
+            context.translate(-3, 0);
+            context.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1));
+            context.beginPath();
+            if (this.renderer.reverse) {
+                context.moveTo(5, 0);
+                context.bezierCurveTo(10, 10, 10, 30, 0, 40);
+                context.bezierCurveTo(-12, 25, -8, 10, 0, 0);
+            } else {
+                context.moveTo(-5, 0);
+                context.bezierCurveTo(-10, -10, -10, -30, 0, -40);
+                context.bezierCurveTo(12, -25, 8, -10, 0, 0);
+            }
+            context.closePath();
+            context.fill();
+            context.restore();
+            context.restore();
+            this.controlStatus(context);
+        }
+    };
+
+    
+    if (!window.__fishRendererInited) {
+        window.__fishRendererInited = true;
+        window.addEventListener('load', function() {
+            if (document.getElementById('jsi-flying-fish-container')) {
+                RENDERER.init();
+            }
+        });
+    }
+})();
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+ 
+.fish-container {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+html.at-page-bottom .fish-container {
+    opacity: 0.42;
+}
+
+@media (max-width: 768px) {
+    .fish-container {
+        height: 150px;
+    }
+    html.at-page-bottom .fish-container {
+        opacity: 0.28;
+    }
+}
+</style>
+
+    </body>
+</html>

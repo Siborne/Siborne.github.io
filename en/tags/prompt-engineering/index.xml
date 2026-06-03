@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Prompt Engineering on Siborne</title>
+        <link>https://Siborne.top/en/tags/prompt-engineering/</link>
+        <description>Recent content in Prompt Engineering on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Thu, 04 Jun 2026 01:41:49 +0800</lastBuildDate><atom:link href="https://Siborne.top/en/tags/prompt-engineering/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building</title>
+        <link>https://Siborne.top/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/</link>
+        <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" alt="Featured image of post Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building" /&gt;&lt;h2 id=&#34;key-takeaways&#34;&gt;Key Takeaways
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Horizontal vs Vertical Axis&lt;/strong&gt;: Upgrading the base model is OpenAI and Anthropic&amp;rsquo;s job. Ordinary developers should focus on the vertical axis — using engineering techniques to enhance existing LLM capabilities, i.e., &lt;strong&gt;Augmenting LLM&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Three Tools for Strengthening a Single LLM&lt;/strong&gt;: Prompt Engineering (zero cost, use first) → RAG (fill knowledge gaps) → Fine-Tuning (last resort).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;From Model to System&lt;/strong&gt;: Agentic Workflow upgrades LLM from &amp;ldquo;a model that answers questions&amp;rdquo; to &amp;ldquo;a system that actually operates and delivers value.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mindset Shift&lt;/strong&gt;: Switch from deterministic engineering thinking to fuzzy engineering thinking — you are the manager, AI is the executor.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Evaluation is the Lifeline&lt;/strong&gt;: Without a robust evaluation system, the risks of deploying an Agent are uncontrollable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Essence of Multi-Agent&lt;/strong&gt;: Treat Agents as Tools, just like calling APIs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;part-1-the-ai-builders-dilemma-and-vertical-axis-thinking&#34;&gt;Part 1: The AI Builder&amp;rsquo;s Dilemma and Vertical-Axis Thinking
+&lt;/h2&gt;&lt;p&gt;If you follow the AI space, the hottest roles in the past two years have been &lt;strong&gt;AI Engineer&lt;/strong&gt; and &lt;strong&gt;AI Builder&lt;/strong&gt;. The stronger large language models get, the more valuable these people become — they help companies build internal tools, optimize operations, and many have even turned their ideas into products and started their own companies.&lt;/p&gt;
+&lt;p&gt;But while many want to learn AI, most don&amp;rsquo;t know where to start. Resources out there are either too fragmented or too dense, and after reading them you still don&amp;rsquo;t know what you&amp;rsquo;ve learned or where to go next.&lt;/p&gt;
+&lt;p&gt;Stanford offers a course called &lt;strong&gt;Beyond LLM&lt;/strong&gt;, which I believe is the closest thing to an answer right now. It starts from the fundamentals of large language models and extends all the way to Prompt Engineering, RAG, Fine-Tuning, Agentic Workflow, and Multi-Agent frameworks. This article distills the core content into a single read — after finishing, you&amp;rsquo;ll have a complete cognitive framework for AI applications in business.&lt;/p&gt;
+&lt;h3 id=&#34;what-is-llm-what-are-its-limitations&#34;&gt;What Is LLM? What Are Its Limitations?
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;LLM (Large Language Model)&lt;/strong&gt; is a massive neural network based on the Transformer architecture. Through training on vast amounts of text data, it has learned to predict the probability distribution of the next token. Essentially, it is an extremely complex &lt;strong&gt;autoregressive probability predictor&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;There are two paths for an LLM to become stronger:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Horizontal Axis&lt;/strong&gt;: Switch to a more powerful &lt;strong&gt;Base Model&lt;/strong&gt;, like upgrading from GPT-4 to GPT-5. But this path is walked by OpenAI and Anthropic — ordinary people lack the ability and funding to train their own large models.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vertical Axis&lt;/strong&gt;: Layer various engineering techniques on top of existing LLMs, i.e., &lt;strong&gt;Augmenting LLM&lt;/strong&gt; — finding ways to enhance capabilities on top of existing base models.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This vertical axis is the core focus of this entire article.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Learning Tip&lt;/strong&gt;: If you&amp;rsquo;re a beginner, invest 100% of your energy in the vertical axis. Horizontal-axis news — today GPT-5 launches, tomorrow Claude 4 comes out — treat it as news. What truly gives you differentiated competitiveness in the workplace is: while others can only chat with ChatGPT, you can build an automated customer service ticket processing system with RAG + Agentic Workflow.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you only know how to use a Base Model, you&amp;rsquo;ll inevitably hit a wall in business scenarios. When ChatGPT first came out, it had no internet access and couldn&amp;rsquo;t call tools — at best it was a clever Q&amp;amp;A bot that couldn&amp;rsquo;t actually accomplish anything.&lt;/p&gt;
+&lt;p&gt;Stanford professors have identified several common limitations of Base Models:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Limitation&lt;/th&gt;
+					&lt;th&gt;Description&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Lack of Domain Knowledge&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Your company data, internal docs, product specs — the Base Model knows none of it&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Outdated Information&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Models can&amp;rsquo;t be retrained every few months; new terms, events, and companies are unknown to them&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Uncontrollable Output&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;LLM output is probabilistic — running the same prompt twice may yield different results. Fine for chat, but potentially catastrophic in production&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Long-Context Degradation&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Model performance drops significantly when the context is too long, exhibiting the &amp;ldquo;Lost in the Middle&amp;rdquo; phenomenon — even if information is in the context, the model may not find it&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Key Insight&lt;/strong&gt;: These four limitations don&amp;rsquo;t exist independently — they amplify each other. For instance, &amp;ldquo;outdated information&amp;rdquo; combined with &amp;ldquo;uncontrollable output&amp;rdquo; means the model may confidently state outdated false information that you can&amp;rsquo;t easily spot. Understanding these four limitations is the underlying motivation for learning RAG and Agentic Workflow — each technology essentially addresses one or more of them.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/27b3ed750fdf78a479fc1b2b8134a01b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Four Limitations of Base Models&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Building AI products requires more than just swapping to a stronger Base Model — you need to &lt;strong&gt;push hard on the vertical axis&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The first half of this article introduces &lt;strong&gt;three tools for strengthening a single LLM&lt;/strong&gt;: Prompt Engineering, Fine-Tuning, and RAG. The second half moves into &lt;strong&gt;system design&lt;/strong&gt;, covering Agentic Workflow, Evaluation methods, and Multi-Agent.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;part-2-three-tools-for-strengthening-a-single-llm&#34;&gt;Part 2: Three Tools for Strengthening a Single LLM
+&lt;/h2&gt;&lt;h3 id=&#34;prompt-engineering-every-engineers-basic-skill&#34;&gt;Prompt Engineering: Every Engineer&amp;rsquo;s Basic Skill
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Prompt Engineering&lt;/strong&gt; is the practice of designing and optimizing text instructions fed to an LLM to guide it toward higher-quality, more expected output.&lt;/p&gt;
+&lt;p&gt;Stanford professors are blunt: they don&amp;rsquo;t believe &amp;ldquo;Prompt Engineer&amp;rdquo; will become an independent career — because it&amp;rsquo;s a &lt;strong&gt;fundamental skill every engineer should master&lt;/strong&gt;, like multiplication tables.&lt;/p&gt;
+&lt;h4 id=&#34;the-jagged-frontier-falling-asleep-and-the-centaur-metaphor&#34;&gt;The Jagged Frontier, Falling Asleep, and the Centaur Metaphor
+&lt;/h4&gt;&lt;p&gt;Top consulting firm BCG ran a classic experiment: splitting consultants into three groups — no AI, ChatGPT, and ChatGPT + prompt training. Three important phenomena emerged:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;The Jagged Frontier&lt;/strong&gt;: AI doesn&amp;rsquo;t perform well on all tasks. Some tasks get a significant boost with AI, but others actually suffer. You need to clearly know where this boundary lies.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Falling Asleep at the Wheel&lt;/strong&gt;: When you don&amp;rsquo;t realize a task falls in AI&amp;rsquo;s weak zone, over-trust it, and deliver the output directly — the result is worse than not using AI at all.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Centaurs vs Cyborgs&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Centaur Mode&lt;/strong&gt;: Delegation-oriented — throw a long prompt at AI to complete an entire briefing while you do other things. Best for &lt;strong&gt;highly repetitive, well-defined流程&lt;/strong&gt; tasks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cyborg Mode&lt;/strong&gt;: High-frequency collaborative — conversing with the model sentence by sentence. Best for &lt;strong&gt;tasks requiring judgment, creativity, and iterative refinement&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The key isn&amp;rsquo;t which is better, but &lt;strong&gt;consciously switching between them&lt;/strong&gt;. Enterprise automation commonly uses Centaur mode; personal deep collaboration commonly uses Cyborg mode.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Conceptual Link&lt;/strong&gt;: Centaur mode is essentially the prototype of Agentic Workflow discussed later — you throw the entire task to a system that decomposes and executes it internally. Cyborg mode is closer to how you use ChatGPT/Claude daily. When you build an Agent system, your role shifts from Cyborg (personally going back and forth) to Centaur (designing the process, letting the system run automatically).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/4e7203069f50d46d9d7eb6d841f2a244.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The Jagged Frontier and Two AI Usage Modes&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;prompt-chaining-the-most-important-yet-most-undervalued-technique&#34;&gt;Prompt Chaining: The Most Important yet Most Undervalued Technique
+&lt;/h4&gt;&lt;p&gt;Many think Prompt Engineering is just about formatting — who it&amp;rsquo;s for, what format, what to emphasize. These matter, but the professor points out that the &lt;strong&gt;most commonly used and most important&lt;/strong&gt; technique is &lt;strong&gt;Prompt Chaining&lt;/strong&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note the distinction: &lt;strong&gt;Chain of Thought (CoT)&lt;/strong&gt; makes the model think &amp;ldquo;step by step&amp;rdquo;; &lt;strong&gt;Chaining&lt;/strong&gt; breaks a complex prompt into multiple independent prompts, feeding one&amp;rsquo;s output to the next.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Example — writing a customer complaint response:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Approach&lt;/th&gt;
+					&lt;th&gt;Method&lt;/th&gt;
+					&lt;th&gt;Problem&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Single Prompt&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&amp;ldquo;Read this complaint, write a professional response&amp;rdquo;&lt;/td&gt;
+					&lt;td&gt;Black box — if output is wrong, you don&amp;rsquo;t know what to fix&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Chaining (3 steps)&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;① Extract complaints → ② Draft outline → ③ Write full response&lt;/td&gt;
+					&lt;td&gt;Each step can be independently tested and debugged&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Chaining not only improves model performance but also gives you &lt;strong&gt;Observability&lt;/strong&gt; — you can see what the LLM is doing and which step went wrong.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Practical Advice&lt;/strong&gt;: In real projects, start with Chaining rather than a single prompt. Even for the simplest requirements, break it into 2-3 steps — you&amp;rsquo;ll find debug efficiency improves at least 3x. Tools like LangChain&amp;rsquo;s LCEL or hand-written Python chaining work well, with core logic under 50 lines of code.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;fine-tuning-avoid-if-possible&#34;&gt;Fine-Tuning: Avoid If Possible
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Fine-Tuning&lt;/strong&gt; refers to further training a pre-trained model&amp;rsquo;s parameters with domain-specific annotated data to improve performance on specific tasks.&lt;/p&gt;
+&lt;p&gt;Stanford&amp;rsquo;s position is clear: &lt;strong&gt;avoid it if possible&lt;/strong&gt;. Four reasons:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Requires大量 high-quality annotated data&lt;/strong&gt;: Too expensive for most people.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prone to Overfitting&lt;/strong&gt;: Becomes excellent on your specific task but fails on general questions, losing the Base Model&amp;rsquo;s breadth.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Poor Timeliness&lt;/strong&gt;: You spend two months fine-tuning and deploying; next month a new generation Base Model makes yours obsolete.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prompt Engineering usually achieves the same effect&lt;/strong&gt;: Far cheaper, and prompts are &lt;strong&gt;Portable&lt;/strong&gt; — they mostly still work after switching to a new Base Model, while fine-tuned models don&amp;rsquo;t.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Of course, fine-tuning is still worthwhile in rare scenarios like &lt;strong&gt;legal, scientific, or other high-precision repetitive output domains&lt;/strong&gt;, or when the Base Model genuinely struggles with a specific domain.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Common Misconception&lt;/strong&gt;: Many think &amp;ldquo;my industry is specialized, so I need to fine-tune.&amp;rdquo; In reality, for most use cases in healthcare, finance, and law, RAG + well-designed prompts can achieve production-grade quality. The judgment criterion is simple: &lt;strong&gt;only when your task requires the model to learn a &amp;ldquo;new ability&amp;rdquo; (not just &amp;ldquo;new knowledge&amp;rdquo;) is fine-tuning truly necessary.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;What if Prompt Engineering can&amp;rsquo;t fit domain-specific knowledge and Fine-Tuning isn&amp;rsquo;t cost-effective? The answer is RAG.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;rag-the-standard-solution-for-connecting-llms-to-private-knowledge&#34;&gt;RAG: The Standard Solution for Connecting LLMs to Private Knowledge
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;RAG (Retrieval-Augmented Generation)&lt;/strong&gt; is one of the most frequently tested topics in AI engineering interviews. Its core idea: &lt;strong&gt;don&amp;rsquo;t stuff knowledge into model parameters; instead, dynamically retrieve relevant content at inference time and include it in the prompt for the model to reference&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;RAG addresses these pain points:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Context Window too small / inaccurate retrieval in long contexts&lt;/li&gt;
+&lt;li&gt;Information timeliness issues&lt;/li&gt;
+&lt;li&gt;Models prone to &lt;strong&gt;Hallucination&lt;/strong&gt; (LLMs fabricating non-existent facts)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Key Insight&lt;/strong&gt;: Hallucination is the core problem RAG aims to solve, but note — RAG only &amp;ldquo;reduces&amp;rdquo; the probability of hallucination, not &amp;ldquo;eliminates&amp;rdquo; it. Even with information locked in the prompt, the model may still deviate during summarization or reasoning. This is why the Evaluation system discussed later is critical: you need to continuously monitor hallucination rates, not assume everything is fine after deployment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;rag-workflow&#34;&gt;RAG Workflow
+&lt;/h4&gt;&lt;p&gt;Consider a healthcare scenario requiring high accuracy — querying drug side effects:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vectorize and Store&lt;/strong&gt;: Use an &lt;strong&gt;Embedding model&lt;/strong&gt; to convert all data into vectors and store them in a &lt;strong&gt;Vector Database&lt;/strong&gt;. Semantically similar text is closer in mathematical space.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Query Vectorization&lt;/strong&gt;: The user&amp;rsquo;s question &amp;ldquo;side effects of Drug A&amp;rdquo; is also converted into a vector using the same embedding model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Semantic Retrieval&lt;/strong&gt;: Use distance metrics to find the most relevant document chunks from the vector database. Note: this isn&amp;rsquo;t keyword matching — even if the document says &amp;ldquo;adverse reactions&amp;rdquo; instead of &amp;ldquo;side effects,&amp;rdquo; it can still be found.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Assemble Prompt&lt;/strong&gt;: Combine retrieved documents + System Prompt + user question into the final prompt, with a template roughly like:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Answer the user&amp;rsquo;s question based on the following Documents. If the Documents don&amp;rsquo;t contain the answer, say &amp;ldquo;I don&amp;rsquo;t know.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This design &lt;strong&gt;locks the model within your provided data&lt;/strong&gt;, preventing it from free-styling. You can also require the model to cite answer sources (page number, chapter) for user verification.&lt;/p&gt;
+&lt;h4 id=&#34;chunking-and-multi-level-retrieval&#34;&gt;Chunking and Multi-Level Retrieval
+&lt;/h4&gt;&lt;p&gt;A drug information sheet may be 50 pages long; converting it entirely to vectors would lose details. So &lt;strong&gt;Chunking&lt;/strong&gt; is typically needed — splitting documents into fixed-size segments, each vectorized separately.&lt;/p&gt;
+&lt;p&gt;More advanced approaches use &lt;strong&gt;multi-level storage&lt;/strong&gt;: maintaining vectors for the entire document, each chapter, and each paragraph simultaneously. Retrieval first finds relevant chapters, then drills down to precise paragraphs.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Practical Advice&lt;/strong&gt;: Chunking is the most commonly underestimated component in RAG systems. A rule of thumb — &lt;strong&gt;Chunk Size between 256-1024 tokens, with 10%-20% Overlap between adjacent chunks&lt;/strong&gt;. Too small means incomplete semantics; too large means reduced retrieval precision. Multi-level retrieval (search chapters first, then paragraphs) shows significant improvement for documents over 50 pages, but complexity increases accordingly — start with single-layer chunking to get the full pipeline working, then optimize.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;will-rag-be-replaced-by-ultra-long-context-windows&#34;&gt;Will RAG Be Replaced by Ultra-Long Context Windows?
+&lt;/h4&gt;&lt;p&gt;Some say that once models support ultra-long context windows and compute is cheap enough, the Base Model can read the entire database directly, making RAG obsolete. Stanford&amp;rsquo;s answer:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Theoretically correct, practically wrong.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The reason is very practical — &lt;strong&gt;Latency&lt;/strong&gt;. Having the model re-read your entire Google Drive every time you ask a question is unbearable. Just like search engines rely on pre-built indexes for fast lookup rather than re-crawling the entire web for each query.&lt;/p&gt;
+&lt;p&gt;Beyond accuracy, RAG also offers &lt;strong&gt;retrieval efficiency and real-time update advantages&lt;/strong&gt;, remaining valuable for the foreseeable future.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/65ffbe306c5b38dda210f97aa184f507.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;RAG Workflow Overview&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;part-3-agentic-workflow--from-model-to-system&#34;&gt;Part 3: Agentic Workflow — From Model to System
+&lt;/h2&gt;&lt;p&gt;Having covered three tools for strengthening a single model, we now enter the second major section — &lt;strong&gt;from model to system&lt;/strong&gt;. No matter how powerful a single LLM is, there are things it can&amp;rsquo;t do. Agentic Workflow transforms AI from &amp;ldquo;a model that answers questions&amp;rdquo; into &amp;ldquo;a system that actually operates and delivers value.&amp;rdquo;&lt;/p&gt;
+&lt;h3 id=&#34;what-is-agentic-workflow&#34;&gt;What Is Agentic Workflow?
+&lt;/h3&gt;&lt;p&gt;The term &lt;strong&gt;Agentic Workflow&lt;/strong&gt; comes from &lt;strong&gt;Andrew Ng&lt;/strong&gt; — Coursera co-founder, founding lead of Google Brain, and former Chief Scientist at Baidu. He deliberately avoids the overused &amp;ldquo;AI Agent&amp;rdquo; term, using Agentic Workflow for precise description:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Combining a set of prompts, external tools, memory, and various components into a structured workflow to form a system.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;RAG primarily does one thing: &lt;strong&gt;provide external data as reference for the LLM&lt;/strong&gt;. An Agent treats RAG as one of many tools, and can also call external APIs, maintain memory, and execute multi-step decisions.&lt;/p&gt;
+&lt;p&gt;Example of a return order:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Scenario&lt;/th&gt;
+					&lt;th&gt;What RAG Can Do&lt;/th&gt;
+					&lt;th&gt;What an Agent Can Do&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&amp;ldquo;I want to return this order&amp;rdquo;&lt;/td&gt;
+					&lt;td&gt;Gives you the refund policy document&lt;/td&gt;
+					&lt;td&gt;Uses RAG to retrieve policy → proactively asks for order ID → uses Tool to look up order → confirms refund → informs 3-5 business days for processing&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;RAG is a tool; an Agent is a system that uses RAG as a tool.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Learning Tip&lt;/strong&gt;: This sentence is one of the course&amp;rsquo;s most important mental models. Build this thinking habit: every time you see a new technology (e.g., a new vector database, a new Agent framework), first ask yourself — is this a &amp;ldquo;tool&amp;rdquo; or a &amp;ldquo;system&amp;rdquo;? Tools are puzzle pieces; systems are how you assemble the puzzle. Most people are stuck not because they can&amp;rsquo;t use tools, but because they don&amp;rsquo;t know how to assemble them.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;four-engineering-mindset-shifts&#34;&gt;Four Engineering Mindset Shifts
+&lt;/h3&gt;&lt;p&gt;To build Agentic Workflow, your engineering mindset needs to flip across four dimensions:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Dimension&lt;/th&gt;
+					&lt;th&gt;Traditional Software&lt;/th&gt;
+					&lt;th&gt;Agentic AI Software&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Data&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Structured data (JSON, databases, forms)&lt;/td&gt;
+					&lt;td&gt;Free text, images, audio — no fixed format&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Logic&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Deterministic&lt;/strong&gt;: same input always gives same output&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Fuzzy&lt;/strong&gt;: same input may produce different output&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Architecture Mindset&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Precisely control every execution path, like writing Microservices&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Think like a manager&lt;/strong&gt;: give AI goals and constraints, let it decide how to execute&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Testing&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Deterministic testing, run 100 times results are the same&lt;/td&gt;
+					&lt;td&gt;Iterative exploratory testing, model is context-sensitive, can&amp;rsquo;t exhaust all cases&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The first implementation principle follows:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;If a problem can be solved deterministically, solve it deterministically. For the remaining fuzzy parts, add Guardrails.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Key Insight&lt;/strong&gt;: This principle translates to a more specific rule — &lt;strong&gt;your code should always have if-else wrapping LLM calls, not LLM calls wrapping if-else.&lt;/strong&gt; Treat the LLM as a &amp;ldquo;fuzzy reasoning module&amp;rdquo; in your system, protected by deterministic logic (validation, retry, fallback) on the outside. This way, even if the LLM makes mistakes, the system won&amp;rsquo;t crash.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The professor shared his own example: in a skills assessment system, multiple-choice and matching questions are scored deterministically (standard answers exist); but voice + coding hybrid questions have no standard answers, requiring LLM fuzzy scoring. And fuzzy scoring will inevitably have errors — so they designed an &lt;strong&gt;Appeal Feature&lt;/strong&gt; in the system, allowing test-takers to submit disputes for human review.&lt;/p&gt;
+&lt;p&gt;This is the concrete form of guardrails: &lt;strong&gt;not trying to make AI error-free, but having someone catch it when it errs.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Practical Advice&lt;/strong&gt;: Guardrail design has three levels — ① &lt;strong&gt;Input Guardrails&lt;/strong&gt;: validate whether user input is legal; ② &lt;strong&gt;Process Guardrails&lt;/strong&gt;: monitor whether each Agent step&amp;rsquo;s output matches expected format; ③ &lt;strong&gt;Output Guardrails&lt;/strong&gt;: whether the final result is within safe bounds. Implement at least ① and ③; ② is advanced optimization. Also, always have a &lt;strong&gt;Human-in-the-loop&lt;/strong&gt; escape hatch.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;three-core-elements-of-building-an-agent&#34;&gt;Three Core Elements of Building an Agent
+&lt;/h3&gt;&lt;p&gt;Using &amp;ldquo;Help me book a flight to Paris&amp;rdquo; as an example:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;① Prompts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;How you tell the AI: what its role is, what it can and cannot do.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;② Context Management&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Essentially one thing: &lt;strong&gt;provide the right information to the Agent at the right time&lt;/strong&gt;. Including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Working Memory&lt;/strong&gt;: High-frequency, fast-needed information, like user name, current destination.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Archival Memory&lt;/strong&gt;: Low-frequency, can-be-slower information, like booking records from the past five years, queried when needed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;③ Tools&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;External capabilities the Agent can call, typically two types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Action-oriented&lt;/strong&gt;: Flight Search, Hotel Booking, Payment&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Query-oriented&lt;/strong&gt;: CRM customer data lookup, order record queries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;three-levels-of-agent-autonomy&#34;&gt;Three Levels of Agent Autonomy
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Level&lt;/th&gt;
+					&lt;th&gt;Description&lt;/th&gt;
+					&lt;th&gt;Characteristics&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Level 1: Hardcoded Steps&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;All steps are fixed, executed in order&lt;/td&gt;
+					&lt;td&gt;Safe and predictable, but rigid&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Level 2: Hardcoded Tools + Autonomous Steps&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Give Agent a set of tools, let it decide execution order&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Most common Production Setup today&lt;/strong&gt;, professor&amp;rsquo;s recommended starting point&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Level 3: Fully Autonomous&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Decides its own steps, even creates its own tools&lt;/td&gt;
+					&lt;td&gt;Most capable, highest risk — misjudgment can cause serious losses&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Learning Tip&lt;/strong&gt;: If you&amp;rsquo;re building an Agent for the first time, definitely start with Level 2. Level 1 is too rigid and gets stuck on unexpected situations; Level 3 is too dangerous and uncontrollable in production. Level 2&amp;rsquo;s sweet spot is — &lt;strong&gt;you control the &amp;ldquo;tool scope,&amp;rdquo; the Agent controls the &amp;ldquo;execution order.&amp;rdquo;&lt;/strong&gt; Once you&amp;rsquo;re fully proficient with Level 2 and have built your Eval system, then consider exploring Level 3.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/b757a8b83639ec18d28fa14bba0547af.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Three Levels of Agent Autonomy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mcp-industrial-grade-tool-integration-standard&#34;&gt;MCP: Industrial-Grade Tool Integration Standard
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;MCP (Model Context Protocol)&lt;/strong&gt; is Anthropic&amp;rsquo;s standardized client-server architecture designed to solve the fragmentation problem in the AI tool ecosystem.&lt;/p&gt;
+&lt;p&gt;The traditional approach: you need to write integration logic for each API individually, manually teaching the LLM how to use each API and what parameters to pass.&lt;/p&gt;
+&lt;p&gt;MCP&amp;rsquo;s approach: place a protocol layer in between — &lt;strong&gt;the Agent doesn&amp;rsquo;t need to know each API; it only needs to communicate with the MCP Server, which handles the backend services&lt;/strong&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can think of MCP as a &lt;strong&gt;universal USB-C plug&lt;/strong&gt;: previously every country had different outlet specs and you needed a bag of adapters; with MCP, one plug works everywhere.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Key Insight&lt;/strong&gt;: After its release in late 2024, MCP rapidly became an industry standard. By now (mid-2026), mainstream AI tools (Claude Desktop, Cursor, Continue, etc.) all natively support MCP. This means you only need to write one MCP Server (e.g., connecting to your company&amp;rsquo;s Jira), and all MCP-supporting AI applications can call it directly. Additionally, MCP natively supports Agent-to-Agent Communication — expanded in the Multi-Agent section.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;part-4-evaluation--the-lifeline-of-production-systems&#34;&gt;Part 4: Evaluation — The Lifeline of Production Systems
+&lt;/h2&gt;&lt;p&gt;Whether single-Agent or Multi-Agent, before deployment you must answer the same question: &lt;strong&gt;how do you know it actually works?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The answer is &lt;strong&gt;Evaluation&lt;/strong&gt; — it&amp;rsquo;s the lifeline of production-grade Agentic systems.&lt;/p&gt;
+&lt;h3 id=&#34;three-dimensional-evaluation-framework&#34;&gt;Three-Dimensional Evaluation Framework
+&lt;/h3&gt;&lt;p&gt;Stanford professors provide a complete evaluation framework with three dimensions used in cross-combination:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dimension 1: End-to-End vs Component-based&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;End-to-End looks at the whole: what score do users give after using it? Are they satisfied?&lt;/li&gt;
+&lt;li&gt;Component-based breaks it apart: did this Tool forget to update the email? Was the format correct in the sending step?&lt;/li&gt;
+&lt;li&gt;Only looking at the whole tells you what&amp;rsquo;s broken but not why; only looking at components may fix details while the overall experience remains poor. &lt;strong&gt;In practice, do both.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Dimension 2: Objective vs Subjective&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Objective can be automatically verified: user says Order ID is X, LLM writes Y to the database — write a Python script to auto-compare.&lt;/li&gt;
+&lt;li&gt;Subjective has no standard answer: is the tone good? Is the response empathetic? These require human scoring or another LLM as judge.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Dimension 3: Quantitative vs Qualitative&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Quantitative is numbers: what percentage of address changes succeed? What&amp;rsquo;s the latency at each step?&lt;/li&gt;
+&lt;li&gt;Qualitative is feelings: where did hallucinations occur? Where was the tone off? Where did users get stuck? This requires &lt;strong&gt;manual review of each item, no shortcuts&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Practical Advice&lt;/strong&gt;: When initially building an Eval system, the most common mistake is trying to cover all 8 cross-cells from the start. Recommended priority: &lt;strong&gt;① Component × Objective (auto-verify each step&amp;rsquo;s correctness) → ② End-to-End × Quantitative (track core metrics) → ③ End-to-End × Subjective (periodic manual sampling)&lt;/strong&gt;. The first two can run automatically in CI/CD; the third reviews 20 samples weekly. More advanced approaches like LLM-as-Judge should be introduced once you have sufficient confidence in the system.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/dac23713171a341462dcc92fd5ebd70d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Three-Dimensional Evaluation Framework Matrix&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;llm-as-judge-using-ai-to-evaluate-ai&#34;&gt;LLM-as-Judge: Using AI to Evaluate AI
+&lt;/h3&gt;&lt;p&gt;For Subjective Evaluation, the common approach is &lt;strong&gt;LLM-as-Judge&lt;/strong&gt; — using an additional LLM to score. Four mainstream designs:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Pairwise Comparison&lt;/strong&gt;: Give the Judge two answers, ask which is better&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Single-answer Grading&lt;/strong&gt;: Direct 1-5 scoring&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reference-guided Pairwise&lt;/strong&gt;: Provide a reference answer for comparison&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rubric-based&lt;/strong&gt;: Define your own scoring criteria, e.g., &amp;ldquo;5 points = under 100 words, contains 3 key points, first sentence is a summary; 0 points = off-topic, verbose&amp;rdquo;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These four can be mixed. For example, Rubric-based + Few-shot Examples help the judge better understand your expectations.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Common Misconception&lt;/strong&gt;: The biggest trap of LLM-as-Judge is &amp;ldquo;using the same model to judge itself&amp;rdquo; — e.g., using GPT-4 to evaluate GPT-4&amp;rsquo;s output, which easily produces Self-bias with inflated scores. Best practice is &lt;strong&gt;using models from different families as Judges&lt;/strong&gt; (e.g., using Claude to evaluate GPT&amp;rsquo;s output), or at least different versions within the same family. Also, the Judge&amp;rsquo;s Rubric must be very specific; vague Rubrics produce scores with no reference value.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;hands-on-travel-agent-politeness-example&#34;&gt;Hands-On: Travel Agent &amp;ldquo;Politeness&amp;rdquo; Example
+&lt;/h3&gt;&lt;p&gt;The professor demonstrated the complete four-step process using Travel Agent politeness evaluation:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Step&lt;/th&gt;
+					&lt;th&gt;Content&lt;/th&gt;
+					&lt;th&gt;Why It Can&amp;rsquo;t Be Skipped&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Step 1: Error Analysis&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Sample 20 from 1000 user conversations, read each manually&lt;/td&gt;
+					&lt;td&gt;You must first know what problems look like to design the right evaluation&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Step 2: Design Eval&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Use LLM-as-Judge + Politeness Rubric&lt;/td&gt;
+					&lt;td&gt;Translate problems found in Step 1 into scoring criteria&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Step 3: A/B Test (Model)&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Fix Prompt, swap underlying model, run same conversations, Judge scores&lt;/td&gt;
+					&lt;td&gt;See which model has higher politeness&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Step 4: A/B Test (Prompt)&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Fix model, change Prompt wording, see how much one word matters&lt;/td&gt;
+					&lt;td&gt;Minor prompt changes can bring significant differences&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Core principle: &lt;strong&gt;manually sweep for problems first, then design automated evaluation; and only change one variable (model or prompt) at a time.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Learning Tip&lt;/strong&gt;: This &amp;ldquo;A/B Test one variable at a time&amp;rdquo; principle sounds simple but is easily violated in practice. A common mistake: &amp;ldquo;switching to Claude model + simultaneously optimizing the Prompt&amp;rdquo; — results improve, but you don&amp;rsquo;t know if it was the model or the prompt. Build a habit: &lt;strong&gt;only change one thing per experiment, and log it in your experiment journal.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;part-5-case-study--building-a-customer-service-ai-agent&#34;&gt;Part 5: Case Study — Building a Customer Service AI Agent
+&lt;/h2&gt;&lt;p&gt;The professor provided a complete hands-on case — building a customer service Agent to handle &amp;ldquo;change order address&amp;rdquo; requests. The use case:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;User says: &amp;ldquo;I want to change the address for order A127 because I moved to Jianguo South Road.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;step-1-task-decomposition&#34;&gt;Step 1: Task Decomposition
+&lt;/h3&gt;&lt;p&gt;The first step in building an Agentic Workflow isn&amp;rsquo;t coding — it&amp;rsquo;s &lt;strong&gt;sitting with customer service reps for a day or two, watching how they actually handle这类 requests&lt;/strong&gt;. After understanding the human workflow, do Task Decomposition — breaking the big task into smaller tasks.&lt;/p&gt;
+&lt;p&gt;Observation revealed that customer service actually takes five steps:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;① Extract key info (Intent, Order ID, new address)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → ② Query database for customer records
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    → ③ Check company policy (can it be changed? has it shipped?)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      → ④ Draft response based on collected info
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        → ⑤ Send Email
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;step-2-choose-tools-for-each-step&#34;&gt;Step 2: Choose Tools for Each Step
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Step&lt;/th&gt;
+					&lt;th&gt;Tool Choice&lt;/th&gt;
+					&lt;th&gt;Reason&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;① Info Extraction&lt;/td&gt;
+					&lt;td&gt;Single LLM API call&lt;/td&gt;
+					&lt;td&gt;Pure text understanding, no external tools needed&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;② Query/Modify DB&lt;/td&gt;
+					&lt;td&gt;Custom Tool or MCP Server&lt;/td&gt;
+					&lt;td&gt;Needs to interact with external systems&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;③ Policy Check&lt;/td&gt;
+					&lt;td&gt;RAG&lt;/td&gt;
+					&lt;td&gt;Policy documents update, needs efficient retrieval&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;④ Draft Response&lt;/td&gt;
+					&lt;td&gt;LLM&lt;/td&gt;
+					&lt;td&gt;Synthesizes information from previous steps into natural language&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⑤ Send Email&lt;/td&gt;
+					&lt;td&gt;Email Tool&lt;/td&gt;
+					&lt;td&gt;Calls external email service&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The judgment method is simple: &lt;strong&gt;first ask whether each step is Fuzzy or Deterministic, then decide what tool to use.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is what AI Builders actually do — &lt;strong&gt;knowing the boundaries of each tool and technology, then combining them into the solution you need.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Conceptual Link&lt;/strong&gt;: Reviewing the three-level classification — this customer service Agent is a classic &lt;strong&gt;Level 2&lt;/strong&gt;: the tool scope is fixed (5 steps each with clear tools), but execution order is dynamically determined by the Agent based on input.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;step-3-build-evals&#34;&gt;Step 3: Build Evals
+&lt;/h3&gt;&lt;p&gt;Apply all three dimensions of the framework:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;End-to-End&lt;/strong&gt;: Final response correctness, tone, user satisfaction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Component-based&lt;/strong&gt;: Info extraction accuracy, API error rate, policy compliance rate&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Auto-verify Order ID correctness, refund policy violations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Subjective&lt;/strong&gt;: Human + LLM-as-Judge evaluates response politeness, empathy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quantitative&lt;/strong&gt;: Address change success rate, latency, refund correctness rate&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Qualitative&lt;/strong&gt;: Where did hallucinations occur? Where was tone inconsistent? Where did users get confused?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/bf5d030a2f93d22262dfaee803d7e6a9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Customer Service Agent Task Decomposition&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The engineering process from zero to deployment boils down to three steps:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Decompose the task → Design the workflow → Build the evaluation system
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Learning Tip&lt;/strong&gt;: If this is your first AI project, start with an ultra-simple version — pick a small task with only 3-5 steps, skip RAG and Multi-Agent, just use Prompt Chaining to build a Level 1 Agent, then add an evaluation system with only Objective Eval. After getting it working, iterate by adding RAG, adding Tools, upgrading to Level 2. &lt;strong&gt;Get it working first, then optimize. Simple first, complex later — this is the most important engineering discipline for AI Builders.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;part-6-multi-agent--treating-agents-as-tools&#34;&gt;Part 6: Multi-Agent — Treating Agents as Tools
+&lt;/h2&gt;&lt;h3 id=&#34;why-multi-agent&#34;&gt;Why Multi-Agent?
+&lt;/h3&gt;&lt;p&gt;A single Agent can already decompose steps, call tools, do RAG, and write emails — seemingly enough. Multi-Agent exists mainly for two reasons:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Reason&lt;/th&gt;
+					&lt;th&gt;Description&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Parallel Processing&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;When booking a flight, finding flights, hotels, and checking weather — all three can happen simultaneously. A single Agent can only work serially; Multi-Agent lets three specialized Agents run in parallel&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Reusability&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;A company&amp;rsquo;s Design Agent can be used by both the marketing and product teams&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;But the design principle is: &lt;strong&gt;if a single Agent can solve the problem, forcing Multi-Agent only adds unnecessary complexity. Keep it simple; don&amp;rsquo;t over-design.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Common Misconception&lt;/strong&gt;: Many teams start by saying &amp;ldquo;we want to build a Multi-Agent system,&amp;rdquo; thinking single Agent isn&amp;rsquo;t &amp;ldquo;advanced&amp;rdquo; enough. In reality, Multi-Agent introduces three additional costs — &lt;strong&gt;① inter-Agent communication overhead and latency, ② maintenance burden of multiple System Prompts, ③ debugging requires tracing through multiple Agent logs&lt;/strong&gt;. Only when your business meets one of these two conditions is Multi-Agent worthwhile: &lt;strong&gt;a) the task can clearly be split into 2+ independent parallel subtasks; b) different subtasks require vastly different core capabilities, making a single Agent prompt too bloated.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;smart-home-multi-agent-example&#34;&gt;Smart Home Multi-Agent Example
+&lt;/h3&gt;&lt;p&gt;The professor used a smart home brainstorming example. A complete smart home Multi-Agent system might include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Temperature Control Agent&lt;/li&gt;
+&lt;li&gt;Lighting Agent&lt;/li&gt;
+&lt;li&gt;Security Agent&lt;/li&gt;
+&lt;li&gt;Entertainment Agent&lt;/li&gt;
+&lt;li&gt;Notification Agent&lt;/li&gt;
+&lt;li&gt;Energy Management Agent&lt;/li&gt;
+&lt;li&gt;Plus an &lt;strong&gt;Orchestrator&lt;/strong&gt; to coordinate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Two interaction patterns:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Pattern&lt;/th&gt;
+					&lt;th&gt;How It Works&lt;/th&gt;
+					&lt;th&gt;Use Case&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Hierarchical&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;User only talks to Orchestrator, which delegates to sub-Agents&lt;/td&gt;
+					&lt;td&gt;User side — &amp;ldquo;I&amp;rsquo;m leaving,&amp;rdquo; Orchestrator coordinates lighting, security, temperature&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Flat&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Agents communicate directly with each other, no middleman&lt;/td&gt;
+					&lt;td&gt;Backend — Temperature Agent and Energy Agent communicate directly, saving the overhead of going through Orchestrator each time&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;When Agents communicate with each other — it&amp;rsquo;s essentially the &lt;strong&gt;MCP Protocol&lt;/strong&gt;. &lt;strong&gt;You treat Agents as Tools, just like treating APIs as Tools.&lt;/strong&gt; Each Agent exposes a set of Tool-like interfaces, and other Agents call it like calling a tool.&lt;/p&gt;
+&lt;p&gt;Once you internalize this mindset, Multi-Agent is no longer mysterious — it&amp;rsquo;s just adding one more layer on top of what you already know.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/223816641ed3265dde26673c5269ecd5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Multi-Agent Smart Home Architecture&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;part-7-summary--your-ai-learning-roadmap&#34;&gt;Part 7: Summary — Your AI Learning Roadmap
+&lt;/h2&gt;&lt;p&gt;Starting from the limitations of base models, this article has unfolded the complete tech stack for enhancing LLM capabilities layer by layer:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Level&lt;/th&gt;
+					&lt;th&gt;Technology&lt;/th&gt;
+					&lt;th&gt;Key Points&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L1&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Prompt Engineering&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Lowest cost, use first. Focus on Chaining and Testing — every engineer&amp;rsquo;s basic skill&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L2&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Fine-Tuning&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Unless handling legal, scientific, or other high-precision domains, or driven by interest, don&amp;rsquo;t touch it lightly. High cost, poor timeliness, Prompt Engineering usually suffices&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L3&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;RAG&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;The standard solution for filling model knowledge gaps. Almost inevitable when building AI products — Embedding → Vector DB → Retrieval → Generation&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L4&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Agentic Workflow&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;From strengthening single models to system design. Core is mindset shift: from Deterministic Engineering to Fuzzy Engineering, Task Decomposition, building Evaluation systems&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L5&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Multi-Agent&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Treat Agents as Tools, collaborate with each other. Improves speed (parallelism) and reusability. But remember: keep it simple when possible&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;With this cognitive framework, you won&amp;rsquo;t blindly follow trends — doing Multi-Agent because others do it, thinking Fine-Tuning is cool because others talk about it. &lt;strong&gt;Start from implementation&lt;/strong&gt;: look at pain points in your life or work, and think about solutions from those pain points. In this process, you&amp;rsquo;ll naturally discover which technologies you need to learn, efficiently planning your learning path.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Next Steps&lt;/strong&gt;: If you want to start today, here&amp;rsquo;s a &amp;ldquo;minimum viable path&amp;rdquo; — ① Find a repetitive text task at work (like writing weekly reports, answering FAQs); ② Use Prompt Chaining to break it into 2-3 steps and run through them; ③ Write a few Objective Test Cases to auto-verify output format; ④ Run it for a week, noting what works and what doesn&amp;rsquo;t. Complete these four steps, and you&amp;rsquo;re already an AI Builder growing through practice.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

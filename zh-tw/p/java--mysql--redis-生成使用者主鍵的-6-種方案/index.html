@@ -952,73 +952,73 @@
 </div><hr>
 <h2 id="六種方案對比總結">六種方案對比總結
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>方案</th>
-          <th>是否有序</th>
-          <th>是否可讀</th>
-          <th>效能</th>
-          <th>分散式友好</th>
-          <th>複雜度</th>
-          <th>推薦場景</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>MySQL 自增</strong></td>
-          <td>是</td>
-          <td>是</td>
-          <td>中（依賴 DB）</td>
-          <td>分庫分表難</td>
-          <td>低</td>
-          <td>單體小專案</td>
-      </tr>
-      <tr>
-          <td><strong>UUID</strong></td>
-          <td>否</td>
-          <td>否</td>
-          <td>高</td>
-          <td>是</td>
-          <td>低</td>
-          <td>Token、臨時 ID</td>
-      </tr>
-      <tr>
-          <td><strong>Redis INCR</strong></td>
-          <td>是</td>
-          <td>是</td>
-          <td>極高</td>
-          <td>是</td>
-          <td>低</td>
-          <td>中小系統，有 Redis</td>
-      </tr>
-      <tr>
-          <td><strong>Snowflake（純）</strong></td>
-          <td>趨勢遞增</td>
-          <td>是</td>
-          <td>極高</td>
-          <td>是</td>
-          <td>中</td>
-          <td>高併發分散式</td>
-      </tr>
-      <tr>
-          <td><strong>Snowflake + Redis</strong></td>
-          <td>趨勢遞增</td>
-          <td>是</td>
-          <td>高</td>
-          <td>強一致</td>
-          <td>中高</td>
-          <td>金融、支付</td>
-      </tr>
-      <tr>
-          <td><strong>時間戳+Redis 序列</strong></td>
-          <td>趨勢遞增</td>
-          <td>是</td>
-          <td>高</td>
-          <td>是</td>
-          <td>低</td>
-          <td>自定義 ID 格式</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方案</th>
+					<th>是否有序</th>
+					<th>是否可讀</th>
+					<th>效能</th>
+					<th>分散式友好</th>
+					<th>複雜度</th>
+					<th>推薦場景</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>MySQL 自增</strong></td>
+					<td>是</td>
+					<td>是</td>
+					<td>中（依賴 DB）</td>
+					<td>分庫分表難</td>
+					<td>低</td>
+					<td>單體小專案</td>
+			</tr>
+			<tr>
+					<td><strong>UUID</strong></td>
+					<td>否</td>
+					<td>否</td>
+					<td>高</td>
+					<td>是</td>
+					<td>低</td>
+					<td>Token、臨時 ID</td>
+			</tr>
+			<tr>
+					<td><strong>Redis INCR</strong></td>
+					<td>是</td>
+					<td>是</td>
+					<td>極高</td>
+					<td>是</td>
+					<td>低</td>
+					<td>中小系統，有 Redis</td>
+			</tr>
+			<tr>
+					<td><strong>Snowflake（純）</strong></td>
+					<td>趨勢遞增</td>
+					<td>是</td>
+					<td>極高</td>
+					<td>是</td>
+					<td>中</td>
+					<td>高併發分散式</td>
+			</tr>
+			<tr>
+					<td><strong>Snowflake + Redis</strong></td>
+					<td>趨勢遞增</td>
+					<td>是</td>
+					<td>高</td>
+					<td>強一致</td>
+					<td>中高</td>
+					<td>金融、支付</td>
+			</tr>
+			<tr>
+					<td><strong>時間戳+Redis 序列</strong></td>
+					<td>趨勢遞增</td>
+					<td>是</td>
+					<td>高</td>
+					<td>是</td>
+					<td>低</td>
+					<td>自定義 ID 格式</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="最後建議">最後建議

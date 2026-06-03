@@ -614,26 +614,26 @@
 </div>
 </div><p>三個關鍵組件各司其職：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>組件</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>CC Switch</strong></td>
-          <td>開源模型切換工具，負責在 Codex 中注入自定義模型配置</td>
-      </tr>
-      <tr>
-          <td><strong>中轉腳本</strong></td>
-          <td>本機執行的代理服務，負責請求格式的雙向轉換</td>
-      </tr>
-      <tr>
-          <td><strong>DeepSeek API</strong></td>
-          <td>最終回應用戶請求的模型服務</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>組件</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>CC Switch</strong></td>
+					<td>開源模型切換工具，負責在 Codex 中注入自定義模型配置</td>
+			</tr>
+			<tr>
+					<td><strong>中轉腳本</strong></td>
+					<td>本機執行的代理服務，負責請求格式的雙向轉換</td>
+			</tr>
+			<tr>
+					<td><strong>DeepSeek API</strong></td>
+					<td>最終回應用戶請求的模型服務</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="實操步驟">實操步驟
 </h2><h3 id="第一步準備工具">第一步：準備工具
@@ -674,35 +674,35 @@
 <p>確實不行。影片作者也提到試了很多次——改 chat、改 v1、改各種路徑，Codex 全都會報錯。因為 Codex 的請求格式是寫死在內部邏輯裡的，擅自修改會破壞整個通訊流程。與其和 Codex 的內部機制較勁，不如在外面加一層適配來得乾淨俐落。</p>
 <h2 id="總結">總結
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>方案對比</th>
-          <th>直接改地址</th>
-          <th>中轉腳本</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>能否跑通</td>
-          <td>❌ 報錯</td>
-          <td>✅ 正常</td>
-      </tr>
-      <tr>
-          <td>實現成本</td>
-          <td>低（改一行配置）</td>
-          <td>中（多跑一個腳本）</td>
-      </tr>
-      <tr>
-          <td>可維護性</td>
-          <td>差（Codex 一更新可能就廢）</td>
-          <td>好（解耦，不依賴 Codex 內部實現）</td>
-      </tr>
-      <tr>
-          <td>擴充性</td>
-          <td>無</td>
-          <td>高（稍改腳本就能接入更多模型）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方案對比</th>
+					<th>直接改地址</th>
+					<th>中轉腳本</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>能否跑通</td>
+					<td>❌ 報錯</td>
+					<td>✅ 正常</td>
+			</tr>
+			<tr>
+					<td>實現成本</td>
+					<td>低（改一行配置）</td>
+					<td>中（多跑一個腳本）</td>
+			</tr>
+			<tr>
+					<td>可維護性</td>
+					<td>差（Codex 一更新可能就廢）</td>
+					<td>好（解耦，不依賴 Codex 內部實現）</td>
+			</tr>
+			<tr>
+					<td>擴充性</td>
+					<td>無</td>
+					<td>高（稍改腳本就能接入更多模型）</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>這個方案的思路其實很通用——<strong>不只是在 Codex 上用 DeepSeek，任何有類似格式不相容問題的場景，都可以透過本機中轉層來解決</strong>。CC Switch 負責注入配置，中轉腳本負責協定轉換，兩者配合就能把各種第三方模型接入 Codex。</p>
 <p>中轉腳本已開源在 <a class="link" href="https://github.com/Siborne/any2codex"  target="_blank" rel="noopener"
@@ -799,6 +799,25 @@
             
                 
 <article class="has-image">
+    <a href="/zh-tw/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" data-key="from-prompt-engineering-to-multi-agent-ai-builder-roadmap" data-hash="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Beyond LLM：從提示詞工程到多智能體的 AI Builder 全景路線圖</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/zh-tw/p/claude-code-deepseek-setup/">
         
         
@@ -849,25 +868,6 @@
 
         <div class="article-details">
             <h2 class="article-title">OpenCode 新手進階：並行排程與使用技巧全攻略</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/zh-tw/p/internet-architecture-in-one-story/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" loading="lazy" data-key="internet-architecture-in-one-story" data-hash="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">互聯網架構就這？1個故事講清楚</h2>
         </div>
     </a>
 </article>

@@ -707,54 +707,54 @@
 </h3><p>Codex&rsquo;s permission system revolves entirely around the <strong>Sandbox</strong> — a textbook Harness Engineering implementation that constrains AI capabilities at the OS level.</p>
 <p><strong>Default restrictions:</strong></p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Restriction</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>In-sandbox files</td>
-          <td><strong>Direct read/write</strong> by default, no per-file approval needed</td>
-      </tr>
-      <tr>
-          <td>Out-of-sandbox files</td>
-          <td><strong>Blocked</strong></td>
-      </tr>
-      <tr>
-          <td>Network access</td>
-          <td><strong>Blocked by default</strong></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Restriction</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>In-sandbox files</td>
+					<td><strong>Direct read/write</strong> by default, no per-file approval needed</td>
+			</tr>
+			<tr>
+					<td>Out-of-sandbox files</td>
+					<td><strong>Blocked</strong></td>
+			</tr>
+			<tr>
+					<td>Network access</td>
+					<td><strong>Blocked by default</strong></td>
+			</tr>
+	</tbody>
 </table></div>
 <p>These hard limits are enforced by OS-level mechanisms (Seatbelt/Sandbox on Mac, equivalent on Windows), not by model compliance.</p>
 <p><strong>Three permission tiers:</strong></p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Tier</th>
-          <th>Description</th>
-          <th>Recommendation</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Manual approval</td>
-          <td>Every privilege escalation requires manual confirmation</td>
-          <td>Safest but tedious</td>
-      </tr>
-      <tr>
-          <td><strong>Auto-review</strong></td>
-          <td>Small model auto-reviews low-risk operations; high-risk prompts manual approval</td>
-          <td>✅ <strong>Recommended</strong></td>
-      </tr>
-      <tr>
-          <td>Full access</td>
-          <td>Bypass all sandbox restrictions</td>
-          <td>⚠️ Use with caution</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Tier</th>
+					<th>Description</th>
+					<th>Recommendation</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Manual approval</td>
+					<td>Every privilege escalation requires manual confirmation</td>
+					<td>Safest but tedious</td>
+			</tr>
+			<tr>
+					<td><strong>Auto-review</strong></td>
+					<td>Small model auto-reviews low-risk operations; high-risk prompts manual approval</td>
+					<td>✅ <strong>Recommended</strong></td>
+			</tr>
+			<tr>
+					<td>Full access</td>
+					<td>Bypass all sandbox restrictions</td>
+					<td>⚠️ Use with caution</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>When Codex needs to access out-of-sandbox files or the network, it will request an <strong>Escalation</strong>.</p>
@@ -897,22 +897,22 @@
 </h2><h3 id="plugin-marketplace">Plugin Marketplace
 </h3><p>Left sidebar → Plugins, divided into two categories:</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Plugins</strong></td>
-          <td>Third-party service capability injection (GitHub, Gmail, Netlify, etc.)</td>
-      </tr>
-      <tr>
-          <td><strong>Skills</strong></td>
-          <td>Professional capability guides with directory structure</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Plugins</strong></td>
+					<td>Third-party service capability injection (GitHub, Gmail, Netlify, etc.)</td>
+			</tr>
+			<tr>
+					<td><strong>Skills</strong></td>
+					<td>Professional capability guides with directory structure</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="example-github--gmail-workflow">Example: GitHub + Gmail Workflow
 </h3><ol>
@@ -1041,70 +1041,70 @@
 <hr>
 <h2 id="12-summary-codex-app-capability-map">12. Summary: Codex APP Capability Map
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Capability</th>
-          <th>Description</th>
-          <th>Highlight</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Sandbox Permissions</td>
-          <td>OS-level security isolation + auto-review</td>
-          <td>Balance of safety and convenience</td>
-      </tr>
-      <tr>
-          <td>Multi-project Parallelism</td>
-          <td>Multiple projects &amp; conversations simultaneously</td>
-          <td>Physical isolation, zero interference</td>
-      </tr>
-      <tr>
-          <td>Image Generation</td>
-          <td>Built-in GPT Image</td>
-          <td>Style consistency, embedded in projects</td>
-      </tr>
-      <tr>
-          <td>Plan Mode</td>
-          <td>Align first, then execute</td>
-          <td>Prevents rework</td>
-      </tr>
-      <tr>
-          <td>Git Worktree</td>
-          <td>Branch-level parallel development</td>
-          <td>Different folders, true isolation</td>
-      </tr>
-      <tr>
-          <td>Cloud Execution</td>
-          <td>GitHub-linked cloud execution</td>
-          <td>Approve via phone, work anytime</td>
-      </tr>
-      <tr>
-          <td>Memory System</td>
-          <td>AGENTS.md project-level + global</td>
-          <td>No more repeating context</td>
-      </tr>
-      <tr>
-          <td>Scheduled Automation</td>
-          <td>Plugins + cron tasks + MEMORY</td>
-          <td>Accumulates experience, gets more stable</td>
-      </tr>
-      <tr>
-          <td>Skills</td>
-          <td>Reusable professional capability packs</td>
-          <td>Official / third-party / custom</td>
-      </tr>
-      <tr>
-          <td>MCP</td>
-          <td>Standardized external tool integration</td>
-          <td>Supabase, Netlify, etc.</td>
-      </tr>
-      <tr>
-          <td>Computer Use</td>
-          <td>Automatic computer operation</td>
-          <td>Mac-only, background execution</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Capability</th>
+					<th>Description</th>
+					<th>Highlight</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Sandbox Permissions</td>
+					<td>OS-level security isolation + auto-review</td>
+					<td>Balance of safety and convenience</td>
+			</tr>
+			<tr>
+					<td>Multi-project Parallelism</td>
+					<td>Multiple projects &amp; conversations simultaneously</td>
+					<td>Physical isolation, zero interference</td>
+			</tr>
+			<tr>
+					<td>Image Generation</td>
+					<td>Built-in GPT Image</td>
+					<td>Style consistency, embedded in projects</td>
+			</tr>
+			<tr>
+					<td>Plan Mode</td>
+					<td>Align first, then execute</td>
+					<td>Prevents rework</td>
+			</tr>
+			<tr>
+					<td>Git Worktree</td>
+					<td>Branch-level parallel development</td>
+					<td>Different folders, true isolation</td>
+			</tr>
+			<tr>
+					<td>Cloud Execution</td>
+					<td>GitHub-linked cloud execution</td>
+					<td>Approve via phone, work anytime</td>
+			</tr>
+			<tr>
+					<td>Memory System</td>
+					<td>AGENTS.md project-level + global</td>
+					<td>No more repeating context</td>
+			</tr>
+			<tr>
+					<td>Scheduled Automation</td>
+					<td>Plugins + cron tasks + MEMORY</td>
+					<td>Accumulates experience, gets more stable</td>
+			</tr>
+			<tr>
+					<td>Skills</td>
+					<td>Reusable professional capability packs</td>
+					<td>Official / third-party / custom</td>
+			</tr>
+			<tr>
+					<td>MCP</td>
+					<td>Standardized external tool integration</td>
+					<td>Supabase, Netlify, etc.</td>
+			</tr>
+			<tr>
+					<td>Computer Use</td>
+					<td>Automatic computer operation</td>
+					<td>Mac-only, background execution</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <blockquote>
@@ -1179,6 +1179,25 @@
             
                 
 <article class="has-image">
+    <a href="/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" data-key="from-prompt-engineering-to-multi-agent-ai-builder-roadmap" data-hash="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/en/p/codex-deepseek-v4-proxy/">
         
         
@@ -1248,25 +1267,6 @@
 
         <div class="article-details">
             <h2 class="article-title">5-Minute Claude Code Setup with DeepSeek</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/en/p/internet-architecture-in-one-story/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" loading="lazy" data-key="internet-architecture-in-one-story" data-hash="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Internet Architecture Explained: One Story to Rule Them All</h2>
         </div>
     </a>
 </article>

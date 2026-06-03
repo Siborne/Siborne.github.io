@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="从 Stanford Beyond LLM 课程出发，系统梳理 Prompt Engineering、RAG、Fine-Tuning、Agentic Workflow 到 Multi-Agent 的完整技术栈，帮你建立 AI 工程化的全景认知框架。">
+<title>Beyond LLM：从提示词工程到多智能体的 AI Builder 全景路线图</title>
+
+<link rel='canonical' href='https://Siborne.top/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/'>
+
+<link rel="stylesheet" href="/scss/style.min.f169add374573a6d5393fbcd112ed0f3071161116b122a3ecff4c5a0e1eb28aa.css"><meta property='og:title' content="Beyond LLM：从提示词工程到多智能体的 AI Builder 全景路线图">
+<meta property='og:description' content="从 Stanford Beyond LLM 课程出发，系统梳理 Prompt Engineering、RAG、Fine-Tuning、Agentic Workflow 到 Multi-Agent 的完整技术栈，帮你建立 AI 工程化的全景认知框架。">
+<meta property='og:url' content='https://Siborne.top/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI' /><meta property='article:tag' content='LLM' /><meta property='article:tag' content='Prompt Engineering' /><meta property='article:tag' content='RAG' /><meta property='article:tag' content='Agent' /><meta property='article:tag' content='Multi-Agent' /><meta property='article:tag' content='MCP' /><meta property='article:tag' content='Fine-Tuning' /><meta property='article:tag' content='Agentic Workflow' /><meta property='article:published_time' content='2026-06-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-06-04T01:41:49&#43;08:00'/><meta property='og:image' content='https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png' />
+<meta name="twitter:title" content="Beyond LLM：从提示词工程到多智能体的 AI Builder 全景路线图">
+<meta name="twitter:description" content="从 Stanford Beyond LLM 课程出发，系统梳理 Prompt Engineering、RAG、Fine-Tuning、Agentic Workflow 到 Multi-Agent 的完整技术栈，帮你建立 AI 工程化的全景认知框架。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar4_hu_c86b86ec6639ffee.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; Enthusiast
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent Architect &amp; Full-Stack Dev
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 Curious Student · Future Builder
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    Building intelligent agents &#43; scalable apps. Blending creativity with AI efficiency. 🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页 | Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于 | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档 | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/projects/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder-open"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2" /></svg>
+                
+                <span>开源项目 | Projects</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>技术链接 | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" selected>简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" >繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" >日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#核心要点">核心要点</a></li>
+    <li><a href="#一开篇ai-builder-的困境与纵轴思维">一、开篇：AI Builder 的困境与纵轴思维</a>
+      <ol>
+        <li><a href="#什么是-llm它的限制是什么">什么是 LLM？它的限制是什么？</a></li>
+      </ol>
+    </li>
+    <li><a href="#二强化单一-llm-的三大工具">二、强化单一 LLM 的三大工具</a>
+      <ol>
+        <li><a href="#prompt-engineering每个工程师的基本功">Prompt Engineering：每个工程师的基本功</a>
+          <ol>
+            <li><a href="#锯齿边界打瞌睡与半人马的隐喻">锯齿边界、打瞌睡与半人马的隐喻</a></li>
+            <li><a href="#prompt-chaining最重要却最被低估的技巧">Prompt Chaining：最重要却最被低估的技巧</a></li>
+          </ol>
+        </li>
+        <li><a href="#fine-tuning能不做就不做">Fine-Tuning：能不做就不做</a></li>
+        <li><a href="#rag连接-llm-与私有知识的标准解法">RAG：连接 LLM 与私有知识的标准解法</a>
+          <ol>
+            <li><a href="#rag-工作流程">RAG 工作流程</a></li>
+            <li><a href="#chunking-与多层级检索">Chunking 与多层级检索</a></li>
+            <li><a href="#rag-会被超长-context-window-淘汰吗">RAG 会被超长 Context Window 淘汰吗？</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#三agentic-workflow从模型到系统">三、Agentic Workflow：从模型到系统</a>
+      <ol>
+        <li><a href="#什么是-agentic-workflow">什么是 Agentic Workflow？</a></li>
+        <li><a href="#工程心态的四重转变">工程心态的四重转变</a></li>
+        <li><a href="#打造-agent-的三个核心要素">打造 Agent 的三个核心要素</a></li>
+        <li><a href="#agent-自主性的三层分级">Agent 自主性的三层分级</a></li>
+        <li><a href="#mcp工业级工具集成标准">MCP：工业级工具集成标准</a></li>
+      </ol>
+    </li>
+    <li><a href="#四evaluation生产级系统的命脉">四、Evaluation：生产级系统的命脉</a>
+      <ol>
+        <li><a href="#三维度评估框架">三维度评估框架</a></li>
+        <li><a href="#llm-as-judge用-ai-评审-ai">LLM-as-Judge：用 AI 评审 AI</a></li>
+        <li><a href="#实操用-travel-agent-的礼貌度举个例子">实操：用 Travel Agent 的&quot;礼貌度&quot;举个例子</a></li>
+      </ol>
+    </li>
+    <li><a href="#五case-study搭建一个客服-ai-agent">五、Case Study：搭建一个客服 AI Agent</a>
+      <ol>
+        <li><a href="#step-1-task-decomposition任务拆解">Step 1: Task Decomposition（任务拆解）</a></li>
+        <li><a href="#step-2-为每一步选择工具">Step 2: 为每一步选择工具</a></li>
+        <li><a href="#step-3-build-evals">Step 3: Build Evals</a></li>
+      </ol>
+    </li>
+    <li><a href="#六multi-agent把-agent-当作-tool">六、Multi-Agent：把 Agent 当作 Tool</a>
+      <ol>
+        <li><a href="#为什么需要-multi-agent">为什么需要 Multi-Agent？</a></li>
+        <li><a href="#智能家庭-multi-agent-范例">智能家庭 Multi-Agent 范例</a></li>
+      </ol>
+    </li>
+    <li><a href="#七总结你的-ai-学习全景路线图">七、总结：你的 AI 学习全景路线图</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" alt="Featured image of post Beyond LLM：从提示词工程到多智能体的 AI Builder 全景路线图" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">Beyond LLM：从提示词工程到多智能体的 AI Builder 全景路线图</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-06-03T00:00:00Z'>2026-06-03</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    Jun 04, 2026 01:41 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                10434字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        从 Stanford Beyond LLM 课程出发，系统梳理 Prompt Engineering、RAG、Fine-Tuning、Agentic Workflow 到 Multi-Agent 的完整技术栈，帮你建立 AI 工程化的全景认知框架。
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/categories/ai/" style="background-color: #6c5ce7; color: #fff;">
+                AI
+            </a>
+        
+            <a href="/categories/computer-tools/" style="background-color: #2a9d8f; color: #fff;">
+                Computer Tools
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/" class="link">English</a>
+                
+                    <a href="https://Siborne.top/zh-tw/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/" class="link">繁體中文</a>
+                
+                    <a href="https://Siborne.top/ja/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/" class="link">日本語</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="核心要点">核心要点
+</h2><ul>
+<li><strong>横轴 vs 纵轴</strong>：升级基础模型是 OpenAI 和 Anthropic 的事；普通开发者应在纵轴上发力——用工程技术增强现有 LLM 的能力，即 <strong>Augmenting LLM</strong>。</li>
+<li><strong>强化单模型的三板斧</strong>：Prompt Engineering（零成本，优先使用）→ RAG（补知识短板）→ Fine-Tuning（不得已才做）。</li>
+<li><strong>从模型到系统</strong>：Agentic Workflow 将 LLM 从&quot;会回答问题的模型&quot;升级为&quot;一套真正运作、产出价值的系统&quot;。</li>
+<li><strong>心态转变</strong>：从确定性工程思维切换到模糊工程思维——你是管理者，AI 是执行者。</li>
+<li><strong>评估是命脉</strong>：没有完善的 Evaluation 系统，Agent 上线的风险不可控。</li>
+<li><strong>Multi-Agent 的本质</strong>：把 Agent 当作 Tool 来调用，就像调用 API 一样。</li>
+</ul>
+<hr>
+<h2 id="一开篇ai-builder-的困境与纵轴思维">一、开篇：AI Builder 的困境与纵轴思维
+</h2><p>如果你关注 AI 领域，最近两年最炙手可热的角色一定是 <strong>AI Engineer</strong> 和 <strong>AI Builder</strong>。大型语言模型越强，这群人越吃香——他们能帮公司打造内部工具、优化运营流程，很多人甚至已经把想法做成产品、成立了自己的公司。</p>
+<p>但想学 AI 的人很多，大多数人却不知从何下手。市面上的资源不是太碎片化，就是过于艰涩，看完仍然不知道自己学到了什么，或者下一步该往哪走。</p>
+<p>Stanford 有一门课叫 <strong>Beyond LLM</strong>，我认为这是目前最接近答案的东西。它从大型语言模型的本质讲起，一路延伸到 Prompt Engineering、RAG、Fine-Tuning、Agentic Workflow，以及 Multi-Agent 框架。本文将用一篇文章的篇幅把核心整理给你——看完之后，你将对 AI 在商业领域的应用建立一套完整的认知框架。</p>
+<h3 id="什么是-llm它的限制是什么">什么是 LLM？它的限制是什么？
+</h3><p><strong>LLM（Large Language Model，大型语言模型）</strong> 是一种基于 Transformer 架构的大规模神经网络，通过对海量文本数据的训练，学会了预测下一个 Token 的概率分布。本质上，它是一个极其复杂的<strong>自回归概率预测机</strong>。</p>
+<p>LLM 要变强有两条路：</p>
+<ul>
+<li><strong>横轴</strong>：换更强的 <strong>Base Model（基础模型）</strong>，比如从 GPT-4 升级到 GPT-5。但这条路是 OpenAI 和 Anthropic 在走的，普通人没有能力也没有资金去训练自己的大模型。</li>
+<li><strong>纵轴</strong>：在现有 LLM 上叠加各种工程技巧，即 <strong>Augmenting LLM（增强型语言模型）</strong>——想办法在已有的基础模型上提升能力。</li>
+</ul>
+<p>这条纵轴，也正是整篇文章关注的核心。</p>
+<blockquote>
+<p><strong>学习提示</strong>：如果你是初学者，建议先把精力 100% 投入纵轴。横轴的事情——今天 GPT-5 发布、明天 Claude 4 出来——你当成新闻看看就好。真正让你在职场有差异化竞争力的是：别人只会用 ChatGPT 聊天，而你能用 RAG + Agentic Workflow 搭一套自动处理客服工单的系统。</p>
+</blockquote>
+<p>如果你只会用 Base Model，在商业场景上一定会撞墙。ChatGPT 刚出来的时候，没有联网功能，没办法调用工具，充其量就是一个聪明的问答机器人，不能实际完成一件事。</p>
+<p>Stanford 教授整理了 Base Model 的几个常见限制：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>限制</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>缺乏领域知识</strong></td>
+					<td>你的公司资料、内部文档、产品规格，Base Model 一概不知</td>
+			</tr>
+			<tr>
+					<td><strong>信息滞后</strong></td>
+					<td>模型不可能每几个月重训一次，新词、新事件、新公司它都不认识</td>
+			</tr>
+			<tr>
+					<td><strong>输出不可控</strong></td>
+					<td>LLM 是概率性输出，同样的 Prompt 跑两次结果可能不同。在聊天场景 OK，但在生产环境可能造成严重后果</td>
+			</tr>
+			<tr>
+					<td><strong>长上下文退化</strong></td>
+					<td>Context 太长时模型表现显著下降，存在&quot;Lost in the Middle&quot;现象——即使信息就在上下文中，模型也可能找不到</td>
+			</tr>
+	</tbody>
+</table></div>
+<blockquote>
+<p><strong>关键洞察</strong>：这四个限制不是独立存在的——它们会相互放大。比如&quot;信息滞后&quot;遇上&quot;输出不可控&quot;，意味着模型可能用自信的语气说出过时错误信息，而你很难一眼识别。理解这四个限制，是后面学 RAG、Agentic Workflow 的底层动机——每项技术本质上都在解决其中一个或多个限制。</p>
+</blockquote>
+<p><img src="https://img.siborne.top/2026/06/27b3ed750fdf78a479fc1b2b8134a01b.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="基础大模型的四个限制"
+	
+	
+></p>
+<p>做 AI 产品，光换更强的 Base Model 是不够的——你需要在<strong>纵轴上发力</strong>。</p>
+<p>接下来，文章前半部分会介绍<strong>强化单一个 LLM 的三大工具</strong>：Prompt Engineering、Fine-Tuning 和 RAG；后半部分进入<strong>系统设计</strong>，介绍 Agentic Workflow、Evaluation 评估方法，以及 Multi-Agent。</p>
+<hr>
+<h2 id="二强化单一-llm-的三大工具">二、强化单一 LLM 的三大工具
+</h2><h3 id="prompt-engineering每个工程师的基本功">Prompt Engineering：每个工程师的基本功
+</h3><p><strong>Prompt Engineering（提示词工程）</strong> 是设计和优化输入给 LLM 的文本指令，以引导模型产生更高质量、更符合预期的输出。</p>
+<p>Stanford 教授直言，他不认为&quot;Prompt Engineer&quot;会成为一个独立职业——因为这是<strong>每个工程师都该掌握的基本技能</strong>，就像九九乘法表一样。</p>
+<h4 id="锯齿边界打瞌睡与半人马的隐喻">锯齿边界、打瞌睡与半人马的隐喻
+</h4><p>顶级管理咨询公司 BCG 做过一个经典实验：将一群顾问分成三组——无 AI 组、ChatGPT 组、ChatGPT + 提示词训练组。研究发现了三个重要现象：</p>
+<ol>
+<li>
+<p><strong>The Jagged Frontier（锯齿边界）</strong>：AI 不是在所有任务上都表现得好。有些任务搭配 AI 显著加分，但有些 AI 反而会拖后腿。你需要清楚地知道这个边界在哪里。</p>
+</li>
+<li>
+<p><strong>Falling Asleep at the Wheel（在方向盘前打瞌睡）</strong>：当你不知道某个任务恰好是 AI 不擅长的领域，却过度信任它、把输出直接交付——结果比不用 AI 还惨。</p>
+</li>
+<li>
+<p><strong>Centaurs vs Cyborgs（半人马 vs 生化人）</strong>：</p>
+<ul>
+<li><strong>Centaur（半人马）模式</strong>：分工委派型——丢一个长 Prompt 给 AI 完成整份简报，自己做其他事。适合<strong>重复性高、流程清楚</strong>的任务。</li>
+<li><strong>Cyborg（生化人）模式</strong>：高频率来回协作型——和模型一句一句对话。适合<strong>需要判断、需要创意、需要来回校正</strong>的任务。</li>
+</ul>
+</li>
+</ol>
+<p>关键不在于哪种更好，而在于<strong>有意识地切换</strong>。企业自动化工作流常用 Centaur 模式，个人深度协作常用 Cyborg 模式。</p>
+<blockquote>
+<p><strong>概念串联</strong>：Centaur 模式本质上就是后面会讲的 Agentic Workflow 的雏形——你把整个任务丢给系统，系统内部自行拆解执行。而 Cyborg 模式更接近你日常使用 ChatGPT/Claude 的方式。当你搭建 Agent 系统时，你的角色就从 Cyborg（亲自来回对话）变成了 Centaur（设计流程，让系统自动跑）。</p>
+</blockquote>
+<p><img src="https://img.siborne.top/2026/06/4e7203069f50d46d9d7eb6d841f2a244.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="锯齿边界与两种AI使用模式"
+	
+	
+></p>
+<h4 id="prompt-chaining最重要却最被低估的技巧">Prompt Chaining：最重要却最被低估的技巧
+</h4><p>很多人以为 Prompt Engineering 就是写好格式——给谁看、什么格式、重点在哪。这些当然重要，但教授指出，<strong>最常用、最重要</strong>的技巧是 <strong>Prompt Chaining（提示词链式调用）</strong>。</p>
+<blockquote>
+<p>注意区分：<strong>Chain of Thought（CoT，思维链）</strong> 是让模型 &ldquo;step by step&rdquo; 思考；<strong>Chaining</strong> 是把一个复杂 Prompt 拆成多个独立 Prompt，前一个的输出喂给下一个。</p>
+</blockquote>
+<p>举个例子——写客户投诉回信：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>方式</th>
+					<th>做法</th>
+					<th>问题</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>单 Prompt</strong></td>
+					<td>&ldquo;读这封投诉信，写一封专业回信&rdquo;</td>
+					<td>黑盒子，输出有问题也不知道调整哪里</td>
+			</tr>
+			<tr>
+					<td><strong>Chaining（3 步）</strong></td>
+					<td>① 抽取客户抱怨点 → ② 用抽取的问题起草大纲 → ③ 用大纲写完整回信</td>
+					<td>每一步可独立测试、独立 Debug</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>Chaining 不仅让模型表现更好，也赋予你 <strong>Observability（可观测性）</strong>——你能知道 LLM 在做什么、哪个环节出了问题。</p>
+<blockquote>
+<p><strong>实战建议</strong>：在实际项目中，建议你从 Chaining 开始而不是从单 Prompt 开始。即使是最简单的需求，也先拆成 2-3 步——你会发现 Debug 效率提升至少 3 倍。工具上可以用 LangChain 的 LCEL 或直接手写 Python 串联，核心逻辑不到 50 行代码。</p>
+</blockquote>
+<hr>
+<h3 id="fine-tuning能不做就不做">Fine-Tuning：能不做就不做
+</h3><p><strong>Fine-Tuning（微调）</strong> 是指在预训练模型的基础上，用特定领域的标注数据对模型参数进行进一步训练，使其在特定任务上表现更好。</p>
+<p>Stanford 教授的立场很明确：<strong>能不做就不做</strong>。原因有四：</p>
+<ol>
+<li><strong>需要大量优质标注数据</strong>：成本对普通人太高。</li>
+<li><strong>容易 Overfit（过拟合）</strong>：在你那个特定任务上变很强，但通用问题反而答不出来，失去 Base Model 原本的广度。</li>
+<li><strong>时效性差</strong>：你花两个月 Fine-Tune 完上线，下个月新一代替换 Base Model 直接打翻你的版本。</li>
+<li><strong>Prompt Engineering 通常能达到同样效果</strong>：成本低得多，而且 Prompt 是 <strong>Portable（可移植的）</strong>——换新 Base Model 后 Prompt 大多还能用，Fine-Tuning 的模型不行。</li>
+</ol>
+<p>当然，少数场景下 Fine-Tune 仍然值得做，比如<strong>法律、科学等需要高精度重复输出的领域</strong>，或者 Base Model 在某个 Domain 上表现确实吃力。</p>
+<blockquote>
+<p><strong>常见误区</strong>：很多人以为&quot;我的行业很专业，所以需要 Fine-Tune&quot;。但实际上，医疗、金融、法律等领域的绝大多数应用场景，用 RAG + 精心设计的 Prompt 就能达到生产级效果。判断标准很简单：<strong>只有当你的任务需要模型学会一种&quot;新能力&quot;（而不仅仅是&quot;新知识&quot;），Fine-Tune 才真正有必要。</strong></p>
+</blockquote>
+<p><strong>那如果 Prompt Engineering 塞不下特定领域知识，Fine-Tuning 又成本效益不对等——怎么办？答案就是 RAG。</strong></p>
+<hr>
+<h3 id="rag连接-llm-与私有知识的标准解法">RAG：连接 LLM 与私有知识的标准解法
+</h3><p><strong>RAG（Retrieval-Augmented Generation，检索增强生成）</strong> 是 AI 工程师面试中最常考的题目之一。它的核心思路是：<strong>不把知识塞进模型参数，而是在推理时动态检索相关内容，拼到 Prompt 里让模型参考</strong>。</p>
+<p>RAG 解决的痛点：</p>
+<ul>
+<li>Context Window 太小 / 长 Context 检索不准</li>
+<li>信息有时效性</li>
+<li>模型容易产生<strong>幻觉——Hallucination（指 LLM 凭空编造不存在的事实）</strong></li>
+</ul>
+<blockquote>
+<p><strong>关键洞察</strong>：Hallucination 是 RAG 要解决的核心问题，但要注意——RAG 只是&quot;降低&quot;幻觉概率，不是&quot;消除&quot;。即使把资料锁在 Prompt 里，模型仍然可能在概括或推理时产生偏差。这就是为什么后面的 Evaluation 系统至关重要：你需要持续监控幻觉率，而不是上线后就以为万事大吉。</p>
+</blockquote>
+<h4 id="rag-工作流程">RAG 工作流程
+</h4><p>假设一个需要高度准确的医疗场景——查询药物副作用：</p>
+<ol>
+<li>
+<p><strong>向量化入库</strong>：用 <strong>Embedding 模型（嵌入模型）</strong> 把所有资料转成向量，存入 <strong>Vector Database（向量数据库）</strong>。语义相近的文字在数学空间中距离也更近。</p>
+</li>
+<li>
+<p><strong>查询向量化</strong>：用户问题&quot;药物 A 的副作用&quot;也用同一个 Embedding 模型转成向量。</p>
+</li>
+<li>
+<p><strong>语义检索</strong>：用距离度量从向量数据库中找出最相关的文档片段。注意：这不是关键词匹配——就算文档写的是&quot;不良反应&quot;而不是&quot;副作用&quot;，一样能找到。</p>
+</li>
+<li>
+<p><strong>组装 Prompt</strong>：将检索到的文档 + System Prompt + 用户问题组合成最终 Prompt，模板大致如下：</p>
+</li>
+</ol>
+<blockquote>
+<p>根据以下 Documents 回答使用者的问题。如果 Documents 里没有答案，就说&quot;我不知道&quot;。</p>
+</blockquote>
+<p>这样设计是为了<strong>把模型锁在你提供的资料范围内</strong>，避免它自由发挥。你还可以要求模型附上答案来源（第几页、第几章），让使用者验证。</p>
+<h4 id="chunking-与多层级检索">Chunking 与多层级检索
+</h4><p>一份药物说明书可能长达 50 页，直接整个转成向量会让细节丢失。所以通常需要 <strong>Chunking（文档切分）</strong>——将文档切为固定大小的片段，每段各自转成向量。</p>
+<p>更高级的做法是<strong>多层级存储</strong>：同时保留整篇、每章、每段的向量。检索时先找到相关章节，再往下钻到精确段落。</p>
+<blockquote>
+<p><strong>实战建议</strong>：Chunking 是 RAG 系统里最容易被低估的环节。一个经验法则——<strong>Chunk Size 控制在 256~1024 Token，相邻 Chunk 之间保留 10%~20% 的重叠（Overlap）</strong>。太小则语义不完整，太大则检索精度下降。多层级检索（先搜章节再搜段落）对超过 50 页的文档效果显著，但复杂度也相应增加——建议先用单层 Chunking 跑通全流程，再优化。</p>
+</blockquote>
+<h4 id="rag-会被超长-context-window-淘汰吗">RAG 会被超长 Context Window 淘汰吗？
+</h4><p>有人说，等模型支持超长 Context Window 且算力足够便宜，Base Model 直接读整个数据库，RAG 就没用了。Stanford 教授的回答是：</p>
+<blockquote>
+<p><strong>理论上对，实际上错。</strong></p>
+</blockquote>
+<p>原因很实际——<strong>Latency（延迟）</strong>。每次问问题模型都要把整个 Google Drive 重读一遍，没人等得了。就像搜索引擎靠预建索引快速定位，不可能每次查询都把整个网络重爬一遍。</p>
+<p>RAG 除了准确度外，还有<strong>检索效率、实时更新</strong>等优势，在可预见的未来仍将存在价值。</p>
+<p><img src="https://img.siborne.top/2026/06/65ffbe306c5b38dda210f97aa184f507.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="RAG工作流程全景图"
+	
+	
+></p>
+<hr>
+<h2 id="三agentic-workflow从模型到系统">三、Agentic Workflow：从模型到系统
+</h2><p>讲完强化单模型的三个工具，接下来进入第二大部分——<strong>从模型到系统</strong>。单个 LLM 再强也有做不到的事，Agentic Workflow 把 AI 从&quot;会回答问题的模型&quot;变成&quot;一套真正运作、产出价值的系统&quot;。</p>
+<h3 id="什么是-agentic-workflow">什么是 Agentic Workflow？
+</h3><p><strong>Agentic Workflow（智能体工作流）</strong> 这个词来自 <strong>Andrew Ng（吴恩达）</strong>——Coursera 联合创始人、Google Brain 创始负责人、前百度首席科学家。他刻意不用已被滥用的 &ldquo;AI Agent&rdquo; 一词，而是用 Agentic Workflow 精确描述：</p>
+<blockquote>
+<p>把一组 Prompt、外部工具（Tools）、记忆（Memory）和各种组件组合进一个有结构的工作流程中，形成一套系统。</p>
+</blockquote>
+<p>RAG 主要做一件事：<strong>给 LLM 外部资料当参考</strong>。而 Agent 把 RAG 当作众多工具之一，还能调用外部 API、维护记忆、执行多步骤决策。</p>
+<p>举个退订单的例子：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>场景</th>
+					<th>RAG 能做的</th>
+					<th>Agent 能做的</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>&ldquo;我想退这笔订单&rdquo;</td>
+					<td>丢给你退费政策文件</td>
+					<td>用 RAG 检索政策 → 主动问订单编号 → 用 Tool 查订单 → 确认退费 → 告知 3-5 个工作天到账</td>
+			</tr>
+	</tbody>
+</table></div>
+<blockquote>
+<p><strong>RAG 是工具，Agent 是使用 RAG 这个工具的系统。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>学习提示</strong>：这句话是整个课程最重要的心智模型之一。你可以建立这样一个思维习惯：每次看到一门新技术（比如新的向量数据库、新的 Agent 框架），先问自己——这是&quot;工具&quot;还是&quot;系统&quot;？工具是拼图的一块，系统是把拼图拼起来的方式。大多数人卡住的原因不是不会用工具，而是不知道怎么把它们拼起来。</p>
+</blockquote>
+<h3 id="工程心态的四重转变">工程心态的四重转变
+</h3><p>要打造 Agentic Workflow，你的工程心态需要先在四个维度上翻转：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>传统软件</th>
+					<th>Agentic AI 软件</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>数据</strong></td>
+					<td>结构化数据（JSON、数据库、表单）</td>
+					<td>自由文本、图片、音频——无固定格式</td>
+			</tr>
+			<tr>
+					<td><strong>逻辑</strong></td>
+					<td><strong>Deterministic（确定性的）</strong>：同样的输入永远给同样的输出</td>
+					<td><strong>Fuzzy（模糊性的）</strong>：同样输入可能产生不同输出</td>
+			</tr>
+			<tr>
+					<td><strong>架构心态</strong></td>
+					<td>精确控制每一步执行路径，像写 Microservices</td>
+					<td><strong>Think like a manager</strong>：给 AI 目标和限制，让它自己决定怎么做</td>
+			</tr>
+			<tr>
+					<td><strong>测试</strong></td>
+					<td>确定性测试，跑一百次结果一样</td>
+					<td>迭代探索式测试，模型对 Context 敏感，无法穷举</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>第一条落地原则随之而来：</p>
+<blockquote>
+<p><strong>能 Deterministic 解的问题，就 Deterministic 解；剩下 Fuzzy 的部分，加上护栏（Guardrails）。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>关键洞察</strong>：这条原则可以翻译成一句更具体的话——<strong>你的代码里应该永远是 if-else 包裹着 LLM 调用，而不是 LLM 调用包裹着 if-else。</strong> 把 LLM 当成你系统里的一个&quot;模糊推理模块&quot;，外围用确定性逻辑（校验、重试、降级）把它保护起来。这样即使 LLM 犯错了，系统也不会崩溃。</p>
+</blockquote>
+<p>教授举了自己的例子：技能评估系统中，选择题和配对题用确定性方式计分（有标准答案）；但语音+编程混合题型没有标准答案，只能用 LLM 模糊评分。而 Fuzzy 评分一定会有误判——所以他们在系统里设计了一个 <strong>Appeal Feature（申诉机制）</strong>，受测者可以提出申述，由真人介入审查。</p>
+<p>这就是护栏的具体形式：<strong>不是试图让 AI 零错误，而是在它出错时有人接得住。</strong></p>
+<blockquote>
+<p><strong>实战建议</strong>：护栏设计有三个层次——① <strong>输入护栏</strong>：校验用户输入是否合法；② <strong>过程护栏</strong>：监控 Agent 每一步的输出是否符合预期格式；③ <strong>输出护栏</strong>：最终结果是否在安全范围内。至少实现①和③，②是进阶优化。另外，永远要有一个 <strong>Human-in-the-loop（人工介入）</strong> 的逃生通道。</p>
+</blockquote>
+<h3 id="打造-agent-的三个核心要素">打造 Agent 的三个核心要素
+</h3><p>以&quot;帮我订一张去巴黎的机票&quot;为例：</p>
+<p><strong>① Prompts（提示词）</strong></p>
+<p>你如何告诉 AI：它的角色是什么、它能做什么、不能做什么。</p>
+<p><strong>② Context Management（上下文管理）</strong></p>
+<p>本质就一件事：<strong>把对的信息，在对的时间，提供给 Agent</strong>。包含：</p>
+<ul>
+<li><strong>Working Memory（工作记忆）</strong>：高频、要快的信息，如使用者名字、本次目的地。</li>
+<li><strong>Archival Memory（归档记忆）</strong>：低频、可以慢一点的信息，如过去五年的订房记录，需要时再查。</li>
+</ul>
+<p><strong>③ Tools（工具）</strong></p>
+<p>Agent 能调用的外部能力，通常分两种：</p>
+<ul>
+<li><strong>做事的</strong>：Flight Search、Hotel Booking、Payment</li>
+<li><strong>查资料的</strong>：去 CRM 查客户资料、查订单记录</li>
+</ul>
+<h3 id="agent-自主性的三层分级">Agent 自主性的三层分级
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>层级</th>
+					<th>描述</th>
+					<th>特点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Level 1: Hardcoded Steps</strong></td>
+					<td>步骤全部写死，按顺序走</td>
+					<td>安全可预测，但僵硬</td>
+			</tr>
+			<tr>
+					<td><strong>Level 2: Hardcoded Tools + 自主步骤</strong></td>
+					<td>给 Agent 一组工具，让它自己决定执行顺序</td>
+					<td><strong>目前最常见的 Production Setup</strong>，教授推荐的起点</td>
+			</tr>
+			<tr>
+					<td><strong>Level 3: Fully Autonomous</strong></td>
+					<td>自己决定步骤，甚至自己创建工具</td>
+					<td>能力最强，风险最高——误判可能导致严重损失</td>
+			</tr>
+	</tbody>
+</table></div>
+<blockquote>
+<p><strong>学习提示</strong>：如果你是第一次搭建 Agent，务必从 Level 2 开始。Level 1 太僵硬，遇到预期外的情况就会卡住；Level 3 太危险，生产环境不可控。Level 2 的甜点在于——<strong>你控制&quot;工具范围&quot;，Agent 控制&quot;执行顺序&quot;</strong>。等你对 Level 2 完全熟练、Eval 系统也建立好之后，再考虑往 Level 3 探索。</p>
+</blockquote>
+<p><img src="https://img.siborne.top/2026/06/b757a8b83639ec18d28fa14bba0547af.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Agent自主性三层分级"
+	
+	
+></p>
+<h3 id="mcp工业级工具集成标准">MCP：工业级工具集成标准
+</h3><p><strong>MCP（Model Context Protocol，模型上下文协议）</strong> 是 Anthropic 推出的标准化客户端-服务器架构，用于解决 AI 工具生态碎片化的问题。</p>
+<p>传统做法是：你要为每一个 API 单独写串接逻辑，手动教 LLM 每个 API 怎么用、传什么参数。</p>
+<p>MCP 的做法是：在中间放一个协议层——<strong>Agent 不需要认识每个 API，它只需要跟 MCP Server 沟通，MCP Server 负责跟后面的服务打交道</strong>。</p>
+<blockquote>
+<p>你可以把 MCP 想象成一个<strong>通用 USB-C 插头</strong>：以前每个国家的插座规格不同，你要带一堆转接头；有了 MCP，插一个就全通了。</p>
+</blockquote>
+<blockquote>
+<p><strong>关键洞察</strong>：MCP 在 2024 年底发布后迅速成为行业标准。到今天（2026 年中），主流 AI 工具（Claude Desktop、Cursor、Continue 等）都已原生支持 MCP。这意味着你只需写一次 MCP Server（比如连接公司 Jira 的 Server），所有支持 MCP 的 AI 应用都能直接调用。此外，MCP 还天然支持 Agent-to-Agent Communication——后面 Multi-Agent 章节会展开讲。</p>
+</blockquote>
+<hr>
+<h2 id="四evaluation生产级系统的命脉">四、Evaluation：生产级系统的命脉
+</h2><p>不管单 Agent 还是 Multi-Agent，上线之前都要回答同一个问题：<strong>怎么知道它真的有用？</strong></p>
+<p>答案就是 <strong>Evaluation（评估系统）</strong>——它是 Production 级别 Agentic 系统的命脉。</p>
+<h3 id="三维度评估框架">三维度评估框架
+</h3><p>Stanford 教授给出了一个完整的评估框架，三个维度交叉使用：</p>
+<p><strong>维度一：End-to-End（端到端）vs Component-based（组件级）</strong></p>
+<ul>
+<li>End-to-End 看整体：用户用完后给几分？满不满意？</li>
+<li>Component-based 拆开看：这个 Tool 是不是忘了更新 email？发送那一步格式对不对？</li>
+<li>光看整体知道哪里坏但不知道为什么坏；光看组件可能修了细节但整体体验仍然差。<strong>实务上两个都要做。</strong></li>
+</ul>
+<p><strong>维度二：Objective（客观）vs Subjective（主观）</strong></p>
+<ul>
+<li>Objective 可自动验证：用户说 Order ID 是 X，LLM 写进数据库变成 Y——写个 Python 脚本自动对比。</li>
+<li>Subjective 没有标准答案：语气好不好？回答有没有同理心？这类需要人工评分或用另一个 LLM 当评审。</li>
+</ul>
+<p><strong>维度三：Quantitative（定量）vs Qualitative（定性）</strong></p>
+<ul>
+<li>Quantitative 是数字：改地址成功率百分之几？各环节延迟多少？</li>
+<li>Qualitative 是感觉：在哪里产生了幻觉？语气哪里不对？用户在哪一步卡住了？这个需要<strong>人工逐条看，没有捷径</strong>。</li>
+</ul>
+<blockquote>
+<p><strong>实战建议</strong>：初建 Eval 系统时，最容易犯的错误是一上来就想覆盖全部 8 个交叉格。建议的优先级是：<strong>① Component × Objective（自动验证每步正确性）→ ② End-to-End × Quantitative（追踪核心指标）→ ③ End-to-End × Subjective（定期人工抽检）</strong>。前两个可以在 CI/CD 中自动跑，第三个每周抽 20 条看一次。LLM-as-Judge 等更高级的手段，等你对系统有足够信心再引入。</p>
+</blockquote>
+<p><img src="https://img.siborne.top/2026/06/dac23713171a341462dcc92fd5ebd70d.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="三维度评估框架矩阵"
+	
+	
+></p>
+<h3 id="llm-as-judge用-ai-评审-ai">LLM-as-Judge：用 AI 评审 AI
+</h3><p>对于 Subjective Evaluation，常用做法是 <strong>LLM-as-Judge（以 LLM 为评审）</strong>——用一个额外的 LLM 来评分。有四种主流设计：</p>
+<ol>
+<li><strong>Pairwise Comparison（成对比较）</strong>：给 Judge 两个答案，问哪个更好</li>
+<li><strong>Single-answer Grading（单答案打分）</strong>：直接打 1-5 分</li>
+<li><strong>Reference-guided Pairwise（参考引导成对比较）</strong>：多给一个标准答案做参照</li>
+<li><strong>Rubric-based（基于评分标准）</strong>：自己定义评分标准，如&quot;5分=100字以内，含3个重点，首句是概述；0分=答非所问、冗长失焦&quot;</li>
+</ol>
+<p>这四种可以混用。例如 Rubric-based + Few-shot Examples，让评审更清楚你要什么。</p>
+<blockquote>
+<p><strong>常见误区</strong>：LLM-as-Judge 最大的陷阱是&quot;用同一个模型评判自己&quot;——比如用 GPT-4 评审 GPT-4 的输出，容易产生 Self-bias（自我偏好），评分虚高。最佳实践是<strong>用不同家族的模型做 Judge</strong>（比如用 Claude 评审 GPT 的输出），或者至少用同家族的不同版本。另外，Judge 的 Rubric 要写得非常具体，模糊的 Rubric 产出的分数没有参考价值。</p>
+</blockquote>
+<h3 id="实操用-travel-agent-的礼貌度举个例子">实操：用 Travel Agent 的&quot;礼貌度&quot;举个例子
+</h3><p>教授用 Travel Agent 的礼貌度评估完整演示了四步流程：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>步骤</th>
+					<th>内容</th>
+					<th>为什么不能省</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Step 1: Error Analysis</strong></td>
+					<td>从 1000 个用户对话中抽 20 个，人工逐条读</td>
+					<td>你必须先知道问题长什么样，才能设计对的评估</td>
+			</tr>
+			<tr>
+					<td><strong>Step 2: Design Eval</strong></td>
+					<td>用 LLM-as-Judge + 礼貌度 Rubric</td>
+					<td>把 Step 1 发现的问题翻译成评分标准</td>
+			</tr>
+			<tr>
+					<td><strong>Step 3: A/B Test (模型)</strong></td>
+					<td>固定 Prompt，换底层模型，跑同一批对话，Judge 评分</td>
+					<td>看哪个模型礼貌度更高</td>
+			</tr>
+			<tr>
+					<td><strong>Step 4: A/B Test (Prompt)</strong></td>
+					<td>固定模型，改 Prompt 措辞，看一个词的差距影响多大</td>
+					<td>微小的 Prompt 变化可能带来显著差异</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>核心原则：<strong>先人工扫出问题，再设计自动化评估；且模型和 Prompt 这两个变量一次只动一个。</strong></p>
+<blockquote>
+<p><strong>学习提示</strong>：这条&quot;A/B Test 一次只动一个变量&quot;的原则听起来简单，但实际执行时很容易违反。一个常见的错误是：&ldquo;换成 Claude 模型 + 同时优化了 Prompt&rdquo;——结果效果好，但你不知道是模型的功劳还是 Prompt 的功劳。建议你养成一个习惯：<strong>每次实验只改一件事，记录在实验日志里</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="五case-study搭建一个客服-ai-agent">五、Case Study：搭建一个客服 AI Agent
+</h2><p>教授给了一个完整的实战案例——搭建处理&quot;改订单地址&quot;请求的客服 Agent。用例如下：</p>
+<blockquote>
+<p>用户说：&ldquo;我要改 A127 订单的地址，因为我搬家到建国南路了。&rdquo;</p>
+</blockquote>
+<h3 id="step-1-task-decomposition任务拆解">Step 1: Task Decomposition（任务拆解）
+</h3><p>做 Agentic Workflow 的第一步，不是写代码，而是<strong>先去客服旁边坐一两天，看他们怎么实际处理这类请求</strong>。理解人的工作流之后，再做 Task Decomposition——把大任务拆解成小任务。</p>
+<p>观察后发现，客服实际走了五步：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">① 抽出关键信息（Intent、Order ID、新地址）
+</span></span><span class="line"><span class="cl">  → ② 查数据库客户记录
+</span></span><span class="line"><span class="cl">    → ③ 查公司政策（能改吗？已出货了吗？）
+</span></span><span class="line"><span class="cl">      → ④ 根据收集的信息起草回信
+</span></span><span class="line"><span class="cl">        → ⑤ 发送 Email
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="step-2-为每一步选择工具">Step 2: 为每一步选择工具
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>步骤</th>
+					<th>工具选择</th>
+					<th>原因</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>① 信息抽取</td>
+					<td>LLM 单次 API 调用</td>
+					<td>纯文本理解，无需外部工具</td>
+			</tr>
+			<tr>
+					<td>② 查/改数据库</td>
+					<td>Custom Tool 或 MCP Server</td>
+					<td>需要与外部系统交互</td>
+			</tr>
+			<tr>
+					<td>③ 政策检查</td>
+					<td>RAG</td>
+					<td>政策文件会更新，需要高效检索</td>
+			</tr>
+			<tr>
+					<td>④ 起草回信</td>
+					<td>LLM</td>
+					<td>综合前几步信息生成自然语言</td>
+			</tr>
+			<tr>
+					<td>⑤ 发送邮件</td>
+					<td>Email Tool</td>
+					<td>调用外部邮件服务</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>判断方法很简单：<strong>先问自己每步是 Fuzzy 还是 Deterministic，再决定用什么工具。</strong></p>
+<p>这就是 AI Builder 真实在做的工作——<strong>知道每个工具和技术的边界，然后组合出你需要的方案。</strong></p>
+<blockquote>
+<p><strong>概念串联</strong>：回顾前面的三层分级——这里搭建的客服 Agent 正是典型的 <strong>Level 2</strong>：工具范围是固定的（5 个步骤各有明确工具），但执行顺序由 Agent 根据输入动态决定。</p>
+</blockquote>
+<h3 id="step-3-build-evals">Step 3: Build Evals
+</h3><p>将前面三维度框架全部用上：</p>
+<ul>
+<li><strong>End-to-End</strong>：最终回复正确性、语气、用户满意度</li>
+<li><strong>Component-based</strong>：信息抽取精度、API 错误率、政策遵守率</li>
+<li><strong>Objective</strong>：自动验证 Order ID 是否正确、有没有违反退费政策</li>
+<li><strong>Subjective</strong>：人工 + LLM-as-Judge 评估回信礼貌度、同理心</li>
+<li><strong>Quantitative</strong>：改地址成功率、延迟、退费正确率</li>
+<li><strong>Qualitative</strong>：哪里产生了幻觉？语气哪里不一致？用户在哪一步困惑？</li>
+</ul>
+<p><img src="https://img.siborne.top/2026/06/bf5d030a2f93d22262dfaee803d7e6a9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="客服Agent任务拆解流程"
+	
+	
+></p>
+<p>从零到上线的工程流程总结就是三步：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">拆解大任务 → 设计工作流 → 建立评估系统
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>学习提示</strong>：如果你是第一次动手做 AI 项目，建议从一个极简版开始——选一个只有 3-5 步的小任务，不做 RAG、不做 Multi-Agent，只用 Prompt Chaining 搭一个 Level 1 Agent，然后加一套只有 Objective Eval 的评估系统。跑通后再迭代加 RAG、加 Tool、升级到 Level 2。<strong>先跑通再优化，先简单再复杂——这是 AI Builder 最重要的工程纪律。</strong></p>
+</blockquote>
+<hr>
+<h2 id="六multi-agent把-agent-当作-tool">六、Multi-Agent：把 Agent 当作 Tool
+</h2><h3 id="为什么需要-multi-agent">为什么需要 Multi-Agent？
+</h3><p>单个 Agent 已经能拆步骤、调工具、做 RAG、写邮件——似乎够用了。Multi-Agent 的存在理由主要有两个：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>理由</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>并行处理（Parallel Processing）</strong></td>
+					<td>订机票时，找航班、找饭店、查天气——三件事完全可以同时进行。单 Agent 只能串行，Multi-Agent 可以三个 Specialized Agent 同时跑</td>
+			</tr>
+			<tr>
+					<td><strong>可复用性（Reusability）</strong></td>
+					<td>公司里的 Design Agent 可以给行销团队用，也可以给产品团队用</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>但设计原则是：<strong>如果一个 Agent 就能解决的问题，硬上 Multi-Agent 只会徒增复杂度。能简单就简单，不要过度设计。</strong></p>
+<blockquote>
+<p><strong>常见误区</strong>：很多团队一上来就说&quot;我们要做 Multi-Agent 系统&quot;，觉得单 Agent 不够&quot;高级&quot;。但实际上，Multi-Agent 引入了三个额外成本——<strong>① Agent 间的通信开销和延迟，② 多套 System Prompt 的维护负担，③ Debug 时需要在多个 Agent 日志中回溯</strong>。只有当你的业务确实满足以下两个条件之一时，才值得上 Multi-Agent：<strong>a) 任务可以明显切分为 2+ 个独立并行子任务；b) 不同子任务需要的核心能力差异巨大，单 Agent Prompt 会过于臃肿。</strong></p>
+</blockquote>
+<h3 id="智能家庭-multi-agent-范例">智能家庭 Multi-Agent 范例
+</h3><p>教授用智慧家庭做 Brainstorm 示例。一个完整的智能家庭 Multi-Agent 系统可能包含：</p>
+<ul>
+<li>温度控制 Agent</li>
+<li>灯光 Agent</li>
+<li>保全 Agent</li>
+<li>娱乐 Agent</li>
+<li>通知 Agent</li>
+<li>能源管理 Agent</li>
+<li>外加一个 <strong>Orchestrator（编排器）</strong> 统筹</li>
+</ul>
+<p>两种互动模式：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>模式</th>
+					<th>运作方式</th>
+					<th>适用场景</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Hierarchical（层级式）</strong></td>
+					<td>用户只跟 Orchestrator 讲话，由它派工给下层 Agent</td>
+					<td>用户侧——&ldquo;我要出门了&rdquo;，Orchestrator 自己去协调灯光、保全、温控</td>
+			</tr>
+			<tr>
+					<td><strong>Flat（扁平式）</strong></td>
+					<td>Agent 之间直接互通，没有中间人</td>
+					<td>后台——温控 Agent 和能源管理 Agent 直接沟通，省掉每次过 Orchestrator 的成本</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>当 Agent 之间互相通信时——本质上就是 <strong>MCP Protocol</strong>。<strong>你把 Agent 当作 Tool，就像把 API 当作 Tool 一样。</strong> 每个 Agent 对外暴露一组 Tool-like 接口，其他 Agent 像调用工具一样调用它。</p>
+<p>这个心态一旦想通，Multi-Agent 就不再神秘——它只是把你已经懂的东西，多叠一层。</p>
+<p><img src="https://img.siborne.top/2026/06/223816641ed3265dde26673c5269ecd5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Multi-Agent智能家庭架构"
+	
+	
+></p>
+<hr>
+<h2 id="七总结你的-ai-学习全景路线图">七、总结：你的 AI 学习全景路线图
+</h2><p>这篇文章从基础模型的限制出发，逐层展开了增强 LLM 能力的完整技术栈：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>层级</th>
+					<th>技术</th>
+					<th>核心要点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>L1</strong></td>
+					<td><strong>Prompt Engineering</strong></td>
+					<td>成本最低，优先使用。重点在 Chaining 和 Testing，是每个工程师的基本功</td>
+			</tr>
+			<tr>
+					<td><strong>L2</strong></td>
+					<td><strong>Fine-Tuning</strong></td>
+					<td>除非处理法律、科学等高精度领域，或者兴趣使然，否则别轻易碰。成本高、时效性差、Prompt Engineering 通常就够了</td>
+			</tr>
+			<tr>
+					<td><strong>L3</strong></td>
+					<td><strong>RAG</strong></td>
+					<td>帮模型补知识的标准解法。做 AI 产品基本一定会碰到——Embedding → Vector DB → Retrieval → Generation</td>
+			</tr>
+			<tr>
+					<td><strong>L4</strong></td>
+					<td><strong>Agentic Workflow</strong></td>
+					<td>从强化单模型到系统设计。核心是心态转变：从 Deterministic Engineering 到 Fuzzy Engineering，做 Task Decomposition，建 Evaluation 系统</td>
+			</tr>
+			<tr>
+					<td><strong>L5</strong></td>
+					<td><strong>Multi-Agent</strong></td>
+					<td>把 Agent 当 Tool，彼此协作。提升速度（并行）和复用性。但记住：能简单就不要复杂</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>有了这套认知框架，你就不会盲目跟风——看到别人做 Multi-Agent 就跟着做，看到别人聊 Fine-Tuning 就觉得酷。<strong>从实作出发</strong>：看看你生活或工作中有什么痛点，从痛点出发去思考解决方案。在这个过程中，你自然会发现需要学会哪些技术，从而高效地规划自己的学习路线。</p>
+<blockquote>
+<p><strong>下一步行动建议</strong>：如果你想今天就开始动手，这里有一个&quot;最小可行路径&quot;——① 找一个你工作中的重复性文字任务（如整理周报、回复 FAQ）；② 用 Prompt Chaining 把它拆成 2-3 步并串起来跑通；③ 写几个 Objective Test Case 自动验证输出格式；④ 跑一周看看效果，记下哪里好哪里不好。完成这四步，你就已经是一个在实践中成长的 AI Builder 了。</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 Jun 04, 2026 01:41 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/codex-app-complete-guide/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/ef543fe1780e2b00988447209e377f4c.png" loading="lazy" data-key="codex-app-complete-guide" data-hash="https://img.siborne.top/2026/05/ef543fe1780e2b00988447209e377f4c.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex APP 保姆级全攻略：从安装到自动化，一期精通</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/codex-deepseek-v4-proxy/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/dde3a847822c933bba6a28d3918f36c0.png" loading="lazy" data-key="codex-deepseek-v4-proxy" data-hash="https://img.siborne.top/2026/05/dde3a847822c933bba6a28d3918f36c0.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Codex 接入 DeepSeek V4：用中转脚本破解 API 格式不兼容</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/opencode-complete-guide/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png" loading="lazy" data-key="opencode-complete-guide" data-hash="https://img.siborne.top/2026/05/430dc322b9886fa8cc959ee1ab477e13.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 全深度指南：开源版 Claude Code 的安装、配置与高级玩法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/opencode-parallel-workflow-tips/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png" loading="lazy" data-key="opencode-parallel-workflow-tips" data-hash="https://img.siborne.top/2026/05/052d81651aef7951346921d53d1ad5c4.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCode 新手进阶：并行调度与使用技巧全攻略</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/claude-code-deepseek-setup/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/893eeb27eb74b1d32493c69de860e065.png" loading="lazy" data-key="claude-code-deepseek-setup" data-hash="https://img.siborne.top/2026/05/893eeb27eb74b1d32493c69de860e065.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">5分钟安装 Claude Code 并接入 DeepSeek</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.337b391b9709a7de07a4bb428d2ffb003b7e926cdfc9720a68a909ce2cde147d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<div id="jsi-flying-fish-container" class="fish-container"></div>
+
+
+<script defer src="https://events.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    if (typeof topbar !== 'undefined') {
+        topbar.config({
+            barColors: {
+                '0': 'rgba(255, 255, 255, 1)',
+                '1.0': 'rgba(56, 189, 248, 1)'
+            }
+        })
+
+        document.addEventListener('pjax:send', () => {
+            topbar.show();
+        })
+
+        document.addEventListener('pjax:complete', () => {
+            topbar.hide();
+        })
+    }
+
+    
+    document.addEventListener('pjax:complete', () => {
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+(function() {
+  var pending = false;
+  var observer = new MutationObserver(function(mutations) {
+    if (pending) return;
+    for (var i = 0; i < mutations.length; i++) {
+      var nodes = mutations[i].addedNodes;
+      for (var j = 0; j < nodes.length; j++) {
+        var node = nodes[j];
+        if (node.nodeType === 1 && node.querySelectorAll && node.querySelectorAll('.highlight').length > 0) {
+          pending = true;
+          
+          setTimeout(function() {
+            initCodeMoreBox();
+            pending = false;
+          }, 150);
+          return;
+        }
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  setTimeout(initCodeMoreBox, 0);
+  refreshVercount();
+}
+
+
+function refreshVercount() {
+    let article = document.querySelector(".article-page");
+    if (!article) return;
+
+    let pvEl = document.getElementById("vercount_value_page_pv");
+    if (!pvEl) return;
+
+    
+    pvEl.textContent = 'loading...';
+
+    
+    let oldScript = document.querySelector('script[data-vercount-dynamic]');
+    if (oldScript) oldScript.remove();
+
+    
+    let script = document.createElement('script');
+    script.src = 'https://events.vercount.one/js';
+    script.setAttribute('data-vercount-dynamic', '');
+    document.body.appendChild(script);
+
+    
+    let fallbackTimer = setTimeout(function() {
+        if (pvEl.textContent.trim() === 'loading...') {
+            pvEl.textContent = '';
+        }
+    }, 5000);
+
+    
+    script.addEventListener('load', function() {
+        clearTimeout(fallbackTimer);
+    });
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+
+<script>
+(function() {
+    var RENDERER = {
+        POINT_INTERVAL: 5,
+        FISH_COUNT: 3,
+        MAX_INTERVAL_COUNT: 50,
+        INIT_HEIGHT_RATE: 0.5,
+        THRESHOLD: 50,
+
+        init: function() {
+            this.setParameters();
+            this.reconstructMethods();
+            this.setup();
+            this.bindEvent();
+            this.render();
+        },
+        setParameters: function() {
+            this.$window = window;
+            this.$document = document.body;
+            this.$container = document.getElementById('jsi-flying-fish-container');
+            if (!this.$container) return;
+            this.$canvas = document.createElement('canvas');
+            this.$container.appendChild(this.$canvas);
+            this.context = this.$canvas.getContext('2d');
+            this.points = [];
+            this.fishes = [];
+            this.watchIds = [];
+        },
+        createSurfacePoints: function() {
+            var count = Math.round(this.width / this.POINT_INTERVAL);
+            this.pointInterval = this.width / (count - 1);
+            this.points.push(new SURFACE_POINT(this, 0));
+            for (var i = 1; i < count; i++) {
+                var point = new SURFACE_POINT(this, i * this.pointInterval),
+                    previous = this.points[i - 1];
+                point.setPreviousPoint(previous);
+                previous.setNextPoint(point);
+                this.points.push(point);
+            }
+        },
+        reconstructMethods: function() {
+            this.watchWindowSize = this.watchWindowSize.bind(this);
+            this.jdugeToStopResize = this.jdugeToStopResize.bind(this);
+            this.startEpicenter = this.startEpicenter.bind(this);
+            this.moveEpicenter = this.moveEpicenter.bind(this);
+            this.toggleDirection = this.toggleDirection.bind(this);
+            this.render = this.render.bind(this);
+        },
+        setup: function() {
+            this.points.length = 0;
+            this.fishes.length = 0;
+            this.watchIds.length = 0;
+            this.intervalCount = this.MAX_INTERVAL_COUNT;
+            this.width = this.$container.offsetWidth;
+            this.height = this.$container.offsetHeight;
+            this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
+            this.$canvas.width = this.width;
+            this.$canvas.height = this.height;
+            this.reverse = false;
+            this.fishes.push(new FISH(this));
+            this.createSurfacePoints();
+        },
+        watchWindowSize: function() {
+            this.clearTimer();
+            this.tmpWidth = this.$window.innerWidth;
+            this.tmpHeight = this.$window.innerHeight;
+            this.watchIds.push(setTimeout(this.jdugeToStopResize, 300));
+        },
+        clearTimer: function() {
+            while (this.watchIds.length > 0) {
+                clearTimeout(this.watchIds.pop());
+            }
+        },
+        jdugeToStopResize: function() {
+            var width = this.$window.innerWidth,
+                height = this.$window.innerHeight,
+                stopped = (width === this.tmpWidth && height === this.tmpHeight);
+            this.tmpWidth = width;
+            this.tmpHeight = height;
+            if (stopped) { this.setup(); }
+        },
+        bindEvent: function() {
+            window.addEventListener('resize', this.watchWindowSize);
+            this.$container.addEventListener('click', this.toggleDirection);
+            this.$container.addEventListener('mouseenter', this.startEpicenter);
+            this.$container.addEventListener('mousemove', this.moveEpicenter);
+        },
+        getAxis: function(event) {
+            var rect = this.$container.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        },
+        startEpicenter: function(event) {
+            this.axis = this.getAxis(event);
+        },
+        moveEpicenter: function(event) {
+            var axis = this.getAxis(event);
+            if (!this.axis) { this.axis = axis; }
+            this.generateEpicenter(axis.x, axis.y, axis.y - this.axis.y);
+            this.axis = axis;
+        },
+        generateEpicenter: function(x, y, velocity) {
+            if (y < this.height / 2 - this.THRESHOLD || y > this.height / 2 + this.THRESHOLD) return;
+            var index = Math.round(x / this.pointInterval);
+            if (index < 0 || index >= this.points.length) return;
+            this.points[index].interfere(y, velocity);
+        },
+        toggleDirection: function() {
+            this.reverse = !this.reverse;
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].reverseVertical();
+            }
+        },
+        controlStatus: function() {
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateSelf();
+            }
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateNeighbors();
+            }
+            if (this.fishes.length < this.fishCount) {
+                if (--this.intervalCount === 0) {
+                    this.intervalCount = this.MAX_INTERVAL_COUNT;
+                    this.fishes.push(new FISH(this));
+                }
+            }
+        },
+        render: function() {
+            requestAnimationFrame(this.render);
+            this.controlStatus();
+            this.context.clearRect(0, 0, this.width, this.height);
+
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            this.context.fillStyle = isDark ? 'hsl(210, 30%, 25%)' : 'hsl(210, 80%, 75%)';
+
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].render(this.context);
+            }
+
+            this.context.save();
+            this.context.globalCompositeOperation = 'xor';
+            this.context.beginPath();
+            this.context.moveTo(0, this.reverse ? 0 : this.height);
+
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].render(this.context);
+            }
+            this.context.lineTo(this.width, this.reverse ? 0 : this.height);
+            this.context.closePath();
+            this.context.fill();
+            this.context.restore();
+        }
+    };
+
+    var SURFACE_POINT = function(renderer, x) {
+        this.renderer = renderer;
+        this.x = x;
+        this.init();
+    };
+    SURFACE_POINT.prototype = {
+        SPRING_CONSTANT: 0.03,
+        SPRING_FRICTION: 0.9,
+        WAVE_SPREAD: 0.3,
+        ACCELARATION_RATE: 0.01,
+
+        init: function() {
+            this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE;
+            this.height = this.initHeight;
+            this.fy = 0;
+            this.force = { previous: 0, next: 0 };
+        },
+        setPreviousPoint: function(previous) { this.previous = previous; },
+        setNextPoint: function(next) { this.next = next; },
+        interfere: function(y, velocity) {
+            this.fy = this.renderer.height * this.ACCELARATION_RATE *
+                ((this.renderer.height - this.height - y) >= 0 ? -1 : 1) * Math.abs(velocity);
+        },
+        updateSelf: function() {
+            this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height);
+            this.fy *= this.SPRING_FRICTION;
+            this.height += this.fy;
+        },
+        updateNeighbors: function() {
+            if (this.previous) {
+                this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height);
+            }
+            if (this.next) {
+                this.force.next = this.WAVE_SPREAD * (this.height - this.next.height);
+            }
+        },
+        render: function(context) {
+            if (this.previous) {
+                this.previous.height += this.force.previous;
+                this.previous.fy += this.force.previous;
+            }
+            if (this.next) {
+                this.next.height += this.force.next;
+                this.next.fy += this.force.next;
+            }
+            context.lineTo(this.x, this.renderer.height - this.height);
+        }
+    };
+
+    var FISH = function(renderer) {
+        this.renderer = renderer;
+        this.init();
+    };
+    FISH.prototype = {
+        GRAVITY: 0.4,
+
+        init: function() {
+            this.direction = Math.random() < 0.5;
+            this.x = this.direction ? (this.renderer.width + this.renderer.THRESHOLD) : -this.renderer.THRESHOLD;
+            this.previousY = this.y;
+            this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1);
+
+            if (this.renderer.reverse) {
+                this.y = this.getRandomValue(this.renderer.height * 1 / 10, this.renderer.height * 4 / 10);
+                this.vy = this.getRandomValue(2, 5);
+                this.ay = this.getRandomValue(0.05, 0.2);
+            } else {
+                this.y = this.getRandomValue(this.renderer.height * 6 / 10, this.renderer.height * 9 / 10);
+                this.vy = this.getRandomValue(-5, -2);
+                this.ay = this.getRandomValue(-0.2, -0.05);
+            }
+            this.isOut = false;
+            this.theta = 0;
+            this.phi = 0;
+        },
+        getRandomValue: function(min, max) {
+            return min + (max - min) * Math.random();
+        },
+        reverseVertical: function() {
+            this.isOut = !this.isOut;
+            this.ay *= -1;
+        },
+        controlStatus: function(context) {
+            this.previousY = this.y;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.ay;
+
+            if (this.renderer.reverse) {
+                if (this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy -= this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(0.05, 0.2); }
+                    this.isOut = false;
+                }
+            } else {
+                if (this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy += this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(-0.2, -0.05); }
+                    this.isOut = false;
+                }
+            }
+            if (!this.isOut) {
+                this.theta += Math.PI / 20;
+                this.theta %= Math.PI * 2;
+                this.phi += Math.PI / 30;
+                this.phi %= Math.PI * 2;
+            }
+            this.renderer.generateEpicenter(
+                this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD,
+                this.y,
+                this.y - this.previousY
+            );
+            if (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD ||
+                this.vx < 0 && this.x < -this.renderer.THRESHOLD) {
+                this.init();
+            }
+        },
+        render: function(context) {
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            context.fillStyle = isDark ? 'hsl(210, 60%, 55%)' : 'hsl(210, 70%, 40%)';
+
+            context.save();
+            context.translate(this.x, this.y);
+            context.rotate(Math.PI + Math.atan2(this.vy, this.vx));
+            context.scale(1, this.direction ? 1 : -1);
+            context.beginPath();
+            context.moveTo(-30, 0);
+            context.bezierCurveTo(-20, 15, 15, 10, 40, 0);
+            context.bezierCurveTo(15, -10, -20, -15, -30, 0);
+            context.fill();
+
+            
+            context.save();
+            context.translate(40, 0);
+            context.scale(0.9 + 0.2 * Math.sin(this.theta), 1);
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(5, 10, 20, 8);
+            context.quadraticCurveTo(12, 5, 10, 0);
+            context.quadraticCurveTo(12, -5, 20, -8);
+            context.quadraticCurveTo(5, -10, 0, 0);
+            context.fill();
+            context.restore();
+
+            
+            context.save();
+            context.translate(-3, 0);
+            context.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1));
+            context.beginPath();
+            if (this.renderer.reverse) {
+                context.moveTo(5, 0);
+                context.bezierCurveTo(10, 10, 10, 30, 0, 40);
+                context.bezierCurveTo(-12, 25, -8, 10, 0, 0);
+            } else {
+                context.moveTo(-5, 0);
+                context.bezierCurveTo(-10, -10, -10, -30, 0, -40);
+                context.bezierCurveTo(12, -25, 8, -10, 0, 0);
+            }
+            context.closePath();
+            context.fill();
+            context.restore();
+            context.restore();
+            this.controlStatus(context);
+        }
+    };
+
+    
+    if (!window.__fishRendererInited) {
+        window.__fishRendererInited = true;
+        window.addEventListener('load', function() {
+            if (document.getElementById('jsi-flying-fish-container')) {
+                RENDERER.init();
+            }
+        });
+    }
+})();
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+ 
+.fish-container {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+html.at-page-bottom .fish-container {
+    opacity: 0.42;
+}
+
+@media (max-width: 768px) {
+    .fish-container {
+        height: 150px;
+    }
+    html.at-page-bottom .fish-container {
+        opacity: 0.28;
+    }
+}
+</style>
+
+    </body>
+</html>

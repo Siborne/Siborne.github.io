@@ -614,26 +614,26 @@
 </div>
 </div><p>3つのキーコンポーネントがそれぞれの役割を果たします：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>コンポーネント</th>
-          <th>役割</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>CC Switch</strong></td>
-          <td>オープンソースのモデル切替ツール、Codex にカスタムモデル設定を注入</td>
-      </tr>
-      <tr>
-          <td><strong>中継スクリプト</strong></td>
-          <td>ローカルで動作するプロキシサービス、リクエスト形式の双方向変換を担当</td>
-      </tr>
-      <tr>
-          <td><strong>DeepSeek API</strong></td>
-          <td>最終的にユーザーリクエストに応答するモデルサービス</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>コンポーネント</th>
+					<th>役割</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>CC Switch</strong></td>
+					<td>オープンソースのモデル切替ツール、Codex にカスタムモデル設定を注入</td>
+			</tr>
+			<tr>
+					<td><strong>中継スクリプト</strong></td>
+					<td>ローカルで動作するプロキシサービス、リクエスト形式の双方向変換を担当</td>
+			</tr>
+			<tr>
+					<td><strong>DeepSeek API</strong></td>
+					<td>最終的にユーザーリクエストに応答するモデルサービス</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="実践手順">実践手順
 </h2><h3 id="ステップ1ツールの準備">ステップ1：ツールの準備
@@ -674,35 +674,35 @@
 <p>実際にはできません。動画の作者も何度も試したと述べています——chat を変更したり、v1 を変更したり、さまざまなパスを変更したりしましたが、Codex はすべてエラーを返しました。Codex のリクエスト形式は内部ロジックにハードコードされており、無断で変更すると通信フロー全体が破壊されます。Codex の内部メカニズムと格闘するよりも、外部に適応層を追加する方がはるかにクリーンです。</p>
 <h2 id="まとめ">まとめ
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>手法の比較</th>
-          <th>アドレス直接変更</th>
-          <th>中継スクリプト</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>動作するか</td>
-          <td>❌ エラー</td>
-          <td>✅ 正常</td>
-      </tr>
-      <tr>
-          <td>実装コスト</td>
-          <td>低（設定1行変更）</td>
-          <td>中（スクリプト1つ追加実行）</td>
-      </tr>
-      <tr>
-          <td>保守性</td>
-          <td>悪い（Codex のアップデートで壊れる可能性）</td>
-          <td>良い（疎結合、Codex 内部実装に非依存）</td>
-      </tr>
-      <tr>
-          <td>拡張性</td>
-          <td>なし</td>
-          <td>高い（スクリプトを少し修正するだけでより多くのモデルに対応可能）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>手法の比較</th>
+					<th>アドレス直接変更</th>
+					<th>中継スクリプト</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>動作するか</td>
+					<td>❌ エラー</td>
+					<td>✅ 正常</td>
+			</tr>
+			<tr>
+					<td>実装コスト</td>
+					<td>低（設定1行変更）</td>
+					<td>中（スクリプト1つ追加実行）</td>
+			</tr>
+			<tr>
+					<td>保守性</td>
+					<td>悪い（Codex のアップデートで壊れる可能性）</td>
+					<td>良い（疎結合、Codex 内部実装に非依存）</td>
+			</tr>
+			<tr>
+					<td>拡張性</td>
+					<td>なし</td>
+					<td>高い（スクリプトを少し修正するだけでより多くのモデルに対応可能）</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>このソリューションの考え方は非常に汎用的です——<strong>Codex で DeepSeek を使用する場合だけでなく、同様の形式不一致問題があるあらゆるシナリオで、ローカル中継層によって解決できます</strong>。CC Switch が設定注入を担当し、中継スクリプトがプロトコル変換を担当します。この2つの組み合わせで、さまざまなサードパーティモデルを Codex に接続できます。</p>
 <p>中継スクリプトは <a class="link" href="https://github.com/Siborne/any2codex"  target="_blank" rel="noopener"
@@ -799,6 +799,25 @@
             
                 
 <article class="has-image">
+    <a href="/ja/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" data-key="from-prompt-engineering-to-multi-agent-ai-builder-roadmap" data-hash="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Beyond LLM：プロンプトエンジニアリングからマルチエージェントまでの AI Builder 全景ロードマップ</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/ja/p/claude-code-deepseek-setup/">
         
         
@@ -849,25 +868,6 @@
 
         <div class="article-details">
             <h2 class="article-title">OpenCode 完全詳細ガイド：オープンソース版 Claude Code のインストール、設定と高度な活用法</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/ja/p/internet-architecture-in-one-story/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" loading="lazy" data-key="internet-architecture-in-one-story" data-hash="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">インターネットアーキテクチャ、これだけ？1つのストーリーで完全理解</h2>
         </div>
     </a>
 </article>

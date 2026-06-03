@@ -614,26 +614,26 @@
 </div>
 </div><p>Three components, each with a clear role:</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Component</th>
-          <th>Responsibility</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>CC Switch</strong></td>
-          <td>Open-source model switcher; injects custom model configs into Codex</td>
-      </tr>
-      <tr>
-          <td><strong>Proxy Script</strong></td>
-          <td>Local proxy service; bidirectional request/response format conversion</td>
-      </tr>
-      <tr>
-          <td><strong>DeepSeek API</strong></td>
-          <td>The actual model service handling user requests</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Component</th>
+					<th>Responsibility</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>CC Switch</strong></td>
+					<td>Open-source model switcher; injects custom model configs into Codex</td>
+			</tr>
+			<tr>
+					<td><strong>Proxy Script</strong></td>
+					<td>Local proxy service; bidirectional request/response format conversion</td>
+			</tr>
+			<tr>
+					<td><strong>DeepSeek API</strong></td>
+					<td>The actual model service handling user requests</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="step-by-step-guide">Step-by-Step Guide
 </h2><h3 id="step-1-prepare-the-tools">Step 1: Prepare the Tools
@@ -674,35 +674,35 @@
 <p>Turns out you really can&rsquo;t. The video author mentioned trying many times — changing <code>/chat</code>, <code>/v1</code>, various path segments — Codex errors out every time. The request format is hardcoded in Codex&rsquo;s internal logic, and tampering with it breaks the entire communication flow. Rather than fighting Codex&rsquo;s internals, it&rsquo;s far cleaner to add an adaptation layer on the outside.</p>
 <h2 id="summary">Summary
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Approach</th>
-          <th>Direct endpoint change</th>
-          <th>Proxy script</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Does it work?</td>
-          <td>❌ Errors out</td>
-          <td>✅ Works</td>
-      </tr>
-      <tr>
-          <td>Implementation cost</td>
-          <td>Low (one config line)</td>
-          <td>Medium (run one extra script)</td>
-      </tr>
-      <tr>
-          <td>Maintainability</td>
-          <td>Poor (breaks on Codex updates)</td>
-          <td>Good (decoupled, no dependency on Codex internals)</td>
-      </tr>
-      <tr>
-          <td>Extensibility</td>
-          <td>None</td>
-          <td>High (easily add more models)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Approach</th>
+					<th>Direct endpoint change</th>
+					<th>Proxy script</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Does it work?</td>
+					<td>❌ Errors out</td>
+					<td>✅ Works</td>
+			</tr>
+			<tr>
+					<td>Implementation cost</td>
+					<td>Low (one config line)</td>
+					<td>Medium (run one extra script)</td>
+			</tr>
+			<tr>
+					<td>Maintainability</td>
+					<td>Poor (breaks on Codex updates)</td>
+					<td>Good (decoupled, no dependency on Codex internals)</td>
+			</tr>
+			<tr>
+					<td>Extensibility</td>
+					<td>None</td>
+					<td>High (easily add more models)</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>The insight here is quite generalizable — <strong>this isn&rsquo;t just about using DeepSeek with Codex. Any scenario with similar API format incompatibility can be solved with a local proxy layer.</strong> CC Switch handles config injection, and the proxy script handles protocol conversion. Together, they open the door to connecting all kinds of third-party models to Codex.</p>
 <p>The proxy script is open source at <a class="link" href="https://github.com/Siborne/any2codex"  target="_blank" rel="noopener"
@@ -799,6 +799,25 @@
             
                 
 <article class="has-image">
+    <a href="/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" loading="lazy" data-key="from-prompt-engineering-to-multi-agent-ai-builder-roadmap" data-hash="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/en/p/claude-code-deepseek-setup/">
         
         
@@ -849,25 +868,6 @@
 
         <div class="article-details">
             <h2 class="article-title">OpenCode Complete Guide: Installation, Configuration, and Advanced Usage</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/en/p/internet-architecture-in-one-story/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png" loading="lazy" data-key="internet-architecture-in-one-story" data-hash="https://img.siborne.top/2026/05/994ab4cbef17009fe7f0989acb2f5162.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Internet Architecture Explained: One Story to Rule Them All</h2>
         </div>
     </a>
 </article>

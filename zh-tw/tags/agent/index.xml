@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Agent on Siborne</title>
+        <link>https://Siborne.top/zh-tw/tags/agent/</link>
+        <description>Recent content in Agent on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Thu, 04 Jun 2026 01:41:49 +0800</lastBuildDate><atom:link href="https://Siborne.top/zh-tw/tags/agent/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Beyond LLM：從提示詞工程到多智能體的 AI Builder 全景路線圖</title>
+        <link>https://Siborne.top/zh-tw/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/</link>
+        <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/zh-tw/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/06/21d9747929aca191d8d1c63cfe66f892.png" alt="Featured image of post Beyond LLM：從提示詞工程到多智能體的 AI Builder 全景路線圖" /&gt;&lt;h2 id=&#34;核心要點&#34;&gt;核心要點
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;橫軸 vs 縱軸&lt;/strong&gt;：升級基礎模型是 OpenAI 和 Anthropic 的事；普通開發者應在縱軸上發力——用工程技術增強現有 LLM 的能力，即 &lt;strong&gt;Augmenting LLM&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;強化單模型的三板斧&lt;/strong&gt;：Prompt Engineering（零成本，優先使用）→ RAG（補知識短板）→ Fine-Tuning（不得已才做）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;從模型到系統&lt;/strong&gt;：Agentic Workflow 將 LLM 從「會回答問題的模型」升級為「一套真正運作、產出價值的系統」。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;心態轉變&lt;/strong&gt;：從確定性工程思維切換到模糊工程思維——你是管理者，AI 是執行者。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;評估是命脈&lt;/strong&gt;：沒有完善的 Evaluation 系統，Agent 上線的風險不可控。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Agent 的本質&lt;/strong&gt;：把 Agent 當作 Tool 來呼叫，就像呼叫 API 一樣。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一開篇ai-builder-的困境與縱軸思維&#34;&gt;一、開篇：AI Builder 的困境與縱軸思維
+&lt;/h2&gt;&lt;p&gt;如果你關注 AI 領域，最近兩年最炙手可熱的角色一定是 &lt;strong&gt;AI Engineer&lt;/strong&gt; 和 &lt;strong&gt;AI Builder&lt;/strong&gt;。大型語言模型越強，這群人越吃香——他們能幫公司打造內部工具、優化營運流程，很多人甚至已經把想法做成產品、成立了自己的公司。&lt;/p&gt;
+&lt;p&gt;但想學 AI 的人很多，大多數人卻不知從何下手。市面上的資源不是太碎片化，就是過於艱澀，看完仍然不知道自己學到了什麼，或者下一步該往哪走。&lt;/p&gt;
+&lt;p&gt;Stanford 有一門課叫 &lt;strong&gt;Beyond LLM&lt;/strong&gt;，我認為這是目前最接近答案的東西。它從大型語言模型的本質講起，一路延伸到 Prompt Engineering、RAG、Fine-Tuning、Agentic Workflow，以及 Multi-Agent 框架。本文將用一篇文章的篇幅把核心整理給你——看完之後，你將對 AI 在商業領域的應用建立一套完整的認知框架。&lt;/p&gt;
+&lt;h3 id=&#34;什麼是-llm它的限制是什麼&#34;&gt;什麼是 LLM？它的限制是什麼？
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;LLM（Large Language Model，大型語言模型）&lt;/strong&gt; 是一種基於 Transformer 架構的大規模神經網路，透過對海量文本資料的訓練，學會了預測下一個 Token 的機率分佈。本質上，它是一個極其複雜的&lt;strong&gt;自迴歸機率預測機&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;LLM 要變強有兩條路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;橫軸&lt;/strong&gt;：換更強的 &lt;strong&gt;Base Model（基礎模型）&lt;/strong&gt;，比如從 GPT-4 升級到 GPT-5。但這條路是 OpenAI 和 Anthropic 在走的，普通人沒有能力也沒有資金去訓練自己的大模型。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;縱軸&lt;/strong&gt;：在現有 LLM 上疊加各種工程技巧，即 &lt;strong&gt;Augmenting LLM（增強型語言模型）&lt;/strong&gt;——想辦法在已有的基礎模型上提升能力。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;這條縱軸，也正是整篇文章關注的核心。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;學習提示&lt;/strong&gt;：如果你是初學者，建議先把精力 100% 投入縱軸。橫軸的事情——今天 GPT-5 發布、明天 Claude 4 出來——你當成新聞看看就好。真正讓你在職場有差異化競爭力的是：別人只會用 ChatGPT 聊天，而你能用 RAG + Agentic Workflow 搭一套自動處理客服工單的系統。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果你只會用 Base Model，在商業場景上一定會撞牆。ChatGPT 剛出來的時候，沒有聯網功能，沒有辦法呼叫工具，充其量就是一個聰明的問答機器人，不能實際完成一件事。&lt;/p&gt;
+&lt;p&gt;Stanford 教授整理了 Base Model 的幾個常見限制：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;限制&lt;/th&gt;
+					&lt;th&gt;說明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;缺乏領域知識&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;你的公司資料、內部文件、產品規格，Base Model 一概不知&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;資訊滯後&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;模型不可能每幾個月重訓一次，新詞、新事件、新公司它都不認識&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;輸出不可控&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;LLM 是機率性輸出，同樣的 Prompt 跑兩次結果可能不同。在聊天場景 OK，但在生產環境可能造成嚴重後果&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;長上下文退化&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Context 太長時模型表現顯著下降，存在「Lost in the Middle」現象——即使資訊就在上下文中，模型也可能找不到&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;關鍵洞察&lt;/strong&gt;：這四個限制不是獨立存在的——它們會相互放大。比如「資訊滯後」遇上「輸出不可控」，意味著模型可能用自信的語氣說出過時錯誤資訊，而你很難一眼識別。理解這四個限制，是後面學 RAG、Agentic Workflow 的底層動機——每項技術本質上都在解決其中一個或多個限制。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/27b3ed750fdf78a479fc1b2b8134a01b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;基礎大模型的四個限制&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;做 AI 產品，光換更強的 Base Model 是不夠的——你需要在&lt;strong&gt;縱軸上發力&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;接下來，文章前半部分會介紹&lt;strong&gt;強化單一個 LLM 的三大工具&lt;/strong&gt;：Prompt Engineering、Fine-Tuning 和 RAG；後半部分進入&lt;strong&gt;系統設計&lt;/strong&gt;，介紹 Agentic Workflow、Evaluation 評估方法，以及 Multi-Agent。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二強化單一-llm-的三大工具&#34;&gt;二、強化單一 LLM 的三大工具
+&lt;/h2&gt;&lt;h3 id=&#34;prompt-engineering每個工程師的基本功&#34;&gt;Prompt Engineering：每個工程師的基本功
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Prompt Engineering（提示詞工程）&lt;/strong&gt; 是設計和優化輸入給 LLM 的文本指令，以引導模型產生更高品質、更符合預期的輸出。&lt;/p&gt;
+&lt;p&gt;Stanford 教授直言，他不認為「Prompt Engineer」會成為一個獨立職業——因為這是&lt;strong&gt;每個工程師都該掌握的基本技能&lt;/strong&gt;，就像九九乘法表一樣。&lt;/p&gt;
+&lt;h4 id=&#34;鋸齒邊界打瞌睡與半人馬的隱喻&#34;&gt;鋸齒邊界、打瞌睡與半人馬的隱喻
+&lt;/h4&gt;&lt;p&gt;頂級管理顧問公司 BCG 做過一個經典實驗：將一群顧問分成三組——無 AI 組、ChatGPT 組、ChatGPT + 提示詞訓練組。研究發現了三個重要現象：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;The Jagged Frontier（鋸齒邊界）&lt;/strong&gt;：AI 不是在所有任務上都表現得好。有些任務搭配 AI 顯著加分，但有些 AI 反而會拖後腿。你需要清楚地知道這個邊界在哪裡。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Falling Asleep at the Wheel（在方向盤前打瞌睡）&lt;/strong&gt;：當你不知道某個任務恰好是 AI 不擅長的領域，卻過度信任它、把輸出直接交付——結果比不用 AI 還慘。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Centaurs vs Cyborgs（半人馬 vs 生化人）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Centaur（半人馬）模式&lt;/strong&gt;：分工委派型——丟一個長 Prompt 給 AI 完成整份簡報，自己做其他事。適合&lt;strong&gt;重複性高、流程清楚&lt;/strong&gt;的任務。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cyborg（生化人）模式&lt;/strong&gt;：高頻率來回協作型——和模型一句一句對話。適合&lt;strong&gt;需要判斷、需要創意、需要來回校正&lt;/strong&gt;的任務。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;關鍵不在於哪種更好，而在於&lt;strong&gt;有意識地切換&lt;/strong&gt;。企業自動化工作流常用 Centaur 模式，個人深度協作常用 Cyborg 模式。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;概念串聯&lt;/strong&gt;：Centaur 模式本質上就是後面會講的 Agentic Workflow 的雛形——你把整個任務丟給系統，系統內部自行拆解執行。而 Cyborg 模式更接近你日常使用 ChatGPT/Claude 的方式。當你搭建 Agent 系統時，你的角色就從 Cyborg（親自來回對話）變成了 Centaur（設計流程，讓系統自動跑）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/4e7203069f50d46d9d7eb6d841f2a244.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;鋸齒邊界與兩種AI使用模式&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;prompt-chaining最重要卻最被低估的技巧&#34;&gt;Prompt Chaining：最重要卻最被低估的技巧
+&lt;/h4&gt;&lt;p&gt;很多人以為 Prompt Engineering 就是寫好格式——給誰看、什麼格式、重點在哪。這些當然重要，但教授指出，&lt;strong&gt;最常用、最重要&lt;/strong&gt;的技巧是 &lt;strong&gt;Prompt Chaining（提示詞鏈式呼叫）&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意區分：&lt;strong&gt;Chain of Thought（CoT，思維鏈）&lt;/strong&gt; 是讓模型 &amp;ldquo;step by step&amp;rdquo; 思考；&lt;strong&gt;Chaining&lt;/strong&gt; 是把一個複雜 Prompt 拆成多個獨立 Prompt，前一個的輸出餵給下一個。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;舉個例子——寫客戶投訴回信：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;方式&lt;/th&gt;
+					&lt;th&gt;做法&lt;/th&gt;
+					&lt;th&gt;問題&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;單 Prompt&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;「讀這封投訴信，寫一封專業回信」&lt;/td&gt;
+					&lt;td&gt;黑盒子，輸出有問題也不知道調整哪裡&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Chaining（3 步）&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;① 抽取客戶抱怨點 → ② 用抽取的問題起草大綱 → ③ 用大綱寫完整回信&lt;/td&gt;
+					&lt;td&gt;每一步可獨立測試、獨立 Debug&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Chaining 不僅讓模型表現更好，也賦予你 &lt;strong&gt;Observability（可觀測性）&lt;/strong&gt;——你能知道 LLM 在做什麼、哪個環節出了問題。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;實戰建議&lt;/strong&gt;：在實際專案中，建議你從 Chaining 開始而不是從單 Prompt 開始。即使是最簡單的需求，也先拆成 2-3 步——你會發現 Debug 效率提升至少 3 倍。工具上可以用 LangChain 的 LCEL 或直接手寫 Python 串聯，核心邏輯不到 50 行程式碼。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;fine-tuning能不做就不做&#34;&gt;Fine-Tuning：能不做就不做
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Fine-Tuning（微調）&lt;/strong&gt; 是指在預訓練模型的基礎上，用特定領域的標註資料對模型參數進行進一步訓練，使其在特定任務上表現更好。&lt;/p&gt;
+&lt;p&gt;Stanford 教授的立場很明確：&lt;strong&gt;能不做就不做&lt;/strong&gt;。原因有四：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;需要大量優質標註資料&lt;/strong&gt;：成本對普通人太高。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;容易 Overfit（過擬合）&lt;/strong&gt;：在你那個特定任務上變很強，但通用問題反而答不出來，失去 Base Model 原本的廣度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;時效性差&lt;/strong&gt;：你花兩個月 Fine-Tune 完上線，下個月新一代替換 Base Model 直接打翻你的版本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prompt Engineering 通常能达到同样效果&lt;/strong&gt;：成本低得多，而且 Prompt 是 &lt;strong&gt;Portable（可移植的）&lt;/strong&gt;——換新 Base Model 後 Prompt 大多還能用，Fine-Tuning 的模型不行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;當然，少數場景下 Fine-Tune 仍然值得做，比如&lt;strong&gt;法律、科學等需要高精度重複輸出的領域&lt;/strong&gt;，或者 Base Model 在某個 Domain 上表現確實吃力。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;常見誤區&lt;/strong&gt;：很多人以為「我的行業很專業，所以需要 Fine-Tune」。但實際上，醫療、金融、法律等領域的絕大多數應用場景，用 RAG + 精心設計的 Prompt 就能达到生產級效果。判斷標準很簡單：&lt;strong&gt;只有當你的任務需要模型學會一種「新能力」（而不僅僅是「新知識」），Fine-Tune 才真正有必要。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;那如果 Prompt Engineering 塞不下特定領域知識，Fine-Tuning 又成本效益不對等——怎麼辦？答案就是 RAG。&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;rag連接-llm-與私有知識的標準解法&#34;&gt;RAG：連接 LLM 與私有知識的標準解法
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;RAG（Retrieval-Augmented Generation，檢索增強生成）&lt;/strong&gt; 是 AI 工程師面試中最常考的題目之一。它的核心思路是：&lt;strong&gt;不把知識塞進模型參數，而是在推理時動態檢索相關內容，拼到 Prompt 裡讓模型參考&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;RAG 解決的痛點：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Context Window 太小 / 長 Context 檢索不準&lt;/li&gt;
+&lt;li&gt;資訊有時效性&lt;/li&gt;
+&lt;li&gt;模型容易產生&lt;strong&gt;幻覺——Hallucination（指 LLM 憑空編造不存在的事實）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;關鍵洞察&lt;/strong&gt;：Hallucination 是 RAG 要解決的核心問題，但要注意——RAG 只是「降低」幻覺機率，不是「消除」。即使把資料鎖在 Prompt 裡，模型仍然可能在概括或推理時產生偏差。這就是為什麼後面的 Evaluation 系統至關重要：你需要持續監控幻覺率，而不是上線後就以為萬事大吉。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;rag-工作流程&#34;&gt;RAG 工作流程
+&lt;/h4&gt;&lt;p&gt;假設一個需要高度準確的醫療場景——查詢藥物副作用：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;向量化入庫&lt;/strong&gt;：用 &lt;strong&gt;Embedding 模型（嵌入模型）&lt;/strong&gt; 把所有資料轉成向量，存入 &lt;strong&gt;Vector Database（向量資料庫）&lt;/strong&gt;。語義相近的文字在數學空間中距離也更近。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;查詢向量化&lt;/strong&gt;：使用者問題「藥物 A 的副作用」也用同一個 Embedding 模型轉成向量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;語義檢索&lt;/strong&gt;：用距離度量從向量資料庫中找出最相關的文件片段。注意：這不是關鍵字匹配——就算文件寫的是「不良反應」而不是「副作用」，一樣能找到。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;組裝 Prompt&lt;/strong&gt;：將檢索到的文件 + System Prompt + 使用者問題組合成最終 Prompt，模板大致如下：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;根據以下 Documents 回答使用者的問題。如果 Documents 裡沒有答案，就說「我不知道」。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;這樣設計是為了&lt;strong&gt;把模型鎖在你提供的資料範圍內&lt;/strong&gt;，避免它自由發揮。你還可以要求模型附上答案來源（第幾頁、第幾章），讓使用者驗證。&lt;/p&gt;
+&lt;h4 id=&#34;chunking-與多層級檢索&#34;&gt;Chunking 與多層級檢索
+&lt;/h4&gt;&lt;p&gt;一份藥物說明書可能長達 50 頁，直接整個轉成向量會讓細節遺失。所以通常需要 &lt;strong&gt;Chunking（文件切分）&lt;/strong&gt;——將文件切為固定大小的片段，每段各自轉成向量。&lt;/p&gt;
+&lt;p&gt;更進階的做法是&lt;strong&gt;多層級儲存&lt;/strong&gt;：同時保留整篇、每章、每段的向量。檢索時先找到相關章節，再往下鑽到精確段落。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;實戰建議&lt;/strong&gt;：Chunking 是 RAG 系統裡最容易被低估的環節。一個經驗法則——&lt;strong&gt;Chunk Size 控制在 256~1024 Token，相鄰 Chunk 之間保留 10%~20% 的重疊（Overlap）&lt;/strong&gt;。太小則語義不完整，太大則檢索精度下降。多層級檢索（先搜章節再搜段落）對超過 50 頁的文件效果顯著，但複雜度也相應增加——建議先用單層 Chunking 跑通全流程，再優化。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;rag-會被超長-context-window-淘汰嗎&#34;&gt;RAG 會被超長 Context Window 淘汰嗎？
+&lt;/h4&gt;&lt;p&gt;有人說，等模型支援超長 Context Window 且算力足夠便宜，Base Model 直接讀取整個資料庫，RAG 就沒用了。Stanford 教授的回答是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;理論上對，實際上錯。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;原因很實際——&lt;strong&gt;Latency（延遲）&lt;/strong&gt;。每次問問題模型都要把整個 Google Drive 重讀一遍，沒人等得了。就像搜尋引擎靠預建索引快速定位，不可能每次查詢都把整個網路重爬一遍。&lt;/p&gt;
+&lt;p&gt;RAG 除了準確度外，還有&lt;strong&gt;檢索效率、即時更新&lt;/strong&gt;等優勢，在可預見的未來仍將存在價值。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/65ffbe306c5b38dda210f97aa184f507.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;RAG工作流程全景圖&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三agentic-workflow從模型到系統&#34;&gt;三、Agentic Workflow：從模型到系統
+&lt;/h2&gt;&lt;p&gt;講完強化單模型的三個工具，接下來進入第二大部分——&lt;strong&gt;從模型到系統&lt;/strong&gt;。單個 LLM 再強也有做不到的事，Agentic Workflow 把 AI 從「會回答問題的模型」變成「一套真正運作、產出價值的系統」。&lt;/p&gt;
+&lt;h3 id=&#34;什麼是-agentic-workflow&#34;&gt;什麼是 Agentic Workflow？
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Agentic Workflow（智能體工作流）&lt;/strong&gt; 這個詞來自 &lt;strong&gt;Andrew Ng（吳恩達）&lt;/strong&gt;——Coursera 聯合創始人、Google Brain 創始負責人、前百度首席科學家。他刻意不用已被濫用的 &amp;ldquo;AI Agent&amp;rdquo; 一詞，而是用 Agentic Workflow 精確描述：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;把一組 Prompt、外部工具（Tools）、記憶（Memory）和各種元件組合進一個有結構的工作流程中，形成一套系統。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;RAG 主要做一件事：&lt;strong&gt;給 LLM 外部資料當參考&lt;/strong&gt;。而 Agent 把 RAG 當作眾多工具之一，還能呼叫外部 API、維護記憶、執行多步驟決策。&lt;/p&gt;
+&lt;p&gt;舉個退訂單的例子：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;場景&lt;/th&gt;
+					&lt;th&gt;RAG 能做的&lt;/th&gt;
+					&lt;th&gt;Agent 能做的&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;「我想退這筆訂單」&lt;/td&gt;
+					&lt;td&gt;丟給你退費政策文件&lt;/td&gt;
+					&lt;td&gt;用 RAG 檢索政策 → 主動問訂單編號 → 用 Tool 查訂單 → 確認退費 → 告知 3-5 個工作天到帳&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;RAG 是工具，Agent 是使用 RAG 這個工具的系統。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;學習提示&lt;/strong&gt;：這句話是整個課程最重要的心智模型之一。你可以建立這樣一個思維習慣：每次看到一門新技術（比如新的向量資料庫、新的 Agent 框架），先問自己——這是「工具」還是「系統」？工具是拼圖的一塊，系統是把拼圖拼起來的方式。大多數人卡住的原因不是不會用工具，而是不知道怎麼把它們拼起來。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;工程心態的四重轉變&#34;&gt;工程心態的四重轉變
+&lt;/h3&gt;&lt;p&gt;要打造 Agentic Workflow，你的工程心態需要先在四個維度上翻轉：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;維度&lt;/th&gt;
+					&lt;th&gt;傳統軟體&lt;/th&gt;
+					&lt;th&gt;Agentic AI 軟體&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;資料&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;結構化資料（JSON、資料庫、表單）&lt;/td&gt;
+					&lt;td&gt;自由文本、圖片、音訊——無固定格式&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;邏輯&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Deterministic（確定性的）&lt;/strong&gt;：同樣的輸入永遠給同樣的輸出&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Fuzzy（模糊性的）&lt;/strong&gt;：同樣輸入可能產生不同輸出&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;架構心態&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;精確控制每一步執行路徑，像寫 Microservices&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Think like a manager&lt;/strong&gt;：給 AI 目標和限制，讓它自己決定怎麼做&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;測試&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;確定性測試，跑一百次結果一樣&lt;/td&gt;
+					&lt;td&gt;迭代探索式測試，模型對 Context 敏感，無法窮舉&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;第一條落地原則隨之而來：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;能 Deterministic 解的問題，就 Deterministic 解；剩下 Fuzzy 的部分，加上護欄（Guardrails）。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;關鍵洞察&lt;/strong&gt;：這條原則可以翻譯成一句更具體的話——&lt;strong&gt;你的程式碼裡應該永遠是 if-else 包裹著 LLM 呼叫，而不是 LLM 呼叫包裹著 if-else。&lt;/strong&gt; 把 LLM 當成你系統裡的一個「模糊推理模組」，外圍用確定性邏輯（校驗、重試、降級）把它保護起來。這樣即使 LLM 犯錯了，系統也不會崩潰。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;教授舉了自己的例子：技能評估系統中，選擇題和配對題用確定性方式計分（有標準答案）；但語音+程式設計混合題型沒有標準答案，只能用 LLM 模糊評分。而 Fuzzy 評分一定會有誤判——所以他們在系統裡設計了一個 &lt;strong&gt;Appeal Feature（申訴機制）&lt;/strong&gt;，受測者可以提出申訴，由真人介入審查。&lt;/p&gt;
+&lt;p&gt;這就是護欄的具體形式：&lt;strong&gt;不是試圖讓 AI 零錯誤，而是在它出錯時有人接得住。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;實戰建議&lt;/strong&gt;：護欄設計有三個層次——① &lt;strong&gt;輸入護欄&lt;/strong&gt;：校驗使用者輸入是否合法；② &lt;strong&gt;過程護欄&lt;/strong&gt;：監控 Agent 每一步的輸出是否符合預期格式；③ &lt;strong&gt;輸出護欄&lt;/strong&gt;：最終結果是否在安全範圍內。至少實現①和③，②是進階優化。另外，永遠要有一個 &lt;strong&gt;Human-in-the-loop（人工介入）&lt;/strong&gt; 的逃生通道。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;打造-agent-的三個核心要素&#34;&gt;打造 Agent 的三個核心要素
+&lt;/h3&gt;&lt;p&gt;以「幫我訂一張去巴黎的機票」為例：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;① Prompts（提示詞）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;你如何告訴 AI：它的角色是什麼、它能做什麼、不能做什麼。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;② Context Management（上下文管理）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本質就一件事：&lt;strong&gt;把對的資訊，在對的時間，提供給 Agent&lt;/strong&gt;。包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Working Memory（工作記憶）&lt;/strong&gt;：高頻、要快的資訊，如使用者名字、本次目的地。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Archival Memory（歸檔記憶）&lt;/strong&gt;：低頻、可以慢一點的資訊，如過去五年的訂房記錄，需要時再查。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;③ Tools（工具）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Agent 能呼叫的外部能力，通常分兩種：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;做事的&lt;/strong&gt;：Flight Search、Hotel Booking、Payment&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;查資料的&lt;/strong&gt;：去 CRM 查客戶資料、查訂單記錄&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;agent-自主性的三層分級&#34;&gt;Agent 自主性的三層分級
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;層級&lt;/th&gt;
+					&lt;th&gt;描述&lt;/th&gt;
+					&lt;th&gt;特點&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Level 1: Hardcoded Steps&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;步驟全部寫死，按順序走&lt;/td&gt;
+					&lt;td&gt;安全可預測，但僵硬&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Level 2: Hardcoded Tools + 自主步驟&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;給 Agent 一組工具，讓它自己決定執行順序&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;目前最常見的 Production Setup&lt;/strong&gt;，教授推薦的起點&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Level 3: Fully Autonomous&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;自己決定步驟，甚至自己建立工具&lt;/td&gt;
+					&lt;td&gt;能力最強，風險最高——誤判可能導致嚴重損失&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;學習提示&lt;/strong&gt;：如果你是第一次搭建 Agent，務必從 Level 2 開始。Level 1 太僵硬，遇到預期外的情況就會卡住；Level 3 太危險，生產環境不可控。Level 2 的甜點在於——&lt;strong&gt;你控制「工具範圍」，Agent 控制「執行順序」&lt;/strong&gt;。等你對 Level 2 完全熟練、Eval 系統也建立好之後，再考慮往 Level 3 探索。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/b757a8b83639ec18d28fa14bba0547af.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Agent自主性三層分級&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mcp工業級工具整合標準&#34;&gt;MCP：工業級工具整合標準
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;MCP（Model Context Protocol，模型上下文協議）&lt;/strong&gt; 是 Anthropic 推出的標準化客戶端-伺服器架構，用於解決 AI 工具生態碎片化的問題。&lt;/p&gt;
+&lt;p&gt;傳統做法是：你要為每一個 API 單獨寫串接邏輯，手動教 LLM 每個 API 怎麼用、傳什麼參數。&lt;/p&gt;
+&lt;p&gt;MCP 的做法是：在中間放一個協議層——&lt;strong&gt;Agent 不需要認識每個 API，它只需要跟 MCP Server 溝通，MCP Server 負責跟後面的服務打交道&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你可以把 MCP 想像成一個&lt;strong&gt;通用 USB-C 插頭&lt;/strong&gt;：以前每個國家的插座規格不同，你要帶一堆轉接頭；有了 MCP，插一個就全通了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;關鍵洞察&lt;/strong&gt;：MCP 在 2024 年底發布後迅速成為業界標準。到今天（2026 年中），主流 AI 工具（Claude Desktop、Cursor、Continue 等）都已原生支援 MCP。這意味著你只需寫一次 MCP Server（比如連接公司 Jira 的 Server），所有支援 MCP 的 AI 應用都能直接呼叫。此外，MCP 還天然支援 Agent-to-Agent Communication——後面 Multi-Agent 章節會展開講。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四evaluation生產級系統的命脈&#34;&gt;四、Evaluation：生產級系統的命脈
+&lt;/h2&gt;&lt;p&gt;不管單 Agent 還是 Multi-Agent，上線之前都要回答同一個問題：&lt;strong&gt;怎麼知道它真的有用？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;答案就是 &lt;strong&gt;Evaluation（評估系統）&lt;/strong&gt;——它是 Production 級別 Agentic 系統的命脈。&lt;/p&gt;
+&lt;h3 id=&#34;三維度評估框架&#34;&gt;三維度評估框架
+&lt;/h3&gt;&lt;p&gt;Stanford 教授給出了一個完整的評估框架，三個維度交叉使用：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;維度一：End-to-End（端到端）vs Component-based（元件級）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;End-to-End 看整體：使用者用完後給幾分？滿不滿意？&lt;/li&gt;
+&lt;li&gt;Component-based 拆開看：這個 Tool 是不是忘了更新 email？發送那一步格式對不對？&lt;/li&gt;
+&lt;li&gt;光看整體知道哪裡壞但不知道為什麼壞；光看元件可能修了細節但整體體驗仍然差。&lt;strong&gt;實務上兩個都要做。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;維度二：Objective（客觀）vs Subjective（主觀）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Objective 可自動驗證：使用者說 Order ID 是 X，LLM 寫進資料庫變成 Y——寫個 Python 腳本自動對比。&lt;/li&gt;
+&lt;li&gt;Subjective 沒有標準答案：語氣好不好？回答有沒有同理心？這類需要人工評分或用另一個 LLM 當評審。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;維度三：Quantitative（定量）vs Qualitative（定性）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Quantitative 是數字：改地址成功率百分之幾？各環節延遲多少？&lt;/li&gt;
+&lt;li&gt;Qualitative 是感覺：在哪裡產生了幻覺？語氣哪裡不對？使用者在哪一步卡住了？這個需要&lt;strong&gt;人工逐條看，沒有捷徑&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;實戰建議&lt;/strong&gt;：初建 Eval 系統時，最容易犯的錯誤是一上來就想覆蓋全部 8 個交叉格。建議的優先級是：&lt;strong&gt;① Component × Objective（自動驗證每步正確性）→ ② End-to-End × Quantitative（追蹤核心指標）→ ③ End-to-End × Subjective（定期人工抽檢）&lt;/strong&gt;。前兩個可以在 CI/CD 中自動跑，第三個每週抽 20 條看一次。LLM-as-Judge 等更進階的手段，等你對系統有足夠信心再引入。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/dac23713171a341462dcc92fd5ebd70d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;三維度評估框架矩陣&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;llm-as-judge用-ai-評審-ai&#34;&gt;LLM-as-Judge：用 AI 評審 AI
+&lt;/h3&gt;&lt;p&gt;對於 Subjective Evaluation，常用做法是 &lt;strong&gt;LLM-as-Judge（以 LLM 為評審）&lt;/strong&gt;——用一個額外的 LLM 來評分。有四種主流設計：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Pairwise Comparison（成對比較）&lt;/strong&gt;：給 Judge 兩個答案，問哪個更好&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Single-answer Grading（單答案打分）&lt;/strong&gt;：直接打 1-5 分&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reference-guided Pairwise（參考引導成對比較）&lt;/strong&gt;：多給一個標準答案做參照&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rubric-based（基於評分標準）&lt;/strong&gt;：自己定義評分標準，如「5分=100字以內，含3個重點，首句是概述；0分=答非所問、冗長失焦」&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;這四種可以混用。例如 Rubric-based + Few-shot Examples，讓評審更清楚你要什麼。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;常見誤區&lt;/strong&gt;：LLM-as-Judge 最大的陷阱是「用同一個模型評判自己」——比如用 GPT-4 評審 GPT-4 的輸出，容易產生 Self-bias（自我偏好），評分虛高。最佳實踐是&lt;strong&gt;用不同家族的模型做 Judge&lt;/strong&gt;（比如用 Claude 評審 GPT 的輸出），或者至少用同家族的不同版本。另外，Judge 的 Rubric 要寫得非常具體，模糊的 Rubric 產出的分數沒有參考價值。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;實操用-travel-agent-的禮貌度舉個例子&#34;&gt;實操：用 Travel Agent 的「禮貌度」舉個例子
+&lt;/h3&gt;&lt;p&gt;教授用 Travel Agent 的禮貌度評估完整演示了四步流程：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;步驟&lt;/th&gt;
+					&lt;th&gt;內容&lt;/th&gt;
+					&lt;th&gt;為什麼不能省&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Step 1: Error Analysis&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;從 1000 個使用者對話中抽 20 個，人工逐條讀&lt;/td&gt;
+					&lt;td&gt;你必須先知道問題長什麼樣，才能設計對的評估&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Step 2: Design Eval&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;用 LLM-as-Judge + 禮貌度 Rubric&lt;/td&gt;
+					&lt;td&gt;把 Step 1 發現的問題翻譯成評分標準&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Step 3: A/B Test (模型)&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;固定 Prompt，換底層模型，跑同一批對話，Judge 評分&lt;/td&gt;
+					&lt;td&gt;看哪個模型禮貌度更高&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Step 4: A/B Test (Prompt)&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;固定模型，改 Prompt 措辭，看一個詞的差距影響多大&lt;/td&gt;
+					&lt;td&gt;微小的 Prompt 變化可能帶來顯著差異&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;核心原則：&lt;strong&gt;先人工掃出問題，再設計自動化評估；且模型和 Prompt 這兩個變數一次只動一個。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;學習提示&lt;/strong&gt;：這條「A/B Test 一次只動一個變數」的原則聽起來簡單，但實際執行時很容易違反。一個常見的錯誤是：「換成 Claude 模型 + 同時優化了 Prompt」——結果效果好，但你不知道是模型的功勞還是 Prompt 的功勞。建議你養成一個習慣：&lt;strong&gt;每次實驗只改一件事，記錄在實驗日誌裡&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五case-study搭建一個客服-ai-agent&#34;&gt;五、Case Study：搭建一個客服 AI Agent
+&lt;/h2&gt;&lt;p&gt;教授給了一個完整的實戰案例——搭建處理「改訂單地址」請求的客服 Agent。用例如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用者說：「我要改 A127 訂單的地址，因為我搬家到建國南路了。」&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;step-1-task-decomposition任務拆解&#34;&gt;Step 1: Task Decomposition（任務拆解）
+&lt;/h3&gt;&lt;p&gt;做 Agentic Workflow 的第一步，不是寫程式碼，而是&lt;strong&gt;先去客服旁邊坐一兩天，看他們怎麼實際處理這類請求&lt;/strong&gt;。理解人的工作流之後，再做 Task Decomposition——把大任務拆解成小任務。&lt;/p&gt;
+&lt;p&gt;觀察後發現，客服實際走了五步：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;① 抽出關鍵資訊（Intent、Order ID、新地址）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → ② 查資料庫客戶記錄
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    → ③ 查公司政策（能改嗎？已出貨了嗎？）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      → ④ 根據收集的資訊起草回信
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        → ⑤ 發送 Email
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;step-2-為每一步選擇工具&#34;&gt;Step 2: 為每一步選擇工具
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;步驟&lt;/th&gt;
+					&lt;th&gt;工具選擇&lt;/th&gt;
+					&lt;th&gt;原因&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;① 資訊抽取&lt;/td&gt;
+					&lt;td&gt;LLM 單次 API 呼叫&lt;/td&gt;
+					&lt;td&gt;純文本理解，無需外部工具&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;② 查/改資料庫&lt;/td&gt;
+					&lt;td&gt;Custom Tool 或 MCP Server&lt;/td&gt;
+					&lt;td&gt;需要與外部系統互動&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;③ 政策檢查&lt;/td&gt;
+					&lt;td&gt;RAG&lt;/td&gt;
+					&lt;td&gt;政策文件會更新，需要高效檢索&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;④ 起草回信&lt;/td&gt;
+					&lt;td&gt;LLM&lt;/td&gt;
+					&lt;td&gt;綜合前幾步資訊產生自然語言&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⑤ 發送郵件&lt;/td&gt;
+					&lt;td&gt;Email Tool&lt;/td&gt;
+					&lt;td&gt;呼叫外部郵件服務&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;判斷方法很簡單：&lt;strong&gt;先問自己每步是 Fuzzy 還是 Deterministic，再決定用什麼工具。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;這就是 AI Builder 真實在做的工作——&lt;strong&gt;知道每個工具和技術的邊界，然後組合出你需要的方案。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;概念串聯&lt;/strong&gt;：回顧前面的三層分級——這裡搭建的客服 Agent 正是典型的 &lt;strong&gt;Level 2&lt;/strong&gt;：工具範圍是固定的（5 個步驟各有明確工具），但執行順序由 Agent 根據輸入動態決定。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;step-3-build-evals&#34;&gt;Step 3: Build Evals
+&lt;/h3&gt;&lt;p&gt;將前面三維度框架全部用上：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;End-to-End&lt;/strong&gt;：最終回覆正確性、語氣、使用者滿意度&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Component-based&lt;/strong&gt;：資訊抽取精度、API 錯誤率、政策遵守率&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Objective&lt;/strong&gt;：自動驗證 Order ID 是否正確、有沒有違反退費政策&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Subjective&lt;/strong&gt;：人工 + LLM-as-Judge 評估回信禮貌度、同理心&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quantitative&lt;/strong&gt;：改地址成功率、延遲、退費正確率&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Qualitative&lt;/strong&gt;：哪裡產生了幻覺？語氣哪裡不一致？使用者在哪一步困惑？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/bf5d030a2f93d22262dfaee803d7e6a9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;客服Agent任務拆解流程&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;從零到上線的工程流程總結就是三步：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;拆解大任務 → 設計工作流 → 建立評估系統
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;學習提示&lt;/strong&gt;：如果你是第一次動手做 AI 專案，建議從一個極簡版開始——選一個只有 3-5 步的小任務，不做 RAG、不做 Multi-Agent，只用 Prompt Chaining 搭一個 Level 1 Agent，然後加一套只有 Objective Eval 的評估系統。跑通後再迭代加 RAG、加 Tool、升級到 Level 2。&lt;strong&gt;先跑通再優化，先簡單再複雜——這是 AI Builder 最重要的工程紀律。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六multi-agent把-agent-當作-tool&#34;&gt;六、Multi-Agent：把 Agent 當作 Tool
+&lt;/h2&gt;&lt;h3 id=&#34;為什麼需要-multi-agent&#34;&gt;為什麼需要 Multi-Agent？
+&lt;/h3&gt;&lt;p&gt;單個 Agent 已經能拆步驟、呼叫工具、做 RAG、寫郵件——似乎夠用了。Multi-Agent 的存在理由主要有兩個：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;理由&lt;/th&gt;
+					&lt;th&gt;說明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;平行處理（Parallel Processing）&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;訂機票時，找航班、找飯店、查天氣——三件事完全可以同時進行。單 Agent 只能序列化，Multi-Agent 可以三個 Specialized Agent 同時跑&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;可復用性（Reusability）&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;公司裡的 Design Agent 可以給行銷團隊用，也可以給產品團隊用&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;但設計原則是：&lt;strong&gt;如果一個 Agent 就能解決的問題，硬上 Multi-Agent 只會徒增複雜度。能簡單就簡單，不要過度設計。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;常見誤區&lt;/strong&gt;：很多團隊一上來就說「我們要做 Multi-Agent 系統」，覺得單 Agent 不夠「高級」。但實際上，Multi-Agent 引入了三個額外成本——&lt;strong&gt;① Agent 間的通訊開銷和延遲，② 多套 System Prompt 的維護負擔，③ Debug 時需要在多個 Agent 日誌中回溯&lt;/strong&gt;。只有當你的業務確實滿足以下兩個條件之一時，才值得上 Multi-Agent：&lt;strong&gt;a) 任務可以明顯切分為 2+ 個獨立平行子任務；b) 不同子任務需要的核心能力差異巨大，單 Agent Prompt 會過於臃腫。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;智慧家庭-multi-agent-範例&#34;&gt;智慧家庭 Multi-Agent 範例
+&lt;/h3&gt;&lt;p&gt;教授用智慧家庭做 Brainstorm 範例。一個完整的智慧家庭 Multi-Agent 系統可能包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;溫度控制 Agent&lt;/li&gt;
+&lt;li&gt;燈光 Agent&lt;/li&gt;
+&lt;li&gt;保全 Agent&lt;/li&gt;
+&lt;li&gt;娛樂 Agent&lt;/li&gt;
+&lt;li&gt;通知 Agent&lt;/li&gt;
+&lt;li&gt;能源管理 Agent&lt;/li&gt;
+&lt;li&gt;外加一個 &lt;strong&gt;Orchestrator（編排器）&lt;/strong&gt; 統籌&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;兩種互動模式：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;模式&lt;/th&gt;
+					&lt;th&gt;運作方式&lt;/th&gt;
+					&lt;th&gt;適用場景&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Hierarchical（層級式）&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;使用者只跟 Orchestrator 講話，由它派工給下層 Agent&lt;/td&gt;
+					&lt;td&gt;使用者側——「我要出門了」，Orchestrator 自己去協調燈光、保全、溫控&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Flat（扁平式）&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Agent 之間直接互通，沒有中間人&lt;/td&gt;
+					&lt;td&gt;後台——溫控 Agent 和能源管理 Agent 直接溝通，省掉每次過 Orchestrator 的成本&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;當 Agent 之間互相通訊時——本質上就是 &lt;strong&gt;MCP Protocol&lt;/strong&gt;。&lt;strong&gt;你把 Agent 當作 Tool，就像把 API 當作 Tool 一樣。&lt;/strong&gt; 每個 Agent 對外暴露一組 Tool-like 介面，其他 Agent 像呼叫工具一樣呼叫它。&lt;/p&gt;
+&lt;p&gt;這個心態一旦想通，Multi-Agent 就不再神秘——它只是把你已經懂的東西，多疊一層。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/223816641ed3265dde26673c5269ecd5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Multi-Agent智慧家庭架構&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;七總結你的-ai-學習全景路線圖&#34;&gt;七、總結：你的 AI 學習全景路線圖
+&lt;/h2&gt;&lt;p&gt;這篇文章從基礎模型的限制出發，逐層展開了增強 LLM 能力的完整技術棧：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;層級&lt;/th&gt;
+					&lt;th&gt;技術&lt;/th&gt;
+					&lt;th&gt;核心要點&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L1&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Prompt Engineering&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;成本最低，優先使用。重點在 Chaining 和 Testing，是每個工程師的基本功&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L2&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Fine-Tuning&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;除非處理法律、科學等高精度領域，或者興趣使然，否則別輕易碰。成本高、時效性差、Prompt Engineering 通常就夠了&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L3&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;RAG&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;幫模型補知識的標準解法。做 AI 產品基本一定會碰到——Embedding → Vector DB → Retrieval → Generation&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L4&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Agentic Workflow&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;從強化單模型到系統設計。核心是心態轉變：從 Deterministic Engineering 到 Fuzzy Engineering，做 Task Decomposition，建 Evaluation 系統&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;L5&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;Multi-Agent&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;把 Agent 當 Tool，彼此協作。提升速度（平行）和復用性。但記住：能簡單就不要複雜&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;有了這套認知框架，你就不會盲目跟風——看到別人做 Multi-Agent 就跟著做，看到別人聊 Fine-Tuning 就覺得酷。&lt;strong&gt;從實作出發&lt;/strong&gt;：看看你生活或工作中有什麼痛點，從痛點出發去思考解決方案。在這個過程中，你自然會發現需要學會哪些技術，從而高效地規劃自己的學習路線。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;下一步行動建議&lt;/strong&gt;：如果你想今天就開始動手，這裡有一個「最小可行路徑」——① 找一個你工作中的重複性文字任務（如整理週報、回覆 FAQ）；② 用 Prompt Chaining 把它拆成 2-3 步並串起來跑通；③ 寫幾個 Objective Test Case 自動驗證輸出格式；④ 跑一週看看效果，記下哪裡好哪裡不好。完成這四步，你就已經是一個在實踐中成長的 AI Builder 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

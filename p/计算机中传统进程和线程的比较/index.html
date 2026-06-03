@@ -586,30 +586,30 @@
 <hr>
 <h2 id="二调度机制">二、调度机制
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>项目</th>
-          <th>进程</th>
-          <th>线程</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>调度单位</td>
-          <td>操作系统以进程为<strong>资源分配单位</strong></td>
-          <td>操作系统以线程为<strong>CPU调度单位</strong></td>
-      </tr>
-      <tr>
-          <td>上下文切换</td>
-          <td>需完整切换：虚拟内存、寄存器、文件描述符等 → <strong>开销大</strong></td>
-          <td>仅切换线程私有数据（栈、寄存器、PC） → <strong>开销小</strong></td>
-      </tr>
-      <tr>
-          <td>调度方式</td>
-          <td>内核调度，时间片轮转、抢占式执行</td>
-          <td>同样由内核调度（或部分用户态实现）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>项目</th>
+					<th>进程</th>
+					<th>线程</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>调度单位</td>
+					<td>操作系统以进程为<strong>资源分配单位</strong></td>
+					<td>操作系统以线程为<strong>CPU调度单位</strong></td>
+			</tr>
+			<tr>
+					<td>上下文切换</td>
+					<td>需完整切换：虚拟内存、寄存器、文件描述符等 → <strong>开销大</strong></td>
+					<td>仅切换线程私有数据（栈、寄存器、PC） → <strong>开销小</strong></td>
+			</tr>
+			<tr>
+					<td>调度方式</td>
+					<td>内核调度，时间片轮转、抢占式执行</td>
+					<td>同样由内核调度（或部分用户态实现）</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="三并发与通信">三、并发与通信
@@ -632,58 +632,58 @@
 <hr>
 <h2 id="四资源拥有情况">四、资源拥有情况
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>资源类型</th>
-          <th>进程</th>
-          <th>线程</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>虚拟内存空间</td>
-          <td>独立</td>
-          <td>共享所属进程的内存</td>
-      </tr>
-      <tr>
-          <td>文件描述符/句柄</td>
-          <td>独立</td>
-          <td>共享</td>
-      </tr>
-      <tr>
-          <td>信号处理器</td>
-          <td>独立</td>
-          <td>共享（但可设置线程特定行为）</td>
-      </tr>
-      <tr>
-          <td>栈、寄存器、PC</td>
-          <td>（每个进程至少一个主线程有）</td>
-          <td>每个线程独立拥有</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>资源类型</th>
+					<th>进程</th>
+					<th>线程</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>虚拟内存空间</td>
+					<td>独立</td>
+					<td>共享所属进程的内存</td>
+			</tr>
+			<tr>
+					<td>文件描述符/句柄</td>
+					<td>独立</td>
+					<td>共享</td>
+			</tr>
+			<tr>
+					<td>信号处理器</td>
+					<td>独立</td>
+					<td>共享（但可设置线程特定行为）</td>
+			</tr>
+			<tr>
+					<td>栈、寄存器、PC</td>
+					<td>（每个进程至少一个主线程有）</td>
+					<td>每个线程独立拥有</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="五系统开销对比">五、系统开销对比
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>操作</th>
-          <th>进程</th>
-          <th>线程</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>创建/销毁</td>
-          <td>需分配/回收 MB 级内存，初始化大量资源 → ​<strong>开销大</strong>（涉及系统调用）</td>
-          <td>仅需分配 KB 级栈空间和少量元数据 → ​<strong>开销小</strong>（可在用户态实现）</td>
-      </tr>
-      <tr>
-          <td>切换成本</td>
-          <td>高（完整上下文切换）</td>
-          <td>低（仅切换私有寄存器和栈）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>操作</th>
+					<th>进程</th>
+					<th>线程</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>创建/销毁</td>
+					<td>需分配/回收 MB 级内存，初始化大量资源 → ​<strong>开销大</strong>（涉及系统调用）</td>
+					<td>仅需分配 KB 级栈空间和少量元数据 → ​<strong>开销小</strong>（可在用户态实现）</td>
+			</tr>
+			<tr>
+					<td>切换成本</td>
+					<td>高（完整上下文切换）</td>
+					<td>低（仅切换私有寄存器和栈）</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="六总结">六、总结

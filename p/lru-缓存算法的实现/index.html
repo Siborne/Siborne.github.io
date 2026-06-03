@@ -605,22 +605,22 @@
 <h3 id="二数据结构选择">二、数据结构选择
 </h3><p>为了实现 O(1) 的操作，需结合两种结构：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>数据结构</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>HashMap</strong></td>
-          <td>快速通过<code>key</code>查找对应的节点（O(1)）</td>
-      </tr>
-      <tr>
-          <td><strong>双向链表（Doubly Linked List）</strong></td>
-          <td>维护访问顺序 —— 链表尾部为最近使用，头部为最久未使用</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>数据结构</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>HashMap</strong></td>
+					<td>快速通过<code>key</code>查找对应的节点（O(1)）</td>
+			</tr>
+			<tr>
+					<td><strong>双向链表（Doubly Linked List）</strong></td>
+					<td>维护访问顺序 —— 链表尾部为最近使用，头部为最久未使用</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>双向链表支持 O(1) 删除中间节点（因为有 <code>last</code> 指针）。</p>
@@ -649,26 +649,26 @@
 <h4 id="2-内部类-doublelist双向链表封装">2. 内部类 <code>DoubleList</code>（双向链表封装）
 </h4><p>提供三个核心操作：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>方法</th>
-          <th>功能</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>addNode(node)</code></td>
-          <td>将新节点加到<strong>尾部</strong>（表示最新使用）</td>
-      </tr>
-      <tr>
-          <td><code>moveNodeToTail(node)</code></td>
-          <td>将已有节点移到尾部（被访问/更新时调用）</td>
-      </tr>
-      <tr>
-          <td><code>removeHead()</code></td>
-          <td>移除<strong>头部节点</strong>（最久未使用），返回该节点</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方法</th>
+					<th>功能</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>addNode(node)</code></td>
+					<td>将新节点加到<strong>尾部</strong>（表示最新使用）</td>
+			</tr>
+			<tr>
+					<td><code>moveNodeToTail(node)</code></td>
+					<td>将已有节点移到尾部（被访问/更新时调用）</td>
+			</tr>
+			<tr>
+					<td><code>removeHead()</code></td>
+					<td>移除<strong>头部节点</strong>（最久未使用），返回该节点</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>注意边界情况：</p>

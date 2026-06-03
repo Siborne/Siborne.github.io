@@ -635,30 +635,30 @@
 <h2 id="基本使用">基本使用
 </h2><p>在介紹Thread使用之前，我們首先認識幾個Thread的常見方法</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>方法宣告</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>ThreadLocal()</td>
-          <td>建立ThreadLocal物件</td>
-      </tr>
-      <tr>
-          <td>public void set(T value)</td>
-          <td>設定目前執行緒繫結的區域變數</td>
-      </tr>
-      <tr>
-          <td>public T get()</td>
-          <td>取得目前執行緒繫結的區域變數</td>
-      </tr>
-      <tr>
-          <td>public void remove()</td>
-          <td>移除目前執行緒繫結的區域變數</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方法宣告</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ThreadLocal()</td>
+					<td>建立ThreadLocal物件</td>
+			</tr>
+			<tr>
+					<td>public void set(T value)</td>
+					<td>設定目前執行緒繫結的區域變數</td>
+			</tr>
+			<tr>
+					<td>public T get()</td>
+					<td>取得目前執行緒繫結的區域變數</td>
+			</tr>
+			<tr>
+					<td>public void remove()</td>
+					<td>移除目前執行緒繫結的區域變數</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="使用案例">使用案例
 </h2><p>我們來看下面這個案例，感受一下ThreadLocal執行緒隔離的特點</p>
@@ -920,25 +920,25 @@
 </div><h3 id="threadlocal與synchronized的區別">ThreadLocal與Synchronized的區別
 </h3><p>雖然ThreadLocal模式與Synchronized關鍵字都用於處理多執行緒並發存取變數的問題，不過兩者處理問題的角度和思路不同。</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th></th>
-          <th>Synchronized</th>
-          <th>ThreadLocal</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>原理</td>
-          <td>同步機制採用以時間換空間的方式，只提供了一份變數，讓不同的執行緒排隊存取</td>
-          <td>ThreadLocal採用以空間換時間的概念，為每個執行緒都提供一份變數副本，從而實現同時存取而互不干擾</td>
-      </tr>
-      <tr>
-          <td>側重點</td>
-          <td>多個執行緒之間存取資源的同步</td>
-          <td>多執行緒中讓每個執行緒之間的資料相互隔離</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th></th>
+					<th>Synchronized</th>
+					<th>ThreadLocal</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>原理</td>
+					<td>同步機制採用以時間換空間的方式，只提供了一份變數，讓不同的執行緒排隊存取</td>
+					<td>ThreadLocal採用以空間換時間的概念，為每個執行緒都提供一份變數副本，從而實現同時存取而互不干擾</td>
+			</tr>
+			<tr>
+					<td>側重點</td>
+					<td>多個執行緒之間存取資源的同步</td>
+					<td>多執行緒中讓每個執行緒之間的資料相互隔離</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>總結：在剛剛的案例中，雖然使用ThreadLocal和Synchronized都能解決問題，但是使用ThreadLocal更為合適，因為這樣可以使程式擁有更高的並發性。</p>
 <h2 id="運用場景">運用場景
@@ -1000,26 +1000,26 @@
 </div><p>所以這裡就需要操作事務，來保證轉入和轉出具備原子性，要么成功，要么失敗。</p>
 <p>JDBC中關於事務操作的API</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Connection介面的方法</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>void setAutoCommit(false)</td>
-          <td>停用事務自動提交（改為手動提交）</td>
-      </tr>
-      <tr>
-          <td>void commit()</td>
-          <td>提交事務</td>
-      </tr>
-      <tr>
-          <td>void rollback()</td>
-          <td>回滾事務</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Connection介面的方法</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>void setAutoCommit(false)</td>
+					<td>停用事務自動提交（改為手動提交）</td>
+			</tr>
+			<tr>
+					<td>void commit()</td>
+					<td>提交事務</td>
+			</tr>
+			<tr>
+					<td>void rollback()</td>
+					<td>回滾事務</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>開啟事務的注意點</p>
 <p>為了保證所有操作在一個事務中，案例中使用的連線必須是同一個；service層開啟事務的connection需要跟dao層存取資料庫的connection保持一致</p>
@@ -1143,30 +1143,30 @@
 </h2><p>基於ThreadLocal的內部結構，我們繼續分析它的核心方法原始碼，更深入的了解其操作原理。
 除了建構方法之外，ThreadLocal對外暴露的方法有以下4個</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>方法宣告</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>protected T initialValue()</td>
-          <td>回傳目前執行緒區域變數的初始值</td>
-      </tr>
-      <tr>
-          <td>public void set(T value)</td>
-          <td>回傳目前執行緒繫結的區域變數</td>
-      </tr>
-      <tr>
-          <td>public T get()</td>
-          <td>取得目前執行緒繫結的區域變數</td>
-      </tr>
-      <tr>
-          <td>public void remove()</td>
-          <td>移除目前執行緒繫結的區域變數</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方法宣告</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>protected T initialValue()</td>
+					<td>回傳目前執行緒區域變數的初始值</td>
+			</tr>
+			<tr>
+					<td>public void set(T value)</td>
+					<td>回傳目前執行緒繫結的區域變數</td>
+			</tr>
+			<tr>
+					<td>public T get()</td>
+					<td>取得目前執行緒繫結的區域變數</td>
+			</tr>
+			<tr>
+					<td>public void remove()</td>
+					<td>移除目前執行緒繫結的區域變數</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>以下是這4個方法的詳細原始碼分析（為了保證思路清晰，ThreadLocalMap部分暫時不展開，下一個知識點詳解）</p>
 <h3 id="set方法">set方法
