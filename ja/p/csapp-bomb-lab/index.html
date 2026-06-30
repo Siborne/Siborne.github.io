@@ -1,0 +1,2720 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="CMU CS:APP Bomb Lab の6つのフェーズを完全攻略。x86-64アセンブリコードを1行ずつ解説し、関数呼び出し規約、ループと配列、ジャンプテーブル、再帰的二分探索、ビット演算による文字マッピング、リンクリストの再構成と降順検証などの重要ポイントを網羅。">
+<title>CMU 15-213（CS:APP）Bomb Lab 攻略記録：アセンブリ初心者からボム解体の達人へ</title>
+
+<link rel='canonical' href='https://Siborne.top/ja/p/csapp-bomb-lab/'>
+
+<link rel="stylesheet" href="/scss/style.min.f169add374573a6d5393fbcd112ed0f3071161116b122a3ecff4c5a0e1eb28aa.css"><meta property='og:title' content="CMU 15-213（CS:APP）Bomb Lab 攻略記録：アセンブリ初心者からボム解体の達人へ">
+<meta property='og:description' content="CMU CS:APP Bomb Lab の6つのフェーズを完全攻略。x86-64アセンブリコードを1行ずつ解説し、関数呼び出し規約、ループと配列、ジャンプテーブル、再帰的二分探索、ビット演算による文字マッピング、リンクリストの再構成と降順検証などの重要ポイントを網羅。">
+<meta property='og:url' content='https://Siborne.top/ja/p/csapp-bomb-lab/'>
+<meta property='og:site_name' content='Siborne'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CMU CS15213:CSAPP' /><meta property='article:published_time' content='2026-06-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-01T00:12:37&#43;08:00'/><meta property='og:image' content='https://img.siborne.top/2026/07/001046a9f14e2167f21216c20bc9c7c6.png' />
+<meta name="twitter:title" content="CMU 15-213（CS:APP）Bomb Lab 攻略記録：アセンブリ初心者からボム解体の達人へ">
+<meta name="twitter:description" content="CMU CS:APP Bomb Lab の6つのフェーズを完全攻略。x86-64アセンブリコードを1行ずつ解説し、関数呼び出し規約、ループと配列、ジャンプテーブル、再帰的二分探索、ビット演算による文字マッピング、リンクリストの再構成と降順検証などの重要ポイントを網羅。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://img.siborne.top/2026/07/001046a9f14e2167f21216c20bc9c7c6.png' /><div class="loading">
+  
+  
+  <div class="loader">
+    <span>&lt;</span>
+    <span>loading</span>
+    <span>/&gt;</span>
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: #f5f5fa;
+  }
+
+   
+   
+  .loader {
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .loader > * {
+    color: black;
+  }
+  .loader span {
+    display: inline-flex;
+  }
+  .loader span:nth-child(2) {
+    letter-spacing: -1em;
+    overflow: hidden;
+    animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+      alternate;
+  }
+  @keyframes reveal {
+    0%,
+    100% {
+      opacity: 0.5;
+      letter-spacing: -1em;
+    }
+    50% {
+      opacity: 1;
+      letter-spacing: 0em;
+    }
+  }
+</style>
+
+<script>
+  function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      loading.style.display = "none";
+    });
+  }
+
+  initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="メニューを開く・閉じる">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/ja/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar4_hu_c86b86ec6639ffee.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">☕</span>
+                
+            </figure>
+            
+        
+        
+        
+        
+
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/ja">Siborne</a></h1>
+            <h2 class="site-description">
+                 
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🌊 &#34;Vibe Coding&#34; 愛好家
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🧠 AI Agent アーキテクト &amp; フルスタック開発者
+                </div>
+
+                
+                <div style="
+                    font-size: 1rem; 
+                    font-weight: 700; 
+                    line-height: 1.5; 
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                ">
+                    🎓 好奇心旺盛な学生 · 未来のビルダー
+                </div>
+
+                
+                <div style="
+                    font-size: 0.85rem; 
+                    font-weight: 400; 
+                    line-height: 1.6; 
+                    color: var(--body-text-color-secondary, #666);
+                    margin-top: 2px;
+                    padding-left: 2px;
+                ">
+                    インテリジェントエージェント＋スケーラブルアプリを構築。創造性とAI効率の融合。🛠️🚀
+                </div>
+            </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/511148907?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Siborne'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/ja/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>ホーム</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>私について | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>アーカイブ | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/projects/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder-open"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2" /></svg>
+                
+                <span>オープンソースプロジェクト | Projects</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>検索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ja/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>テックリンク | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Siborne.top/" >简体中文</option>
+                                
+                                    <option value="https://Siborne.top/en/" >English</option>
+                                
+                                    <option value="https://Siborne.top/zh-tw/" >繁體中文</option>
+                                
+                                    <option value="https://Siborne.top/ja/" selected>日本語</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>ダークモード</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目次</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#事前準備">事前準備</a>
+      <ol>
+        <li><a href="#gdb-の自動デバッグ情報ダウンロードを無効化ubuntu-ユーザー必須">GDB の自動デバッグ情報ダウンロードを無効化（Ubuntu ユーザー必須）</a></li>
+        <li><a href="#安全用ブレークポイント">安全用ブレークポイント</a></li>
+        <li><a href="#入力ストリームの所有権初心者が最もハマる罠">入力ストリームの所有権：初心者が最もハマる罠</a></li>
+      </ol>
+    </li>
+    <li><a href="#phase-1文字列比較">Phase 1：文字列比較</a></li>
+    <li><a href="#phase-2ループと配列等比数列">Phase 2：ループと配列（等比数列）</a></li>
+    <li><a href="#phase-3ジャンプテーブルswitch-case">Phase 3：ジャンプテーブル（switch-case）</a></li>
+    <li><a href="#phase-4再帰と二分探索">Phase 4：再帰と二分探索</a></li>
+    <li><a href="#phase-5ビット演算とascii文字マッピング">Phase 5：ビット演算とASCII文字マッピング</a></li>
+    <li><a href="#phase-6リンクリストの再構成と降順ソート">Phase 6：リンクリストの再構成と降順ソート</a></li>
+    <li><a href="#全フェーズパスワード一覧">全フェーズパスワード一覧</a></li>
+    <li><a href="#付録クイックリファレンス">付録：クイックリファレンス</a>
+      <ol>
+        <li><a href="#x86-64-関数呼出規約レジスタ">x86-64 関数呼出規約レジスタ</a></li>
+        <li><a href="#gdb-基本コマンド">GDB 基本コマンド</a></li>
+        <li><a href="#核心公式">核心公式</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/ja/p/csapp-bomb-lab/">
+                
+                    <img src="https://img.siborne.top/2026/07/001046a9f14e2167f21216c20bc9c7c6.png" loading="lazy" alt="Featured image of post CMU 15-213（CS:APP）Bomb Lab 攻略記録：アセンブリ初心者からボム解体の達人へ" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/ja/p/csapp-bomb-lab/">CMU 15-213（CS:APP）Bomb Lab 攻略記録：アセンブリ初心者からボム解体の達人へ</a>
+        </h2>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-06-30T00:00:00Z'>2026-06-30</time>
+            </div>
+        
+
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    Jul 01, 2026 00:12 &#43;0800
+                </time>
+            </div>
+        <div class="article-word-count">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1774979970251" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8653" width="64" height="64" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M802.41318105 576.53626246c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695683 0-23.89404873-19.4278714-43.32192013-43.32192012-43.32192013H364.50449359l-5.02444949 0.33496331c-21.54930563 2.45639752-38.1858162 20.7677246-38.1858162 42.98695682 0 23.89404873 19.4278714 43.32192013 43.32192012 43.32192011h173.06437166V969.7831766l0.3349633 4.6894862c2.45639752 19.87448912 20.7677246 35.28280092 42.9869568 35.28280093 23.89404873 0 43.32192013-17.86470933 43.32192013-39.97228713V576.87122574h173.17602608l4.91279506-0.33496328z" p-id="8654" fill="#747474"></path><path d="M970.4531032 706.72533171H710.7448913l-5.0244495 0.33496329c-21.54930563 2.45639752-38.1858162 20.7677246-38.18581621 42.98695684 0 23.89404873 19.4278714 43.32192013 43.32192015 43.32192012h86.53218583v181.77341745l0.33496329 4.01955958c2.45639752 17.19478271 20.7677246 30.59331472 42.98695682 30.59331474 23.89404873 0 43.32192013-15.51996623 43.32192013-34.61287432V793.25751754h86.53218582l5.02444949-0.33496331c21.54930563-2.45639752 38.1858162-20.7677246 38.1858162-42.98695684 0-23.89404873-19.31621697-43.21026568-43.32192012-43.21026568zM370.98045073 702.81742653C212.76611871 687.40911474 102.22822974 627.56233848 102.22822974 576.87122574v-83.62917054c21.99592335 14.29176747 47.67644303 27.13202731 76.4832868 38.1858162 22.33088667 8.59739137 47.34147971-2.56805198 55.93887111-24.89893865 8.59739137-22.33088667-2.56805198-47.34147971-24.89893864-55.93887108-70.45394743-27.02037287-107.52321929-62.07986492-107.52321927-90.21678211v-70.6772563c78.82802992 42.87530239 205.77912062 70.67725629 348.9201041 70.6772563 141.57782145 0 267.30071336-27.24368173 346.35205215-69.22574866v69.22574866l0.3349633 5.02444951c2.45639752 21.54930563 20.7677246 38.1858162 42.98695681 38.18581618 23.89404873 0 43.32192013-19.4278714 43.32192012-43.32192014v-173.06437163c-0.11165443-95.57619493-193.83209624-173.06437164-432.88423794-173.06437163-220.29419693 0-402.17926882 65.87611565-429.31129611 150.95679385l-1.67481649 3.12632412c-2.79136083 5.6943761-4.3545229 12.17033323-4.3545229 18.98125366v606.06026406c0 111.76608775 147.60716086 192.04562531 344.2306179 211.92011441 23.7823943 2.34474308 44.99673663-14.96169406 47.45313417-38.74408835 2.34474308-23.7823943-14.96169406-44.99673663-38.74408836-47.45313415-157.43275096-15.74327509-266.63078677-75.25508806-266.63078675-125.72289191v-83.40586171c62.52648266 40.8655226 154.5297357 68.77913093 260.37813848 79.16299323 23.7823943 2.34474308 44.99673663-15.07334849 47.22982529-38.85574279 2.34474308-23.7823943-15.07334849-44.99673663-38.85574278-47.34147974z m-254.57210796-524.21756442c13.39853199-11.0537889 34.05460216-22.7775044 60.74001172-33.38467556 69.78402082-27.91360832 168.03992214-44.55011889 273.88832493-44.55011889 105.96005721 0 204.21595853 16.63651056 273.88832491 44.55011889 30.03504257 12.0586788 52.47758365 25.23390194 65.42949793 37.51588962l4.68948619 4.46617731-9.37897238 8.70904581c-13.39853199 11.0537889-34.05460216 22.7775044-60.74001174 33.38467555-69.78402082 27.91360832-168.03992214 44.55011889-273.88832491 44.55011889-105.96005721 0-204.21595853-16.63651056-273.88832493-44.55011889-30.03504257-12.0586788-52.47758365-25.23390194-65.42949794-37.51588959l-4.68948619-4.46617734 9.37897241-8.7090458z" p-id="8655" fill="#747474"></path></svg>
+            <time class="article-time--reading">
+                6434字
+            </time>
+        </div>
+
+        
+        <div id="viewCount">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <time class="article-time--reading">
+                
+                <span id="vercount_value_page_pv">loading... </span>次
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+    <h3 class="article-subtitle">
+        CMU CS:APP Bomb Lab の6つのフェーズを完全攻略。x86-64アセンブリコードを1行ずつ解説し、関数呼び出し規約、ループと配列、ジャンプテーブル、再帰的二分探索、ビット演算による文字マッピング、リンクリストの再構成と降順検証などの重要ポイントを網羅。
+    </h3>
+    
+
+    
+    <header class="article-category">
+        
+            <a href="/ja/categories/cmu-cs15213-csapp/" >
+                CMU CS15213-CSAPP
+            </a>
+        
+    </header>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://Siborne.top/p/csapp-bomb-lab/" class="link">简体中文</a>
+                
+                    <a href="https://Siborne.top/en/p/csapp-bomb-lab/" class="link">English</a>
+                
+                    <a href="https://Siborne.top/zh-tw/p/csapp-bomb-lab/" class="link">繁體中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>アセンブリは辛い——でも乗り越えた先に新しい世界が広がっている。</p>
+</blockquote>
+<p><img src="https://img.siborne.top/2026/06/5f0496de2d95e010c3648035b42ce5a7.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Bomb Lab は CMU 15-213（CS:APP）コースで最も象徴的な実験の一つです。<code>bomb</code> というバイナリ実行ファイルが与えられ、6つのフェーズで構成されています。各フェーズでは特定のパスワードを入力する必要があり、間違えると爆弾が爆発します（プログラムが「BOOM!」と表示して減点）。手元にあるのは実行ファイルと GDB デバッガだけ。目標は逆アセンブルして各フェーズのパスワードを推論することです。</p>
+<p>本記事では、6つのフェーズ全ての解体プロセスを、アセンブリコードの1行ずつの解説から GDB の実践テクニック、そしてアセンブリロジックを C 言語に翻訳するところまで完全攻略します。</p>
+<hr>
+<h2 id="事前準備">事前準備
+</h2><p>解体を始める前に、GDB 環境の設定と安全用ブレークポイントを設定します。</p>
+<h3 id="gdb-の自動デバッグ情報ダウンロードを無効化ubuntu-ユーザー必須">GDB の自動デバッグ情報ダウンロードを無効化（Ubuntu ユーザー必須）
+</h3><p>最新の Ubuntu の GDB はデフォルトでデバッグシンボルをネットワーク経由でダウンロードするため、起動が極端に遅くなります：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;set debuginfod enabled off&#34;</span> &gt;&gt; ~/.gdbinit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安全用ブレークポイント">安全用ブレークポイント
+</h3><p><code>gdb bomb</code> を起動するたびに、まず2つのブレークポイントを設定します：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> b explode_bomb    <span class="c1"># 爆弾が爆発しようとするたびに GDB が即座に停止</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> b phase_1         <span class="c1"># 現在のフェーズにブレークポイントを設定（以降 phase_2, phase_3 等に切替）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="入力ストリームの所有権初心者が最もハマる罠">入力ストリームの所有権：初心者が最もハマる罠
+</h3><p>これは実験全体を通して最も重要な概念です——今誰と対話しているのかを常に意識すること：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>端末の表示</th>
+					<th>対話相手</th>
+					<th>入力できるもの</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>(gdb)</code> プロンプトあり</td>
+					<td>GDB デバッガ</td>
+					<td>デバッグコマンド：<code>c</code>、<code>r</code>、<code>disassemble</code>、<code>x/s</code> 等</td>
+			</tr>
+			<tr>
+					<td>緑色の点滅カーソルのみ</td>
+					<td>爆弾プログラム</td>
+					<td>解体パスワード！<strong>絶対に</strong>ここで GDB コマンドを入力しない</td>
+			</tr>
+	</tbody>
+</table></div>
+<blockquote>
+<p>プログラムがフリーズしたり爆弾が入力を待っている状態であれば、いつでも <strong>Ctrl + C</strong> でプログラムを強制中断し、<code>(gdb)</code> プロンプトを取り戻せます。</p>
+</blockquote>
+<hr>
+<h2 id="phase-1文字列比較">Phase 1：文字列比較
+</h2><p><strong>ポイント</strong>：x86-64 関数呼び出し規約 + メモリ文字列の読み取り</p>
+<p>第1フェーズは最も簡単なウォームアップです。メモリ上に隠されたターゲット文字列を見つけるだけです。</p>
+<p><code>phase_1</code> を逆アセンブルすると、極めてシンプルなロジックが明らかになります：入力文字列とメモリ上のプリセット文字列を比較し、一致すればクリアです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) disassemble phase_1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">0x0000000000400ee0 &lt;+0&gt;:  	sub    $0x8,%rsp
+</span></span><span class="line"><span class="cl">0x0000000000400ee4 &lt;+4&gt;: 	mov    $0x402400,%esi               # 重要！アドレス 0x402400 → 第2引数
+</span></span><span class="line"><span class="cl">0x0000000000400ee9 &lt;+9&gt;:  	call   0x401338 &lt;strings_not_equal&gt; # 文字列比較関数を呼出
+</span></span><span class="line"><span class="cl">0x0000000000400eee &lt;+14&gt;: 	test   %eax,%eax                    # 戻り値：0 = 一致
+</span></span><span class="line"><span class="cl">0x0000000000400ef0 &lt;+16&gt;: 	je     0x400ef7 &lt;phase_1+23&gt;        # 戻り値 0 → クリア
+</span></span><span class="line"><span class="cl">0x0000000000400ef2 &lt;+18&gt;: 	call   0x40143a &lt;explode_bomb&gt;      # 非ゼロ → 爆発
+</span></span><span class="line"><span class="cl">0x0000000000400ef7 &lt;+23&gt;: 	add    $0x8,%rsp
+</span></span><span class="line"><span class="cl">0x0000000000400efb &lt;+27&gt;: 	ret
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>フロー解説</strong>：</p>
+<ol>
+<li><code>mov $0x402400, %esi</code>：x86-64 の関数呼び出し規約では、<code>%rsi</code>/<code>%esi</code> が第2引数です。<code>strings_not_equal</code> のシグネチャは <code>strings_not_equal(char *input, char *target)</code> なので、<code>0x402400</code> がターゲット文字列のメモリアドレスです。</li>
+<li><code>call strings_not_equal</code>：比較関数を呼出し、文字列が一致すれば 0 を <code>%eax</code> に返します。</li>
+<li><code>test %eax, %eax</code> + <code>je</code>：戻り値が 0 ならジャンプしてクリア、そうでなければ爆発。</li>
+</ol>
+<blockquote>
+<p><strong>重要ポイント</strong>：x86-64 関数呼び出し規約 —— <code>%rdi</code>（第1引数）、<code>%rsi</code>（第2引数）、<code>%rdx</code>（第3引数）、<code>%rcx</code>（第4引数）。戻り値は常に <code>%rax</code>/<code>%eax</code> に格納。</p>
+</blockquote>
+<p><strong>GDB で一瞬で解決</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/s 0x402400
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>画面に <code>Border relations with Canada have never been better.</code> が表示されます。これが第1フェーズのパスワードです。</p>
+<p><strong>C 言語での等価コード</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">phase_1</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">strings_not_equal</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="s">&#34;Border relations with Canada have never been better.&#34;</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">explode_bomb</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>解答</strong>：<code>Border relations with Canada have never been better.</code></p>
+<hr>
+<h2 id="phase-2ループと配列等比数列">Phase 2：ループと配列（等比数列）
+</h2><p><strong>ポイント</strong>：ループ構造の識別 + スタック上の配列アクセス + 配列オフセット計算</p>
+<p>第2フェーズではループ構造が導入されます。特定の数学的パターンを満たす6つの整数を入力する必要があります。</p>
+<p>アセンブリから3つの重要なシグナルを識別できます：<code>read_six_numbers</code>（6つの数値を読み込み）、先頭要素チェック（<code>cmpl $0x1</code>）、ループ本体（<code>add %eax, %eax</code> すなわち2倍）。パターンは初項1の等比数列です。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) disassemble phase_2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 配列領域の確保、6つの数値を読込 ======
+</span></span><span class="line"><span class="cl">0x0000000000400efc &lt;+0&gt;:  	push   %rbp
+</span></span><span class="line"><span class="cl">0x0000000000400efd &lt;+1&gt;:  	push   %rbx
+</span></span><span class="line"><span class="cl">0x0000000000400efe &lt;+2&gt;:  	sub    $0x28,%rsp                   # スタックに40バイト確保（6×4=24 + アラインメント）
+</span></span><span class="line"><span class="cl">0x0000000000400f02 &lt;+6&gt;:  	mov    %rsp,%rsi                    # %rsi = 配列の先頭アドレス
+</span></span><span class="line"><span class="cl">0x0000000000400f05 &lt;+9&gt;:  	call   0x40145c &lt;read_six_numbers&gt;  # 6つの数値を読込
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== ゲートチェック：最初の数値は1でなければならない ======
+</span></span><span class="line"><span class="cl">0x0000000000400f0a &lt;+14&gt;: 	cmpl   $0x1,(%rsp)                 # num[0] == 1 ?
+</span></span><span class="line"><span class="cl">0x0000000000400f0e &lt;+18&gt;: 	je     0x400f30 &lt;phase_2+52&gt;        # はい → 続行
+</span></span><span class="line"><span class="cl">0x0000000000400f10 &lt;+20&gt;: 	call   0x40143a &lt;explode_bomb&gt;      # いいえ → 爆発
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== ループポインタの初期化 ======
+</span></span><span class="line"><span class="cl">0x0000000000400f30 &lt;+52&gt;: 	lea    0x4(%rsp),%rbx              # %rbx = &amp;num[1]
+</span></span><span class="line"><span class="cl">0x0000000000400f35 &lt;+57&gt;: 	lea    0x18(%rsp),%rbp              # %rbp = &amp;num[6]（番兵）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== コアループ：各数値は前の数値の2倍 ======
+</span></span><span class="line"><span class="cl">0x0000000000400f17 &lt;+27&gt;: 	mov    -0x4(%rbx),%eax              # %eax = 前の数値
+</span></span><span class="line"><span class="cl">0x0000000000400f1a &lt;+30&gt;: 	add    %eax,%eax                    # %eax = %eax × 2
+</span></span><span class="line"><span class="cl">0x0000000000400f1c &lt;+32&gt;: 	cmp    %eax,(%rbx)                  # 現在の数値 == 前の数値 × 2 ?
+</span></span><span class="line"><span class="cl">0x0000000000400f1e &lt;+34&gt;: 	je     0x400f25 &lt;phase_2+41&gt;        # 等しい → 続行
+</span></span><span class="line"><span class="cl">0x0000000000400f20 &lt;+36&gt;: 	call   0x40143a &lt;explode_bomb&gt;      # 等しくない → 爆発
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ループ進行
+</span></span><span class="line"><span class="cl">0x0000000000400f25 &lt;+41&gt;: 	add    $0x4,%rbx                    # ポインタを4バイト進める
+</span></span><span class="line"><span class="cl">0x0000000000400f29 &lt;+45&gt;: 	cmp    %rbp,%rbx                    # 番兵に到達？
+</span></span><span class="line"><span class="cl">0x0000000000400f2c &lt;+48&gt;: 	jne    0x400f17 &lt;phase_2+27&gt;        # まだ → ループ継続
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>配列オフセット計算</strong>：</p>
+<p>アセンブリでは <code>num[i]</code> は見えず、<code>オフセット(%rsp)</code> のみです。<code>%rsp</code> をベースアドレス、<code>int</code> は4バイト：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>要素</th>
+					<th>インデックス</th>
+					<th>オフセット</th>
+					<th>アセンブリ表記</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>num[0]</td>
+					<td>0</td>
+					<td>0×4=0</td>
+					<td><code>(%rsp)</code></td>
+			</tr>
+			<tr>
+					<td>num[1]</td>
+					<td>1</td>
+					<td>1×4=4</td>
+					<td><code>0x4(%rsp)</code></td>
+			</tr>
+			<tr>
+					<td>num[2]</td>
+					<td>2</td>
+					<td>2×4=8</td>
+					<td><code>0x8(%rsp)</code></td>
+			</tr>
+			<tr>
+					<td>num[3]</td>
+					<td>3</td>
+					<td>3×4=12</td>
+					<td><code>0xc(%rsp)</code></td>
+			</tr>
+			<tr>
+					<td>num[4]</td>
+					<td>4</td>
+					<td>4×4=16</td>
+					<td><code>0x10(%rsp)</code></td>
+			</tr>
+			<tr>
+					<td>num[5]</td>
+					<td>5</td>
+					<td>5×4=20</td>
+					<td><code>0x14(%rsp)</code></td>
+			</tr>
+			<tr>
+					<td>num[6]</td>
+					<td>6</td>
+					<td>6×4=24</td>
+					<td><code>0x18(%rsp)</code>（番兵、データなし）</td>
+			</tr>
+	</tbody>
+</table></div>
+<blockquote>
+<p>核心公式：<strong>アドレス = ベースアドレス + (インデックス × 要素バイト数)</strong></p>
+</blockquote>
+<p><strong>C 言語での等価コード</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">phase_2</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">read_six_numbers</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">num</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">explode_bomb</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">explode_bomb</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>解答</strong>：<code>1 2 4 8 16 32</code></p>
+<hr>
+<h2 id="phase-3ジャンプテーブルswitch-case">Phase 3：ジャンプテーブル（switch-case）
+</h2><p><strong>ポイント</strong>：ジャンプテーブルアドレッシング + <code>ja</code> vs <code>jg</code> の違い + <code>sscanf</code> 引数渡し</p>
+<p>第3フェーズではジャンプテーブル——C 言語の <code>switch-case</code> のアセンブリレベルでの実装——が導入されます。パスワードは2つの整数で構成され、1つ目の数値がどの case 分岐に入るかを決定し、各分岐には対応する2つ目の数値がプリセットされています。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) disassemble phase_3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== sscanf を呼出して2つの整数を読込 ======
+</span></span><span class="line"><span class="cl">0x0000000000400f43 &lt;+0&gt;:  	sub    $0x18,%rsp
+</span></span><span class="line"><span class="cl">0x0000000000400f47 &lt;+4&gt;:  	lea    0xc(%rsp),%rcx              # %rcx = &amp;num2（第4引数）
+</span></span><span class="line"><span class="cl">0x0000000000400f4c &lt;+9&gt;:  	lea    0x8(%rsp),%rdx              # %rdx = &amp;num1（第3引数）
+</span></span><span class="line"><span class="cl">0x0000000000400f51 &lt;+14&gt;: 	mov    $0x4025cf,%esi              # %esi = &#34;%d %d&#34; のアドレス
+</span></span><span class="line"><span class="cl">0x0000000000400f5b &lt;+24&gt;: 	call   0x400bf0 &lt;__isoc99_sscanf@plt&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== ゲート：1つ目の数値は 0~7 ======
+</span></span><span class="line"><span class="cl">0x0000000000400f60 &lt;+29&gt;: 	cmp    $0x1,%eax                   # sscanf 戻り値 &gt; 1（最低2つの値を読取）？
+</span></span><span class="line"><span class="cl">0x0000000000400f63 &lt;+32&gt;: 	jg     0x400f6a &lt;phase_3+39&gt;
+</span></span><span class="line"><span class="cl">0x0000000000400f65 &lt;+34&gt;: 	call   0x40143a &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">0x0000000000400f6a &lt;+39&gt;: 	cmpl   $0x7,0x8(%rsp)              # num1 ≤ 7 ?
+</span></span><span class="line"><span class="cl">0x0000000000400f6f &lt;+44&gt;: 	ja     0x400fad &lt;phase_3+106&gt;       # ja = 符号なし比較 &gt; → num1 ∈ [0,7]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== ジャンプテーブルアドレッシング ======
+</span></span><span class="line"><span class="cl">0x0000000000400f71 &lt;+46&gt;: 	mov    0x8(%rsp),%eax              # %eax = num1（インデックス）
+</span></span><span class="line"><span class="cl">0x0000000000400f75 &lt;+50&gt;: 	jmpq   *0x402470(,%rax,8)          # 核心！ジャンプ先 = 0x402470 + num1×8
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 各 case 分岐（case 0 の例） ======
+</span></span><span class="line"><span class="cl">0x0000000000400f7c &lt;+57&gt;: 	mov    $0xcf,%eax                  # case 0: %eax = 207
+</span></span><span class="line"><span class="cl">0x0000000000400f81 &lt;+62&gt;: 	jmp    0x400fbe &lt;phase_3+123&gt;       # 最終判定へジャンプ
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 最終判定：2つ目の数値を比較 ======
+</span></span><span class="line"><span class="cl">0x0000000000400fbe &lt;+123&gt;: 	cmp    0xc(%rsp),%eax             # num2 == 期待値 ?
+</span></span><span class="line"><span class="cl">0x0000000000400fc2 &lt;+127&gt;: 	je     0x400fc9 &lt;phase_3+134&gt;      # 等しい → クリア
+</span></span><span class="line"><span class="cl">0x0000000000400fc4 &lt;+129&gt;: 	call   0x40143a &lt;explode_bomb&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>重要概念：<code>ja</code> vs <code>jg</code></strong></p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>命令</th>
+					<th>正式名</th>
+					<th>比較方式</th>
+					<th>使用場面</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>ja</code></td>
+					<td>Jump if Above</td>
+					<td>符号なし比較</td>
+					<td>全ビットを正数扱い、負数は巨大な正数になる</td>
+			</tr>
+			<tr>
+					<td><code>jg</code></td>
+					<td>Jump if Greater</td>
+					<td>符号付き比較</td>
+					<td>最上位ビットを符号ビット扱い、負数比較可能</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>ここでは <code>ja</code> が使われているため、負数（例：-1）を入力すると、その2の補数 <code>0xFFFFFFFF</code> が符号なしでは 4294967295 となり、7よりはるかに大きいため即座に爆発します。</p>
+<p><strong>ジャンプテーブルアドレッシング公式</strong>：<code>ジャンプ先アドレス = テーブルベース(0x402470) + (インデックス × 8)</code></p>
+<p><strong>GDB での調査</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ジャンプテーブルの8つの分岐アドレスを全て表示</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/8gx 0x402470
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 各分岐アドレスに対応する mov 命令を確認し、num2 の期待値を取得</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>8組の完全な解答</strong>：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>num1</th>
+					<th>num2 (10進数)</th>
+					<th>パスワード</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>0</td>
+					<td>207</td>
+					<td><code>0 207</code></td>
+			</tr>
+			<tr>
+					<td>1</td>
+					<td>311</td>
+					<td><code>1 311</code></td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>707</td>
+					<td><code>2 707</code></td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>256</td>
+					<td><code>3 256</code></td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>389</td>
+					<td><code>4 389</code></td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>206</td>
+					<td><code>5 206</code></td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>682</td>
+					<td><code>6 682</code></td>
+			</tr>
+			<tr>
+					<td>7</td>
+					<td>327</td>
+					<td><code>7 327</code></td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>解答</strong>（いずれか1組を選択）：<code>0 207</code></p>
+<hr>
+<h2 id="phase-4再帰と二分探索">Phase 4：再帰と二分探索
+</h2><p><strong>ポイント</strong>：再帰関数のリバースエンジニアリング + 二分探索アルゴリズムの識別 + 符号付き除算の符号ビット補正</p>
+<p>第4フェーズでは外部再帰関数 <code>func4</code> が導入されます。再帰呼出しが最終的に 0 を返すような値を見つける必要があります。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) disassemble phase_4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 引数の読込 ======
+</span></span><span class="line"><span class="cl">0x0000000000401010 &lt;+4&gt;:  	lea    0xc(%rsp),%rcx              # &amp;num2
+</span></span><span class="line"><span class="cl">0x0000000000401015 &lt;+9&gt;:  	lea    0x8(%rsp),%rdx              # &amp;num1
+</span></span><span class="line"><span class="cl">0x0000000000401024 &lt;+24&gt;: 	call   0x400bf0 &lt;__isoc99_sscanf@plt&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== ゲートチェック ======
+</span></span><span class="line"><span class="cl">0x0000000000401029 &lt;+29&gt;: 	cmp    $0x2,%eax                   # ちょうど2つの値を読取る必要あり
+</span></span><span class="line"><span class="cl">0x000000000040102e &lt;+34&gt;: 	cmpl   $0xe,0x8(%rsp)              # num1 ≤ 14 ?
+</span></span><span class="line"><span class="cl">0x0000000000401033 &lt;+39&gt;: 	jbe    0x40103a &lt;phase_4+46&gt;        # jbe = 符号なし ≤
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== func4(num1, 0, 14) を呼出 ======
+</span></span><span class="line"><span class="cl">0x000000000040103a &lt;+46&gt;: 	mov    $0xe,%edx                   # 第3引数 high = 14
+</span></span><span class="line"><span class="cl">0x000000000040103f &lt;+51&gt;: 	mov    $0x0,%esi                   # 第2引数 low = 0
+</span></span><span class="line"><span class="cl">0x0000000000401044 &lt;+56&gt;: 	mov    0x8(%rsp),%edi              # 第1引数 val = num1
+</span></span><span class="line"><span class="cl">0x0000000000401048 &lt;+60&gt;: 	call   0x400fce &lt;func4&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 最終判定 ======
+</span></span><span class="line"><span class="cl">0x000000000040104d &lt;+65&gt;: 	test   %eax,%eax                   # func4 戻り値 == 0 ?
+</span></span><span class="line"><span class="cl">0x000000000040104f &lt;+67&gt;: 	jne    0x401058 &lt;phase_4+76&gt;        # ≠ 0 → 爆発
+</span></span><span class="line"><span class="cl">0x0000000000401051 &lt;+69&gt;: 	cmpl   $0x0,0xc(%rsp)              # num2 == 0 ?
+</span></span><span class="line"><span class="cl">0x0000000000401056 &lt;+74&gt;: 	je     0x40105d &lt;phase_4+81&gt;        # はい → クリア
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>func4</code> の本質は<strong>二分探索</strong>です：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) disassemble func4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># mid = low + (high - low) / 2
+</span></span><span class="line"><span class="cl">0x0000000000400fd2 &lt;+4&gt;:  	mov    %edx,%eax                   # %eax = high
+</span></span><span class="line"><span class="cl">0x0000000000400fd4 &lt;+6&gt;:  	sub    %esi,%eax                   # %eax = high - low
+</span></span><span class="line"><span class="cl">0x0000000000400fd6 &lt;+8&gt;:  	mov    %eax,%ecx
+</span></span><span class="line"><span class="cl">0x0000000000400fd8 &lt;+10&gt;: 	shr    $0x1f,%ecx                  # 符号ビット抽出（正→0、負→1）
+</span></span><span class="line"><span class="cl">0x0000000000400fdb &lt;+13&gt;: 	add    %ecx,%eax                   # 負数除算の補正
+</span></span><span class="line"><span class="cl">0x0000000000400fdd &lt;+15&gt;: 	sar    $1,%eax                     # %eax = (high-low)/2
+</span></span><span class="line"><span class="cl">0x0000000000400fdf &lt;+17&gt;: 	lea    (%rax,%rsi,1),%ecx          # %ecx = low + %rax = mid
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># val と mid の比較
+</span></span><span class="line"><span class="cl">0x0000000000400fe2 &lt;+20&gt;: 	cmp    %edi,%ecx                   # mid vs val
+</span></span><span class="line"><span class="cl">0x0000000000400fe4 &lt;+22&gt;: 	jle    0x400ff2 &lt;func4+36&gt;         # mid ≤ val → 右半分/命中
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 分岐 A：mid &gt; val → 左半分を探索
+</span></span><span class="line"><span class="cl">0x0000000000400fe6 &lt;+24&gt;: 	lea    -0x1(%rcx),%edx             # high = mid - 1
+</span></span><span class="line"><span class="cl">0x0000000000400fe9 &lt;+27&gt;: 	call   0x400fce &lt;func4&gt;             # 再帰
+</span></span><span class="line"><span class="cl">0x0000000000400fee &lt;+32&gt;: 	add    %eax,%eax                   # result = 2 × result
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 分岐 B：mid == val → 命中！
+</span></span><span class="line"><span class="cl">0x0000000000400ff2 &lt;+36&gt;: 	mov    $0x0,%eax                   # 直接 0 を返す
+</span></span><span class="line"><span class="cl">0x0000000000400ff9 &lt;+43&gt;: 	jge    0x401007 &lt;func4+57&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 分岐 C：mid &lt; val → 右半分を探索
+</span></span><span class="line"><span class="cl">0x0000000000400ffb &lt;+45&gt;: 	lea    0x1(%rcx),%esi              # low = mid + 1
+</span></span><span class="line"><span class="cl">0x0000000000400ffe &lt;+48&gt;: 	call   0x400fce &lt;func4&gt;             # 再帰
+</span></span><span class="line"><span class="cl">0x0000000000401003 &lt;+53&gt;: 	lea    0x1(%rax,%rax,1),%eax       # result = 2 × result + 1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>重要な最適化：<code>shr $0x1f, %ecx</code> による符号ビット抽出</strong></p>
+<p>アセンブリでは <code>sar</code>（算術右シフト）で除算を行いますが、<code>sar</code> は負数に対して<strong>切り下げ</strong>を行います。一方 C 言語の整数除算は<strong>ゼロ方向への切り捨て</strong>が要求されます：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>式</th>
+					<th>C 言語の要求</th>
+					<th><code>sar</code> 単体の結果</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>15 / 2</code></td>
+					<td>7</td>
+					<td>7 ✓</td>
+			</tr>
+			<tr>
+					<td><code>-15 / 2</code></td>
+					<td>-7</td>
+					<td>-8 ✗</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>コンパイラの巧妙なテクニック：まず <code>shr $0x1f</code> で符号ビットを抽出し（正→0、負→1）、それを <code>add</code> で被除数に加算してから <code>sar</code> を実行。これで負数除算のズレを補正しています。</p>
+<p><strong>num1 の導出</strong>：</p>
+<p>どうすれば <code>func4</code> が 0 を返すか？</p>
+<ul>
+<li><strong>左半分経路</strong>：戻り値 = 2 × 部分結果。部分結果が 0 なら 0 のままですが、複数回の再帰が必要。</li>
+<li><strong>右半分経路</strong>：戻り値 = 2 × 部分結果 + 1。<strong>最下位ビットが常に 1 になり、0 を作ることは不可能</strong>。</li>
+<li><strong>mid に直接命中</strong>：戻り値が直接 0 になり、再帰不要。</li>
+</ul>
+<p>初期値 <code>low=0, high=14</code>：mid = 0 + (14-0)/2 = <strong>7</strong>。7 を入力すれば、<code>func4</code> は最初の比較で命中し、直接 0 を返します。</p>
+<blockquote>
+<p>注：純粋な左経路の再帰でも 0 を生成できる値は 0, 1, 3, 7 ですが、7 が最も直感的です。</p>
+</blockquote>
+<p><strong>C 言語での等価コード</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">func4</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="kt">int</span> <span class="n">low</span><span class="p">,</span> <span class="kt">int</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">mid</span> <span class="o">&gt;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="nf">func4</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>       <span class="c1">// 左半分
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">mid</span> <span class="o">&lt;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="nf">func4</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// 右半分
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>                                   <span class="c1">// 命中！
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">phase_4</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">sscanf</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="s">&#34;%d %d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num2</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="nf">explode_bomb</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">num1</span> <span class="o">&gt;</span> <span class="mi">14</span><span class="p">)</span> <span class="p">{</span> <span class="nf">explode_bomb</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">func4</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="nf">explode_bomb</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">num2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="nf">explode_bomb</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>解答</strong>：<code>7 0</code></p>
+<hr>
+<h2 id="phase-5ビット演算とascii文字マッピング">Phase 5：ビット演算とASCII文字マッピング
+</h2><p><strong>ポイント</strong>：ビット演算（<code>and $0xf</code>）+ テーブルルックアップ + ASCII 操作</p>
+<p>長さ6の文字列を入力します。各文字の ASCII コードの下位4ビットをインデックスとして秘密辞書から文字を引き、組み立てた新しい文字列がターゲット文字列 <code>flyers</code> と一致する必要があります。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) disassemble phase_5
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 長さチェック ======
+</span></span><span class="line"><span class="cl">0x000000000040107a &lt;+24&gt;: 	call   0x40131b &lt;string_length&gt;
+</span></span><span class="line"><span class="cl">0x000000000040107f &lt;+29&gt;: 	cmp    $0x6,%eax                   # 長さは6でなければならない
+</span></span><span class="line"><span class="cl">0x0000000000401082 &lt;+32&gt;: 	je     0x4010d2 &lt;phase_5+112&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== コアループ：文字マッピング ======
+</span></span><span class="line"><span class="cl">0x000000000040108b &lt;+41&gt;: 	movzbl (%rbx,%rax,1),%ecx          # %ecx = input[i]
+</span></span><span class="line"><span class="cl">0x0000000000401096 &lt;+52&gt;: 	and    $0xf,%edx                   # 下位4ビットのみ保持（0~15）
+</span></span><span class="line"><span class="cl">0x0000000000401099 &lt;+55&gt;: 	movzbl 0x4024b0(%rdx),%edx         # テーブル参照！secret_table[下位4ビット]
+</span></span><span class="line"><span class="cl">0x00000000004010a0 &lt;+62&gt;: 	mov    %dl,0x10(%rsp,%rax,1)       # new_str[i] = 参照結果
+</span></span><span class="line"><span class="cl"># ... 6回繰返し ...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 文字列比較 ======
+</span></span><span class="line"><span class="cl">0x00000000004010b3 &lt;+81&gt;: 	mov    $0x40245e,%esi              # ターゲット文字列アドレス
+</span></span><span class="line"><span class="cl">0x00000000004010b8 &lt;+86&gt;: 	lea    0x10(%rsp),%rdi             # 変換後の新しい文字列
+</span></span><span class="line"><span class="cl">0x00000000004010bd &lt;+91&gt;: 	call   0x401338 &lt;strings_not_equal&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>GDB での調査</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/s 0x40245e   <span class="c1"># ターゲット: &#34;flyers&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/s 0x4024b0   <span class="c1"># 辞書: &#34;maduiersnfotvbyl...&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>辞書の先頭16文字のインデックス対応表</strong>：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>インデックス</th>
+					<th>0</th>
+					<th>1</th>
+					<th>2</th>
+					<th>3</th>
+					<th>4</th>
+					<th>5</th>
+					<th>6</th>
+					<th>7</th>
+					<th>8</th>
+					<th>9</th>
+					<th>10</th>
+					<th>11</th>
+					<th>12</th>
+					<th>13</th>
+					<th>14</th>
+					<th>15</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>文字</td>
+					<td>m</td>
+					<td>a</td>
+					<td>d</td>
+					<td>u</td>
+					<td>i</td>
+					<td>e</td>
+					<td>r</td>
+					<td>s</td>
+					<td>n</td>
+					<td>f</td>
+					<td>o</td>
+					<td>t</td>
+					<td>v</td>
+					<td>b</td>
+					<td>y</td>
+					<td>l</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>逆引き</strong>——ターゲット <code>flyers</code> の各文字に必要なインデックス：</p>
+<ul>
+<li>f → インデックス <strong>9</strong>、l → インデックス <strong>15</strong>、y → インデックス <strong>14</strong>、e → インデックス <strong>5</strong>、r → インデックス <strong>6</strong>、s → インデックス <strong>7</strong></li>
+</ul>
+<p>したがって、ASCII コードの下位4ビットが <code>9, f, e, 5, 6, 7</code>（16進数）となる6文字が必要です。小文字 ASCII コード表を確認：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>下位4ビット</th>
+					<th>候補文字</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>9 (0x9)</td>
+					<td><code>i</code> (0x69) または <code>y</code> (0x79)</td>
+			</tr>
+			<tr>
+					<td>15 (0xf)</td>
+					<td><code>o</code> (0x6f)</td>
+			</tr>
+			<tr>
+					<td>14 (0xe)</td>
+					<td><code>n</code> (0x6e)</td>
+			</tr>
+			<tr>
+					<td>5 (0x5)</td>
+					<td><code>e</code> (0x65) または <code>u</code> (0x75)</td>
+			</tr>
+			<tr>
+					<td>6 (0x6)</td>
+					<td><code>f</code> (0x66) または <code>v</code> (0x76)</td>
+			</tr>
+			<tr>
+					<td>7 (0x7)</td>
+					<td><code>g</code> (0x67) または <code>w</code> (0x77)</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>覚えやすい組み合わせ：<strong><code>ionefg</code></strong>。</p>
+<p><strong>検証</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">i (0x69) → and $0xf → 9 → secret_table[9] = &#39;f&#39; ✓
+</span></span><span class="line"><span class="cl">o (0x6f) → and $0xf → 15 → secret_table[15] = &#39;l&#39; ✓
+</span></span><span class="line"><span class="cl">n (0x6e) → and $0xf → 14 → secret_table[14] = &#39;y&#39; ✓
+</span></span><span class="line"><span class="cl">e (0x65) → and $0xf → 5 → secret_table[5] = &#39;e&#39; ✓
+</span></span><span class="line"><span class="cl">f (0x66) → and $0xf → 6 → secret_table[6] = &#39;r&#39; ✓
+</span></span><span class="line"><span class="cl">g (0x67) → and $0xf → 7 → secret_table[7] = &#39;s&#39; ✓
+</span></span><span class="line"><span class="cl">結果 → &#34;flyers&#34; ✓
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>解答</strong>：<code>ionefg</code></p>
+<hr>
+<h2 id="phase-6リンクリストの再構成と降順ソート">Phase 6：リンクリストの再構成と降順ソート
+</h2><p><strong>ポイント</strong>：二重ループによる重複排除 + <code>7-x</code> 変換 + リンクリスト走査とポインタ付け替え + 降順検証</p>
+<p>これは Bomb Lab 全体の最終ボスで、配列、二重ループ、ポインタ、構造体、リンクリスト操作がすべて詰まっています。1〜6の重複しない数字を6つ入力します。プログラムは各数字を <code>7-x</code> 変換した後、その順序でプリセットのリンクリストを再リンクし、最終的にリストのノード値が降順であることを検証します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) disassemble phase_6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 第1幕：6つの数値を読込 + 二重ループで重複排除 ======
+</span></span><span class="line"><span class="cl">0x0000000000401106 &lt;+18&gt;: 	call   0x40145c &lt;read_six_numbers&gt;
+</span></span><span class="line"><span class="cl"># 外側ループ：各数値が 1~6 の範囲内かチェック
+</span></span><span class="line"><span class="cl">0x000000000040111b &lt;+39&gt;: 	sub    $0x1,%eax                   # num - 1
+</span></span><span class="line"><span class="cl">0x000000000040111e &lt;+42&gt;: 	cmp    $0x5,%eax
+</span></span><span class="line"><span class="cl">0x0000000000401121 &lt;+45&gt;: 	jbe    0x401128 &lt;phase_6+52&gt;        # (num-1) ≤ 5 → num ∈ [1,6]
+</span></span><span class="line"><span class="cl"># 内側ループ：後続の全数値と重複がないかチェック
+</span></span><span class="line"><span class="cl">0x000000000040113b &lt;+71&gt;: 	cmp    %eax,0x0(%rbp)              # arr[j] == 現在の数値 ?
+</span></span><span class="line"><span class="cl">0x000000000040113e &lt;+74&gt;: 	jne    0x401145 &lt;phase_6+81&gt;        # 等しくない → 安全
+</span></span><span class="line"><span class="cl">0x0000000000401140 &lt;+76&gt;: 	call   0x40143a &lt;explode_bomb&gt;      # 等しい → 重複あり → 爆発
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 第2幕：7 - x 変換 ======
+</span></span><span class="line"><span class="cl">0x0000000000401160 &lt;+108&gt;: 	mov   %ecx,%edx                    # %edx = 7
+</span></span><span class="line"><span class="cl">0x0000000000401162 &lt;+110&gt;: 	sub   (%rax),%edx                 # %edx = 7 - arr[i]
+</span></span><span class="line"><span class="cl">0x0000000000401164 &lt;+112&gt;: 	mov   %edx,(%rax)                  # arr[i] = 7 - arr[i]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 第3幕：リンクリストノードの再配置 ======
+</span></span><span class="line"><span class="cl"># リスト先頭 0x6032d0、各ノード16バイト（先頭8バイト value、後続8バイト nextポインタ）
+</span></span><span class="line"><span class="cl">0x0000000000401183 &lt;+143&gt;: 	mov   $0x6032d0,%edx              # node1 アドレスが露呈
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># リストを走査して arr[i] 番目のノードを見つけ、ptrs[i] に格納
+</span></span><span class="line"><span class="cl"># ptrs[i] の順序で next ポインタを付け替え
+</span></span><span class="line"><span class="cl">0x00000000004011c0 &lt;+204&gt;: 	mov   %rdx,0x8(%rcx)              # 現在のノード-&gt;next = 次のノード
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># ====== 第4幕：降順検証 ======
+</span></span><span class="line"><span class="cl">0x00000000004011e5 &lt;+241&gt;: 	cmp   %eax,(%rbx)                 # 現在-&gt;value vs 次-&gt;value
+</span></span><span class="line"><span class="cl">0x00000000004011e7 &lt;+243&gt;: 	jge   0x4011ee &lt;phase_6+250&gt;       # 現在 ≥ 次 → 安全
+</span></span><span class="line"><span class="cl">0x00000000004011e9 &lt;+245&gt;: 	call   0x40143a &lt;explode_bomb&gt;     # 現在 &lt; 次 → 爆発
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>GDB でノード値を確認</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/wd 0x6032d0   <span class="c1"># node1: 332</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/wd 0x6032e0   <span class="c1"># node2: 168</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/wd 0x6032f0   <span class="c1"># node3: 924</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/wd 0x603300   <span class="c1"># node4: 691</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/wd 0x603310   <span class="c1"># node5: 477</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> x/wd 0x603320   <span class="c1"># node6: 443</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>逆方向導出</strong>：</p>
+<p>ステップ1：ノードを値の降順にソート → <strong>node3(924) → node4(691) → node5(477) → node6(443) → node1(332) → node2(168)</strong>、すなわちノード順序 <strong>3→4→5→6→1→2</strong>。</p>
+<p>ステップ2：<code>7-x</code> で逆算。プログラムは入力を <code>7 - 入力値</code> に変換するので、実際の入力 = <code>7 - 目標ノード番号</code>：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>目標ノード</th>
+					<th>計算</th>
+					<th>入力値</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>node3</td>
+					<td>7-3</td>
+					<td><strong>4</strong></td>
+			</tr>
+			<tr>
+					<td>node4</td>
+					<td>7-4</td>
+					<td><strong>3</strong></td>
+			</tr>
+			<tr>
+					<td>node5</td>
+					<td>7-5</td>
+					<td><strong>2</strong></td>
+			</tr>
+			<tr>
+					<td>node6</td>
+					<td>7-6</td>
+					<td><strong>1</strong></td>
+			</tr>
+			<tr>
+					<td>node1</td>
+					<td>7-1</td>
+					<td><strong>6</strong></td>
+			</tr>
+			<tr>
+					<td>node2</td>
+					<td>7-2</td>
+					<td><strong>5</strong></td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>検証</strong>：入力 <code>4 3 2 1 6 5</code> → 変換後 <code>3 4 5 6 1 2</code> → 値: 924, 691, 477, 443, 332, 168 ✓ 降順！</p>
+<p><strong>解答</strong>：<code>4 3 2 1 6 5</code></p>
+<hr>
+<h2 id="全フェーズパスワード一覧">全フェーズパスワード一覧
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>フェーズ</th>
+					<th>核心ポイント</th>
+					<th>パスワード</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Phase 1</td>
+					<td>関数呼出規約 + 文字列比較</td>
+					<td><code>Border relations with Canada have never been better.</code></td>
+			</tr>
+			<tr>
+					<td>Phase 2</td>
+					<td>ループ + 1次元配列（等比数列）</td>
+					<td><code>1 2 4 8 16 32</code></td>
+			</tr>
+			<tr>
+					<td>Phase 3</td>
+					<td>ジャンプテーブル（switch-case）</td>
+					<td><code>0 207</code></td>
+			</tr>
+			<tr>
+					<td>Phase 4</td>
+					<td>再帰（二分探索）</td>
+					<td><code>7 0</code></td>
+			</tr>
+			<tr>
+					<td>Phase 5</td>
+					<td>ビット演算 + ASCII文字マッピング</td>
+					<td><code>ionefg</code></td>
+			</tr>
+			<tr>
+					<td>Phase 6</td>
+					<td>リンクリスト再構成 + 降順検証</td>
+					<td><code>4 3 2 1 6 5</code></td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="付録クイックリファレンス">付録：クイックリファレンス
+</h2><h3 id="x86-64-関数呼出規約レジスタ">x86-64 関数呼出規約レジスタ
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>引数順序</th>
+					<th>64ビットレジスタ</th>
+					<th>32ビットレジスタ</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>第1引数</td>
+					<td><code>%rdi</code></td>
+					<td><code>%edi</code></td>
+			</tr>
+			<tr>
+					<td>第2引数</td>
+					<td><code>%rsi</code></td>
+					<td><code>%esi</code></td>
+			</tr>
+			<tr>
+					<td>第3引数</td>
+					<td><code>%rdx</code></td>
+					<td><code>%edx</code></td>
+			</tr>
+			<tr>
+					<td>第4引数</td>
+					<td><code>%rcx</code></td>
+					<td><code>%ecx</code></td>
+			</tr>
+			<tr>
+					<td>戻り値</td>
+					<td><code>%rax</code></td>
+					<td><code>%eax</code></td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="gdb-基本コマンド">GDB 基本コマンド
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>コマンド</th>
+					<th>目的</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>b phase_X</code></td>
+					<td>フェーズ X の入口にブレークポイント設定</td>
+			</tr>
+			<tr>
+					<td><code>b explode_bomb</code></td>
+					<td>安全用ブレークポイント（爆発を阻止）</td>
+			</tr>
+			<tr>
+					<td><code>r</code></td>
+					<td>プログラムを再実行</td>
+			</tr>
+			<tr>
+					<td><code>c</code></td>
+					<td>実行継続</td>
+			</tr>
+			<tr>
+					<td><code>disassemble func</code></td>
+					<td>指定関数を逆アセンブル</td>
+			</tr>
+			<tr>
+					<td><code>x/s 0xADDR</code></td>
+					<td>メモリを文字列として表示</td>
+			</tr>
+			<tr>
+					<td><code>x/wd 0xADDR</code></td>
+					<td>メモリを10進整数として表示（4バイト）</td>
+			</tr>
+			<tr>
+					<td><code>x/8gx 0xADDR</code></td>
+					<td>8個の8バイト単位を16進数で表示</td>
+			</tr>
+			<tr>
+					<td><code>Ctrl + C</code></td>
+					<td>実行中のプログラムを強制中断</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="核心公式">核心公式
+</h3><ul>
+<li><strong>配列オフセット</strong>：<code>アドレス = ベース + (インデックス × 要素バイト数)</code></li>
+<li><strong>ジャンプテーブルアドレッシング</strong>：<code>ジャンプ先アドレス = テーブルベース + (インデックス × 8)</code>（64ビットではポインタは8バイト）</li>
+<li><strong><code>sscanf</code> 引数対応</strong>：第3引数 <code>%rdx</code> → 最初の <code>%d</code>；第4引数 <code>%rcx</code> → 2番目の <code>%d</code></li>
+<li><strong><code>ja</code> vs <code>jg</code></strong>：<code>ja</code> = 符号なし比較（Above）；<code>jg</code> = 符号付き比較（Greater）</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最終更新  01, 2026 00:12 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><div class="math-katex"></div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">関連するコンテンツ</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/ja/p/cmu-cs15-213csapp01datalab/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/9166c6f90b84173ff2f2a39be9514289.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/9166c6f90b84173ff2f2a39be9514289.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CMU CS15-213（CS:APP）01：datalab</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/ja/p/cmu-cs15-213csapp00%E5%8E%9F%E5%88%9D%E3%81%AE%E5%87%BA%E7%99%BA%E7%82%B9/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://img.siborne.top/2026/05/b8cb91a9ad2a7fbfe987c5ec1b37f5ea.png" loading="lazy" data-key="" data-hash="https://img.siborne.top/2026/05/b8cb91a9ad2a7fbfe987c5ec1b37f5ea.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CMU CS15-213（CSAPP）00：原初の出発点</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="comment"></div>
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Siborne/Siborne.github.io"
+    data-repo-id="R_kgDOQwEMaA"
+    data-category="General"
+    data-category-id="DIC_kwDOQwEMaM4C5teK"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="catppuccin_latte"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('catppuccin_latte');
+            } else {
+                setGiscusTheme('catppuccin_mocha');
+            }
+        }
+    })();
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 Siborne
+    </section>
+    
+    <section class="powerby">
+        
+            A personal repository for academic and learning use. <br/>
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> で構築されています。 <br />
+        テーマ <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> は <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> によって設計されています。
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.337b391b9709a7de07a4bb428d2ffb003b7e926cdfc9720a68a909ce2cde147d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+
+<div id="jsi-flying-fish-container" class="fish-container"></div>
+
+
+<script defer src="https://events.vercount.one/js"></script>
+<script src=https://Siborne.top/background/particles.min.js></script>
+
+
+
+    <script src=https://Siborne.top/js/topbar.min.js></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            ".js-Pjax"
+        ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            pjax._handleResponse(responseText, request, href, options);
+        }
+    }
+
+    
+    if (typeof topbar !== 'undefined') {
+        topbar.config({
+            barColors: {
+                '0': 'rgba(255, 255, 255, 1)',
+                '1.0': 'rgba(56, 189, 248, 1)'
+            }
+        })
+
+        document.addEventListener('pjax:send', () => {
+            topbar.show();
+        })
+
+        document.addEventListener('pjax:complete', () => {
+            topbar.hide();
+        })
+    }
+
+    
+    document.addEventListener('pjax:complete', () => {
+        requestAnimationFrame(() => {
+            window.Stack.init();
+            reinitCustom();
+            renderKaTeX();
+        });
+    })
+
+    
+    async function renderKaTeX() {
+        let katex = document.querySelector(".math-katex");
+        if (!katex) return;
+        while (typeof renderMathInElement !== 'function') {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });
+    }
+</script>
+
+<script>
+
+
+function showHideView() {
+  let viewCounts = document.querySelectorAll("#viewCount");
+  if (viewCounts) {
+    let article = document.querySelector(".article-page");
+    if (!article) {
+      viewCounts.forEach((ele) => {
+        ele.style.display = "none";
+      });
+    }
+  }
+}
+
+function initScrollTop() {
+    
+    if (document.getElementById("backTopBtn")) return;
+    let rightSideBar = document.querySelector(".right-sidebar");
+    if (!rightSideBar) return;
+    let btn = document.createElement("div");
+    btn.id = "backTopBtn";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    rightSideBar.appendChild(btn);
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+}
+
+function initBottomVisualEffect() {
+  
+  const root = document.documentElement;
+  const threshold = 140;
+
+  function updateBottomState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const pageHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+    if (distanceToBottom <= threshold) {
+      root.classList.add('at-page-bottom');
+    } else {
+      root.classList.remove('at-page-bottom');
+    }
+  }
+
+  updateBottomState();
+  window.addEventListener('scroll', updateBottomState, { passive: true });
+  window.addEventListener('resize', updateBottomState);
+}
+
+function initCodeMoreBox() {
+  let codeBlocks = document.querySelectorAll(".highlight");
+  if (!codeBlocks || codeBlocks.length === 0) return;
+  codeBlocks.forEach(codeBlock => {
+    
+    if (codeBlock.querySelector(".code-more-box")) return;
+    if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+    let codeMoreBox = document.createElement('div');
+    codeMoreBox.classList.add('code-more-box');
+    let codeMoreBtn = document.createElement('span');
+    codeMoreBtn.classList.add('code-more-btn');
+    codeMoreBtn.addEventListener('click', () => {
+      codeBlock.classList.add('code-show');
+      codeMoreBox.style.display = 'none';
+      window.dispatchEvent(new Event('resize'))
+    });
+    let img = document.createElement('img');
+    img.classList.add('code-more-img');
+    img.src = "https://Siborne.top/icons/codeMore.png";
+    codeMoreBtn.appendChild(img);
+    codeMoreBox.appendChild(codeMoreBtn);
+    codeBlock.appendChild(codeMoreBox);
+  });
+}
+
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    showHideView();
+    initScrollTop();
+    initCodeMoreBox();
+  });
+});
+initBottomVisualEffect();
+
+
+(function() {
+  var pending = false;
+  var observer = new MutationObserver(function(mutations) {
+    if (pending) return;
+    for (var i = 0; i < mutations.length; i++) {
+      var nodes = mutations[i].addedNodes;
+      for (var j = 0; j < nodes.length; j++) {
+        var node = nodes[j];
+        if (node.nodeType === 1 && node.querySelectorAll && node.querySelectorAll('.highlight').length > 0) {
+          pending = true;
+          
+          setTimeout(function() {
+            initCodeMoreBox();
+            pending = false;
+          }, 150);
+          return;
+        }
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+
+
+function reinitCustom() {
+  showHideView();
+  initScrollTop();
+  setTimeout(initCodeMoreBox, 0);
+  refreshVercount();
+}
+
+
+function refreshVercount() {
+    let article = document.querySelector(".article-page");
+    if (!article) return;
+
+    let pvEl = document.getElementById("vercount_value_page_pv");
+    if (!pvEl) return;
+
+    
+    pvEl.textContent = 'loading...';
+
+    
+    let oldScript = document.querySelector('script[data-vercount-dynamic]');
+    if (oldScript) oldScript.remove();
+
+    
+    let script = document.createElement('script');
+    script.src = 'https://events.vercount.one/js';
+    script.setAttribute('data-vercount-dynamic', '');
+    document.body.appendChild(script);
+
+    
+    let fallbackTimer = setTimeout(function() {
+        if (pvEl.textContent.trim() === 'loading...') {
+            pvEl.textContent = '';
+        }
+    }, 5000);
+
+    
+    script.addEventListener('load', function() {
+        clearTimeout(fallbackTimer);
+    });
+}
+
+
+particlesJS.load('particles-js', "https://Siborne.top/background/particlesjs-config.json", function() {
+  console.log('particles.js loaded - callback');
+});
+</script>
+
+
+<script>
+(function() {
+    var RENDERER = {
+        POINT_INTERVAL: 5,
+        FISH_COUNT: 3,
+        MAX_INTERVAL_COUNT: 50,
+        INIT_HEIGHT_RATE: 0.5,
+        THRESHOLD: 50,
+
+        init: function() {
+            this.setParameters();
+            this.reconstructMethods();
+            this.setup();
+            this.bindEvent();
+            this.render();
+        },
+        setParameters: function() {
+            this.$window = window;
+            this.$document = document.body;
+            this.$container = document.getElementById('jsi-flying-fish-container');
+            if (!this.$container) return;
+            this.$canvas = document.createElement('canvas');
+            this.$container.appendChild(this.$canvas);
+            this.context = this.$canvas.getContext('2d');
+            this.points = [];
+            this.fishes = [];
+            this.watchIds = [];
+        },
+        createSurfacePoints: function() {
+            var count = Math.round(this.width / this.POINT_INTERVAL);
+            this.pointInterval = this.width / (count - 1);
+            this.points.push(new SURFACE_POINT(this, 0));
+            for (var i = 1; i < count; i++) {
+                var point = new SURFACE_POINT(this, i * this.pointInterval),
+                    previous = this.points[i - 1];
+                point.setPreviousPoint(previous);
+                previous.setNextPoint(point);
+                this.points.push(point);
+            }
+        },
+        reconstructMethods: function() {
+            this.watchWindowSize = this.watchWindowSize.bind(this);
+            this.jdugeToStopResize = this.jdugeToStopResize.bind(this);
+            this.startEpicenter = this.startEpicenter.bind(this);
+            this.moveEpicenter = this.moveEpicenter.bind(this);
+            this.toggleDirection = this.toggleDirection.bind(this);
+            this.render = this.render.bind(this);
+        },
+        setup: function() {
+            this.points.length = 0;
+            this.fishes.length = 0;
+            this.watchIds.length = 0;
+            this.intervalCount = this.MAX_INTERVAL_COUNT;
+            this.width = this.$container.offsetWidth;
+            this.height = this.$container.offsetHeight;
+            this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
+            this.$canvas.width = this.width;
+            this.$canvas.height = this.height;
+            this.reverse = false;
+            this.fishes.push(new FISH(this));
+            this.createSurfacePoints();
+        },
+        watchWindowSize: function() {
+            this.clearTimer();
+            this.tmpWidth = this.$window.innerWidth;
+            this.tmpHeight = this.$window.innerHeight;
+            this.watchIds.push(setTimeout(this.jdugeToStopResize, 300));
+        },
+        clearTimer: function() {
+            while (this.watchIds.length > 0) {
+                clearTimeout(this.watchIds.pop());
+            }
+        },
+        jdugeToStopResize: function() {
+            var width = this.$window.innerWidth,
+                height = this.$window.innerHeight,
+                stopped = (width === this.tmpWidth && height === this.tmpHeight);
+            this.tmpWidth = width;
+            this.tmpHeight = height;
+            if (stopped) { this.setup(); }
+        },
+        bindEvent: function() {
+            window.addEventListener('resize', this.watchWindowSize);
+            this.$container.addEventListener('click', this.toggleDirection);
+            this.$container.addEventListener('mouseenter', this.startEpicenter);
+            this.$container.addEventListener('mousemove', this.moveEpicenter);
+        },
+        getAxis: function(event) {
+            var rect = this.$container.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        },
+        startEpicenter: function(event) {
+            this.axis = this.getAxis(event);
+        },
+        moveEpicenter: function(event) {
+            var axis = this.getAxis(event);
+            if (!this.axis) { this.axis = axis; }
+            this.generateEpicenter(axis.x, axis.y, axis.y - this.axis.y);
+            this.axis = axis;
+        },
+        generateEpicenter: function(x, y, velocity) {
+            if (y < this.height / 2 - this.THRESHOLD || y > this.height / 2 + this.THRESHOLD) return;
+            var index = Math.round(x / this.pointInterval);
+            if (index < 0 || index >= this.points.length) return;
+            this.points[index].interfere(y, velocity);
+        },
+        toggleDirection: function() {
+            this.reverse = !this.reverse;
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].reverseVertical();
+            }
+        },
+        controlStatus: function() {
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateSelf();
+            }
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].updateNeighbors();
+            }
+            if (this.fishes.length < this.fishCount) {
+                if (--this.intervalCount === 0) {
+                    this.intervalCount = this.MAX_INTERVAL_COUNT;
+                    this.fishes.push(new FISH(this));
+                }
+            }
+        },
+        render: function() {
+            requestAnimationFrame(this.render);
+            this.controlStatus();
+            this.context.clearRect(0, 0, this.width, this.height);
+
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            this.context.fillStyle = isDark ? 'hsl(210, 30%, 25%)' : 'hsl(210, 80%, 75%)';
+
+            for (var i = 0, count = this.fishes.length; i < count; i++) {
+                this.fishes[i].render(this.context);
+            }
+
+            this.context.save();
+            this.context.globalCompositeOperation = 'xor';
+            this.context.beginPath();
+            this.context.moveTo(0, this.reverse ? 0 : this.height);
+
+            for (var i = 0, count = this.points.length; i < count; i++) {
+                this.points[i].render(this.context);
+            }
+            this.context.lineTo(this.width, this.reverse ? 0 : this.height);
+            this.context.closePath();
+            this.context.fill();
+            this.context.restore();
+        }
+    };
+
+    var SURFACE_POINT = function(renderer, x) {
+        this.renderer = renderer;
+        this.x = x;
+        this.init();
+    };
+    SURFACE_POINT.prototype = {
+        SPRING_CONSTANT: 0.03,
+        SPRING_FRICTION: 0.9,
+        WAVE_SPREAD: 0.3,
+        ACCELARATION_RATE: 0.01,
+
+        init: function() {
+            this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE;
+            this.height = this.initHeight;
+            this.fy = 0;
+            this.force = { previous: 0, next: 0 };
+        },
+        setPreviousPoint: function(previous) { this.previous = previous; },
+        setNextPoint: function(next) { this.next = next; },
+        interfere: function(y, velocity) {
+            this.fy = this.renderer.height * this.ACCELARATION_RATE *
+                ((this.renderer.height - this.height - y) >= 0 ? -1 : 1) * Math.abs(velocity);
+        },
+        updateSelf: function() {
+            this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height);
+            this.fy *= this.SPRING_FRICTION;
+            this.height += this.fy;
+        },
+        updateNeighbors: function() {
+            if (this.previous) {
+                this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height);
+            }
+            if (this.next) {
+                this.force.next = this.WAVE_SPREAD * (this.height - this.next.height);
+            }
+        },
+        render: function(context) {
+            if (this.previous) {
+                this.previous.height += this.force.previous;
+                this.previous.fy += this.force.previous;
+            }
+            if (this.next) {
+                this.next.height += this.force.next;
+                this.next.fy += this.force.next;
+            }
+            context.lineTo(this.x, this.renderer.height - this.height);
+        }
+    };
+
+    var FISH = function(renderer) {
+        this.renderer = renderer;
+        this.init();
+    };
+    FISH.prototype = {
+        GRAVITY: 0.4,
+
+        init: function() {
+            this.direction = Math.random() < 0.5;
+            this.x = this.direction ? (this.renderer.width + this.renderer.THRESHOLD) : -this.renderer.THRESHOLD;
+            this.previousY = this.y;
+            this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1);
+
+            if (this.renderer.reverse) {
+                this.y = this.getRandomValue(this.renderer.height * 1 / 10, this.renderer.height * 4 / 10);
+                this.vy = this.getRandomValue(2, 5);
+                this.ay = this.getRandomValue(0.05, 0.2);
+            } else {
+                this.y = this.getRandomValue(this.renderer.height * 6 / 10, this.renderer.height * 9 / 10);
+                this.vy = this.getRandomValue(-5, -2);
+                this.ay = this.getRandomValue(-0.2, -0.05);
+            }
+            this.isOut = false;
+            this.theta = 0;
+            this.phi = 0;
+        },
+        getRandomValue: function(min, max) {
+            return min + (max - min) * Math.random();
+        },
+        reverseVertical: function() {
+            this.isOut = !this.isOut;
+            this.ay *= -1;
+        },
+        controlStatus: function(context) {
+            this.previousY = this.y;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.ay;
+
+            if (this.renderer.reverse) {
+                if (this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy -= this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(0.05, 0.2); }
+                    this.isOut = false;
+                }
+            } else {
+                if (this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE) {
+                    this.vy += this.GRAVITY;
+                    this.isOut = true;
+                } else {
+                    if (this.isOut) { this.ay = this.getRandomValue(-0.2, -0.05); }
+                    this.isOut = false;
+                }
+            }
+            if (!this.isOut) {
+                this.theta += Math.PI / 20;
+                this.theta %= Math.PI * 2;
+                this.phi += Math.PI / 30;
+                this.phi %= Math.PI * 2;
+            }
+            this.renderer.generateEpicenter(
+                this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD,
+                this.y,
+                this.y - this.previousY
+            );
+            if (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD ||
+                this.vx < 0 && this.x < -this.renderer.THRESHOLD) {
+                this.init();
+            }
+        },
+        render: function(context) {
+            
+            var isDark = document.documentElement.getAttribute('data-scheme') === 'dark';
+            context.fillStyle = isDark ? 'hsl(210, 60%, 55%)' : 'hsl(210, 70%, 40%)';
+
+            context.save();
+            context.translate(this.x, this.y);
+            context.rotate(Math.PI + Math.atan2(this.vy, this.vx));
+            context.scale(1, this.direction ? 1 : -1);
+            context.beginPath();
+            context.moveTo(-30, 0);
+            context.bezierCurveTo(-20, 15, 15, 10, 40, 0);
+            context.bezierCurveTo(15, -10, -20, -15, -30, 0);
+            context.fill();
+
+            
+            context.save();
+            context.translate(40, 0);
+            context.scale(0.9 + 0.2 * Math.sin(this.theta), 1);
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(5, 10, 20, 8);
+            context.quadraticCurveTo(12, 5, 10, 0);
+            context.quadraticCurveTo(12, -5, 20, -8);
+            context.quadraticCurveTo(5, -10, 0, 0);
+            context.fill();
+            context.restore();
+
+            
+            context.save();
+            context.translate(-3, 0);
+            context.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1));
+            context.beginPath();
+            if (this.renderer.reverse) {
+                context.moveTo(5, 0);
+                context.bezierCurveTo(10, 10, 10, 30, 0, 40);
+                context.bezierCurveTo(-12, 25, -8, 10, 0, 0);
+            } else {
+                context.moveTo(-5, 0);
+                context.bezierCurveTo(-10, -10, -10, -30, 0, -40);
+                context.bezierCurveTo(12, -25, 8, -10, 0, 0);
+            }
+            context.closePath();
+            context.fill();
+            context.restore();
+            context.restore();
+            this.controlStatus(context);
+        }
+    };
+
+    
+    if (!window.__fishRendererInited) {
+        window.__fishRendererInited = true;
+        window.addEventListener('load', function() {
+            if (document.getElementById('jsi-flying-fish-container')) {
+                RENDERER.init();
+            }
+        });
+    }
+})();
+</script>
+
+<div class="js-Pjax">
+<script>
+    (function () {
+        let comment = document.querySelector(".comment");
+        if (!comment) return;
+        
+        if (document.querySelector("iframe.giscus-frame")) return;
+        let script = document.createElement('script');
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'Siborne\/Siborne.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDOQwEMaA');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDOQwEMaM4C5teK');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'catppuccin_latte');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        document.querySelector('.site-footer').before(script);
+    })(document);
+</script>
+</div><style>
+ 
+@font-face {
+  font-family: '思源宋体';
+  src: url(https://Siborne.top/font/SourceHanSerifSC-VF.ttf) format('truetype');
+}
+
+ 
+@font-face {
+  font-family: 'MyCustomCodeFont';
+  src: url(https://Siborne.top/font/JetBrainsMono-Regular.ttf) format('truetype');
+}
+
+:root {
+  --base-font-family: '思源宋体', sans-serif;
+  --code-font-family: 'MyCustomCodeFont', '思源宋体', monospace;
+}
+
+#backTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  z-index: 99;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://Siborne.top/icons/backTop.svg);
+  transform-origin: center;
+  transition: transform 0.6s ease;
+}
+
+#backTopBtn:hover {
+  transform: rotate(360deg);
+}
+
+.highlight {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.code-show {
+  max-height: none !important;
+}
+
+.code-more-box {
+  width: 100%;
+  padding-top: 78px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+[data-scheme="dark"] .code-more-box {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(17, 24, 39, 0)), to(#111827));
+}
+
+.code-more-btn {
+  display: block;
+  margin: auto;
+  width: 44px;
+  height: 22px;
+  background: #f0f0f5;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+[data-scheme="dark"] .code-more-btn {
+  background: #374151;
+}
+
+.code-more-img {
+  cursor: pointer !important;
+  display: block;
+  margin: auto;
+  width: 22px;
+  height: 16px;
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-js > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.site-footer {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+html.at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 250, 0.68) 100%);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.04);
+}
+
+html[data-scheme="dark"].at-page-bottom .site-footer {
+  background: linear-gradient(180deg, rgba(14, 20, 30, 0.28) 0%, rgba(8, 12, 20, 0.72) 100%);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border-color: rgba(110, 170, 255, 0.2);
+  box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
+}
+
+ 
+.fish-container {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+html.at-page-bottom .fish-container {
+    opacity: 0.42;
+}
+
+@media (max-width: 768px) {
+    .fish-container {
+        height: 150px;
+    }
+    html.at-page-bottom .fish-container {
+        opacity: 0.28;
+    }
+}
+</style>
+
+    </body>
+</html>
