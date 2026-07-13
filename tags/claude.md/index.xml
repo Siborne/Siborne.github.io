@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>CLAUDE.md on Siborne</title>
+        <link>https://Siborne.top/tags/claude.md/</link>
+        <description>Recent content in CLAUDE.md on Siborne</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <copyright>Siborne</copyright>
+        <lastBuildDate>Mon, 13 Jul 2026 20:46:05 +0800</lastBuildDate><atom:link href="https://Siborne.top/tags/claude.md/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>如何成为世界级的 Agentic 工程师</title>
+        <link>https://Siborne.top/p/world-class-agentic-engineer/</link>
+        <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/p/world-class-agentic-engineer/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/07/c557e6a5f187a17659949becc3065098.jpg" alt="Featured image of post 如何成为世界级的 Agentic 工程师" /&gt;&lt;blockquote&gt;
+&lt;p&gt;本文翻译整理自 &lt;a class=&#34;link&#34; href=&#34;https://x.com/systematicls/article/2028814227004395561&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;@systematicls&lt;/a&gt;，仅供学习交流。如侵权请联系下架。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;引言&#34;&gt;引言
+&lt;/h2&gt;&lt;p&gt;你是个开发者。你每天都在用 Claude 和 Codex CLI，每天在想自己到底有没有把这些 Agent 的真正潜力榨出来。偶尔你看到它做一些蠢到不可思议的事，而你又完全不理解为什么外面那些人看起来像是在造虚拟火箭，自己却连两块石头都叠不起来。&lt;/p&gt;
+&lt;p&gt;你觉得是自己用的 harness 不对、插件不够好、终端配置有问题。你试了 beads、opencode、zep，你的 CLAUDE.md 写了 26000 行。但无论你做什么，都到不了天堂的门口，只能干看着别人在云端嬉戏。&lt;/p&gt;
+&lt;p&gt;这篇文章，就是你要的飞升指南。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;顺便说一句，我没站队。当我说 CLAUDE.md，也包括 AGENT.md；说 Claude，也包括 Codex。我两个都用得非常深入。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;过去几个月里，我观察到的最有趣的现象之一就是：&lt;strong&gt;几乎没有人真正知道如何把 Agent 的能力榨到极致。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一小撮人似乎能让 Agent 成为世界构建者，而其他人都在挣扎，面对市场中五花八门的工具患上选择分析困难症——心想只要找到正确的包、技能或 harness 组合，就能解锁 AGI。&lt;/p&gt;
+&lt;p&gt;今天我想把这一切都打破，给你们一句简单而诚实的话：&lt;strong&gt;你不需要最新的 agentic harness，不需要装一百万个包，绝对不用觉得自己必须看一百万个东西才能追上潮流。&lt;/strong&gt; 实际上，你的热情可能弊大于利。&lt;/p&gt;
+&lt;p&gt;我不是来旅游的——我从 Agent 还几乎写不出代码的年代就开始用了。我试过了所有的包、harness 和范式。我搭建过 agetic 工厂来生成信号、构建基础设施和数据流水线——不是&amp;quot;玩具项目&amp;quot;，是真正在生产中运行的真实用例。然后经历了这一切之后……&lt;/p&gt;
+&lt;p&gt;今天，我运行的配置几乎是你能想象的最简洁版本，却做出了我做过的最开创性的工作——只用最基础的 CLI（Claude Code 和 Codex），加上对 agentic engineering 的几个基本原则的理解。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;理解世界在狂奔&#34;&gt;理解&amp;quot;世界在狂奔&amp;quot;
+&lt;/h2&gt;&lt;p&gt;首先，我想说基础模型公司正在进行一代人级别的竞速，如你所见，它们不会很快慢下来。每一次&amp;quot;Agent 智能&amp;quot;的进化都会改变你与它们协作的方式，因为 Agent 被工程化得越来越愿意服从指令。&lt;/p&gt;
+&lt;p&gt;就在几个版本之前，如果你在 CLAUDE.md 里写让它做任何事之前先读 &lt;code&gt;READ_THIS_BEFORE_DOING_ANYTHING.md&lt;/code&gt;，它 50% 的时间会直接甩你一脸然后我行我素。今天，它对大多数指令都服从了，甚至对复杂的嵌套指令也是如此——比如你可以大致说&amp;quot;读 A，然后读 B，如果是 C，则读 D&amp;quot;，它基本上都会乐意照办。&lt;/p&gt;
+&lt;p&gt;我想说的是：&lt;strong&gt;最重要的原则是认识到每一代新 Agent 都会迫使你重新思考什么是最优的，这就是为什么少即是多。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当你使用许多不同的库和 harness 时，你把自己锁进了一个可能在未来几代 Agent 中根本不存在的&amp;quot;解决方案&amp;quot;。此外，你知道 Agent 最热情、最大的用户是谁吗？没错——是前沿公司的内部员工，拥有无限的 Token 预算和真正的、最新的模型。你懂这意味着什么吗？&lt;/p&gt;
+&lt;p&gt;这意味着如果某个真实问题真的存在，并且有好的解决方案，前沿公司会是这个方案最大的用户。那你知道他们接下来会做什么吗？他们会把那个方案融入自己的产品。你想，公司怎么会让别人的产品来解决真正的痛点并依赖外部呢？你知道我怎么知道这是真的？看看 skills、memory harness、subagents 这些——它们都是从真实问题的&amp;quot;解决方案&amp;quot;开始，经过实际验证后被认为真正有用，最终才出现的。&lt;/p&gt;
+&lt;p&gt;所以，&lt;strong&gt;如果某样东西真的具有开创性，而且能以一种有意义的方式扩展 agentic 用例，它迟早会被基础模型公司纳入基础产品。&lt;/strong&gt; 相信我，前沿公司在狂飙。所以放松，你不需要装任何东西或依赖任何外部工具来做出你最好的工作。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;上下文是一切&#34;&gt;上下文是一切
+&lt;/h2&gt;&lt;p&gt;不是开玩笑。&lt;strong&gt;上下文是一切。&lt;/strong&gt; 这就是使用一大堆插件和外部依赖的另一个问题——你会遭遇上下文膨胀（context bloat），说白了就是 Agent 被太多信息淹没了！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给我用 Python 写个 Hangman 游戏？简单。等等，这个 26 个会话前关于&amp;quot;管理内存&amp;quot;的备注是什么？啊，是之前生成了太多子进程，那个屏幕挂掉了的 71 个会话前的事情。总是要写笔记？好，没问题……但这些和 Hangman 有什么关系？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;你明白了吧。&lt;strong&gt;你想给 Agent 恰恰好完成它任务所需的信息，不多不少！&lt;/strong&gt; 你越能控制好这一点，Agent 的表现就越好。一旦你开始引入各种奇怪的内存系统、插件，或者太多命名混乱、被随意调用的技能，你就是在给 Agent 同时发制造炸弹的说明书和烘焙蛋糕的食谱，但你实际只想要一首关于红杉森林的小诗。&lt;/p&gt;
+&lt;p&gt;所以，我再次强调——卸掉所有依赖，然后……&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;做那些真正有效的事&#34;&gt;做那些真正有效的事
+&lt;/h2&gt;&lt;h3 id=&#34;精确描述实现目标&#34;&gt;精确描述实现目标
+&lt;/h3&gt;&lt;p&gt;记得上下文是一切的道理吗？&lt;/p&gt;
+&lt;p&gt;记得你想给 Agent 注入恰好完成它任务所需的信息、不多不少？&lt;/p&gt;
+&lt;p&gt;确保这一点的第一条路径就是：&lt;strong&gt;把研究（Research）和实现（Implementation）分开。&lt;/strong&gt; 你对 Agent 的要求必须极其精确。&lt;/p&gt;
+&lt;p&gt;这是你不精确时发生的事：&amp;ldquo;去，构建一个认证系统。&amp;ldquo;Agent 必须去研究——什么是认证系统？有哪些可选方案？各自的优缺点？于是它去网上扒拉自己其实不需要的资讯，上下文里塞满了大量不同方向的实现细节。等到真要实现的时候，它搞混或幻觉出不必要、不相关的实现细节的概率就大大增加了。&lt;/p&gt;
+&lt;p&gt;反过来，如果你说：&amp;ldquo;用 JWT + bcrypt-12 密码哈希实现认证，带 7 天过期的 refresh token 轮换……&amp;ldquo;那么它不必研究其他方案。它知道你到底想要什么，因此可以将上下文塞满实现细节。&lt;/p&gt;
+&lt;p&gt;当然你不会总是有实现细节。你经常不知道究竟哪种选择最好——有时候你甚至想把选择实现方案的工作也交给 Agent。这时候怎么办？简单——&lt;strong&gt;创建一个研究任务来探索各种实现的可能性，然后要么自己做决定，要么让一个 Agent 决定选哪个实现方案，最后再用一个全新上下文的 Agent 去实现。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一旦你开始按这个思路思考，你就会在流程中发现那些 Agent 被没必要地污染了上下文的地方。然后你可以在 agetic 工作流中建起围墙，把不必要的信息抽象掉，只让 Agent 获取出色完成其任务所需的具体上下文。记住，你拥有的是一个非常有才华和聪明的团队成员，它知道宇宙中所有类型的球——但除非你告诉它你想让它专注于设计一个人们可以跳舞和享受美好时光的空间，它会一直跟你讲拥有球形物体的所有好处。&lt;/p&gt;
+&lt;h3 id=&#34;谄媚偏差的设计局限&#34;&gt;谄媚偏差的设计局限
+&lt;/h3&gt;&lt;p&gt;没人想用一个不断吐槽自己、总说自己错了、或者干脆无视自己指令的产品。因此，&lt;strong&gt;这些 Agent 的本质就是试图同意你、做你想让它做的事。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你给它一个指令——每三个词后面加一个&amp;quot;开心&amp;rdquo;，它会尽力照做——大多数人都理解这一点。它愿意听话恰恰是让它成为如此有趣产品的原因。但这带来了非常有趣的特征——这意味着如果你说&amp;quot;帮我在代码库中找一个 Bug&amp;rdquo;，&lt;strong&gt;它一定会给你找一个 Bug——哪怕它得自己造一个。&lt;/strong&gt; 因为什么？因为它太想听你的指令了！&lt;/p&gt;
+&lt;p&gt;大多数人都忙着抱怨 LLM 幻觉或编造不存在的东西，却没意识到&lt;strong&gt;问题出在自己身上。&lt;/strong&gt; 如果你要求一个东西，它一定会给你——哪怕它得稍微歪曲事实！&lt;/p&gt;
+&lt;p&gt;那你该怎么办？我发现**&amp;ldquo;中性&amp;quot;提示词很管用**，也就是不让 Agent 偏向某个结果。比如，我不说&amp;quot;在数据库里找 Bug&amp;rdquo;，而是说&amp;quot;搜索整个数据库，尝试紧跟每个组件的逻辑，报告所有发现。&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;这种中性提示词有时会发现 Bug，有时只会就事论事地陈述代码如何运行。但它不会让 Agent 产生&amp;quot;一定有个 Bug&amp;quot;的偏见。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我另一种处理谄媚的方法是反过来利用它。&lt;/strong&gt; 我知道 Agent 在想讨好我、想遵循我的指令，也知道我可以让它向某一方向偏移。这是我的方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bug 发现 Agent&lt;/strong&gt;：我告诉它低影响的 Bug +1 分，有些影响的 +5 分，严重影响的 +10 分。这个 Agent 变得极度热情，识别出各种类型的 Bug（甚至包括不是 Bug 的那些）。我把这看作所有可能 Bug 的&lt;strong&gt;超集&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;对抗 Agent&lt;/strong&gt;：对于每一个它能证明不是 Bug 的条目，它获得该条目的分；但如果证明错了，它将被扣掉该条目的 2 倍分。所以这个对抗 Agent 会拼命尝试反驳 Bug（甚至包括真正的 Bug），但会带有一点谨慎。我把这看作是实际真实 Bug 的&lt;strong&gt;子集&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;裁判 Agent&lt;/strong&gt;：我骗裁判 Agent 说我有正确的标准答案。评判正确 +1 分，评判错误 -1 分。裁判说什么就是真相，然后我再自己查证。绝大多数情况下这种方法有着惊人的高准确率——偶尔确实还会出错，但这整体上是一个近乎完美的流程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;也许你会发现只用 Bug 发现 Agent 就够了，但这个方法对我有效，因为它利用了每个 Agent 被硬编码要做的事——想要讨好。&lt;/p&gt;
+&lt;h3 id=&#34;怎么知道什么真正有用&#34;&gt;怎么知道什么真正有用？
+&lt;/h3&gt;&lt;p&gt;这个问题看起来很难，需要你深入研究、站在 AI 更新的最前沿，但实际上非常简单……&lt;strong&gt;如果 OpenAI 和 Claude 都实现或收购了实现了某个功能的东西……那它大概率是有用的。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;注意到 skills 现在到处都是，并且成为 Claude 和 Codex 官方文档的一部分了吗？&lt;/li&gt;
+&lt;li&gt;看到 OpenAI 收购 OpenClaw 了吗？&lt;/li&gt;
+&lt;li&gt;看到 Claude 立刻加入了记忆、语音和远程工作了吗？&lt;/li&gt;
+&lt;li&gt;那 planning（计划）呢？还记得一群人发现先做计划再实现真的很有用，然后它变成了一个核心功能吗？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是啊……那些都有用！&lt;/p&gt;
+&lt;p&gt;还记得无休止的 stop-hook 曾经多有用吗，因为 Agent 那时有多不愿做长时间工作……然后 Codex 5.2 发布，那一夜之间就消失了？是啊……&lt;/p&gt;
+&lt;p&gt;这就是你需要知道的全部。如果某个东西真的重要且有用，Claude 和 Codex 就会实现它们！所以你不用太担心使用&amp;quot;新东西&amp;quot;或熟悉&amp;quot;新东西&amp;rdquo;。你甚至不用&amp;quot;跟上潮流&amp;quot;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;就是每隔一段时间更新你的命令行工具，读一读新增了哪些功能。这已经远远足够了。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;压缩上下文与假设&#34;&gt;压缩、上下文与假设
+&lt;/h3&gt;&lt;p&gt;一个让你在使用 Agent 过程中会意识到的大坑：有时候它们看起来像地球上最聪明的存在，而另一些时候你简直无法相信自己上当了。&lt;/p&gt;
+&lt;p&gt;主要区别在于：&lt;strong&gt;Agent 是否需要做出任何&amp;quot;假设&amp;quot;或&amp;quot;填补空白&amp;quot;。&lt;/strong&gt; 到今天为止，它们在&amp;quot;连接点&amp;quot;、&amp;ldquo;填补空白&amp;quot;或做假设方面仍然非常糟糕。每当它们那么做的时候，立刻就会看出它们显然已经走偏了。&lt;/p&gt;
+&lt;p&gt;CLAUDE.md 中最重要的规则之一，就是关于如何处理获取上下文的规则。无论何时，只要 Agent 读取 CLAUDE.md（这总是在压缩之后），就让它第一个读那条规则。在上下文获取规则中，几条简单的指令可以产生大作用——&lt;strong&gt;重读你的任务计划，并在继续之前重读与任务相关的文件。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;让-agent-知道任务该何时结束&#34;&gt;让 Agent 知道任务该何时结束
+&lt;/h3&gt;&lt;p&gt;我们对&amp;quot;任务什么时候算完成&amp;quot;有比较强的直觉。对 Agent 来说，当前智能最大的问题是：它知道怎么开始一个任务，但不知道怎么结束。&lt;/p&gt;
+&lt;p&gt;这常常导致非常令人沮丧的结果——Agent 实现一大堆桩（stubs），然后就算交差了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;测试对 Agent 来说是一个非常非常好的里程碑&lt;/strong&gt;，因为它们是确定性的，你可以设非常清晰的期望。&lt;em&gt;&amp;ldquo;除非这 X 个测试全部通过，否则你的任务不算完成；而且不准你编辑这些测试。&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;然后你只需审核测试，一旦所有测试通过，就可以安心了。你当然可以自动化这一步，但要点是——记住&amp;quot;任务的终点&amp;quot;对人类来说非常自然，对 Agent 来说却不然。&lt;/p&gt;
+&lt;p&gt;你知道还有什么是最近变得可行的任务终点吗？&lt;strong&gt;截图 + 验证。&lt;/strong&gt; 你可以让 Agent 一直实现到所有测试通过，然后让它截图，并在截图结果上验证&amp;quot;设计或行为&amp;rdquo;。这让你可以让 Agent 不断迭代、向你想要的设计靠拢，而不用担心它在第一次尝试后就停了！&lt;/p&gt;
+&lt;p&gt;这自然延伸出来的做法是创建一个与 Agent 的&lt;strong&gt;任务合同&lt;/strong&gt;，并嵌入到规则中。比如，&lt;code&gt;{TASK}_CONTRACT.md&lt;/code&gt; 规定了在允许结束会话之前必须完成的事项。在合同中，你指定你的测试、截图和其他在确认任务可以结束之前需要完成的验证！&lt;/p&gt;
+&lt;h3 id=&#34;永远运行的-agent&#34;&gt;永远运行的 Agent
+&lt;/h3&gt;&lt;p&gt;我常被问到的一个问题是：那些人怎么能让 Agent 跑 24 小时还不跑偏？&lt;/p&gt;
+&lt;p&gt;这里有个非常简单的办法。&lt;strong&gt;创建一个 stop-hook，阻止 Agent 在 &lt;code&gt;{TASK}_CONTRACT.md&lt;/code&gt; 的所有部分完成之前结束会话。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你有 100 个设计良好的合同，包含了你想要构建的确切内容，那么你的 stop-hook 会阻止 Agent 在这 100 个合同全部完成之前终止——包括所有需要运行的测试和验证！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;专业提示：&lt;/strong&gt; 我不认为长时间运行的 24 小时会话是做事的&amp;quot;最佳方式&amp;quot;。部分原因是，这在架构上本身就强制了上下文膨胀，将来自不相关的合同引入同一会话！所以，我不推荐。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一个更好的 Agent 自动化方式——&lt;strong&gt;每个合同一个新会话。&lt;/strong&gt; 当你需要做事时创建合同。搞一个编排层来处理：每当&amp;quot;有事要做&amp;quot;就创建新合同，并为那个合同创建新会话来工作。这会彻底改变你的 agetic 体验。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;迭代迭代再迭代&#34;&gt;迭代，迭代，再迭代
+&lt;/h2&gt;&lt;p&gt;如果你雇了一个行政助理，你指望 TA 第一天就知道你的日程安排吗？或者你怎么喝咖啡？你吃晚饭是 6 点而不是 8 点？显然不是。偏好是随着时间逐步建立的。&lt;/p&gt;
+&lt;p&gt;你的 Agent 也一样。&lt;strong&gt;从极简开始。忘掉那些复杂的结构或 harness。给基础 CLI 一个机会。&lt;/strong&gt; 然后，逐步加上你的偏好。怎么做？&lt;/p&gt;
+&lt;h3 id=&#34;rules规则&#34;&gt;Rules（规则）
+&lt;/h3&gt;&lt;p&gt;如果你不想让你的 Agent 做某件事，把它写成一条规则。然后在 CLAUDE.md 中让 Agent 知道这条规则。类似：&amp;ldquo;在你写代码之前，读一下 &lt;code&gt;coding-rules.md&lt;/code&gt;。&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;规则可以嵌套，规则可以带条件！&amp;ldquo;如果你在写代码，读 &lt;code&gt;coding-rules.md&lt;/code&gt;；如果你在写测试，读 &lt;code&gt;coding-test-rules.md&lt;/code&gt;。如果测试在失败，读 &lt;code&gt;coding-test-failing-rules.md&lt;/code&gt;。&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;你可以创建任意逻辑分支的规则来遵循，Claude（和 Codex）会愉快地跟着走——只要在 CLAUDE.md 中做了清晰的说明。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;这是我给的第一条实用建议：&lt;/strong&gt; 把 CLAUDE.md 当作一个逻辑化的、嵌套的目录，指明在给定的场景和预期结果下去哪里找上下文。它应该尽量极简，只包含 IF-ELSE——去哪里寻找上下文的逻辑。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果你看到 Agent 做了让你不认可的事，把它加为规则，告诉 Agent 在做那件事之前先读那条规则，那么它几乎肯定不会再做。&lt;/p&gt;
+&lt;h3 id=&#34;skills技能&#34;&gt;Skills（技能）
+&lt;/h3&gt;&lt;p&gt;Skills 像 Rules，但区别在于 Rules 更适合编码偏好，Skills 更适合编码&lt;strong&gt;配方（recipes）&lt;/strong&gt;。如果你有特定的做事方式——想要某件事以特定方式完成——那你应该把它嵌入一个 Skill 里。&lt;/p&gt;
+&lt;p&gt;事实上，人们经常抱怨自己不知道 Agent 会怎么解决某个问题，这很可怕。那好，如果你想要一种让这件事变得确定性的方法，&lt;strong&gt;让 Agent 研究一下它会怎么解决那个问题，然后写成一个 Skill。&lt;/strong&gt; 你会看到 Agent 处理那个问题的方法，你可以在它真正遇到那个问题之前纠正或改进。&lt;/p&gt;
+&lt;p&gt;你怎么让 Agent 知道这个 Skill 存在？对！用 CLAUDE.md 说：&amp;ldquo;当你看到这种场景、需要处理这件事时，读一下这个 SKILL.md。&amp;rdquo;&lt;/p&gt;
+&lt;h3 id=&#34;管理-rules-和-skills&#34;&gt;管理 Rules 和 Skills
+&lt;/h3&gt;&lt;p&gt;你肯定想继续添加 Rules 和 Skills 来给你的 Agent。这是赋予它个性和偏好的记忆。其他几乎所有东西都是过度设计。&lt;/p&gt;
+&lt;p&gt;一旦你开始这样做，Agent 对你来说就会像魔法一样。它会按照&amp;quot;你想要的方式&amp;quot;做事。然后你终于会觉得自己&amp;quot;真正懂了&amp;quot;agentic engineering。&lt;/p&gt;
+&lt;p&gt;然后……&lt;strong&gt;你会发现性能又开始恶化了。&lt;/strong&gt; 怎么回事？！&lt;/p&gt;
+&lt;p&gt;简单。随着你添加越来越多的 Rules 和 Skills，它们开始互相矛盾，或者 Agent 开始有太多的上下文膨胀。如果你在 Agent 开始编程之前需要它读 14 个 Markdown 文件，它就有了同样的问题——大量无用的信息。&lt;/p&gt;
+&lt;p&gt;那么，你怎么办？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;你清理。&lt;/strong&gt; 你告诉 Agent 去&amp;quot;做一次 spa&amp;quot;，整合 Rules 和 Skills，通过问你的更新偏好来消除矛盾。&lt;/p&gt;
+&lt;p&gt;然后魔法又回来了。&lt;/p&gt;
+&lt;p&gt;就是这样。这真的是秘密。保持简单，用 Rules 和 Skills 和 CLAUDE.md 作为目录，同时&lt;strong&gt;宗教般虔诚地&lt;/strong&gt;关注它们的上下文和设计局限。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;承担你的结果&#34;&gt;承担你的结果
+&lt;/h2&gt;&lt;p&gt;今天没有一个 Agent 是完美的。你可以把大量的设计和实现委派给 Agent，但你得对结果负责。&lt;/p&gt;
+&lt;p&gt;所以小心行事……并享受乐趣！玩来自未来的玩具太快乐了（当然，用它们来做严肃的事）！&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

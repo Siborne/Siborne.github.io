@@ -7,12 +7,581 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
         <copyright>Siborne</copyright><atom:link href="https://Siborne.top/zh-tw/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>5 種 Agent Skill 設計模式：每個 ADK 開發者都該知道</title>
+        <link>https://Siborne.top/zh-tw/p/agent-skill-design-patterns/</link>
+        <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/zh-tw/p/agent-skill-design-patterns/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/07/654c27e8a8aa74e8a5a227554c8dbd93.png" alt="Featured image of post 5 種 Agent Skill 設計模式：每個 ADK 開發者都該知道" /&gt;&lt;blockquote&gt;
+&lt;p&gt;本文翻譯整理自 &lt;a class=&#34;link&#34; href=&#34;https://x.com/Saboo_Shubham&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;@Saboo_Shubham&lt;/a&gt; 和 &lt;a class=&#34;link&#34; href=&#34;https://x.com/lavinigam&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;@lavinigam&lt;/a&gt; 的部落格文章，僅供學習交流。如有侵權請聯繫下架。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;談到 &lt;code&gt;SKILL.md&lt;/code&gt;，開發者往往糾結於格式——寫好 YAML、組織目錄結構、遵循規範。但在 30 多種 Agent 工具（如 Claude Code、Gemini CLI、Cursor）已經統一採用相同佈局的今天，格式問題已基本成為過去式。&lt;/p&gt;
+&lt;p&gt;真正的挑戰在於&lt;strong&gt;內容設計&lt;/strong&gt;。規範告訴你如何打包 Skill，但完全沒有涉及如何組織內部邏輯。例如，一個封裝 FastAPI 約定的 Skill 與一個四步文件生成流水線，雖然外部的 &lt;code&gt;SKILL.md&lt;/code&gt; 檔案看起來一樣，內部運作方式卻截然不同。&lt;/p&gt;
+&lt;p&gt;透過研究整個生態系統中 Skill 的構建方式——從 Anthropic 的倉庫到 Vercel 和 Google 的內部指南——有五種反覆出現的設計模式可以幫助開發者構建更可靠的 Agent。&lt;/p&gt;
+&lt;p&gt;本文逐一介紹每種模式，並附帶可執行的 ADK 程式碼：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tool Wrapper&lt;/strong&gt;：讓你的 Agent 立即成為任何函式庫的專家&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generator&lt;/strong&gt;：基於可複用範本生成結構化文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reviewer&lt;/strong&gt;：按清單對程式碼進行嚴重性評分&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inversion&lt;/strong&gt;：Agent 先採訪你，再動手&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pipeline&lt;/strong&gt;：透過檢查點強制執行嚴格的多步工作流&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/1d4e8cad1c63fa30c3da0a3d8a4043d0.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;模式-1tool-wrapper&#34;&gt;模式 1：Tool Wrapper
+&lt;/h2&gt;&lt;p&gt;Tool Wrapper 為你的 Agent 提供特定函式庫的按需上下文。你不必將 API 約定硬編碼到系統提示詞中，而是將它們打包到 Skill 裡。Agent 只有在真正使用該技術時才會載入這些上下文。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/71ee894d64c8a544efd9d41bdbdb9bff.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;這是最簡單的實作模式。&lt;code&gt;SKILL.md&lt;/code&gt; 檔案監聽使用者提示詞中的特定函式庫關鍵字，動態載入 &lt;code&gt;references/&lt;/code&gt; 目錄中的內部文件，並將這些規則作為絕對真理來遵循。這正是你將團隊內部編碼規範或特定框架最佳實踐分發到開發者工作流中的機制。&lt;/p&gt;
+&lt;p&gt;下面是一個 Tool Wrapper 範例，教 Agent 如何撰寫 FastAPI 程式碼。注意，指令明確告訴 Agent 只在開始審查或撰寫程式碼時才載入 &lt;code&gt;conventions.md&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/api-expert/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: api-expert
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: FastAPI development best practices and conventions. Use when building, reviewing,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  or debugging FastAPI applications, REST APIs, or Pydantic models.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: tool-wrapper
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  domain: fastapi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are an expert in FastAPI development. Apply these conventions to the user&amp;#39;s code or question.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Core Conventions
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Load &amp;#39;references/conventions.md&amp;#39; for the complete list of FastAPI best practices.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## When Reviewing Code
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;1.&lt;/span&gt; Load the conventions reference
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;2.&lt;/span&gt; Check the user&amp;#39;s code against each convention
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;3.&lt;/span&gt; For each violation, cite the specific rule and suggest the fix
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## When Writing Code
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;1.&lt;/span&gt; Load the conventions reference
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;2.&lt;/span&gt; Follow every convention exactly
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;3.&lt;/span&gt; Add type annotations to all function signatures
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;4.&lt;/span&gt; Use Annotated style for dependency injection
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;模式-2generator&#34;&gt;模式 2：Generator
+&lt;/h2&gt;&lt;p&gt;Tool Wrapper 負責注入知識，Generator 則保證輸出的一致性。如果你苦惱於 Agent 每次執行都生成不同的文件結構，Generator 透過編排&amp;quot;填空&amp;quot;流程來解決這個問題。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/71ee894d64c8a544efd9d41bdbdb9bff.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;它利用兩個可選目錄：&lt;code&gt;assets/&lt;/code&gt; 存放輸出範本，&lt;code&gt;references/&lt;/code&gt; 存放風格指南。指令扮演專案經理的角色——告訴 Agent 載入範本、閱讀風格指南、向使用者詢問缺失變數，然後填充文件。這對生成可預測的 API 文件、標準化 commit message 或腳手架程式碼架構非常實用。&lt;/p&gt;
+&lt;p&gt;在下面的技術報告生成器範例中，Skill 檔案本身不包含實際佈局或語法規則，只是協調這些資源的載入，並強制 Agent 逐步執行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/report-generator/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: report-generator
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: Generates structured technical reports in Markdown. Use when the user asks to write,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  create, or draft a report, summary, or analysis document.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: generator
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  output-format: markdown
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are a technical report generator. Follow these steps exactly:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 1: Load &amp;#39;references/style-guide.md&amp;#39; for tone and formatting rules.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 2: Load &amp;#39;assets/report-template.md&amp;#39; for the required output structure.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 3: Ask the user for any missing information needed to fill the template:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Topic or subject
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Key findings or data points
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Target audience (technical, executive, general)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 4: Fill the template following the style guide rules. Every section in the template must be
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;present in the output.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 5: Return the completed report as a single Markdown document.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;模式-3reviewer&#34;&gt;模式 3：Reviewer
+&lt;/h2&gt;&lt;p&gt;Reviewer 模式將&amp;quot;檢查什麼&amp;quot;與&amp;quot;如何檢查&amp;quot;分離開來。你不必寫一個長篇系統提示詞來羅列每種程式碼異味，而是將模組化的評分標準存放在 &lt;code&gt;references/review-checklist.md&lt;/code&gt; 檔案中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/50240ec3e5129d0a86f45904cc881a29.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;當使用者提交程式碼時，Agent 載入這個清單並有條理地對程式碼進行評分，按嚴重程度對發現進行分組。如果你將 Python 風格檢查清單換成 OWASP 安全檢查清單，就能用完全相同的 Skill 基礎設施得到完全不同的專項審計。這是自動化 PR Review 或在人工審核前捕獲漏洞的高效方法。&lt;/p&gt;
+&lt;p&gt;下面的程式碼審查 Skill 展示了這種分離。指令保持靜態，Agent 動態地從外部清單載入具體的審查標準，並強制輸出結構化的、按嚴重性分組的結果：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/code-reviewer/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: code-reviewer
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: Reviews Python code for quality, style, and common bugs. Use when the user submits
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  code for review, asks for feedback on their code, or wants a code audit.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: reviewer
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  severity-levels: error,warning,info
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are a Python code reviewer. Follow this review protocol exactly:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 1: Load &amp;#39;references/review-checklist.md&amp;#39; for the complete review criteria.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 2: Read the user&amp;#39;s code carefully. Understand its purpose before critiquing.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 3: Apply each rule from the checklist to the code. For every violation found:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Note the line number (or approximate location)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Classify severity: error (must fix), warning (should fix), info (consider)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Explain WHY it&amp;#39;s a problem, not just WHAT is wrong
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Suggest a specific fix with corrected code
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 4: Produce a structured review with these sections:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; **Summary**: What the code does, overall quality assessment
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; **Findings**: Grouped by severity (errors first, then warnings, then info)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; **Score**: Rate 1-10 with brief justification
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; **Top 3 Recommendations**: The most impactful improvements
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;模式-4inversion&#34;&gt;模式 4：Inversion
+&lt;/h2&gt;&lt;p&gt;Agent 天生傾向於直接猜測並立即生成。Inversion 模式翻轉了這個動態關係——不是使用者驅動提示詞、Agent 執行，而是 Agent 反向充當採訪者。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/d182b12bb694e5b9444d707d1a471cde.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Inversion 依賴明確、不可協商的門控指令（如&amp;quot;在所有階段完成之前不要開始構建&amp;quot;）來強制 Agent 先收集上下文。它按順序提出結構化問題，等待你回答後再進入下一階段。Agent 在完整了解你的需求和部署約束之前，拒絕輸出最終結果。&lt;/p&gt;
+&lt;p&gt;下面的專案規劃 Skill 展示了這一點。關鍵元素是嚴格的階段劃分和明確的門控提示詞，阻止 Agent 在所有使用者回答收集完成之前合成最終計劃：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/project-planner/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: project-planner
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: Plans a new software project by gathering requirements through structured questions
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  before producing a plan. Use when the user says &amp;#34;I want to build&amp;#34;, &amp;#34;help me plan&amp;#34;, &amp;#34;design a system&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  or &amp;#34;start a new project&amp;#34;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: inversion
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  interaction: multi-turn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are conducting a structured requirements interview. DO NOT start building or designing until
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;all phases are complete.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Phase 1 — Problem Discovery (ask one question at a time, wait for each answer)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ask these questions in order. Do not skip any.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q1: &amp;#34;What problem does this project solve for its users?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q2: &amp;#34;Who are the primary users? What is their technical level?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q3: &amp;#34;What is the expected scale? (users per day, data volume, request rate)&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Phase 2 — Technical Constraints (only after Phase 1 is fully answered)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q4: &amp;#34;What deployment environment will you use?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q5: &amp;#34;Do you have any technology stack requirements or preferences?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q6: &amp;#34;What are the non-negotiable requirements? (latency, uptime, compliance, budget)&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Phase 3 — Synthesis (only after all questions are answered)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;1.&lt;/span&gt; Load &amp;#39;assets/plan-template.md&amp;#39; for the output format
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;2.&lt;/span&gt; Fill in every section of the template using the gathered requirements
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;3.&lt;/span&gt; Present the completed plan to the user
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;4.&lt;/span&gt; Ask: &amp;#34;Does this plan accurately capture your requirements? What would you change?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;5.&lt;/span&gt; Iterate on feedback until the user confirms
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;模式-5pipeline&#34;&gt;模式 5：Pipeline
+&lt;/h2&gt;&lt;p&gt;對於複雜任務，你無法承受跳過步驟或忽略指令的後果。Pipeline 模式透過硬檢查點強制執行嚴格的順序工作流。&lt;/p&gt;
+&lt;p&gt;指令本身就是工作流定義。透過實現明確的門控條件（例如，在從文件字串生成進入最終組裝之前要求使用者批准），Pipeline 確保 Agent 無法繞過複雜任務並呈現未經校驗的最終結果。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/afeb53c30f73111feb234289eadee00d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;這個模式利用所有可選目錄，僅在需要的特定步驟時拉入不同的引用檔案和範本，保持上下文視窗的整潔。&lt;/p&gt;
+&lt;p&gt;在下面的文件生成 Pipeline 範例中，注意明確的門控條件。Agent 被明確禁止在使用者確認上一步生成的文件字串之前進入組裝階段：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/doc-pipeline/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: doc-pipeline
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: Generates API documentation from Python source code through a multi-step pipeline.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Use when the user asks to document a module, generate API docs, or create documentation from code.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: pipeline
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  steps: &amp;#34;4&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are running a documentation generation pipeline. Execute each step in order. Do NOT skip steps
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;or proceed if a step fails.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Step 1 — Parse &amp;amp; Inventory
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Analyze the user&amp;#39;s Python code to extract all public classes, functions, and constants. Present
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;the inventory as a checklist. Ask: &amp;#34;Is this the complete public API you want documented?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Step 2 — Generate Docstrings
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;For each function lacking a docstring:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Load &amp;#39;references/docstring-style.md&amp;#39; for the required format
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Generate a docstring following the style guide exactly
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Present each generated docstring for user approval
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Do NOT proceed to Step 3 until the user confirms.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Step 3 — Assemble Documentation
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Load &amp;#39;assets/api-doc-template.md&amp;#39; for the output structure. Compile all classes, functions, and
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docstrings into a single API reference document.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Step 4 — Quality Check
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Review against &amp;#39;references/quality-checklist.md&amp;#39;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Every public symbol documented
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Every parameter has a type and description
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; At least one usage example per function
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Report results. Fix issues before presenting the final document.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;選擇正確的-agent-skill-模式&#34;&gt;選擇正確的 Agent Skill 模式
+&lt;/h2&gt;&lt;p&gt;每種模式回答不同的問題。用下面的決策樹找到適合你用例的模式：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/8b0a1c98b7a8e3f95c461a7c8e4443ca.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;模式可以組合&#34;&gt;模式可以組合
+&lt;/h2&gt;&lt;p&gt;這些模式不是互斥的——它們可以組合使用。&lt;/p&gt;
+&lt;p&gt;Pipeline 可以在最後加入 Reviewer 步驟來雙重檢查自己的工作。Generator 可以在最開始依賴 Inversion 來收集填充範本所需的變數。得益於 ADK 的 &lt;code&gt;SkillToolset&lt;/code&gt; 和漸進式上下文載入，你的 Agent 只在執行時消耗確有所需的模式對應的 Context Token。&lt;/p&gt;
+&lt;p&gt;不要試圖把複雜而脆弱的指令塞進一個系統提示詞。將你的工作流拆解開來，應用正確的結構模式，打造可靠的 Agent。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;立即開始&lt;/strong&gt;：Agent Skills 規範是開源的，並在 ADK 中原生支援。你已經知道如何打包格式——現在你知道如何設計內容了。前往 &lt;a class=&#34;link&#34; href=&#34;https://google.github.io/adk-docs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Google Agent Development Kit&lt;/a&gt; 構建更智慧的 Agent。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>如何成為世界級的 Agentic 工程師</title>
+        <link>https://Siborne.top/zh-tw/p/world-class-agentic-engineer/</link>
+        <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/zh-tw/p/world-class-agentic-engineer/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/07/c557e6a5f187a17659949becc3065098.jpg" alt="Featured image of post 如何成為世界級的 Agentic 工程師" /&gt;&lt;blockquote&gt;
+&lt;p&gt;本文翻譯整理自 &lt;a class=&#34;link&#34; href=&#34;https://x.com/systematicls/article/2028814227004395561&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;@systematicls&lt;/a&gt;，僅供學習交流。如侵權請聯繫下架。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;引言&#34;&gt;引言
+&lt;/h2&gt;&lt;p&gt;你是個開發者。你每天都在用 Claude 和 Codex CLI，每天在想自己到底有沒有把這些 Agent 的真正潛力榨出來。偶爾你看到它做一些蠢到不可思議的事，而你又完全不理解為什麼外面那些人看起來像是在造虛擬火箭，自己卻連兩塊石頭都疊不起來。&lt;/p&gt;
+&lt;p&gt;你覺得是自己用的 harness 不對、外掛不夠好、終端設定有問題。你試了 beads、opencode、zep，你的 CLAUDE.md 寫了 26000 行。但無論你做什麼，都到不了天堂的門口，只能乾看著別人在雲端嬉戲。&lt;/p&gt;
+&lt;p&gt;這篇文章，就是你要的飛升指南。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;順便說一句，我沒站隊。當我說 CLAUDE.md，也包括 AGENT.md；說 Claude，也包括 Codex。我兩個都用得非常深入。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;過去幾個月裡，我觀察到的最有趣的現象之一就是：&lt;strong&gt;幾乎沒有人真正知道如何把 Agent 的能力榨到極致。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一小撮人似乎能讓 Agent 成為世界構建者，而其他人都在掙扎，面對市場中五花八門的工具患上選擇分析困難症——心想只要找到正確的包、技能或 harness 組合，就能解鎖 AGI。&lt;/p&gt;
+&lt;p&gt;今天我想把這一切都打破，給你們一句簡單而誠實的話：&lt;strong&gt;你不需要最新的 agentic harness，不需要裝一百萬個套件，絕對不用覺得自己必須看一百萬個東西才能追上潮流。&lt;/strong&gt; 實際上，你的熱情可能弊大於利。&lt;/p&gt;
+&lt;p&gt;我不是來旅遊的——我從 Agent 還幾乎寫不出程式碼的年代就開始用了。我試過了所有的套件、harness 和範式。我搭建過 agentic 工廠來生成訊號、構建基礎設施和資料流水線——不是&amp;quot;玩具專案&amp;quot;，是真正在生產中執行的真實用例。然後經歷了這一切之後……&lt;/p&gt;
+&lt;p&gt;今天，我執行的設定幾乎是你能想像的最簡潔版本，卻做出了我做過的最開創性的工作——只用最基礎的 CLI（Claude Code 和 Codex），加上對 agentic engineering 的幾個基本原則的理解。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;理解世界在狂奔&#34;&gt;理解&amp;quot;世界在狂奔&amp;quot;
+&lt;/h2&gt;&lt;p&gt;首先，我想說基礎模型公司正在進行一代人級別的競速，如你所見，它們不會很快慢下來。每一次&amp;quot;Agent 智慧&amp;quot;的進化都會改變你與它們協作的方式，因為 Agent 被工程化得越來越願意服從指令。&lt;/p&gt;
+&lt;p&gt;就在幾個版本之前，如果你在 CLAUDE.md 裡寫讓它做任何事之前先讀 &lt;code&gt;READ_THIS_BEFORE_DOING_ANYTHING.md&lt;/code&gt;，它 50% 的時間會直接甩你一臉然後我行我素。今天，它對大多數指令都服從了，甚至對複雜的巢狀指令也是如此——比如你可以大致說&amp;quot;讀 A，然後讀 B，如果是 C，則讀 D&amp;quot;，它基本上都會樂意照辦。&lt;/p&gt;
+&lt;p&gt;我想說的是：&lt;strong&gt;最重要的原則是認識到每一代新 Agent 都會迫使你重新思考什麼是最優的，這就是為什麼少即是多。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;當你使用許多不同的函式庫和 harness 時，你把自己鎖進了一個可能在未來幾代 Agent 中根本不存在的&amp;quot;解決方案&amp;quot;。此外，你知道 Agent 最熱情、最大的用戶是誰嗎？沒錯——是前沿公司的內部員工，擁有無限的 Token 預算和真正的、最新的模型。你懂這意味著什麼嗎？&lt;/p&gt;
+&lt;p&gt;這意味著如果某個真實問題真的存在，並且有好的解決方案，前沿公司會是這個方案最大的用戶。那你知道他們接下來會做什麼嗎？他們會把那個方案融入自己的產品。你想，公司怎麼會讓別人的產品來解決真正的痛點並依賴外部呢？你知道我怎麼知道這是真的？看看 skills、memory harness、subagents 這些——它們都是從真實問題的&amp;quot;解決方案&amp;quot;開始，經過實際驗證後被認為真正有用，最終才出現的。&lt;/p&gt;
+&lt;p&gt;所以，&lt;strong&gt;如果某樣東西真的具有開創性，而且能以一種有意義的方式擴充套件 agentic 用例，它遲早會被基礎模型公司納入基礎產品。&lt;/strong&gt; 相信我，前沿公司在狂飆。所以放鬆，你不需要裝任何東西或依賴任何外部工具來做出你最好的工作。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;上下文是一切&#34;&gt;上下文是一切
+&lt;/h2&gt;&lt;p&gt;不是開玩笑。&lt;strong&gt;上下文是一切。&lt;/strong&gt; 這就是使用一大堆外掛和外部依賴的另一個問題——你會遭遇上下文膨脹（context bloat），說白了就是 Agent 被太多資訊淹沒了！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;給我用 Python 寫個 Hangman 遊戲？簡單。等等，這個 26 個工作階段前關於&amp;quot;管理記憶體&amp;quot;的備註是什麼？啊，是之前生成了太多子程序，那個螢幕掛掉了的 71 個工作階段前的事情。總是要寫筆記？好，沒問題……但這些和 Hangman 有什麼關係？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;你明白了吧。&lt;strong&gt;你想給 Agent 恰恰好完成它任務所需的資訊，不多不少！&lt;/strong&gt; 你越能控制好這一點，Agent 的表現就越好。一旦你開始引入各種奇怪的記憶體系統、外掛，或者太多命名混亂、被隨意呼叫的技能，你就是在給 Agent 同時發製造炸彈的說明書和烘焙蛋糕的食譜，但你實際只想要一首關於紅杉森林的小詩。&lt;/p&gt;
+&lt;p&gt;所以，我再次強調——卸掉所有依賴，然後……&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;做那些真正有效的事&#34;&gt;做那些真正有效的事
+&lt;/h2&gt;&lt;h3 id=&#34;精確描述實作目標&#34;&gt;精確描述實作目標
+&lt;/h3&gt;&lt;p&gt;記得上下文是一切的道理嗎？&lt;/p&gt;
+&lt;p&gt;記得你想給 Agent 注入恰好完成它任務所需的資訊、不多不少？&lt;/p&gt;
+&lt;p&gt;確保這一點的第一條路徑就是：&lt;strong&gt;把研究（Research）和實作（Implementation）分開。&lt;/strong&gt; 你對 Agent 的要求必須極其精確。&lt;/p&gt;
+&lt;p&gt;這是你不精確時發生的事：&amp;ldquo;去，構建一個認證系統。&amp;ldquo;Agent 必須去研究——什麼是認證系統？有哪些可選方案？各自的優缺點？於是它去網上扒拉自己其實不需要的資訊，上下文裡塞滿了大量不同方向的實作細節。等到真要實作的時候，它搞混或幻覺出不必要、不相關的實作細節的機率就大大增加了。&lt;/p&gt;
+&lt;p&gt;反過來，如果你說：&amp;ldquo;用 JWT + bcrypt-12 密碼雜湊實作認證，帶 7 天到期的 refresh token 輪換……&amp;ldquo;那麼它不必研究其他方案。它知道你到底想要什麼，因此可以將上下文塞滿實作細節。&lt;/p&gt;
+&lt;p&gt;當然你不會總是有實作細節。你經常不知道究竟哪種選擇最好——有時候你甚至想把選擇實作方案的工作也交給 Agent。這時候怎麼辦？簡單——&lt;strong&gt;建立一個研究任務來探索各種實作的可能性，然後要麼自己做決定，要麼讓一個 Agent 決定選哪個實作方案，最後再用一個全新上下文的 Agent 去實作。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一旦你開始按這個思路思考，你就會在流程中發現那些 Agent 被沒必要地汙染了上下文的地方。然後你可以在 agentic 工作流中建起圍牆，把不必要的資訊抽象掉，只讓 Agent 獲取出色完成其任務所需的具體上下文。記住，你擁有的是一個非常有才華和聰明的團隊成員，它知道宇宙中所有型別的球——但除非你告訴它你想讓它專注於設計一個人們可以跳舞和享受美好時光的空間，它會一直跟你講擁有球形物體的所有好處。&lt;/p&gt;
+&lt;h3 id=&#34;諂媚偏差的設計侷限&#34;&gt;諂媚偏差的設計侷限
+&lt;/h3&gt;&lt;p&gt;沒人想用一個不斷吐槽自己、總說自己錯了、或者乾脆無視自己指令的產品。因此，&lt;strong&gt;這些 Agent 的本質就是試圖同意你、做你想讓它做的事。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你給它一個指令——每三個詞後面加一個&amp;quot;開心&amp;rdquo;，它會盡力照做——大多數人都理解這一點。它願意聽話恰恰是讓它成為如此有趣產品的原因。但這帶來了非常有趣的特徵——這意味著如果你說&amp;quot;幫我在程式碼庫中找一個 Bug&amp;rdquo;，&lt;strong&gt;它一定會給你找一個 Bug——哪怕它得自己造一個。&lt;/strong&gt; 因為什麼？因為它太想聽你的指令了！&lt;/p&gt;
+&lt;p&gt;大多數人都忙著抱怨 LLM 幻覺或編造不存在的東西，卻沒意識到&lt;strong&gt;問題出在自己身上。&lt;/strong&gt; 如果你要求一個東西，它一定會給你——哪怕它得稍微歪曲事實！&lt;/p&gt;
+&lt;p&gt;那你該怎麼辦？我發現**&amp;ldquo;中性&amp;quot;提示詞很管用**，也就是不讓 Agent 偏向某個結果。比如，我不說&amp;quot;在資料庫裡找 Bug&amp;rdquo;，而是說&amp;quot;搜尋整個資料庫，嘗試緊跟每個元件的邏輯，報告所有發現。&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;這種中性提示詞有時會發現 Bug，有時只會就事論事地陳述程式碼如何執行。但它不會讓 Agent 產生&amp;quot;一定有個 Bug&amp;quot;的偏見。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我另一種處理諂媚的方法是反過來利用它。&lt;/strong&gt; 我知道 Agent 在想討好我、想遵循我的指令，也知道我可以讓它向某一方向偏移。這是我的方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bug 發現 Agent&lt;/strong&gt;：我告訴它低影響的 Bug +1 分，有些影響的 +5 分，嚴重影響的 +10 分。這個 Agent 變得極度熱情，識別出各種型別的 Bug（甚至包括不是 Bug 的那些）。我把這看作所有可能 Bug 的&lt;strong&gt;超集&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;對抗 Agent&lt;/strong&gt;：對於每一個它能證明不是 Bug 的條目，它獲得該條目的分；但如果證明錯了，它將被扣掉該條目的 2 倍分。所以這個對抗 Agent 會拼命嘗試反駁 Bug（甚至包括真正的 Bug），但會帶有一點謹慎。我把這看作是實際真實 Bug 的&lt;strong&gt;子集&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;裁判 Agent&lt;/strong&gt;：我騙裁判 Agent 說我有正確的標準答案。評判正確 +1 分，評判錯誤 -1 分。裁判說什麼就是真相，然後我再自己查證。絕大多數情況下這種方法有著驚人的高準確率——偶爾確實還會出錯，但這整體上是一個近乎完美的流程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;也許你會發現只用 Bug 發現 Agent 就夠了，但這個方法對我有效，因為它利用了每個 Agent 被硬編碼要做的事——想要討好。&lt;/p&gt;
+&lt;h3 id=&#34;怎麼知道什麼真正有用&#34;&gt;怎麼知道什麼真正有用？
+&lt;/h3&gt;&lt;p&gt;這個問題看起來很難，需要你深入研究、站在 AI 更新的最前沿，但實際上非常簡單……&lt;strong&gt;如果 OpenAI 和 Claude 都實作或收購了實作了某個功能的東西……那它大機率是有用的。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;注意到 skills 現在到處都是，並且成為 Claude 和 Codex 官方文件的一部分了嗎？&lt;/li&gt;
+&lt;li&gt;看到 OpenAI 收購 OpenClaw 了嗎？&lt;/li&gt;
+&lt;li&gt;看到 Claude 立刻加入了記憶、語音和遠端工作了嗎？&lt;/li&gt;
+&lt;li&gt;那 planning（計劃）呢？還記得一群人發現先做計劃再實作真的很有用，然後它變成了一個核心功能嗎？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是啊……那些都有用！&lt;/p&gt;
+&lt;p&gt;還記得無休止的 stop-hook 曾經多有用嗎，因為 Agent 那時有多不願做長時間工作……然後 Codex 5.2 釋出，那一夜之間就消失了？是啊……&lt;/p&gt;
+&lt;p&gt;這就是你需要知道的全部。如果某個東西真的重要且有用，Claude 和 Codex 就會實作它們！所以你不用太擔心使用&amp;quot;新東西&amp;quot;或熟悉&amp;quot;新東西&amp;rdquo;。你甚至不用&amp;quot;跟上潮流&amp;quot;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;就是每隔一段時間更新你的命令列工具，讀一讀新增了哪些功能。這已經遠遠足夠了。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;壓縮上下文與假設&#34;&gt;壓縮、上下文與假設
+&lt;/h3&gt;&lt;p&gt;一個讓你在使用 Agent 過程中會意識到的大坑：有時候它們看起來像地球上最聰明的存在，而另一些時候你簡直無法相信自己上當了。&lt;/p&gt;
+&lt;p&gt;主要區別在於：&lt;strong&gt;Agent 是否需要做出任何&amp;quot;假設&amp;quot;或&amp;quot;填補空白&amp;quot;。&lt;/strong&gt; 到今天為止，它們在&amp;quot;連線點&amp;quot;、&amp;ldquo;填補空白&amp;quot;或做假設方面仍然非常糟糕。每當它們那麼做的時候，立刻就會看出它們顯然已經走偏了。&lt;/p&gt;
+&lt;p&gt;CLAUDE.md 中最重要的規則之一，就是關於如何處理獲取上下文的規則。無論何時，只要 Agent 讀取 CLAUDE.md（這總是在壓縮之後），就讓它第一個讀那條規則。在上下文獲取規則中，幾條簡單的指令可以產生大作用——&lt;strong&gt;重讀你的任務計劃，並在繼續之前重讀與任務相關的檔案。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;讓-agent-知道任務該何時結束&#34;&gt;讓 Agent 知道任務該何時結束
+&lt;/h3&gt;&lt;p&gt;我們對&amp;quot;任務什麼時候算完成&amp;quot;有比較強的直覺。對 Agent 來說，當前智慧最大的問題是：它知道怎麼開始一個任務，但不知道怎麼結束。&lt;/p&gt;
+&lt;p&gt;這常常導致非常令人沮喪的結果——Agent 實作一大堆樁（stubs），然後就算交差了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;測試對 Agent 來說是一個非常非常好的里程碑&lt;/strong&gt;，因為它們是確定性的，你可以設非常清晰的期望。&lt;em&gt;&amp;ldquo;除非這 X 個測試全部通過，否則你的任務不算完成；而且不準你編輯這些測試。&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;然後你只需稽核測試，一旦所有測試通過，就可以安心了。你當然可以自動化這一步，但要點是——記住&amp;quot;任務的終點&amp;quot;對人類來說非常自然，對 Agent 來說卻不然。&lt;/p&gt;
+&lt;p&gt;你知道還有什麼是最近變得可行的任務終點嗎？&lt;strong&gt;截圖 + 驗證。&lt;/strong&gt; 你可以讓 Agent 一直實作到所有測試通過，然後讓它截圖，並在截圖結果上驗證&amp;quot;設計或行為&amp;rdquo;。這讓你可以讓 Agent 不斷迭代、向你想要的設計靠攏，而不用擔心它在第一次嘗試後就停了！&lt;/p&gt;
+&lt;p&gt;這自然延伸出來的做法是建立一個與 Agent 的&lt;strong&gt;任務合約&lt;/strong&gt;，並嵌入到規則中。比如，&lt;code&gt;{TASK}_CONTRACT.md&lt;/code&gt; 規定了在允許結束工作階段之前必須完成的事項。在合約中，你指定你的測試、截圖和其他在確認任務可以結束之前需要完成的驗證！&lt;/p&gt;
+&lt;h3 id=&#34;永遠執行的-agent&#34;&gt;永遠執行的 Agent
+&lt;/h3&gt;&lt;p&gt;我常被問到的一個問題是：那些人怎麼能讓 Agent 跑 24 小時還不跑偏？&lt;/p&gt;
+&lt;p&gt;這裡有個非常簡單的辦法。&lt;strong&gt;建立一個 stop-hook，阻止 Agent 在 &lt;code&gt;{TASK}_CONTRACT.md&lt;/code&gt; 的所有部分完成之前結束工作階段。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你有 100 個設計良好的合約，包含了你想要構建的確切內容，那麼你的 stop-hook 會阻止 Agent 在這 100 個合約全部完成之前終止——包括所有需要執行的測試和驗證！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;專業提示：&lt;/strong&gt; 我不認為長時間執行的 24 小時工作階段是做事的&amp;quot;最佳方式&amp;quot;。部分原因是，這在架構上本身就強制了上下文膨脹，將來自不相關的合約引入同一工作階段！所以，我不推薦。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一個更好的 Agent 自動化方式——&lt;strong&gt;每個合約一個新工作階段。&lt;/strong&gt; 當你需要做事時建立合約。搞一個編排層來處理：每當&amp;quot;有事要做&amp;quot;就建立新合約，並為那個合約建立新工作階段來工作。這會徹底改變你的 agentic 體驗。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;迭代迭代再迭代&#34;&gt;迭代，迭代，再迭代
+&lt;/h2&gt;&lt;p&gt;如果你僱了一個行政助理，你指望 TA 第一天就知道你的日程安排嗎？或者你怎麼喝咖啡？你吃晚飯是 6 點而不是 8 點？顯然不是。偏好是隨著時間逐步建立的。&lt;/p&gt;
+&lt;p&gt;你的 Agent 也一樣。&lt;strong&gt;從極簡開始。忘掉那些複雜的結構或 harness。給基礎 CLI 一個機會。&lt;/strong&gt; 然後，逐步加上你的偏好。怎麼做？&lt;/p&gt;
+&lt;h3 id=&#34;rules規則&#34;&gt;Rules（規則）
+&lt;/h3&gt;&lt;p&gt;如果你不想讓你的 Agent 做某件事，把它寫成一條規則。然後在 CLAUDE.md 中讓 Agent 知道這條規則。類似：&amp;ldquo;在你寫程式碼之前，讀一下 &lt;code&gt;coding-rules.md&lt;/code&gt;。&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;規則可以巢狀，規則可以帶條件！&amp;ldquo;如果你在寫程式碼，讀 &lt;code&gt;coding-rules.md&lt;/code&gt;；如果你在寫測試，讀 &lt;code&gt;coding-test-rules.md&lt;/code&gt;。如果測試在失敗，讀 &lt;code&gt;coding-test-failing-rules.md&lt;/code&gt;。&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;你可以建立任意邏輯分支的規則來遵循，Claude（和 Codex）會愉快地跟著走——只要在 CLAUDE.md 中做了清晰的說明。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;這是我給的第一條實用建議：&lt;/strong&gt; 把 CLAUDE.md 當作一個邏輯化的、巢狀的目錄，指明在給定的場景和預期結果下去哪裡找上下文。它應該盡量極簡，只包含 IF-ELSE——去哪裡尋找上下文的邏輯。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果你看到 Agent 做了讓你不認可的事，把它加為規則，告訴 Agent 在做那件事之前先讀那條規則，那麼它幾乎肯定不會再做。&lt;/p&gt;
+&lt;h3 id=&#34;skills技能&#34;&gt;Skills（技能）
+&lt;/h3&gt;&lt;p&gt;Skills 像 Rules，但區別在於 Rules 更適合編碼偏好，Skills 更適合編碼&lt;strong&gt;配方（recipes）&lt;/strong&gt;。如果你有特定的做事方式——想要某件事以特定方式完成——那你應該把它嵌入一個 Skill 裡。&lt;/p&gt;
+&lt;p&gt;事實上，人們經常抱怨自己不知道 Agent 會怎麼解決某個問題，這很可怕。那好，如果你想要一種讓這件事變得確定性的方法，&lt;strong&gt;讓 Agent 研究一下它會怎麼解決那個問題，然後寫成一個 Skill。&lt;/strong&gt; 你會看到 Agent 處理那個問題的方法，你可以在它真正遇到那個問題之前糾正或改進。&lt;/p&gt;
+&lt;p&gt;你怎麼讓 Agent 知道這個 Skill 存在？對！用 CLAUDE.md 說：&amp;ldquo;當你看到這種場景、需要處理這件事時，讀一下這個 SKILL.md。&amp;rdquo;&lt;/p&gt;
+&lt;h3 id=&#34;管理-rules-和-skills&#34;&gt;管理 Rules 和 Skills
+&lt;/h3&gt;&lt;p&gt;你肯定想繼續新增 Rules 和 Skills 來給你的 Agent。這是賦予它個性和偏好的記憶。其他幾乎所有東西都是過度設計。&lt;/p&gt;
+&lt;p&gt;一旦你開始這樣做，Agent 對你來說就會像魔法一樣。它會按照&amp;quot;你想要的方式&amp;quot;做事。然後你終於會覺得自己&amp;quot;真正懂了&amp;quot;agentic engineering。&lt;/p&gt;
+&lt;p&gt;然後……&lt;strong&gt;你會發現效能又開始惡化了。&lt;/strong&gt; 怎麼回事？！&lt;/p&gt;
+&lt;p&gt;簡單。隨著你新增越來越多的 Rules 和 Skills，它們開始互相矛盾，或者 Agent 開始有太多的上下文膨脹。如果你在 Agent 開始程式設計之前需要它讀 14 個 Markdown 檔案，它就有了同樣的問題——大量無用的資訊。&lt;/p&gt;
+&lt;p&gt;那麼，你怎麼辦？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;你清理。&lt;/strong&gt; 你告訴 Agent 去&amp;quot;做一次 spa&amp;quot;，整合 Rules 和 Skills，透過問你的更新偏好來消除矛盾。&lt;/p&gt;
+&lt;p&gt;然後魔法又回來了。&lt;/p&gt;
+&lt;p&gt;就是這樣。這真的是祕密。保持簡單，用 Rules 和 Skills 和 CLAUDE.md 作為目錄，同時&lt;strong&gt;宗教般虔誠地&lt;/strong&gt;關注它們的上下文和設計侷限。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;承擔你的結果&#34;&gt;承擔你的結果
+&lt;/h2&gt;&lt;p&gt;今天沒有一個 Agent 是完美的。你可以把大量的設計和實作委派給 Agent，但你得對結果負責。&lt;/p&gt;
+&lt;p&gt;所以小心行事……並享受樂趣！玩來自未來的玩具太快了（當然，用它們來做嚴肅的事）！&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>CMU 15-213（CS:APP）Bomb Lab 通關實錄：從組合語言小白到拆彈高手</title>
         <link>https://Siborne.top/zh-tw/p/csapp-bomb-lab/</link>
         <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
         
         <guid>https://Siborne.top/zh-tw/p/csapp-bomb-lab/</guid>
-        <description>&lt;img src="https://img.siborne.top/2026/07/001046a9f14e2167f21216c20bc9c7c6.png" alt="Featured image of post CMU 15-213（CS:APP）Bomb Lab 通關實錄：從組合語言小白到拆彈高手" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://img.siborne.top/2026/07/3f3c5067d570f9d86dee61bc7b8b90e4.png" alt="Featured image of post CMU 15-213（CS:APP）Bomb Lab 通關實錄：從組合語言小白到拆彈高手" /&gt;&lt;blockquote&gt;
 &lt;p&gt;這組合語言是真難熬。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/06/5f0496de2d95e010c3648035b42ce5a7.png&#34;

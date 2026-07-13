@@ -7,7 +7,576 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Siborne</copyright>
-        <lastBuildDate>Thu, 04 Jun 2026 01:41:49 +0800</lastBuildDate><atom:link href="https://Siborne.top/en/categories/ai/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 13 Jul 2026 20:46:05 +0800</lastBuildDate><atom:link href="https://Siborne.top/en/categories/ai/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>5 Agent Skill Design Patterns Every ADK Developer Should Know</title>
+        <link>https://Siborne.top/en/p/agent-skill-design-patterns/</link>
+        <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/en/p/agent-skill-design-patterns/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/07/654c27e8a8aa74e8a5a227554c8dbd93.png" alt="Featured image of post 5 Agent Skill Design Patterns Every ADK Developer Should Know" /&gt;&lt;blockquote&gt;
+&lt;p&gt;This article is translated and adapted from a blog post by &lt;a class=&#34;link&#34; href=&#34;https://x.com/Saboo_Shubham&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;@Saboo_Shubham&lt;/a&gt; and &lt;a class=&#34;link&#34; href=&#34;https://x.com/lavinigam&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;@lavinigam&lt;/a&gt;, shared for learning purposes only. If there is any infringement, please contact for removal.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When it comes to &lt;code&gt;SKILL.md&lt;/code&gt;, developers tend to fixate on the format — getting the YAML right, structuring directories, and following the spec. But with more than 30 agent tools (like Claude Code, Gemini CLI, and Cursor) standardizing on the same layout, the formatting problem is practically obsolete.&lt;/p&gt;
+&lt;p&gt;The real challenge now is &lt;strong&gt;content design&lt;/strong&gt;. The specification explains how to package a skill, but offers zero guidance on how to structure the logic inside it. For example, a skill that wraps FastAPI conventions operates completely differently from a four-step documentation pipeline, even though their &lt;code&gt;SKILL.md&lt;/code&gt; files look identical on the outside.&lt;/p&gt;
+&lt;p&gt;By studying how skills are built across the ecosystem — from Anthropic&amp;rsquo;s repositories to Vercel and Google&amp;rsquo;s internal guidelines — there are five recurring design patterns that can help developers build more reliable agents.&lt;/p&gt;
+&lt;p&gt;This article covers each one with working ADK code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tool Wrapper&lt;/strong&gt;: Make your agent an instant expert on any library&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generator&lt;/strong&gt;: Produce structured documents from a reusable template&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reviewer&lt;/strong&gt;: Score code against a checklist by severity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inversion&lt;/strong&gt;: The agent interviews you before acting&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pipeline&lt;/strong&gt;: Enforce a strict multi-step workflow with checkpoints&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/1d4e8cad1c63fa30c3da0a3d8a4043d0.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;pattern-1-the-tool-wrapper&#34;&gt;Pattern 1: The Tool Wrapper
+&lt;/h2&gt;&lt;p&gt;A Tool Wrapper gives your agent on-demand context for a specific library. Instead of hardcoding API conventions into your system prompt, you package them into a skill. Your agent only loads this context when it actually works with that technology.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/71ee894d64c8a544efd9d41bdbdb9bff.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;It is the simplest pattern to implement. The &lt;code&gt;SKILL.md&lt;/code&gt; file listens for specific library keywords in the user&amp;rsquo;s prompt, dynamically loads your internal documentation from the &lt;code&gt;references/&lt;/code&gt; directory, and applies those rules as absolute truth. This is the exact mechanism you use to distribute your team&amp;rsquo;s internal coding guidelines or specific framework best practices directly into your developers&amp;rsquo; workflows.&lt;/p&gt;
+&lt;p&gt;Here is an example of a Tool Wrapper that teaches an agent how to write FastAPI code. Notice how the instructions explicitly tell the agent to load the &lt;code&gt;conventions.md&lt;/code&gt; file only when it starts reviewing or writing code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/api-expert/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: api-expert
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: FastAPI development best practices and conventions. Use when building, reviewing,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  or debugging FastAPI applications, REST APIs, or Pydantic models.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: tool-wrapper
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  domain: fastapi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are an expert in FastAPI development. Apply these conventions to the user&amp;#39;s code or question.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Core Conventions
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Load &amp;#39;references/conventions.md&amp;#39; for the complete list of FastAPI best practices.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## When Reviewing Code
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;1.&lt;/span&gt; Load the conventions reference
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;2.&lt;/span&gt; Check the user&amp;#39;s code against each convention
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;3.&lt;/span&gt; For each violation, cite the specific rule and suggest the fix
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## When Writing Code
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;1.&lt;/span&gt; Load the conventions reference
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;2.&lt;/span&gt; Follow every convention exactly
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;3.&lt;/span&gt; Add type annotations to all function signatures
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;4.&lt;/span&gt; Use Annotated style for dependency injection
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;pattern-2-the-generator&#34;&gt;Pattern 2: The Generator
+&lt;/h2&gt;&lt;p&gt;While the Tool Wrapper applies knowledge, the Generator enforces consistent output. If you struggle with an agent generating different document structures on every run, the Generator solves this by orchestrating a fill-in-the-blank process.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/71ee894d64c8a544efd9d41bdbdb9bff.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;It leverages two optional directories: &lt;code&gt;assets/&lt;/code&gt; holds your output template, and &lt;code&gt;references/&lt;/code&gt; holds your style guide. The instructions act as a project manager. They tell the agent to load the template, read the style guide, ask the user for missing variables, and populate the document. This is practical for generating predictable API documentation, standardizing commit messages, or scaffolding project architectures.&lt;/p&gt;
+&lt;p&gt;In this technical report generator example, the skill file does not contain the actual layout or the grammar rules. It simply coordinates the retrieval of those assets and forces the agent to execute them step by step:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/report-generator/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: report-generator
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: Generates structured technical reports in Markdown. Use when the user asks to write,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  create, or draft a report, summary, or analysis document.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: generator
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  output-format: markdown
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are a technical report generator. Follow these steps exactly:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 1: Load &amp;#39;references/style-guide.md&amp;#39; for tone and formatting rules.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 2: Load &amp;#39;assets/report-template.md&amp;#39; for the required output structure.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 3: Ask the user for any missing information needed to fill the template:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Topic or subject
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Key findings or data points
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Target audience (technical, executive, general)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 4: Fill the template following the style guide rules. Every section in the template must be
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;present in the output.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 5: Return the completed report as a single Markdown document.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;pattern-3-the-reviewer&#34;&gt;Pattern 3: The Reviewer
+&lt;/h2&gt;&lt;p&gt;The Reviewer pattern separates &lt;em&gt;what&lt;/em&gt; to check from &lt;em&gt;how&lt;/em&gt; to check it. Rather than writing a long system prompt detailing every code smell, you store a modular rubric inside a &lt;code&gt;references/review-checklist.md&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/50240ec3e5129d0a86f45904cc881a29.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;When a user submits code, the agent loads this checklist and methodically scores the submission, grouping its findings by severity. If you swap out a Python style checklist for an OWASP security checklist, you get a completely different, specialized audit using the exact same skill infrastructure. It is a highly effective way to automate PR reviews or catch vulnerabilities before a human looks at the code.&lt;/p&gt;
+&lt;p&gt;The following code reviewer skill demonstrates this separation. The instructions remain static, but the agent dynamically loads the specific review criteria from an external checklist and forces a structured, severity-based output:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/code-reviewer/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: code-reviewer
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: Reviews Python code for quality, style, and common bugs. Use when the user submits
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  code for review, asks for feedback on their code, or wants a code audit.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: reviewer
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  severity-levels: error,warning,info
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are a Python code reviewer. Follow this review protocol exactly:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 1: Load &amp;#39;references/review-checklist.md&amp;#39; for the complete review criteria.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 2: Read the user&amp;#39;s code carefully. Understand its purpose before critiquing.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 3: Apply each rule from the checklist to the code. For every violation found:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Note the line number (or approximate location)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Classify severity: error (must fix), warning (should fix), info (consider)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Explain WHY it&amp;#39;s a problem, not just WHAT is wrong
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Suggest a specific fix with corrected code
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step 4: Produce a structured review with these sections:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; **Summary**: What the code does, overall quality assessment
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; **Findings**: Grouped by severity (errors first, then warnings, then info)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; **Score**: Rate 1-10 with brief justification
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; **Top 3 Recommendations**: The most impactful improvements
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;pattern-4-inversion&#34;&gt;Pattern 4: Inversion
+&lt;/h2&gt;&lt;p&gt;Agents inherently want to guess and generate immediately. The Inversion pattern flips this dynamic. Instead of the user driving the prompt and the agent executing, the agent acts as an interviewer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/d182b12bb694e5b9444d707d1a471cde.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Inversion relies on explicit, non-negotiable gating instructions (like &amp;ldquo;DO NOT start building until all phases are complete&amp;rdquo;) to force the agent to gather context first. It asks structured questions sequentially and waits for your answers before moving to the next phase. The agent refuses to synthesize a final output until it has a complete picture of your requirements and deployment constraints.&lt;/p&gt;
+&lt;p&gt;To see this in action, look at this project planner skill. The crucial element here is the strict phasing and the explicit gatekeeping prompt that stops the agent from synthesizing the final plan until all user answers are collected:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/project-planner/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: project-planner
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: Plans a new software project by gathering requirements through structured questions
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  before producing a plan. Use when the user says &amp;#34;I want to build&amp;#34;, &amp;#34;help me plan&amp;#34;, &amp;#34;design a system&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  or &amp;#34;start a new project&amp;#34;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: inversion
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  interaction: multi-turn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are conducting a structured requirements interview. DO NOT start building or designing until
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;all phases are complete.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Phase 1 — Problem Discovery (ask one question at a time, wait for each answer)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ask these questions in order. Do not skip any.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q1: &amp;#34;What problem does this project solve for its users?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q2: &amp;#34;Who are the primary users? What is their technical level?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q3: &amp;#34;What is the expected scale? (users per day, data volume, request rate)&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Phase 2 — Technical Constraints (only after Phase 1 is fully answered)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q4: &amp;#34;What deployment environment will you use?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q5: &amp;#34;Do you have any technology stack requirements or preferences?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Q6: &amp;#34;What are the non-negotiable requirements? (latency, uptime, compliance, budget)&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Phase 3 — Synthesis (only after all questions are answered)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;1.&lt;/span&gt; Load &amp;#39;assets/plan-template.md&amp;#39; for the output format
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;2.&lt;/span&gt; Fill in every section of the template using the gathered requirements
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;3.&lt;/span&gt; Present the completed plan to the user
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;4.&lt;/span&gt; Ask: &amp;#34;Does this plan accurately capture your requirements? What would you change?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;5.&lt;/span&gt; Iterate on feedback until the user confirms
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;pattern-5-the-pipeline&#34;&gt;Pattern 5: The Pipeline
+&lt;/h2&gt;&lt;p&gt;For complex tasks, you cannot afford skipped steps or ignored instructions. The Pipeline pattern enforces a strict, sequential workflow with hard checkpoints.&lt;/p&gt;
+&lt;p&gt;The instructions themselves serve as the workflow definition. By implementing explicit diamond gate conditions (such as requiring user approval before moving from docstring generation to final assembly), the Pipeline ensures an agent cannot bypass a complex task and present an unvalidated final result.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/afeb53c30f73111feb234289eadee00d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;This pattern utilizes all optional directories, pulling in different reference files and templates only at the specific step where they are needed, keeping the context window clean.&lt;/p&gt;
+&lt;p&gt;In this documentation pipeline example, notice the explicit gate conditions. The agent is explicitly forbidden from moving to the assembly phase until the user confirms the generated docstrings in the previous step:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# skills/doc-pipeline/SKILL.md
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;name: doc-pipeline
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;description: Generates API documentation from Python source code through a multi-step pipeline.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Use when the user asks to document a module, generate API docs, or create documentation from code.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;metadata:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  pattern: pipeline
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  steps: &amp;#34;4&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You are running a documentation generation pipeline. Execute each step in order. Do NOT skip steps
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;or proceed if a step fails.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Step 1 — Parse &amp;amp; Inventory
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Analyze the user&amp;#39;s Python code to extract all public classes, functions, and constants. Present
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;the inventory as a checklist. Ask: &amp;#34;Is this the complete public API you want documented?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Step 2 — Generate Docstrings
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;For each function lacking a docstring:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Load &amp;#39;references/docstring-style.md&amp;#39; for the required format
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Generate a docstring following the style guide exactly
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Present each generated docstring for user approval
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Do NOT proceed to Step 3 until the user confirms.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Step 3 — Assemble Documentation
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Load &amp;#39;assets/api-doc-template.md&amp;#39; for the output structure. Compile all classes, functions, and
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docstrings into a single API reference document.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## Step 4 — Quality Check
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Review against &amp;#39;references/quality-checklist.md&amp;#39;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Every public symbol documented
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; Every parameter has a type and description
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt; At least one usage example per function
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Report results. Fix issues before presenting the final document.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;choosing-the-right-agent-skill-pattern&#34;&gt;Choosing the Right Agent Skill Pattern
+&lt;/h2&gt;&lt;p&gt;Each pattern answers a different question. Use this decision tree to find the right one for your use-case:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.siborne.top/2026/07/8b0a1c98b7a8e3f95c461a7c8e4443ca.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;and-finally-patterns-compose&#34;&gt;And Finally, Patterns Compose
+&lt;/h2&gt;&lt;p&gt;These patterns are not mutually exclusive. They compose.&lt;/p&gt;
+&lt;p&gt;A Pipeline skill can include a Reviewer step at the end to double-check its own work. A Generator can rely on Inversion at the very beginning to gather the necessary variables before filling out its template. Thanks to ADK&amp;rsquo;s &lt;code&gt;SkillToolset&lt;/code&gt; and progressive disclosure, your agent only spends context tokens on the exact patterns it needs at runtime.&lt;/p&gt;
+&lt;p&gt;Stop trying to cram complex and fragile instructions into a single system prompt. Break your workflows down, apply the right structural pattern, and build reliable agents.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Get started today&lt;/strong&gt;: The Agent Skills specification is open-source and natively supported across ADK. You already know how to package the format. Now you know how to design the content. Go build smarter agents with &lt;a class=&#34;link&#34; href=&#34;https://google.github.io/adk-docs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Google Agent Development Kit&lt;/a&gt;.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>How To Be A World-Class Agentic Engineer</title>
+        <link>https://Siborne.top/en/p/world-class-agentic-engineer/</link>
+        <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://Siborne.top/en/p/world-class-agentic-engineer/</guid>
+        <description>&lt;img src="https://img.siborne.top/2026/07/c557e6a5f187a17659949becc3065098.jpg" alt="Featured image of post How To Be A World-Class Agentic Engineer" /&gt;&lt;blockquote&gt;
+&lt;p&gt;This article is translated and adapted from &lt;a class=&#34;link&#34; href=&#34;https://x.com/systematicls/article/2028814227004395561&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;@systematicls&lt;/a&gt;, shared for learning purposes only. If there is any infringement, please contact for removal.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction
+&lt;/h2&gt;&lt;p&gt;You&amp;rsquo;re a developer. You&amp;rsquo;re using Claude and Codex CLI and you&amp;rsquo;re wondering everyday if you&amp;rsquo;re sufficiently juicing the shit out of Claude or Codex. Once in awhile you&amp;rsquo;re seeing it doing something incredibly dumb and you can&amp;rsquo;t comprehend why there&amp;rsquo;s a bunch of people out there who seem to be building virtual rockets while you struggle to stack two rocks.&lt;/p&gt;
+&lt;p&gt;You think it&amp;rsquo;s your harness or your plug-ins or your terminal or whatever. You use beads and opencode and zep and your CLAUDE.md is 26000 lines long. Yet, no matter what you do - you don&amp;rsquo;t understand why you can&amp;rsquo;t get any closer to heaven, whilst you watch other people frolic with the angels.&lt;/p&gt;
+&lt;p&gt;This is the ascension piece you&amp;rsquo;ve been waiting for.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Also, I have no dog in the race. When I say CLAUDE.md I also mean AGENT.md, when I say Claude I also mean Codex. I use both very extensively.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;One of the most interesting observations over the past couple of months has to be that &lt;strong&gt;nobody really knows how to maximally extract agent capabilities&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s like a small group of people seem to be able to get agents to be world builders and the rest are floundering about, getting analysis paralysis from the myriad of tools out there — thinking if they find the right combination of packages or skills or harnesses, they&amp;rsquo;ll unlock AGI.&lt;/p&gt;
+&lt;p&gt;Today, I want to dispel all of that and leave you guys with a simple, honest statement, and we&amp;rsquo;ll go from there. &lt;strong&gt;You don&amp;rsquo;t need the latest agentic harnesses, you don&amp;rsquo;t need to install a million packages and you absolutely do not need to feel the need to read a million things to stay competitive.&lt;/strong&gt; In fact, your enthusiasm is likely doing more harm than good.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not a tourist — I&amp;rsquo;ve been using agents from when they can barely write code. I&amp;rsquo;ve tried all the packages and all the harnesses and all the paradigms. I&amp;rsquo;ve built agentic factories to write signals, infrastructure and data pipelines, not &amp;ldquo;toy projects&amp;rdquo; — actual real world use-cases that have run in production, and after all that&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Today, I&amp;rsquo;m running a set-up that&amp;rsquo;s almost as barebones as you can go, and yet I&amp;rsquo;m doing the most ground-breaking work I&amp;rsquo;ve done with just basic CLI (Claude Code and Codex) and understanding a few basic principles about agentic engineering.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;understand-that-the-world-is-sprinting-by&#34;&gt;Understand That The World Is Sprinting By
+&lt;/h2&gt;&lt;p&gt;To start, the foundation companies are on a generational run and as you can see, they are not going to be slowing down anytime soon. Every progression of &amp;ldquo;agent intelligence&amp;rdquo; changes the way you work with them, because the agents are generally engineered to be more and more willing to follow instructions.&lt;/p&gt;
+&lt;p&gt;Just a few generations ago, if you wrote in your CLAUDE.md to read &lt;code&gt;READ_THIS_BEFORE_DOING_ANYTHING.md&lt;/code&gt; before it did anything, it will basically say &amp;ldquo;up yours&amp;rdquo; 50% of the time and just do whatever it wants to do. Today, it&amp;rsquo;s compliant to most instructions, even to complex nested instructions — e.g. you can say something to the effect of &amp;ldquo;Read A, then read B, and if C, then read D&amp;rdquo;, and for the most part, it will be happy to follow along.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The most important principle to hold is the realization that every new generation of agents will force you to rethink what is optimal, which is why less is more.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When you use many different libraries and harnesses, you lock yourself into a &amp;ldquo;solution&amp;rdquo; for a problem that may not exist given future generations of agents. Also, you know who the most enthusiastic, biggest users of agents are? That&amp;rsquo;s right — it&amp;rsquo;s the employees of the frontier companies, with unlimited token budget and the ACTUAL latest models. Do you understand the implications of that?&lt;/p&gt;
+&lt;p&gt;It means that if a real problem did exist, and there were a good solution for it, the frontier companies would be the biggest users of that solution. And you know what they will do next? They will incorporate that solution into their product. Why would a company let another product solve a real pain point and create external dependencies? Look at skills, memory harnesses, subagents, etc. They all started out as a &amp;ldquo;solution&amp;rdquo; to a real problem that was battle-tested and deemed to actually be useful.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;If something truly is ground-breaking and extended agentic use-cases in a meaningful way, it will be incorporated into the base products of the foundation companies in due time.&lt;/strong&gt; Trust me, the foundation companies are FLYING BY. So relax, you don&amp;rsquo;t need to install anything or use any other dependencies to do your best work.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;context-is-everything&#34;&gt;Context Is Everything
+&lt;/h2&gt;&lt;p&gt;No really. &lt;strong&gt;Context is everything.&lt;/strong&gt; That&amp;rsquo;s another problem with using a thousand different plug-ins and external dependencies. You suffer from context bloat — which is just a fancy way of saying your agents are overwhelmed with too much information!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Build me a hangman game in Python? That&amp;rsquo;s easy. Wait, what&amp;rsquo;s this note about &amp;ldquo;managing memory&amp;rdquo; from 26 sessions ago? Ah, the user has had a screen that was hanged from when we spawned too many sub-processes 71 sessions ago. Always write notes? Okay, no problem&amp;hellip; What does all this have to do with hangman?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You get the idea. &lt;strong&gt;You want to give your agents only the exact amount of information they need to do their tasks and nothing more!&lt;/strong&gt; The better you are in control of this, the better your agents will perform. Once you start introducing all kinds of wacky memory systems or plug-ins or too many skills that are poorly named and invoked, you start giving your agent instructions on how to build a bomb and a recipe for baking a cake when all you want it to do is write a nice little poem about the redwood forest.&lt;/p&gt;
+&lt;p&gt;So, again — strip all your dependencies, and then&amp;hellip;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;do-the-things-that-work&#34;&gt;Do The Things That Work
+&lt;/h2&gt;&lt;h3 id=&#34;be-precise-about-implementation&#34;&gt;Be Precise About Implementation
+&lt;/h3&gt;&lt;p&gt;Remember that context is everything?&lt;/p&gt;
+&lt;p&gt;Remember that you want to inject the exact amount of information to your agents to complete their tasks and nothing more?&lt;/p&gt;
+&lt;p&gt;The first way to ensuring that is the case is to &lt;strong&gt;separate research from implementation.&lt;/strong&gt; You want to be extremely precise about what you are asking from your agents.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s what happens when you are not precise: &lt;em&gt;&amp;ldquo;Go and build an auth system.&amp;rdquo;&lt;/em&gt; The agent has to research — what is an auth system? What are the available options? What are the pros and cons? Now it has to go scour the web for information it doesn&amp;rsquo;t actually need, and its context is filled with implementation details across a large range of possibilities. By the time it&amp;rsquo;s time to implement, you increase the chances it will get confused or hallucinate unnecessary or irrelevant details about the chosen implementation.&lt;/p&gt;
+&lt;p&gt;On the other hand, if you say &lt;em&gt;&amp;ldquo;Implement JWT authentication with bcrypt-12 password hashing, refresh token rotation with 7-day expiry&amp;hellip;&amp;rdquo;&lt;/em&gt; — then it doesn&amp;rsquo;t have to do research on any other alternatives. It knows exactly what you want, and thus can fill its context with implementation details.&lt;/p&gt;
+&lt;p&gt;Of course you won&amp;rsquo;t always have the implementation details. In that case, simple — &lt;strong&gt;create a research task on the various implementation possibilities, either decide it yourself or get an agent to decide on which implementation to go with, and then get another agent with a fresh context to implement.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Once you start thinking along these lines, you will spot areas in your workflow where your agents are needlessly polluted with context. Then, you can set up walls in your agentic workflows to abstract unnecessary information from your agents except for the very specific context needed to excel in their tasks.&lt;/p&gt;
+&lt;h3 id=&#34;the-design-limitations-of-sycophancy&#34;&gt;The Design Limitations Of Sycophancy
+&lt;/h3&gt;&lt;p&gt;Nobody would want to use a product that&amp;rsquo;s constantly shitting on them, telling them they are wrong, or completely ignoring their instructions. As such, &lt;strong&gt;these agents are going to be trying to agree with you and to do what you want them to do.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you give it an instruction to add &amp;ldquo;happy&amp;rdquo; to every 3 words it&amp;rsquo;s going to do its best to follow that instruction. Its willingness to follow is precisely what makes it such a fun product. However, this has really interesting characteristics — it means that if you say something like &lt;em&gt;&amp;ldquo;Find me a bug in the codebase&amp;rdquo;&lt;/em&gt;, &lt;strong&gt;it&amp;rsquo;s going to find you a bug — even if it has to engineer one.&lt;/strong&gt; Why? Because it wants very much so to listen to your instructions!&lt;/p&gt;
+&lt;p&gt;Most people are quick to complain about LLMs hallucinating or engineering things that don&amp;rsquo;t exist, without realizing that &lt;strong&gt;they are the problem.&lt;/strong&gt; If you ask for something, it will deliver — even if it has to stretch the truth a little!&lt;/p&gt;
+&lt;p&gt;So, what do you do? I find that &lt;strong&gt;&amp;ldquo;neutral&amp;rdquo; prompts work&lt;/strong&gt;, where I&amp;rsquo;m not biasing the agent towards an outcome. For example, I don&amp;rsquo;t say &amp;ldquo;Find me a bug in the database&amp;rdquo;, instead, I say &lt;em&gt;&amp;ldquo;Search through the database, try to follow along with the logic of each component, and report back all findings.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;A neutral prompt like this sometimes surfaces bugs, and sometimes will just matter-of-factly state how the code runs. But it doesn&amp;rsquo;t bias the agent into thinking there is a bug.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Another way I deal with sycophancy is to use it to my advantage.&lt;/strong&gt; I know the agent is trying to please and trying to follow my instructions, and that I can bias it one way or the other. Here&amp;rsquo;s my approach:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bug-finder agent&lt;/strong&gt;: I tell it I will give it +1 for bugs with low impact, +5 for bugs with some impact, and +10 for bugs with critical impact. This agent becomes hyper enthusiastic and identifies all different types of bugs (even the ones that are not actually bugs). I think of this as the &lt;em&gt;superset&lt;/em&gt; of all possible bugs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Adversarial agent&lt;/strong&gt;: For every bug the agent is able to disprove, it gets the score of that bug. But if it gets it wrong, it gets -2× the score. So this agent aggressively tries to disprove bugs (even the real ones), but with some caution. I think of this as the &lt;em&gt;subset&lt;/em&gt; of all actual bugs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Referee agent&lt;/strong&gt;: I lie and tell the referee agent that I have the actual correct ground truth, and it gets +1 for correct scoring and -1 for wrong. Whatever the referee says is the truth, I inspect to make sure. For the most part this is frighteningly high fidelity — once in awhile they do still get some things wrong, but this is now a nearly flawless exercise.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Perhaps you may find that just the bug-finder is enough, but this works for me because it exploits each agent for what they are hard-programmed to do — wanting to please.&lt;/p&gt;
+&lt;h3 id=&#34;how-do-you-know-what-works-or-is-useful&#34;&gt;How Do You Know What Works Or Is Useful?
+&lt;/h3&gt;&lt;p&gt;This one might seem tricky, but it&amp;rsquo;s very simple&amp;hellip; &lt;strong&gt;If OpenAI and Claude both implement it or acquire something that implements it&amp;hellip; It&amp;rsquo;s probably useful.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Notice &amp;ldquo;skills&amp;rdquo; are everywhere now and are part of the official document of both Claude and Codex?&lt;/li&gt;
+&lt;li&gt;Saw how OpenAI acquired OpenClaw?&lt;/li&gt;
+&lt;li&gt;Saw how Claude immediately added memory, voices and remote work?&lt;/li&gt;
+&lt;li&gt;How about planning? Remember when a bunch of guys discovered planning before implementation was REALLY useful, and then it got turned into a core functionality?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Yeah&amp;hellip; Those are useful!&lt;/p&gt;
+&lt;p&gt;Remember when endless stop-hooks were super useful because agents were so unwilling to do long running work&amp;hellip; And then Codex 5.2 rolled out and that disappeared overnight? Yeah&amp;hellip;&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s all you need to know. If it&amp;rsquo;s really important and useful, Claude and Codex will implement them! So you don&amp;rsquo;t need to have too much worry about using &amp;ldquo;the new thing&amp;rdquo; or familiarizing yourself with &amp;ldquo;the new thing&amp;rdquo;. You don&amp;rsquo;t even need to &amp;ldquo;stay up to date&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Just update your CLI tool of choice every once in awhile and read what new features have been added. That&amp;rsquo;s MORE than sufficient.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;compaction-context-and-assumptions&#34;&gt;Compaction, Context And Assumptions
+&lt;/h3&gt;&lt;p&gt;One gigantic gotcha is that sometimes agents seem like the smartest beings on the planet, and at other times you just can&amp;rsquo;t believe you had the wool pulled over your eyes.&lt;/p&gt;
+&lt;p&gt;The main difference is &lt;strong&gt;whether or not the agent has had to make any assumptions or &amp;ldquo;fill in the gaps&amp;rdquo;.&lt;/strong&gt; As of today, they are still atrocious at &amp;ldquo;connecting the dots&amp;rdquo;, &amp;ldquo;filling in the gaps&amp;rdquo; or making assumptions. Whenever they do that, it&amp;rsquo;s immediately obvious that they&amp;rsquo;ve made an obvious turn for the worse.&lt;/p&gt;
+&lt;p&gt;One of the most important rules in CLAUDE.md is a rule on how to deal with grabbing context. Instruct your agent to read that rule the first thing whenever it reads CLAUDE.md (which is always after compaction). As part of the grabbing context rule, a few simple instructions that go a long way are: &lt;strong&gt;re-reading your task plan, and re-reading the relevant files (to the task) before continuing.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;letting-your-agents-know-how-to-end-the-task&#34;&gt;Letting Your Agents Know How To End The Task
+&lt;/h3&gt;&lt;p&gt;We have a pretty strong idea of when a task is &amp;ldquo;complete&amp;rdquo;. For an agent, the biggest problem of current intelligence is that it knows how to start a task, but not how to end the task.&lt;/p&gt;
+&lt;p&gt;This will often lead to very frustrating outcomes, where an agent ends up implementing stubs and calls it a day.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tests are a very very good milestone for agents&lt;/strong&gt;, because they are deterministic and you can set very clear expectations. &lt;em&gt;&amp;ldquo;Unless these X number of tests pass, your task is NOT complete; and you are NOT allowed to edit the tests.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Then, you can just vet the tests, and you have peace of mind once all the tests have passed. You can automate this too, but the point is — remember that the &amp;ldquo;end of a task&amp;rdquo; is very natural for humans, but not so for agents.&lt;/p&gt;
+&lt;p&gt;You know what else has recently become a viable end-point for a task? &lt;strong&gt;Screenshots + verification.&lt;/strong&gt; You can get agents to implement something until all tests have passed, and then you can get it to take a screenshot and verify &amp;ldquo;DESIGN OR BEHAVIOR&amp;rdquo; on the screenshot. This allows you to get your agents to iterate and work towards a design that you want, without worrying that it stops after its first attempt!&lt;/p&gt;
+&lt;p&gt;The natural extension of this is to create a &lt;strong&gt;task contract&lt;/strong&gt; with your agent, and embed it into a rule. Say, &lt;code&gt;{TASK}_CONTRACT.md&lt;/code&gt; constitutes what needs to be done before you are allowed to terminate the session. In the contract, you will specify your tests, screenshots and other verification that needs to be done before you&amp;rsquo;ve certified that the task can end!&lt;/p&gt;
+&lt;h3 id=&#34;agents-that-run-forever&#34;&gt;Agents That Run Forever
+&lt;/h3&gt;&lt;p&gt;One of the questions I get often is how do people have these 24 hour running agents whilst ensuring that they don&amp;rsquo;t drift?&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s something very simple. &lt;strong&gt;Create a stophook that prevents the agent from terminating the session unless all parts of the &lt;code&gt;{TASK}_CONTRACT.md&lt;/code&gt; are completed.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you have 100 of such contracts that are well-specified and contain exactly what you want to be built, then your stop-hooks prevent the agents from terminating until all 100 contracts are fulfilled, including all the tests and verification that need to be ran!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Pro tip:&lt;/strong&gt; I&amp;rsquo;ve not found long-running, 24 hour sessions to be optimal at &amp;ldquo;doing things&amp;rdquo;. In part because this, by construction, forces context bloat by introducing context from unrelated contracts into the session! So, I don&amp;rsquo;t recommend it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here&amp;rsquo;s a better way for agent automation — &lt;strong&gt;a new session per contract.&lt;/strong&gt; Create contracts whenever you need to do something. Get an orchestration layer to handle creating new contracts whenever &amp;ldquo;something needs to be done&amp;rdquo;, and creating a new session to work on that contract. This will change your agentic experience completely.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iterate-iterate-iterate&#34;&gt;Iterate, Iterate, Iterate
+&lt;/h2&gt;&lt;p&gt;If you hire an executive assistant, are you expecting your EA to know your schedule from day 1? Or how you like your coffee? Whether you eat your dinner at 6pm instead of 8pm? Obviously not. You build your preferences as a function of time.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s the same with your agents. &lt;strong&gt;Start bare-bones. Forget the complex structures or harnesses. Give the basic CLI a chance.&lt;/strong&gt; Then, add on your preferences. How do you do this?&lt;/p&gt;
+&lt;h3 id=&#34;rules&#34;&gt;Rules
+&lt;/h3&gt;&lt;p&gt;If you don&amp;rsquo;t want your agent to do something, write it as a rule. Then let your agent know about this rule in your CLAUDE.md. Something like: &lt;em&gt;&amp;ldquo;Before you code, read &lt;code&gt;coding-rules.md&lt;/code&gt;.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Rules can be nested, and rules can be conditional! &lt;em&gt;&amp;ldquo;If you are coding, read &lt;code&gt;coding-rules.md&lt;/code&gt;, and if you are writing tests, read &lt;code&gt;coding-test-rules.md&lt;/code&gt;. If your tests are failing, read &lt;code&gt;coding-test-failing-rules.md&lt;/code&gt;.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;You can create arbitrary logic branches of rules to follow, and Claude (and Codex) will happily follow along, provided this is clearly specified in the CLAUDE.md.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;This is the FIRST practical advice:&lt;/strong&gt; treat your CLAUDE.md as a logical, nested directory of where to find context given a scenario and an outcome. It should be as barebones as possible, and only contain the IF-ELSE of where to go to seek the context.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you see your agent doing something and you disapprove, add it as a rule, and tell the agent to read the rule before it does THAT THING again, and it will most definitely not do it anymore.&lt;/p&gt;
+&lt;h3 id=&#34;skills&#34;&gt;Skills
+&lt;/h3&gt;&lt;p&gt;Skills are like rules, except rather than encoding preferences, they are better suited to encode &lt;strong&gt;recipes&lt;/strong&gt;. If you have a specific way of how you want something to be done, you want to embed it into a skill.&lt;/p&gt;
+&lt;p&gt;People often complain that they don&amp;rsquo;t know how agents might solve a problem, and that&amp;rsquo;s scary. Well, if you want a way to make that deterministic, &lt;strong&gt;ask the agent to research how it would solve the problem, and WRITE IT AS A SKILL.&lt;/strong&gt; You will see the agent&amp;rsquo;s approach to that problem and you can correct or improve it before it has ever encountered that problem in real life.&lt;/p&gt;
+&lt;p&gt;How do you let the agent know that this skill exists? Yes! You use the CLAUDE.md and say: &lt;em&gt;&amp;ldquo;When you see this scenario and you need to deal with THIS, read THIS SKILL.md.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&#34;dealing-with-rules-and-skills&#34;&gt;Dealing with Rules and Skills
+&lt;/h3&gt;&lt;p&gt;You definitely want to keep adding rules and skills to your agent. This is how you give it a personality and a memory for your preferences. Almost everything else is overkill.&lt;/p&gt;
+&lt;p&gt;Once you start to do this, your agent will then feel like magic to you. It will do things &amp;ldquo;the way you want it to&amp;rdquo;. And then you will finally feel like you &amp;ldquo;grok&amp;rdquo; agentic engineering.&lt;/p&gt;
+&lt;p&gt;And then&amp;hellip; &lt;strong&gt;You will see performance start to deteriorate again.&lt;/strong&gt; What gives?!&lt;/p&gt;
+&lt;p&gt;Easy. As you add more rules and skills, they are starting to contradict each other, or the agent is starting to have too much context bloat. If you need the agent to read 14 markdown files before it starts programming, it&amp;rsquo;s going to have the same issue about having a lot of useless information.&lt;/p&gt;
+&lt;p&gt;So, what do you do?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;You clean up.&lt;/strong&gt; You tell your agents to go for a spa day and to consolidate rules and skills and remove contradictions by asking you for your updated preferences.&lt;/p&gt;
+&lt;p&gt;And it will feel like magic again.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s it. That&amp;rsquo;s really the secret. Keep it simple, use rules and skills and CLAUDE.md as a directory, and be religiously mindful about their context and their design limitations.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;own-the-outcome&#34;&gt;Own The Outcome
+&lt;/h2&gt;&lt;p&gt;No agent today is perfect. You can relegate much of the design and implementation to the agents, but you will need to own the outcome.&lt;/p&gt;
+&lt;p&gt;So be careful&amp;hellip; And have fun! It&amp;rsquo;s such a joy to play with toys of the future (whilst doing serious things with them, obviously)!&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Beyond LLM: A Full Roadmap from Prompt Engineering to Multi-Agent AI Building</title>
         <link>https://Siborne.top/en/p/from-prompt-engineering-to-multi-agent-ai-builder-roadmap/</link>
         <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
