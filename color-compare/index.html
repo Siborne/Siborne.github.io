@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude 水彩冷压纸 — 博客配色</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ============================================================
+     TEXTURE — 三层冷压纸纹
+     粗颗粒 (0.35Hz / opacity 0.30) + 细噪 (0.85Hz / 0.22) + 纸浆横纹 (0.015/0.7Hz / 0.14)
+     ============================================================ */
+  body {
+    --grain-coarse: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.35' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.8 0 0 0 0.14  0.7 0 0 0 0.10  0.5 0 0 0 0.06  0 0 0 0.30 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+    --grain-fine: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.65 0 0 0 0.12  0.55 0 0 0 0.08  0.4 0 0 0 0.04  0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+    --grain-fiber: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015 0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.5 0 0 0 0.10  0.4 0 0 0 0.06  0.3 0 0 0 0.03  0 0 0 0.14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
+    --paper-texture: var(--grain-coarse), var(--grain-fine), var(--grain-fiber);
+  }
+
+  /* ============================================================
+     LIGHT — Claude 官方四色
+     Pampas #F4F3EE / White #FFF / Cloudy #B1ADA1 / Crail #C15F3C
+     ============================================================ */
+  :root {
+    --bg:           #F4F3EE;       /* Pampas — 米白纸底 */
+    --bg-card:      #FFFFFF;       /* White  — 卡片 */
+    --text:         #2D2925;       /* 暖棕黑 (Pampas 加深) */
+    --text2:        #B1ADA1;       /* Cloudy — 次级文字/辅助灰 */
+    --border:       #DCD9D2;       /* Pampas 加深一点的边框 */
+    --accent:       #C15F3C;       /* Crail — 唯一点缀色 */
+    --accent-hover: #A8502F;       /* Crail 深变体 */
+    --link:         #B45F3C;       /* Crail 微调链接态 */
+    --code-bg:      rgba(0,0,0,0.028);
+    --code-text:    #3D3832;
+    --bq-bg:        rgba(193,95,60,0.055);
+    --tag-bg:       rgba(177,173,161,0.25);  /* Cloudy tint */
+    --shadow-sm:    0 1px 3px rgba(0,0,0,.04), 0 0 0 1px rgba(0,0,0,0.02);
+    --shadow-md:    0 4px 18px rgba(0,0,0,.07);
+    --radius:       10px;
+    --radius-sm:    6px;
+  }
+
+  /* ============================================================
+     DARK — Claude 暗色演绎
+     暖黑底 + Pampas 提亮文字 + Cloudy 辅助 + Crail 提亮强调
+     ============================================================ */
+  .dark {
+    --bg:           #1C1A17;       /* 暖黑，比纯黑偏棕 2% */
+    --bg-card:      #25221E;       /* 暖深灰卡片 */
+    --text:         #EDEAE3;       /* Pampas 提亮 → 暖白文字 */
+    --text2:        #B1ADA1;       /* Cloudy — 暗色下次级文字 */
+    --border:       #3D3A35;
+    --accent:       #D4845B;       /* Crail 在暗色下提亮调暖 */
+    --accent-hover: #E89A74;
+    --link:         #D4845B;
+    --code-bg:      rgba(255,255,255,0.035);
+    --code-text:    #C5C0B5;
+    --bq-bg:        rgba(212,132,91,0.08);
+    --tag-bg:       rgba(177,173,161,0.12);
+    --shadow-sm:    0 1px 3px rgba(0,0,0,.25), 0 0 0 1px rgba(0,0,0,0.08);
+    --shadow-md:    0 4px 18px rgba(0,0,0,.40);
+  }
+
+  body {
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: #E2DFD8; color: var(--text); line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.dark-mode { background: #121110; }
+
+  .topbar {
+    background: #1C1A17; color: #EDEAE3; padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 10px;
+  }
+  .topbar h1 { font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; }
+  .topbar .brand-row {
+    display: flex; align-items: center; gap: 10px; font-size: 0.8rem; opacity: 0.7;
+  }
+  .topbar .brand-row span { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+  .topbar .toggle-btn {
+    background: #3D3A35; border: 1px solid #5A5650; color: #EDEAE3; padding: 8px 18px;
+    border-radius: 999px; cursor: pointer; font-size: 0.85rem; font-weight: 500;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .topbar .toggle-btn:hover { background: #5A5650; border-color: #C15F3C; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* ====== Brand strip ====== */
+  .brand-strip {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 30px;
+  }
+  .brand-chip {
+    display: flex; align-items: center; gap: 10px; font-size: 0.82rem;
+    background: #fff; padding: 10px 18px; border-radius: 999px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .brand-chip .dot { width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; }
+  .brand-chip strong { color: #2D2925; }
+  .brand-chip .hex { color: #B1ADA1; font-family: "JetBrains Mono",monospace; font-size: 0.75rem; }
+
+  /* ====== Panel ====== */
+  .texture-panel {
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 6px 30px rgba(0,0,0,.12);
+    margin-bottom: 24px;
+  }
+  .panel-header {
+    padding: 14px 22px; display: flex; align-items: center; gap: 8px;
+    font-weight: 700; font-size: 0.95rem;
+  }
+  .panel-body {
+    padding: 30px 28px;
+    background-image: var(--paper-texture);
+    background-color: var(--bg);
+  }
+
+  /* ====== Color grid ====== */
+  .color-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px; margin-bottom: 26px;
+  }
+  .color-chip {
+    display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+    border-radius: 10px; font-size: 0.77rem;
+    background: rgba(0,0,0,0.016);
+  }
+  .dark .color-chip { background: rgba(255,255,255,0.025); }
+  .color-chip .sw { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .color-chip .meta { line-height: 1.4; }
+  .color-chip .meta .label { font-weight: 600; }
+  .color-chip .meta .hex { font-family: "JetBrains Mono","SF Mono",monospace; font-size: 0.72rem; opacity: 0.55; }
+
+  /* ====== UI samples ====== */
+  .samples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; }
+  @media (max-width: 700px) { .samples-grid { grid-template-columns: 1fr; } }
+  .sample-block { margin-bottom: 16px; }
+  .sample-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 4px; opacity: 0.38; font-weight: 600;
+  }
+
+  .card-sample {
+    background: var(--bg-card); border-radius: var(--radius); padding: 18px;
+    box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+    position: relative; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card-sample:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .card-sample .title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+  .card-sample .desc { font-size: 0.82rem; color: var(--text2); margin-bottom: 8px; }
+  .card-sample .tag {
+    display: inline-block; padding: 3px 12px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; background: var(--tag-bg); color: var(--text2);
+  }
+
+  .link-sample { display: block; font-weight: 600; text-decoration: none; color: var(--link); font-size: 0.88rem; margin: 6px 0; }
+  .link-sample:hover { color: var(--accent-hover); text-decoration: underline; }
+
+  .code-sample {
+    background: var(--code-bg); color: var(--code-text); border-radius: var(--radius-sm);
+    padding: 12px 16px; font-family: "JetBrains Mono","SF Mono","Cascadia Code",monospace;
+    font-size: 0.78rem; line-height: 1.55; border: 1px solid var(--border);
+  }
+  .code-sample .kw { color: var(--accent); font-weight: 700; }
+  .code-sample .str { opacity: 0.55; }
+
+  .bq-sample {
+    padding: 11px 16px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.82rem; border-left: 3px solid var(--accent); background: var(--bq-bg);
+    color: var(--text2); font-style: italic;
+  }
+
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0; }
+  .btn-primary {
+    display: inline-block; padding: 9px 22px; border-radius: var(--radius-sm);
+    font-size: 0.82rem; font-weight: 600; text-decoration: none;
+    background: var(--accent); color: #FFF;
+    box-shadow: 0 2px 10px rgba(193,95,60,0.20);
+    transition: background 0.15s, box-shadow 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 4px 18px rgba(193,95,60,0.30); }
+  .btn-ghost {
+    display: inline-block; padding: 9px 22px; border-radius: var(--radius-sm);
+    font-size: 0.82rem; font-weight: 600; text-decoration: none;
+    background: transparent; color: var(--text); border: 1px solid var(--border);
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-ghost:hover { background: var(--tag-bg); border-color: var(--accent); }
+
+  .badge-sample {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 14px; border-radius: 999px; font-size: 0.76rem; font-weight: 600;
+    background: var(--accent); color: #FFF;
+    box-shadow: 0 2px 8px rgba(193,95,60,0.18);
+  }
+
+  .pagination-sample { display: flex; gap: 6px; margin: 8px 0; }
+  .pg-dot {
+    width: 32px; height: 32px; border-radius: var(--radius-sm); display: flex;
+    align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 500;
+    color: var(--text2); transition: all 0.15s;
+  }
+  .pg-dot.active { background: var(--accent); color: #FFF; font-weight: 700; }
+  .pg-dot:not(.active):hover { background: var(--tag-bg); }
+
+  /* ====== Texture zoom ====== */
+  .zoom-strip { display: flex; gap: 10px; margin-bottom: 26px; }
+  .zoom-box {
+    flex: 1; min-height: 70px; border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden; position: relative;
+  }
+  .zoom-box .label {
+    position: absolute; bottom: 6px; left: 8px;
+    font-size: 0.68rem; font-weight: 600; color: var(--text); opacity: 0.6; z-index: 1;
+  }
+  @media (max-width: 600px) { .zoom-strip { flex-wrap: wrap; } .zoom-box { min-width: 45%; flex: none; } }
+
+  /* ====== Approach comparison box ====== */
+  .approach-box {
+    margin-top: 28px; background: #fff; border-radius: 14px; padding: 22px 28px;
+    border: 1px solid #DCD9D2; box-shadow: 0 2px 12px rgba(0,0,0,.05);
+  }
+  .approach-box h3 { font-size: 1rem; margin-bottom: 12px; color: #2D2925; }
+  .approach-box table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+  .approach-box td { padding: 8px 12px; border-bottom: 1px solid #eee; vertical-align: top; }
+  .approach-box td:first-child { font-weight: 600; color: #2D2925; width: 110px; }
+  .approach-box td:nth-child(2) { color: #78736E; width: 140px; font-family: "JetBrains Mono",monospace; font-size: 0.78rem; }
+  .approach-box td:nth-child(3) { color: #B1ADA1; font-size: 0.82rem; }
+
+  .note {
+    margin-top: 18px; font-size: 0.84rem; color: var(--text2); text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Claude 品牌色 &times; 水彩冷压纸 — 博客配色</h1>
+  <div class="brand-row">
+    <span style="background:#C15F3C;"></span>Crail
+    <span style="background:#B1ADA1;"></span>Cloudy
+    <span style="background:#F4F3EE;"></span>Pampas
+    <span style="background:#FFF;border:1px solid #ddd;"></span>White
+  </div>
+  <button class="toggle-btn" id="toggleBtn">切换暗色模式</button>
+</div>
+
+<div class="container">
+
+<!-- Brand color chips -->
+<div class="brand-strip">
+  <div class="brand-chip"><div class="dot" style="background:#C15F3C;"></div><strong>Crail</strong><span class="hex">#C15F3C</span></div>
+  <div class="brand-chip"><div class="dot" style="background:#B1ADA1;border:1px solid #ddd;"></div><strong>Cloudy</strong><span class="hex">#B1ADA1</span></div>
+  <div class="brand-chip"><div class="dot" style="background:#F4F3EE;border:1px solid #ddd;"></div><strong>Pampas</strong><span class="hex">#F4F3EE</span></div>
+  <div class="brand-chip"><div class="dot" style="background:#FFF;border:1px solid #ddd;"></div><strong>White</strong><span class="hex">#FFFFFF</span></div>
+</div>
+
+<!-- Texture layers -->
+<div class="zoom-strip">
+  <div class="zoom-box" style="background-image:var(--grain-coarse);background-color:#F4F3EE;"><span class="label">粗颗粒 · 0.35Hz</span></div>
+  <div class="zoom-box" style="background-image:var(--grain-fine);background-color:#F4F3EE;"><span class="label">细噪点 · 0.85Hz</span></div>
+  <div class="zoom-box" style="background-image:var(--grain-fiber);background-color:#F4F3EE;"><span class="label">纸浆横纹纤维</span></div>
+  <div class="zoom-box" style="background-image:var(--paper-texture);background-color:#F4F3EE;"><span class="label">三层叠加 &rarr;</span></div>
+</div>
+
+<!-- ====== LIGHT ====== -->
+<div class="texture-panel">
+  <div class="panel-header" style="background:var(--bg-card);color:var(--text);border-bottom:1px solid var(--border);">
+    ☀️ 亮色模式 — Pampas 纸底 + White 卡片 + Cloudy 辅助 + Crail 点缀
+  </div>
+  <div class="panel-body">
+    <div class="color-grid">
+      <div class="color-chip"><div class="sw" style="background:#F4F3EE;border:1px solid #DCD9D2;"></div><div class="meta"><div class="label">Pampas 背景</div><div class="hex">#F4F3EE</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#FFFFFF;border:1px solid #DCD9D2;"></div><div class="meta"><div class="label">White 卡片</div><div class="hex">#FFFFFF</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#2D2925;"></div><div class="meta"><div class="label">正文暖棕黑</div><div class="hex">#2D2925</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#B1ADA1;"></div><div class="meta"><div class="label">Cloudy 次级</div><div class="hex">#B1ADA1</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#DCD9D2;"></div><div class="meta"><div class="label">边框分割</div><div class="hex">#DCD9D2</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#C15F3C;"></div><div class="meta"><div class="label">Crail 强调</div><div class="hex">#C15F3C</div></div></div>
+    </div>
+
+    <div class="samples-grid">
+      <div>
+        <div class="sample-block"><div class="sample-label">卡片 Card</div>
+          <div class="card-sample"><div class="title">技术随笔标题</div><div class="desc">摘要测试 Cloudy 灰在纸纹上的表现力。</div><span class="tag"># 设计</span></div>
+        </div>
+        <div class="sample-block"><div class="sample-label">链接 Link</div>
+          <a class="link-sample" href="#">→ 阅读全文</a>
+        </div>
+        <div class="sample-block"><div class="sample-label">引用 Blockquote</div>
+          <div class="bq-sample">"Design is not just what it looks like, it's how it works." — Jobs</div>
+        </div>
+      </div>
+      <div>
+        <div class="sample-block"><div class="sample-label">代码块 Code</div>
+          <div class="code-sample">
+            <span class="kw">import</span> { useState } <span class="kw">from</span> <span class="str">'react'</span>;<br>
+            <span class="kw">export const</span> App = () =&gt; <span class="str">&lt;Main /&gt;</span>;
+          </div>
+        </div>
+        <div class="sample-block"><div class="sample-label">按钮 + 徽章</div>
+          <div class="btn-row"><a class="btn-primary" href="#">主要操作</a><a class="btn-ghost" href="#">次要</a></div>
+          <span class="badge-sample">★ 精选文章</span>
+        </div>
+        <div class="sample-block"><div class="sample-label">分页 Pagination</div>
+          <div class="pagination-sample">
+            <div class="pg-dot">1</div><div class="pg-dot active">2</div><div class="pg-dot">3</div><div class="pg-dot">…</div><div class="pg-dot">8</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== DARK ====== -->
+<div class="texture-panel dark">
+  <div class="panel-header" style="background:var(--bg-card);color:var(--text);">
+    🌙 暗色模式 — 暖黑底 + Pampas 提亮文字 + Cloudy 辅助 + Crail 调暖
+  </div>
+  <div class="panel-body">
+    <div class="color-grid">
+      <div class="color-chip"><div class="sw" style="background:#1C1A17;border:1px solid #3D3A35;"></div><div class="meta"><div class="label">暖黑背景</div><div class="hex">#1C1A17</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#25221E;border:1px solid #3D3A35;"></div><div class="meta"><div class="label">卡片</div><div class="hex">#25221E</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#EDEAE3;"></div><div class="meta"><div class="label">Pampas 文字</div><div class="hex">#EDEAE3</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#B1ADA1;"></div><div class="meta"><div class="label">Cloudy 次级</div><div class="hex">#B1ADA1</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#3D3A35;"></div><div class="meta"><div class="label">边框分割</div><div class="hex">#3D3A35</div></div></div>
+      <div class="color-chip"><div class="sw" style="background:#D4845B;"></div><div class="meta"><div class="label">Crail 强调</div><div class="hex">#D4845B</div></div></div>
+    </div>
+
+    <div class="samples-grid">
+      <div>
+        <div class="sample-block"><div class="sample-label">卡片 Card</div>
+          <div class="card-sample"><div class="title">技术随笔标题</div><div class="desc">摘要测试 Cloudy 灰在纸纹上的表现力。</div><span class="tag"># 设计</span></div>
+        </div>
+        <div class="sample-block"><div class="sample-label">链接 Link</div>
+          <a class="link-sample" href="#">→ 阅读全文</a>
+        </div>
+        <div class="sample-block"><div class="sample-label">引用 Blockquote</div>
+          <div class="bq-sample">"Design is not just what it looks like, it's how it works." — Jobs</div>
+        </div>
+      </div>
+      <div>
+        <div class="sample-block"><div class="sample-label">代码块 Code</div>
+          <div class="code-sample">
+            <span class="kw">import</span> { useState } <span class="kw">from</span> <span class="str">'react'</span>;<br>
+            <span class="kw">export const</span> App = () =&gt; <span class="str">&lt;Main /&gt;</span>;
+          </div>
+        </div>
+        <div class="sample-block"><div class="sample-label">按钮 + 徽章</div>
+          <div class="btn-row"><a class="btn-primary" href="#">主要操作</a><a class="btn-ghost" href="#">次要</a></div>
+          <span class="badge-sample">★ 精选文章</span>
+        </div>
+        <div class="sample-block"><div class="sample-label">分页 Pagination</div>
+          <div class="pagination-sample">
+            <div class="pg-dot">1</div><div class="pg-dot active">2</div><div class="pg-dot">3</div><div class="pg-dot">…</div><div class="pg-dot">8</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Summary ====== -->
+<div class="approach-box">
+  <h3>配色如何对应 Claude 官方四色</h3>
+  <table>
+    <tr><td>Crail #C15F3C</td><td>--accent</td><td>唯一强调色。链接、按钮主色、分页选中态、代码关键字、引用左边框。亮色直接用，暗色调亮到 #D4845B。</td></tr>
+    <tr><td>Cloudy #B1ADA1</td><td>--text2</td><td>次级文字 &amp; 辅助色。描述文字、卡片标签、暗色下同样适用。Cloudy 比纯灰暖，和纸底和谐。</td></tr>
+    <tr><td>Pampas #F4F3EE</td><td>--bg</td><td>亮色模式主背景。冷压纸纹理叠在 Pampas 上，纸感最正。暗色下文字提亮走向 Pampas 暖白 #EDEAE3。</td></tr>
+    <tr><td>White #FFFFFF</td><td>--bg-card</td><td>卡片底色。在 Pampas 纸底上浮起一层纯白卡片，形成微妙但清晰的层级区分。</td></tr>
+  </table>
+</div>
+
+<p class="note">顶部按钮切换亮色/暗色模式 &nbsp;·&nbsp; 三层纹理 = 粗颗粒 + 细噪点 + 纸浆横纹 &nbsp;·&nbsp; 刷新：<strong>http://localhost:3000</strong></p>
+
+</div>
+
+<script>
+const btn = document.getElementById('toggleBtn');
+btn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  btn.textContent = document.body.classList.contains('dark-mode') ? '切换亮色模式' : '切换暗色模式';
+});
+</script>
+</body>
+</html>

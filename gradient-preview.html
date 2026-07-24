@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侧边栏渐变色预览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .preview-card {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid #3a3a3a;
+            transition: all 0.3s;
+        }
+
+        .preview-card:hover {
+            border-color: #666;
+            transform: translateY(-2px);
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .text-preview {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .gradient-code {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>侧边栏渐变色方案预览</h1>
+
+        <div class="preview-grid">
+            <!-- 方案1: 深蓝到紫 -->
+            <div class="preview-card">
+                <div class="card-title">方案 1 - 深蓝紫</div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    计算，为了无法计算的计算
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    努力，为了无法量化的意义
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    让每一行代码都拥有改变世界的力量
+                </div>
+                <div class="gradient-code">
+                    Line1: #667eea → #764ba2<br>
+                    Line2: #4facfe → #00f2fe<br>
+                    Line3: #fa709a → #fee140
+                </div>
+            </div>
+
+            <!-- 方案2: 暖色调 -->
+            <div class="preview-card">
+                <div class="card-title">方案 2 - 暖色调</div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    计算，为了无法计算的计算
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    努力，为了无法量化的意义
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    让每一行代码都拥有改变世界的力量
+                </div>
+                <div class="gradient-code">
+                    Line1: #f093fb → #f5576c<br>
+                    Line2: #fa709a → #fee140<br>
+                    Line3: #ff9a9e → #fad0c4
+                </div>
+            </div>
+
+            <!-- 方案3: 冷色调 -->
+            <div class="preview-card">
+                <div class="card-title">方案 3 - 冷色调</div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    计算，为了无法计算的计算
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    努力，为了无法量化的意义
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    让每一行代码都拥有改变世界的力量
+                </div>
+                <div class="gradient-code">
+                    Line1: #a8edea → #fed6e3<br>
+                    Line2: #89f7fe → #66a6ff<br>
+                    Line3: #a1c4fd → #c2e9fb
+                </div>
+            </div>
+
+            <!-- 方案4: 彩虹渐变 -->
+            <div class="preview-card">
+                <div class="card-title">方案 4 - 彩虹</div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    计算，为了无法计算的计算
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    努力，为了无法量化的意义
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    让每一行代码都拥有改变世界的力量
+                </div>
+                <div class="gradient-code">
+                    Line1: #667eea → #764ba2<br>
+                    Line2: #f093fb → #f5576c<br>
+                    Line3: #4facfe → #00f2fe
+                </div>
+            </div>
+
+            <!-- 方案5: 金色调 -->
+            <div class="preview-card">
+                <div class="card-title">方案 5 - 金橙色</div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    计算，为了无法计算的计算
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    努力，为了无法量化的意义
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #fddb92 0%, #d1fdff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    让每一行代码都拥有改变世界的力量
+                </div>
+                <div class="gradient-code">
+                    Line1: #ffecd2 → #fcb69f<br>
+                    Line2: #ff9a56 → #ff6a88<br>
+                    Line3: #fddb92 → #d1fdff
+                </div>
+            </div>
+
+            <!-- 方案6: 深紫红 -->
+            <div class="preview-card">
+                <div class="card-title">方案 6 - 深紫红</div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    计算，为了无法计算的计算
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #e96443 0%, #904e95 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    努力，为了无法量化的意义
+                </div>
+                <div class="text-preview" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    让每一行代码都拥有改变世界的力量
+                </div>
+                <div class="gradient-code">
+                    Line1: #667eea → #764ba2<br>
+                    Line2: #e96443 → #904e95<br>
+                    Line3: #fa709a → #fee140
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
